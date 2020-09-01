@@ -10488,7 +10488,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TorusService", function() { return TorusService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/operation/operation.service */ "./src/app/services/operation/operation.service.ts");
+/* harmony import */ var _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @toruslabs/torus-direct-web-sdk */ "./node_modules/@toruslabs/torus-direct-web-sdk/dist/directWebSdk.cjs.js");
+/* harmony import */ var _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/operation/operation.service */ "./src/app/services/operation/operation.service.ts");
+
 
 
 
@@ -10514,7 +10517,7 @@ class TorusService {
     constructor(operationService) {
         this.operationService = operationService;
         this.torus = null;
-        this.selectedVerifier = PASSWORDLESS;
+        this.selectedVerifier = GOOGLE;
         this.loginHint = '';
         this.verifierMap = {
             [GOOGLE]: {
@@ -10573,6 +10576,24 @@ class TorusService {
                 [LINE]: { domain: AUTH_DOMAIN },
             };
         };
+        this.initTorus();
+    }
+    initTorus() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            try {
+                const torusdirectsdk = new _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2___default.a({
+                    baseUrl: `${location.origin}/serviceworker`,
+                    enableLogging: true,
+                    proxyContractAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183',
+                    network: 'testnet',
+                });
+                yield torusdirectsdk.init({ skipSw: false });
+                this.torus = torusdirectsdk;
+            }
+            catch (error) {
+                console.error(error, 'oninit caught');
+            }
+        });
     }
     getTorusKeyPair() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -10599,14 +10620,14 @@ class TorusService {
         });
     }
 }
-TorusService.ɵfac = function TorusService_Factory(t) { return new (t || TorusService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_2__["OperationService"])); };
+TorusService.ɵfac = function TorusService_Factory(t) { return new (t || TorusService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_3__["OperationService"])); };
 TorusService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: TorusService, factory: TorusService.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](TorusService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return [{ type: _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_2__["OperationService"] }]; }, null); })();
+    }], function () { return [{ type: _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_3__["OperationService"] }]; }, null); })();
 
 
 /***/ }),
@@ -12046,6 +12067,61 @@ module.exports = __webpack_require__(/*! C:\Users\klas_\Git\kukai\src\main.ts */
 
 /***/ }),
 
+/***/ 10:
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 11:
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 12:
+/*!**********************!*\
+  !*** util (ignored) ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 13:
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 14:
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
 /***/ 2:
 /*!**********************!*\
   !*** util (ignored) ***!
@@ -12102,9 +12178,31 @@ module.exports = __webpack_require__(/*! C:\Users\klas_\Git\kukai\src\main.ts */
 /***/ }),
 
 /***/ 7:
-/*!********************!*\
-  !*** fs (ignored) ***!
-  \********************/
+/*!*******************************************!*\
+  !*** ../../src/methods/node.js (ignored) ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 8:
+/*!***************************!*\
+  !*** ./node.js (ignored) ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 9:
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
