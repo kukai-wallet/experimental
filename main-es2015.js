@@ -10526,40 +10526,6 @@ class TorusService {
                 clientId: '952872982551-od475jfe3ach7dghacin634rbkcqhpll.apps.googleusercontent.com',
                 verifier: 'google-lrc',
             },
-            [FACEBOOK]: { name: 'Facebook', typeOfLogin: 'facebook', clientId: '617201755556395', verifier: 'facebook-lrc' },
-            [REDDIT]: { name: 'Reddit', typeOfLogin: 'reddit', clientId: 'YNsv1YtA_o66fA', verifier: 'torus-reddit-test' },
-            [TWITCH]: { name: 'Twitch', typeOfLogin: 'twitch', clientId: 'f5and8beke76mzutmics0zu4gw10dj', verifier: 'twitch-lrc' },
-            [DISCORD]: { name: 'Discord', typeOfLogin: 'discord', clientId: '682533837464666198', verifier: 'discord-lrc' },
-            [EMAIL_PASSWORD]: {
-                name: 'Email Password',
-                typeOfLogin: 'email_password',
-                clientId: 'sqKRBVSdwa4WLkaq419U7Bamlh5vK1H7',
-                verifier: 'torus-auth0-email-password',
-            },
-            [PASSWORDLESS]: {
-                name: 'Passwordless',
-                typeOfLogin: 'passwordless',
-                clientId: 'P7PJuBCXIHP41lcyty0NEb7Lgf7Zme8Q',
-                verifier: 'torus-auth0-passwordless',
-            },
-            [APPLE]: { name: 'Apple', typeOfLogin: 'apple', clientId: 'm1Q0gvDfOyZsJCZ3cucSQEe9XMvl9d9L', verifier: 'torus-auth0-apple-lrc' },
-            [GITHUB]: { name: 'Github', typeOfLogin: 'github', clientId: 'PC2a4tfNRvXbT48t89J5am0oFM21Nxff', verifier: 'torus-auth0-github-lrc' },
-            [LINKEDIN]: { name: 'Linkedin', typeOfLogin: 'linkedin', clientId: '59YxSgx79Vl3Wi7tQUBqQTRTxWroTuoc', verifier: 'torus-auth0-linkedin-lrc' },
-            [TWITTER]: { name: 'Twitter', typeOfLogin: 'twitter', clientId: 'A7H8kkcmyFRlusJQ9dZiqBLraG2yWIsO', verifier: 'torus-auth0-twitter-lrc' },
-            [WEIBO]: { name: 'Weibo', typeOfLogin: 'weibo', clientId: 'dhFGlWQMoACOI5oS5A1jFglp772OAWr1', verifier: 'torus-auth0-weibo-lrc' },
-            [LINE]: { name: 'Line', typeOfLogin: 'line', clientId: 'WN8bOmXKNRH1Gs8k475glfBP5gDZr9H1', verifier: 'torus-auth0-line-lrc' },
-            [HOSTED_EMAIL_PASSWORDLESS]: {
-                name: 'Hosted Email Passwordless',
-                typeOfLogin: 'jwt',
-                clientId: 'P7PJuBCXIHP41lcyty0NEb7Lgf7Zme8Q',
-                verifier: 'torus-auth0-passwordless',
-            },
-            [HOSTED_SMS_PASSWORDLESS]: {
-                name: 'Hosted SMS Passwordless',
-                typeOfLogin: 'jwt',
-                clientId: 'nSYBFalV2b1MSg5b2raWqHl63tfH3KQa',
-                verifier: 'torus-auth0-sms-passwordless',
-            },
         };
         this.verifierMapKeys = Object.keys(this.verifierMap);
         this._loginToConnectionMap = () => {
@@ -10597,7 +10563,7 @@ class TorusService {
     }
     getTorusKeyPair() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            //const data = {"publicAddress":"0xc6644deC26cE2933387730AdE16387408d243855","privateKey":"6e64b4c585bd09c4f61c3838406ea705d23c2a49f5bd9fe08307b8cbdb9a18f3","userInfo":{"email":"klas.harrysson@gmail.com","name":"Klas Harrysson","profileImage":"https://lh3.googleusercontent.com/-mjP2hmJTKxk/AAAAAAAAAAI/AAAAAAAAAMw/AMZuuckltYbmd4Gm-pVywA-L0hEPrBsC1w/photo.jpg","verifier":"google-lrc","verifierId":"klas.harrysson@gmail.com","typeOfLogin":"google","accessToken":"ya29.a0AfH6SMCQfMahUqtjsCZEt6vzlyn_zw7tBAZT74Y0CVtY58eQvS3hXwMqXHLJiXII1SHP3pAR55glQRNDv0g8NV5Wm_RQRd9vUv9FX5Cu8GMxDsAlLQRoDZ6smt8mTuG2jdDjQ9YEfZdSKbyLu_WRs9voDFtbbRf0_wE","idToken":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjBhN2RjMTI2NjQ1OTBjOTU3ZmZhZWJmN2I2NzE4Mjk3Yjg2NGJhOTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyMjE4OTg2MDk3MDktb2JmbjNwNjM3NDFsNTMzMzA5MzQzMGozcWVpaW5hYTguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMjE4OTg2MDk3MDktb2JmbjNwNjM3NDFsNTMzMzA5MzQzMGozcWVpaW5hYTguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTQ1Njk0MDIxMzkxNzI4MDU0NjYiLCJlbWFpbCI6ImtsYXMuaGFycnlzc29uQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhdF9oYXNoIjoiRVR1eUhQRGZwdlN1ZmY0NGRQU3hSQSIsIm5vbmNlIjoiMVE2SkJUSTRpNFhvYjRQZ3NGajI2WTJ0S2hEOTBIIiwibmFtZSI6IktsYXMgSGFycnlzc29uIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS8tbWpQMmhtSlRLeGsvQUFBQUFBQUFBQUkvQUFBQUFBQUFBTXcvQU1adXVja2x0WWJtZDRHbS1wVnl3QS1MMGhFUHJCc0Mxdy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiS2xhcyIsImZhbWlseV9uYW1lIjoiSGFycnlzc29uIiwibG9jYWxlIjoic3YiLCJpYXQiOjE1OTg1NzcxNjMsImV4cCI6MTU5ODU4MDc2MywianRpIjoiYjM2YmYzYjY2ZTVhMDAyNWJhZTJiMjg4MDBhMDQzNWE1M2FhNWYxMSJ9.WKkQNsOMSR5Ijp93GDGSKXLbKd9OTf-oCaRyvpQsiArAPXeu3LCHOfeK1OHNk8tUYmTCpK7ITNna2cb7Vt2MdnlkJHl2uZjHLfHugrVzsA5kFGP-pZLGbQIeW5xTXJ-hYWISUtC3Q6lIsBHOEfHDWkHsZyEQhciybVjIj06za3ZXwZhphOfjDdIlyO520pRkP35PhP1uklZNuLxNNug_BQ7x3QfhqgmCTe3-yIakTAaxRQcHYvWSu3gvYTYTRPa3UYWDgT4cVvtPoMEUGtXxn5IGou63-mn8bseHhaej0ZjoY_NDKrTGkiWkHWyXVX-bA8W6gzeEyYT7P-IIAU8cBA"}};
+            //const data = {"publicAddress":"0xc6644deC26cE2933387730AdE16387408d243855","privateKey":"6e64b4c585bd09c4f61c3838406ea705d23c2a49f5bd9fe08307b8cbdb9a18f3"};
             //const keyPair = this.operationService.spPrivKeyToKeyPair(data.privateKey);
             //return new Promise(resolve => setTimeout(() => resolve(keyPair), 3000))
             // console.log(this.operationService.spPrivKeyToKeyPair(data.privateKey));
@@ -10607,16 +10573,20 @@ class TorusService {
           tz2 JfwJmu5kxpg7xbwVENNL4vrTf7FWwUvkP
           sppk 7aqMoCwx5F6mJxhrQPJG3vumCkYzF1ywXyFn8LGdricjZET8SVV
         */
-            const jwtParams = this._loginToConnectionMap()[this.selectedVerifier] || {};
-            const { typeOfLogin, clientId, verifier } = this.verifierMap[this.selectedVerifier];
-            const loginDetails = yield this.torus.triggerLogin({
-                typeOfLogin,
-                verifier,
-                clientId,
-                jwtParams,
-            });
-            console.log(loginDetails);
-            console.warn(loginDetails);
+            try {
+                const jwtParams = this._loginToConnectionMap()[this.selectedVerifier] || {};
+                const { typeOfLogin, clientId, verifier } = this.verifierMap[this.selectedVerifier];
+                const loginDetails = yield this.torus.triggerLogin({
+                    typeOfLogin,
+                    verifier,
+                    clientId,
+                    jwtParams,
+                });
+                console.log(loginDetails);
+            }
+            catch (e) {
+                console.error(e, 'login caught');
+            }
         });
     }
 }
