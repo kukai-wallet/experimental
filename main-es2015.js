@@ -5881,11 +5881,11 @@ class StartComponent {
     }
     torusLogin() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const keyPair = yield this.torusService.getTorusKeyPair();
+            const { keyPair, userInfo } = yield this.torusService.getTorusKeyPair(undefined, true);
             if (keyPair) {
                 console.log(keyPair);
                 yield this.importService
-                    .importWalletFromPk(keyPair.pk, '')
+                    .importWalletFromPk(keyPair.pk, '', { verifier: userInfo.typeOfLogin, id: userInfo.verifierId })
                     .then((success) => {
                     if (success) {
                         console.log('success');
@@ -8807,35 +8807,45 @@ class ImportService {
             return true;
         });
     }
-    importWalletFromPk(pk, derivationPath) {
+    importWalletFromPk(pk, derivationPath, verifierDetails = null) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.coordinatorService.stopAll();
             if (derivationPath) {
-                try {
-                    this.walletService.initStorage();
-                    this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["LedgerWallet"]();
-                    this.walletService.addImplicitAccount(pk, derivationPath);
-                    yield this.findContracts(this.walletService.wallet.implicitAccounts[0].pkh);
-                    return true;
-                }
-                catch (err) {
-                    console.warn(err);
-                    this.walletService.clearWallet();
-                    return false;
-                }
+                return this.ledgerImport(pk, derivationPath);
             }
-            else {
-                try {
-                    this.walletService.initStorage();
-                    this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"]('test');
-                    this.walletService.addImplicitAccount(pk);
-                    return true;
-                }
-                catch (err) {
-                    console.warn(err);
-                    this.walletService.clearWallet();
-                    return false;
-                }
+            else if (verifierDetails) {
+                return this.torusImport(pk, verifierDetails.verifier, verifierDetails.id);
+            }
+        });
+    }
+    ledgerImport(pk, derivationPath) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            try {
+                this.walletService.initStorage();
+                this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["LedgerWallet"]();
+                this.walletService.addImplicitAccount(pk, derivationPath);
+                yield this.findContracts(this.walletService.wallet.implicitAccounts[0].pkh);
+                return true;
+            }
+            catch (err) {
+                console.warn(err);
+                this.walletService.clearWallet();
+                return false;
+            }
+        });
+    }
+    torusImport(pk, verifier, id) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            try {
+                this.walletService.initStorage();
+                this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifier, id);
+                this.walletService.addImplicitAccount(pk);
+                return true;
+            }
+            catch (err) {
+                console.warn(err);
+                this.walletService.clearWallet();
+                return false;
             }
         });
     }
@@ -10519,8 +10529,6 @@ class TorusService {
     constructor(operationService) {
         this.operationService = operationService;
         this.torus = null;
-        this.selectedVerifier = GOOGLE;
-        this.loginHint = '';
         this.verifierMap = {
             [GOOGLE]: {
                 name: 'Google',
@@ -10533,7 +10541,7 @@ class TorusService {
         this._loginToConnectionMap = () => {
             return {
                 [EMAIL_PASSWORD]: { domain: AUTH_DOMAIN },
-                [PASSWORDLESS]: { domain: AUTH_DOMAIN, login_hint: this.loginHint },
+                [PASSWORDLESS]: { domain: AUTH_DOMAIN },
                 [HOSTED_EMAIL_PASSWORDLESS]: { domain: AUTH_DOMAIN, verifierIdField: 'name', connection: '', isVerifierIdCaseSensitive: false },
                 [HOSTED_SMS_PASSWORDLESS]: { domain: AUTH_DOMAIN, verifierIdField: 'name', connection: '' },
                 [APPLE]: { domain: AUTH_DOMAIN },
@@ -10563,21 +10571,11 @@ class TorusService {
             }
         });
     }
-    getTorusKeyPair() {
+    getTorusKeyPair(selectedVerifier = GOOGLE, withUserInfo = false) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            //const data = {"publicAddress":"0xc6644deC26cE2933387730AdE16387408d243855","privateKey":"6e64b4c585bd09c4f61c3838406ea705d23c2a49f5bd9fe08307b8cbdb9a18f3"};
-            //const keyPair = this.operationService.spPrivKeyToKeyPair(data.privateKey);
-            //return new Promise(resolve => setTimeout(() => resolve(keyPair), 3000))
-            // console.log(this.operationService.spPrivKeyToKeyPair(data.privateKey));
-            // sppk7aBuyooyuqnuUhGCqtwV8c7QMPZGQQNuF8mpHjBENG6JLGWmhjN
-            /*
-          spsk 1YLYnHDdeUBWbmyyDJFMXDajF4vgoqCR7YRmZ7Z1LxvrjuwovG
-          tz2 JfwJmu5kxpg7xbwVENNL4vrTf7FWwUvkP
-          sppk 7aqMoCwx5F6mJxhrQPJG3vumCkYzF1ywXyFn8LGdricjZET8SVV
-        */
             try {
-                const jwtParams = this._loginToConnectionMap()[this.selectedVerifier] || {};
-                const { typeOfLogin, clientId, verifier } = this.verifierMap[this.selectedVerifier];
+                const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
+                const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
                 const loginDetails = yield this.torus.triggerLogin({
                     typeOfLogin,
                     verifier,
@@ -10587,6 +10585,9 @@ class TorusService {
                 console.log(loginDetails);
                 const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                 console.log(keyPair);
+                if (withUserInfo) {
+                    return { keyPair, userInfo: loginDetails.userInfo };
+                }
                 return keyPair;
             }
             catch (e) {
@@ -10764,8 +10765,11 @@ class WalletService {
             }
             else if (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"]) {
                 const keyPair = yield this.torusService.getTorusKeyPair();
-                if (this.operationService.spPrivKeyToKeyPair(keyPair.sk).pkh === keyPair.pkh) {
+                if (this.wallet.getImplicitAccount(keyPair.pkh)) {
                     return keyPair;
+                }
+                else {
+                    throw new Error('Signed with wrong account');
                 }
                 return null;
             }
@@ -10992,7 +10996,7 @@ class WalletService {
                 this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["LedgerWallet"]();
                 break;
             case 'TorusWallet':
-                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier);
+                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id);
                 break;
             default:
         }
@@ -11136,9 +11140,10 @@ class HdWallet extends FullWallet {
     }
 }
 class TorusWallet extends Wallet {
-    constructor(verifier) {
+    constructor(verifier, id) {
         super();
         this.verifier = verifier;
+        this.id = id;
     }
 }
 class LedgerWallet extends Wallet {
