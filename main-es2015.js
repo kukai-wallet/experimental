@@ -10524,7 +10524,7 @@ class TorusService {
                 name: 'Google',
                 typeOfLogin: 'google',
                 clientId: '952872982551-od475jfe3ach7dghacin634rbkcqhpll.apps.googleusercontent.com',
-                verifier: 'google-lrc',
+                verifier: 'kukai-google',
             },
         };
         this.verifierMapKeys = Object.keys(this.verifierMap);
