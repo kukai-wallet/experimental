@@ -11748,8 +11748,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     keyPair = _context28.sent;
+
+                    if (!keyPair) {
+                      _context28.next = 7;
+                      break;
+                    }
+
                     console.log(keyPair);
-                    _context28.next = 6;
+                    _context28.next = 7;
                     return this.importService.importWalletFromPk(keyPair.pk, '').then(function (success) {
                       if (success) {
                         console.log('success');
@@ -11768,7 +11774,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
                     });
 
-                  case 6:
+                  case 7:
                   case "end":
                     return _context28.stop();
                 }
@@ -18666,7 +18672,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getTorusKeyPair",
         value: function getTorusKeyPair() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee55() {
-            var jwtParams, _this$verifierMap$thi, typeOfLogin, clientId, verifier, loginDetails;
+            var jwtParams, _this$verifierMap$thi, typeOfLogin, clientId, verifier, loginDetails, keyPair;
 
             return regeneratorRuntime.wrap(function _callee55$(_context55) {
               while (1) {
@@ -18686,20 +18692,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 5:
                     loginDetails = _context55.sent;
                     console.log(loginDetails);
-                    _context55.next = 12;
-                    break;
+                    keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
+                    return _context55.abrupt("return", keyPair);
 
-                  case 9:
-                    _context55.prev = 9;
+                  case 11:
+                    _context55.prev = 11;
                     _context55.t0 = _context55["catch"](0);
                     console.error(_context55.t0, 'login caught');
+                    return _context55.abrupt("return", null);
 
-                  case 12:
+                  case 15:
                   case "end":
                     return _context55.stop();
                 }
               }
-            }, _callee55, this, [[0, 9]]);
+            }, _callee55, this, [[0, 11]]);
           }));
         }
       }]);

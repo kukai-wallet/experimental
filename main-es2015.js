@@ -5882,25 +5882,27 @@ class StartComponent {
     torusLogin() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const keyPair = yield this.torusService.getTorusKeyPair();
-            console.log(keyPair);
-            yield this.importService
-                .importWalletFromPk(keyPair.pk, '')
-                .then((success) => {
-                if (success) {
-                    console.log('success');
-                    if (this.walletService.wallet.implicitAccounts.length === 1 && this.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
-                        console.log('single address');
-                        this.router.navigate([`/account/${this.walletService.wallet.implicitAccounts[0].address}`]);
+            if (keyPair) {
+                console.log(keyPair);
+                yield this.importService
+                    .importWalletFromPk(keyPair.pk, '')
+                    .then((success) => {
+                    if (success) {
+                        console.log('success');
+                        if (this.walletService.wallet.implicitAccounts.length === 1 && this.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
+                            console.log('single address');
+                            this.router.navigate([`/account/${this.walletService.wallet.implicitAccounts[0].address}`]);
+                        }
+                        else {
+                            this.router.navigate(['/accounts']);
+                        }
                     }
                     else {
-                        this.router.navigate(['/accounts']);
+                        console.log(success);
+                        this.messageService.addError('Wrong password');
                     }
-                }
-                else {
-                    console.log(success);
-                    this.messageService.addError('Wrong password');
-                }
-            });
+                });
+            }
         });
     }
 }
@@ -10583,9 +10585,12 @@ class TorusService {
                     jwtParams,
                 });
                 console.log(loginDetails);
+                const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
+                return keyPair;
             }
             catch (e) {
                 console.error(e, 'login caught');
+                return null;
             }
         });
     }
