@@ -10586,6 +10586,7 @@ class TorusService {
                 });
                 console.log(loginDetails);
                 const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
+                console.log(keyPair);
                 return keyPair;
             }
             catch (e) {

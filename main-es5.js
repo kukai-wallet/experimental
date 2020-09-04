@@ -18693,20 +18693,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     loginDetails = _context55.sent;
                     console.log(loginDetails);
                     keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
+                    console.log(keyPair);
                     return _context55.abrupt("return", keyPair);
 
-                  case 11:
-                    _context55.prev = 11;
+                  case 12:
+                    _context55.prev = 12;
                     _context55.t0 = _context55["catch"](0);
                     console.error(_context55.t0, 'login caught');
                     return _context55.abrupt("return", null);
 
-                  case 15:
+                  case 16:
                   case "end":
                     return _context55.stop();
                 }
               }
-            }, _callee55, this, [[0, 11]]);
+            }, _callee55, this, [[0, 12]]);
           }));
         }
       }]);
