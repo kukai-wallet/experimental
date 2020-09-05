@@ -4729,7 +4729,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r200.walletService.isLedgerWallet());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r200.walletService.isLedgerWallet() && !ctx_r200.walletService.isTorusWallet());
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
@@ -10225,7 +10225,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r124.walletService.isLedgerWallet());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r124.walletService.isLedgerWallet() && !ctx_r124.walletService.isTorusWallet());
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
@@ -11712,16 +11712,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     if (this.walletService.wallet) {
                       this.router.navigate(['/accounts']);
-                    } else {
-                      /*const torus = new DirectWebSdk({
-                        baseUrl: `${location.origin}/serviceworker`,
-                        enableLogging: true,
-                        proxyContractAddress: "0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183", // details for test net
-                        network: "testnet", // details for test net
-                      });
-                      await torus.init({ skipSw: false });
-                      this.torus = torus;
-                      console.log('Torus set up');*/
                     }
 
                   case 1:
@@ -19395,6 +19385,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           key: "isHdWallet",
           value: function isHdWallet() {
             return this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"];
+          }
+        }, {
+          key: "isTorusWallet",
+          value: function isTorusWallet() {
+            return this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"];
           }
         }, {
           key: "exportKeyStoreInit",

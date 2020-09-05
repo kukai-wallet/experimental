@@ -2412,7 +2412,7 @@ function DelegateComponent_div_3_div_8_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Fee \u2014 ", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](7, 8, ctx_r200.getFee(), "1.0-6"), " tez ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r200.walletService.isLedgerWallet());
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r200.walletService.isLedgerWallet() && !ctx_r200.walletService.isTorusWallet());
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r200.walletService.isLedgerWallet() && ctx_r200.ledgerError)("ngIfElse", _r211);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
@@ -5042,7 +5042,7 @@ function SendComponent_div_2_div_9_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r124.isMultipleDestinations);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r124.walletService.isLedgerWallet());
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r124.walletService.isLedgerWallet() && !ctx_r124.walletService.isTorusWallet());
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r124.walletService.isLedgerWallet() && ctx_r124.ledgerError)("ngIfElse", _r168);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
@@ -5865,17 +5865,6 @@ class StartComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             if (this.walletService.wallet) {
                 this.router.navigate(['/accounts']);
-            }
-            else {
-                /*const torus = new DirectWebSdk({
-                  baseUrl: `${location.origin}/serviceworker`,
-                  enableLogging: true,
-                  proxyContractAddress: "0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183", // details for test net
-                  network: "testnet", // details for test net
-                });
-                await torus.init({ skipSw: false });
-                this.torus = torus;
-                console.log('Torus set up');*/
             }
         });
     }
@@ -10573,6 +10562,17 @@ class TorusService {
     }
     getTorusKeyPair(selectedVerifier = GOOGLE, withUserInfo = false) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            // Mock
+            /*const keyPair = {
+              pk: "sppk7bgVcij98mArGbEpEcMTCnsidhmbRoyjMampgFGpV2Bqep5yEDS",
+              pkh: "tz2Wid7AJyjT9Y2L6L8MLEtuEdUBDeAUrJ94",
+              sk: "spsk1sbF5tru1ejtbvcEH8kNAB4B7c7HrxN4H6V6JPySEquixNAUBN"
+            };
+            const userInfo = { verifierId: 'klassare@gmail.com', typeOfLogin: 'google' };
+            if (withUserInfo) {
+              return { keyPair, userInfo };
+            }
+            return keyPair;*/
             try {
                 const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
                 const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
@@ -10896,6 +10896,9 @@ class WalletService {
     }
     isHdWallet() {
         return this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"];
+    }
+    isTorusWallet() {
+        return this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"];
     }
     exportKeyStoreInit(type, encryptedSeed, encryptedEntropy, iv) {
         const data = {
