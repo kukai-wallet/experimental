@@ -18789,28 +18789,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context59.prev = _context59.next) {
                   case 0:
                     _context59.prev = 0;
-                    _context59.next = 3;
+                    console.log('try');
+                    _context59.next = 4;
                     return this.torus.getTorusKey(this._loginToConnectionMap()[selectedVerifier], verifierId, {
                       verifier_id: verifierId
                     }, idToken || accessToken);
 
-                  case 3:
+                  case 4:
                     torusKey = _context59.sent;
                     console.log(torusKey);
                     return _context59.abrupt("return", null);
 
-                  case 8:
-                    _context59.prev = 8;
+                  case 9:
+                    _context59.prev = 9;
                     _context59.t0 = _context59["catch"](0);
                     console.error(_context59.t0, 'login caught');
                     return _context59.abrupt("return", null);
 
-                  case 12:
+                  case 13:
                   case "end":
                     return _context59.stop();
                 }
               }
-            }, _callee59, this, [[0, 8]]);
+            }, _callee59, this, [[0, 9]]);
           }));
         }
       }]);
@@ -19137,7 +19138,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     case 4:
                       seed = _context61.sent;
                       console.log('done');
-                      _context61.next = 40;
+                      _context61.next = 42;
                       break;
 
                     case 8:
@@ -19151,7 +19152,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 11:
                       seed = _context61.sent;
-                      _context61.next = 40;
+                      _context61.next = 42;
                       break;
 
                     case 14:
@@ -19165,7 +19166,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 17:
                       seed = _context61.sent;
-                      _context61.next = 40;
+                      _context61.next = 42;
                       break;
 
                     case 20:
@@ -19184,93 +19185,95 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 26:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"])) {
-                        _context61.next = 39;
+                        _context61.next = 41;
                         break;
                       }
 
                       w = this.wallet.getImplicitAccounts[0];
-                      _context61.next = 30;
+                      console.log(w);
+                      _context61.next = 31;
                       return this.torusService.getTorusKeyPair(w.verifier, w.id, w.idToken, w.accessToken);
 
-                    case 30:
+                    case 31:
                       _keyPair = _context61.sent;
+                      console.log(_keyPair);
 
                       if (!this.wallet.getImplicitAccount(_keyPair.pkh)) {
-                        _context61.next = 35;
+                        _context61.next = 37;
                         break;
                       }
 
                       return _context61.abrupt("return", _keyPair);
 
-                    case 35:
+                    case 37:
                       throw new Error('Signed with wrong account');
 
-                    case 36:
+                    case 38:
                       return _context61.abrupt("return", null);
 
-                    case 39:
+                    case 41:
                       return _context61.abrupt("return", null);
 
-                    case 40:
+                    case 42:
                       if (seed) {
-                        _context61.next = 42;
+                        _context61.next = 44;
                         break;
                       }
 
                       return _context61.abrupt("return", null);
 
-                    case 42:
+                    case 44:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context61.next = 51;
+                        _context61.next = 53;
                         break;
                       }
 
                       if (pkh) {
-                        _context61.next = 45;
+                        _context61.next = 47;
                         break;
                       }
 
                       throw new Error('No pkh provided');
 
-                    case 45:
+                    case 47:
                       account = this.wallet.getImplicitAccount(pkh);
 
                       if (account.derivationPath) {
-                        _context61.next = 48;
+                        _context61.next = 50;
                         break;
                       }
 
                       throw new Error('No derivationPath found');
 
-                    case 48:
+                    case 50:
                       return _context61.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
 
-                    case 51:
+                    case 53:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context61.next = 60;
+                        _context61.next = 62;
                         break;
                       }
 
                       _keyPair2 = this.operationService.seed2keyPair(seed);
 
                       if (!(!_keyPair2.pkh || !pkh || _keyPair2.pkh !== pkh)) {
-                        _context61.next = 57;
+                        _context61.next = 59;
                         break;
                       }
 
                       return _context61.abrupt("return", null);
 
-                    case 57:
+                    case 59:
                       return _context61.abrupt("return", _keyPair2);
 
-                    case 58:
-                      _context61.next = 61;
+                    case 60:
+                      _context61.next = 63;
                       break;
 
-                    case 60:
+                    case 62:
                       return _context61.abrupt("return", this.operationService.seed2keyPair(seed));
 
-                    case 61:
+                    case 63:
                     case "end":
                       return _context61.stop();
                   }

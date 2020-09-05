@@ -10606,6 +10606,7 @@ class TorusService {
             return keyPair;
             */
             try {
+                console.log('try');
                 const torusKey = yield this.torus.getTorusKey(this._loginToConnectionMap()[selectedVerifier], verifierId, { verifier_id: verifierId }, idToken || accessToken);
                 console.log(torusKey);
                 return null;
@@ -10785,7 +10786,9 @@ class WalletService {
             }
             else if (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"]) {
                 const w = this.wallet.getImplicitAccounts[0];
+                console.log(w);
                 const keyPair = yield this.torusService.getTorusKeyPair(w.verifier, w.id, w.idToken, w.accessToken);
+                console.log(keyPair);
                 if (this.wallet.getImplicitAccount(keyPair.pkh)) {
                     return keyPair;
                 }
