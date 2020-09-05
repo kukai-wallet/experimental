@@ -19120,7 +19120,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           key: "getKeys",
           value: function getKeys(pwd, pkh) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
-              var seed, keyPair, w, _keyPair, account, _keyPair2;
+              var seed, keyPair, _keyPair, account, _keyPair2;
 
               return regeneratorRuntime.wrap(function _callee61$(_context61) {
                 while (1) {
@@ -19138,7 +19138,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     case 4:
                       seed = _context61.sent;
                       console.log('done');
-                      _context61.next = 42;
+                      _context61.next = 40;
                       break;
 
                     case 8:
@@ -19152,7 +19152,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 11:
                       seed = _context61.sent;
-                      _context61.next = 42;
+                      _context61.next = 40;
                       break;
 
                     case 14:
@@ -19166,7 +19166,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 17:
                       seed = _context61.sent;
-                      _context61.next = 42;
+                      _context61.next = 40;
                       break;
 
                     case 20:
@@ -19185,95 +19185,93 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 26:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"])) {
-                        _context61.next = 41;
+                        _context61.next = 39;
                         break;
                       }
 
-                      w = this.wallet.getImplicitAccounts[0];
-                      console.log(w);
-                      _context61.next = 31;
-                      return this.torusService.getTorusKeyPair(w.verifier, w.id, w.idToken, w.accessToken);
+                      _context61.next = 29;
+                      return this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id, this.wallet.idToken, this.wallet.accessToken);
 
-                    case 31:
+                    case 29:
                       _keyPair = _context61.sent;
                       console.log(_keyPair);
 
                       if (!this.wallet.getImplicitAccount(_keyPair.pkh)) {
-                        _context61.next = 37;
+                        _context61.next = 35;
                         break;
                       }
 
                       return _context61.abrupt("return", _keyPair);
 
-                    case 37:
+                    case 35:
                       throw new Error('Signed with wrong account');
 
-                    case 38:
+                    case 36:
                       return _context61.abrupt("return", null);
 
-                    case 41:
+                    case 39:
                       return _context61.abrupt("return", null);
 
-                    case 42:
+                    case 40:
                       if (seed) {
-                        _context61.next = 44;
+                        _context61.next = 42;
                         break;
                       }
 
                       return _context61.abrupt("return", null);
 
-                    case 44:
+                    case 42:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context61.next = 53;
+                        _context61.next = 51;
                         break;
                       }
 
                       if (pkh) {
-                        _context61.next = 47;
+                        _context61.next = 45;
                         break;
                       }
 
                       throw new Error('No pkh provided');
 
-                    case 47:
+                    case 45:
                       account = this.wallet.getImplicitAccount(pkh);
 
                       if (account.derivationPath) {
-                        _context61.next = 50;
+                        _context61.next = 48;
                         break;
                       }
 
                       throw new Error('No derivationPath found');
 
-                    case 50:
+                    case 48:
                       return _context61.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
 
-                    case 53:
+                    case 51:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context61.next = 62;
+                        _context61.next = 60;
                         break;
                       }
 
                       _keyPair2 = this.operationService.seed2keyPair(seed);
 
                       if (!(!_keyPair2.pkh || !pkh || _keyPair2.pkh !== pkh)) {
-                        _context61.next = 59;
+                        _context61.next = 57;
                         break;
                       }
 
                       return _context61.abrupt("return", null);
 
-                    case 59:
+                    case 57:
                       return _context61.abrupt("return", _keyPair2);
 
-                    case 60:
-                      _context61.next = 63;
+                    case 58:
+                      _context61.next = 61;
                       break;
 
-                    case 62:
+                    case 60:
                       return _context61.abrupt("return", this.operationService.seed2keyPair(seed));
 
-                    case 63:
+                    case 61:
                     case "end":
                       return _context61.stop();
                   }

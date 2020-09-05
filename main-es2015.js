@@ -10785,9 +10785,7 @@ class WalletService {
                 return keyPair;
             }
             else if (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"]) {
-                const w = this.wallet.getImplicitAccounts[0];
-                console.log(w);
-                const keyPair = yield this.torusService.getTorusKeyPair(w.verifier, w.id, w.idToken, w.accessToken);
+                const keyPair = yield this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id, this.wallet.idToken, this.wallet.accessToken);
                 console.log(keyPair);
                 if (this.wallet.getImplicitAccount(keyPair.pkh)) {
                     return keyPair;
