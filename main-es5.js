@@ -11849,7 +11849,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -18745,8 +18745,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _this$verifierMap$sel = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel.typeOfLogin, clientId = _this$verifierMap$sel.clientId, verifier = _this$verifierMap$sel.verifier;
                     _context58.next = 5;
                     return this.torus.triggerLogin({
-                      typeOfLogin: typeOfLogin,
                       verifier: verifier,
+                      typeOfLogin: typeOfLogin,
                       clientId: clientId,
                       jwtParams: jwtParams
                     });
