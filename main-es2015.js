@@ -10591,7 +10591,8 @@ class TorusService {
     }
     getTorusKeyPair(selectedVerifier = GOOGLE, verifierId, idToken, accessToken) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.loginTorus();
+            const { keyPair } = yield this.loginTorus();
+            return keyPair;
             // Mock
             /*
             const keyPair = {
