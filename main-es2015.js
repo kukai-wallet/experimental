@@ -5870,7 +5870,8 @@ class StartComponent {
     }
     torusLogin() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const { keyPair, userInfo } = yield this.torusService.getTorusKeyPair(undefined, true);
+            this.messageService.startSpinner('Alohomora 🧙‍♂️');
+            const { keyPair, userInfo } = yield this.torusService.getTorusKeyPair(undefined, true).catch((e) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return yield this.messageService.stopSpinner(); }));
             if (keyPair) {
                 console.log(keyPair);
                 yield this.importService
@@ -5885,12 +5886,17 @@ class StartComponent {
                         else {
                             this.router.navigate(['/accounts']);
                         }
+                        this.messageService.stopSpinner();
                     }
                     else {
                         console.log(success);
-                        this.messageService.addError('Wrong password');
+                        this.messageService.addError('Torus import failed');
+                        this.messageService.stopSpinner();
                     }
                 });
+            }
+            else {
+                yield this.messageService.stopSpinner();
             }
         });
     }
@@ -10563,16 +10569,20 @@ class TorusService {
     getTorusKeyPair(selectedVerifier = GOOGLE, withUserInfo = false) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             // Mock
-            /*const keyPair = {
+            /*
+            const keyPair = {
               pk: "sppk7bgVcij98mArGbEpEcMTCnsidhmbRoyjMampgFGpV2Bqep5yEDS",
               pkh: "tz2Wid7AJyjT9Y2L6L8MLEtuEdUBDeAUrJ94",
               sk: "spsk1sbF5tru1ejtbvcEH8kNAB4B7c7HrxN4H6V6JPySEquixNAUBN"
             };
             const userInfo = { verifierId: 'klassare@gmail.com', typeOfLogin: 'google' };
+            const timeout = ms => new Promise(res => setTimeout(res, ms))
+            await timeout(3000);
             if (withUserInfo) {
               return { keyPair, userInfo };
             }
-            return keyPair;*/
+            return keyPair;
+            */
             try {
                 const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
                 const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
