@@ -18795,45 +18795,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context59.prev = _context59.next) {
                   case 0:
-                    _context59.prev = 0;
-                    console.log('try');
-                    verifier = this.verifierMap[selectedVerifier].verifier;
-                    /*
-                    const loginDetails = await this.torus.triggerLogin({
-                      typeOfLogin,
-                      verifier,
-                      clientId,
-                      jwtParams,
-                    });
-                    */
+                    return _context59.abrupt("return", this.loginTorus());
 
-                    console.log('dump 2', {
-                      verifier: verifier,
-                      verifierId: verifierId,
-                      idToken: idToken
-                    });
-                    _context59.next = 6;
-                    return this.torus.getTorusKey(verifier, verifierId, {
-                      verifier_id: verifierId
-                    }, idToken || accessToken);
-
-                  case 6:
+                  case 7:
                     torusKey = _context59.sent;
                     console.log(torusKey);
                     return _context59.abrupt("return", null);
 
-                  case 11:
-                    _context59.prev = 11;
-                    _context59.t0 = _context59["catch"](0);
+                  case 12:
+                    _context59.prev = 12;
+                    _context59.t0 = _context59["catch"](1);
                     console.error(_context59.t0, 'login caught');
                     return _context59.abrupt("return", null);
 
-                  case 15:
+                  case 16:
                   case "end":
                     return _context59.stop();
                 }
               }
-            }, _callee59, this, [[0, 11]]);
+            }, _callee59, this, [[1, 12]]);
           }));
         }
       }]);
