@@ -11849,7 +11849,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -18756,23 +18756,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log(loginDetails);
                     keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                     console.log(keyPair);
+                    console.log('dump 1', {
+                      verifier: verifier,
+                      verifierId: loginDetails.userInfo.verifierId,
+                      idToken: loginDetails.userInfo.idToken
+                    });
                     return _context58.abrupt("return", {
                       keyPair: keyPair,
                       userInfo: loginDetails.userInfo
                     });
 
-                  case 12:
-                    _context58.prev = 12;
+                  case 13:
+                    _context58.prev = 13;
                     _context58.t0 = _context58["catch"](0);
                     console.error(_context58.t0, 'login caught');
                     return _context58.abrupt("return", null);
 
-                  case 16:
+                  case 17:
                   case "end":
                     return _context58.stop();
                 }
               }
-            }, _callee58, this, [[0, 12]]);
+            }, _callee58, this, [[0, 13]]);
           }));
         }
       }, {
@@ -18783,16 +18788,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var idToken = arguments.length > 2 ? arguments[2] : undefined;
           var accessToken = arguments.length > 3 ? arguments[3] : undefined;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee59() {
-            var jwtParams, _this$verifierMap$sel2, typeOfLogin, clientId, verifier, torusKey;
-
+            var verifier, torusKey;
             return regeneratorRuntime.wrap(function _callee59$(_context59) {
               while (1) {
                 switch (_context59.prev = _context59.next) {
                   case 0:
                     _context59.prev = 0;
                     console.log('try');
-                    jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
-                    _this$verifierMap$sel2 = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel2.typeOfLogin, clientId = _this$verifierMap$sel2.clientId, verifier = _this$verifierMap$sel2.verifier;
+                    verifier = this.verifierMap[selectedVerifier].verifier;
                     /*
                     const loginDetails = await this.torus.triggerLogin({
                       typeOfLogin,
@@ -18802,6 +18805,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
                     */
 
+                    console.log('dump 2', {
+                      verifier: verifier,
+                      verifierId: verifierId,
+                      idToken: idToken
+                    });
                     _context59.next = 6;
                     return this.torus.getTorusKey(verifier, verifierId, {
                       verifier_id: verifierId
