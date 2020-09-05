@@ -5913,7 +5913,7 @@ StartComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "button", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function StartComponent_Template_button_click_7_listener() { return ctx.torusLogin(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "div", 5);
@@ -10607,7 +10607,17 @@ class TorusService {
             */
             try {
                 console.log('try');
-                const torusKey = yield this.torus.getTorusKey(this._loginToConnectionMap()[selectedVerifier], verifierId, { verifier_id: verifierId }, idToken || accessToken);
+                const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
+                const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
+                /*
+                const loginDetails = await this.torus.triggerLogin({
+                  typeOfLogin,
+                  verifier,
+                  clientId,
+                  jwtParams,
+                });
+                */
+                const torusKey = yield this.torus.getTorusKey(verifier, verifierId, { verifier_id: verifierId }, idToken || accessToken);
                 console.log(torusKey);
                 return null;
             }

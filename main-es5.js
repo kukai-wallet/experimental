@@ -11849,7 +11849,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -18783,35 +18783,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var idToken = arguments.length > 2 ? arguments[2] : undefined;
           var accessToken = arguments.length > 3 ? arguments[3] : undefined;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee59() {
-            var torusKey;
+            var jwtParams, _this$verifierMap$sel2, typeOfLogin, clientId, verifier, torusKey;
+
             return regeneratorRuntime.wrap(function _callee59$(_context59) {
               while (1) {
                 switch (_context59.prev = _context59.next) {
                   case 0:
                     _context59.prev = 0;
                     console.log('try');
-                    _context59.next = 4;
-                    return this.torus.getTorusKey(this._loginToConnectionMap()[selectedVerifier], verifierId, {
+                    jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
+                    _this$verifierMap$sel2 = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel2.typeOfLogin, clientId = _this$verifierMap$sel2.clientId, verifier = _this$verifierMap$sel2.verifier;
+                    /*
+                    const loginDetails = await this.torus.triggerLogin({
+                      typeOfLogin,
+                      verifier,
+                      clientId,
+                      jwtParams,
+                    });
+                    */
+
+                    _context59.next = 6;
+                    return this.torus.getTorusKey(verifier, verifierId, {
                       verifier_id: verifierId
                     }, idToken || accessToken);
 
-                  case 4:
+                  case 6:
                     torusKey = _context59.sent;
                     console.log(torusKey);
                     return _context59.abrupt("return", null);
 
-                  case 9:
-                    _context59.prev = 9;
+                  case 11:
+                    _context59.prev = 11;
                     _context59.t0 = _context59["catch"](0);
                     console.error(_context59.t0, 'login caught');
                     return _context59.abrupt("return", null);
 
-                  case 13:
+                  case 15:
                   case "end":
                     return _context59.stop();
                 }
               }
-            }, _callee59, this, [[0, 9]]);
+            }, _callee59, this, [[0, 11]]);
           }));
         }
       }]);
