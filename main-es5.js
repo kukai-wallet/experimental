@@ -11771,7 +11771,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context29.next = 10;
                     return this.importService.importWalletFromPk(keyPair.pk, '', {
                       verifier: userInfo.typeOfLogin,
-                      id: userInfo.verifierId
+                      id: userInfo.verifierId,
+                      idToken: userInfo.idToken,
+                      accessToken: userInfo.accessToken
                     }).then(function (success) {
                       if (success) {
                         console.log('success');
@@ -11849,7 +11851,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
