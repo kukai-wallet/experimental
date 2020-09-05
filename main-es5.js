@@ -11736,7 +11736,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     this.messageService.startSpinner('Alohomora 🧙‍♂️');
                     _context29.next = 3;
-                    return this.torusService.getTorusKeyPair(undefined, true)["catch"](function (e) {
+                    return this.torusService.loginTorus(undefined)["catch"](function (e) {
                       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this19, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee28() {
                         return regeneratorRuntime.wrap(function _callee28$(_context28) {
                           while (1) {
@@ -16143,7 +16143,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       break;
                     }
 
-                    return _context47.abrupt("return", this.torusImport(pk, verifierDetails.verifier, verifierDetails.id));
+                    return _context47.abrupt("return", this.torusImport(pk, verifierDetails));
 
                   case 7:
                   case "end":
@@ -16188,7 +16188,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "torusImport",
-        value: function torusImport(pk, verifier, id) {
+        value: function torusImport(pk, verifierDetails) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee49() {
             return regeneratorRuntime.wrap(function _callee49$(_context49) {
               while (1) {
@@ -16196,7 +16196,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     _context49.prev = 0;
                     this.walletService.initStorage();
-                    this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifier, id);
+                    this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifierDetails.verifier, verifierDetails.id, verifierDetails.idToken, verifierDetails.accessToken);
                     this.walletService.addImplicitAccount(pk);
                     return _context49.abrupt("return", true);
 
@@ -18730,10 +18730,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "getTorusKeyPair",
-        value: function getTorusKeyPair() {
+        key: "loginTorus",
+        value: function loginTorus() {
           var selectedVerifier = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : GOOGLE;
-          var withUserInfo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee58() {
             var jwtParams, _this$verifierMap$sel, typeOfLogin, clientId, verifier, loginDetails, keyPair;
 
@@ -18757,32 +18756,61 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log(loginDetails);
                     keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                     console.log(keyPair);
-
-                    if (!withUserInfo) {
-                      _context58.next = 11;
-                      break;
-                    }
-
                     return _context58.abrupt("return", {
                       keyPair: keyPair,
                       userInfo: loginDetails.userInfo
                     });
 
-                  case 11:
-                    return _context58.abrupt("return", keyPair);
-
-                  case 14:
-                    _context58.prev = 14;
+                  case 12:
+                    _context58.prev = 12;
                     _context58.t0 = _context58["catch"](0);
                     console.error(_context58.t0, 'login caught');
                     return _context58.abrupt("return", null);
 
-                  case 18:
+                  case 16:
                   case "end":
                     return _context58.stop();
                 }
               }
-            }, _callee58, this, [[0, 14]]);
+            }, _callee58, this, [[0, 12]]);
+          }));
+        }
+      }, {
+        key: "getTorusKeyPair",
+        value: function getTorusKeyPair() {
+          var selectedVerifier = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : GOOGLE;
+          var verifierId = arguments.length > 1 ? arguments[1] : undefined;
+          var idToken = arguments.length > 2 ? arguments[2] : undefined;
+          var accessToken = arguments.length > 3 ? arguments[3] : undefined;
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee59() {
+            var torusKey;
+            return regeneratorRuntime.wrap(function _callee59$(_context59) {
+              while (1) {
+                switch (_context59.prev = _context59.next) {
+                  case 0:
+                    _context59.prev = 0;
+                    _context59.next = 3;
+                    return this.torus.getTorusKey(this._loginToConnectionMap()[selectedVerifier], verifierId, {
+                      verifier_id: verifierId
+                    }, idToken || accessToken);
+
+                  case 3:
+                    torusKey = _context59.sent;
+                    console.log(torusKey);
+                    return _context59.abrupt("return", null);
+
+                  case 8:
+                    _context59.prev = 8;
+                    _context59.t0 = _context59["catch"](0);
+                    console.error(_context59.t0, 'login caught');
+                    return _context59.abrupt("return", null);
+
+                  case 12:
+                  case "end":
+                    return _context59.stop();
+                }
+              }
+            }, _callee59, this, [[0, 8]]);
           }));
         }
       }]);
@@ -19044,11 +19072,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           value: function createEncryptedWallet(mnemonic, password) {
             var passphrase = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
             var hdSeed = arguments.length > 3 ? arguments[3] : undefined;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee59() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee60() {
               var seed, entropy, keyPair, encrypted, encryptedSeed, iv, iv2, encryptedEntropy;
-              return regeneratorRuntime.wrap(function _callee59$(_context59) {
+              return regeneratorRuntime.wrap(function _callee60$(_context60) {
                 while (1) {
-                  switch (_context59.prev = _context59.next) {
+                  switch (_context60.prev = _context60.next) {
                     case 0:
                       seed = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].mnemonicToSeed(mnemonic, passphrase, hdSeed);
                       entropy = Buffer.from(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].mnemonicToEntropy(mnemonic));
@@ -19059,20 +19087,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         keyPair = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].keyPairFromAccountIndex(seed, 0);
                       }
 
-                      _context59.next = 5;
+                      _context60.next = 5;
                       return this.encryptionService.encrypt(seed, password, 3);
 
                     case 5:
-                      encrypted = _context59.sent;
+                      encrypted = _context60.sent;
                       encryptedSeed = encrypted.chiphertext;
                       iv = encrypted.iv;
                       iv2 = this.encryptionService.bumpIV(iv, 1);
-                      _context59.next = 11;
+                      _context60.next = 11;
                       return this.encryptionService.encrypt(entropy, password, 3, iv2);
 
                     case 11:
-                      encryptedEntropy = _context59.sent.chiphertext;
-                      return _context59.abrupt("return", {
+                      encryptedEntropy = _context60.sent.chiphertext;
+                      return _context60.abrupt("return", {
                         data: this.exportKeyStoreInit(hdSeed ? _interfaces__WEBPACK_IMPORTED_MODULE_2__["WalletType"].HdWallet : _interfaces__WEBPACK_IMPORTED_MODULE_2__["WalletType"].FullWallet, encryptedSeed, encryptedEntropy, iv),
                         pkh: keyPair.pkh,
                         pk: keyPair.pk,
@@ -19081,68 +19109,68 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 13:
                     case "end":
-                      return _context59.stop();
+                      return _context60.stop();
                   }
                 }
-              }, _callee59, this);
+              }, _callee60, this);
             }));
           }
         }, {
           key: "getKeys",
           value: function getKeys(pwd, pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee60() {
-              var seed, keyPair, _keyPair, account, _keyPair2;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
+              var seed, keyPair, w, _keyPair, account, _keyPair2;
 
-              return regeneratorRuntime.wrap(function _callee60$(_context60) {
+              return regeneratorRuntime.wrap(function _callee61$(_context61) {
                 while (1) {
-                  switch (_context60.prev = _context60.next) {
+                  switch (_context61.prev = _context61.next) {
                     case 0:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context60.next = 8;
+                        _context61.next = 8;
                         break;
                       }
 
                       console.log('v1');
-                      _context60.next = 4;
+                      _context61.next = 4;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.salt, 1);
 
                     case 4:
-                      seed = _context60.sent;
+                      seed = _context61.sent;
                       console.log('done');
-                      _context60.next = 39;
+                      _context61.next = 40;
                       break;
 
                     case 8:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV2"])) {
-                        _context60.next = 14;
+                        _context61.next = 14;
                         break;
                       }
 
-                      _context60.next = 11;
+                      _context61.next = 11;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.IV, 2);
 
                     case 11:
-                      seed = _context60.sent;
-                      _context60.next = 39;
+                      seed = _context61.sent;
+                      _context61.next = 40;
                       break;
 
                     case 14:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV3"] || this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context60.next = 20;
+                        _context61.next = 20;
                         break;
                       }
 
-                      _context60.next = 17;
+                      _context61.next = 17;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.IV, 3);
 
                     case 17:
-                      seed = _context60.sent;
-                      _context60.next = 39;
+                      seed = _context61.sent;
+                      _context61.next = 40;
                       break;
 
                     case 20:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LedgerWallet"])) {
-                        _context60.next = 26;
+                        _context61.next = 26;
                         break;
                       }
 
@@ -19152,143 +19180,144 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         pk: this.wallet.implicitAccounts[0].pk,
                         pkh: this.wallet.implicitAccounts[0].pkh
                       };
-                      return _context60.abrupt("return", keyPair);
+                      return _context61.abrupt("return", keyPair);
 
                     case 26:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"])) {
-                        _context60.next = 38;
+                        _context61.next = 39;
                         break;
                       }
 
-                      _context60.next = 29;
-                      return this.torusService.getTorusKeyPair();
+                      w = this.wallet.getImplicitAccounts[0];
+                      _context61.next = 30;
+                      return this.torusService.getTorusKeyPair(w.verifier, w.id, w.idToken, w.accessToken);
 
-                    case 29:
-                      _keyPair = _context60.sent;
+                    case 30:
+                      _keyPair = _context61.sent;
 
                       if (!this.wallet.getImplicitAccount(_keyPair.pkh)) {
-                        _context60.next = 34;
+                        _context61.next = 35;
                         break;
                       }
 
-                      return _context60.abrupt("return", _keyPair);
-
-                    case 34:
-                      throw new Error('Signed with wrong account');
+                      return _context61.abrupt("return", _keyPair);
 
                     case 35:
-                      return _context60.abrupt("return", null);
+                      throw new Error('Signed with wrong account');
 
-                    case 38:
-                      return _context60.abrupt("return", null);
+                    case 36:
+                      return _context61.abrupt("return", null);
 
                     case 39:
+                      return _context61.abrupt("return", null);
+
+                    case 40:
                       if (seed) {
-                        _context60.next = 41;
+                        _context61.next = 42;
                         break;
                       }
 
-                      return _context60.abrupt("return", null);
+                      return _context61.abrupt("return", null);
 
-                    case 41:
+                    case 42:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context60.next = 50;
+                        _context61.next = 51;
                         break;
                       }
 
                       if (pkh) {
-                        _context60.next = 44;
+                        _context61.next = 45;
                         break;
                       }
 
                       throw new Error('No pkh provided');
 
-                    case 44:
+                    case 45:
                       account = this.wallet.getImplicitAccount(pkh);
 
                       if (account.derivationPath) {
-                        _context60.next = 47;
+                        _context61.next = 48;
                         break;
                       }
 
                       throw new Error('No derivationPath found');
 
-                    case 47:
-                      return _context60.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
+                    case 48:
+                      return _context61.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
 
-                    case 50:
+                    case 51:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context60.next = 59;
+                        _context61.next = 60;
                         break;
                       }
 
                       _keyPair2 = this.operationService.seed2keyPair(seed);
 
                       if (!(!_keyPair2.pkh || !pkh || _keyPair2.pkh !== pkh)) {
-                        _context60.next = 56;
+                        _context61.next = 57;
                         break;
                       }
 
-                      return _context60.abrupt("return", null);
-
-                    case 56:
-                      return _context60.abrupt("return", _keyPair2);
+                      return _context61.abrupt("return", null);
 
                     case 57:
-                      _context60.next = 60;
+                      return _context61.abrupt("return", _keyPair2);
+
+                    case 58:
+                      _context61.next = 61;
                       break;
 
-                    case 59:
-                      return _context60.abrupt("return", this.operationService.seed2keyPair(seed));
-
                     case 60:
-                    case "end":
-                      return _context60.stop();
-                  }
-                }
-              }, _callee60, this);
-            }));
-          }
-        }, {
-          key: "revealMnemonicPhrase",
-          value: function revealMnemonicPhrase(pwd) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
-              var iv, entropy;
-              return regeneratorRuntime.wrap(function _callee61$(_context61) {
-                while (1) {
-                  switch (_context61.prev = _context61.next) {
-                    case 0:
-                      if (!(this.wallet && (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"] || this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV3"]))) {
-                        _context61.next = 10;
-                        break;
-                      }
+                      return _context61.abrupt("return", this.operationService.seed2keyPair(seed));
 
-                      iv = this.encryptionService.bumpIV(this.wallet.IV, 1);
-                      _context61.next = 4;
-                      return this.encryptionService.decrypt(this.wallet.encryptedEntropy, pwd, iv, 3);
-
-                    case 4:
-                      entropy = _context61.sent;
-
-                      if (!entropy) {
-                        _context61.next = 9;
-                        break;
-                      }
-
-                      return _context61.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].entropyToMnemonic(entropy));
-
-                    case 9:
-                      console.log('Invalid password');
-
-                    case 10:
-                      return _context61.abrupt("return", '');
-
-                    case 11:
+                    case 61:
                     case "end":
                       return _context61.stop();
                   }
                 }
               }, _callee61, this);
+            }));
+          }
+        }, {
+          key: "revealMnemonicPhrase",
+          value: function revealMnemonicPhrase(pwd) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee62() {
+              var iv, entropy;
+              return regeneratorRuntime.wrap(function _callee62$(_context62) {
+                while (1) {
+                  switch (_context62.prev = _context62.next) {
+                    case 0:
+                      if (!(this.wallet && (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"] || this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV3"]))) {
+                        _context62.next = 10;
+                        break;
+                      }
+
+                      iv = this.encryptionService.bumpIV(this.wallet.IV, 1);
+                      _context62.next = 4;
+                      return this.encryptionService.decrypt(this.wallet.encryptedEntropy, pwd, iv, 3);
+
+                    case 4:
+                      entropy = _context62.sent;
+
+                      if (!entropy) {
+                        _context62.next = 9;
+                        break;
+                      }
+
+                      return _context62.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].entropyToMnemonic(entropy));
+
+                    case 9:
+                      console.log('Invalid password');
+
+                    case 10:
+                      return _context62.abrupt("return", '');
+
+                    case 11:
+                    case "end":
+                      return _context62.stop();
+                  }
+                }
+              }, _callee62, this);
             }));
           }
         }, {
@@ -19339,25 +19368,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
           key: "incrementAccountIndex",
           value: function incrementAccountIndex(password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee62() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee63() {
               var seed, keyPair;
-              return regeneratorRuntime.wrap(function _callee62$(_context62) {
+              return regeneratorRuntime.wrap(function _callee63$(_context63) {
                 while (1) {
-                  switch (_context62.prev = _context62.next) {
+                  switch (_context63.prev = _context63.next) {
                     case 0:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context62.next = 13;
+                        _context63.next = 13;
                         break;
                       }
 
-                      _context62.next = 3;
+                      _context63.next = 3;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, password, this.wallet.IV, 3);
 
                     case 3:
-                      seed = _context62.sent;
+                      seed = _context63.sent;
 
                       if (!seed) {
-                        _context62.next = 12;
+                        _context63.next = 12;
                         break;
                       }
 
@@ -19365,17 +19394,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.addImplicitAccount(keyPair.pk, this.wallet.index);
                       this.wallet.index++;
                       this.storeWallet();
-                      return _context62.abrupt("return", keyPair.pkh);
+                      return _context63.abrupt("return", keyPair.pkh);
 
                     case 12:
-                      return _context62.abrupt("return", '');
+                      return _context63.abrupt("return", '');
 
                     case 13:
                     case "end":
-                      return _context62.stop();
+                      return _context63.stop();
                   }
                 }
-              }, _callee62, this);
+              }, _callee63, this);
             }));
           }
           /*
@@ -19548,7 +19577,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 break;
 
               case 'TorusWallet':
-                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id);
+                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id, wd.idToken, wd.accessToken);
                 break;
 
               default:
@@ -19945,7 +19974,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       var _super6 = _createSuper(TorusWallet);
 
-      function TorusWallet(verifier, id) {
+      function TorusWallet(verifier, id, idToken, accessToken) {
         var _this55;
 
         _classCallCheck(this, TorusWallet);
@@ -19953,6 +19982,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _this55 = _super6.call(this);
         _this55.verifier = verifier;
         _this55.id = id;
+        _this55.idToken = idToken;
+        _this55.accessToken = accessToken;
         return _this55;
       }
 

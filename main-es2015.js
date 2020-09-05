@@ -5871,7 +5871,7 @@ class StartComponent {
     torusLogin() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.messageService.startSpinner('Alohomora 🧙‍♂️');
-            const { keyPair, userInfo } = yield this.torusService.getTorusKeyPair(undefined, true).catch((e) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return yield this.messageService.stopSpinner(); }));
+            const { keyPair, userInfo } = yield this.torusService.loginTorus(undefined).catch((e) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return yield this.messageService.stopSpinner(); }));
             if (keyPair) {
                 console.log(keyPair);
                 yield this.importService
@@ -8809,7 +8809,7 @@ class ImportService {
                 return this.ledgerImport(pk, derivationPath);
             }
             else if (verifierDetails) {
-                return this.torusImport(pk, verifierDetails.verifier, verifierDetails.id);
+                return this.torusImport(pk, verifierDetails);
             }
         });
     }
@@ -8829,11 +8829,11 @@ class ImportService {
             }
         });
     }
-    torusImport(pk, verifier, id) {
+    torusImport(pk, verifierDetails) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 this.walletService.initStorage();
-                this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifier, id);
+                this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifierDetails.verifier, verifierDetails.id, verifierDetails.idToken, verifierDetails.accessToken);
                 this.walletService.addImplicitAccount(pk);
                 return true;
             }
@@ -10566,7 +10566,29 @@ class TorusService {
             }
         });
     }
-    getTorusKeyPair(selectedVerifier = GOOGLE, withUserInfo = false) {
+    loginTorus(selectedVerifier = GOOGLE) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            try {
+                const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
+                const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
+                const loginDetails = yield this.torus.triggerLogin({
+                    typeOfLogin,
+                    verifier,
+                    clientId,
+                    jwtParams,
+                });
+                console.log(loginDetails);
+                const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
+                console.log(keyPair);
+                return { keyPair, userInfo: loginDetails.userInfo };
+            }
+            catch (e) {
+                console.error(e, 'login caught');
+                return null;
+            }
+        });
+    }
+    getTorusKeyPair(selectedVerifier = GOOGLE, verifierId, idToken, accessToken) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             // Mock
             /*
@@ -10584,21 +10606,9 @@ class TorusService {
             return keyPair;
             */
             try {
-                const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
-                const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
-                const loginDetails = yield this.torus.triggerLogin({
-                    typeOfLogin,
-                    verifier,
-                    clientId,
-                    jwtParams,
-                });
-                console.log(loginDetails);
-                const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
-                console.log(keyPair);
-                if (withUserInfo) {
-                    return { keyPair, userInfo: loginDetails.userInfo };
-                }
-                return keyPair;
+                const torusKey = yield this.torus.getTorusKey(this._loginToConnectionMap()[selectedVerifier], verifierId, { verifier_id: verifierId }, idToken || accessToken);
+                console.log(torusKey);
+                return null;
             }
             catch (e) {
                 console.error(e, 'login caught');
@@ -10774,7 +10784,8 @@ class WalletService {
                 return keyPair;
             }
             else if (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"]) {
-                const keyPair = yield this.torusService.getTorusKeyPair();
+                const w = this.wallet.getImplicitAccounts[0];
+                const keyPair = yield this.torusService.getTorusKeyPair(w.verifier, w.id, w.idToken, w.accessToken);
                 if (this.wallet.getImplicitAccount(keyPair.pkh)) {
                     return keyPair;
                 }
@@ -11009,7 +11020,7 @@ class WalletService {
                 this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["LedgerWallet"]();
                 break;
             case 'TorusWallet':
-                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id);
+                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id, wd.idToken, wd.accessToken);
                 break;
             default:
         }
@@ -11153,10 +11164,12 @@ class HdWallet extends FullWallet {
     }
 }
 class TorusWallet extends Wallet {
-    constructor(verifier, id) {
+    constructor(verifier, id, idToken, accessToken) {
         super();
         this.verifier = verifier;
         this.id = id;
+        this.idToken = idToken;
+        this.accessToken = accessToken;
     }
 }
 class LedgerWallet extends Wallet {
