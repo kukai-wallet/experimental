@@ -11851,7 +11851,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -18753,9 +18753,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "getPublicKey",
-        value: function getPublicKey() {
+        value: function getPublicKey(idToken) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee58() {
-            var fetchNodeDetails, torus, verifier, verifierId, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, publicAddress, idToken, keyData;
+            var fetchNodeDetails, torus, verifier, verifierId, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, publicAddress, keyData;
 
             return regeneratorRuntime.wrap(function _callee58$(_context58) {
               while (1) {
@@ -18785,17 +18785,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 12:
                     publicAddress = _context58.sent;
                     console.log(publicAddress);
-                    idToken = '952872982551-od475jfe3ach7dghacin634rbkcqhpll.apps.googleusercontent.com';
-                    _context58.next = 17;
+                    _context58.next = 16;
                     return torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, {
                       verifier_id: verifierId
                     }, idToken);
 
-                  case 17:
+                  case 16:
                     keyData = _context58.sent;
                     console.log(keyData);
 
-                  case 19:
+                  case 18:
                   case "end":
                     return _context58.stop();
                 }
@@ -18832,7 +18831,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log(keyPair);
                     console.log('get pub');
                     _context59.next = 12;
-                    return this.getPublicKey();
+                    return this.getPublicKey(loginDetails.userInfor.idToken);
 
                   case 12:
                     return _context59.abrupt("return", {

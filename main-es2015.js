@@ -5913,7 +5913,7 @@ StartComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "button", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function StartComponent_Template_button_click_7_listener() { return ctx.torusLogin(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "div", 5);
@@ -10572,7 +10572,7 @@ class TorusService {
             }
         });
     }
-    getPublicKey() {
+    getPublicKey(idToken) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const fetchNodeDetails = new _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default.a({ network: 'ropsten', proxyAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183' });
             const torus = new _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default.a();
@@ -10581,7 +10581,6 @@ class TorusService {
             const { torusNodeEndpoints, torusNodePub, torusIndexes } = yield fetchNodeDetails.getNodeDetails();
             const publicAddress = yield torus.getPublicAddress(torusNodeEndpoints, torusNodePub, { verifier, verifierId }, false);
             console.log(publicAddress);
-            const idToken = '952872982551-od475jfe3ach7dghacin634rbkcqhpll.apps.googleusercontent.com';
             const keyData = yield torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
             console.log(keyData);
         });
@@ -10601,7 +10600,7 @@ class TorusService {
                 const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                 console.log(keyPair);
                 console.log('get pub');
-                yield this.getPublicKey();
+                yield this.getPublicKey(loginDetails.userInfor.idToken);
                 return { keyPair, userInfo: loginDetails.userInfo };
             }
             catch (e) {
