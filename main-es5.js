@@ -18753,9 +18753,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "getPublicKey",
-        value: function getPublicKey(idToken) {
+        value: function getPublicKey() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee58() {
-            var fetchNodeDetails, torus, verifier, verifierId, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, publicAddress, keyData;
+            var fetchNodeDetails, torus, verifier, verifierId, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, publicAddress;
 
             return regeneratorRuntime.wrap(function _callee58$(_context58) {
               while (1) {
@@ -18784,17 +18784,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 12:
                     publicAddress = _context58.sent;
-                    console.log(publicAddress);
-                    _context58.next = 16;
-                    return torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, {
-                      verifier_id: verifierId
-                    }, idToken);
+                    console.log(publicAddress); // ToDo: Verify if needed
+                    // const keyData = await torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
+                    // console.log(keyData);
 
-                  case 16:
-                    keyData = _context58.sent;
-                    console.log(keyData);
-
-                  case 18:
+                  case 14:
                   case "end":
                     return _context58.stop();
                 }
@@ -18831,7 +18825,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log(keyPair);
                     console.log('get pub');
                     _context59.next = 12;
-                    return this.getPublicKey(loginDetails.userInfo.idToken);
+                    return this.getPublicKey();
 
                   case 12:
                     return _context59.abrupt("return", {
