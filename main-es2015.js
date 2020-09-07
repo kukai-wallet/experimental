@@ -10497,7 +10497,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @toruslabs/torus-direct-web-sdk */ "./node_modules/@toruslabs/torus-direct-web-sdk/dist/directWebSdk.cjs.js");
 /* harmony import */ var _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/operation/operation.service */ "./src/app/services/operation/operation.service.ts");
+/* harmony import */ var _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @toruslabs/fetch-node-details */ "./node_modules/@toruslabs/fetch-node-details/dist/fetchNodeDetails.cjs.js");
+/* harmony import */ var _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @toruslabs/torus.js */ "./node_modules/@toruslabs/torus.js/dist/torusUtils.cjs.js");
+/* harmony import */ var _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/operation/operation.service */ "./src/app/services/operation/operation.service.ts");
+
+
 
 
 
@@ -10566,6 +10572,20 @@ class TorusService {
             }
         });
     }
+    getPublicKey() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const fetchNodeDetails = new _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default.a({ network: 'testnet', proxyAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183' });
+            const torus = new _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default.a();
+            const verifier = 'kukai-google';
+            const verifierId = 'klassare@gmail.com';
+            const { torusNodeEndpoints, torusNodePub, torusIndexes } = yield fetchNodeDetails.getNodeDetails();
+            const publicAddress = yield torus.getPublicAddress(torusNodeEndpoints, torusNodePub, { verifier, verifierId }, false);
+            console.log(publicAddress);
+            const idToken = '952872982551-od475jfe3ach7dghacin634rbkcqhpll.apps.googleusercontent.com';
+            const keyData = yield torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
+            console.log(keyData);
+        });
+    }
     loginTorus(selectedVerifier = GOOGLE) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
@@ -10580,7 +10600,8 @@ class TorusService {
                 console.log(loginDetails);
                 const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                 console.log(keyPair);
-                console.log('dump 1', { verifier, verifierId: loginDetails.userInfo.verifierId, idToken: loginDetails.userInfo.idToken });
+                console.log('get pub');
+                yield this.getPublicKey();
                 return { keyPair, userInfo: loginDetails.userInfo };
             }
             catch (e) {
@@ -10619,7 +10640,6 @@ class TorusService {
                   jwtParams,
                 });
                 */
-                console.log('dump 2', { verifier, verifierId, idToken });
                 const torusKey = yield this.torus.getTorusKey(verifier, verifierId, { verifier_id: verifierId }, idToken || accessToken);
                 console.log(torusKey);
                 return null;
@@ -10631,14 +10651,14 @@ class TorusService {
         });
     }
 }
-TorusService.ɵfac = function TorusService_Factory(t) { return new (t || TorusService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_3__["OperationService"])); };
+TorusService.ɵfac = function TorusService_Factory(t) { return new (t || TorusService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_5__["OperationService"])); };
 TorusService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: TorusService, factory: TorusService.ɵfac, providedIn: 'root' });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](TorusService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"],
         args: [{
                 providedIn: 'root'
             }]
-    }], function () { return [{ type: _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_3__["OperationService"] }]; }, null); })();
+    }], function () { return [{ type: _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_5__["OperationService"] }]; }, null); })();
 
 
 /***/ }),
