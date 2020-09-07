@@ -18762,7 +18762,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context58.prev = _context58.next) {
                   case 0:
                     fetchNodeDetails = new _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default.a({
-                      network: 'testnet',
+                      network: 'ropsten',
                       proxyAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183'
                     });
                     torus = new _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default.a();

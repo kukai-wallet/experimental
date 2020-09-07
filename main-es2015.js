@@ -10574,7 +10574,7 @@ class TorusService {
     }
     getPublicKey() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const fetchNodeDetails = new _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default.a({ network: 'testnet', proxyAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183' });
+            const fetchNodeDetails = new _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default.a({ network: 'ropsten', proxyAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183' });
             const torus = new _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default.a();
             const verifier = 'kukai-google';
             const verifierId = 'klassare@gmail.com';
