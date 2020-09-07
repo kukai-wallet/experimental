@@ -9832,6 +9832,15 @@ class OperationService {
         const pkh = this.pk2pkh(pk);
         return { sk, pk, pkh };
     }
+    spExtPkToPkh(pubX, pubY) {
+        const key = (new elliptic__WEBPACK_IMPORTED_MODULE_13__["ec"]('secp256k1')).keyFromPublic({ x: pubX, y: pubY });
+        const prefixVal = key.getPublic().getY().toArray()[31] % 2 ? 3 : 2;
+        const pad = new Array(32).fill(0);
+        const publicKey = new Uint8Array([prefixVal].concat(pad.concat(key.getPublic().getX().toArray()).slice(-32)));
+        const pk = this.b58cencode(publicKey, this.prefix.sppk);
+        const pkh = this.pk2pkh(pk);
+        return pkh;
+    }
     hex2pk(hex) {
         return this.b58cencode(this.hex2buf(hex.slice(2, 66)), this.prefix.edpk);
     }
@@ -10579,8 +10588,9 @@ class TorusService {
             const verifier = 'kukai-google';
             const verifierId = 'klassare@gmail.com';
             const { torusNodeEndpoints, torusNodePub, torusIndexes } = yield fetchNodeDetails.getNodeDetails();
-            const publicAddress = yield torus.getPublicAddress(torusNodeEndpoints, torusNodePub, { verifier, verifierId }, true);
-            console.log('extended', publicAddress);
+            const pk = yield torus.getPublicAddress(torusNodeEndpoints, torusNodePub, { verifier, verifierId }, true);
+            const pkh = this.operationService.spExtPkToPkh(pk.X, pk.Y);
+            console.log(pkh);
             // ToDo: Verify if needed
             // const keyData = await torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
             // console.log(keyData);

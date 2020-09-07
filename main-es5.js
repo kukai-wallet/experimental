@@ -17834,6 +17834,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           };
         }
       }, {
+        key: "spExtPkToPkh",
+        value: function spExtPkToPkh(pubX, pubY) {
+          var key = new elliptic__WEBPACK_IMPORTED_MODULE_13__["ec"]('secp256k1').keyFromPublic({
+            x: pubX,
+            y: pubY
+          });
+          var prefixVal = key.getPublic().getY().toArray()[31] % 2 ? 3 : 2;
+          var pad = new Array(32).fill(0);
+          var publicKey = new Uint8Array([prefixVal].concat(pad.concat(key.getPublic().getX().toArray()).slice(-32)));
+          var pk = this.b58cencode(publicKey, this.prefix.sppk);
+          var pkh = this.pk2pkh(pk);
+          return pkh;
+        }
+      }, {
         key: "hex2pk",
         value: function hex2pk(hex) {
           return this.b58cencode(this.hex2buf(hex.slice(2, 66)), this.prefix.edpk);
@@ -18755,7 +18769,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getPublicKey",
         value: function getPublicKey() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee58() {
-            var fetchNodeDetails, torus, verifier, verifierId, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, publicAddress;
+            var fetchNodeDetails, torus, verifier, verifierId, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, pk, pkh;
 
             return regeneratorRuntime.wrap(function _callee58$(_context58) {
               while (1) {
@@ -18783,17 +18797,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }, true);
 
                   case 12:
-                    publicAddress = _context58.sent;
-                    console.log('extended', publicAddress); // ToDo: Verify if needed
+                    pk = _context58.sent;
+                    pkh = this.operationService.spExtPkToPkh(pk.X, pk.Y);
+                    console.log(pkh); // ToDo: Verify if needed
                     // const keyData = await torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
                     // console.log(keyData);
 
-                  case 14:
+                  case 15:
                   case "end":
                     return _context58.stop();
                 }
               }
-            }, _callee58);
+            }, _callee58, this);
           }));
         }
       }, {
