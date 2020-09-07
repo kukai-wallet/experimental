@@ -18780,11 +18780,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     return torus.getPublicAddress(torusNodeEndpoints, torusNodePub, {
                       verifier: verifier,
                       verifierId: verifierId
-                    }, false);
+                    }, true);
 
                   case 12:
                     publicAddress = _context58.sent;
-                    console.log(publicAddress); // ToDo: Verify if needed
+                    console.log('extended', publicAddress); // ToDo: Verify if needed
                     // const keyData = await torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
                     // console.log(keyData);
 

@@ -10579,8 +10579,8 @@ class TorusService {
             const verifier = 'kukai-google';
             const verifierId = 'klassare@gmail.com';
             const { torusNodeEndpoints, torusNodePub, torusIndexes } = yield fetchNodeDetails.getNodeDetails();
-            const publicAddress = yield torus.getPublicAddress(torusNodeEndpoints, torusNodePub, { verifier, verifierId }, false);
-            console.log(publicAddress);
+            const publicAddress = yield torus.getPublicAddress(torusNodeEndpoints, torusNodePub, { verifier, verifierId }, true);
+            console.log('extended', publicAddress);
             // ToDo: Verify if needed
             // const keyData = await torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
             // console.log(keyData);
