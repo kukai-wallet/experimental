@@ -11851,7 +11851,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -18831,7 +18831,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log(keyPair);
                     console.log('get pub');
                     _context59.next = 12;
-                    return this.getPublicKey(loginDetails.userInfor.idToken);
+                    return this.getPublicKey(loginDetails.userInfo.idToken);
 
                   case 12:
                     return _context59.abrupt("return", {
