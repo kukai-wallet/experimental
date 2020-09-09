@@ -9963,7 +9963,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate2"](" To \u2014 ", ctx_r169.transactions[0].to, " ", ctx_r169.torusLookupAddress, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate2"](" To \u2014 ", ctx_r169.transactions[0].to, " ", ctx_r169.torusLookupId, " ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
@@ -10425,7 +10425,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.torusVerifier = '';
         this.torusPendingLookup = false;
         this.torusLookupAddress = '';
-        this.torusVerifierId = '';
+        this.torusLookupId = '';
         /* New variables */
 
         this.modalOpen = false;
@@ -11549,7 +11549,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.torusPendingLookup = true;
-                    this.torusVerifierId = this.toPkh;
+                    this.torusLookupId = this.toPkh;
                     _context28.next = 9;
                     return this.torusService.lookupPkh('google', this.toPkh)["catch"](function (e) {
                       console.error(e);
@@ -11585,7 +11585,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.torusVerifier = '';
           this.torusPendingLookup = false;
           this.torusLookupAddress = '';
-          this.torusVerifierId = '';
+          this.torusLookupId = '';
         }
       }]);
 
@@ -12064,7 +12064,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin();
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 

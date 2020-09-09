@@ -4923,7 +4923,7 @@ function SendComponent_div_2_div_9_ng_container_1_Template(rf, ctx) { if (rf & 1
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" From \u2014 ", ctx_r169.activeAccount.address, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate2"](" To \u2014 ", ctx_r169.transactions[0].to, " ", ctx_r169.torusLookupAddress, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate2"](" To \u2014 ", ctx_r169.transactions[0].to, " ", ctx_r169.torusLookupId, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Amount \u2014 ", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](7, 6, ctx_r169.transactions[0].amount, "1.0-6"), " tez ");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
@@ -5143,7 +5143,7 @@ class SendComponent {
         this.torusVerifier = '';
         this.torusPendingLookup = false;
         this.torusLookupAddress = '';
-        this.torusVerifierId = '';
+        this.torusLookupId = '';
         /* New variables */
         this.modalOpen = false;
         this.advancedForm = false;
@@ -5803,7 +5803,7 @@ class SendComponent {
             }
             else if (this.toPkh) {
                 this.torusPendingLookup = true;
-                this.torusVerifierId = this.toPkh;
+                this.torusLookupId = this.toPkh;
                 const pkh = yield this.torusService.lookupPkh('google', this.toPkh).catch(e => {
                     console.error(e);
                     return '';
@@ -5824,7 +5824,7 @@ class SendComponent {
         this.torusVerifier = '';
         this.torusPendingLookup = false;
         this.torusLookupAddress = '';
-        this.torusVerifierId = '';
+        this.torusLookupId = '';
     }
 }
 SendComponent.ɵfac = function SendComponent_Factory(t) { return new (t || SendComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_2__["BsModalService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_4__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_6__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_5__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_export_export_service__WEBPACK_IMPORTED_MODULE_7__["ExportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_input_validation_input_validation_service__WEBPACK_IMPORTED_MODULE_8__["InputValidationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_ledger_ledger_service__WEBPACK_IMPORTED_MODULE_9__["LedgerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_estimate_estimate_service__WEBPACK_IMPORTED_MODULE_10__["EstimateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_14__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_15__["TorusService"])); };
@@ -6023,7 +6023,7 @@ StartComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "button", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function StartComponent_Template_button_click_7_listener() { return ctx.torusLogin(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth *");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "DirectAuth");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "div", 5);
