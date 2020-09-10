@@ -12300,7 +12300,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context31.prev = _context31.next) {
                   case 0:
-                    this.messageService.startSpinner('Alohomora 🧙‍♂️');
+                    this.messageService.startSpinner('Requesting wallet...');
                     _context31.next = 3;
                     return this.torusService.loginTorus(undefined)["catch"](function (e) {
                       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this19, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee30() {
@@ -12330,12 +12330,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log('login done');
 
                     if (!keyPair) {
-                      _context31.next = 13;
+                      _context31.next = 14;
                       break;
                     }
 
+                    this.messageService.startSpinner('Loading wallet...');
                     console.log(keyPair);
-                    _context31.next = 11;
+                    _context31.next = 12;
                     return this.importService.importWalletFromPk(keyPair.pk, '', {
                       verifier: userInfo.typeOfLogin,
                       id: userInfo.verifierId,
@@ -12363,15 +12364,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
                     });
 
-                  case 11:
-                    _context31.next = 15;
+                  case 12:
+                    _context31.next = 16;
                     break;
 
-                  case 13:
-                    _context31.next = 15;
+                  case 14:
+                    _context31.next = 16;
                     return this.messageService.stopSpinner();
 
-                  case 15:
+                  case 16:
                   case "end":
                     return _context31.stop();
                 }
