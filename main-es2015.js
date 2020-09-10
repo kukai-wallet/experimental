@@ -6150,11 +6150,10 @@ class TorusComponent {
     }
     torusLogin() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            yield this.messageService.startSpinner('Requesting wallet...');
+            yield this.messageService.startSpinner('Loading wallet...');
             const { keyPair, userInfo } = yield this.torusService.loginTorus(undefined).catch((e) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return yield this.messageService.stopSpinner(); }));
             console.log('login done');
             if (keyPair) {
-                yield this.messageService.startSpinner('Loading wallet...');
                 console.log(keyPair);
                 yield this.importService
                     .importWalletFromPk(keyPair.pk, '', { verifier: userInfo.typeOfLogin, id: userInfo.verifierId, idToken: userInfo.idToken, accessToken: userInfo.accessToken })

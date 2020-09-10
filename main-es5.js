@@ -12301,7 +12301,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context31.prev = _context31.next) {
                   case 0:
                     _context31.next = 2;
-                    return this.messageService.startSpinner('Requesting wallet...');
+                    return this.messageService.startSpinner('Loading wallet...');
 
                   case 2:
                     _context31.next = 4;
@@ -12333,16 +12333,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log('login done');
 
                     if (!keyPair) {
-                      _context31.next = 16;
+                      _context31.next = 14;
                       break;
                     }
 
-                    _context31.next = 11;
-                    return this.messageService.startSpinner('Loading wallet...');
-
-                  case 11:
                     console.log(keyPair);
-                    _context31.next = 14;
+                    _context31.next = 12;
                     return this.importService.importWalletFromPk(keyPair.pk, '', {
                       verifier: userInfo.typeOfLogin,
                       id: userInfo.verifierId,
@@ -12370,15 +12366,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
                     });
 
-                  case 14:
-                    _context31.next = 18;
+                  case 12:
+                    _context31.next = 16;
                     break;
 
-                  case 16:
-                    _context31.next = 18;
+                  case 14:
+                    _context31.next = 16;
                     return this.messageService.stopSpinner();
 
-                  case 18:
+                  case 16:
                   case "end":
                     return _context31.stop();
                 }
