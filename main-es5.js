@@ -12300,8 +12300,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context31.prev = _context31.next) {
                   case 0:
-                    this.messageService.startSpinner('Requesting wallet...');
-                    _context31.next = 3;
+                    _context31.next = 2;
+                    return this.messageService.startSpinner('Requesting wallet...');
+
+                  case 2:
+                    _context31.next = 4;
                     return this.torusService.loginTorus(undefined)["catch"](function (e) {
                       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this19, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee30() {
                         return regeneratorRuntime.wrap(function _callee30$(_context30) {
@@ -12323,20 +12326,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }));
                     });
 
-                  case 3:
+                  case 4:
                     _yield$this$torusServ = _context31.sent;
                     keyPair = _yield$this$torusServ.keyPair;
                     userInfo = _yield$this$torusServ.userInfo;
                     console.log('login done');
 
                     if (!keyPair) {
-                      _context31.next = 14;
+                      _context31.next = 16;
                       break;
                     }
 
-                    this.messageService.startSpinner('Loading wallet...');
+                    _context31.next = 11;
+                    return this.messageService.startSpinner('Loading wallet...');
+
+                  case 11:
                     console.log(keyPair);
-                    _context31.next = 12;
+                    _context31.next = 14;
                     return this.importService.importWalletFromPk(keyPair.pk, '', {
                       verifier: userInfo.typeOfLogin,
                       id: userInfo.verifierId,
@@ -12364,15 +12370,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
                     });
 
-                  case 12:
-                    _context31.next = 16;
+                  case 14:
+                    _context31.next = 18;
                     break;
 
-                  case 14:
-                    _context31.next = 16;
+                  case 16:
+                    _context31.next = 18;
                     return this.messageService.stopSpinner();
 
-                  case 16:
+                  case 18:
                   case "end":
                     return _context31.stop();
                 }
