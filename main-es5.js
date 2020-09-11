@@ -15222,7 +15222,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth*");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -22030,7 +22030,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context61.prev = 0;
                     jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
                     _this$verifierMap$sel = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel.typeOfLogin, clientId = _this$verifierMap$sel.clientId, verifier = _this$verifierMap$sel.verifier;
-                    _context61.next = 5;
+
+                    if (verifierId) {
+                      console.log('Trigger with: ' + verifierId);
+                    }
+
+                    _context61.next = 6;
                     return this.torus.triggerLogin({
                       verifier: verifier,
                       typeOfLogin: typeOfLogin,
@@ -22039,7 +22044,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       verifierId: verifierId
                     });
 
-                  case 5:
+                  case 6:
                     loginDetails = _context61.sent;
                     console.log(loginDetails);
                     keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
@@ -22050,8 +22055,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       userInfo: loginDetails.userInfo
                     });
 
-                  case 13:
-                    _context61.prev = 13;
+                  case 14:
+                    _context61.prev = 14;
                     _context61.t0 = _context61["catch"](0);
                     console.error(_context61.t0, 'login caught');
                     return _context61.abrupt("return", {
@@ -22059,12 +22064,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       userInfo: null
                     });
 
-                  case 17:
+                  case 18:
                   case "end":
                     return _context61.stop();
                 }
               }
-            }, _callee61, this, [[0, 13]]);
+            }, _callee61, this, [[0, 14]]);
           }));
         }
       }, {
@@ -22419,7 +22424,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     case 4:
                       seed = _context64.sent;
                       console.log('done');
-                      _context64.next = 40;
+                      _context64.next = 41;
                       break;
 
                     case 8:
@@ -22433,7 +22438,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 11:
                       seed = _context64.sent;
-                      _context64.next = 40;
+                      _context64.next = 41;
                       break;
 
                     case 14:
@@ -22447,7 +22452,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 17:
                       seed = _context64.sent;
-                      _context64.next = 40;
+                      _context64.next = 41;
                       break;
 
                     case 20:
@@ -22466,93 +22471,94 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 26:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"])) {
-                        _context64.next = 39;
+                        _context64.next = 40;
                         break;
                       }
 
-                      _context64.next = 29;
+                      console.log('torus id' + this.wallet.id);
+                      _context64.next = 30;
                       return this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id);
 
-                    case 29:
+                    case 30:
                       _keyPair = _context64.sent;
                       console.log(_keyPair);
 
                       if (!this.wallet.getImplicitAccount(_keyPair.pkh)) {
-                        _context64.next = 35;
+                        _context64.next = 36;
                         break;
                       }
 
                       return _context64.abrupt("return", _keyPair);
 
-                    case 35:
+                    case 36:
                       throw new Error('Signed with wrong account');
 
-                    case 36:
-                      return _context64.abrupt("return", null);
-
-                    case 39:
+                    case 37:
                       return _context64.abrupt("return", null);
 
                     case 40:
+                      return _context64.abrupt("return", null);
+
+                    case 41:
                       if (seed) {
-                        _context64.next = 42;
+                        _context64.next = 43;
                         break;
                       }
 
                       return _context64.abrupt("return", null);
 
-                    case 42:
+                    case 43:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context64.next = 51;
+                        _context64.next = 52;
                         break;
                       }
 
                       if (pkh) {
-                        _context64.next = 45;
+                        _context64.next = 46;
                         break;
                       }
 
                       throw new Error('No pkh provided');
 
-                    case 45:
+                    case 46:
                       account = this.wallet.getImplicitAccount(pkh);
 
                       if (account.derivationPath) {
-                        _context64.next = 48;
+                        _context64.next = 49;
                         break;
                       }
 
                       throw new Error('No derivationPath found');
 
-                    case 48:
+                    case 49:
                       return _context64.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
 
-                    case 51:
+                    case 52:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context64.next = 60;
+                        _context64.next = 61;
                         break;
                       }
 
                       _keyPair2 = this.operationService.seed2keyPair(seed);
 
                       if (!(!_keyPair2.pkh || !pkh || _keyPair2.pkh !== pkh)) {
-                        _context64.next = 57;
+                        _context64.next = 58;
                         break;
                       }
 
                       return _context64.abrupt("return", null);
 
-                    case 57:
+                    case 58:
                       return _context64.abrupt("return", _keyPair2);
 
-                    case 58:
-                      _context64.next = 61;
+                    case 59:
+                      _context64.next = 62;
                       break;
 
-                    case 60:
+                    case 61:
                       return _context64.abrupt("return", this.operationService.seed2keyPair(seed));
 
-                    case 61:
+                    case 62:
                     case "end":
                       return _context64.stop();
                   }
