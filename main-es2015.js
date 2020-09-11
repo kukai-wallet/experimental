@@ -2546,9 +2546,9 @@ class DelegateComponent {
                 }
                 else {
                     this.messageService.stopSpinner();
-                    if (this.activeAccount instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_10__["TorusWallet"]) {
-                        const verifierName = this.activeAccount.verifier.charAt(0) + this.activeAccount.verifier.slice(1);
-                        this.pwdValid = `Expected confirmation from ${verifierName} account: ${this.activeAccount.id}`;
+                    if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_10__["TorusWallet"]) {
+                        const verifierName = this.walletService.wallet.verifier.charAt(0).toUpperCase() + this.walletService.wallet.verifier.slice(1);
+                        this.pwdValid = `Expected confirmation from ${verifierName} account: ${this.walletService.wallet.id}`;
                     }
                     else {
                         this.pwdValid = 'Wrong password!';
@@ -5291,14 +5291,11 @@ class SendComponent {
                 }
                 else {
                     this.messageService.stopSpinner();
-                    console.log('1');
                     if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["TorusWallet"]) {
-                        console.log('2');
-                        const verifierName = this.walletService.wallet.verifier.charAt(0) + this.walletService.wallet.verifier.slice(1);
+                        const verifierName = this.walletService.wallet.verifier.charAt(0).toUpperCase() + this.walletService.wallet.verifier.slice(1);
                         this.pwdValid = `Expected confirmation from ${verifierName} account: ${this.walletService.wallet.id}`;
                     }
                     else {
-                        console.log('3');
                         this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
                     }
                 }
