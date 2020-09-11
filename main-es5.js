@@ -1846,7 +1846,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         return i(t, e), t.prototype.setFinalUrl = function () {
           var e = new URL("https://accounts.google.com/o/oauth2/v2/auth");
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), e.searchParams.append("nonce", this.nonce), this.verifierId ? (console.log("hint"), e.searchParams.append("login_hint", this.verifierId)) : (console.log("prompt"), e.searchParams.append("prompt", this.PROMPT)), this.finalURL = e;
+          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), e.searchParams.append("nonce", this.nonce), this.verifierId ? (console.log("hint"), e.searchParams.append("login_hint", this.verifierId), e.searchParams.append("prompt", "consent")) : (console.log("prompt"), e.searchParams.append("prompt", this.PROMPT)), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
             var t, r, n, i, o, s, c;
@@ -15225,7 +15225,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth*");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
