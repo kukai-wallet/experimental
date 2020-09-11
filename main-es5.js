@@ -4927,7 +4927,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "inject",
         value: function inject() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-            var pwd, keys;
+            var pwd, keys, verifierName;
             return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
                 switch (_context4.prev = _context4.next) {
@@ -4961,7 +4961,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         this.closeModal();
                       } else {
                         this.messageService.stopSpinner();
-                        this.pwdValid = 'Wrong password!';
+
+                        if (this.activeAccount instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_10__["TorusWallet"]) {
+                          verifierName = this.activeAccount.verifier.charAt(0) + this.activeAccount.verifier.slice(1);
+                          this.pwdValid = "Expected confirmation from ".concat(verifierName, " account: ").concat(this.activeAccount.id);
+                        } else {
+                          this.pwdValid = 'Wrong password!';
+                        }
                       }
                     }
 
@@ -10647,7 +10653,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "inject",
         value: function inject() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
-            var pwd, keys;
+            var pwd, keys, verifierName;
             return regeneratorRuntime.wrap(function _callee20$(_context20) {
               while (1) {
                 switch (_context20.prev = _context20.next) {
@@ -10689,7 +10695,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.closeModal();
                     } else {
                       this.messageService.stopSpinner();
-                      this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
+
+                      if (this.activeAccount instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["TorusWallet"]) {
+                        verifierName = this.activeAccount.verifier.charAt(0) + this.activeAccount.verifier.slice(1);
+                        this.pwdValid = "Expected confirmation from ".concat(verifierName, " account: ").concat(this.activeAccount.id);
+                      } else {
+                        this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
+                      }
                     }
 
                   case 19:
@@ -12341,9 +12353,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context31.next = 12;
                     return this.importService.importWalletFromPk(keyPair.pk, '', {
                       verifier: userInfo.typeOfLogin,
-                      id: userInfo.verifierId,
-                      idToken: userInfo.idToken,
-                      accessToken: userInfo.accessToken
+                      id: userInfo.verifierId
                     }).then(function (success) {
                       if (success) {
                         console.log('success');
@@ -12358,8 +12368,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                         _this19.messageService.stopSpinner();
                       } else {
-                        console.log(success);
-
                         _this19.messageService.addError('Torus import failed');
 
                         _this19.messageService.stopSpinner();
@@ -16614,7 +16622,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     _context51.prev = 0;
                     this.walletService.initStorage();
-                    this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifierDetails.verifier, verifierDetails.id, verifierDetails.idToken, verifierDetails.accessToken);
+                    this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifierDetails.verifier, verifierDetails.id);
                     this.walletService.addImplicitAccount(pk);
                     return _context51.abrupt("return", true);
 
@@ -16866,7 +16874,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "email",
         value: function email(_email) {
-          return _email && _email.includes('@');
+          var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(_email);
         }
       }, {
         key: "passphrase",
@@ -19250,8 +19259,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getTorusKeyPair() {
           var selectedVerifier = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : GOOGLE;
           var verifierId = arguments.length > 1 ? arguments[1] : undefined;
-          var idToken = arguments.length > 2 ? arguments[2] : undefined;
-          var accessToken = arguments.length > 3 ? arguments[3] : undefined;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee62() {
             var _yield$this$loginToru, keyPair;
 
@@ -19651,7 +19658,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
 
                       _context64.next = 29;
-                      return this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id, this.wallet.idToken, this.wallet.accessToken);
+                      return this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id);
 
                     case 29:
                       _keyPair = _context64.sent;
@@ -20039,7 +20046,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 break;
 
               case 'TorusWallet':
-                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id, wd.idToken, wd.accessToken);
+                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id);
                 break;
 
               default:
@@ -20436,7 +20443,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       var _super6 = _createSuper(TorusWallet);
 
-      function TorusWallet(verifier, id, idToken, accessToken) {
+      function TorusWallet(verifier, id) {
         var _this55;
 
         _classCallCheck(this, TorusWallet);
@@ -20444,8 +20451,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _this55 = _super6.call(this);
         _this55.verifier = verifier;
         _this55.id = id;
-        _this55.idToken = idToken;
-        _this55.accessToken = accessToken;
         return _this55;
       }
 

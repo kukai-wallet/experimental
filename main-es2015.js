@@ -2546,7 +2546,13 @@ class DelegateComponent {
                 }
                 else {
                     this.messageService.stopSpinner();
-                    this.pwdValid = 'Wrong password!';
+                    if (this.activeAccount instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_10__["TorusWallet"]) {
+                        const verifierName = this.activeAccount.verifier.charAt(0) + this.activeAccount.verifier.slice(1);
+                        this.pwdValid = `Expected confirmation from ${verifierName} account: ${this.activeAccount.id}`;
+                    }
+                    else {
+                        this.pwdValid = 'Wrong password!';
+                    }
                 }
             }
         });
@@ -5285,7 +5291,13 @@ class SendComponent {
                 }
                 else {
                     this.messageService.stopSpinner();
-                    this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
+                    if (this.activeAccount instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["TorusWallet"]) {
+                        const verifierName = this.activeAccount.verifier.charAt(0) + this.activeAccount.verifier.slice(1);
+                        this.pwdValid = `Expected confirmation from ${verifierName} account: ${this.activeAccount.id}`;
+                    }
+                    else {
+                        this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
+                    }
                 }
             }
         });
@@ -6156,7 +6168,7 @@ class TorusComponent {
             if (keyPair) {
                 console.log(keyPair);
                 yield this.importService
-                    .importWalletFromPk(keyPair.pk, '', { verifier: userInfo.typeOfLogin, id: userInfo.verifierId, idToken: userInfo.idToken, accessToken: userInfo.accessToken })
+                    .importWalletFromPk(keyPair.pk, '', { verifier: userInfo.typeOfLogin, id: userInfo.verifierId })
                     .then((success) => {
                     if (success) {
                         console.log('success');
@@ -6170,7 +6182,6 @@ class TorusComponent {
                         this.messageService.stopSpinner();
                     }
                     else {
-                        console.log(success);
                         this.messageService.addError('Torus import failed');
                         this.messageService.stopSpinner();
                     }
@@ -9038,7 +9049,7 @@ class ImportService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 this.walletService.initStorage();
-                this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifierDetails.verifier, verifierDetails.id, verifierDetails.idToken, verifierDetails.accessToken);
+                this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["TorusWallet"](verifierDetails.verifier, verifierDetails.id);
                 this.walletService.addImplicitAccount(pk);
                 return true;
             }
@@ -9139,7 +9150,8 @@ class InputValidationService {
         return this.operationService.validAddress(address);
     }
     email(email) {
-        return (email && email.includes('@'));
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
     passphrase(passphrase) {
         return true;
@@ -10777,9 +10789,6 @@ class TorusService {
             const pkh = this.operationService.spExtPkToPkh(pk.X, pk.Y);
             console.log(pkh);
             return pkh;
-            // ToDo: Verify if needed
-            // const keyData = await torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
-            // console.log(keyData);
         });
     }
     loginTorus(selectedVerifier = GOOGLE) {
@@ -10805,7 +10814,7 @@ class TorusService {
             }
         });
     }
-    getTorusKeyPair(selectedVerifier = GOOGLE, verifierId, idToken, accessToken) {
+    getTorusKeyPair(selectedVerifier = GOOGLE, verifierId) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const { keyPair } = yield this.loginTorus(selectedVerifier);
             return keyPair;
@@ -10979,7 +10988,7 @@ class WalletService {
                 return keyPair;
             }
             else if (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"]) {
-                const keyPair = yield this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id, this.wallet.idToken, this.wallet.accessToken);
+                const keyPair = yield this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id);
                 console.log(keyPair);
                 if (this.wallet.getImplicitAccount(keyPair.pkh)) {
                     return keyPair;
@@ -11215,7 +11224,7 @@ class WalletService {
                 this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["LedgerWallet"]();
                 break;
             case 'TorusWallet':
-                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id, wd.idToken, wd.accessToken);
+                this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id);
                 break;
             default:
         }
@@ -11359,12 +11368,10 @@ class HdWallet extends FullWallet {
     }
 }
 class TorusWallet extends Wallet {
-    constructor(verifier, id, idToken, accessToken) {
+    constructor(verifier, id) {
         super();
         this.verifier = verifier;
         this.id = id;
-        this.idToken = idToken;
-        this.accessToken = accessToken;
     }
 }
 class LedgerWallet extends Wallet {
