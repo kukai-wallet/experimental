@@ -10789,6 +10789,9 @@ class TorusService {
             const pkh = this.operationService.spExtPkToPkh(pk.X, pk.Y);
             console.log(pkh);
             return pkh;
+            // ToDo: Verify if needed
+            // const keyData = await torus.retrieveShares(torusNodeEndpoints, torusIndexes, verifier, { verifier_id: verifierId }, idToken);
+            // console.log(keyData);
         });
     }
     loginTorus(selectedVerifier = GOOGLE) {
