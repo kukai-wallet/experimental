@@ -630,7 +630,7 @@ module.exports = exported;
 
 /***/ }),
 
-/***/ 17:
+/***/ 21:
 /*!**************************************************************************************************************************************************************************************************************************************************!*\
   !*** multi ./node_modules/bootstrap/dist/css/bootstrap.min.css ./node_modules/flag-icon-css/css/flag-icon.css ./node_modules/font-awesome/css/font-awesome.css ./node_modules/simple-line-icons/css/simple-line-icons.css ./src/scss/style.scss ***!
   \**************************************************************************************************************************************************************************************************************************************************/
@@ -646,5 +646,5 @@ module.exports = __webpack_require__(/*! C:\Users\klas_\Git\kukai\src\scss\style
 
 /***/ })
 
-},[[17,"runtime"]]]);
+},[[21,"runtime"]]]);
 //# sourceMappingURL=styles-es2015.js.map
