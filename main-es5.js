@@ -10695,11 +10695,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.closeModal();
                     } else {
                       this.messageService.stopSpinner();
+                      console.log('1');
 
                       if (this.activeAccount instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["TorusWallet"]) {
+                        console.log('2');
                         verifierName = this.activeAccount.verifier.charAt(0) + this.activeAccount.verifier.slice(1);
                         this.pwdValid = "Expected confirmation from ".concat(verifierName, " account: ").concat(this.activeAccount.id);
                       } else {
+                        console.log('3');
                         this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
                       }
                     }
@@ -12411,7 +12414,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth*");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 

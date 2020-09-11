@@ -5291,11 +5291,14 @@ class SendComponent {
                 }
                 else {
                     this.messageService.stopSpinner();
+                    console.log('1');
                     if (this.activeAccount instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["TorusWallet"]) {
+                        console.log('2');
                         const verifierName = this.activeAccount.verifier.charAt(0) + this.activeAccount.verifier.slice(1);
                         this.pwdValid = `Expected confirmation from ${verifierName} account: ${this.activeAccount.id}`;
                     }
                     else {
+                        console.log('3');
                         this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
                     }
                 }
@@ -6197,7 +6200,7 @@ TorusComponent.ɵfac = function TorusComponent_Factory(t) { return new (t || Tor
 TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: TorusComponent, selectors: [["app-torus"]], decls: 14, vars: 0, consts: [[1, "kukai-card"], [1, "grey-card"], [1, "description", "bold"], [1, "description"], [1, "buttons"], ["routerLink", "/"], [1, "button", "back"], [1, "button", "next", 3, "click"]], template: function TorusComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth*");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "p", 2);
