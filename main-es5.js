@@ -8710,15 +8710,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _services_message_message_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ../../services/message/message.service */
-    "./src/app/services/message/message.service.ts");
+    var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-    /*! @angular/common */
-    "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+    var _services_message_message_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../../services/message/message.service */
+    "./src/app/services/message/message.service.ts");
     /* harmony import */
 
 
@@ -8764,9 +8764,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 2) {
         var message_r230 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
+        var ctx_r235 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate2"]("href", "mailto:", message_r230.email, "?subject=Tezos%20Transaction&body=Hi%2C%0AI%20just%20sent%20you%20", message_r230.amount, "%20tez.%20You%20can%20access%20your%20Tezos%20wallet%20with%20your%20Google%20account%20at%3A%0Akukai.app%0A%0A", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate3"]("href", "mailto:", message_r230.email, "?subject=Tezos%20Transaction&body=Hi%2C%0AI%20just%20sent%20you%20", message_r230.amount, "%20tez.%20You%20can%20access%20your%20Tezos%20wallet%20with%20your%20Google%20account%20at%3A%0A", ctx_r235.getHostName(), "%0A%0A", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -8798,7 +8800,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, MessagesComponent_div_1_alert_1_span_4_Template, 2, 1, "span", 7);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, MessagesComponent_div_1_alert_1_span_5_Template, 5, 2, "span", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, MessagesComponent_div_1_alert_1_span_5_Template, 5, 3, "span", 7);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
@@ -8881,10 +8883,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }
 
     var MessagesComponent = /*#__PURE__*/function () {
-      function MessagesComponent(messageService) {
+      function MessagesComponent(messageService, location) {
         _classCallCheck(this, MessagesComponent);
 
         this.messageService = messageService;
+        this.location = location;
       }
 
       _createClass(MessagesComponent, [{
@@ -8895,13 +8898,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function removeMessage(index) {
           this.messageService.messages.splice(index, 1);
         }
+      }, {
+        key: "getHostName",
+        value: function getHostName() {
+          return location.hostname;
+        }
       }]);
 
       return MessagesComponent;
     }();
 
     MessagesComponent.ɵfac = function MessagesComponent_Factory(t) {
-      return new (t || MessagesComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_1__["MessageService"]));
+      return new (t || MessagesComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_2__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_1__["Location"]));
     };
 
     MessagesComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -8925,7 +8933,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.messageService.messages);
         }
       },
-      directives: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_2__["NgIf"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_3__["AlertComponent"]],
+      directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["NgIf"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_3__["AlertComponent"]],
       styles: ["[_nghost-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n}\n\n.msg-container[_ngcontent-%COMP%] {\n  position: fixed;\n  margin-left: 1rem;\n  margin-right: 1rem;\n  bottom: 0px;\n  z-index: 105;\n}\n\nspan[_ngcontent-%COMP%] {\n  font-style: normal;\n  font-weight: normal;\n  font-size: 1rem;\n  line-height: 1.25rem;\n  color: #2C323A;\n}\n\nbutton[_ngcontent-%COMP%] {\n  width: auto;\n  height: auto;\n  margin-left: 1rem;\n}\n\nbutton.close[_ngcontent-%COMP%]    > span[_ngcontent-%COMP%] {\n  margin-top: 0.125rem;\n  font-size: 1.5rem;\n  font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9tZXNzYWdlcy9DOlxcVXNlcnNcXGtsYXNfXFxHaXRcXGt1a2FpL3NyY1xcYXBwXFxjb21wb25lbnRzXFxtZXNzYWdlc1xcbWVzc2FnZXMuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvbWVzc2FnZXMvbWVzc2FnZXMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSwyQkFBQTtBQ0NKOztBRENBO0VBQ0ksZUFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxXQUFBO0VBQ0EsWUFBQTtBQ0VKOztBREFBO0VBQ0Usa0JBQUE7RUFDQSxtQkFBQTtFQUNBLGVBQUE7RUFDQSxvQkFBQTtFQUNBLGNBQUE7QUNHRjs7QUREQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0VBQ0EsaUJBQUE7QUNJRjs7QURGQTtFQUNFLG9CQUFBO0VBQ0EsaUJBQUE7RUFDQSxpQkFBQTtBQ0tGIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9tZXNzYWdlcy9tZXNzYWdlcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xyXG59XHJcbi5tc2ctY29udGFpbmVyIHtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xyXG4gICAgYm90dG9tOiAwcHg7XHJcbiAgICB6LWluZGV4OiAxMDU7XHJcbn1cclxuc3BhbiB7XHJcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xyXG4gIGZvbnQtd2VpZ2h0OiBub3JtYWw7XHJcbiAgZm9udC1zaXplOiAxcmVtO1xyXG4gIGxpbmUtaGVpZ2h0OiAxLjI1cmVtO1xyXG4gIGNvbG9yOiAjMkMzMjNBO1xyXG59XHJcbmJ1dHRvbiB7XHJcbiAgd2lkdGg6IGF1dG87XHJcbiAgaGVpZ2h0OiBhdXRvO1xyXG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG59XHJcbmJ1dHRvbi5jbG9zZSA+IHNwYW4ge1xyXG4gIG1hcmdpbi10b3A6IDAuMTI1cmVtO1xyXG4gIGZvbnQtc2l6ZTogMS41cmVtO1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59IiwiOmhvc3Qge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG59XG5cbi5tc2ctY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbiAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xuICBib3R0b206IDBweDtcbiAgei1pbmRleDogMTA1O1xufVxuXG5zcGFuIHtcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xuICBmb250LXdlaWdodDogbm9ybWFsO1xuICBmb250LXNpemU6IDFyZW07XG4gIGxpbmUtaGVpZ2h0OiAxLjI1cmVtO1xuICBjb2xvcjogIzJDMzIzQTtcbn1cblxuYnV0dG9uIHtcbiAgd2lkdGg6IGF1dG87XG4gIGhlaWdodDogYXV0bztcbiAgbWFyZ2luLWxlZnQ6IDFyZW07XG59XG5cbmJ1dHRvbi5jbG9zZSA+IHNwYW4ge1xuICBtYXJnaW4tdG9wOiAwLjEyNXJlbTtcbiAgZm9udC1zaXplOiAxLjVyZW07XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufSJdfQ== */"]
     });
     /*@__PURE__*/
@@ -8940,7 +8948,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }]
       }], function () {
         return [{
-          type: _services_message_message_service__WEBPACK_IMPORTED_MODULE_1__["MessageService"]
+          type: _services_message_message_service__WEBPACK_IMPORTED_MODULE_2__["MessageService"]
+        }, {
+          type: _angular_common__WEBPACK_IMPORTED_MODULE_1__["Location"]
         }];
       }, null);
     })();
@@ -12279,25 +12289,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "option", 37);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, "Reddit Account");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "input", 37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "input", 38);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_19_Template_input_input_9_listener() {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_19_Template_input_input_11_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r145);
 
           var ctx_r147 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
           return ctx_r147.updateDefaultValues();
-        })("change", function SendComponent_div_2_div_8_div_19_Template_input_change_9_listener() {
+        })("change", function SendComponent_div_2_div_8_div_19_Template_input_change_11_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r145);
 
           var ctx_r148 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
           return ctx_r148.validateReceiverAddress();
-        })("ngModelChange", function SendComponent_div_2_div_8_div_19_Template_input_ngModelChange_9_listener($event) {
+        })("ngModelChange", function SendComponent_div_2_div_8_div_19_Template_input_ngModelChange_11_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r145);
 
           var ctx_r149 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
@@ -12317,7 +12333,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r135.torusVerifier);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r135.toPkh);
       }
@@ -12325,7 +12341,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_div_2_div_8_ng_container_20_p_1_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 39);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 40);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Loading address...");
 
@@ -12335,7 +12351,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_div_2_div_8_ng_container_20_p_2_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 39);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 40);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
 
@@ -12355,9 +12371,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, SendComponent_div_2_div_8_ng_container_20_p_1_Template, 2, 0, "p", 38);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, SendComponent_div_2_div_8_ng_container_20_p_1_Template, 2, 0, "p", 39);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, SendComponent_div_2_div_8_ng_container_20_p_2_Template, 2, 1, "p", 38);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, SendComponent_div_2_div_8_ng_container_20_p_2_Template, 2, 1, "p", 39);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerEnd"]();
       }
@@ -12385,7 +12401,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "Addresses and amounts ");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "span", 40);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "span", 41);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4);
 
@@ -12393,7 +12409,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "textarea", 41);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "textarea", 42);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_21_Template_textarea_input_5_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r153);
@@ -12457,7 +12473,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         var _r157 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 42);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 43);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 16);
 
@@ -12469,7 +12485,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "input", 43);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "input", 44);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function SendComponent_div_2_div_8_div_32_Template_input_ngModelChange_5_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r157);
@@ -12491,7 +12507,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "input", 44);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "input", 45);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_32_Template_input_input_9_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r157);
@@ -12529,7 +12545,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](14, "input", 44);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](14, "input", 45);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_32_Template_input_input_14_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r157);
@@ -12563,7 +12579,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "input", 45);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "input", 46);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -12601,7 +12617,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_div_2_div_8_span_33_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 46);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 47);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
 
@@ -12685,7 +12701,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](19, SendComponent_div_2_div_8_div_19_Template, 10, 2, "div", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](19, SendComponent_div_2_div_8_div_19_Template, 12, 2, "div", 22);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](20, SendComponent_div_2_div_8_ng_container_20_Template, 3, 2, "ng-container", 10);
 
@@ -12819,7 +12835,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_div_2_div_9_ng_container_1_p_11_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
 
@@ -12841,19 +12857,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6);
 
@@ -12861,7 +12877,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9);
 
@@ -12869,7 +12885,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](11, SendComponent_div_2_div_9_ng_container_1_p_11_Template, 3, 4, "p", 53);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](11, SendComponent_div_2_div_9_ng_container_1_p_11_Template, 3, 4, "p", 54);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerEnd"]();
       }
@@ -12901,7 +12917,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_div_2_div_9_ng_container_2_p_9_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
 
@@ -12941,7 +12957,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 57);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "td", 58);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5);
 
@@ -12973,7 +12989,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         var _r183 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 58);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 59);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_ng_container_2_button_21_Template_button_click_0_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r183);
@@ -12983,7 +12999,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return ctx_r182.toggleTransactions();
         });
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "span", 59);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "span", 60);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
 
@@ -13005,13 +13021,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4);
 
@@ -13019,7 +13035,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "p", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "p", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7);
 
@@ -13027,7 +13043,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](9, SendComponent_div_2_div_9_ng_container_2_p_9_Template, 3, 4, "p", 53);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](9, SendComponent_div_2_div_9_ng_container_2_p_9_Template, 3, 4, "p", 54);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "table");
 
@@ -13035,7 +13051,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](12, "tr");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "th", 54);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "th", 55);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14);
 
@@ -13043,7 +13059,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](16, "th", 54);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](16, "th", 55);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](17);
 
@@ -13057,13 +13073,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "tbody");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](20, SendComponent_div_2_div_9_ng_container_2_tr_20_Template, 7, 6, "tr", 55);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](20, SendComponent_div_2_div_9_ng_container_2_tr_20_Template, 7, 6, "tr", 56);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](21, SendComponent_div_2_div_9_ng_container_2_button_21_Template, 3, 1, "button", 56);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](21, SendComponent_div_2_div_9_ng_container_2_button_21_Template, 3, 1, "button", 57);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerEnd"]();
       }
@@ -13109,7 +13125,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         var _r185 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "input", 60);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "input", 61);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function SendComponent_div_2_div_9_input_4_Template_input_ngModelChange_0_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r185);
@@ -13145,7 +13161,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         var _r189 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 61);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 62);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_button_5_Template_button_click_0_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r189);
@@ -13165,7 +13181,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         var _r191 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 62);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 63);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_ng_template_6_Template_button_click_0_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r191);
@@ -13193,7 +13209,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_div_2_div_9_span_8_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 63);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 64);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
 
@@ -13217,17 +13233,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, SendComponent_div_2_div_9_ng_container_2_Template, 22, 18, "ng-container", 10);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 47);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 48);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, SendComponent_div_2_div_9_input_4_Template, 1, 1, "input", 48);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, SendComponent_div_2_div_9_input_4_Template, 1, 1, "input", 49);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, SendComponent_div_2_div_9_button_5_Template, 2, 0, "button", 49);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](5, SendComponent_div_2_div_9_button_5_Template, 2, 0, "button", 50);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](6, SendComponent_div_2_div_9_ng_template_6_Template, 2, 2, "ng-template", null, 50, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](6, SendComponent_div_2_div_9_ng_template_6_Template, 2, 2, "ng-template", null, 51, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](8, SendComponent_div_2_div_9_span_8_Template, 2, 1, "span", 51);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](8, SendComponent_div_2_div_9_span_8_Template, 2, 1, "span", 52);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
       }
@@ -13552,7 +13568,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "inject",
         value: function inject() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
-            var pwd, keys, verifierName;
+            var pwd, keys;
             return regeneratorRuntime.wrap(function _callee20$(_context20) {
               while (1) {
                 switch (_context20.prev = _context20.next) {
@@ -13596,8 +13612,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.messageService.stopSpinner();
 
                       if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["TorusWallet"]) {
-                        verifierName = this.walletService.wallet.verifier.charAt(0).toUpperCase() + this.walletService.wallet.verifier.slice(1);
-                        this.pwdValid = "Expected confirmation from ".concat(verifierName, " account: ").concat(this.walletService.wallet.id);
+                        this.pwdValid = "Something went wrong";
                       } else {
                         this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
                       }
@@ -14251,8 +14266,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           } else {
             // Torus
-            if (this.torusVerifier && !this.inputValidationService.email(this.toPkh) && this.toPkh !== '') {
+            if (this.torusVerifier === 'google' && !this.inputValidationService.email(this.toPkh) && this.toPkh !== '') {
               this.formInvalid = 'Invalid Google account';
+            } else if (this.torusVerifier === 'reddit' && !this.inputValidationService.redditAccount(this.toPkh) && this.toPkh !== '') {
+              this.formInvalid = 'Invalid Reddit account';
             } else {
               if (!this.latestSimError) {
                 this.formInvalid = ''; // clear error
@@ -14285,8 +14302,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           if (!this.torusVerifier && (!this.inputValidationService.address(toPkh) || toPkh === this.activeAccount.address)) {
             return this.translate.instant('SENDCOMPONENT.INVALIDRECEIVERADDRESS');
-          } else if (this.torusVerifier && (this.torusVerifier !== 'google' || !this.inputValidationService.email(this.toPkh) || this.torusLookupAddress === this.activeAccount.address)) {
+          } else if (this.torusVerifier && this.torusVerifier === 'google' && (!this.inputValidationService.email(this.toPkh) || this.torusLookupAddress === this.activeAccount.address)) {
             return 'Invalid email';
+          } else if (this.torusVerifier && this.torusVerifier === 'reddit' && (!this.inputValidationService.redditAccount(this.toPkh) || this.torusLookupAddress === this.activeAccount.address)) {
+            return 'Invalid Reddit account';
           } else if (!this.inputValidationService.amount(amount) || finalCheck && (amount === '0' || amount === '') && toPkh.slice(0, 3) !== 'KT1') {
             return this.translate.instant('SENDCOMPONENT.INVALIDAMOUNT');
           } else if (!this.inputValidationService.gas(this.gas)) {
@@ -14470,7 +14489,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context28.prev = _context28.next) {
                   case 0:
-                    if (!(this.torusVerifier !== 'google')) {
+                    if (!(this.torusVerifier !== 'google' && this.torusVerifier !== 'reddit')) {
                       _context28.next = 4;
                       break;
                     }
@@ -14488,7 +14507,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     this.torusPendingLookup = true;
                     this.torusLookupId = this.toPkh;
                     _context28.next = 9;
-                    return this.torusService.lookupPkh('google', this.toPkh)["catch"](function (e) {
+                    return this.torusService.lookupPkh(this.torusVerifier, this.toPkh)["catch"](function (e) {
                       console.error(e);
                       return '';
                     });
@@ -14535,7 +14554,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log(transaction);
                     console.log('Notify ' + transaction.alias);
 
-                    if (transaction.alias) {
+                    if (transaction.alias && this.inputValidationService.email(transaction.alias)) {
                       this.messageService.emailNotify(transaction.alias, transaction.amount);
                     }
 
@@ -14575,7 +14594,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       },
       decls: 3,
       vars: 1,
-      consts: [[1, "purple", 3, "click"], ["id", "myModal", "class", "kukai-modal", 4, "ngIf"], ["id", "myModal", 1, "kukai-modal"], [1, "km-content"], [1, "x", 3, "click"], ["src", "../../../assets/img/x.svg"], [1, "km-header"], ["class", "small multiple-destinations", 3, "click", 4, "ngIf"], ["class", "km-body", 4, "ngIf"], [1, "small", "multiple-destinations", 3, "click"], [4, "ngIf"], [1, "km-body"], [1, "amount"], ["placeholder", "0.00", 1, "custom-large", 3, "ngModel", "disabled", "ngModelChange", "click"], ["amountInput", ""], [1, "tez"], [1, "row-group"], ["tabindex", "-1", "class", "small", 3, "max", "click", 4, "ngIf"], [1, "fee"], [4, "ngIf", "ngIfElse"], ["burn", ""], [1, "group"], ["class", "group", 4, "ngIf"], [1, "advanced"], [1, "switch-container"], [1, "switch"], ["type", "checkbox", "tabindex", "-1", 3, "ngModel", "ngModelChange"], [1, "slider", "round"], [1, "switch-desc"], ["class", "advanced-form", 4, "ngIf"], ["class", "danger no-margin", 4, "ngIf"], [1, "purple", 2, "margin", "2.5rem 0 1.5rem", 3, "click"], ["tabindex", "-1", 1, "small", 3, "click"], [2, "justify-content", "space-between"], [3, "ngModel", "ngModelChange"], ["value", ""], ["value", "google"], ["type", "text", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], ["class", "torus-details", 4, "ngIf"], [1, "torus-details"], [1, "batchInfo"], ["type", "text", "rows", "3", "placeholder", "address1 amount1 ; \naddress2 amount2 ; \naddress3 ...", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], [1, "advanced-form"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "ngModelChange"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "input", "paste", "ngModelChange"], ["type", "text", "tabindex", "-1", "readonly", "", 1, "text", "read-only", 3, "value"], [1, "danger", "no-margin"], [1, "row-group", 2, "margin", "1.25rem 0 1.5rem"], ["autocomplete", "current-password", "placeholder", "Password", "class", "text password", "type", "password", 3, "ngModel", "ngModelChange", "input", "change", 4, "ngIf"], ["class", "retry", 3, "click", 4, "ngIf", "ngIfElse"], ["elseBlock", ""], ["class", "danger margin", 4, "ngIf"], [1, "preview"], ["class", "preview", 4, "ngIf"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["style", "margin-left: auto; margin-top: 1rem", "type", "button", "class", "show-more", "aria-label", "More", 3, "click", 4, "ngIf"], [1, "txAmount"], ["type", "button", "aria-label", "More", 1, "show-more", 2, "margin-left", "auto", "margin-top", "1rem", 3, "click"], ["aria-hidden", "true"], ["autocomplete", "current-password", "placeholder", "Password", "type", "password", 1, "text", "password", 3, "ngModel", "ngModelChange", "input", "change"], [1, "retry", 3, "click"], [1, "purple", "confirm", 3, "disabled", "click"], [1, "danger", "margin"]],
+      consts: [[1, "purple", 3, "click"], ["id", "myModal", "class", "kukai-modal", 4, "ngIf"], ["id", "myModal", 1, "kukai-modal"], [1, "km-content"], [1, "x", 3, "click"], ["src", "../../../assets/img/x.svg"], [1, "km-header"], ["class", "small multiple-destinations", 3, "click", 4, "ngIf"], ["class", "km-body", 4, "ngIf"], [1, "small", "multiple-destinations", 3, "click"], [4, "ngIf"], [1, "km-body"], [1, "amount"], ["placeholder", "0.00", 1, "custom-large", 3, "ngModel", "disabled", "ngModelChange", "click"], ["amountInput", ""], [1, "tez"], [1, "row-group"], ["tabindex", "-1", "class", "small", 3, "max", "click", 4, "ngIf"], [1, "fee"], [4, "ngIf", "ngIfElse"], ["burn", ""], [1, "group"], ["class", "group", 4, "ngIf"], [1, "advanced"], [1, "switch-container"], [1, "switch"], ["type", "checkbox", "tabindex", "-1", 3, "ngModel", "ngModelChange"], [1, "slider", "round"], [1, "switch-desc"], ["class", "advanced-form", 4, "ngIf"], ["class", "danger no-margin", 4, "ngIf"], [1, "purple", 2, "margin", "2.5rem 0 1.5rem", 3, "click"], ["tabindex", "-1", 1, "small", 3, "click"], [2, "justify-content", "space-between"], [3, "ngModel", "ngModelChange"], ["value", ""], ["value", "google"], ["value", "reddit"], ["type", "text", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], ["class", "torus-details", 4, "ngIf"], [1, "torus-details"], [1, "batchInfo"], ["type", "text", "rows", "3", "placeholder", "address1 amount1 ; \naddress2 amount2 ; \naddress3 ...", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], [1, "advanced-form"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "ngModelChange"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "input", "paste", "ngModelChange"], ["type", "text", "tabindex", "-1", "readonly", "", 1, "text", "read-only", 3, "value"], [1, "danger", "no-margin"], [1, "row-group", 2, "margin", "1.25rem 0 1.5rem"], ["autocomplete", "current-password", "placeholder", "Password", "class", "text password", "type", "password", 3, "ngModel", "ngModelChange", "input", "change", 4, "ngIf"], ["class", "retry", 3, "click", 4, "ngIf", "ngIfElse"], ["elseBlock", ""], ["class", "danger margin", 4, "ngIf"], [1, "preview"], ["class", "preview", 4, "ngIf"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["style", "margin-left: auto; margin-top: 1rem", "type", "button", "class", "show-more", "aria-label", "More", 3, "click", 4, "ngIf"], [1, "txAmount"], ["type", "button", "aria-label", "More", 1, "show-more", 2, "margin-left", "auto", "margin-top", "1rem", 3, "click"], ["aria-hidden", "true"], ["autocomplete", "current-password", "placeholder", "Password", "type", "password", 1, "text", "password", 3, "ngModel", "ngModelChange", "input", "change"], [1, "retry", 3, "click"], [1, "purple", "confirm", 3, "disabled", "click"], [1, "danger", "margin"]],
       template: function SendComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 0);
@@ -19863,6 +19882,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
       }, {
+        key: "redditAccount",
+        value: function redditAccount(accountName) {
+          return accountName;
+        }
+      }, {
         key: "derivationPath",
         value: function derivationPath(path) {
           var m = path.match(/^44\'\/1729(\'\/[0-9]+)+\'$/g);
@@ -22041,16 +22065,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var TorusService = /*#__PURE__*/function () {
       function TorusService(operationService) {
+        var _this$verifierMap;
+
         _classCallCheck(this, TorusService);
 
         this.operationService = operationService;
         this.torus = null;
-        this.verifierMap = _defineProperty({}, GOOGLE, {
+        this.verifierMap = (_this$verifierMap = {}, _defineProperty(_this$verifierMap, GOOGLE, {
           name: 'Google',
           typeOfLogin: 'google',
           clientId: '952872982551-od475jfe3ach7dghacin634rbkcqhpll.apps.googleusercontent.com',
           verifier: 'kukai-google'
-        });
+        }), _defineProperty(_this$verifierMap, REDDIT, {
+          name: 'Reddit',
+          typeOfLogin: 'reddit',
+          clientId: 'kQLW_VROop2q0w',
+          verifier: 'torus-reddit-test'
+        }), _this$verifierMap);
         this.verifierMapKeys = Object.keys(this.verifierMap);
 
         this._loginToConnectionMap = function () {
@@ -22107,9 +22138,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "lookupPkh",
-        value: function lookupPkh() {
-          var selectedVerifier = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : GOOGLE;
-          var verifierId = arguments.length > 1 ? arguments[1] : undefined;
+        value: function lookupPkh(selectedVerifier, verifierId) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
             var fetchNodeDetails, torus, verifier, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, pk, pkh;
 
@@ -22153,8 +22182,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "loginTorus",
-        value: function loginTorus() {
-          var selectedVerifier = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : GOOGLE;
+        value: function loginTorus(selectedVerifier) {
           var verifierId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee62() {
             var jwtParams, _this$verifierMap$sel, typeOfLogin, clientId, verifier, loginDetails, keyPair;
@@ -22210,9 +22238,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "getTorusKeyPair",
-        value: function getTorusKeyPair() {
-          var selectedVerifier = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : GOOGLE;
-          var verifierId = arguments.length > 1 ? arguments[1] : undefined;
+        value: function getTorusKeyPair(selectedVerifier, verifierId) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee63() {
             var _yield$this$loginToru, keyPair;
 
@@ -22327,13 +22353,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getTzrate() {
           var _this49 = this;
 
-          this.http.get(this.apiUrl).subscribe(function (price) {
-            _this49.walletService.wallet.XTZrate = price.tezos.usd;
+          if (this.CONSTANTS.NET.NETWORK === 'mainnet') {
+            this.http.get(this.apiUrl).subscribe(function (price) {
+              _this49.walletService.wallet.XTZrate = price.tezos.usd;
 
-            _this49.updateFiatBalances();
-          }, function (err) {
-            return console.log('Failed to get xtz price: ' + JSON.stringify(err));
-          });
+              _this49.updateFiatBalances();
+            }, function (err) {
+              return console.log('Failed to get xtz price: ' + JSON.stringify(err));
+            });
+          } else {
+            this.walletService.wallet.XTZrate = 0;
+            this.updateFiatBalances();
+          }
         }
       }, {
         key: "updateFiatBalances",
