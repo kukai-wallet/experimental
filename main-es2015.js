@@ -6245,10 +6245,10 @@ class TorusComponent {
     }
     ngOnInit() {
     }
-    torusLogin() {
+    torusLogin(verifier) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             yield this.messageService.startSpinner('Loading wallet...');
-            const { keyPair, userInfo } = yield this.torusService.loginTorus(undefined).catch((e) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return yield this.messageService.stopSpinner(); }));
+            const { keyPair, userInfo } = yield this.torusService.loginTorus(verifier).catch((e) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return yield this.messageService.stopSpinner(); }));
             console.log('login done');
             if (keyPair) {
                 console.log(keyPair);
@@ -6298,7 +6298,7 @@ TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](12, "button", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_Template_button_click_12_listener() { return ctx.torusLogin(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_Template_button_click_12_listener() { return ctx.torusLogin("google"); });
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](13, "Google");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();

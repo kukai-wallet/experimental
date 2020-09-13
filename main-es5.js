@@ -15254,7 +15254,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {}
       }, {
         key: "torusLogin",
-        value: function torusLogin() {
+        value: function torusLogin(verifier) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee32() {
             var _this19 = this;
 
@@ -15269,7 +15269,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     _context32.next = 4;
-                    return this.torusService.loginTorus(undefined)["catch"](function (e) {
+                    return this.torusService.loginTorus(verifier)["catch"](function (e) {
                       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this19, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee31() {
                         return regeneratorRuntime.wrap(function _callee31$(_context31) {
                           while (1) {
@@ -15397,7 +15397,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](12, "button", 7);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_Template_button_click_12_listener() {
-            return ctx.torusLogin();
+            return ctx.torusLogin("google");
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](13, "Google");
