@@ -2558,8 +2558,7 @@ class DelegateComponent {
                 else {
                     this.messageService.stopSpinner();
                     if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_10__["TorusWallet"]) {
-                        const verifierName = this.walletService.wallet.verifier.charAt(0).toUpperCase() + this.walletService.wallet.verifier.slice(1);
-                        this.pwdValid = `Expected confirmation from ${verifierName} account: ${this.walletService.wallet.id}`;
+                        this.pwdValid = `Authorization failed`;
                     }
                     else {
                         this.pwdValid = 'Wrong password!';
@@ -5356,7 +5355,7 @@ class SendComponent {
                 else {
                     this.messageService.stopSpinner();
                     if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["TorusWallet"]) {
-                        this.pwdValid = `Something went wrong`;
+                        this.pwdValid = `Authorization failed`;
                     }
                     else {
                         this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
@@ -5537,7 +5536,9 @@ class SendComponent {
                 this.sendResponse = ans;
                 if (ans.success && this.activeAccount) {
                     const metadata = { transactions: this.transactions, opHash: ans.payload.opHash };
-                    this.torusNotification(this.torusLookupId);
+                    if (this.transactions[0].alias) {
+                        this.torusNotification(this.transactions[0]);
+                    }
                     this.coordinatorService.boost(this.activeAccount.address, metadata);
                     if (this.walletService.addressExists(this.transactions[0].to)) {
                         this.coordinatorService.boost(this.transactions[0].to);
@@ -10890,7 +10891,7 @@ class TorusService {
             const torus = new _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default.a();
             const verifier = this.verifierMap[selectedVerifier].verifier;
             const { torusNodeEndpoints, torusNodePub, torusIndexes } = yield fetchNodeDetails.getNodeDetails();
-            const pk = yield torus.getPublicAddress(torusNodeEndpoints, torusNodePub, { verifier, verifierId }, true);
+            const pk = yield torus.getPublicAddress(torusNodeEndpoints, torusNodePub, { verifier, verifierId: verifierId.toLowerCase() }, true);
             const pkh = this.operationService.spExtPkToPkh(pk.X, pk.Y);
             console.log(pkh);
             return pkh;

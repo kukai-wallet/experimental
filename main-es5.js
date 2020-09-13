@@ -7741,7 +7741,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "inject",
         value: function inject() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-            var pwd, keys, verifierName;
+            var pwd, keys;
             return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
                 switch (_context4.prev = _context4.next) {
@@ -7777,8 +7777,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         this.messageService.stopSpinner();
 
                         if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_10__["TorusWallet"]) {
-                          verifierName = this.walletService.wallet.verifier.charAt(0).toUpperCase() + this.walletService.wallet.verifier.slice(1);
-                          this.pwdValid = "Expected confirmation from ".concat(verifierName, " account: ").concat(this.walletService.wallet.id);
+                          this.pwdValid = "Authorization failed";
                         } else {
                           this.pwdValid = 'Wrong password!';
                         }
@@ -13612,7 +13611,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.messageService.stopSpinner();
 
                       if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["TorusWallet"]) {
-                        this.pwdValid = "Something went wrong";
+                        this.pwdValid = "Authorization failed";
                       } else {
                         this.pwdValid = this.translate.instant('SENDCOMPONENT.WRONGPASSWORD'); // 'Wrong password!';
                       }
@@ -13938,7 +13937,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                           opHash: ans.payload.opHash
                         };
 
-                        _this17.torusNotification(_this17.torusLookupId);
+                        if (_this17.transactions[0].alias) {
+                          _this17.torusNotification(_this17.transactions[0]);
+                        }
 
                         _this17.coordinatorService.boost(_this17.activeAccount.address, metadata);
 
@@ -22163,7 +22164,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context61.next = 11;
                     return torus.getPublicAddress(torusNodeEndpoints, torusNodePub, {
                       verifier: verifier,
-                      verifierId: verifierId
+                      verifierId: verifierId.toLowerCase()
                     }, true);
 
                   case 11:
