@@ -15389,7 +15389,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin("reddit");
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Reddit test");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Reddit test*");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -22090,7 +22090,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }), _defineProperty(_this$verifierMap, REDDIT, {
           name: 'Reddit',
           typeOfLogin: 'reddit',
-          clientId: 'kQLW_VROop2q0w',
+          clientId: 'H0nhRv1leU9pGQ',
           verifier: 'torus-reddit-test'
         }), _this$verifierMap);
         this.verifierMapKeys = Object.keys(this.verifierMap);
