@@ -15358,7 +15358,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-torus"]],
       decls: 16,
       vars: 0,
-      consts: [[1, "kukai-card"], [1, "grey-card"], [1, "description", "bold"], [1, "description"], [2, "font-size", "0.75rem", "color", "grey", "cursor", "pointer", 3, "click"], [1, "buttons"], ["routerLink", "/"], [1, "button", "back"], [1, "button", "next", 3, "click"]],
+      consts: [[1, "kukai-card"], [1, "grey-card"], [1, "description", "bold"], [1, "description"], [1, "buttons"], ["routerLink", "/"], [1, "button", "back"], [1, "button", "next", 3, "click"]],
       template: function TorusComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
@@ -15373,39 +15373,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "p", 2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "Create/access you Tezos wallet with just a simple click.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "Access your Tezos wallet with a simple click.");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "p", 3);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "DirectAuth is powered by an open-source and non-custodial key management system. Over a Distributed Key Generation protocol it allows you to access its generated keys via OAuths.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "DirectAuth creates a unique Tezos wallet for each of your OAuth accounts. It is powered by an open-source and non-custodial key management system.");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "p", 4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "div", 4);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_Template_p_click_8_listener() {
-            return ctx.torusLogin("reddit");
-          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "a", 5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Reddit test");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "button", 6);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](11, "Back");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "div", 5);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "a", 6);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](12, "button", 7);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](13, "Back");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_Template_button_click_12_listener() {
+            return ctx.torusLogin("reddit");
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](13, "Reddit");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](14, "button", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](14, "button", 7);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_Template_button_click_14_listener() {
             return ctx.torusLogin("google");
