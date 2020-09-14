@@ -8262,7 +8262,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-footer"]],
       decls: 19,
       vars: 0,
-      consts: [[1, "foot-container"], ["id", "follow"], ["href", "https://github.com/kukai-wallet/kukai", "target", "_blank"], ["src", "../../../assets/img/logo-github.svg"], ["id", "tg", "href", "https://t.me/KukaiWallet", "target", "_blank"], ["src", "../../../assets/img/logo-telegram.svg"], ["href", "https://twitter.com/KukaiWallet/", "target", "_blank"], ["src", "../../../assets/img/logo-twitter.svg"], [1, "links"], ["href", "./terms-of-use", "target", "_blank"], ["href", "./privacy-policy", "target", "_blank"], ["href", "mailto:contact@kukai.app"], ["href", "https://docs.kukai.app", "target", "_blank", 2, "margin", "0 1rem 1rem auto"], ["src", "../../../assets/img/docs.svg"]],
+      consts: [[1, "foot-container"], ["id", "follow"], ["href", "https://github.com/kukai-wallet/kukai", "target", "_blank"], ["src", "../../../assets/img/logo-github.svg"], ["id", "tg", "href", "https://t.me/KukaiWallet", "target", "_blank"], ["src", "../../../assets/img/logo-telegram.svg"], ["href", "https://twitter.com/KukaiWallet/", "target", "_blank"], ["src", "../../../assets/img/logo-twitter.svg"], [1, "links"], ["href", "./terms-of-use", "target", "_blank"], ["href", "./privacy-policy", "target", "_blank"], ["target", "_blank", "href", "mailto:contact@kukai.app"], ["href", "https://docs.kukai.app", "target", "_blank", 2, "margin", "0 1rem 1rem auto"], ["src", "../../../assets/img/docs.svg"]],
       template: function FooterComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
