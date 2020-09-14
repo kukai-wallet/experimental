@@ -10860,7 +10860,7 @@ class TorusService {
                 name: 'Reddit',
                 typeOfLogin: 'reddit',
                 clientId: 'H0nhRv1leU9pGQ',
-                verifier: 'kukai-reddit'
+                verifier: 'tezos-reddit-testnet'
             },
         };
         this.verifierMapKeys = Object.keys(this.verifierMap);
