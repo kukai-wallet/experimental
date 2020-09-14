@@ -8916,7 +8916,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-messages"]],
       decls: 2,
       vars: 1,
-      consts: [[1, "msg-container"], [4, "ngFor", "ngForOf"], [3, "type", 4, "ngIf"], [3, "type", "dismissOnTimeout", 4, "ngIf"], [3, "type"], ["type", "button", "aria-label", "Close", 1, "close", 3, "click"], ["aria-hidden", "true"], [4, "ngIf"], [3, "href"], [3, "type", "dismissOnTimeout"]],
+      consts: [[1, "msg-container"], [4, "ngFor", "ngForOf"], [3, "type", 4, "ngIf"], [3, "type", "dismissOnTimeout", 4, "ngIf"], [3, "type"], ["type", "button", "aria-label", "Close", 1, "close", 3, "click"], ["aria-hidden", "true"], [4, "ngIf"], ["target", "_blank", 3, "href"], [3, "type", "dismissOnTimeout"]],
       template: function MessagesComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -15389,7 +15389,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return ctx.torusLogin("reddit");
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Reddit test");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Reddit test*");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
