@@ -14,7 +14,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e) { function e(_x) { return _e.apply(this, arguments); } e.toString = function () { return _e.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e2) { function e(_x2) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e2) { function e(_x) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e3) { function e(_x2) { return _e3.apply(this, arguments); } e.toString = function () { return _e3.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -3817,31 +3825,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _header_header_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _services_activity_activity_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! ../../services/activity/activity.service */
+    "./src/app/services/activity/activity.service.ts");
+    /* harmony import */
+
+
+    var _header_header_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ../header/header.component */
     "./src/app/components/header/header.component.ts");
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! @angular/common */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
     /* harmony import */
 
 
-    var _receive_receive_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    var _receive_receive_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
     /*! ../receive/receive.component */
     "./src/app/components/receive/receive.component.ts");
     /* harmony import */
 
 
-    var _delegate_delegate_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+    var _delegate_delegate_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
     /*! ../delegate/delegate.component */
     "./src/app/components/delegate/delegate.component.ts");
     /* harmony import */
 
 
-    var _send_send_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+    var _send_send_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
     /*! ../send/send.component */
     "./src/app/components/send/send.component.ts");
 
@@ -4730,7 +4744,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }
 
     var AccountViewComponent = /*#__PURE__*/function () {
-      function AccountViewComponent(route, walletService, translate, messageService, timeAgoPipe, router, coordinatorService, lookupService) {
+      function AccountViewComponent(route, walletService, translate, messageService, timeAgoPipe, router, coordinatorService, lookupService, activityService) {
         _classCallCheck(this, AccountViewComponent);
 
         this.route = route;
@@ -4741,6 +4755,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.router = router;
         this.coordinatorService = coordinatorService;
         this.lookupService = lookupService;
+        this.activityService = activityService;
         this.CONSTANTS = new _constants__WEBPACK_IMPORTED_MODULE_9__["Constants"]();
         this.trigger = true;
       }
@@ -4802,33 +4817,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getCounterparty",
         value: function getCounterparty(transaction) {
-          var counterParty = '';
-
-          if (transaction.type === 'delegation') {
-            if (transaction.destination) {
-              counterParty = transaction.destination;
-            } else {
-              counterParty = ''; // User has undelegated
-            }
-          } else if (transaction.type === 'transaction') {
-            if (this.account.address === transaction.source) {
-              counterParty = transaction.destination; // to
-            } else {
-              counterParty = transaction.source; // from
-            }
-          } else if (transaction.type === 'origination') {
-            if (this.account.address === transaction.source) {
-              counterParty = transaction.destination;
-            } else {
-              counterParty = transaction.source;
-            }
-          } else {
-            counterParty = '';
-          }
-
-          this.lookupService.check(counterParty);
-          counterParty = this.lookupService.resolve(counterParty);
-          return counterParty;
+          return this.activityService.getCounterparty(transaction, this.account);
         }
       }, {
         key: "copy",
@@ -4840,7 +4829,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "explorerURL",
         value: function explorerURL(hash) {
-          var baseURL = this.CONSTANTS.NET.NETWORK === 'carthagenet' ? 'https://carthage.tzkt.io/' : 'https://tzkt.io/';
+          var baseURL = this.CONSTANTS.NET.NETWORK === 'mainnet' ? 'https://tzkt.io/' : 'https://carthage.tzkt.io/';
           return baseURL + hash;
         }
       }]);
@@ -4849,7 +4838,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     AccountViewComponent.ɵfac = function AccountViewComponent_Factory(t) {
-      return new (t || AccountViewComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_2__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_3__["TimeAgoPipe"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_8__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"]));
+      return new (t || AccountViewComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_2__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_3__["TimeAgoPipe"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_8__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_activity_activity_service__WEBPACK_IMPORTED_MODULE_11__["ActivityService"]));
     };
 
     AccountViewComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -4876,8 +4865,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.account);
         }
       },
-      directives: [_header_header_component__WEBPACK_IMPORTED_MODULE_11__["HeaderComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _receive_receive_component__WEBPACK_IMPORTED_MODULE_13__["ReceiveComponent"], _delegate_delegate_component__WEBPACK_IMPORTED_MODULE_14__["DelegateComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_15__["SendComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgSwitch"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgSwitchCase"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgSwitchDefault"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["NgTemplateOutlet"]],
-      pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["DecimalPipe"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["SlicePipe"], _pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_3__["TimeAgoPipe"], _angular_common__WEBPACK_IMPORTED_MODULE_12__["TitleCasePipe"]],
+      directives: [_header_header_component__WEBPACK_IMPORTED_MODULE_12__["HeaderComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["NgIf"], _receive_receive_component__WEBPACK_IMPORTED_MODULE_14__["ReceiveComponent"], _delegate_delegate_component__WEBPACK_IMPORTED_MODULE_15__["DelegateComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_16__["SendComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["NgForOf"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["NgSwitch"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["NgSwitchCase"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["NgSwitchDefault"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["NgTemplateOutlet"]],
+      pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_13__["DecimalPipe"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["SlicePipe"], _pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_3__["TimeAgoPipe"], _angular_common__WEBPACK_IMPORTED_MODULE_13__["TitleCasePipe"]],
       styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  min-height: 100vh;\n  display: flex;\n  justify-content: flex-start;\n  flex-direction: column;\n  background: #5963FF;\n}\n\n#wrapper[_ngcontent-%COMP%] {\n  min-height: calc(100% - 8rem);\n  padding-bottom: 8rem;\n  display: flex;\n  justify-content: center;\n}\n\n.left[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: flex-start;\n  flex-direction: column;\n}\n\nimg[_ngcontent-%COMP%] {\n  vertical-align: baseline;\n}\n\na.view-all[_ngcontent-%COMP%] {\n  float: right;\n  margin: 0.375rem 1.25rem 0 0;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  color: #5963ff;\n}\n\n.main-container[_ngcontent-%COMP%] {\n  width: 25rem;\n  height: 100%;\n  background: #fcfcfc;\n  border: 0.0625rem solid #ffffff;\n  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.14), 0px 16px 24px rgba(0, 0, 0, 0.16);\n  border-radius: 0.75rem;\n}\n\n.main-container.large[_ngcontent-%COMP%] {\n  width: 40rem;\n  height: 100%;\n}\n\n.main-container.small[_ngcontent-%COMP%] {\n  position: relative;\n}\n\n.top-container[_ngcontent-%COMP%] {\n  width: 39.875rem;\n  margin-top: 1rem;\n  height: 2.5rem;\n  width: auto;\n  border-bottom: 1px solid #eaebf9;\n}\n\ndiv.bottom-container[_ngcontent-%COMP%] {\n  width: 100%;\n  padding: 2rem 0 1rem;\n}\n\ndiv#account-container[_ngcontent-%COMP%] {\n  padding: 0 1rem;\n  height: calc(100% - 3.4375rem);\n  display: flex;\n  justify-content: space-between;\n  align-items: space-between;\n  flex-direction: column;\n}\n\n.account-row[_ngcontent-%COMP%]:hover {\n  background-color: #eaebf9 !important;\n  cursor: pointer !important;\n}\n\n.account-icon[_ngcontent-%COMP%] {\n  margin-left: 1rem;\n  margin-top: 0.5rem;\n  margin-bottom: 0.5rem;\n}\n\nspan[_ngcontent-%COMP%] {\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  color: #2c323a;\n}\n\n.main-container[_ngcontent-%COMP%]   H1[_ngcontent-%COMP%] {\n  margin-left: 1rem;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 24px;\n  color: #2c323a;\n}\n\n.main-container[_ngcontent-%COMP%]   H2[_ngcontent-%COMP%] {\n  margin: 1rem 0 0;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 1rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: center;\n  color: #2c323a;\n  opacity: 0.4;\n  -webkit-opacity: 0.4;\n  -khtml-opacity: 0.4;\n}\n\ndiv.address-container[_ngcontent-%COMP%] {\n  padding-top: 0.5rem;\n  display: flex;\n  justify-content: space-between;\n}\n\n.main-container[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-top: 0.5rem;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: flex-end;\n  color: #000000;\n}\n\n#account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n  margin-top: 0.5rem;\n}\n\n#account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]   div.icons[_ngcontent-%COMP%] {\n  position: relative;\n  top: 1.5rem;\n  width: 2.5rem;\n  line-height: 1rem;\n  height: 1rem;\n}\n\nspan.mark[_ngcontent-%COMP%] {\n  margin: 0 0.5rem;\n  padding: 0;\n  align-items: center;\n  color: #000000;\n  background: #fcfcfc;\n  opacity: 0.2;\n  -webkit-opacity: 0.2;\n  -khtml-opacity: 0.2;\n}\n\nspan.grey[_ngcontent-%COMP%] {\n  align-items: center;\n  color: #000000;\n  opacity: 0.4;\n  -webkit-opacity: 0.4;\n  -khtml-opacity: 0.4;\n}\n\n.top-container[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\n  float: right;\n  margin-top: 0.25rem;\n  margin-right: 1rem;\n  cursor: pointer;\n}\n\n.seperator[_ngcontent-%COMP%] {\n  width: 38rem;\n  margin-left: 0.375rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.04);\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\n  padding-bottom: 1.125rem;\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: row;\n  margin: 1rem;\n  height: 100%;\n  margin-bottom: 0;\n  padding-bottom: 1rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.04);\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]:last-child {\n  border-bottom: 0;\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span[_ngcontent-%COMP%], #operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  margin-left: 0.5rem;\n  margin-top: 0.25rem;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: center;\n  float: left;\n  display: flex;\n}\n\nimg.copy-icon[_ngcontent-%COMP%] {\n  margin-right: 0.5rem;\n  cursor: pointer;\n}\n\n#operations-container[_ngcontent-%COMP%]   div.line[_ngcontent-%COMP%]   span[_ngcontent-%COMP%], #operations-container[_ngcontent-%COMP%]   div.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  font-weight: normal;\n  color: #2c323a;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.green[_ngcontent-%COMP%] {\n  color: #18AE39;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.red[_ngcontent-%COMP%] {\n  color: #FE5004;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.blue[_ngcontent-%COMP%] {\n  color: #5963FF;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.black[_ngcontent-%COMP%] {\n  color: #000000;\n  font-weight: 500;\n}\n\ndiv.left-container[_ngcontent-%COMP%] {\n  margin-right: 5rem;\n  width: 400px;\n}\n\ndiv.line[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  flex-direction: row;\n}\n\ndiv.line[_ngcontent-%COMP%]:last-child {\n  margin-top: 0.125rem;\n}\n\n.truncate-overflow[_ngcontent-%COMP%] {\n  overflow: hidden;\n  position: relative;\n}\n\n@media screen and (max-width: 70rem) {\n  #wrapper[_ngcontent-%COMP%] {\n    flex-direction: column;\n    justify-content: flex-start;\n    align-content: center;\n    align-items: center;\n  }\n\n  div.left-container[_ngcontent-%COMP%] {\n    margin-right: 0rem;\n    margin-bottom: 2rem;\n  }\n}\n\n@media screen and (max-width: 42rem) {\n  .truncate-overflow[_ngcontent-%COMP%] {\n    width: 16rem;\n  }\n\n  .main-container.large[_ngcontent-%COMP%] {\n    width: 25rem;\n  }\n\n  .truncate-overflow[_ngcontent-%COMP%]:after {\n    content: \"\";\n    text-align: right;\n    position: absolute;\n    bottom: 0;\n    right: -2rem;\n    width: 4rem;\n    height: 1.2em;\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%);\n  }\n}\n\n@media screen and (max-width: 27rem) {\n  .main-container.large[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  .truncate-overflow[_ngcontent-%COMP%] {\n    width: 13rem;\n  }\n\n  .main-container.small[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  div.left-container[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  #account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]   div.icons[_ngcontent-%COMP%] {\n    width: 3rem;\n    top: 0;\n  }\n\n  img.copy-icon[_ngcontent-%COMP%] {\n    margin-right: 1rem;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hY2NvdW50LXZpZXcvQzpcXFVzZXJzXFxrbGFzX1xcR2l0XFxrdWthaS9zcmNcXGFwcFxcY29tcG9uZW50c1xcYWNjb3VudC12aWV3XFxhY2NvdW50LXZpZXcuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbXBvbmVudHMvYWNjb3VudC12aWV3L2FjY291bnQtdmlldy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxpQkFBQTtFQUNBLGFBQUE7RUFDQSwyQkFBQTtFQUNBLHNCQUFBO0VBQ0EsbUJBQUE7QUNDRjs7QURDQTtFQUNFLDZCQUFBO0VBQ0Esb0JBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7QUNFRjs7QURBQTtFQUNFLGFBQUE7RUFDQSwyQkFBQTtFQUNBLHNCQUFBO0FDR0Y7O0FEREE7RUFDRSx3QkFBQTtBQ0lGOztBREZBO0VBQ0UsWUFBQTtFQUNBLDRCQUFBO0VBQ0Esa0JBQUE7RUFDQSxtQkFBQTtFQUNBLG1CQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FDS0Y7O0FESEE7RUFDRSxZQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0VBQ0EsK0JBQUE7RUFDQSwrR0FBQTtFQUNBLHNCQUFBO0FDTUY7O0FESkE7RUFDRSxZQUFBO0VBQ0EsWUFBQTtBQ09GOztBRExBO0VBQ0Usa0JBQUE7QUNRRjs7QUROQTtFQUNFLGdCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsV0FBQTtFQUNBLGdDQUFBO0FDU0Y7O0FEUEE7RUFDRSxXQUFBO0VBQ0Esb0JBQUE7QUNVRjs7QURSQTtFQUNFLGVBQUE7RUFDQSw4QkFBQTtFQUNBLGFBQUE7RUFDQSw4QkFBQTtFQUNBLDBCQUFBO0VBQ0Esc0JBQUE7QUNXRjs7QURUQTtFQUVFLG9DQUFBO0VBQ0EsMEJBQUE7QUNXRjs7QURUQTtFQUNFLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxxQkFBQTtBQ1lGOztBRFZBO0VBQ0Usa0JBQUE7RUFDQSxtQkFBQTtFQUNBLG1CQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FDYUY7O0FEWEE7RUFDRSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FDY0Y7O0FEWkE7RUFDRSxnQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSxjQUFBO0VBQ0EsWUFBQTtFQUNBLG9CQUFBO0VBQ0EsbUJBQUE7QUNlRjs7QURiQTtFQUNFLG1CQUFBO0VBQ0EsYUFBQTtFQUNBLDhCQUFBO0FDZ0JGOztBRGRBO0VBQ0Usa0JBQUE7RUFDQSxrQkFBQTtFQUNBLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtFQUNBLGFBQUE7RUFDQSxxQkFBQTtFQUNBLGNBQUE7QUNpQkY7O0FEZkE7RUFDRSxhQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0FDa0JGOztBRGhCQTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLFlBQUE7QUNtQkY7O0FEakJBO0VBQ0UsZ0JBQUE7RUFDQSxVQUFBO0VBQ0EsbUJBQUE7RUFDQSxjQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0VBQ0Esb0JBQUE7RUFDQSxtQkFBQTtBQ29CRjs7QURsQkE7RUFDRSxtQkFBQTtFQUNBLGNBQUE7RUFDQSxZQUFBO0VBQ0Esb0JBQUE7RUFDQSxtQkFBQTtBQ3FCRjs7QURuQkE7RUFDRSxZQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7QUNzQkY7O0FEcEJBO0VBQ0UsWUFBQTtFQUNBLHFCQUFBO0VBQ0EsNENBQUE7QUN1QkY7O0FEckJBO0VBQ0Usd0JBQUE7QUN3QkY7O0FEckJBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLG9CQUFBO0VBQ0EsNENBQUE7QUN3QkY7O0FEdEJBO0VBQ0UsZ0JBQUE7QUN5QkY7O0FEdkJBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUMwQkY7O0FEdkJBOztFQUVFLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxhQUFBO0FDMEJGOztBRHhCQTtFQUNFLG9CQUFBO0VBQ0EsZUFBQTtBQzJCRjs7QUR6QkE7O0VBRUUsbUJBQUE7RUFDQSxjQUFBO0FDNEJGOztBRDFCQTtFQUNFLGNBQUE7RUFDQSxnQkFBQTtBQzZCRjs7QUQzQkE7RUFDRSxjQUFBO0VBQ0EsZ0JBQUE7QUM4QkY7O0FENUJBO0VBQ0UsY0FBQTtFQUNBLGdCQUFBO0FDK0JGOztBRDdCQTtFQUNFLGNBQUE7RUFDQSxnQkFBQTtBQ2dDRjs7QUQ5QkE7RUFDRSxrQkFBQTtFQUNBLFlBQUE7QUNpQ0Y7O0FEL0JBO0VBQ0UsYUFBQTtFQUNBLDhCQUFBO0VBQ0EsbUJBQUE7QUNrQ0Y7O0FEaENBO0VBQ0Usb0JBQUE7QUNtQ0Y7O0FEakNBO0VBQ0UsZ0JBQUE7RUFDQSxrQkFBQTtBQ29DRjs7QURsQ0E7RUFDRTtJQUNFLHNCQUFBO0lBQ0EsMkJBQUE7SUFDQSxxQkFBQTtJQUNBLG1CQUFBO0VDcUNGOztFRG5DQTtJQUNFLGtCQUFBO0lBQ0EsbUJBQUE7RUNzQ0Y7QUFDRjs7QURwQ0E7RUFDRTtJQUNFLFlBQUE7RUNzQ0Y7O0VEcENBO0lBQ0UsWUFBQTtFQ3VDRjs7RURyQ0E7SUFDRSxXQUFBO0lBQ0EsaUJBQUE7SUFDQSxrQkFBQTtJQUNBLFNBQUE7SUFDQSxZQUFBO0lBQ0EsV0FBQTtJQUNBLGFBQUE7SUFDQSx3RUFBQTtFQ3dDRjtBQUNGOztBRGxDQTtFQUNFO0lBQ0UsWUFBQTtFQ29DRjs7RURsQ0E7SUFDRSxZQUFBO0VDcUNGOztFRG5DQTtJQUNFLFlBQUE7RUNzQ0Y7O0VEcENBO0lBQ0UsWUFBQTtFQ3VDRjs7RURyQ0E7SUFDRSxXQUFBO0lBQ0EsTUFBQTtFQ3dDRjs7RUR0Q0E7SUFDRSxrQkFBQTtFQ3lDRjtBQUNGIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9hY2NvdW50LXZpZXcvYWNjb3VudC12aWV3LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3Qge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG1pbi1oZWlnaHQ6IDEwMHZoO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgYmFja2dyb3VuZDogIzU5NjNGRjtcclxufVxyXG4jd3JhcHBlciB7XHJcbiAgbWluLWhlaWdodDogY2FsYygxMDAlIC0gOHJlbSk7XHJcbiAgcGFkZGluZy1ib3R0b206IDhyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG4ubGVmdCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxufVxyXG5pbWcge1xyXG4gIHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTtcclxufVxyXG5hLnZpZXctYWxsIHtcclxuICBmbG9hdDogcmlnaHQ7XHJcbiAgbWFyZ2luOiAwLjM3NXJlbSAxLjI1cmVtIDAgMDtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcclxuICBmb250LXNpemU6IDAuODc1cmVtO1xyXG4gIGxpbmUtaGVpZ2h0OiAxcmVtO1xyXG4gIGNvbG9yOiAjNTk2M2ZmO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lciB7XHJcbiAgd2lkdGg6IDI1cmVtO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBiYWNrZ3JvdW5kOiAjZmNmY2ZjO1xyXG4gIGJvcmRlcjogMC4wNjI1cmVtIHNvbGlkICNmZmZmZmY7XHJcbiAgYm94LXNoYWRvdzogMHB4IDBweCAxcHggcmdiYSgwLCAwLCAwLCAwLjA0KSwgMHB4IDJweCA2cHggcmdiYSgwLCAwLCAwLCAwLjE0KSwgMHB4IDE2cHggMjRweCByZ2JhKDAsIDAsIDAsIDAuMTYpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDAuNzVyZW07XHJcbn1cclxuLm1haW4tY29udGFpbmVyLmxhcmdlIHtcclxuICB3aWR0aDogNDByZW07XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lci5zbWFsbCB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcbi50b3AtY29udGFpbmVyIHtcclxuICB3aWR0aDogMzkuODc1cmVtO1xyXG4gIG1hcmdpbi10b3A6IDFyZW07XHJcbiAgaGVpZ2h0OiAyLjVyZW07XHJcbiAgd2lkdGg6IGF1dG87XHJcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNlYWViZjk7XHJcbn1cclxuZGl2LmJvdHRvbS1jb250YWluZXIge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIHBhZGRpbmc6IDJyZW0gMCAxcmVtO1xyXG59XHJcbmRpdiNhY2NvdW50LWNvbnRhaW5lciB7XHJcbiAgcGFkZGluZzogMCAxcmVtO1xyXG4gIGhlaWdodDogY2FsYygxMDAlIC0gMy40Mzc1cmVtKTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICBhbGlnbi1pdGVtczogc3BhY2UtYmV0d2VlbjtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcbi5hY2NvdW50LXJvdzpob3ZlciB7XHJcbiAgLy8jZTZmZmU2XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2VhZWJmOSAhaW1wb3J0YW50O1xyXG4gIGN1cnNvcjogcG9pbnRlciAhaW1wb3J0YW50O1xyXG59XHJcbi5hY2NvdW50LWljb24ge1xyXG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG4gIG1hcmdpbi10b3A6IDAuNXJlbTtcclxuICBtYXJnaW4tYm90dG9tOiAwLjVyZW07XHJcbn1cclxuc3BhbiB7XHJcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xyXG4gIGZvbnQtd2VpZ2h0OiBub3JtYWw7XHJcbiAgZm9udC1zaXplOiAwLjg3NXJlbTtcclxuICBsaW5lLWhlaWdodDogMXJlbTtcclxuICBjb2xvcjogIzJjMzIzYTtcclxufVxyXG4ubWFpbi1jb250YWluZXIgSDEge1xyXG4gIG1hcmdpbi1sZWZ0OiAxcmVtO1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBmb250LXNpemU6IDIwcHg7XHJcbiAgbGluZS1oZWlnaHQ6IDI0cHg7XHJcbiAgY29sb3I6ICMyYzMyM2E7XHJcbn1cclxuLm1haW4tY29udGFpbmVyIEgyIHtcclxuICBtYXJnaW46IDFyZW0gMCAwO1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogNTAwO1xyXG4gIGZvbnQtc2l6ZTogMXJlbTtcclxuICBsaW5lLWhlaWdodDogMXJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgY29sb3I6ICMyYzMyM2E7XHJcbiAgb3BhY2l0eTogMC40O1xyXG4gIC13ZWJraXQtb3BhY2l0eTogMC40O1xyXG4gIC1raHRtbC1vcGFjaXR5OiAwLjQ7XHJcbn1cclxuZGl2LmFkZHJlc3MtY29udGFpbmVyIHtcclxuICBwYWRkaW5nLXRvcDogMC41cmVtO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lciBzcGFuIHtcclxuICBtYXJnaW4tdG9wOiAwLjVyZW07XHJcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xyXG4gIGZvbnQtd2VpZ2h0OiBub3JtYWw7XHJcbiAgZm9udC1zaXplOiAwLjg3NXJlbTtcclxuICBsaW5lLWhlaWdodDogMXJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBmbGV4LWVuZDtcclxuICBjb2xvcjogIzAwMDAwMDtcclxufVxyXG4jYWNjb3VudC1jb250YWluZXIgPiBkaXYubWlkLWNvbnRhaW5lciA+IGRpdiB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICB3aWR0aDogMTAwJTtcclxuICBtYXJnaW4tdG9wOiAwLjVyZW07XHJcbn1cclxuI2FjY291bnQtY29udGFpbmVyID4gZGl2Lm1pZC1jb250YWluZXIgZGl2Lmljb25zIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgdG9wOiAxLjVyZW07XHJcbiAgd2lkdGg6IDIuNXJlbTtcclxuICBsaW5lLWhlaWdodDogMXJlbTtcclxuICBoZWlnaHQ6IDFyZW07XHJcbn1cclxuc3Bhbi5tYXJrIHtcclxuICBtYXJnaW46IDAgMC41cmVtO1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBjb2xvcjogIzAwMDAwMDtcclxuICBiYWNrZ3JvdW5kOiAjZmNmY2ZjO1xyXG4gIG9wYWNpdHk6IDAuMjtcclxuICAtd2Via2l0LW9wYWNpdHk6IDAuMjtcclxuICAta2h0bWwtb3BhY2l0eTogMC4yO1xyXG59XHJcbnNwYW4uZ3JleSB7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBjb2xvcjogIzAwMDAwMDtcclxuICBvcGFjaXR5OiAwLjQ7XHJcbiAgLXdlYmtpdC1vcGFjaXR5OiAwLjQ7XHJcbiAgLWtodG1sLW9wYWNpdHk6IDAuNDtcclxufVxyXG4udG9wLWNvbnRhaW5lciA+IGltZyB7XHJcbiAgZmxvYXQ6IHJpZ2h0O1xyXG4gIG1hcmdpbi10b3A6IDAuMjVyZW07XHJcbiAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG4uc2VwZXJhdG9yIHtcclxuICB3aWR0aDogMzhyZW07XHJcbiAgbWFyZ2luLWxlZnQ6IDAuMzc1cmVtO1xyXG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCByZ2JhKDAsIDAsIDAsIDAuMDQpO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciA+IGRpdiA+IGltZyB7XHJcbiAgcGFkZGluZy1ib3R0b206IDEuMTI1cmVtO1xyXG59XHJcblxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgPiBkaXYge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICBtYXJnaW46IDFyZW07XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIG1hcmdpbi1ib3R0b206IDA7XHJcbiAgcGFkZGluZy1ib3R0b206IDFyZW07XHJcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIHJnYmEoMCwgMCwgMCwgMC4wNCk7XHJcbn1cclxuI29wZXJhdGlvbnMtY29udGFpbmVyID4gZGl2Omxhc3QtY2hpbGQge1xyXG4gIGJvcmRlci1ib3R0b206IDA7XHJcbn1cclxuI29wZXJhdGlvbnMtY29udGFpbmVyID4gZGl2ID4gZGl2IHtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbn1cclxuXHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgc3BhbixcclxuI29wZXJhdGlvbnMtY29udGFpbmVyIGRpdiBhIHtcclxuICBtYXJnaW4tbGVmdDogMC41cmVtO1xyXG4gIG1hcmdpbi10b3A6IDAuMjVyZW07XHJcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbiAgZm9udC1zaXplOiAwLjg3NXJlbTtcclxuICBsaW5lLWhlaWdodDogMXJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgZmxvYXQ6IGxlZnQ7XHJcbiAgZGlzcGxheTogZmxleDtcclxufVxyXG5pbWcuY29weS1pY29uIHtcclxuICBtYXJnaW4tcmlnaHQ6IDAuNXJlbTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuI29wZXJhdGlvbnMtY29udGFpbmVyIGRpdi5saW5lIHNwYW4sXHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYubGluZSBhIHtcclxuICBmb250LXdlaWdodDogbm9ybWFsO1xyXG4gIGNvbG9yOiAjMmMzMjNhO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgc3Bhbi5ncmVlbiB7XHJcbiAgY29sb3I6ICMxOEFFMzk7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4ucmVkIHtcclxuICBjb2xvcjogI0ZFNTAwNDtcclxuICBmb250LXdlaWdodDogNTAwO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgc3Bhbi5ibHVlIHtcclxuICBjb2xvcjogIzU5NjNGRjtcclxuICBmb250LXdlaWdodDogNTAwO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgc3Bhbi5ibGFjayB7XHJcbiAgY29sb3I6ICMwMDAwMDA7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxufVxyXG5kaXYubGVmdC1jb250YWluZXIge1xyXG4gIG1hcmdpbi1yaWdodDogNXJlbTtcclxuICB3aWR0aDogNDAwcHg7XHJcbn1cclxuZGl2LmxpbmUge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbn1cclxuZGl2LmxpbmU6bGFzdC1jaGlsZCB7XHJcbiAgbWFyZ2luLXRvcDogMC4xMjVyZW07XHJcbn1cclxuLnRydW5jYXRlLW92ZXJmbG93IHtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MHJlbSkge1xyXG4gICN3cmFwcGVyIHtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIH1cclxuICBkaXYubGVmdC1jb250YWluZXIge1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAwcmVtO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMnJlbTtcclxuICB9XHJcbn1cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogNDJyZW0pIHtcclxuICAudHJ1bmNhdGUtb3ZlcmZsb3cge1xyXG4gICAgd2lkdGg6IDE2cmVtO1xyXG4gIH1cclxuICAubWFpbi1jb250YWluZXIubGFyZ2Uge1xyXG4gICAgd2lkdGg6IDI1cmVtO1xyXG4gIH1cclxuICAudHJ1bmNhdGUtb3ZlcmZsb3c6YWZ0ZXIge1xyXG4gICAgY29udGVudDogXCJcIjtcclxuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgYm90dG9tOiAwO1xyXG4gICAgcmlnaHQ6IC0ycmVtO1xyXG4gICAgd2lkdGg6IDRyZW07XHJcbiAgICBoZWlnaHQ6IDEuMmVtO1xyXG4gICAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KFxyXG4gICAgICB0byByaWdodCxcclxuICAgICAgcmdiYSgyNTUsIDI1NSwgMjU1LCAwKSxcclxuICAgICAgcmdiYSgyNTUsIDI1NSwgMjU1LCAxKSA1MCVcclxuICAgICk7XHJcbiAgfVxyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDI3cmVtKSB7XHJcbiAgLm1haW4tY29udGFpbmVyLmxhcmdlIHtcclxuICAgIHdpZHRoOiAyMXJlbTtcclxuICB9XHJcbiAgLnRydW5jYXRlLW92ZXJmbG93IHtcclxuICAgIHdpZHRoOiAxM3JlbTtcclxuICB9XHJcbiAgLm1haW4tY29udGFpbmVyLnNtYWxsIHtcclxuICAgIHdpZHRoOiAyMXJlbTtcclxuICB9XHJcbiAgZGl2LmxlZnQtY29udGFpbmVyIHtcclxuICAgIHdpZHRoOiAyMXJlbTtcclxuICB9XHJcbiAgI2FjY291bnQtY29udGFpbmVyID4gZGl2Lm1pZC1jb250YWluZXIgZGl2Lmljb25zIHtcclxuICAgIHdpZHRoOiAzcmVtO1xyXG4gICAgdG9wOiAwO1xyXG4gIH1cclxuICBpbWcuY29weS1pY29uIHtcclxuICAgIG1hcmdpbi1yaWdodDogMXJlbTtcclxuICB9XHJcbn1cclxuIiwiOmhvc3Qge1xuICB3aWR0aDogMTAwJTtcbiAgbWluLWhlaWdodDogMTAwdmg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgYmFja2dyb3VuZDogIzU5NjNGRjtcbn1cblxuI3dyYXBwZXIge1xuICBtaW4taGVpZ2h0OiBjYWxjKDEwMCUgLSA4cmVtKTtcbiAgcGFkZGluZy1ib3R0b206IDhyZW07XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4ubGVmdCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbn1cblxuaW1nIHtcbiAgdmVydGljYWwtYWxpZ246IGJhc2VsaW5lO1xufVxuXG5hLnZpZXctYWxsIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBtYXJnaW46IDAuMzc1cmVtIDEuMjVyZW0gMCAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG4gIGZvbnQtd2VpZ2h0OiBub3JtYWw7XG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XG4gIGxpbmUtaGVpZ2h0OiAxcmVtO1xuICBjb2xvcjogIzU5NjNmZjtcbn1cblxuLm1haW4tY29udGFpbmVyIHtcbiAgd2lkdGg6IDI1cmVtO1xuICBoZWlnaHQ6IDEwMCU7XG4gIGJhY2tncm91bmQ6ICNmY2ZjZmM7XG4gIGJvcmRlcjogMC4wNjI1cmVtIHNvbGlkICNmZmZmZmY7XG4gIGJveC1zaGFkb3c6IDBweCAwcHggMXB4IHJnYmEoMCwgMCwgMCwgMC4wNCksIDBweCAycHggNnB4IHJnYmEoMCwgMCwgMCwgMC4xNCksIDBweCAxNnB4IDI0cHggcmdiYSgwLCAwLCAwLCAwLjE2KTtcbiAgYm9yZGVyLXJhZGl1czogMC43NXJlbTtcbn1cblxuLm1haW4tY29udGFpbmVyLmxhcmdlIHtcbiAgd2lkdGg6IDQwcmVtO1xuICBoZWlnaHQ6IDEwMCU7XG59XG5cbi5tYWluLWNvbnRhaW5lci5zbWFsbCB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLnRvcC1jb250YWluZXIge1xuICB3aWR0aDogMzkuODc1cmVtO1xuICBtYXJnaW4tdG9wOiAxcmVtO1xuICBoZWlnaHQ6IDIuNXJlbTtcbiAgd2lkdGg6IGF1dG87XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZWFlYmY5O1xufVxuXG5kaXYuYm90dG9tLWNvbnRhaW5lciB7XG4gIHdpZHRoOiAxMDAlO1xuICBwYWRkaW5nOiAycmVtIDAgMXJlbTtcbn1cblxuZGl2I2FjY291bnQtY29udGFpbmVyIHtcbiAgcGFkZGluZzogMCAxcmVtO1xuICBoZWlnaHQ6IGNhbGMoMTAwJSAtIDMuNDM3NXJlbSk7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgYWxpZ24taXRlbXM6IHNwYWNlLWJldHdlZW47XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG59XG5cbi5hY2NvdW50LXJvdzpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNlYWViZjkgIWltcG9ydGFudDtcbiAgY3Vyc29yOiBwb2ludGVyICFpbXBvcnRhbnQ7XG59XG5cbi5hY2NvdW50LWljb24ge1xuICBtYXJnaW4tbGVmdDogMXJlbTtcbiAgbWFyZ2luLXRvcDogMC41cmVtO1xuICBtYXJnaW4tYm90dG9tOiAwLjVyZW07XG59XG5cbnNwYW4ge1xuICBmb250LXN0eWxlOiBub3JtYWw7XG4gIGZvbnQtd2VpZ2h0OiBub3JtYWw7XG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XG4gIGxpbmUtaGVpZ2h0OiAxcmVtO1xuICBjb2xvcjogIzJjMzIzYTtcbn1cblxuLm1haW4tY29udGFpbmVyIEgxIHtcbiAgbWFyZ2luLWxlZnQ6IDFyZW07XG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIGZvbnQtc2l6ZTogMjBweDtcbiAgbGluZS1oZWlnaHQ6IDI0cHg7XG4gIGNvbG9yOiAjMmMzMjNhO1xufVxuXG4ubWFpbi1jb250YWluZXIgSDIge1xuICBtYXJnaW46IDFyZW0gMCAwO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGZvbnQtc2l6ZTogMXJlbTtcbiAgbGluZS1oZWlnaHQ6IDFyZW07XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGNvbG9yOiAjMmMzMjNhO1xuICBvcGFjaXR5OiAwLjQ7XG4gIC13ZWJraXQtb3BhY2l0eTogMC40O1xuICAta2h0bWwtb3BhY2l0eTogMC40O1xufVxuXG5kaXYuYWRkcmVzcy1jb250YWluZXIge1xuICBwYWRkaW5nLXRvcDogMC41cmVtO1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG59XG5cbi5tYWluLWNvbnRhaW5lciBzcGFuIHtcbiAgbWFyZ2luLXRvcDogMC41cmVtO1xuICBmb250LXN0eWxlOiBub3JtYWw7XG4gIGZvbnQtd2VpZ2h0OiBub3JtYWw7XG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XG4gIGxpbmUtaGVpZ2h0OiAxcmVtO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogZmxleC1lbmQ7XG4gIGNvbG9yOiAjMDAwMDAwO1xufVxuXG4jYWNjb3VudC1jb250YWluZXIgPiBkaXYubWlkLWNvbnRhaW5lciA+IGRpdiB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW4tdG9wOiAwLjVyZW07XG59XG5cbiNhY2NvdW50LWNvbnRhaW5lciA+IGRpdi5taWQtY29udGFpbmVyIGRpdi5pY29ucyB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgdG9wOiAxLjVyZW07XG4gIHdpZHRoOiAyLjVyZW07XG4gIGxpbmUtaGVpZ2h0OiAxcmVtO1xuICBoZWlnaHQ6IDFyZW07XG59XG5cbnNwYW4ubWFyayB7XG4gIG1hcmdpbjogMCAwLjVyZW07XG4gIHBhZGRpbmc6IDA7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGNvbG9yOiAjMDAwMDAwO1xuICBiYWNrZ3JvdW5kOiAjZmNmY2ZjO1xuICBvcGFjaXR5OiAwLjI7XG4gIC13ZWJraXQtb3BhY2l0eTogMC4yO1xuICAta2h0bWwtb3BhY2l0eTogMC4yO1xufVxuXG5zcGFuLmdyZXkge1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBjb2xvcjogIzAwMDAwMDtcbiAgb3BhY2l0eTogMC40O1xuICAtd2Via2l0LW9wYWNpdHk6IDAuNDtcbiAgLWtodG1sLW9wYWNpdHk6IDAuNDtcbn1cblxuLnRvcC1jb250YWluZXIgPiBpbWcge1xuICBmbG9hdDogcmlnaHQ7XG4gIG1hcmdpbi10b3A6IDAuMjVyZW07XG4gIG1hcmdpbi1yaWdodDogMXJlbTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4uc2VwZXJhdG9yIHtcbiAgd2lkdGg6IDM4cmVtO1xuICBtYXJnaW4tbGVmdDogMC4zNzVyZW07XG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCByZ2JhKDAsIDAsIDAsIDAuMDQpO1xufVxuXG4jb3BlcmF0aW9ucy1jb250YWluZXIgPiBkaXYgPiBpbWcge1xuICBwYWRkaW5nLWJvdHRvbTogMS4xMjVyZW07XG59XG5cbiNvcGVyYXRpb25zLWNvbnRhaW5lciA+IGRpdiB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIG1hcmdpbjogMXJlbTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBtYXJnaW4tYm90dG9tOiAwO1xuICBwYWRkaW5nLWJvdHRvbTogMXJlbTtcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIHJnYmEoMCwgMCwgMCwgMC4wNCk7XG59XG5cbiNvcGVyYXRpb25zLWNvbnRhaW5lciA+IGRpdjpsYXN0LWNoaWxkIHtcbiAgYm9yZGVyLWJvdHRvbTogMDtcbn1cblxuI29wZXJhdGlvbnMtY29udGFpbmVyID4gZGl2ID4gZGl2IHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMTAwJTtcbn1cblxuI29wZXJhdGlvbnMtY29udGFpbmVyIGRpdiBzcGFuLFxuI29wZXJhdGlvbnMtY29udGFpbmVyIGRpdiBhIHtcbiAgbWFyZ2luLWxlZnQ6IDAuNXJlbTtcbiAgbWFyZ2luLXRvcDogMC4yNXJlbTtcbiAgZm9udC1zdHlsZTogbm9ybWFsO1xuICBmb250LXdlaWdodDogNTAwO1xuICBmb250LXNpemU6IDAuODc1cmVtO1xuICBsaW5lLWhlaWdodDogMXJlbTtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgZmxvYXQ6IGxlZnQ7XG4gIGRpc3BsYXk6IGZsZXg7XG59XG5cbmltZy5jb3B5LWljb24ge1xuICBtYXJnaW4tcmlnaHQ6IDAuNXJlbTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2LmxpbmUgc3BhbixcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYubGluZSBhIHtcbiAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcbiAgY29sb3I6ICMyYzMyM2E7XG59XG5cbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgc3Bhbi5ncmVlbiB7XG4gIGNvbG9yOiAjMThBRTM5O1xuICBmb250LXdlaWdodDogNTAwO1xufVxuXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4ucmVkIHtcbiAgY29sb3I6ICNGRTUwMDQ7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG59XG5cbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgc3Bhbi5ibHVlIHtcbiAgY29sb3I6ICM1OTYzRkY7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG59XG5cbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgc3Bhbi5ibGFjayB7XG4gIGNvbG9yOiAjMDAwMDAwO1xuICBmb250LXdlaWdodDogNTAwO1xufVxuXG5kaXYubGVmdC1jb250YWluZXIge1xuICBtYXJnaW4tcmlnaHQ6IDVyZW07XG4gIHdpZHRoOiA0MDBweDtcbn1cblxuZGl2LmxpbmUge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG59XG5cbmRpdi5saW5lOmxhc3QtY2hpbGQge1xuICBtYXJnaW4tdG9wOiAwLjEyNXJlbTtcbn1cblxuLnRydW5jYXRlLW92ZXJmbG93IHtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xufVxuXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA3MHJlbSkge1xuICAjd3JhcHBlciB7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIH1cblxuICBkaXYubGVmdC1jb250YWluZXIge1xuICAgIG1hcmdpbi1yaWdodDogMHJlbTtcbiAgICBtYXJnaW4tYm90dG9tOiAycmVtO1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA0MnJlbSkge1xuICAudHJ1bmNhdGUtb3ZlcmZsb3cge1xuICAgIHdpZHRoOiAxNnJlbTtcbiAgfVxuXG4gIC5tYWluLWNvbnRhaW5lci5sYXJnZSB7XG4gICAgd2lkdGg6IDI1cmVtO1xuICB9XG5cbiAgLnRydW5jYXRlLW92ZXJmbG93OmFmdGVyIHtcbiAgICBjb250ZW50OiBcIlwiO1xuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IDA7XG4gICAgcmlnaHQ6IC0ycmVtO1xuICAgIHdpZHRoOiA0cmVtO1xuICAgIGhlaWdodDogMS4yZW07XG4gICAgYmFja2dyb3VuZDogbGluZWFyLWdyYWRpZW50KHRvIHJpZ2h0LCByZ2JhKDI1NSwgMjU1LCAyNTUsIDApLCB3aGl0ZSA1MCUpO1xuICB9XG59XG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiAyN3JlbSkge1xuICAubWFpbi1jb250YWluZXIubGFyZ2Uge1xuICAgIHdpZHRoOiAyMXJlbTtcbiAgfVxuXG4gIC50cnVuY2F0ZS1vdmVyZmxvdyB7XG4gICAgd2lkdGg6IDEzcmVtO1xuICB9XG5cbiAgLm1haW4tY29udGFpbmVyLnNtYWxsIHtcbiAgICB3aWR0aDogMjFyZW07XG4gIH1cblxuICBkaXYubGVmdC1jb250YWluZXIge1xuICAgIHdpZHRoOiAyMXJlbTtcbiAgfVxuXG4gICNhY2NvdW50LWNvbnRhaW5lciA+IGRpdi5taWQtY29udGFpbmVyIGRpdi5pY29ucyB7XG4gICAgd2lkdGg6IDNyZW07XG4gICAgdG9wOiAwO1xuICB9XG5cbiAgaW1nLmNvcHktaWNvbiB7XG4gICAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xuICB9XG59Il19 */"]
     });
     /*@__PURE__*/
@@ -4907,6 +4896,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_8__["CoordinatorService"]
         }, {
           type: _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"]
+        }, {
+          type: _services_activity_activity_service__WEBPACK_IMPORTED_MODULE_11__["ActivityService"]
         }];
       }, {
         activity: [{
@@ -15370,7 +15361,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       _createClass(TorusComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.torusService.initTorus();
+        }
       }, {
         key: "torusLogin",
         value: function torusLogin(verifier) {
@@ -17036,14 +17029,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _message_message_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../message/message.service */
     "./src/app/services/message/message.service.ts");
+    /* harmony import */
+
+
+    var _lookup_lookup_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../lookup/lookup.service */
+    "./src/app/services/lookup/lookup.service.ts");
 
     var ActivityService = /*#__PURE__*/function () {
-      function ActivityService(walletService, conseilService, messageService) {
+      function ActivityService(walletService, conseilService, messageService, lookupService) {
         _classCallCheck(this, ActivityService);
 
         this.walletService = walletService;
         this.conseilService = conseilService;
         this.messageService = messageService;
+        this.lookupService = lookupService;
         this.maxTransactions = 10;
       }
 
@@ -17095,6 +17095,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               } else {
                 console.log('# Excluded ' + counter);
               }
+
+              var _iterator6 = _createForOfIteratorHelper(ans),
+                  _step6;
+
+              try {
+                for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+                  var activity = _step6.value;
+
+                  var counterParty = _this21.getCounterparty(activity, account, false);
+
+                  _this21.lookupService.check(counterParty);
+                }
+              } catch (err) {
+                _iterator6.e(err);
+              } finally {
+                _iterator6.f();
+              }
             } else {
               console.log('#');
               console.log(ans);
@@ -17110,12 +17127,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function promptNewActivities(account, oldActivities, newActivities) {
           var _this22 = this;
 
-          var _iterator6 = _createForOfIteratorHelper(newActivities),
-              _step6;
+          var _iterator7 = _createForOfIteratorHelper(newActivities),
+              _step7;
 
           try {
             var _loop = function _loop() {
-              var activity = _step6.value;
+              var activity = _step7.value;
               var index = oldActivities.findIndex(function (a) {
                 return a.hash === activity.hash;
               });
@@ -17139,14 +17156,49 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             };
 
-            for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+            for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
               _loop();
             }
           } catch (err) {
-            _iterator6.e(err);
+            _iterator7.e(err);
           } finally {
-            _iterator6.f();
+            _iterator7.f();
           }
+        }
+      }, {
+        key: "getCounterparty",
+        value: function getCounterparty(transaction, account) {
+          var withLookup = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+          var counterParty = '';
+
+          if (transaction.type === 'delegation') {
+            if (transaction.destination) {
+              counterParty = transaction.destination;
+            } else {
+              counterParty = ''; // User has undelegated
+            }
+          } else if (transaction.type === 'transaction') {
+            if (account.address === transaction.source) {
+              counterParty = transaction.destination; // to
+            } else {
+              counterParty = transaction.source; // from
+            }
+          } else if (transaction.type === 'origination') {
+            if (account.address === transaction.source) {
+              counterParty = transaction.destination;
+            } else {
+              counterParty = transaction.source;
+            }
+          } else {
+            counterParty = '';
+          }
+
+          if (withLookup) {
+            counterParty = this.lookupService.resolve(counterParty);
+            console.log('resolved', counterParty);
+          }
+
+          return counterParty;
         }
       }]);
 
@@ -17154,7 +17206,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     ActivityService.ɵfac = function ActivityService_Factory(t) {
-      return new (t || ActivityService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_1__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_conseil_conseil_service__WEBPACK_IMPORTED_MODULE_2__["ConseilService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_message_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"]));
+      return new (t || ActivityService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_1__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_conseil_conseil_service__WEBPACK_IMPORTED_MODULE_2__["ConseilService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_message_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_6__["LookupService"]));
     };
 
     ActivityService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
@@ -17173,6 +17225,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: _conseil_conseil_service__WEBPACK_IMPORTED_MODULE_2__["ConseilService"]
         }, {
           type: _message_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"]
+        }, {
+          type: _lookup_lookup_service__WEBPACK_IMPORTED_MODULE_6__["LookupService"]
         }];
       }, null);
     })();
@@ -17251,18 +17305,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(BalanceService, [{
         key: "getBalanceAll",
         value: function getBalanceAll() {
-          var _iterator7 = _createForOfIteratorHelper(this.walletService.wallet.getAccounts()),
-              _step7;
+          var _iterator8 = _createForOfIteratorHelper(this.walletService.wallet.getAccounts()),
+              _step8;
 
           try {
-            for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-              var account = _step7.value;
+            for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+              var account = _step8.value;
               this.getAccountBalance(account);
             }
           } catch (err) {
-            _iterator7.e(err);
+            _iterator8.e(err);
           } finally {
-            _iterator7.f();
+            _iterator8.f();
           }
         }
       }, {
@@ -17295,12 +17349,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var balance = 0;
           var change = false;
 
-          var _iterator8 = _createForOfIteratorHelper(this.walletService.wallet.getAccounts()),
-              _step8;
+          var _iterator9 = _createForOfIteratorHelper(this.walletService.wallet.getAccounts()),
+              _step9;
 
           try {
-            for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-              var account = _step8.value;
+            for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
+              var account = _step9.value;
 
               if (!(account.balanceXTZ === null || account.balanceXTZ === undefined)) {
                 balance = balance + Number(account.balanceXTZ);
@@ -17308,9 +17362,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
           } catch (err) {
-            _iterator8.e(err);
+            _iterator9.e(err);
           } finally {
-            _iterator8.f();
+            _iterator9.f();
           }
 
           if (change) {
@@ -17427,7 +17481,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getContractAddresses",
         value: function getContractAddresses(pkh) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee33() {
-            var entity, query, results, addresses, _iterator9, _step9, result;
+            var entity, query, results, addresses, _iterator10, _step10, result;
 
             return regeneratorRuntime.wrap(function _callee33$(_context33) {
               while (1) {
@@ -17447,17 +17501,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 10:
                     results = _context33.sent;
                     addresses = [];
-                    _iterator9 = _createForOfIteratorHelper(results);
+                    _iterator10 = _createForOfIteratorHelper(results);
 
                     try {
-                      for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
-                        result = _step9.value;
+                      for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
+                        result = _step10.value;
                         addresses.push(result.originated_contracts);
                       }
                     } catch (err) {
-                      _iterator9.e(err);
+                      _iterator10.e(err);
                     } finally {
-                      _iterator9.f();
+                      _iterator10.f();
                     }
 
                     return _context33.abrupt("return", addresses);
@@ -17524,12 +17578,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function formatTx(input) {
           var output = [];
 
-          var _iterator10 = _createForOfIteratorHelper(input),
-              _step10;
+          var _iterator11 = _createForOfIteratorHelper(input),
+              _step11;
 
           try {
-            for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
-              var tx = _step10.value;
+            for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
+              var tx = _step11.value;
 
               if (tx.kind !== 'transaction' || tx.amount > 0) {
                 var destination = tx.destination;
@@ -17553,9 +17607,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
           } catch (err) {
-            _iterator10.e(err);
+            _iterator11.e(err);
           } finally {
-            _iterator10.f();
+            _iterator11.f();
           }
 
           return output;
@@ -18001,12 +18055,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log('Unconfirmed transactions:');
             console.log(metadata.transactions);
 
-            var _iterator11 = _createForOfIteratorHelper(metadata.transactions),
-                _step11;
+            var _iterator12 = _createForOfIteratorHelper(metadata.transactions),
+                _step12;
 
             try {
-              for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
-                var op = _step11.value;
+              for (_iterator12.s(); !(_step12 = _iterator12.n()).done;) {
+                var op = _step12.value;
                 var transaction = {
                   type: 'transaction',
                   status: 0,
@@ -18027,9 +18081,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
             } catch (err) {
-              _iterator11.e(err);
+              _iterator12.e(err);
             } finally {
-              _iterator11.f();
+              _iterator12.f();
             }
           } else if (metadata.delegate !== undefined) {
             var delegation = {
@@ -18142,18 +18196,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getDelegates",
         value: function getDelegates() {
           if (this.walletService.wallet && this.walletService.wallet.implicitAccounts) {
-            var _iterator12 = _createForOfIteratorHelper(this.walletService.wallet.getAccounts()),
-                _step12;
+            var _iterator13 = _createForOfIteratorHelper(this.walletService.wallet.getAccounts()),
+                _step13;
 
             try {
-              for (_iterator12.s(); !(_step12 = _iterator12.n()).done;) {
-                var account = _step12.value;
+              for (_iterator13.s(); !(_step13 = _iterator13.n()).done;) {
+                var account = _step13.value;
                 this.getDelegate(account);
               }
             } catch (err) {
-              _iterator12.e(err);
+              _iterator13.e(err);
             } finally {
-              _iterator12.f();
+              _iterator13.f();
             }
           }
         }
@@ -18739,7 +18793,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee45() {
             var _this34 = this;
 
-            var extraGas, simulation, _iterator13, _step13, tx, op, result, reveal, limits, _iterator14, _step14, content, _this$getOpUsage, gasUsage, storageUsage;
+            var extraGas, simulation, _iterator14, _step14, tx, op, result, reveal, limits, _iterator15, _step15, content, _this$getOpUsage, gasUsage, storageUsage;
 
             return regeneratorRuntime.wrap(function _callee45$(_context45) {
               while (1) {
@@ -18760,11 +18814,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       gasLimit: 800000,
                       storageLimit: 60000
                     };
-                    _iterator13 = _createForOfIteratorHelper(transactions);
+                    _iterator14 = _createForOfIteratorHelper(transactions);
 
                     try {
-                      for (_iterator13.s(); !(_step13 = _iterator13.n()).done;) {
-                        tx = _step13.value;
+                      for (_iterator14.s(); !(_step14 = _iterator14.n()).done;) {
+                        tx = _step14.value;
 
                         if (tx.to.slice(0, 3) !== 'KT1') {
                           tx.amount = 0.000001;
@@ -18774,9 +18828,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         tx.storageLimit = simulation.storageLimit;
                       }
                     } catch (err) {
-                      _iterator13.e(err);
+                      _iterator14.e(err);
                     } finally {
-                      _iterator13.f();
+                      _iterator14.f();
                     }
 
                     if (!(this.hash && this.counter && (this.manager || this.manager === null))) {
@@ -18801,18 +18855,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     reveal = false;
                     limits = [];
-                    _iterator14 = _createForOfIteratorHelper(result.contents);
+                    _iterator15 = _createForOfIteratorHelper(result.contents);
                     _context45.prev = 15;
 
-                    _iterator14.s();
+                    _iterator15.s();
 
                   case 17:
-                    if ((_step14 = _iterator14.n()).done) {
+                    if ((_step15 = _iterator15.n()).done) {
                       _context45.next = 31;
                       break;
                     }
 
-                    content = _step14.value;
+                    content = _step15.value;
 
                     if (!(content.kind === 'reveal')) {
                       _context45.next = 23;
@@ -18852,12 +18906,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context45.prev = 33;
                     _context45.t0 = _context45["catch"](15);
 
-                    _iterator14.e(_context45.t0);
+                    _iterator15.e(_context45.t0);
 
                   case 36:
                     _context45.prev = 36;
 
-                    _iterator14.f();
+                    _iterator15.f();
 
                     return _context45.finish(36);
 
@@ -18921,34 +18975,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           if (content.metadata.operation_result.balance_updates) {
-            var _iterator15 = _createForOfIteratorHelper(content.metadata.operation_result.balance_updates),
-                _step15;
-
-            try {
-              for (_iterator15.s(); !(_step15 = _iterator15.n()).done;) {
-                var balanceUpdate = _step15.value;
-
-                if (balanceUpdate.contract === this.pkh) {
-                  burn -= balanceUpdate.change;
-                }
-              }
-            } catch (err) {
-              _iterator15.e(err);
-            } finally {
-              _iterator15.f();
-            }
-          }
-
-          if (content.metadata.balance_updates) {
-            var _iterator16 = _createForOfIteratorHelper(content.metadata.balance_updates),
+            var _iterator16 = _createForOfIteratorHelper(content.metadata.operation_result.balance_updates),
                 _step16;
 
             try {
               for (_iterator16.s(); !(_step16 = _iterator16.n()).done;) {
-                var _balanceUpdate = _step16.value;
+                var balanceUpdate = _step16.value;
 
-                if (_balanceUpdate.contract === this.pkh) {
-                  burn -= _balanceUpdate.change;
+                if (balanceUpdate.contract === this.pkh) {
+                  burn -= balanceUpdate.change;
                 }
               }
             } catch (err) {
@@ -18958,15 +18993,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           }
 
-          gasUsage += content.metadata.operation_result.consumed_gas ? Number(content.metadata.operation_result.consumed_gas) : 0;
-
-          if (content.metadata.internal_operation_results) {
-            var _iterator17 = _createForOfIteratorHelper(content.metadata.internal_operation_results),
+          if (content.metadata.balance_updates) {
+            var _iterator17 = _createForOfIteratorHelper(content.metadata.balance_updates),
                 _step17;
 
             try {
               for (_iterator17.s(); !(_step17 = _iterator17.n()).done;) {
-                var internalResult = _step17.value;
+                var _balanceUpdate = _step17.value;
+
+                if (_balanceUpdate.contract === this.pkh) {
+                  burn -= _balanceUpdate.change;
+                }
+              }
+            } catch (err) {
+              _iterator17.e(err);
+            } finally {
+              _iterator17.f();
+            }
+          }
+
+          gasUsage += content.metadata.operation_result.consumed_gas ? Number(content.metadata.operation_result.consumed_gas) : 0;
+
+          if (content.metadata.internal_operation_results) {
+            var _iterator18 = _createForOfIteratorHelper(content.metadata.internal_operation_results),
+                _step18;
+
+            try {
+              for (_iterator18.s(); !(_step18 = _iterator18.n()).done;) {
+                var internalResult = _step18.value;
 
                 if (internalResult.result) {
                   if (internalResult.result.consumed_gas) {
@@ -18974,29 +19028,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   }
 
                   if (internalResult.result.balance_updates) {
-                    var _iterator18 = _createForOfIteratorHelper(internalResult.result.balance_updates),
-                        _step18;
+                    var _iterator19 = _createForOfIteratorHelper(internalResult.result.balance_updates),
+                        _step19;
 
                     try {
-                      for (_iterator18.s(); !(_step18 = _iterator18.n()).done;) {
-                        var _balanceUpdate2 = _step18.value;
+                      for (_iterator19.s(); !(_step19 = _iterator19.n()).done;) {
+                        var _balanceUpdate2 = _step19.value;
 
                         if (_balanceUpdate2.contract === this.pkh) {
                           burn -= _balanceUpdate2.change;
                         }
                       }
                     } catch (err) {
-                      _iterator18.e(err);
+                      _iterator19.e(err);
                     } finally {
-                      _iterator18.f();
+                      _iterator19.f();
                     }
                   }
                 }
               }
             } catch (err) {
-              _iterator17.e(err);
+              _iterator18.e(err);
             } finally {
-              _iterator17.f();
+              _iterator18.f();
             }
           }
 
@@ -19029,19 +19083,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             numberOfOperations++;
           }
 
-          var _iterator19 = _createForOfIteratorHelper(limits),
-              _step19;
+          var _iterator20 = _createForOfIteratorHelper(limits),
+              _step20;
 
           try {
-            for (_iterator19.s(); !(_step19 = _iterator19.n()).done;) {
-              var data = _step19.value;
+            for (_iterator20.s(); !(_step20 = _iterator20.n()).done;) {
+              var data = _step20.value;
               gasUnits += data.gasLimit;
               numberOfOperations++;
             }
           } catch (err) {
-            _iterator19.e(err);
+            _iterator20.e(err);
           } finally {
-            _iterator19.f();
+            _iterator20.f();
           }
 
           bytes += 10 * numberOfOperations; // add 10 extra bytes for variation in amount & fee
@@ -19053,34 +19107,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function averageGasLimit(limits) {
           var totalGasLimit = 0;
 
-          var _iterator20 = _createForOfIteratorHelper(limits),
-              _step20;
-
-          try {
-            for (_iterator20.s(); !(_step20 = _iterator20.n()).done;) {
-              var data = _step20.value;
-              totalGasLimit += data.gasLimit;
-            }
-          } catch (err) {
-            _iterator20.e(err);
-          } finally {
-            _iterator20.f();
-          }
-
-          return Math.ceil(totalGasLimit / limits.length);
-        }
-      }, {
-        key: "averageStorageLimit",
-        value: function averageStorageLimit(limits) {
-          var totalStorageLimit = 0;
-
           var _iterator21 = _createForOfIteratorHelper(limits),
               _step21;
 
           try {
             for (_iterator21.s(); !(_step21 = _iterator21.n()).done;) {
               var data = _step21.value;
-              totalStorageLimit += data.storageLimit;
+              totalGasLimit += data.gasLimit;
             }
           } catch (err) {
             _iterator21.e(err);
@@ -19088,11 +19121,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _iterator21.f();
           }
 
-          return Math.ceil(totalStorageLimit / limits.length);
+          return Math.ceil(totalGasLimit / limits.length);
         }
       }, {
-        key: "burnFee",
-        value: function burnFee(limits) {
+        key: "averageStorageLimit",
+        value: function averageStorageLimit(limits) {
           var totalStorageLimit = 0;
 
           var _iterator22 = _createForOfIteratorHelper(limits),
@@ -19107,6 +19140,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _iterator22.e(err);
           } finally {
             _iterator22.f();
+          }
+
+          return Math.ceil(totalStorageLimit / limits.length);
+        }
+      }, {
+        key: "burnFee",
+        value: function burnFee(limits) {
+          var totalStorageLimit = 0;
+
+          var _iterator23 = _createForOfIteratorHelper(limits),
+              _step23;
+
+          try {
+            for (_iterator23.s(); !(_step23 = _iterator23.n()).done;) {
+              var data = _step23.value;
+              totalStorageLimit += data.storageLimit;
+            }
+          } catch (err) {
+            _iterator23.e(err);
+          } finally {
+            _iterator23.f();
           }
 
           return totalStorageLimit * 0.001;
@@ -19749,7 +19803,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var recursiveScan = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
           var address = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : pkh;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee53() {
-            var addresses, _iterator23, _step23, _KT, _iterator24, _step24, KT;
+            var addresses, _iterator24, _step24, _KT, _iterator25, _step25, KT;
 
             return regeneratorRuntime.wrap(function _callee53$(_context53) {
               while (1) {
@@ -19760,18 +19814,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     addresses = _context53.sent;
-                    _iterator23 = _createForOfIteratorHelper(addresses);
+                    _iterator24 = _createForOfIteratorHelper(addresses);
 
                     try {
-                      for (_iterator23.s(); !(_step23 = _iterator23.n()).done;) {
-                        _KT = _step23.value;
+                      for (_iterator24.s(); !(_step24 = _iterator24.n()).done;) {
+                        _KT = _step24.value;
                         console.log('Found KT: ' + _KT);
                         this.walletService.addOriginatedAccount(_KT, pkh);
                       }
                     } catch (err) {
-                      _iterator23.e(err);
+                      _iterator24.e(err);
                     } finally {
-                      _iterator23.f();
+                      _iterator24.f();
                     }
 
                     this.walletService.storeWallet();
@@ -19781,18 +19835,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       break;
                     }
 
-                    _iterator24 = _createForOfIteratorHelper(addresses);
+                    _iterator25 = _createForOfIteratorHelper(addresses);
                     _context53.prev = 8;
 
-                    _iterator24.s();
+                    _iterator25.s();
 
                   case 10:
-                    if ((_step24 = _iterator24.n()).done) {
+                    if ((_step25 = _iterator25.n()).done) {
                       _context53.next = 16;
                       break;
                     }
 
-                    KT = _step24.value;
+                    KT = _step25.value;
                     _context53.next = 14;
                     return this.findContracts(pkh, true, KT);
 
@@ -19808,12 +19862,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context53.prev = 18;
                     _context53.t0 = _context53["catch"](8);
 
-                    _iterator24.e(_context53.t0);
+                    _iterator25.e(_context53.t0);
 
                   case 21:
                     _context53.prev = 21;
 
-                    _iterator24.f();
+                    _iterator25.f();
 
                     return _context53.finish(21);
 
@@ -19974,6 +20028,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return this.operationService.validAddress(_address);
         }
       }, {
+        key: "redditAccount",
+        value: function redditAccount(username) {
+          // Letters, numbers, dashes, and underscores only
+          // Username must be between 3 and 20 characters
+          var re = /^[0-9a-zA-Z\-\_]{3,20}$/;
+          return re.test(username);
+        }
+      }, {
         key: "email",
         value: function email(_email) {
           var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -20029,11 +20091,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else {
             return false;
           }
-        }
-      }, {
-        key: "redditAccount",
-        value: function redditAccount(accountName) {
-          return accountName;
         }
       }, {
         key: "derivationPath",
@@ -20399,6 +20456,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _services_torus_torus_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../../services/torus/torus.service */
     "./src/app/services/torus/torus.service.ts");
+    /* harmony import */
+
+
+    var _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../../services/wallet/wallet.service */
+    "./src/app/services/wallet/wallet.service.ts");
 
     var LookupType;
 
@@ -20410,33 +20473,68 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     })(LookupType || (LookupType = {}));
 
     var LookupService = /*#__PURE__*/function () {
-      function LookupService(operationService, torusService) {
+      function LookupService(operationService, torusService, walletService) {
         _classCallCheck(this, LookupService);
 
         this.operationService = operationService;
         this.torusService = torusService;
+        this.walletService = walletService;
+        this.records = [];
         this.pendingLookups = {};
-        this.records = {};
+        this.initCheck();
       }
 
       _createClass(LookupService, [{
+        key: "initCheck",
+        value: function initCheck() {
+          if (!this.records.length && this.walletService.wallet && this.walletService.wallet.lookups.length) {
+            this.records = this.walletService.wallet.lookups;
+          }
+        }
+      }, {
         key: "add",
         value: function add(address, name, lookupType) {
-          var record = this.records[address];
+          console.log('#name', name);
 
-          if (record) {
-            if (!this.entryExist(address, lookupType)) {
-              record.push({
+          var _this$index = this.index(address, lookupType),
+              x = _this$index.x,
+              y = _this$index.y;
+
+          if (x !== -1) {
+            if (y !== -1) {
+              this.records[x].data.push({
                 name: name,
                 lookupType: lookupType
               });
             }
           } else {
-            this.records[address] = [{
-              name: name,
-              lookupType: lookupType
-            }];
+            this.records.push({
+              address: address,
+              data: [{
+                name: name,
+                lookupType: lookupType
+              }]
+            });
           }
+
+          this.walletService.wallet.lookups = this.records;
+          this.walletService.storeWallet();
+        }
+      }, {
+        key: "mark",
+        value: function mark(address) {
+          var _this$indexTop = this.indexTop(address),
+              x = _this$indexTop.x,
+              y = _this$indexTop.y;
+
+          if (x === -1) {
+            this.records.push({
+              address: address,
+              data: []
+            });
+          }
+
+          this.walletService.storeWallet();
         }
       }, {
         key: "check",
@@ -20444,42 +20542,49 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee58() {
             var _this38 = this;
 
+            var _this$index2, x;
+
             return regeneratorRuntime.wrap(function _callee58$(_context58) {
               while (1) {
                 switch (_context58.prev = _context58.next) {
                   case 0:
+                    this.initCheck();
+                    console.log('checking > ' + address);
+
                     if (address && address.slice(0, 3) === 'tz2') {
-                      //oldActivities.findIndex((a) => a.hash === activity.hash);
-                      if (!this.pendingLookups[address] && !this.torusEntryExist(address)) {
+                      _this$index2 = this.index(address, 0), x = _this$index2.x;
+
+                      if (!this.pendingLookups[address] && x === -1) {
                         this.pendingLookups[address] = true;
                         this.operationService.torusKeyLookup(address).subscribe(function (ans) {
-                          console.log(ans);
+                          if (ans) {
+                            if (ans.result && ans.result.Verifiers) {
+                              var keys = Object.keys(ans.result.Verifiers);
+                              var verifierMap = _this38.torusService.verifierMap;
 
-                          if (ans && ans.result && ans.result.Verifiers) {
-                            console.log('Verifiers', ans.result.Verifiers);
-                            var keys = Object.keys(ans.result.Verifiers);
-                            console.log('keys', keys);
-                            var verifierMap = _this38.torusService.verifierMap;
+                              for (var _i = 0, _keys = keys; _i < _keys.length; _i++) {
+                                var key = _keys[_i];
 
-                            for (var _i = 0, _keys = keys; _i < _keys.length; _i++) {
-                              var key = _keys[_i];
-                              console.log(key);
-
-                              if (key === verifierMap['google'].verifier) {
-                                _this38.add(address, ans.result.Verifiers[verifierMap['google'].verifier][0], LookupType.Google);
-                              } else if (key === verifierMap['reddit'].verifier) {
-                                _this38.add(address, ans.result.Verifiers[verifierMap['reddit'].verifier][0], LookupType.Reddit);
+                                if (key === verifierMap['google'].verifier) {
+                                  _this38.add(address, ans.result.Verifiers[verifierMap['google'].verifier][0], LookupType.Google);
+                                } else if (key === verifierMap['reddit'].verifier) {
+                                  _this38.add(address, ans.result.Verifiers[verifierMap['reddit'].verifier][0], LookupType.Reddit);
+                                }
                               }
-                            }
 
-                            _this38.pendingLookups[address] = false;
+                              _this38.pendingLookups[address] = false;
+                            } else if (!ans.noReveal) {
+                              console.log('mark');
+
+                              _this38.mark(address);
+                            } // Do nothing if tz2 haven't revealed pk
+
                           }
                         });
-                      } else {//console.log('Pending...');
                       }
                     }
 
-                  case 1:
+                  case 3:
                   case "end":
                     return _context58.stop();
                 }
@@ -20493,32 +20598,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var record = this.records[address];
 
           if (record) {
-            var _iterator25 = _createForOfIteratorHelper(record),
-                _step25;
-
-            try {
-              for (_iterator25.s(); !(_step25 = _iterator25.n()).done;) {
-                var entry = _step25.value;
-
-                if (entry.lookupType > 1) {
-                  return true;
-                }
-              }
-            } catch (err) {
-              _iterator25.e(err);
-            } finally {
-              _iterator25.f();
-            }
-          }
-
-          return false;
-        }
-      }, {
-        key: "entryExist",
-        value: function entryExist(address, lookupType) {
-          var record = this.records[address];
-
-          if (record) {
             var _iterator26 = _createForOfIteratorHelper(record),
                 _step26;
 
@@ -20526,7 +20605,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               for (_iterator26.s(); !(_step26 = _iterator26.n()).done;) {
                 var entry = _step26.value;
 
-                if (entry.lookupType === lookupType) {
+                if (entry.lookupType > 1) {
                   return true;
                 }
               }
@@ -20540,37 +20619,70 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return false;
         }
       }, {
+        key: "index",
+        value: function index(address, lookupType) {
+          var _Array$fill = Array(2).fill(-1),
+              _Array$fill2 = _slicedToArray(_Array$fill, 2),
+              x = _Array$fill2[0],
+              y = _Array$fill2[1];
+
+          for (var i = 0; i < this.records.length; i++) {
+            if (this.records[i].address === address) {
+              x = i;
+
+              for (var j = 0; j < this.records[i].data.length; j++) {
+                if (this.records[i].data[j].lookupType === lookupType) {
+                  y = j;
+                }
+              }
+            }
+          }
+
+          return {
+            x: x,
+            y: y
+          };
+        }
+      }, {
+        key: "indexTop",
+        value: function indexTop(address) {
+          var _Array$fill3 = Array(2).fill(-1),
+              _Array$fill4 = _slicedToArray(_Array$fill3, 2),
+              x = _Array$fill4[0],
+              y = _Array$fill4[1];
+
+          for (var i = 0; i < this.records.length; i++) {
+            if (this.records[i].address === address) {
+              x = i;
+
+              for (var j = 0; j < this.records[i].data.length; j++) {
+                if (this.records[i].data[j].lookupType < y || y === -1) {
+                  y = j;
+                }
+              }
+            }
+          }
+
+          return {
+            x: x,
+            y: y
+          };
+        }
+      }, {
         key: "resolve",
         value: function resolve(address) {
-          if (address) {
-            var record = this.records[address];
+          this.initCheck();
 
-            if (record) {
-              var primary = record[0];
+          var _this$indexTop2 = this.indexTop(address),
+              x = _this$indexTop2.x,
+              y = _this$indexTop2.y;
 
-              var _iterator27 = _createForOfIteratorHelper(record),
-                  _step27;
-
-              try {
-                for (_iterator27.s(); !(_step27 = _iterator27.n()).done;) {
-                  var entry = _step27.value;
-
-                  if (entry.lookupType < primary.lookupType) {
-                    primary = entry;
-                  }
-                }
-              } catch (err) {
-                _iterator27.e(err);
-              } finally {
-                _iterator27.f();
-              }
-
-              return {
-                name: primary.name,
-                lookupType: primary.lookupType,
-                address: address
-              };
-            }
+          if (x !== -1 && y !== -1) {
+            return {
+              name: this.records[x].data[y].name,
+              lookupType: this.records[x].data[y].lookupType,
+              address: address
+            };
           }
 
           return {
@@ -20583,7 +20695,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     LookupService.ɵfac = function LookupService_Factory(t) {
-      return new (t || LookupService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_2__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_3__["TorusService"]));
+      return new (t || LookupService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_2__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_3__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_4__["WalletService"]));
     };
 
     LookupService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
@@ -20604,6 +20716,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_2__["OperationService"]
         }, {
           type: _services_torus_torus_service__WEBPACK_IMPORTED_MODULE_3__["TorusService"]
+        }, {
+          type: _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_4__["WalletService"]
         }];
       }, null);
     })();
@@ -21355,8 +21469,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           return this.http.get(this.nodeURL + "/chains/main/blocks/head/context/contracts/".concat(tz2address, "/manager_key"), {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
+            console.log('Woot?');
+
             if (manager === null) {
-              return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(null);
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
+                noReveal: true
+              });
             } else {
               console.log(manager);
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_this45.decompress(manager)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (pk) {
@@ -22597,8 +22715,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             domain: AUTH_DOMAIN
           }), _ref;
         };
-
-        this.initTorus();
       }
 
       _createClass(TorusService, [{
@@ -22610,34 +22726,41 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context62.prev = _context62.next) {
                   case 0:
-                    _context62.prev = 0;
+                    if (this.torus) {
+                      _context62.next = 13;
+                      break;
+                    }
+
+                    _context62.prev = 1;
                     torusdirectsdk = new _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2___default.a({
                       baseUrl: "".concat(location.origin, "/serviceworker"),
                       enableLogging: true,
                       proxyContractAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183',
                       network: 'testnet'
                     });
-                    _context62.next = 4;
+                    console.log('init Torus');
+                    _context62.next = 6;
                     return torusdirectsdk.init({
                       skipSw: false
                     });
 
-                  case 4:
+                  case 6:
+                    console.log('done Torus');
                     this.torus = torusdirectsdk;
-                    _context62.next = 10;
+                    _context62.next = 13;
                     break;
 
-                  case 7:
-                    _context62.prev = 7;
-                    _context62.t0 = _context62["catch"](0);
+                  case 10:
+                    _context62.prev = 10;
+                    _context62.t0 = _context62["catch"](1);
                     console.error(_context62.t0, 'oninit caught');
 
-                  case 10:
+                  case 13:
                   case "end":
                     return _context62.stop();
                 }
               }
-            }, _callee62, this, [[0, 7]]);
+            }, _callee62, this, [[1, 10]]);
           }));
         }
       }, {
@@ -22880,12 +23003,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var tot = 0;
           var change = false;
 
-          var _iterator28 = _createForOfIteratorHelper(accounts),
-              _step28;
+          var _iterator27 = _createForOfIteratorHelper(accounts),
+              _step27;
 
           try {
-            for (_iterator28.s(); !(_step28 = _iterator28.n()).done;) {
-              var account = _step28.value;
+            for (_iterator27.s(); !(_step27 = _iterator27.n()).done;) {
+              var account = _step27.value;
 
               if (account.balanceXTZ !== null) {
                 account.balanceUSD = Number(account.balanceXTZ / 1000000 * this.walletService.wallet.XTZrate);
@@ -22894,9 +23017,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
           } catch (err) {
-            _iterator28.e(err);
+            _iterator27.e(err);
           } finally {
-            _iterator28.f();
+            _iterator27.f();
           }
 
           if (change) {
@@ -23490,10 +23613,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           key: "loadStoredWallet",
           value: function loadStoredWallet() {
             var walletData = localStorage.getItem(this.storeKey);
-            console.log(walletData);
 
             if (walletData && walletData !== 'undefined') {
               var parsedWalletData = JSON.parse(walletData);
+              console.log(parsedWalletData);
 
               if (parsedWalletData.type && parsedWalletData.data && parsedWalletData.localStorageId) {
                 this.storageId = parsedWalletData.localStorageId;
@@ -23540,6 +23663,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               case 'TorusWallet':
                 this.wallet = new _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"](wd.verifier, wd.id, wd.name);
+                this.torusService.initTorus();
                 break;
 
               default:
@@ -23549,12 +23673,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.wallet.totalBalanceUSD = wd.totalBalanceUSD;
             this.wallet.totalBalanceXTZ = wd.totalBalanceXTZ;
 
-            var _iterator29 = _createForOfIteratorHelper(wd.implicitAccounts),
-                _step29;
+            if (wd.lookups) {
+              console.log('found', wd.lookups);
+              this.wallet.lookups = wd.lookups;
+            }
+
+            var _iterator28 = _createForOfIteratorHelper(wd.implicitAccounts),
+                _step28;
 
             try {
-              for (_iterator29.s(); !(_step29 = _iterator29.n()).done;) {
-                var implicit = _step29.value;
+              for (_iterator28.s(); !(_step28 = _iterator28.n()).done;) {
+                var implicit = _step28.value;
                 var impAcc = new _wallet__WEBPACK_IMPORTED_MODULE_3__["ImplicitAccount"](implicit.pkh, implicit.pk, implicit.derivationPath ? implicit.derivationPath : null);
                 impAcc.balanceUSD = implicit.balanceUSD;
                 impAcc.balanceXTZ = implicit.balanceXTZ;
@@ -23562,12 +23691,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 impAcc.activitiesCounter = implicit.activitiesCounter;
                 impAcc.activities = implicit.activities;
 
-                var _iterator30 = _createForOfIteratorHelper(implicit.originatedAccounts),
-                    _step30;
+                var _iterator29 = _createForOfIteratorHelper(implicit.originatedAccounts),
+                    _step29;
 
                 try {
-                  for (_iterator30.s(); !(_step30 = _iterator30.n()).done;) {
-                    var originated = _step30.value;
+                  for (_iterator29.s(); !(_step29 = _iterator29.n()).done;) {
+                    var originated = _step29.value;
                     var origAcc = new _wallet__WEBPACK_IMPORTED_MODULE_3__["OriginatedAccount"](originated.address, impAcc.pkh, impAcc.pk);
                     origAcc.balanceUSD = originated.balanceUSD;
                     origAcc.balanceXTZ = originated.balanceXTZ;
@@ -23577,17 +23706,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     impAcc.originatedAccounts.push(origAcc);
                   }
                 } catch (err) {
-                  _iterator30.e(err);
+                  _iterator29.e(err);
                 } finally {
-                  _iterator30.f();
+                  _iterator29.f();
                 }
 
                 this.wallet.implicitAccounts.push(impAcc);
               }
             } catch (err) {
-              _iterator29.e(err);
+              _iterator28.e(err);
             } finally {
-              _iterator29.f();
+              _iterator28.f();
             }
           }
         }]);
@@ -23720,6 +23849,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.totalBalanceUSD = null;
         this.XTZrate = null;
         this.implicitAccounts = [];
+        this.lookups = [];
       }
 
       _createClass(Wallet, [{
@@ -23728,34 +23858,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var accounts = [];
 
           if (this.implicitAccounts.length) {
-            var _iterator31 = _createForOfIteratorHelper(this.implicitAccounts),
-                _step31;
+            var _iterator30 = _createForOfIteratorHelper(this.implicitAccounts),
+                _step30;
 
             try {
-              for (_iterator31.s(); !(_step31 = _iterator31.n()).done;) {
-                var implicitAccount = _step31.value;
+              for (_iterator30.s(); !(_step30 = _iterator30.n()).done;) {
+                var implicitAccount = _step30.value;
                 accounts.push(implicitAccount);
 
                 if (implicitAccount.originatedAccounts.length) {
-                  var _iterator32 = _createForOfIteratorHelper(implicitAccount.originatedAccounts),
-                      _step32;
+                  var _iterator31 = _createForOfIteratorHelper(implicitAccount.originatedAccounts),
+                      _step31;
 
                   try {
-                    for (_iterator32.s(); !(_step32 = _iterator32.n()).done;) {
-                      var originatedAccount = _step32.value;
+                    for (_iterator31.s(); !(_step31 = _iterator31.n()).done;) {
+                      var originatedAccount = _step31.value;
                       accounts.push(originatedAccount);
                     }
                   } catch (err) {
-                    _iterator32.e(err);
+                    _iterator31.e(err);
                   } finally {
-                    _iterator32.f();
+                    _iterator31.f();
                   }
                 }
               }
             } catch (err) {
-              _iterator31.e(err);
+              _iterator30.e(err);
             } finally {
-              _iterator31.f();
+              _iterator30.f();
             }
           }
 
@@ -23770,40 +23900,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getAccount",
         value: function getAccount(address) {
           if (this.implicitAccounts.length) {
-            var _iterator33 = _createForOfIteratorHelper(this.implicitAccounts),
-                _step33;
+            var _iterator32 = _createForOfIteratorHelper(this.implicitAccounts),
+                _step32;
 
             try {
-              for (_iterator33.s(); !(_step33 = _iterator33.n()).done;) {
-                var implicitAccount = _step33.value;
+              for (_iterator32.s(); !(_step32 = _iterator32.n()).done;) {
+                var implicitAccount = _step32.value;
 
                 if (implicitAccount.address === address) {
                   return implicitAccount;
                 }
 
                 if (implicitAccount.originatedAccounts.length) {
-                  var _iterator34 = _createForOfIteratorHelper(implicitAccount.originatedAccounts),
-                      _step34;
+                  var _iterator33 = _createForOfIteratorHelper(implicitAccount.originatedAccounts),
+                      _step33;
 
                   try {
-                    for (_iterator34.s(); !(_step34 = _iterator34.n()).done;) {
-                      var originatedAccount = _step34.value;
+                    for (_iterator33.s(); !(_step33 = _iterator33.n()).done;) {
+                      var originatedAccount = _step33.value;
 
                       if (originatedAccount.address === address) {
                         return originatedAccount;
                       }
                     }
                   } catch (err) {
-                    _iterator34.e(err);
+                    _iterator33.e(err);
                   } finally {
-                    _iterator34.f();
+                    _iterator33.f();
                   }
                 }
               }
             } catch (err) {
-              _iterator33.e(err);
+              _iterator32.e(err);
             } finally {
-              _iterator33.f();
+              _iterator32.f();
             }
           }
 
@@ -23813,21 +23943,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getImplicitAccount",
         value: function getImplicitAccount(pkh) {
           if (this.implicitAccounts.length) {
-            var _iterator35 = _createForOfIteratorHelper(this.implicitAccounts),
-                _step35;
+            var _iterator34 = _createForOfIteratorHelper(this.implicitAccounts),
+                _step34;
 
             try {
-              for (_iterator35.s(); !(_step35 = _iterator35.n()).done;) {
-                var implicitAccount = _step35.value;
+              for (_iterator34.s(); !(_step34 = _iterator34.n()).done;) {
+                var implicitAccount = _step34.value;
 
                 if (implicitAccount.pkh === pkh) {
                   return implicitAccount;
                 }
               }
             } catch (err) {
-              _iterator35.e(err);
+              _iterator34.e(err);
             } finally {
-              _iterator35.f();
+              _iterator34.f();
             }
           }
 
