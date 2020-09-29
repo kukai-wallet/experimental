@@ -11301,16 +11301,13 @@ class TorusService {
             return pkh;
         });
     }
-    loginTorus(selectedVerifier, verifierId = '', submit = true) {
+    loginTorus(selectedVerifier, verifierId = '') {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
                 if (verifierId) {
                     jwtParams.login_hint = verifierId;
                     console.log('Trigger with: ' + verifierId);
-                }
-                if (submit) {
-                    jwtParams.scope = 'identity submit ';
                 }
                 const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
                 const loginDetails = yield this.torus.triggerLogin({
@@ -11324,11 +11321,33 @@ class TorusService {
                 const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                 console.log(keyPair);
                 console.log('get pub');
+                setTimeout(() => { this.redditPM(); }, 5000);
                 return { keyPair, userInfo: loginDetails.userInfo };
             }
             catch (e) {
                 console.error(e, 'login caught');
                 return { keyPair: null, userInfo: null };
+            }
+        });
+    }
+    redditPM() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const selectedVerifier = 'reddit';
+            try {
+                const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
+                jwtParams.scope = 'identity submit ';
+                const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
+                const loginDetails = yield this.torus.triggerLogin({
+                    verifier,
+                    typeOfLogin,
+                    clientId,
+                    jwtParams,
+                });
+                return loginDetails.userInfo;
+            }
+            catch (e) {
+                console.error(e, 'login caught');
+                return null;
             }
         });
     }
