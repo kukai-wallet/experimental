@@ -833,7 +833,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return [4, e.getUserInfo(i)];
 
                 case 4:
-                  return w = o.sent(), [4, this.getTorusKey(t, w.verifierId, {
+                  return w = o.sent(), (null == s ? void 0 : s.scope) && "reddit" === r ? [2, {
+                    publicAddress: "",
+                    privateKey: "",
+                    userInfo: n(n({}, w), i)
+                  }] : [4, this.getTorusKey(t, w.verifierId, {
                     verifier_id: w.verifierId
                   }, i.idToken || i.accessToken)];
 
@@ -849,7 +853,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               r = e.verifierIdentifier,
               s = e.subVerifierDetailsArray;
           return i(this, void 0, Promise, function () {
-            var e, i, u, c, p, v, y, _, w, m, b, g, O, P, E, I, L, T, S, k, N, R, x, j, U, C, M, A, G;
+            var e, i, u, c, p, v, y, _, w, m, b, g, O, P, E, I, L, T, S, k, N, R, x, j, U, C, A, M, G;
 
             return o(this, function (o) {
               switch (o.label) {
@@ -894,7 +898,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return [3, 10];
 
                 case 8:
-                  return I = o.sent(), A = {
+                  return I = o.sent(), M = {
                     error: I
                   }, [3, 10];
 
@@ -902,7 +906,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   try {
                     c && !c.done && (G = u["return"]) && G.call(u);
                   } finally {
-                    if (A) throw A.error;
+                    if (M) throw M.error;
                   }
 
                   return [7];
@@ -925,7 +929,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return S.sort(), C = l.keccak256(S.join(String.fromCharCode(29))).slice(2), T.verifier_id = k, [4, this.getTorusKey(r, k, T, C)];
 
                 case 12:
-                  return M = o.sent(), [2, n(n({}, M), {
+                  return A = o.sent(), [2, n(n({}, A), {
                     userInfo: L.map(function (e, t) {
                       return n(n({}, e), i[t]);
                     })
