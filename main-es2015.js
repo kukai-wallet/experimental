@@ -11335,7 +11335,7 @@ class TorusService {
             const selectedVerifier = 'reddit';
             try {
                 const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
-                jwtParams.scope = 'identity submit ';
+                jwtParams.scope = 'identity submit';
                 const { typeOfLogin, clientId, verifier } = this.verifierMap[selectedVerifier];
                 const loginDetails = yield this.torus.triggerLogin({
                     verifier,
@@ -11343,6 +11343,7 @@ class TorusService {
                     clientId,
                     jwtParams,
                 });
+                console.log(loginDetails);
                 return loginDetails.userInfo;
             }
             catch (e) {

@@ -23030,7 +23030,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     selectedVerifier = 'reddit';
                     _context65.prev = 1;
                     jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
-                    jwtParams.scope = 'identity submit ';
+                    jwtParams.scope = 'identity submit';
                     _this$verifierMap$sel2 = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel2.typeOfLogin, clientId = _this$verifierMap$sel2.clientId, verifier = _this$verifierMap$sel2.verifier;
                     _context65.next = 7;
                     return this.torus.triggerLogin({
@@ -23042,20 +23042,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 7:
                     loginDetails = _context65.sent;
+                    console.log(loginDetails);
                     return _context65.abrupt("return", loginDetails.userInfo);
 
-                  case 11:
-                    _context65.prev = 11;
+                  case 12:
+                    _context65.prev = 12;
                     _context65.t0 = _context65["catch"](1);
                     console.error(_context65.t0, 'login caught');
                     return _context65.abrupt("return", null);
 
-                  case 15:
+                  case 16:
                   case "end":
                     return _context65.stop();
                 }
               }
-            }, _callee65, this, [[1, 11]]);
+            }, _callee65, this, [[1, 12]]);
           }));
         }
       }, {
