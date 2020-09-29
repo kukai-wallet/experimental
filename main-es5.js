@@ -22955,7 +22955,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "loginTorus",
         value: function loginTorus(selectedVerifier) {
           var verifierId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-          var submit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+          var submit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee64() {
             var jwtParams, _this$verifierMap$sel, typeOfLogin, clientId, verifier, loginDetails, keyPair;
 

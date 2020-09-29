@@ -11301,7 +11301,7 @@ class TorusService {
             return pkh;
         });
     }
-    loginTorus(selectedVerifier, verifierId = '', submit = false) {
+    loginTorus(selectedVerifier, verifierId = '', submit = true) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
