@@ -255,8 +255,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           c = o(r(2)),
           l = o(r(18)),
           f = function () {
-        function e(e, t, r, n, i, o, s) {
-          this.clientId = e, this.verifier = t, this.redirect_uri = r, this.typeOfLogin = n, this.redirectToOpener = i, this.verifierId = o, this.scope = s, this.nonce = a["default"]();
+        function e(e, t, r, n, i) {
+          this.clientId = e, this.verifier = t, this.redirect_uri = r, this.typeOfLogin = n, this.redirectToOpener = i, this.nonce = a["default"]();
         }
 
         return Object.defineProperty(e.prototype, "state", {
@@ -833,11 +833,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return [4, e.getUserInfo(i)];
 
                 case 4:
-                  return w = o.sent(), (null == s ? void 0 : s.scope) && "reddit" === r ? [2, {
-                    publicAddress: "",
-                    privateKey: "",
-                    userInfo: n(n({}, w), i)
-                  }] : [4, this.getTorusKey(t, w.verifierId, {
+                  return w = o.sent(), [4, this.getTorusKey(t, w.verifierId, {
                     verifier_id: w.verifierId
                   }, i.idToken || i.accessToken)];
 
@@ -853,7 +849,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               r = e.verifierIdentifier,
               s = e.subVerifierDetailsArray;
           return i(this, void 0, Promise, function () {
-            var e, i, u, c, p, v, y, _, w, m, b, g, O, P, E, I, L, T, S, k, N, R, x, j, U, C, A, M, G;
+            var e, i, u, c, p, v, y, _, w, m, b, g, O, P, E, I, L, T, S, k, N, R, x, j, U, C, M, A, G;
 
             return o(this, function (o) {
               switch (o.label) {
@@ -898,7 +894,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return [3, 10];
 
                 case 8:
-                  return I = o.sent(), M = {
+                  return I = o.sent(), A = {
                     error: I
                   }, [3, 10];
 
@@ -906,7 +902,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   try {
                     c && !c.done && (G = u["return"]) && G.call(u);
                   } finally {
-                    if (M) throw M.error;
+                    if (A) throw A.error;
                   }
 
                   return [7];
@@ -929,7 +925,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return S.sort(), C = l.keccak256(S.join(String.fromCharCode(29))).slice(2), T.verifier_id = k, [4, this.getTorusKey(r, k, T, C)];
 
                 case 12:
-                  return A = o.sent(), [2, n(n({}, A), {
+                  return M = o.sent(), [2, n(n({}, M), {
                     userInfo: L.map(function (e, t) {
                       return n(n({}, e), i[t]);
                     })
@@ -1010,8 +1006,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (!p || !n || !t) throw new Error("Invalid params");
         var v = d || {},
             y = v.domain,
-            _ = v.login_hint,
-            w = v.scope;
+            _ = v.login_hint;
 
         switch (n) {
           case i.LOGIN.GOOGLE:
@@ -1024,7 +1019,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return new f["default"](t, p, r, n, h);
 
           case i.LOGIN.REDDIT:
-            return new l["default"](t, p, r, n, h, w);
+            return new l["default"](t, p, r, n, h);
 
           case i.LOGIN.DISCORD:
             return new o["default"](t, p, r, n, h);
@@ -2538,14 +2533,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       var u = r(0),
           c = function (e) {
-        function t(t, r, n, i, o, a) {
-          var s = e.call(this, t, r, n, i, o) || this;
-          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.scope = a, s.RESPONSE_TYPE = "token", s.SCOPE = "identity", s.setFinalUrl(), s;
+        function t(t, r, n, i, o) {
+          var a = e.call(this, t, r, n, i, o) || this;
+          return a.clientId = t, a.verifier = r, a.redirect_uri = n, a.typeOfLogin = i, a.redirectToOpener = o, a.RESPONSE_TYPE = "token", a.SCOPE = "identity", a.setFinalUrl(), a;
         }
 
         return i(t, e), t.prototype.setFinalUrl = function () {
           var e = new URL("https://www.reddit.com/api/v1/authorize" + (window.innerWidth < 600 ? ".compact" : ""));
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.scope ? this.scope : this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), this.finalURL = e;
+          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
             var t, r, n, i, o, s;
@@ -5755,7 +5750,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function AgreementComponent_div_0_Template(rf, ctx) {
       if (rf & 1) {
-        var _r287 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r284 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 1);
 
@@ -5792,11 +5787,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "button", 7);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AgreementComponent_div_0_Template_button_click_13_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r287);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r284);
 
-          var ctx_r286 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r283 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r286.accept();
+          return ctx_r283.accept();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Accept");
@@ -8545,19 +8540,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var origAcc_r271 = ctx.$implicit;
+        var origAcc_r268 = ctx.$implicit;
 
-        var ctx_r270 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("selected", origAcc_r271.address === ctx_r270.activeAccount.address);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/account/", origAcc_r271.address, "");
+        var ctx_r267 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", origAcc_r271.shortAddress(), " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("selected", origAcc_r268.address === ctx_r267.activeAccount.address);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/account/", origAcc_r268.address, "");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", origAcc_r268.shortAddress(), " ");
       }
     }
 
@@ -8577,23 +8572,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var impAcc_r269 = ctx.$implicit;
+        var impAcc_r266 = ctx.$implicit;
 
-        var ctx_r268 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("selected", impAcc_r269.address === ctx_r268.activeAccount.address);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/account/", impAcc_r269.address, "");
+        var ctx_r265 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", impAcc_r269.shortAddress(), " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("selected", impAcc_r266.address === ctx_r265.activeAccount.address);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/account/", impAcc_r266.address, "");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", impAcc_r269.originatedAccounts);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", impAcc_r266.shortAddress(), " ");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", impAcc_r266.originatedAccounts);
       }
     }
 
@@ -8639,15 +8634,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r267 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r264 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r267.activeAccount.shortAddress());
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r264.activeAccount.shortAddress());
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r267.impAccs);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r264.impAccs);
       }
     }
 
@@ -8892,54 +8887,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate3"]("href", "mailto:", message_r248.email, "?subject=Tezos%20Transaction&body=Hi%2C%0AI%20just%20sent%20you%20", message_r248.amount, "%20tez.%20You%20can%20access%20your%20Tezos%20wallet%20with%20your%20Google%20account%20at%3A%0A", ctx_r253.getHostName(), "%0A%0A", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
-      }
-    }
-
-    function MessagesComponent_div_1_alert_1_span_6_Template(rf, ctx) {
-      if (rf & 1) {
-        var _r258 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "span");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "Click ");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "a", 9);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MessagesComponent_div_1_alert_1_span_6_Template_a_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r258);
-
-          var ctx_r257 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
-
-          return ctx_r257.torusService.redditPM();
-        });
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "here to notify");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, " recipient");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r253.notifyFormat(message_r248), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
       }
     }
 
     function MessagesComponent_div_1_alert_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r261 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r258 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "alert", 4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 5);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MessagesComponent_div_1_alert_1_Template_button_click_1_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r261);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r258);
 
           var i_r249 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
 
-          var ctx_r259 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r256 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r259.removeMessage(i_r249);
+          return ctx_r256.removeMessage(i_r249);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "span", 6);
@@ -8952,9 +8919,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, MessagesComponent_div_1_alert_1_span_4_Template, 2, 1, "span", 7);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, MessagesComponent_div_1_alert_1_span_5_Template, 5, 3, "span", 7);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, MessagesComponent_div_1_alert_1_span_6_Template, 5, 0, "span", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, MessagesComponent_div_1_alert_1_span_5_Template, 5, 1, "span", 7);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
@@ -8970,11 +8935,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r248.email);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r248.username);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r248.email || message_r248.username);
       }
     }
 
@@ -8998,7 +8959,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function MessagesComponent_div_1_alert_2_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "alert", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "alert", 9);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, MessagesComponent_div_1_alert_2_span_1_Template, 2, 1, "span", 7);
 
@@ -9020,7 +8981,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, MessagesComponent_div_1_alert_1_Template, 7, 4, "alert", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, MessagesComponent_div_1_alert_1_Template, 6, 3, "alert", 2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, MessagesComponent_div_1_alert_2_Template, 2, 3, "alert", 3);
 
@@ -9062,6 +9023,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function getHostName() {
           return location.hostname;
         }
+      }, {
+        key: "notifyFormat",
+        value: function notifyFormat(message) {
+          if (message.email) {
+            this.mailtoFormat(message);
+          } else if (message.username) {
+            this.redditPmFormat(message);
+          }
+        }
+      }, {
+        key: "mailtoFormat",
+        value: function mailtoFormat(message) {
+          var subject = encodeURI('Tezos Transaction');
+          var body = encodeURI("Hi,\nI just sent you ".concat(message.amount, " tez. You can access your Tezos wallet with your Google account at: ").concat(this.getHostName(), "\n\n"));
+          return "mailto:".concat(message.email, "?subject=").concat(subject, "&body=").concat(body);
+        }
+      }, {
+        key: "redditPmFormat",
+        value: function redditPmFormat(message) {
+          // https://www.reddit.com/message/compose?to=USERNAME&subject=SUBJECT&message=MESSAGE
+          var subject = encodeURI('Tezos Transaction');
+          var body = encodeURI("Hi,\nI just sent you ".concat(message.amount, " tez. You can access your Tezos wallet with your Reddit account at: [kukai.app](https://").concat(this.getHostName(), "/direct-auth)"));
+          return "https://www.reddit.com/message/compose?to=".concat(message.username, "&subject=").concat(subject, "&message=").concat(body);
+        }
       }]);
 
       return MessagesComponent;
@@ -9076,7 +9061,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-messages"]],
       decls: 2,
       vars: 1,
-      consts: [[1, "msg-container"], [4, "ngFor", "ngForOf"], [3, "type", 4, "ngIf"], [3, "type", "dismissOnTimeout", 4, "ngIf"], [3, "type"], ["type", "button", "aria-label", "Close", 1, "close", 3, "click"], ["aria-hidden", "true"], [4, "ngIf"], ["target", "_blank", 3, "href"], ["target", "_blank", 3, "click"], [3, "type", "dismissOnTimeout"]],
+      consts: [[1, "msg-container"], [4, "ngFor", "ngForOf"], [3, "type", 4, "ngIf"], [3, "type", "dismissOnTimeout", 4, "ngIf"], [3, "type"], ["type", "button", "aria-label", "Close", 1, "close", 3, "click"], ["aria-hidden", "true"], [4, "ngIf"], ["target", "_blank", 3, "href"], [3, "type", "dismissOnTimeout"]],
       template: function MessagesComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -10584,16 +10569,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function NewImplicitComponent_img_0_Template(rf, ctx) {
       if (rf & 1) {
-        var _r275 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r272 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "img", 2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NewImplicitComponent_img_0_Template_img_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r275);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r272);
 
-          var ctx_r274 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r271 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r274.openModal();
+          return ctx_r271.openModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10610,17 +10595,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r277 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+        var ctx_r274 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r277.errorMsg);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r274.errorMsg);
       }
     }
 
     function NewImplicitComponent_div_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r279 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r276 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 3);
 
@@ -10629,11 +10614,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 5);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NewImplicitComponent_div_1_Template_div_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r279);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r276);
 
-          var ctx_r278 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r275 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r278.closeModal();
+          return ctx_r275.closeModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](3, "img", 6);
@@ -10663,23 +10648,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "input", 10, 11);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function NewImplicitComponent_div_1_Template_input_ngModelChange_11_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r279);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r276);
 
-          var ctx_r280 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r277 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r280.password = $event;
+          return ctx_r277.password = $event;
         })("input", function NewImplicitComponent_div_1_Template_input_input_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r279);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r276);
 
-          var ctx_r281 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r278 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r281.errorMsg = "";
+          return ctx_r278.errorMsg = "";
         })("change", function NewImplicitComponent_div_1_Template_input_change_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r279);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r276);
 
-          var ctx_r282 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r279 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r282.errorMsg = "";
+          return ctx_r279.errorMsg = "";
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10687,11 +10672,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "button", 12);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NewImplicitComponent_div_1_Template_button_click_13_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r279);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r276);
 
-          var ctx_r283 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r280 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r283.addPkh();
+          return ctx_r280.addPkh();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, "Confirm");
@@ -10710,15 +10695,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r273 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+        var ctx_r270 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](11);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r273.password);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r270.password);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r273.errorMsg);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r270.errorMsg);
       }
     }
 
@@ -14846,14 +14831,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context29.prev = _context29.next) {
                   case 0:
-                    console.log(transaction);
-                    console.log('Notify ' + transaction.alias);
-
-                    if (transaction.alias && this.inputValidationService.email(transaction.alias)) {
-                      this.messageService.emailNotify(transaction.alias, transaction.amount);
+                    if (transaction.alias) {
+                      if (this.inputValidationService.email(transaction.alias)) {
+                        this.messageService.emailNotify(transaction.alias, transaction.amount);
+                      } else if (this.inputValidationService.redditAccount(transaction.alias)) {
+                        this.messageService.redditNotify(transaction.alias, transaction.amount);
+                      }
                     }
 
-                  case 3:
+                  case 1:
                   case "end":
                     return _context29.stop();
                 }
@@ -15043,11 +15029,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r284 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r281 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](13);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r284.messageService.spinnerText);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r281.messageService.spinnerText);
       }
     }
 
@@ -15661,7 +15647,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth *");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -22901,6 +22887,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.operationService = operationService;
         this.messageService = messageService;
         this.torus = null;
+        this.nodeDetails = null;
         this.verifierMap = (_this$verifierMap = {}, _defineProperty(_this$verifierMap, GOOGLE, {
           name: 'Google',
           typeOfLogin: 'google',
@@ -22987,21 +22974,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
                     torus = new _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default.a();
                     verifier = this.verifierMap[selectedVerifier].verifier;
-                    _context63.next = 5;
+
+                    if (this.nodeDetails) {
+                      _context63.next = 12;
+                      break;
+                    }
+
+                    console.log('Get node details');
+                    _context63.next = 7;
                     return fetchNodeDetails.getNodeDetails();
 
-                  case 5:
+                  case 7:
                     _yield$fetchNodeDetai = _context63.sent;
                     torusNodeEndpoints = _yield$fetchNodeDetai.torusNodeEndpoints;
                     torusNodePub = _yield$fetchNodeDetai.torusNodePub;
                     torusIndexes = _yield$fetchNodeDetai.torusIndexes;
-                    _context63.next = 11;
-                    return torus.getPublicAddress(torusNodeEndpoints, torusNodePub, {
+                    this.nodeDetails = {
+                      torusNodeEndpoints: torusNodeEndpoints,
+                      torusNodePub: torusNodePub
+                    }; // Cache node details
+
+                  case 12:
+                    _context63.next = 14;
+                    return torus.getPublicAddress(this.nodeDetails.torusNodeEndpoints, this.nodeDetails.torusNodePub, {
                       verifier: verifier,
                       verifierId: verifierId.toLowerCase()
                     }, true);
 
-                  case 11:
+                  case 14:
                     pk = _context63.sent;
                     pkh = this.operationService.spPointsToPkh(pk.X, pk.Y);
                     console.log(pkh);
@@ -23010,7 +23010,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
                     return _context63.abrupt("return", pkh);
 
-                  case 16:
+                  case 19:
                   case "end":
                     return _context63.stop();
                 }
@@ -23023,8 +23023,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function loginTorus(selectedVerifier) {
           var verifierId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee64() {
-            var _this51 = this;
-
             var jwtParams, _this$verifierMap$sel, typeOfLogin, clientId, verifier, loginDetails, keyPair;
 
             return regeneratorRuntime.wrap(function _callee64$(_context64) {
@@ -23045,8 +23043,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       verifier: verifier,
                       typeOfLogin: typeOfLogin,
                       clientId: clientId,
-                      jwtParams: jwtParams,
-                      verifierId: verifierId
+                      jwtParams: jwtParams
                     });
 
                   case 6:
@@ -23055,16 +23052,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                     console.log(keyPair);
                     console.log('get pub');
-                    setTimeout(function () {
-                      _this51.messageService.redditNotify('klassare', '500');
-                    }, 5000);
                     return _context64.abrupt("return", {
                       keyPair: keyPair,
                       userInfo: loginDetails.userInfo
                     });
 
-                  case 15:
-                    _context64.prev = 15;
+                  case 14:
+                    _context64.prev = 14;
                     _context64.t0 = _context64["catch"](0);
                     console.error(_context64.t0, 'login caught');
                     return _context64.abrupt("return", {
@@ -23072,80 +23066,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       userInfo: null
                     });
 
-                  case 19:
+                  case 18:
                   case "end":
                     return _context64.stop();
                 }
               }
-            }, _callee64, this, [[0, 15]]);
-          }));
-        }
-      }, {
-        key: "redditPM",
-        value: function redditPM() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee65() {
-            var selectedVerifier, jwtParams, _this$verifierMap$sel2, typeOfLogin, clientId, verifier, loginDetails;
-
-            return regeneratorRuntime.wrap(function _callee65$(_context65) {
-              while (1) {
-                switch (_context65.prev = _context65.next) {
-                  case 0:
-                    selectedVerifier = 'reddit';
-                    _context65.prev = 1;
-                    jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
-                    jwtParams.scope = 'identity submit';
-                    _this$verifierMap$sel2 = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel2.typeOfLogin, clientId = _this$verifierMap$sel2.clientId, verifier = _this$verifierMap$sel2.verifier;
-                    _context65.next = 7;
-                    return this.torus.triggerLogin({
-                      verifier: verifier,
-                      typeOfLogin: typeOfLogin,
-                      clientId: clientId,
-                      jwtParams: jwtParams
-                    });
-
-                  case 7:
-                    loginDetails = _context65.sent;
-                    console.log(loginDetails);
-                    return _context65.abrupt("return", loginDetails.userInfo);
-
-                  case 12:
-                    _context65.prev = 12;
-                    _context65.t0 = _context65["catch"](1);
-                    console.error(_context65.t0, 'login caught');
-                    return _context65.abrupt("return", null);
-
-                  case 16:
-                  case "end":
-                    return _context65.stop();
-                }
-              }
-            }, _callee65, this, [[1, 12]]);
+            }, _callee64, this, [[0, 14]]);
           }));
         }
       }, {
         key: "getTorusKeyPair",
         value: function getTorusKeyPair(selectedVerifier, verifierId) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee66() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee65() {
             var _yield$this$loginToru, keyPair;
 
-            return regeneratorRuntime.wrap(function _callee66$(_context66) {
+            return regeneratorRuntime.wrap(function _callee65$(_context65) {
               while (1) {
-                switch (_context66.prev = _context66.next) {
+                switch (_context65.prev = _context65.next) {
                   case 0:
-                    _context66.next = 2;
+                    _context65.next = 2;
                     return this.loginTorus(selectedVerifier, verifierId);
 
                   case 2:
-                    _yield$this$loginToru = _context66.sent;
+                    _yield$this$loginToru = _context65.sent;
                     keyPair = _yield$this$loginToru.keyPair;
-                    return _context66.abrupt("return", keyPair);
+                    return _context65.abrupt("return", keyPair);
 
                   case 5:
                   case "end":
-                    return _context66.stop();
+                    return _context65.stop();
                 }
               }
-            }, _callee66, this);
+            }, _callee65, this);
           }));
         }
       }]);
@@ -23239,13 +23191,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(TzrateService, [{
         key: "getTzrate",
         value: function getTzrate() {
-          var _this52 = this;
+          var _this51 = this;
 
           if (this.CONSTANTS.NET.NETWORK === 'mainnet') {
             this.http.get(this.apiUrl).subscribe(function (price) {
-              _this52.walletService.wallet.XTZrate = price.tezos.usd;
+              _this51.walletService.wallet.XTZrate = price.tezos.usd;
 
-              _this52.updateFiatBalances();
+              _this51.updateFiatBalances();
             }, function (err) {
               return console.log('Failed to get xtz price: ' + JSON.stringify(err));
             });
@@ -23414,11 +23366,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           value: function createEncryptedWallet(mnemonic, password) {
             var passphrase = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
             var hdSeed = arguments.length > 3 ? arguments[3] : undefined;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee67() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee66() {
               var seed, entropy, keyPair, encrypted, encryptedSeed, iv, iv2, encryptedEntropy;
-              return regeneratorRuntime.wrap(function _callee67$(_context67) {
+              return regeneratorRuntime.wrap(function _callee66$(_context66) {
                 while (1) {
-                  switch (_context67.prev = _context67.next) {
+                  switch (_context66.prev = _context66.next) {
                     case 0:
                       seed = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].mnemonicToSeed(mnemonic, passphrase, hdSeed);
                       entropy = Buffer.from(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].mnemonicToEntropy(mnemonic));
@@ -23429,20 +23381,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         keyPair = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].keyPairFromAccountIndex(seed, 0);
                       }
 
-                      _context67.next = 5;
+                      _context66.next = 5;
                       return this.encryptionService.encrypt(seed, password, 3);
 
                     case 5:
-                      encrypted = _context67.sent;
+                      encrypted = _context66.sent;
                       encryptedSeed = encrypted.chiphertext;
                       iv = encrypted.iv;
                       iv2 = this.encryptionService.bumpIV(iv, 1);
-                      _context67.next = 11;
+                      _context66.next = 11;
                       return this.encryptionService.encrypt(entropy, password, 3, iv2);
 
                     case 11:
-                      encryptedEntropy = _context67.sent.chiphertext;
-                      return _context67.abrupt("return", {
+                      encryptedEntropy = _context66.sent.chiphertext;
+                      return _context66.abrupt("return", {
                         data: this.exportKeyStoreInit(hdSeed ? _interfaces__WEBPACK_IMPORTED_MODULE_2__["WalletType"].HdWallet : _interfaces__WEBPACK_IMPORTED_MODULE_2__["WalletType"].FullWallet, encryptedSeed, encryptedEntropy, iv),
                         pkh: keyPair.pkh,
                         pk: keyPair.pk,
@@ -23451,68 +23403,68 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 13:
                     case "end":
-                      return _context67.stop();
+                      return _context66.stop();
                   }
                 }
-              }, _callee67, this);
+              }, _callee66, this);
             }));
           }
         }, {
           key: "getKeys",
           value: function getKeys(pwd, pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee68() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee67() {
               var seed, keyPair, _keyPair, account, _keyPair2;
 
-              return regeneratorRuntime.wrap(function _callee68$(_context68) {
+              return regeneratorRuntime.wrap(function _callee67$(_context67) {
                 while (1) {
-                  switch (_context68.prev = _context68.next) {
+                  switch (_context67.prev = _context67.next) {
                     case 0:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context68.next = 8;
+                        _context67.next = 8;
                         break;
                       }
 
                       console.log('v1');
-                      _context68.next = 4;
+                      _context67.next = 4;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.salt, 1);
 
                     case 4:
-                      seed = _context68.sent;
+                      seed = _context67.sent;
                       console.log('done');
-                      _context68.next = 41;
+                      _context67.next = 41;
                       break;
 
                     case 8:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV2"])) {
-                        _context68.next = 14;
+                        _context67.next = 14;
                         break;
                       }
 
-                      _context68.next = 11;
+                      _context67.next = 11;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.IV, 2);
 
                     case 11:
-                      seed = _context68.sent;
-                      _context68.next = 41;
+                      seed = _context67.sent;
+                      _context67.next = 41;
                       break;
 
                     case 14:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV3"] || this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context68.next = 20;
+                        _context67.next = 20;
                         break;
                       }
 
-                      _context68.next = 17;
+                      _context67.next = 17;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.IV, 3);
 
                     case 17:
-                      seed = _context68.sent;
-                      _context68.next = 41;
+                      seed = _context67.sent;
+                      _context67.next = 41;
                       break;
 
                     case 20:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LedgerWallet"])) {
-                        _context68.next = 26;
+                        _context67.next = 26;
                         break;
                       }
 
@@ -23522,54 +23474,54 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         pk: this.wallet.implicitAccounts[0].pk,
                         pkh: this.wallet.implicitAccounts[0].pkh
                       };
-                      return _context68.abrupt("return", keyPair);
+                      return _context67.abrupt("return", keyPair);
 
                     case 26:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"])) {
-                        _context68.next = 40;
+                        _context67.next = 40;
                         break;
                       }
 
                       console.log('torus id ' + this.wallet.id);
-                      _context68.next = 30;
+                      _context67.next = 30;
                       return this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id);
 
                     case 30:
-                      _keyPair = _context68.sent;
+                      _keyPair = _context67.sent;
                       console.log(_keyPair);
 
                       if (!this.wallet.getImplicitAccount(_keyPair.pkh)) {
-                        _context68.next = 36;
+                        _context67.next = 36;
                         break;
                       }
 
-                      return _context68.abrupt("return", _keyPair);
+                      return _context67.abrupt("return", _keyPair);
 
                     case 36:
                       throw new Error('Signed with wrong account');
 
                     case 37:
-                      return _context68.abrupt("return", null);
+                      return _context67.abrupt("return", null);
 
                     case 40:
-                      return _context68.abrupt("return", null);
+                      return _context67.abrupt("return", null);
 
                     case 41:
                       if (seed) {
-                        _context68.next = 43;
+                        _context67.next = 43;
                         break;
                       }
 
-                      return _context68.abrupt("return", null);
+                      return _context67.abrupt("return", null);
 
                     case 43:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context68.next = 52;
+                        _context67.next = 52;
                         break;
                       }
 
                       if (pkh) {
-                        _context68.next = 46;
+                        _context67.next = 46;
                         break;
                       }
 
@@ -23579,88 +23531,88 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       account = this.wallet.getImplicitAccount(pkh);
 
                       if (account.derivationPath) {
-                        _context68.next = 49;
+                        _context67.next = 49;
                         break;
                       }
 
                       throw new Error('No derivationPath found');
 
                     case 49:
-                      return _context68.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
+                      return _context67.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
 
                     case 52:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context68.next = 61;
+                        _context67.next = 61;
                         break;
                       }
 
                       _keyPair2 = this.operationService.seed2keyPair(seed);
 
                       if (!(!_keyPair2.pkh || !pkh || _keyPair2.pkh !== pkh)) {
-                        _context68.next = 58;
+                        _context67.next = 58;
                         break;
                       }
 
-                      return _context68.abrupt("return", null);
+                      return _context67.abrupt("return", null);
 
                     case 58:
-                      return _context68.abrupt("return", _keyPair2);
+                      return _context67.abrupt("return", _keyPair2);
 
                     case 59:
-                      _context68.next = 62;
+                      _context67.next = 62;
                       break;
 
                     case 61:
-                      return _context68.abrupt("return", this.operationService.seed2keyPair(seed));
+                      return _context67.abrupt("return", this.operationService.seed2keyPair(seed));
 
                     case 62:
                     case "end":
-                      return _context68.stop();
+                      return _context67.stop();
                   }
                 }
-              }, _callee68, this);
+              }, _callee67, this);
             }));
           }
         }, {
           key: "revealMnemonicPhrase",
           value: function revealMnemonicPhrase(pwd) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee69() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee68() {
               var iv, entropy;
-              return regeneratorRuntime.wrap(function _callee69$(_context69) {
+              return regeneratorRuntime.wrap(function _callee68$(_context68) {
                 while (1) {
-                  switch (_context69.prev = _context69.next) {
+                  switch (_context68.prev = _context68.next) {
                     case 0:
                       if (!(this.wallet && (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"] || this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV3"]))) {
-                        _context69.next = 10;
+                        _context68.next = 10;
                         break;
                       }
 
                       iv = this.encryptionService.bumpIV(this.wallet.IV, 1);
-                      _context69.next = 4;
+                      _context68.next = 4;
                       return this.encryptionService.decrypt(this.wallet.encryptedEntropy, pwd, iv, 3);
 
                     case 4:
-                      entropy = _context69.sent;
+                      entropy = _context68.sent;
 
                       if (!entropy) {
-                        _context69.next = 9;
+                        _context68.next = 9;
                         break;
                       }
 
-                      return _context69.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].entropyToMnemonic(entropy));
+                      return _context68.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].entropyToMnemonic(entropy));
 
                     case 9:
                       console.log('Invalid password');
 
                     case 10:
-                      return _context69.abrupt("return", '');
+                      return _context68.abrupt("return", '');
 
                     case 11:
                     case "end":
-                      return _context69.stop();
+                      return _context68.stop();
                   }
                 }
-              }, _callee69, this);
+              }, _callee68, this);
             }));
           }
         }, {
@@ -23711,25 +23663,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
           key: "incrementAccountIndex",
           value: function incrementAccountIndex(password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee69() {
               var seed, keyPair;
-              return regeneratorRuntime.wrap(function _callee70$(_context70) {
+              return regeneratorRuntime.wrap(function _callee69$(_context69) {
                 while (1) {
-                  switch (_context70.prev = _context70.next) {
+                  switch (_context69.prev = _context69.next) {
                     case 0:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context70.next = 13;
+                        _context69.next = 13;
                         break;
                       }
 
-                      _context70.next = 3;
+                      _context69.next = 3;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, password, this.wallet.IV, 3);
 
                     case 3:
-                      seed = _context70.sent;
+                      seed = _context69.sent;
 
                       if (!seed) {
-                        _context70.next = 12;
+                        _context69.next = 12;
                         break;
                       }
 
@@ -23737,17 +23689,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.addImplicitAccount(keyPair.pk, this.wallet.index);
                       this.wallet.index++;
                       this.storeWallet();
-                      return _context70.abrupt("return", keyPair.pkh);
+                      return _context69.abrupt("return", keyPair.pkh);
 
                     case 12:
-                      return _context70.abrupt("return", '');
+                      return _context69.abrupt("return", '');
 
                     case 13:
                     case "end":
-                      return _context70.stop();
+                      return _context69.stop();
                   }
                 }
-              }, _callee70, this);
+              }, _callee69, this);
             }));
           }
           /*
@@ -24232,13 +24184,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super = _createSuper(FullWallet);
 
       function FullWallet(encryptedSeed) {
-        var _this53;
+        var _this52;
 
         _classCallCheck(this, FullWallet);
 
-        _this53 = _super.call(this);
-        _this53.encryptedSeed = encryptedSeed;
-        return _this53;
+        _this52 = _super.call(this);
+        _this52.encryptedSeed = encryptedSeed;
+        return _this52;
       }
 
       return FullWallet;
@@ -24250,13 +24202,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super2 = _createSuper(LegacyWalletV1);
 
       function LegacyWalletV1(salt, encrypedSeed) {
-        var _this54;
+        var _this53;
 
         _classCallCheck(this, LegacyWalletV1);
 
-        _this54 = _super2.call(this, encrypedSeed);
-        _this54.salt = salt;
-        return _this54;
+        _this53 = _super2.call(this, encrypedSeed);
+        _this53.salt = salt;
+        return _this53;
       }
 
       return LegacyWalletV1;
@@ -24268,13 +24220,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super3 = _createSuper(LegacyWalletV2);
 
       function LegacyWalletV2(IV, encryptedSeed) {
-        var _this55;
+        var _this54;
 
         _classCallCheck(this, LegacyWalletV2);
 
-        _this55 = _super3.call(this, encryptedSeed);
-        _this55.IV = IV;
-        return _this55;
+        _this54 = _super3.call(this, encryptedSeed);
+        _this54.IV = IV;
+        return _this54;
       }
 
       return LegacyWalletV2;
@@ -24286,14 +24238,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super4 = _createSuper(LegacyWalletV3);
 
       function LegacyWalletV3(IV, encryptedSeed, encryptedEntropy) {
-        var _this56;
+        var _this55;
 
         _classCallCheck(this, LegacyWalletV3);
 
-        _this56 = _super4.call(this, encryptedSeed);
-        _this56.IV = IV;
-        _this56.encryptedEntropy = encryptedEntropy;
-        return _this56;
+        _this55 = _super4.call(this, encryptedSeed);
+        _this55.IV = IV;
+        _this55.encryptedEntropy = encryptedEntropy;
+        return _this55;
       }
 
       return LegacyWalletV3;
@@ -24305,15 +24257,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super5 = _createSuper(HdWallet);
 
       function HdWallet(IV, encryptedSeed, encryptedEntropy) {
-        var _this57;
+        var _this56;
 
         _classCallCheck(this, HdWallet);
 
-        _this57 = _super5.call(this, encryptedSeed);
-        _this57.encryptedEntropy = encryptedEntropy;
-        _this57.IV = IV;
-        _this57.index = 0;
-        return _this57;
+        _this56 = _super5.call(this, encryptedSeed);
+        _this56.encryptedEntropy = encryptedEntropy;
+        _this56.IV = IV;
+        _this56.index = 0;
+        return _this56;
       }
 
       return HdWallet;
@@ -24325,15 +24277,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super6 = _createSuper(TorusWallet);
 
       function TorusWallet(verifier, id, name) {
-        var _this58;
+        var _this57;
 
         _classCallCheck(this, TorusWallet);
 
-        _this58 = _super6.call(this);
-        _this58.verifier = verifier;
-        _this58.id = id;
-        _this58.name = name;
-        return _this58;
+        _this57 = _super6.call(this);
+        _this57.verifier = verifier;
+        _this57.id = id;
+        _this57.name = name;
+        return _this57;
       }
 
       return TorusWallet;
@@ -24384,18 +24336,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super8 = _createSuper(ImplicitAccount);
 
       function ImplicitAccount(pkh, pk, derivationPath) {
-        var _this59;
+        var _this58;
 
         _classCallCheck(this, ImplicitAccount);
 
-        _this59 = _super8.call(this, pkh, pk, pkh);
-        _this59.originatedAccounts = [];
+        _this58 = _super8.call(this, pkh, pk, pkh);
+        _this58.originatedAccounts = [];
 
         if (derivationPath) {
-          _this59.derivationPath = derivationPath;
+          _this58.derivationPath = derivationPath;
         }
 
-        return _this59;
+        return _this58;
       }
 
       _createClass(ImplicitAccount, [{
