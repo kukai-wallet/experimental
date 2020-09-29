@@ -255,8 +255,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           c = o(r(2)),
           l = o(r(18)),
           f = function () {
-        function e(e, t, r, n, i, o) {
-          this.clientId = e, this.verifier = t, this.redirect_uri = r, this.typeOfLogin = n, this.redirectToOpener = i, this.verifierId = o, this.nonce = a["default"]();
+        function e(e, t, r, n, i, o, s) {
+          this.clientId = e, this.verifier = t, this.redirect_uri = r, this.typeOfLogin = n, this.redirectToOpener = i, this.verifierId = o, this.scope = s, this.nonce = a["default"]();
         }
 
         return Object.defineProperty(e.prototype, "state", {
@@ -801,10 +801,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               a = e.clientId,
               s = e.jwtParams,
               u = e.hash,
-              c = e.queryParameters,
-              l = e.verifierId;
+              c = e.queryParameters;
           return i(this, void 0, Promise, function () {
-            var e, i, p, d, y, _, w, m, b;
+            var e, i, l, p, d, y, _, w, m;
 
             return o(this, function (o) {
               switch (o.label) {
@@ -816,13 +815,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     verifier: t,
                     redirect_uri: this.config.redirect_uri,
                     redirectToOpener: this.config.redirectToOpener,
-                    jwtParams: s,
-                    verifierId: l
+                    jwtParams: s
                   }), !u || !c) return [3, 1];
-                  if (p = h.handleRedirectParameters(u, c), d = p.error, y = p.hashParameters, d) throw new Error(d);
-                  return _ = y.access_token, w = y.id_token, i = {
-                    accessToken: _,
-                    idToken: w
+                  if (l = h.handleRedirectParameters(u, c), p = l.error, d = l.hashParameters, p) throw new Error(p);
+                  return y = d.access_token, _ = d.id_token, i = {
+                    accessToken: y,
+                    idToken: _
                   }, [3, 3];
 
                 case 1:
@@ -835,13 +833,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return [4, e.getUserInfo(i)];
 
                 case 4:
-                  return m = o.sent(), [4, this.getTorusKey(t, m.verifierId, {
-                    verifier_id: m.verifierId
+                  return w = o.sent(), [4, this.getTorusKey(t, w.verifierId, {
+                    verifier_id: w.verifierId
                   }, i.idToken || i.accessToken)];
 
                 case 5:
-                  return b = o.sent(), [2, n(n({}, b), {
-                    userInfo: n(n({}, m), i)
+                  return m = o.sent(), [2, n(n({}, m), {
+                    userInfo: n(n({}, w), i)
                   })];
               }
             });
@@ -1004,18 +1002,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             n = e.typeOfLogin,
             p = e.verifier,
             d = e.jwtParams,
-            h = e.redirectToOpener,
-            v = e.verifierId,
-            y = void 0 === v ? "" : v;
+            h = e.redirectToOpener;
         if (!p || !n || !t) throw new Error("Invalid params");
-
-        var _ = d || {},
-            w = _.domain,
-            m = _.login_hint;
+        var v = d || {},
+            y = v.domain,
+            _ = v.login_hint,
+            w = v.scope;
 
         switch (n) {
           case i.LOGIN.GOOGLE:
-            return new s["default"](t, p, r, n, h, y);
+            return new s["default"](t, p, r, n, h, _);
 
           case i.LOGIN.FACEBOOK:
             return new a["default"](t, p, r, n, h);
@@ -1024,13 +1020,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return new f["default"](t, p, r, n, h);
 
           case i.LOGIN.REDDIT:
-            return new l["default"](t, p, r, n, h);
+            return new l["default"](t, p, r, n, h, w);
 
           case i.LOGIN.DISCORD:
             return new o["default"](t, p, r, n, h);
 
           case i.LOGIN.PASSWORDLESS:
-            if (!w || !m) throw new Error("Invalid params");
+            if (!y || !_) throw new Error("Invalid params");
             return new c["default"](t, p, r, n, h, d);
 
           case i.LOGIN.APPLE:
@@ -1041,7 +1037,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           case i.LOGIN.LINE:
           case i.LOGIN.EMAIL_PASSWORD:
           case i.LOGIN.JWT:
-            if (!w) throw new Error("Invalid params");
+            if (!y) throw new Error("Invalid params");
             return new u["default"](t, p, r, n, h, d);
 
           default:
@@ -1849,12 +1845,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           c = function (e) {
         function t(t, r, n, i, o, a) {
           var s = e.call(this, t, r, n, i, o) || this;
-          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.verifierId = a, s.RESPONSE_TYPE = "token id_token", s.SCOPE = "profile email openid", s.PROMPT = "consent select_account", s.setFinalUrl(), s;
+          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.login_hint = a, s.RESPONSE_TYPE = "token id_token", s.SCOPE = "profile email openid", s.PROMPT = "consent select_account", s.setFinalUrl(), s;
         }
 
         return i(t, e), t.prototype.setFinalUrl = function () {
           var e = new URL("https://accounts.google.com/o/oauth2/v2/auth");
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), e.searchParams.append("nonce", this.nonce), this.verifierId ? (console.log("hint"), e.searchParams.append("login_hint", this.verifierId), e.searchParams.append("prompt", "consent")) : (console.log("prompt"), e.searchParams.append("prompt", this.PROMPT)), this.finalURL = e;
+          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), e.searchParams.append("nonce", this.nonce), this.login_hint ? (e.searchParams.append("login_hint", this.login_hint), e.searchParams.append("prompt", "consent")) : e.searchParams.append("prompt", this.PROMPT), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
             var t, r, n, i, o, s, c;
@@ -2538,14 +2534,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       var u = r(0),
           c = function (e) {
-        function t(t, r, n, i, o) {
-          var a = e.call(this, t, r, n, i, o) || this;
-          return a.clientId = t, a.verifier = r, a.redirect_uri = n, a.typeOfLogin = i, a.redirectToOpener = o, a.RESPONSE_TYPE = "token", a.SCOPE = "identity", a.setFinalUrl(), a;
+        function t(t, r, n, i, o, a) {
+          var s = e.call(this, t, r, n, i, o) || this;
+          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.scope = a, s.RESPONSE_TYPE = "token", s.SCOPE = "identity", s.setFinalUrl(), s;
         }
 
         return i(t, e), t.prototype.setFinalUrl = function () {
           var e = new URL("https://www.reddit.com/api/v1/authorize" + (window.innerWidth < 600 ? ".compact" : ""));
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), this.finalURL = e;
+          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.scope ? this.scope : this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
             var t, r, n, i, o, s;
@@ -22959,6 +22955,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "loginTorus",
         value: function loginTorus(selectedVerifier) {
           var verifierId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+          var submit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee64() {
             var jwtParams, _this$verifierMap$sel, typeOfLogin, clientId, verifier, loginDetails, keyPair;
 
@@ -22968,13 +22965,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     _context64.prev = 0;
                     jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
-                    _this$verifierMap$sel = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel.typeOfLogin, clientId = _this$verifierMap$sel.clientId, verifier = _this$verifierMap$sel.verifier;
 
                     if (verifierId) {
+                      jwtParams.login_hint = verifierId;
                       console.log('Trigger with: ' + verifierId);
                     }
 
-                    _context64.next = 6;
+                    if (submit) {
+                      jwtParams.scope = 'identity submit ';
+                    }
+
+                    _this$verifierMap$sel = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel.typeOfLogin, clientId = _this$verifierMap$sel.clientId, verifier = _this$verifierMap$sel.verifier;
+                    _context64.next = 7;
                     return this.torus.triggerLogin({
                       verifier: verifier,
                       typeOfLogin: typeOfLogin,
@@ -22983,7 +22985,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       verifierId: verifierId
                     });
 
-                  case 6:
+                  case 7:
                     loginDetails = _context64.sent;
                     console.log(loginDetails);
                     keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
@@ -22994,8 +22996,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       userInfo: loginDetails.userInfo
                     });
 
-                  case 14:
-                    _context64.prev = 14;
+                  case 15:
+                    _context64.prev = 15;
                     _context64.t0 = _context64["catch"](0);
                     console.error(_context64.t0, 'login caught');
                     return _context64.abrupt("return", {
@@ -23003,12 +23005,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       userInfo: null
                     });
 
-                  case 18:
+                  case 19:
                   case "end":
                     return _context64.stop();
                 }
               }
-            }, _callee64, this, [[0, 14]]);
+            }, _callee64, this, [[0, 15]]);
           }));
         }
       }, {
