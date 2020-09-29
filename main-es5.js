@@ -9027,9 +9027,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "notifyFormat",
         value: function notifyFormat(message) {
           if (message.email) {
-            this.mailtoFormat(message);
+            return this.mailtoFormat(message);
           } else if (message.username) {
-            this.redditPmFormat(message);
+            return this.redditPmFormat(message);
+          } else {
+            throw new Error('Invalid message');
           }
         }
       }, {
