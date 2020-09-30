@@ -92,7 +92,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, r.o = function (e, t) {
         return Object.prototype.hasOwnProperty.call(e, t);
       }, r.p = "", r(r.s = 8);
-    }([function (e, t, r) {
+    }([function (e, t) {
+      e.exports = __webpack_require__(
+      /*! deepmerge */
+      "../torus-direct-web-sdk/node_modules/deepmerge/dist/cjs.js");
+    }, function (e, t, r) {
       "use strict";
 
       Object.defineProperty(t, "__esModule", {
@@ -250,13 +254,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       });
 
       var a = o(r(16)),
-          s = r(5),
-          u = r(4),
-          c = o(r(2)),
+          s = r(6),
+          u = r(5),
+          c = o(r(3)),
           l = o(r(18)),
           f = function () {
-        function e(e, t, r, n, i) {
-          this.clientId = e, this.verifier = t, this.redirect_uri = r, this.typeOfLogin = n, this.redirectToOpener = i, this.nonce = a["default"]();
+        function e(e, t, r, n, i, o) {
+          this.clientId = e, this.verifier = t, this.redirect_uri = r, this.typeOfLogin = n, this.redirectToOpener = i, this.jwtParams = o, this.nonce = a["default"]();
         }
 
         return Object.defineProperty(e.prototype, "state", {
@@ -275,11 +279,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var o,
                 a = function a(_a2) {
               return n(e, void 0, void 0, function () {
-                var e, n, s, u, l, f, p, d;
+                var e, n, s, u, l, f, d, p;
                 return i(this, function (i) {
                   switch (i.label) {
                     case 0:
-                      return i.trys.push([0, 4,, 5]), e = _a2.error, n = _a2.data, u = (s = n || {}).instanceParams.verifier, l = s.hashParams, f = l.access_token, p = l.id_token, e ? (c["default"].error(_a2.error), r(new Error(e)), [2]) : _a2.data && u === this.verifier ? (c["default"].info(_a2.data), this.redirectToOpener || !o ? [3, 2] : [4, o.postMessage({
+                      return i.trys.push([0, 4,, 5]), e = _a2.error, n = _a2.data, u = (s = n || {}).instanceParams.verifier, l = s.hashParams, f = l.access_token, d = l.id_token, e ? (c["default"].error(_a2.error), r(new Error(e)), [2]) : _a2.data && u === this.verifier ? (c["default"].info(_a2.data), this.redirectToOpener || !o ? [3, 2] : [4, o.postMessage({
                         success: !0
                       })]) : [3, 3];
 
@@ -289,14 +293,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     case 2:
                       t({
                         accessToken: f,
-                        idToken: p || ""
+                        idToken: d || ""
                       }), i.label = 3;
 
                     case 3:
                       return [3, 5];
 
                     case 4:
-                      return d = i.sent(), c["default"].error(d), r(d), [3, 5];
+                      return p = i.sent(), c["default"].error(p), r(p), [3, 5];
 
                     case 5:
                       return [2];
@@ -309,16 +313,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
 
             if (e.redirectToOpener) {
-              var p = function p(t) {
+              var d = function d(t) {
                 return n(e, void 0, void 0, function () {
                   var e;
                   return i(this, function (r) {
-                    return t.data ? ((e = t.data).channel !== "redirect_channel_" + this.nonce || (window.removeEventListener("message", p), a(e), f.close()), [2]) : [2];
+                    return t.data ? ((e = t.data).channel !== "redirect_channel_" + this.nonce || (window.removeEventListener("message", d), a(e), f.close()), [2]) : [2];
                   });
                 });
               };
 
-              window.addEventListener("message", p);
+              window.addEventListener("message", d);
             } else (o = new s.BroadcastChannel("redirect_channel_" + e.nonce, u.broadcastChannelOptions)).addEventListener("message", function (t) {
               return n(e, void 0, void 0, function () {
                 return i(this, function (e) {
@@ -423,8 +427,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       Object.defineProperty(t, "__esModule", {
         value: !0
       }), t.handleRedirectParameters = t.getVerifierId = t.broadcastChannelOptions = t.padUrlString = t.loginToConnectionMap = t.eventToPromise = void 0;
-      var a = r(3),
-          s = o(r(2));
+      var a = r(4),
+          s = o(r(3));
 
       function u(e, t) {
         return t ? e : e.toLowerCase();
@@ -490,10 +494,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       "../torus-direct-web-sdk/node_modules/broadcast-channel/dist/es/index.js");
     }, function (e, t) {
       e.exports = __webpack_require__(
-      /*! deepmerge */
-      "../torus-direct-web-sdk/node_modules/deepmerge/dist/cjs.js");
-    }, function (e, t) {
-      e.exports = __webpack_require__(
       /*! jwt-decode */
       "../torus-direct-web-sdk/node_modules/jwt-decode/lib/index.js");
     }, function (e, t, r) {
@@ -524,7 +524,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       });
       var a = o(r(9));
-      t["default"] = a["default"], i(r(28), t), i(r(3), t);
+      t["default"] = a["default"], i(r(28), t), i(r(4), t);
     }, function (e, t, r) {
       "use strict";
 
@@ -689,23 +689,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           c = s(r(11)),
           l = r(12),
           f = s(r(13)),
-          p = r(26),
-          d = r(3),
-          h = r(4),
-          v = s(r(2)),
+          d = r(26),
+          p = r(4),
+          h = r(5),
+          v = s(r(3)),
           y = function () {
         function e(e) {
           var t = e.baseUrl,
               r = e.network,
-              n = void 0 === r ? d.TORUS_NETWORK.MAINNET : r,
+              n = void 0 === r ? p.TORUS_NETWORK.MAINNET : r,
               i = e.proxyContractAddress,
               o = void 0 === i ? "0x638646503746d5456209e33a2ff5e3226d698bea" : i,
               a = e.enableLogging,
               s = void 0 !== a && a,
               l = e.redirectToOpener,
               f = void 0 !== l && l,
-              p = e.redirectPathName,
-              y = void 0 === p ? "redirect" : p,
+              d = e.redirectPathName,
+              y = void 0 === d ? "redirect" : d,
               _ = e.apiKey,
               w = void 0 === _ ? "torus-default" : _;
           this.isInitialized = !1;
@@ -725,7 +725,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             allowHost: "https://signer.tor.us/api/allow"
           });
           c["default"].setAPIKey(w), this.torus = b;
-          var g = n === d.TORUS_NETWORK.TESTNET ? d.ETHEREUM_NETWORK.ROPSTEN : n;
+          var g = n === p.TORUS_NETWORK.TESTNET ? p.ETHEREUM_NETWORK.ROPSTEN : n;
           this.nodeDetailManager = new u["default"]({
             network: g,
             proxyAddress: o
@@ -749,7 +749,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   t.label = 2;
 
                 case 2:
-                  return t.trys.push([2, 4,, 6]), [4, p.registerServiceWorker(this.config.baseUrl)];
+                  return t.trys.push([2, 4,, 6]), [4, d.registerServiceWorker(this.config.baseUrl)];
 
                 case 3:
                   return t.sent(), this.isInitialized = !0, [2];
@@ -803,7 +803,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               u = e.hash,
               c = e.queryParameters;
           return i(this, void 0, Promise, function () {
-            var e, i, l, p, d, y, _, w, m;
+            var e, i, l, d, p, y, _, w, m;
 
             return o(this, function (o) {
               switch (o.label) {
@@ -817,8 +817,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     redirectToOpener: this.config.redirectToOpener,
                     jwtParams: s
                   }), !u || !c) return [3, 1];
-                  if (l = h.handleRedirectParameters(u, c), p = l.error, d = l.hashParameters, p) throw new Error(p);
-                  return y = d.access_token, _ = d.id_token, i = {
+                  if (l = h.handleRedirectParameters(u, c), d = l.error, p = l.hashParameters, d) throw new Error(d);
+                  return y = p.access_token, _ = p.id_token, i = {
                     accessToken: y,
                     idToken: _
                   }, [3, 3];
@@ -849,14 +849,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               r = e.verifierIdentifier,
               s = e.subVerifierDetailsArray;
           return i(this, void 0, Promise, function () {
-            var e, i, u, c, p, v, y, _, w, m, b, g, O, P, E, I, L, T, S, k, N, R, x, j, U, C, M, A, G;
+            var e, i, u, c, d, v, y, _, w, m, b, g, O, P, E, I, L, S, T, k, N, j, R, x, U, C, M, A, G;
 
             return o(this, function (o) {
               switch (o.label) {
                 case 0:
                   if (!this.isInitialized) throw new Error("Not initialized yet");
                   if (!t || !r || !Array.isArray(s)) throw new Error("Invalid params");
-                  if (t === d.AGGREGATE_VERIFIER.SINGLE_VERIFIER_ID && 1 !== s.length) throw new Error("Single id verifier can only have one sub verifier");
+                  if (t === p.AGGREGATE_VERIFIER.SINGLE_VERIFIER_ID && 1 !== s.length) throw new Error("Single id verifier can only have one sub verifier");
                   e = [], i = [], o.label = 1;
 
                 case 1:
@@ -864,28 +864,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 case 2:
                   if (c.done) return [3, 7];
-                  if (p = c.value, v = p.clientId, y = p.typeOfLogin, _ = p.verifier, w = p.jwtParams, m = p.hash, b = p.queryParameters, g = f["default"]({
+                  if (d = c.value, v = d.clientId, y = d.typeOfLogin, _ = d.verifier, w = d.jwtParams, m = d.hash, b = d.queryParameters, g = f["default"]({
                     typeOfLogin: y,
                     clientId: v,
                     verifier: _,
                     redirect_uri: this.config.redirect_uri,
                     redirectToOpener: this.config.redirectToOpener,
                     jwtParams: w
-                  }), R = void 0, !m || !b) return [3, 3];
+                  }), j = void 0, !m || !b) return [3, 3];
                   if (O = h.handleRedirectParameters(m, b), P = O.error, E = O.hashParameters, P) throw new Error(P);
-                  return j = E.access_token, x = E.id_token, R = {
-                    accessToken: j,
-                    idToken: x
+                  return x = E.access_token, R = E.id_token, j = {
+                    accessToken: x,
+                    idToken: R
                   }, [3, 5];
 
                 case 3:
                   return [4, g.handleLoginWindow()];
 
                 case 4:
-                  R = o.sent(), o.label = 5;
+                  j = o.sent(), o.label = 5;
 
                 case 5:
-                  e.push(g.getUserInfo(R)), i.push(R), o.label = 6;
+                  e.push(g.getUserInfo(j)), i.push(j), o.label = 6;
 
                 case 6:
                   return c = u.next(), [3, 2];
@@ -911,18 +911,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return [4, Promise.all(e)];
 
                 case 11:
-                  for (L = o.sent(), T = {
+                  for (L = o.sent(), S = {
                     verify_params: [],
                     sub_verifier_ids: [],
                     verifier_id: ""
-                  }, S = [], k = "", N = 0; N < s.length; N += 1) {
-                    R = i[N], x = R.idToken, j = R.accessToken, U = L[N], T.verify_params.push({
+                  }, T = [], k = "", N = 0; N < s.length; N += 1) {
+                    j = i[N], R = j.idToken, x = j.accessToken, U = L[N], S.verify_params.push({
                       verifier_id: U.verifierId,
-                      idtoken: x || j
-                    }), T.sub_verifier_ids.push(U.verifier), S.push(x || j), k = U.verifierId;
+                      idtoken: R || x
+                    }), S.sub_verifier_ids.push(U.verifier), T.push(R || x), k = U.verifierId;
                   }
 
-                  return S.sort(), C = l.keccak256(S.join(String.fromCharCode(29))).slice(2), T.verifier_id = k, [4, this.getTorusKey(r, k, T, C)];
+                  return T.sort(), C = l.keccak256(T.join(String.fromCharCode(29))).slice(2), S.verifier_id = k, [4, this.getTorusKey(r, k, S, C)];
 
                 case 12:
                   return M = o.sent(), [2, n(n({}, M), {
@@ -987,7 +987,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       Object.defineProperty(t, "__esModule", {
         value: !0
       });
-      var i = r(3),
+      var i = r(4),
           o = n(r(14)),
           a = n(r(20)),
           s = n(r(21)),
@@ -1000,33 +1000,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var t = e.clientId,
             r = e.redirect_uri,
             n = e.typeOfLogin,
-            p = e.verifier,
-            d = e.jwtParams,
+            d = e.verifier,
+            p = e.jwtParams,
             h = e.redirectToOpener;
-        if (!p || !n || !t) throw new Error("Invalid params");
-        var v = d || {},
+        if (!d || !n || !t) throw new Error("Invalid params");
+        var v = p || {},
             y = v.domain,
             _ = v.login_hint;
 
         switch (n) {
           case i.LOGIN.GOOGLE:
-            return new s["default"](t, p, r, n, h, _);
+            return new s["default"](t, d, r, n, h, p);
 
           case i.LOGIN.FACEBOOK:
-            return new a["default"](t, p, r, n, h);
+            return new a["default"](t, d, r, n, h, p);
 
           case i.LOGIN.TWITCH:
-            return new f["default"](t, p, r, n, h);
+            return new f["default"](t, d, r, n, h, p);
 
           case i.LOGIN.REDDIT:
-            return new l["default"](t, p, r, n, h);
+            return new l["default"](t, d, r, n, h, p);
 
           case i.LOGIN.DISCORD:
-            return new o["default"](t, p, r, n, h);
+            return new o["default"](t, d, r, n, h, p);
 
           case i.LOGIN.PASSWORDLESS:
             if (!y || !_) throw new Error("Invalid params");
-            return new c["default"](t, p, r, n, h, d);
+            return new c["default"](t, d, r, n, h, p);
 
           case i.LOGIN.APPLE:
           case i.LOGIN.GITHUB:
@@ -1037,7 +1037,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           case i.LOGIN.EMAIL_PASSWORD:
           case i.LOGIN.JWT:
             if (!y) throw new Error("Invalid params");
-            return new u["default"](t, p, r, n, h, d);
+            return new u["default"](t, d, r, n, h, p);
 
           default:
             throw new Error("Invalid login type");
@@ -1195,32 +1195,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       });
 
-      var u = r(0),
-          c = function (e) {
-        function t(t, r, n, i, o) {
-          var a = e.call(this, t, r, n, i, o) || this;
-          return a.clientId = t, a.verifier = r, a.redirect_uri = n, a.typeOfLogin = i, a.RESPONSE_TYPE = "token", a.SCOPE = "identify email", a.setFinalUrl(), a;
+      var u = s(r(0)),
+          c = r(1),
+          l = function (e) {
+        function t(t, r, n, i, o, a) {
+          var s = e.call(this, t, r, n, i, o, a) || this;
+          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.jwtParams = a, s.RESPONSE_TYPE = "token", s.SCOPE = "identify email", s.setFinalUrl(), s;
         }
 
         return i(t, e), t.prototype.setFinalUrl = function () {
-          var e = new URL("https://discordapp.com/api/oauth2/authorize");
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), this.finalURL = e;
+          var e = new URL("https://discordapp.com/api/oauth2/authorize"),
+              t = JSON.parse(JSON.stringify(this.jwtParams || {})),
+              r = u["default"]({
+            state: this.state,
+            response_type: this.RESPONSE_TYPE,
+            client_id: this.clientId,
+            redirect_uri: this.redirect_uri,
+            scope: this.SCOPE
+          }, t);
+          Object.keys(r).forEach(function (t) {
+            r[t] && e.searchParams.append(t, r[t]);
+          }), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
-            var t, r, n, i, o, s, c, l, f, p;
+            var t, r, n, i, o, s, u, l, f, d;
             return a(this, function (a) {
               switch (a.label) {
                 case 0:
-                  return t = e.accessToken, [4, u.get("https://discordapp.com/api/users/@me", {
+                  return t = e.accessToken, [4, c.get("https://discordapp.com/api/users/@me", {
                     headers: {
                       Authorization: "Bearer " + t
                     }
                   })];
 
                 case 1:
-                  return r = a.sent(), n = r.id, i = r.avatar, o = r.email, s = void 0 === o ? "" : o, c = r.username, l = void 0 === c ? "" : c, f = r.discriminator, p = void 0 === f ? "" : f, [2, {
-                    profileImage: null === i ? "https://cdn.discordapp.com/embed/avatars/" + Number(p) % 5 + ".png" : "https://cdn.discordapp.com/avatars/" + n + "/" + i + ".png?size=2048",
-                    name: l + "#" + p,
+                  return r = a.sent(), n = r.id, i = r.avatar, o = r.email, s = void 0 === o ? "" : o, u = r.username, l = void 0 === u ? "" : u, f = r.discriminator, d = void 0 === f ? "" : f, [2, {
+                    profileImage: null === i ? "https://cdn.discordapp.com/embed/avatars/" + Number(d) % 5 + ".png" : "https://cdn.discordapp.com/avatars/" + n + "/" + i + ".png?size=2048",
+                    name: l + "#" + d,
                     email: s,
                     verifierId: n,
                     verifier: this.verifier,
@@ -1230,9 +1241,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
           });
         }, t;
-      }(s(r(1))["default"]);
+      }(s(r(2))["default"]);
 
-      t["default"] = c;
+      t["default"] = l;
     }, function (e, t) {
       e.exports = __webpack_require__(
       /*! @toruslabs/http-helpers */
@@ -1347,11 +1358,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         return e;
       }
 
-      function p() {
+      function d() {
         if (!this.fired) return this.target.removeListener(this.type, this.wrapFn), this.fired = !0, 0 === arguments.length ? this.listener.call(this.target) : this.listener.apply(this.target, arguments);
       }
 
-      function d(e, t, r) {
+      function p(e, t, r) {
         var n = {
           fired: !1,
           wrapFn: void 0,
@@ -1359,7 +1370,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: t,
           listener: r
         },
-            i = p.bind(n);
+            i = d.bind(n);
         return i.listener = r, n.wrapFn = i, i;
       }
 
@@ -1444,9 +1455,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, s.prototype.on = s.prototype.addListener, s.prototype.prependListener = function (e, t) {
         return f(this, e, t, !0);
       }, s.prototype.once = function (e, t) {
-        return c(t), this.on(e, d(this, e, t)), this;
+        return c(t), this.on(e, p(this, e, t)), this;
       }, s.prototype.prependOnceListener = function (e, t) {
-        return c(t), this.prependListener(e, d(this, e, t)), this;
+        return c(t), this.prependListener(e, p(this, e, t)), this;
       }, s.prototype.removeListener = function (e, t) {
         var r, n, i, o, a;
         if (c(t), void 0 === (n = this._events)) return this;
@@ -1650,31 +1661,42 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       });
 
-      var u = r(0),
-          c = function (e) {
-        function t(t, r, n, i, o) {
-          var a = e.call(this, t, r, n, i, o) || this;
-          return a.clientId = t, a.verifier = r, a.redirect_uri = n, a.typeOfLogin = i, a.redirectToOpener = o, a.RESPONSE_TYPE = "token", a.SCOPE = "public_profile email", a.setFinalUrl(), a;
+      var u = s(r(0)),
+          c = r(1),
+          l = function (e) {
+        function t(t, r, n, i, o, a) {
+          var s = e.call(this, t, r, n, i, o, a) || this;
+          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.jwtParams = a, s.RESPONSE_TYPE = "token", s.SCOPE = "public_profile email", s.setFinalUrl(), s;
         }
 
         return i(t, e), t.prototype.setFinalUrl = function () {
-          var e = new URL("https://www.facebook.com/v6.0/dialog/oauth");
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), this.finalURL = e;
+          var e = new URL("https://www.facebook.com/v6.0/dialog/oauth"),
+              t = JSON.parse(JSON.stringify(this.jwtParams || {})),
+              r = u["default"]({
+            state: this.state,
+            response_type: this.RESPONSE_TYPE,
+            client_id: this.clientId,
+            redirect_uri: this.redirect_uri,
+            scope: this.SCOPE
+          }, t);
+          Object.keys(r).forEach(function (t) {
+            r[t] && e.searchParams.append(t, r[t]);
+          }), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
-            var t, r, n, i, o, s, c;
+            var t, r, n, i, o, s, u;
             return a(this, function (a) {
               switch (a.label) {
                 case 0:
-                  return t = e.accessToken, [4, u.get("https://graph.facebook.com/me?fields=name,email,picture.type(large)", {
+                  return t = e.accessToken, [4, c.get("https://graph.facebook.com/me?fields=name,email,picture.type(large)", {
                     headers: {
                       Authorization: "Bearer " + t
                     }
                   })];
 
                 case 1:
-                  return r = a.sent(), n = r.name, i = void 0 === n ? "" : n, o = r.id, s = r.picture, c = r.email, [2, {
-                    email: void 0 === c ? "" : c,
+                  return r = a.sent(), n = r.name, i = void 0 === n ? "" : n, o = r.id, s = r.picture, u = r.email, [2, {
+                    email: void 0 === u ? "" : u,
                     name: i,
                     profileImage: s.data.url || "",
                     verifier: this.verifier,
@@ -1685,9 +1707,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
           });
         }, t;
-      }(s(r(1))["default"]);
+      }(s(r(2))["default"]);
 
-      t["default"] = c;
+      t["default"] = l;
     }, function (e, t, r) {
       "use strict";
 
@@ -1840,32 +1862,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       });
 
-      var u = r(0),
-          c = function (e) {
+      var u = s(r(0)),
+          c = r(1),
+          l = function (e) {
         function t(t, r, n, i, o, a) {
-          var s = e.call(this, t, r, n, i, o) || this;
-          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.login_hint = a, s.RESPONSE_TYPE = "token id_token", s.SCOPE = "profile email openid", s.PROMPT = "consent select_account", s.setFinalUrl(), s;
+          var s = e.call(this, t, r, n, i, o, a) || this;
+          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.jwtParams = a, s.RESPONSE_TYPE = "token id_token", s.SCOPE = "profile email openid", s.PROMPT = "consent select_account", s.setFinalUrl(), s;
         }
 
         return i(t, e), t.prototype.setFinalUrl = function () {
-          var e = new URL("https://accounts.google.com/o/oauth2/v2/auth");
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), e.searchParams.append("nonce", this.nonce), this.login_hint ? (e.searchParams.append("login_hint", this.login_hint), e.searchParams.append("prompt", "consent")) : e.searchParams.append("prompt", this.PROMPT), this.finalURL = e;
+          var e = new URL("https://accounts.google.com/o/oauth2/v2/auth"),
+              t = JSON.parse(JSON.stringify(this.jwtParams || {})),
+              r = u["default"]({
+            state: this.state,
+            response_type: this.RESPONSE_TYPE,
+            client_id: this.clientId,
+            prompt: this.PROMPT,
+            redirect_uri: this.redirect_uri,
+            scope: this.SCOPE,
+            nonce: this.nonce
+          }, t);
+          Object.keys(r).forEach(function (t) {
+            r[t] && e.searchParams.append(t, r[t]);
+          }), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
-            var t, r, n, i, o, s, c;
+            var t, r, n, i, o, s, u;
             return a(this, function (a) {
               switch (a.label) {
                 case 0:
-                  return t = e.accessToken, [4, u.get("https://www.googleapis.com/userinfo/v2/me", {
+                  return t = e.accessToken, [4, c.get("https://www.googleapis.com/userinfo/v2/me", {
                     headers: {
                       Authorization: "Bearer " + t
                     }
                   })];
 
                 case 1:
-                  return r = a.sent(), n = r.picture, i = void 0 === n ? "" : n, o = r.email, s = void 0 === o ? "" : o, c = r.name, [2, {
+                  return r = a.sent(), n = r.picture, i = void 0 === n ? "" : n, o = r.email, s = void 0 === o ? "" : o, u = r.name, [2, {
                     email: s,
-                    name: void 0 === c ? "" : c,
+                    name: void 0 === u ? "" : u,
                     profileImage: i,
                     verifier: this.verifier,
                     verifierId: s.toLowerCase(),
@@ -1875,9 +1910,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
           });
         }, t;
-      }(s(r(1))["default"]);
+      }(s(r(2))["default"]);
 
-      t["default"] = c;
+      t["default"] = l;
     }, function (e, t, r) {
       "use strict";
 
@@ -2030,14 +2065,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       });
 
-      var u = s(r(6)),
+      var u = s(r(0)),
           c = s(r(7)),
-          l = r(4),
-          f = r(0),
-          p = s(r(2)),
-          d = function (e) {
+          l = r(5),
+          f = r(1),
+          d = s(r(3)),
+          p = function (e) {
         function t(t, r, n, i, o, a) {
-          var s = e.call(this, t, r, n, i, o) || this;
+          var s = e.call(this, t, r, n, i, o, a) || this;
           return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.jwtParams = a, s.SCOPE = "openid profile email", s.RESPONSE_TYPE = "token id_token", s.PROMPT = "login", s.setFinalUrl(), s;
         }
 
@@ -2062,7 +2097,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }), this.finalURL = t;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
-            var t, r, n, i, o, s, u, d, h, v, y, _, w;
+            var t, r, n, i, o, s, u, p, h, v, y, _, w;
 
             return a(this, function (a) {
               switch (a.label) {
@@ -2077,17 +2112,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   })];
 
                 case 2:
-                  return d = a.sent(), w = d.picture, y = d.name, [2, {
-                    email: _ = d.email,
+                  return p = a.sent(), w = p.picture, y = p.name, [2, {
+                    email: _ = p.email,
                     name: y,
                     profileImage: w,
-                    verifierId: l.getVerifierId(d, this.typeOfLogin, o, s),
+                    verifierId: l.getVerifierId(p, this.typeOfLogin, o, s),
                     verifier: this.verifier,
                     typeOfLogin: this.typeOfLogin
                   }];
 
                 case 3:
-                  return h = a.sent(), p["default"].error(h), v = c["default"](t), y = v.name, _ = v.email, [2, {
+                  return h = a.sent(), d["default"].error(h), v = c["default"](t), y = v.name, _ = v.email, [2, {
                     profileImage: w = v.picture,
                     name: y,
                     email: _,
@@ -2102,9 +2137,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
           });
         }, t;
-      }(s(r(1))["default"]);
+      }(s(r(2))["default"]);
 
-      t["default"] = d;
+      t["default"] = p;
     }, function (e, t, r) {
       "use strict";
 
@@ -2257,15 +2292,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       });
 
-      var u = r(5),
-          c = s(r(6)),
+      var u = r(6),
+          c = s(r(0)),
           l = s(r(7)),
-          f = r(4),
-          p = r(0),
-          d = s(r(2)),
+          f = r(5),
+          d = r(1),
+          p = s(r(3)),
           h = function (e) {
         function t(t, r, n, i, o, a) {
-          var s = e.call(this, t, r, n, i, o) || this;
+          var s = e.call(this, t, r, n, i, o, a) || this;
           return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.jwtParams = a, s.SCOPE = "openid profile email", s.RESPONSE_TYPE = "token id_token", s.PROMPT = "login", s.setFinalUrl(), s;
         }
 
@@ -2283,7 +2318,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   t = e.idToken, r = e.accessToken, n = this.jwtParams, i = n.domain, o = n.verifierIdField, s = n.isVerifierIdCaseSensitive, a.label = 1;
 
                 case 1:
-                  return a.trys.push([1, 3,, 4]), u = new URL(i), [4, p.get(f.padUrlString(u) + "userinfo", {
+                  return a.trys.push([1, 3,, 4]), u = new URL(i), [4, d.get(f.padUrlString(u) + "userinfo", {
                     headers: {
                       Authorization: "Bearer " + r
                     }
@@ -2300,7 +2335,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   }];
 
                 case 3:
-                  return h = a.sent(), d["default"].error(h), v = l["default"](t), y = v.name, _ = v.email, [2, {
+                  return h = a.sent(), p["default"].error(h), v = l["default"](t), y = v.name, _ = v.email, [2, {
                     profileImage: w = v.picture,
                     name: y,
                     email: _,
@@ -2330,13 +2365,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             s = o.hashParams,
                             u = s.access_token,
                             c = s.id_token;
-                        if (i) return d["default"].error(n.error), void r(new Error(i));
-                        n.data && a === e.verifier && (d["default"].info(n.data), t({
+                        if (i) return p["default"].error(n.error), void r(new Error(i));
+                        n.data && a === e.verifier && (p["default"].info(n.data), t({
                           accessToken: u,
                           idToken: c || ""
                         }));
                       } catch (i) {
-                        d["default"].error(i), r(i);
+                        p["default"].error(i), r(i);
                       }
                     }(i), n.close(), [2];
                   });
@@ -2365,18 +2400,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }, {
                   authParams: e.jwtParams
                 });
-                p.post(e.finalURL.href, JSON.parse(JSON.stringify(v))).then(function (e) {
-                  d["default"].info("posted", e);
+                d.post(e.finalURL.href, JSON.parse(JSON.stringify(v))).then(function (e) {
+                  p["default"].info("posted", e);
                 })["catch"](function (e) {
-                  d["default"].error(e), r(e);
+                  p["default"].error(e), r(e);
                 });
               } catch (e) {
-                d["default"].error(e), r(e);
+                p["default"].error(e), r(e);
               }
             }
           });
         }, t;
-      }(s(r(1))["default"]);
+      }(s(r(2))["default"]);
 
       t["default"] = h;
     }, function (e, t, r) {
@@ -2531,23 +2566,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       });
 
-      var u = r(0),
-          c = function (e) {
-        function t(t, r, n, i, o) {
-          var a = e.call(this, t, r, n, i, o) || this;
-          return a.clientId = t, a.verifier = r, a.redirect_uri = n, a.typeOfLogin = i, a.redirectToOpener = o, a.RESPONSE_TYPE = "token", a.SCOPE = "identity", a.setFinalUrl(), a;
+      var u = s(r(0)),
+          c = r(1),
+          l = function (e) {
+        function t(t, r, n, i, o, a) {
+          var s = e.call(this, t, r, n, i, o, a) || this;
+          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.jwtParams = a, s.RESPONSE_TYPE = "token", s.SCOPE = "identity", s.setFinalUrl(), s;
         }
 
         return i(t, e), t.prototype.setFinalUrl = function () {
-          var e = new URL("https://www.reddit.com/api/v1/authorize" + (window.innerWidth < 600 ? ".compact" : ""));
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), this.finalURL = e;
+          var e = new URL("https://www.reddit.com/api/v1/authorize" + (window.innerWidth < 600 ? ".compact" : "")),
+              t = JSON.parse(JSON.stringify(this.jwtParams || {})),
+              r = u["default"]({
+            state: this.state,
+            response_type: this.RESPONSE_TYPE,
+            client_id: this.clientId,
+            redirect_uri: this.redirect_uri,
+            scope: this.SCOPE
+          }, t);
+          Object.keys(r).forEach(function (t) {
+            r[t] && e.searchParams.append(t, r[t]);
+          }), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
             var t, r, n, i, o, s;
             return a(this, function (a) {
               switch (a.label) {
                 case 0:
-                  return t = e.accessToken, [4, u.get("https://oauth.reddit.com/api/v1/me", {
+                  return t = e.accessToken, [4, c.get("https://oauth.reddit.com/api/v1/me", {
                     headers: {
                       Authorization: "Bearer " + t
                     }
@@ -2566,9 +2612,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
           });
         }, t;
-      }(s(r(1))["default"]);
+      }(s(r(2))["default"]);
 
-      t["default"] = c;
+      t["default"] = l;
     }, function (e, t, r) {
       "use strict";
 
@@ -2747,23 +2793,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       });
 
-      var c = r(0),
-          l = function (e) {
-        function t(t, r, n, i, o) {
-          var a = e.call(this, t, r, n, i, o) || this;
-          return a.clientId = t, a.verifier = r, a.redirect_uri = n, a.typeOfLogin = i, a.redirectToOpener = o, a.RESPONSE_TYPE = "token", a.SCOPE = "user:read:email", a.setFinalUrl(), a;
+      var c = u(r(0)),
+          l = r(1),
+          f = function (e) {
+        function t(t, r, n, i, o, a) {
+          var s = e.call(this, t, r, n, i, o, a) || this;
+          return s.clientId = t, s.verifier = r, s.redirect_uri = n, s.typeOfLogin = i, s.redirectToOpener = o, s.jwtParams = a, s.RESPONSE_TYPE = "token", s.SCOPE = "user:read:email", s.setFinalUrl(), s;
         }
 
         return i(t, e), t.prototype.setFinalUrl = function () {
-          var e = new URL("https://id.twitch.tv/oauth2/authorize");
-          e.searchParams.append("response_type", this.RESPONSE_TYPE), e.searchParams.append("client_id", this.clientId), e.searchParams.append("state", this.state), e.searchParams.append("scope", this.SCOPE), e.searchParams.append("redirect_uri", this.redirect_uri), e.searchParams.append("force_verify", "true"), this.finalURL = e;
+          var e = new URL("https://id.twitch.tv/oauth2/authorize"),
+              t = JSON.parse(JSON.stringify(this.jwtParams || {})),
+              r = c["default"]({
+            state: this.state,
+            response_type: this.RESPONSE_TYPE,
+            client_id: this.clientId,
+            redirect_uri: this.redirect_uri,
+            scope: this.SCOPE,
+            force_verify: !0
+          }, t);
+          Object.keys(r).forEach(function (t) {
+            r[t] && e.searchParams.append(t, r[t]);
+          }), this.finalURL = e;
         }, t.prototype.getUserInfo = function (e) {
           return o(this, void 0, Promise, function () {
-            var t, r, n, i, o, u, l, f, p, d, h;
+            var t, r, n, i, o, u, c, f, d, p, h;
             return a(this, function (a) {
               switch (a.label) {
                 case 0:
-                  return t = e.accessToken, [4, c.get("https://api.twitch.tv/helix/users", {
+                  return t = e.accessToken, [4, l.get("https://api.twitch.tv/helix/users", {
                     headers: {
                       Authorization: "Bearer " + t,
                       "Client-ID": this.clientId
@@ -2771,10 +2829,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   })];
 
                 case 1:
-                  return r = a.sent(), n = s(r.data || [], 1), i = n[0], o = i.profile_image_url, u = void 0 === o ? "" : o, l = i.display_name, f = void 0 === l ? "" : l, p = i.email, d = void 0 === p ? "" : p, h = i.id, [2, {
+                  return r = a.sent(), n = s(r.data || [], 1), i = n[0], o = i.profile_image_url, u = void 0 === o ? "" : o, c = i.display_name, f = void 0 === c ? "" : c, d = i.email, p = void 0 === d ? "" : d, h = i.id, [2, {
                     profileImage: u,
                     name: f,
-                    email: d,
+                    email: p,
                     verifierId: h,
                     verifier: this.verifier,
                     typeOfLogin: this.typeOfLogin
@@ -2783,9 +2841,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
           });
         }, t;
-      }(u(r(1))["default"]);
+      }(u(r(2))["default"]);
 
-      t["default"] = l;
+      t["default"] = f;
     }, function (e, t, r) {
       "use strict";
 
@@ -2799,7 +2857,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: !0
       }), t.registerServiceWorker = void 0;
       var i = r(27),
-          o = n(r(2));
+          o = n(r(3));
 
       t.registerServiceWorker = function (e) {
         return new Promise(function (t, r) {
@@ -15663,7 +15721,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth *");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -23050,7 +23108,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     if (verifierId) {
                       jwtParams.login_hint = verifierId;
-                      console.log('Trigger with: ' + verifierId);
+                      console.log('login_hint: ' + verifierId);
                     }
 
                     _this$verifierMap$sel = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel.typeOfLogin, clientId = _this$verifierMap$sel.clientId, verifier = _this$verifierMap$sel.verifier;
