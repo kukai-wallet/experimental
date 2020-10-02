@@ -6438,7 +6438,7 @@ TorusComponent.ɵfac = function TorusComponent_Factory(t) { return new (t || Tor
 TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: TorusComponent, selectors: [["app-torus"]], decls: 23, vars: 0, consts: [[1, "kukai-card"], [1, "grey-card"], [1, "description", "bold"], [1, "description"], [1, "buttons-desc"], [1, "login-buttons"], [1, "login", 3, "click"], ["height", "16", "src", "../../../assets/img/google-logo.svg", 1, "login-logo"], ["height", "16", "src", "../../../assets/img/reddit-logo.svg", 1, "login-logo"], [1, "bottom-container"], [1, "buttons", "single"], ["routerLink", "/"], [1, "button", "back"], ["width", "200px", "src", "../../../assets/img/direct-auth.png"]], template: function TorusComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth *");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "p", 2);
