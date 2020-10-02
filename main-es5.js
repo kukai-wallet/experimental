@@ -22971,27 +22971,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../../services/operation/operation.service */
     "./src/app/services/operation/operation.service.ts");
-    /* harmony import */
-
-
-    var _message_message_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-    /*! ../message/message.service */
-    "./src/app/services/message/message.service.ts");
 
     var GOOGLE = 'google';
     var REDDIT = 'reddit';
-    var GITHUB = 'github';
-    var TWITTER = 'twitter';
-    var AUTH_DOMAIN = 'https://torus-test.auth0.com';
+    var proxyAddress = '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183';
 
     var TorusService = /*#__PURE__*/function () {
-      function TorusService(operationService, messageService) {
+      function TorusService(operationService) {
         var _this$verifierMap;
 
         _classCallCheck(this, TorusService);
 
         this.operationService = operationService;
-        this.messageService = messageService;
         this.torus = null;
         this.nodeDetails = null;
         this.verifierMap = (_this$verifierMap = {}, _defineProperty(_this$verifierMap, GOOGLE, {
@@ -23006,16 +22997,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           verifier: 'tezos-reddit-testnet'
         }), _this$verifierMap);
         this.verifierMapKeys = Object.keys(this.verifierMap);
-
-        this._loginToConnectionMap = function () {
-          var _ref;
-
-          return _ref = {}, _defineProperty(_ref, GITHUB, {
-            domain: AUTH_DOMAIN
-          }), _defineProperty(_ref, TWITTER, {
-            domain: AUTH_DOMAIN
-          }), _ref;
-        };
       }
 
       _createClass(TorusService, [{
@@ -23028,7 +23009,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context62.prev = _context62.next) {
                   case 0:
                     if (this.torus) {
-                      _context62.next = 13;
+                      _context62.next = 12;
                       break;
                     }
 
@@ -23036,7 +23017,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     torusdirectsdk = new _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2___default.a({
                       baseUrl: "".concat(location.origin, "/serviceworker"),
                       enableLogging: true,
-                      proxyContractAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183',
+                      proxyContractAddress: proxyAddress,
                       network: 'testnet'
                     });
                     console.log('init Torus');
@@ -23046,22 +23027,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 6:
-                    console.log('done Torus');
                     this.torus = torusdirectsdk;
-                    _context62.next = 13;
+                    _context62.next = 12;
                     break;
 
-                  case 10:
-                    _context62.prev = 10;
+                  case 9:
+                    _context62.prev = 9;
                     _context62.t0 = _context62["catch"](1);
                     console.error(_context62.t0, 'oninit caught');
 
-                  case 13:
+                  case 12:
                   case "end":
                     return _context62.stop();
                 }
               }
-            }, _callee62, this, [[1, 10]]);
+            }, _callee62, this, [[1, 9]]);
           }));
         }
       }, {
@@ -23076,7 +23056,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     fetchNodeDetails = new _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default.a({
                       network: 'ropsten',
-                      proxyAddress: '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183'
+                      proxyAddress: proxyAddress
                     });
                     torus = new _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default.a();
                     verifier = this.verifierMap[selectedVerifier].verifier;
@@ -23111,12 +23091,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     pk = _context63.sent;
                     pkh = this.operationService.spPointsToPkh(pk.X, pk.Y);
                     console.log(pkh);
-                    this.operationService.torusKeyLookup(pkh).subscribe(function (ans) {
-                      console.log('ans', ans);
-                    });
                     return _context63.abrupt("return", pkh);
 
-                  case 19:
+                  case 18:
                   case "end":
                     return _context63.stop();
                 }
@@ -23136,9 +23113,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context64.prev = _context64.next) {
                   case 0:
                     _context64.prev = 0;
-                    jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
+                    jwtParams = {};
 
-                    if (verifierId) {
+                    if (verifierId && selectedVerifier === GOOGLE) {
                       jwtParams.login_hint = verifierId;
                       console.log('login_hint: ' + verifierId);
                     }
@@ -23212,7 +23189,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     TorusService.ɵfac = function TorusService_Factory(t) {
-      return new (t || TorusService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_5__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_message_message_service__WEBPACK_IMPORTED_MODULE_6__["MessageService"]));
+      return new (t || TorusService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_5__["OperationService"]));
     };
 
     TorusService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
@@ -23231,8 +23208,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }], function () {
         return [{
           type: _services_operation_operation_service__WEBPACK_IMPORTED_MODULE_5__["OperationService"]
-        }, {
-          type: _message_message_service__WEBPACK_IMPORTED_MODULE_6__["MessageService"]
         }];
       }, null);
     })();
