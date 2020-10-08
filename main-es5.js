@@ -15744,9 +15744,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
       type: TorusComponent,
       selectors: [["app-torus"]],
-      decls: 23,
+      decls: 26,
       vars: 0,
-      consts: [[1, "kukai-card"], [1, "grey-card"], [1, "description", "bold"], [1, "description"], [1, "buttons-desc"], [1, "login-buttons"], [1, "login", 3, "click"], ["height", "16", "src", "../../../assets/img/google-logo.svg", 1, "login-logo"], ["height", "16", "src", "../../../assets/img/reddit-logo.svg", 1, "login-logo"], [1, "bottom-container"], [1, "buttons", "single"], ["routerLink", "/"], [1, "button", "back"], ["width", "200px", "src", "../../../assets/img/direct-auth.png"]],
+      consts: [[1, "kukai-card"], [1, "grey-card"], [1, "description", "bold"], [1, "description"], [1, "buttons-desc"], [1, "login-buttons"], [1, "login", 3, "click"], ["height", "16", "src", "../../../assets/img/google-logo.svg", 1, "login-logo"], ["height", "16", "src", "../../../assets/img/reddit-logo.svg", 1, "login-logo"], ["height", "16", "src", "../../../assets/img/twitter-logo.svg", 1, "login-logo"], [1, "bottom-container"], [1, "buttons", "single"], ["routerLink", "/"], [1, "button", "back"], ["width", "200px", "src", "../../../assets/img/direct-auth.png"]],
       template: function TorusComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
@@ -15803,25 +15803,37 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "button", 6);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "div", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_Template_button_click_17_listener() {
+            return ctx.torusLogin("twitter");
+          });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "div", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "img", 9);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "a", 11);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "button", 12);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](21, "Back");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, "Twitter Account");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "div", 10);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](21, "div", 11);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](22, "a", 12);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](23, "button", 13);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](24, "Back");
+
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](22, "img", 13);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](25, "img", 14);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -22070,8 +22082,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "pk2pkh",
         value: function pk2pkh(pk) {
-          console.log(pk);
-
           if (pk.length === 54 && pk.slice(0, 4) === 'edpk') {
             var pkDecoded = this.b58cdecode(pk, this.prefix.edpk);
             return this.b58cencode(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](20, pkDecoded), this.prefix.tz1);
@@ -22974,7 +22984,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var GOOGLE = 'google';
     var REDDIT = 'reddit';
+    var TWITTER = 'twitter';
     var proxyAddress = '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183';
+    var AUTH_DOMAIN = 'https://dev-0li4gssz.eu.auth0.com';
 
     var TorusService = /*#__PURE__*/function () {
       function TorusService(operationService) {
@@ -22995,8 +23007,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           typeOfLogin: 'reddit',
           clientId: 'H0nhRv1leU9pGQ',
           verifier: 'tezos-reddit-testnet'
+        }), _defineProperty(_this$verifierMap, TWITTER, {
+          name: 'Twitter',
+          typeOfLogin: 'twitter',
+          clientId: 'vKFgnaYZzKLUnhxnX5xqTqeMcumdVTz1',
+          verifier: 'tezos-twitter-test'
         }), _this$verifierMap);
         this.verifierMapKeys = Object.keys(this.verifierMap);
+
+        this._loginToConnectionMap = function () {
+          return _defineProperty({}, TWITTER, {
+            domain: AUTH_DOMAIN
+          });
+        };
       }
 
       _createClass(TorusService, [{
@@ -23113,7 +23136,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context64.prev = _context64.next) {
                   case 0:
                     _context64.prev = 0;
-                    jwtParams = {};
+                    jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
 
                     if (verifierId && selectedVerifier === GOOGLE) {
                       jwtParams.login_hint = verifierId;
@@ -23131,17 +23154,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 6:
                     loginDetails = _context64.sent;
-                    console.log(loginDetails);
                     keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
-                    console.log(keyPair);
-                    console.log('get pub');
+                    console.log('Torus details', {
+                      keyPair: keyPair,
+                      userInfo: loginDetails.userInfo
+                    });
                     return _context64.abrupt("return", {
                       keyPair: keyPair,
                       userInfo: loginDetails.userInfo
                     });
 
-                  case 14:
-                    _context64.prev = 14;
+                  case 12:
+                    _context64.prev = 12;
                     _context64.t0 = _context64["catch"](0);
                     console.error(_context64.t0, 'login caught');
                     return _context64.abrupt("return", {
@@ -23149,12 +23173,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       userInfo: null
                     });
 
-                  case 18:
+                  case 16:
                   case "end":
                     return _context64.stop();
                 }
               }
-            }, _callee64, this, [[0, 14]]);
+            }, _callee64, this, [[0, 12]]);
           }));
         }
       }, {

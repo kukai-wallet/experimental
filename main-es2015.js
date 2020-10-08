@@ -6435,7 +6435,7 @@ class TorusComponent {
     }
 }
 TorusComponent.ɵfac = function TorusComponent_Factory(t) { return new (t || TorusComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_6__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_3__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_4__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); };
-TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: TorusComponent, selectors: [["app-torus"]], decls: 23, vars: 0, consts: [[1, "kukai-card"], [1, "grey-card"], [1, "description", "bold"], [1, "description"], [1, "buttons-desc"], [1, "login-buttons"], [1, "login", 3, "click"], ["height", "16", "src", "../../../assets/img/google-logo.svg", 1, "login-logo"], ["height", "16", "src", "../../../assets/img/reddit-logo.svg", 1, "login-logo"], [1, "bottom-container"], [1, "buttons", "single"], ["routerLink", "/"], [1, "button", "back"], ["width", "200px", "src", "../../../assets/img/direct-auth.png"]], template: function TorusComponent_Template(rf, ctx) { if (rf & 1) {
+TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: TorusComponent, selectors: [["app-torus"]], decls: 26, vars: 0, consts: [[1, "kukai-card"], [1, "grey-card"], [1, "description", "bold"], [1, "description"], [1, "buttons-desc"], [1, "login-buttons"], [1, "login", 3, "click"], ["height", "16", "src", "../../../assets/img/google-logo.svg", 1, "login-logo"], ["height", "16", "src", "../../../assets/img/reddit-logo.svg", 1, "login-logo"], ["height", "16", "src", "../../../assets/img/twitter-logo.svg", 1, "login-logo"], [1, "bottom-container"], [1, "buttons", "single"], ["routerLink", "/"], [1, "button", "back"], ["width", "200px", "src", "../../../assets/img/direct-auth.png"]], template: function TorusComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
@@ -6461,16 +6461,21 @@ TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](15, "img", 8);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](16, "Reddit Account");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "div", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "div", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "a", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "button", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](21, "Back");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "button", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_Template_button_click_17_listener() { return ctx.torusLogin("twitter"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "img", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, "Twitter Account");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](21, "div", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](22, "a", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](23, "button", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](24, "Back");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](22, "img", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](25, "img", 14);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10566,7 +10571,6 @@ class OperationService {
         }
     }
     pk2pkh(pk) {
-        console.log(pk);
         if (pk.length === 54 && pk.slice(0, 4) === 'edpk') {
             const pkDecoded = this.b58cdecode(pk, this.prefix.edpk);
             return this.b58cencode(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](20, pkDecoded), this.prefix.tz1);
@@ -11298,7 +11302,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const GOOGLE = 'google';
 const REDDIT = 'reddit';
+const TWITTER = 'twitter';
 const proxyAddress = '0x4023d2a0D330bF11426B12C6144Cfb96B7fa6183';
+const AUTH_DOMAIN = 'https://dev-0li4gssz.eu.auth0.com';
 class TorusService {
     constructor(operationService) {
         this.operationService = operationService;
@@ -11317,8 +11323,19 @@ class TorusService {
                 clientId: 'H0nhRv1leU9pGQ',
                 verifier: 'tezos-reddit-testnet'
             },
+            [TWITTER]: {
+                name: 'Twitter',
+                typeOfLogin: 'twitter',
+                clientId: 'vKFgnaYZzKLUnhxnX5xqTqeMcumdVTz1',
+                verifier: 'tezos-twitter-test'
+            }
         };
         this.verifierMapKeys = Object.keys(this.verifierMap);
+        this._loginToConnectionMap = () => {
+            return {
+                [TWITTER]: { domain: AUTH_DOMAIN }
+            };
+        };
     }
     initTorus() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -11359,7 +11376,7 @@ class TorusService {
     loginTorus(selectedVerifier, verifierId = '') {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
-                const jwtParams = {};
+                const jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
                 if (verifierId && selectedVerifier === GOOGLE) {
                     jwtParams.login_hint = verifierId;
                     console.log('login_hint: ' + verifierId);
@@ -11371,10 +11388,8 @@ class TorusService {
                     clientId,
                     jwtParams
                 });
-                console.log(loginDetails);
                 const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
-                console.log(keyPair);
-                console.log('get pub');
+                console.log('Torus details', { keyPair, userInfo: loginDetails.userInfo });
                 return { keyPair, userInfo: loginDetails.userInfo };
             }
             catch (e) {
