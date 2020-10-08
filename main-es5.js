@@ -15753,7 +15753,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "H1");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "DirectAuth *");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -23017,7 +23017,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this._loginToConnectionMap = function () {
           return _defineProperty({}, TWITTER, {
-            domain: AUTH_DOMAIN
+            domain: AUTH_DOMAIN,
+            prompt: 'select_account'
           });
         };
       }
