@@ -23017,8 +23017,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this._loginToConnectionMap = function () {
           return _defineProperty({}, TWITTER, {
-            domain: AUTH_DOMAIN,
-            prompt: 'consent select_account'
+            domain: AUTH_DOMAIN
           });
         };
       }

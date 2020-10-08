@@ -11335,7 +11335,6 @@ class TorusService {
             return {
                 [TWITTER]: {
                     domain: AUTH_DOMAIN,
-                    prompt: 'consent select_account'
                 }
             };
         };
