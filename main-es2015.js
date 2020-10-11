@@ -6122,11 +6122,12 @@ class SendComponent {
                 this.torusLookupId = this.toPkh;
                 const { pkh, twitterId } = yield this.torusService.lookupPkh(this.torusVerifier, this.toPkh).catch(e => {
                     console.error(e);
+                    this.formInvalid = e;
                     return '';
                 });
+                this.torusPendingLookup = false;
                 if (pkh) {
                     this.torusLookupAddress = pkh;
-                    this.torusPendingLookup = false;
                     this.torusTwitterId = twitterId ? twitterId : '';
                     this.estimateFees();
                     console.log('Torus address', pkh);
