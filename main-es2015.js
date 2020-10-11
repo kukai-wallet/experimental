@@ -6127,9 +6127,12 @@ class SendComponent {
                 if (pkh) {
                     this.torusLookupAddress = pkh;
                     this.torusPendingLookup = false;
-                    this.torusTwitterId = twitterId;
+                    this.torusTwitterId = twitterId ? twitterId : '';
                     this.estimateFees();
                     console.log('Torus address', pkh);
+                }
+                else {
+                    this.torusLookupAddress = '';
                 }
             }
         });

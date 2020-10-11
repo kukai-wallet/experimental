@@ -15016,9 +15016,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     if (pkh) {
                       this.torusLookupAddress = pkh;
                       this.torusPendingLookup = false;
-                      this.torusTwitterId = twitterId;
+                      this.torusTwitterId = twitterId ? twitterId : '';
                       this.estimateFees();
                       console.log('Torus address', pkh);
+                    } else {
+                      this.torusLookupAddress = '';
                     }
 
                   case 15:
