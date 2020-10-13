@@ -5831,11 +5831,10 @@ class SendComponent {
                 for (const tx of this.transactions) {
                     amount = amount.plus(big_js__WEBPACK_IMPORTED_MODULE_11___default()(tx.amount));
                 }
-                const burnAndFee = big_js__WEBPACK_IMPORTED_MODULE_11___default()(this.getTotalBurn()).plus(big_js__WEBPACK_IMPORTED_MODULE_11___default()(this.getTotalFee()));
                 if (amount.gt(maxKt)) {
                     return this.translate.instant('SENDCOMPONENT.TOOHIGHAMOUNT');
                 }
-                else if (burnAndFee.gt(maxTz)) {
+                else if ((new big_js__WEBPACK_IMPORTED_MODULE_11___default.a('0')).gt(maxTz)) {
                     return this.translate.instant('SENDCOMPONENT.TOOHIGHFEE');
                 }
             }
@@ -5858,7 +5857,6 @@ class SendComponent {
     }
     estimateFees() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            console.log('estimate...');
             const prevSimError = this.latestSimError;
             this.latestSimError = '';
             if (this.prepTransactions()) {
@@ -5867,23 +5865,23 @@ class SendComponent {
                     this.latestSimError = '';
                     this.prevEquiClass = equiClass;
                     this.simSemaphore++; // Put lock on 'Preview and 'Send max'
-                    try {
-                        const res = yield this.estimateService.estimate(JSON.parse(JSON.stringify(this.transactions)), this.activeAccount.address);
+                    const callback = (res) => {
                         if (res) {
-                            console.log(res);
-                            this.defaultTransactionParams = res;
-                            this.updateMaxAmount();
+                            if (res.error) {
+                                this.formInvalid = res.error;
+                                this.latestSimError = res.error;
+                            }
+                            else {
+                                this.defaultTransactionParams = res;
+                                this.formInvalid = '';
+                                this.latestSimError = '';
+                                this.updateMaxAmount();
+                            }
                         }
-                        this.latestSimError = '';
-                        this.formInvalid = '';
-                    }
-                    catch (e) {
-                        this.formInvalid = e;
-                        this.latestSimError = e;
-                    }
-                    finally {
                         this.simSemaphore--;
-                    }
+                    };
+                    console.log('simulate...');
+                    this.estimateService.estimate(JSON.parse(JSON.stringify(this.transactions)), this.activeAccount.address, callback);
                 }
                 else {
                     this.latestSimError = prevSimError;
@@ -9021,10 +9019,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const httpOptions = { headers: { 'Content-Type': 'application/json' } };
+const hardGasLimit = 800000;
+const hardStorageLimit = 60000;
 class EstimateService {
     constructor(http, operationService) {
         this.http = http;
         this.operationService = operationService;
+        this.queue = [];
         this.CONSTANTS = this.operationService.CONSTANTS;
         this.revealGasLimit = 10000;
         this.nodeURL = this.CONSTANTS.NET.NODE_URL;
@@ -9048,7 +9049,36 @@ class EstimateService {
             });
         });
     }
-    estimate(transactions, from, invoke = false) {
+    estimate(transactions, from, callback) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.queue.push({ transactions, from, callback });
+            if (this.queue.length === 1) {
+                while (this.queue.length > 0) {
+                    while (this.queue.length > 1) {
+                        this.queue[0].callback(null);
+                        this.queue.shift();
+                    }
+                    let retry = false;
+                    for (let i = 0; i < 1 || retry && i < 2; i++) {
+                        yield this._estimate(this.queue[0].transactions, this.queue[0].from).then((res) => {
+                            this.queue[0].callback(res);
+                        }).catch((error) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                            if (error.message && error.message === 'An operation assumed a contract counter in the past' && !retry) {
+                                console.log('Update counter');
+                                yield this.preLoadData(this.pkh, this.pk);
+                                retry = true;
+                            }
+                            else {
+                                this.queue[0].callback({ error });
+                            }
+                        }));
+                    }
+                    this.queue.shift();
+                }
+            }
+        });
+    }
+    _estimate(transactions, from) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const extraGas = 80;
             if (!this.hash) {
@@ -9056,10 +9086,13 @@ class EstimateService {
             }
             const simulation = {
                 fee: 0,
-                gasLimit: 800000,
-                storageLimit: 60000
+                gasLimit: hardGasLimit,
+                storageLimit: hardStorageLimit
             };
             for (const tx of transactions) {
+                if (!tx.amount) {
+                    tx.amount = 0;
+                }
                 if (tx.to.slice(0, 3) !== 'KT1') {
                     tx.amount = 0.000001;
                 }
@@ -9108,25 +9141,25 @@ class EstimateService {
     }
     getOpUsage(content) {
         let gasUsage = 0;
-        let burn = 0;
+        let burn = big_js__WEBPACK_IMPORTED_MODULE_6___default()(0);
         if (content.source && content.source === this.pkh) {
-            burn -= content.amount ? content.amount : 0;
-            burn -= content.fee ? content.fee : 0;
+            burn = burn.minus(content.amount ? content.amount : '0');
+            burn = burn.minus(content.fee ? content.fee : '0');
         }
         if (content.destination && content.destination === this.pkh) {
-            burn += content.amount ? content.amount : 0;
+            burn = burn.plus(content.amount ? content.amount : '0');
         }
         if (content.metadata.operation_result.balance_updates) {
             for (const balanceUpdate of content.metadata.operation_result.balance_updates) {
                 if (balanceUpdate.contract === this.pkh) {
-                    burn -= balanceUpdate.change;
+                    burn = burn.minus(balanceUpdate.change);
                 }
             }
         }
         if (content.metadata.balance_updates) {
             for (const balanceUpdate of content.metadata.balance_updates) {
                 if (balanceUpdate.contract === this.pkh) {
-                    burn -= balanceUpdate.change;
+                    burn = burn.minus(balanceUpdate.change);
                 }
             }
         }
@@ -9139,8 +9172,8 @@ class EstimateService {
                     }
                     if (internalResult.result.balance_updates) {
                         for (const balanceUpdate of internalResult.result.balance_updates) {
-                            if (balanceUpdate.contract === this.pkh) {
-                                burn -= balanceUpdate.change;
+                            if (balanceUpdate.contract === this.pkh && balanceUpdate.change.slice(0, 1) === '-') {
+                                burn = burn.minus(balanceUpdate.change);
                             }
                         }
                     }
@@ -9148,7 +9181,7 @@ class EstimateService {
             }
         }
         const storageUsage = Math.round(burn / 1000);
-        if (gasUsage < 0 || storageUsage < 0) {
+        if (gasUsage < 0 || gasUsage > hardGasLimit || storageUsage < 0 || storageUsage > hardStorageLimit) {
             throw new Error('InvalidUsageCalculation');
         }
         return { gasUsage, storageUsage };
