@@ -20713,15 +20713,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "amount",
         value: function amount(_amount2) {
+          console.log(_amount2);
+
           if (_amount2 === '' || _amount2 === '0') {
             // default value / zero
             return true;
-          } else if (Number(_amount2) && 0 < Number(_amount2)) {
+          } else if (Number(_amount2) && _amount2.match(/^(0|[1-9][0-9]{0,8})(\.[0-9]{1,6}){0,1}$/g)) {
             // Positive number
             return true;
-          } else {
-            return false;
           }
+
+          return false;
         }
       }, {
         key: "fee",
