@@ -3820,8 +3820,10 @@ class MnemonicImportComponent {
                 }
                 else {
                     console.log(success);
-                    this.messageService.addError('Wrong password');
+                    this.messageService.addError('Something went wrong');
                 }
+            }).catch((e) => {
+                this.messageService.addError(e);
             });
         });
     }
@@ -9389,7 +9391,6 @@ class ImportService {
                     if (walletData.version === 1) {
                         console.log('v1');
                         seed = yield this.encryptionService.decrypt(walletData.encryptedSeed, pwd, walletData.pkh.slice(3, 19), 1);
-                        console.log('done');
                         if (_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_6__["utils"].seedToKeyPair(seed).pkh !== walletData.pkh) {
                             seed = '';
                         }
@@ -9400,18 +9401,19 @@ class ImportService {
                 }
             }
             catch (e) {
-                console.log(e);
-                return false;
+                console.error(e);
+                throw new Error('Failed to decrypt keystore file');
             }
             if (seed) {
                 return this.importWalletFromObject(walletData, seed).then((ans) => {
                     return ans;
                 }, (e) => {
-                    return false;
+                    console.error(e);
+                    throw new Error('Failed to fetch account(s). Please check your connection.');
                 });
             }
             else {
-                return false;
+                throw new Error('Wrong password');
             }
         });
     }

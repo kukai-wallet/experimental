@@ -10427,8 +10427,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       } else {
                         console.log(success);
 
-                        _this10.messageService.addError('Wrong password');
+                        _this10.messageService.addError('Something went wrong');
                       }
+                    })["catch"](function (e) {
+                      _this10.messageService.addError(e);
                     });
 
                   case 3:
@@ -20077,17 +20079,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 5:
                     seed = _context51.sent;
-                    _context51.next = 22;
+                    _context51.next = 21;
                     break;
 
                   case 8:
                     if (!(walletData.walletType === 0)) {
-                      _context51.next = 22;
+                      _context51.next = 21;
                       break;
                     }
 
                     if (!(walletData.version === 1)) {
-                      _context51.next = 18;
+                      _context51.next = 17;
                       break;
                     }
 
@@ -20097,58 +20099,58 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 13:
                     seed = _context51.sent;
-                    console.log('done');
 
                     if (_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_6__["utils"].seedToKeyPair(seed).pkh !== walletData.pkh) {
                       seed = '';
                     }
 
-                    _context51.next = 22;
+                    _context51.next = 21;
                     break;
 
-                  case 18:
+                  case 17:
                     if (!(walletData.version === 2 || walletData.version === 3)) {
-                      _context51.next = 22;
+                      _context51.next = 21;
                       break;
                     }
 
-                    _context51.next = 21;
+                    _context51.next = 20;
                     return this.encryptionService.decrypt(walletData.encryptedSeed, pwd, walletData.iv, walletData.version);
 
-                  case 21:
+                  case 20:
                     seed = _context51.sent;
 
-                  case 22:
-                    _context51.next = 28;
+                  case 21:
+                    _context51.next = 27;
                     break;
 
-                  case 24:
-                    _context51.prev = 24;
+                  case 23:
+                    _context51.prev = 23;
                     _context51.t0 = _context51["catch"](0);
-                    console.log(_context51.t0);
-                    return _context51.abrupt("return", false);
+                    console.error(_context51.t0);
+                    throw new Error('Failed to decrypt keystore file');
 
-                  case 28:
+                  case 27:
                     if (!seed) {
-                      _context51.next = 32;
+                      _context51.next = 31;
                       break;
                     }
 
                     return _context51.abrupt("return", this.importWalletFromObject(walletData, seed).then(function (ans) {
                       return ans;
                     }, function (e) {
-                      return false;
+                      console.error(e);
+                      throw new Error('Failed to fetch account(s). Please check your connection.');
                     }));
 
-                  case 32:
-                    return _context51.abrupt("return", false);
+                  case 31:
+                    throw new Error('Wrong password');
 
-                  case 33:
+                  case 32:
                   case "end":
                     return _context51.stop();
                 }
               }
-            }, _callee50, this, [[0, 24]]);
+            }, _callee50, this, [[0, 23]]);
           }));
         }
       }, {
