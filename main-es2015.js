@@ -3015,8 +3015,7 @@ class HeaderComponent {
     }
     getUsername() {
         if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_4__["TorusWallet"]) {
-            return 'klas.harrysson@googlemail.com';
-            //return this.walletService.wallet.displayName();
+            return this.walletService.wallet.displayName();
         }
         return '';
     }
