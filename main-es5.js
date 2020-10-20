@@ -9160,7 +9160,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "mailtoFormat",
         value: function mailtoFormat(message) {
           var subject = encodeURI(this.subject);
-          var body = this.encodedBody(message.amount, 'Google', "".concat(this.getHostName(), "\n\n"));
+          var body = this.encodedBody(message.amount, 'Google', "https://".concat(this.getHostName(), "/direct-auth\n\n"));
           return "mailto:".concat(message.email, "?subject=").concat(subject, "&body=").concat(body);
         }
       }, {
