@@ -15874,7 +15874,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", key_r138 === ctx_r137.activeLogin)("ngIfThen", _r140)("ngIfElse", _r142);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", key_r138 === ctx_r137.activeLogin || ctx_r137.mobile())("ngIfThen", _r140)("ngIfElse", _r142);
       }
     }
 
@@ -15985,6 +15985,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }, _callee32, this);
           }));
+        }
+      }, {
+        key: "mobile",
+        value: function mobile() {
+          return window.innerWidth < 480;
         }
       }]);
 

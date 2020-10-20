@@ -6545,7 +6545,7 @@ function TorusComponent_div_16_Template(rf, ctx) { if (rf & 1) {
     const _r142 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](5);
     const ctx_r137 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", key_r138 === ctx_r137.activeLogin)("ngIfThen", _r140)("ngIfElse", _r142);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", key_r138 === ctx_r137.activeLogin || ctx_r137.mobile())("ngIfThen", _r140)("ngIfElse", _r142);
 } }
 class TorusComponent {
     constructor(walletService, torusService, importService, messageService, router) {
@@ -6590,6 +6590,9 @@ class TorusComponent {
                 yield this.messageService.stopSpinner();
             }
         });
+    }
+    mobile() {
+        return (window.innerWidth < 480);
     }
 }
 TorusComponent.ɵfac = function TorusComponent_Factory(t) { return new (t || TorusComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_6__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_3__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_4__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); };
