@@ -13156,7 +13156,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "h1");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "DirectAuth*");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "DirectAuth");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -20749,7 +20749,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context67.prev = _context67.next) {
                   case 0:
                     if (this.torus) {
-                      _context67.next = 12;
+                      _context67.next = 11;
                       break;
                     }
 
@@ -20760,28 +20760,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       proxyContractAddress: this.proxy.address,
                       network: 'testnet'
                     });
-                    console.log('init Torus');
-                    _context67.next = 6;
+                    _context67.next = 5;
                     return torusdirectsdk.init({
                       skipSw: false
                     });
 
-                  case 6:
+                  case 5:
                     this.torus = torusdirectsdk;
-                    _context67.next = 12;
+                    _context67.next = 11;
                     break;
 
-                  case 9:
-                    _context67.prev = 9;
+                  case 8:
+                    _context67.prev = 8;
                     _context67.t0 = _context67["catch"](1);
                     console.error(_context67.t0, 'oninit caught');
 
-                  case 12:
+                  case 11:
                   case "end":
                     return _context67.stop();
                 }
               }
-            }, _callee66, this, [[1, 9]]);
+            }, _callee66, this, [[1, 8]]);
           }));
         }
       }, {
@@ -20802,15 +20801,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     verifier = this.verifierMap[selectedVerifier].verifier;
 
                     if (this.nodeDetails) {
-                      _context68.next = 12;
+                      _context68.next = 11;
                       break;
                     }
 
-                    console.log('Get node details ');
-                    _context68.next = 7;
+                    _context68.next = 6;
                     return fetchNodeDetails.getNodeDetails();
 
-                  case 7:
+                  case 6:
                     _yield$fetchNodeDetai = _context68.sent;
                     torusNodeEndpoints = _yield$fetchNodeDetai.torusNodeEndpoints;
                     torusNodePub = _yield$fetchNodeDetai.torusNodePub;
@@ -20820,7 +20818,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       torusNodePub: torusNodePub
                     }; // Cache node details
 
-                  case 12:
+                  case 11:
                     sanitizedVerifierId = verifierId;
 
                     if (!this.verifierMap[selectedVerifier].caseSensitiveVerifierID) {
@@ -20830,49 +20828,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     twitterId = '';
 
                     if (!(selectedVerifier === 'twitter')) {
-                      _context68.next = 28;
+                      _context68.next = 26;
                       break;
                     }
 
-                    console.log('twitter <>');
                     username = sanitizedVerifierId.replace('@', '');
-                    _context68.next = 20;
+                    _context68.next = 18;
                     return this.twitterLookup(username);
 
-                  case 20:
+                  case 18:
                     _yield$this$twitterLo = _context68.sent;
                     id = _yield$this$twitterLo.id;
 
                     if (!this.inputValidationService.twitterId(id)) {
-                      _context68.next = 27;
+                      _context68.next = 25;
                       break;
                     }
 
                     sanitizedVerifierId = "twitter|".concat(id);
                     twitterId = id;
-                    _context68.next = 28;
+                    _context68.next = 26;
                     break;
 
-                  case 27:
+                  case 25:
                     throw new Error('Twitter handle not found');
 
-                  case 28:
-                    _context68.next = 30;
+                  case 26:
+                    _context68.next = 28;
                     return torus.getPublicAddress(this.nodeDetails.torusNodeEndpoints, this.nodeDetails.torusNodePub, {
                       verifier: verifier,
                       verifierId: sanitizedVerifierId
                     }, true);
 
-                  case 30:
+                  case 28:
                     pk = _context68.sent;
                     pkh = this.operationService.spPointsToPkh(pk.X, pk.Y);
-                    console.log(pkh);
                     return _context68.abrupt("return", {
                       pkh: pkh,
                       twitterId: twitterId
                     });
 
-                  case 34:
+                  case 31:
                   case "end":
                     return _context68.stop();
                 }
@@ -20967,18 +20963,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 6:
                     loginDetails = _context70.sent;
-                    keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
-                    console.log('Torus details', {
-                      keyPair: keyPair,
-                      userInfo: loginDetails.userInfo
-                    });
+                    keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey); // console.log('Torus details', { keyPair, userInfo: loginDetails.userInfo });
+
                     return _context70.abrupt("return", {
                       keyPair: keyPair,
                       userInfo: loginDetails.userInfo
                     });
 
-                  case 12:
-                    _context70.prev = 12;
+                  case 11:
+                    _context70.prev = 11;
                     _context70.t0 = _context70["catch"](0);
                     console.error(_context70.t0, 'login caught');
                     return _context70.abrupt("return", {
@@ -20986,12 +20979,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       userInfo: null
                     });
 
-                  case 16:
+                  case 15:
                   case "end":
                     return _context70.stop();
                 }
               }
-            }, _callee69, this, [[0, 12]]);
+            }, _callee69, this, [[0, 11]]);
           }));
         }
       }, {

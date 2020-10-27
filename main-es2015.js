@@ -6599,7 +6599,7 @@ TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "div", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "div", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "h1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "DirectAuth*");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "DirectAuth");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "p");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Your Tezos wallet in one-click. ");
@@ -11631,7 +11631,6 @@ class TorusService {
                         proxyContractAddress: this.proxy.address,
                         network: 'testnet',
                     });
-                    console.log('init Torus');
                     yield torusdirectsdk.init({ skipSw: false });
                     this.torus = torusdirectsdk;
                 }
@@ -11647,7 +11646,6 @@ class TorusService {
             const torus = new _toruslabs_torus_js__WEBPACK_IMPORTED_MODULE_4___default.a();
             const verifier = this.verifierMap[selectedVerifier].verifier;
             if (!this.nodeDetails) {
-                console.log('Get node details ');
                 const { torusNodeEndpoints, torusNodePub, torusIndexes } = yield fetchNodeDetails.getNodeDetails();
                 this.nodeDetails = { torusNodeEndpoints, torusNodePub }; // Cache node details
             }
@@ -11657,7 +11655,6 @@ class TorusService {
             }
             let twitterId = '';
             if (selectedVerifier === 'twitter') {
-                console.log('twitter <>');
                 const username = sanitizedVerifierId.replace('@', '');
                 const { id } = yield this.twitterLookup(username);
                 if (this.inputValidationService.twitterId(id)) {
@@ -11668,10 +11665,8 @@ class TorusService {
                     throw new Error('Twitter handle not found');
                 }
             }
-            // twitter|1000319947724255232
             const pk = yield torus.getPublicAddress(this.nodeDetails.torusNodeEndpoints, this.nodeDetails.torusNodePub, { verifier, verifierId: sanitizedVerifierId }, true);
             const pkh = this.operationService.spPointsToPkh(pk.X, pk.Y);
-            console.log(pkh);
             return { pkh, twitterId };
         });
     }
@@ -11714,7 +11709,7 @@ class TorusService {
                     jwtParams
                 });
                 const keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
-                console.log('Torus details', { keyPair, userInfo: loginDetails.userInfo });
+                // console.log('Torus details', { keyPair, userInfo: loginDetails.userInfo });
                 return { keyPair, userInfo: loginDetails.userInfo };
             }
             catch (e) {
