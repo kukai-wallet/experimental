@@ -8678,6 +8678,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! big.js */ "./node_modules/big.js/big.js");
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../constants */ "./src/app/constants.ts");
+/* harmony import */ var _token_token_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../token/token.service */ "./src/app/services/token/token.service.ts");
+
+
 
 
 
@@ -8704,7 +8707,7 @@ var State;
     State[State["Updating"] = 2] = "Updating";
 })(State || (State = {}));
 class CoordinatorService {
-    constructor(activityService, tzrateService, walletService, balanceService, delegateService, operationService, errorHandlingPipe) {
+    constructor(activityService, tzrateService, walletService, balanceService, delegateService, operationService, errorHandlingPipe, tokenService) {
         this.activityService = activityService;
         this.tzrateService = tzrateService;
         this.walletService = walletService;
@@ -8712,6 +8715,7 @@ class CoordinatorService {
         this.delegateService = delegateService;
         this.operationService = operationService;
         this.errorHandlingPipe = errorHandlingPipe;
+        this.tokenService = tokenService;
         this.scheduler = new Map(); // pkh + delay
         this.defaultDelayActivity = 30000; // 30s
         this.shortDelayActivity = 5000; // 5s
@@ -8887,11 +8891,12 @@ class CoordinatorService {
         if (metadata.transactions) {
             console.log('Unconfirmed transactions:');
             console.log(metadata.transactions);
+            const decimals = metadata.tokenTransfer && this.tokenService.getAsset(metadata.tokenTransfer) ? this.tokenService.getAsset(metadata.tokenTransfer).decimals : 6;
             for (const op of metadata.transactions) {
                 const transaction = {
                     type: 'transaction',
                     status: 0,
-                    amount: big_js__WEBPACK_IMPORTED_MODULE_9___default()(op.amount).times(1000000).toString(),
+                    amount: big_js__WEBPACK_IMPORTED_MODULE_9___default()(op.amount).times(Math.pow(10, decimals)).toString(),
                     fee: null,
                     source: from,
                     destination: op.to,
@@ -8929,11 +8934,11 @@ class CoordinatorService {
         }
     }
 }
-CoordinatorService.ɵfac = function CoordinatorService_Factory(t) { return new (t || CoordinatorService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_activity_activity_service__WEBPACK_IMPORTED_MODULE_2__["ActivityService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_tzrate_tzrate_service__WEBPACK_IMPORTED_MODULE_3__["TzrateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_balance_balance_service__WEBPACK_IMPORTED_MODULE_4__["BalanceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_delegate_delegate_service__WEBPACK_IMPORTED_MODULE_6__["DelegateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_operation_operation_service__WEBPACK_IMPORTED_MODULE_7__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_8__["ErrorHandlingPipe"])); };
+CoordinatorService.ɵfac = function CoordinatorService_Factory(t) { return new (t || CoordinatorService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_activity_activity_service__WEBPACK_IMPORTED_MODULE_2__["ActivityService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_tzrate_tzrate_service__WEBPACK_IMPORTED_MODULE_3__["TzrateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_balance_balance_service__WEBPACK_IMPORTED_MODULE_4__["BalanceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_delegate_delegate_service__WEBPACK_IMPORTED_MODULE_6__["DelegateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_operation_operation_service__WEBPACK_IMPORTED_MODULE_7__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_8__["ErrorHandlingPipe"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_token_token_service__WEBPACK_IMPORTED_MODULE_11__["TokenService"])); };
 CoordinatorService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({ token: CoordinatorService, factory: CoordinatorService.ɵfac });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](CoordinatorService, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"]
-    }], function () { return [{ type: _activity_activity_service__WEBPACK_IMPORTED_MODULE_2__["ActivityService"] }, { type: _tzrate_tzrate_service__WEBPACK_IMPORTED_MODULE_3__["TzrateService"] }, { type: _wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"] }, { type: _balance_balance_service__WEBPACK_IMPORTED_MODULE_4__["BalanceService"] }, { type: _delegate_delegate_service__WEBPACK_IMPORTED_MODULE_6__["DelegateService"] }, { type: _operation_operation_service__WEBPACK_IMPORTED_MODULE_7__["OperationService"] }, { type: _pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_8__["ErrorHandlingPipe"] }]; }, null); })();
+    }], function () { return [{ type: _activity_activity_service__WEBPACK_IMPORTED_MODULE_2__["ActivityService"] }, { type: _tzrate_tzrate_service__WEBPACK_IMPORTED_MODULE_3__["TzrateService"] }, { type: _wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"] }, { type: _balance_balance_service__WEBPACK_IMPORTED_MODULE_4__["BalanceService"] }, { type: _delegate_delegate_service__WEBPACK_IMPORTED_MODULE_6__["DelegateService"] }, { type: _operation_operation_service__WEBPACK_IMPORTED_MODULE_7__["OperationService"] }, { type: _pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_8__["ErrorHandlingPipe"] }, { type: _token_token_service__WEBPACK_IMPORTED_MODULE_11__["TokenService"] }]; }, null); })();
 
 
 /***/ }),
@@ -12072,6 +12077,10 @@ class TokenService {
         this.contracts = new _constants__WEBPACK_IMPORTED_MODULE_2__["Constants"]().NET._ASSETS;
     }
     getAsset(tokenId) {
+        if (!tokenId.includes(':')) {
+            console.warn(`Invalid tokenId`, tokenId);
+            return null;
+        }
         const tokenIdArray = tokenId.split(':');
         const contractAddress = tokenIdArray[0];
         const id = tokenIdArray[1] ? Number(tokenIdArray[1]) : -1;

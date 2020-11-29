@@ -15716,6 +15716,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ../../constants */
     "./src/app/constants.ts");
+    /* harmony import */
+
+
+    var _token_token_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! ../token/token.service */
+    "./src/app/services/token/token.service.ts");
 
     var State;
 
@@ -15726,7 +15732,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     })(State || (State = {}));
 
     var CoordinatorService = /*#__PURE__*/function () {
-      function CoordinatorService(activityService, tzrateService, walletService, balanceService, delegateService, operationService, errorHandlingPipe) {
+      function CoordinatorService(activityService, tzrateService, walletService, balanceService, delegateService, operationService, errorHandlingPipe, tokenService) {
         _classCallCheck(this, CoordinatorService);
 
         this.activityService = activityService;
@@ -15736,6 +15742,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.delegateService = delegateService;
         this.operationService = operationService;
         this.errorHandlingPipe = errorHandlingPipe;
+        this.tokenService = tokenService;
         this.scheduler = new Map(); // pkh + delay
 
         this.defaultDelayActivity = 30000; // 30s
@@ -16045,6 +16052,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (metadata.transactions) {
             console.log('Unconfirmed transactions:');
             console.log(metadata.transactions);
+            var decimals = metadata.tokenTransfer && this.tokenService.getAsset(metadata.tokenTransfer) ? this.tokenService.getAsset(metadata.tokenTransfer).decimals : 6;
 
             var _iterator12 = _createForOfIteratorHelper(metadata.transactions),
                 _step12;
@@ -16055,7 +16063,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 var transaction = {
                   type: 'transaction',
                   status: 0,
-                  amount: big_js__WEBPACK_IMPORTED_MODULE_9___default()(op.amount).times(1000000).toString(),
+                  amount: big_js__WEBPACK_IMPORTED_MODULE_9___default()(op.amount).times(Math.pow(10, decimals)).toString(),
                   fee: null,
                   source: from,
                   destination: op.to,
@@ -16104,7 +16112,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     CoordinatorService.ɵfac = function CoordinatorService_Factory(t) {
-      return new (t || CoordinatorService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_activity_activity_service__WEBPACK_IMPORTED_MODULE_2__["ActivityService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_tzrate_tzrate_service__WEBPACK_IMPORTED_MODULE_3__["TzrateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_balance_balance_service__WEBPACK_IMPORTED_MODULE_4__["BalanceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_delegate_delegate_service__WEBPACK_IMPORTED_MODULE_6__["DelegateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_operation_operation_service__WEBPACK_IMPORTED_MODULE_7__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_8__["ErrorHandlingPipe"]));
+      return new (t || CoordinatorService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_activity_activity_service__WEBPACK_IMPORTED_MODULE_2__["ActivityService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_tzrate_tzrate_service__WEBPACK_IMPORTED_MODULE_3__["TzrateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_balance_balance_service__WEBPACK_IMPORTED_MODULE_4__["BalanceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_delegate_delegate_service__WEBPACK_IMPORTED_MODULE_6__["DelegateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_operation_operation_service__WEBPACK_IMPORTED_MODULE_7__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_8__["ErrorHandlingPipe"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_token_token_service__WEBPACK_IMPORTED_MODULE_11__["TokenService"]));
     };
 
     CoordinatorService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
@@ -16131,6 +16139,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: _operation_operation_service__WEBPACK_IMPORTED_MODULE_7__["OperationService"]
         }, {
           type: _pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_8__["ErrorHandlingPipe"]
+        }, {
+          type: _token_token_service__WEBPACK_IMPORTED_MODULE_11__["TokenService"]
         }];
       }, null);
     })();
@@ -21668,6 +21678,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(TokenService, [{
         key: "getAsset",
         value: function getAsset(tokenId) {
+          if (!tokenId.includes(':')) {
+            console.warn("Invalid tokenId", tokenId);
+            return null;
+          }
+
           var tokenIdArray = tokenId.split(':');
           var contractAddress = tokenIdArray[0];
           var id = tokenIdArray[1] ? Number(tokenIdArray[1]) : -1;
