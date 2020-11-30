@@ -1073,7 +1073,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 29);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 30);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
 
@@ -1083,47 +1083,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var token_r93 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var tokenData_r95 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        var ctx_r95 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx_r95.tokenService.getAsset(token_r93.tokenId).imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\xA0\xA0", ctx_r95.printTokenBalance(token_r93), "");
-      }
-    }
-
-    function AccountViewComponent_div_1_div_32_ng_container_5_div_1_ng_container_2_Template(rf, ctx) {
-      if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "span");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 29);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
-      }
-
-      if (rf & 2) {
-        var token_r93 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var token_r93 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
         var ctx_r96 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx_r96.tokenService.getAsset(token_r93.tokenId).imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", tokenData_r95.imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\xA0\xA0", ctx_r96.tokenService.getAsset(token_r93.tokenId).name, "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\xA0\xA0", ctx_r96.printTokenBalance(token_r93), "");
+      }
+    }
+
+    function AccountViewComponent_div_1_div_32_ng_container_5_div_1_ng_template_2_Template(rf, ctx) {
+      if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "span");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 30);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+      }
+
+      if (rf & 2) {
+        var tokenData_r95 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", tokenData_r95.imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("\xA0\xA0", tokenData_r95.name, "");
       }
     }
 
@@ -1133,27 +1129,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AccountViewComponent_div_1_div_32_ng_container_5_div_1_ng_container_1_Template, 4, 2, "ng-container", 27);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_32_ng_container_5_div_1_ng_container_2_Template, 4, 2, "ng-container", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_32_ng_container_5_div_1_ng_template_2_Template, 3, 2, "ng-template", null, 28, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "app-send", 28);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "app-send", 29);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
 
       if (rf & 2) {
+        var tokenData_r95 = ctx.$implicit;
+
+        var _r97 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
+
         var token_r93 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
         var ctx_r94 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r94.tokenService.getAsset(token_r93.tokenId).isNFT);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !tokenData_r95.isNft)("ngIfElse", _r97);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r94.tokenService.getAsset(token_r93.tokenId).isNFT);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("activeAccount", ctx_r94.account)("tokenTransfer", token_r93.tokenId);
       }
@@ -1163,7 +1159,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AccountViewComponent_div_1_div_32_ng_container_5_div_1_Template, 4, 4, "div", 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AccountViewComponent_div_1_div_32_ng_container_5_div_1_Template, 5, 4, "div", 25);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
       }
@@ -1215,7 +1211,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "span");
 
@@ -1251,7 +1247,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](1, 32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](1, 34);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_ng_container_1_img_2_Template, 1, 0, "img", 41);
 
@@ -1267,11 +1263,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var myactivity_r110 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var myactivity_r113 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngSwitch", myactivity_r110.lookupType);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngSwitch", myactivity_r113.lookupType);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -1287,7 +1283,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" \xA0", myactivity_r110.name, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" \xA0", myactivity_r113.name, " ");
       }
     }
 
@@ -1297,31 +1293,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var myactivity_r110 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var myactivity_r113 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](myactivity_r110.address);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](myactivity_r113.address);
       }
     }
 
     function AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "span", 38);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "span", 40);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_ng_container_1_Template, 6, 5, "ng-container", 39);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_ng_container_1_Template, 6, 5, "ng-container", 27);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_ng_template_2_Template, 1, 1, "ng-template", null, 40, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_ng_template_2_Template, 1, 1, "ng-template", null, 28, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
 
       if (rf & 2) {
-        var myactivity_r110 = ctx.$implicit;
+        var myactivity_r113 = ctx.$implicit;
 
-        var _r112 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
+        var _r115 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", myactivity_r110.name)("ngIfElse", _r112);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", myactivity_r113.name)("ngIfElse", _r115);
       }
     }
 
@@ -1337,13 +1333,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-        var ctx_r119 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r122 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r102.timestamp, ctx_r119.trigger));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r105.timestamp, ctx_r122.trigger));
       }
     }
 
@@ -1373,7 +1369,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 49);
 
@@ -1383,15 +1379,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 50);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_7_Template, 3, 4, "ng-container", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_7_Template, 3, 4, "ng-container", 32);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_8_Template, 2, 0, "ng-container", 27);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_8_Template, 2, 0, "ng-container", 32);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 51);
 
@@ -1409,31 +1405,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        var _r103 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
+        var _r106 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
 
-        var ctx_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r108 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Sent ", ctx_r105.printAmount(activity_r102), "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Sent ", ctx_r108.printAmount(activity_r105), "");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r105.explorerURL(activity_r102.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r108.explorerURL(activity_r105.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status > 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status > 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status === 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status === 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r103)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](6, _c0, ctx_r105.getCounterparty(activity_r102)));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r106)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](6, _c0, ctx_r108.getCounterparty(activity_r105)));
       }
     }
 
@@ -1449,13 +1445,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-        var ctx_r124 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r127 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r102.timestamp, ctx_r124.trigger));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r105.timestamp, ctx_r127.trigger));
       }
     }
 
@@ -1479,7 +1475,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 55);
 
@@ -1489,15 +1485,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 50);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_5_ng_container_7_Template, 3, 4, "ng-container", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_5_ng_container_7_Template, 3, 4, "ng-container", 32);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_5_ng_container_8_Template, 2, 0, "ng-container", 27);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_5_ng_container_8_Template, 2, 0, "ng-container", 32);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 51);
 
@@ -1515,31 +1511,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        var _r103 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
+        var _r106 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
 
-        var ctx_r106 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r109 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Received ", ctx_r106.printAmount(activity_r102), "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Received ", ctx_r109.printAmount(activity_r105), "");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r106.explorerURL(activity_r102.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r109.explorerURL(activity_r105.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status > 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status > 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status === 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status === 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r103)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](6, _c0, ctx_r106.getCounterparty(activity_r102)));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r106)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](6, _c0, ctx_r109.getCounterparty(activity_r105)));
       }
     }
 
@@ -1555,13 +1551,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-        var ctx_r129 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r132 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r102.timestamp, ctx_r129.trigger));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r105.timestamp, ctx_r132.trigger));
       }
     }
 
@@ -1585,7 +1581,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 58);
 
@@ -1595,15 +1591,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 50);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_6_ng_container_7_Template, 3, 4, "ng-container", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_6_ng_container_7_Template, 3, 4, "ng-container", 32);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_6_ng_container_8_Template, 2, 0, "ng-container", 27);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_6_ng_container_8_Template, 2, 0, "ng-container", 32);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 51);
 
@@ -1621,27 +1617,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        var _r103 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
+        var _r106 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
 
-        var ctx_r107 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r110 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r107.explorerURL(activity_r102.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r110.explorerURL(activity_r105.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status > 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status > 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status === 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status === 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r103)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](5, _c0, ctx_r107.getCounterparty(activity_r102)));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r106)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](5, _c0, ctx_r110.getCounterparty(activity_r105)));
       }
     }
 
@@ -1657,13 +1653,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-        var ctx_r134 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r137 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r102.timestamp, ctx_r134.trigger));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r105.timestamp, ctx_r137.trigger));
       }
     }
 
@@ -1687,7 +1683,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 58);
 
@@ -1697,15 +1693,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 50);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_7_ng_container_7_Template, 3, 4, "ng-container", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_7_ng_container_7_Template, 3, 4, "ng-container", 32);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_7_ng_container_8_Template, 2, 0, "ng-container", 27);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_7_ng_container_8_Template, 2, 0, "ng-container", 32);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 51);
 
@@ -1723,27 +1719,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        var _r103 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
+        var _r106 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
 
-        var ctx_r108 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r111 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r108.explorerURL(activity_r102.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r111.explorerURL(activity_r105.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status > 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status > 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status === 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status === 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r103)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](5, _c0, ctx_r108.getCounterparty(activity_r102)));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r106)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](5, _c0, ctx_r111.getCounterparty(activity_r105)));
       }
     }
 
@@ -1759,13 +1755,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-        var ctx_r139 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r142 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r102.timestamp, ctx_r139.trigger));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r105.timestamp, ctx_r142.trigger));
       }
     }
 
@@ -1787,7 +1783,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 59);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "span", 60);
 
@@ -1799,15 +1795,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 50);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_8_ng_container_7_Template, 3, 4, "ng-container", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_8_ng_container_7_Template, 3, 4, "ng-container", 32);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_8_ng_container_8_Template, 2, 0, "ng-container", 27);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_8_ng_container_8_Template, 2, 0, "ng-container", 32);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 33);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 51);
 
@@ -1825,31 +1821,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var activity_r105 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        var _r103 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
+        var _r106 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵreference"](3);
 
-        var ctx_r109 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r112 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](5, 6, ctx_r109.getType(activity_r102)));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](5, 6, ctx_r112.getType(activity_r105)));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r109.explorerURL(activity_r102.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r112.explorerURL(activity_r105.hash), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status > 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status > 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r102.status === 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", activity_r105.status === 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r103)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](8, _c0, ctx_r109.getCounterparty(activity_r102)));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r106)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](8, _c0, ctx_r112.getCounterparty(activity_r105)));
       }
     }
 
@@ -1857,19 +1853,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](1, 32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](1, 34);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_Template, 4, 2, "ng-template", null, 33, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_Template, 4, 2, "ng-template", null, 35, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, AccountViewComponent_div_1_div_39_ng_container_2_div_4_Template, 13, 8, "div", 34);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, AccountViewComponent_div_1_div_39_ng_container_2_div_4_Template, 13, 8, "div", 36);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, AccountViewComponent_div_1_div_39_ng_container_2_div_5_Template, 13, 8, "div", 35);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, AccountViewComponent_div_1_div_39_ng_container_2_div_5_Template, 13, 8, "div", 37);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, AccountViewComponent_div_1_div_39_ng_container_2_div_6_Template, 13, 7, "div", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, AccountViewComponent_div_1_div_39_ng_container_2_div_6_Template, 13, 7, "div", 38);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_7_Template, 13, 7, "div", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_7_Template, 13, 7, "div", 38);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_8_Template, 13, 10, "div", 37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_8_Template, 13, 10, "div", 39);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
 
@@ -1877,13 +1873,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var activity_r102 = ctx.$implicit;
+        var activity_r105 = ctx.$implicit;
 
-        var ctx_r101 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+        var ctx_r104 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngSwitch", ctx_r101.getType(activity_r102));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngSwitch", ctx_r104.getType(activity_r105));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
 
@@ -1905,9 +1901,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function AccountViewComponent_div_1_div_39_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 30);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 31);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AccountViewComponent_div_1_div_39_ng_container_1_Template, 4, 0, "ng-container", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AccountViewComponent_div_1_div_39_ng_container_1_Template, 4, 0, "ng-container", 32);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_39_ng_container_2_Template, 9, 5, "ng-container", 24);
 
@@ -1931,7 +1927,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function AccountViewComponent_div_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r145 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r148 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 2);
 
@@ -1966,11 +1962,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "img", 11);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AccountViewComponent_div_1_Template_img_click_12_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r145);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r148);
 
-          var ctx_r144 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r147 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r144.copy(ctx_r144.account);
+          return ctx_r147.copy(ctx_r147.account);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -2272,7 +2268,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       },
       decls: 2,
       vars: 2,
-      consts: [[3, "activeAccount"], ["id", "wrapper", 4, "ngIf"], ["id", "wrapper"], [1, "left-container"], [1, "main-container", "small"], [1, "top-container"], ["id", "account-container"], [1, "mid-container"], [1, "address-container"], [2, "margin-top", "0"], [1, "icons"], ["src", "../../../assets/img/copy-icon.svg", 1, "copy-icon", 3, "click"], [3, "activeAddress"], [2, "width", "auto", "font-size", "0.8125rem"], [1, "mark"], [1, "grey", 2, "font-size", "0.75rem"], [1, "bottom-container"], ["class", "main-container small", "style", "margin-top: 2rem", 4, "ngIf"], [1, "main-container", "large"], [2, "float", "left"], ["target", "_blank", 1, "view-all", 3, "href"], ["id", "operations-container", 4, "ngIf"], [1, "main-container", "small", 2, "margin-top", "2rem"], [1, "token-container"], [4, "ngFor", "ngForOf"], ["class", "token-row", 4, "ngIf"], [1, "token-row"], [4, "ngIf"], [3, "activeAccount", "tokenTransfer"], ["height", "16", 3, "src"], ["id", "operations-container"], [1, "line"], [3, "ngSwitch"], ["CounterpartyRef", ""], ["class", "sent", 4, "ngSwitchCase"], ["class", "received", 4, "ngSwitchCase"], ["class", "delegated", 4, "ngSwitchCase"], [4, "ngSwitchDefault"], [1, "grey", "truncate-overflow"], [4, "ngIf", "ngIfElse"], ["elseBlock", ""], ["height", "12", "src", "../../../assets/img/google-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/reddit-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/twitter-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/google-logo.svg"], ["height", "12", "src", "../../../assets/img/reddit-logo.svg"], ["height", "12", "src", "../../../assets/img/twitter-logo.svg"], [1, "sent"], ["src", "../../../assets/img/sent.svg"], [1, "red"], ["target", "_blank", 3, "href"], [1, "grey"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], [1, "received"], ["src", "../../../assets/img/received.svg"], [1, "green"], [1, "delegated"], ["src", "../../../assets/img/delegated.svg"], [1, "blue"], [2, "padding-left", "0.75rem"], [1, "black"]],
+      consts: [[3, "activeAccount"], ["id", "wrapper", 4, "ngIf"], ["id", "wrapper"], [1, "left-container"], [1, "main-container", "small"], [1, "top-container"], ["id", "account-container"], [1, "mid-container"], [1, "address-container"], [2, "margin-top", "0"], [1, "icons"], ["src", "../../../assets/img/copy-icon.svg", 1, "copy-icon", 3, "click"], [3, "activeAddress"], [2, "width", "auto", "font-size", "0.8125rem"], [1, "mark"], [1, "grey", 2, "font-size", "0.75rem"], [1, "bottom-container"], ["class", "main-container small", "style", "margin-top: 2rem", 4, "ngIf"], [1, "main-container", "large"], [2, "float", "left"], ["target", "_blank", 1, "view-all", 3, "href"], ["id", "operations-container", 4, "ngIf"], [1, "main-container", "small", 2, "margin-top", "2rem"], [1, "token-container"], [4, "ngFor", "ngForOf"], ["class", "token-row", 4, "ngIf"], [1, "token-row"], [4, "ngIf", "ngIfElse"], ["elseBlock", ""], [3, "activeAccount", "tokenTransfer"], ["height", "16", 3, "src"], ["id", "operations-container"], [4, "ngIf"], [1, "line"], [3, "ngSwitch"], ["CounterpartyRef", ""], ["class", "sent", 4, "ngSwitchCase"], ["class", "received", 4, "ngSwitchCase"], ["class", "delegated", 4, "ngSwitchCase"], [4, "ngSwitchDefault"], [1, "grey", "truncate-overflow"], ["height", "12", "src", "../../../assets/img/google-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/reddit-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/twitter-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/google-logo.svg"], ["height", "12", "src", "../../../assets/img/reddit-logo.svg"], ["height", "12", "src", "../../../assets/img/twitter-logo.svg"], [1, "sent"], ["src", "../../../assets/img/sent.svg"], [1, "red"], ["target", "_blank", 3, "href"], [1, "grey"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], [1, "received"], ["src", "../../../assets/img/received.svg"], [1, "green"], [1, "delegated"], ["src", "../../../assets/img/delegated.svg"], [1, "blue"], [2, "padding-left", "0.75rem"], [1, "black"]],
       template: function AccountViewComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-header", 0);
@@ -3179,7 +3175,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function AgreementComponent_div_0_Template(rf, ctx) {
       if (rf & 1) {
-        var _r325 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r328 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 1);
 
@@ -3216,11 +3212,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "button", 7);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AgreementComponent_div_0_Template_button_click_13_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r325);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r328);
 
-          var ctx_r324 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r327 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r324.accept();
+          return ctx_r327.accept();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Accept");
@@ -4723,7 +4719,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function DelegateComponent_span_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r259 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r262 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span");
 
@@ -4732,11 +4728,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "span", 3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DelegateComponent_span_1_Template_span_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r259);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r262);
 
-          var ctx_r258 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r261 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r258.openModal();
+          return ctx_r261.openModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "(Choose a baker)");
@@ -4749,7 +4745,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function DelegateComponent_span_2_Template(rf, ctx) {
       if (rf & 1) {
-        var _r261 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r264 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span");
 
@@ -4758,11 +4754,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "span", 3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DelegateComponent_span_2_Template_span_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r261);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r264);
 
-          var ctx_r260 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r263 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r260.openModal();
+          return ctx_r263.openModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "(Change\xA0baker)");
@@ -4773,11 +4769,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r256 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+        var ctx_r259 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", ctx_r256.activeAccount.delegate, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", ctx_r259.activeAccount.delegate, " ");
       }
     }
 
@@ -4791,17 +4787,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r265 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r268 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r265.formInvalid, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r268.formInvalid, " ");
       }
     }
 
     function DelegateComponent_div_3_div_7_Template(rf, ctx) {
       if (rf & 1) {
-        var _r267 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r270 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 10);
 
@@ -4832,11 +4828,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "input", 12, 13);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function DelegateComponent_div_3_div_7_Template_input_ngModelChange_9_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r267);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r270);
 
-          var ctx_r266 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+          var ctx_r269 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r266.toPkh = $event;
+          return ctx_r269.toPkh = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -4854,11 +4850,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](14, "input", 14);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function DelegateComponent_div_3_div_7_Template_input_ngModelChange_14_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r267);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r270);
 
-          var ctx_r268 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+          var ctx_r271 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r268.fee = $event;
+          return ctx_r271.fee = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -4870,11 +4866,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](16, "button", 16);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DelegateComponent_div_3_div_7_Template_button_click_16_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r267);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r270);
 
-          var ctx_r269 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+          var ctx_r272 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r269.openModal2();
+          return ctx_r272.openModal2();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](17, "Preview");
@@ -4885,25 +4881,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r262 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+        var ctx_r265 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r262.activeAccount.address);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r265.activeAccount.address);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r262.toPkh);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r265.toPkh);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("placeholder", ctx_r262.recommendedFee.toString());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("placeholder", ctx_r265.recommendedFee.toString());
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r262.fee);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r265.fee);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r262.formInvalid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r265.formInvalid);
       }
     }
 
@@ -4919,11 +4915,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r270 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r273 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Delegate to Baker Address \u2014 ", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](2, 1, ctx_r270.getDelegate()), " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Delegate to Baker Address \u2014 ", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](2, 1, ctx_r273.getDelegate()), " ");
       }
     }
 
@@ -4939,52 +4935,52 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function DelegateComponent_div_3_div_8_input_9_Template(rf, ctx) {
       if (rf & 1) {
-        var _r278 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r281 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "input", 25);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function DelegateComponent_div_3_div_8_input_9_Template_input_ngModelChange_0_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r278);
-
-          var ctx_r277 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
-
-          return ctx_r277.password = $event;
-        })("input", function DelegateComponent_div_3_div_8_input_9_Template_input_input_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r278);
-
-          var ctx_r279 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
-
-          return ctx_r279.pwdValid = "";
-        })("change", function DelegateComponent_div_3_div_8_input_9_Template_input_change_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r278);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r281);
 
           var ctx_r280 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r280.pwdValid = "";
+          return ctx_r280.password = $event;
+        })("input", function DelegateComponent_div_3_div_8_input_9_Template_input_input_0_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r281);
+
+          var ctx_r282 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+
+          return ctx_r282.pwdValid = "";
+        })("change", function DelegateComponent_div_3_div_8_input_9_Template_input_change_0_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r281);
+
+          var ctx_r283 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+
+          return ctx_r283.pwdValid = "";
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
       }
 
       if (rf & 2) {
-        var ctx_r272 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r275 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r272.password);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r275.password);
       }
     }
 
     function DelegateComponent_div_3_div_8_button_10_Template(rf, ctx) {
       if (rf & 1) {
-        var _r282 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r285 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 26);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DelegateComponent_div_3_div_8_button_10_Template_button_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r282);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r285);
 
-          var ctx_r281 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r284 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r281.ledgerSign();
+          return ctx_r284.ledgerSign();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Sign with Ledger");
@@ -4995,16 +4991,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function DelegateComponent_div_3_div_8_ng_template_11_Template(rf, ctx) {
       if (rf & 1) {
-        var _r284 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r287 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 27);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DelegateComponent_div_3_div_8_ng_template_11_Template_button_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r284);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r287);
 
-          var ctx_r283 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r286 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r283.inject();
+          return ctx_r286.inject();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
@@ -5013,13 +5009,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r275 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r278 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx_r275.walletService.isLedgerWallet() && (!ctx_r275.sendResponse || !ctx_r275.sendResponse.payload || !ctx_r275.sendResponse.payload.signedOperation));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx_r278.walletService.isLedgerWallet() && (!ctx_r278.sendResponse || !ctx_r278.sendResponse.payload || !ctx_r278.sendResponse.payload.signedOperation));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r275.walletService.isLedgerWallet() ? "Broadcast" : "Confirm", "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r278.walletService.isLedgerWallet() ? "Broadcast" : "Confirm", "");
       }
     }
 
@@ -5033,11 +5029,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r276 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r279 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r276.pwdValid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r279.pwdValid);
       }
     }
 
@@ -5079,43 +5075,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var _r274 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](12);
+        var _r277 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](12);
 
-        var ctx_r263 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Current Account Address \u2014 ", ctx_r263.activeAccount.address, " ");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r263.getDelegate());
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r263.getDelegate());
+        var ctx_r266 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Fee \u2014 ", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](7, 8, ctx_r263.getFee(), "1.0-6"), " tez ");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r263.walletService.isLedgerWallet() && !ctx_r263.walletService.isTorusWallet());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Current Account Address \u2014 ", ctx_r266.activeAccount.address, " ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r263.walletService.isLedgerWallet() && ctx_r263.ledgerError)("ngIfElse", _r274);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r266.getDelegate());
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r266.getDelegate());
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Fee \u2014 ", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](7, 8, ctx_r266.getFee(), "1.0-6"), " tez ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r263.pwdValid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r266.walletService.isLedgerWallet() && !ctx_r266.walletService.isTorusWallet());
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r266.walletService.isLedgerWallet() && ctx_r266.ledgerError)("ngIfElse", _r277);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r266.pwdValid);
       }
     }
 
     function DelegateComponent_div_3_Template(rf, ctx) {
       if (rf & 1) {
-        var _r286 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r289 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 4);
 
@@ -5124,11 +5120,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 6);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function DelegateComponent_div_3_Template_div_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r286);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r289);
 
-          var ctx_r285 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r288 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r285.closeModal();
+          return ctx_r288.closeModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](3, "img", 7);
@@ -5155,15 +5151,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r257 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+        var ctx_r260 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r257.activeView === 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r260.activeView === 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r257.activeView === 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r260.activeView === 1);
       }
     }
 
@@ -5985,19 +5981,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var origAcc_r309 = ctx.$implicit;
+        var origAcc_r312 = ctx.$implicit;
 
-        var ctx_r308 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("selected", origAcc_r309.address === ctx_r308.activeAccount.address);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/account/", origAcc_r309.address, "");
+        var ctx_r311 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", origAcc_r309.shortAddress(), " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("selected", origAcc_r312.address === ctx_r311.activeAccount.address);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/account/", origAcc_r312.address, "");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", origAcc_r312.shortAddress(), " ");
       }
     }
 
@@ -6017,23 +6013,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var impAcc_r307 = ctx.$implicit;
+        var impAcc_r310 = ctx.$implicit;
 
-        var ctx_r306 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("selected", impAcc_r307.address === ctx_r306.activeAccount.address);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/account/", impAcc_r307.address, "");
+        var ctx_r309 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", impAcc_r307.shortAddress(), " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("selected", impAcc_r310.address === ctx_r309.activeAccount.address);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("routerLink", "/account/", impAcc_r310.address, "");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", impAcc_r307.originatedAccounts);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", impAcc_r310.shortAddress(), " ");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", impAcc_r310.originatedAccounts);
       }
     }
 
@@ -6079,15 +6075,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r304 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r307 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r304.activeAccount.shortAddress());
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r307.activeAccount.shortAddress());
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r304.impAccs);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r307.impAccs);
       }
     }
 
@@ -6103,11 +6099,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r305 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r308 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/", ctx_r305.getVerifier(), "-logo.svg", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/", ctx_r308.getVerifier(), "-logo.svg", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -6339,11 +6335,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var message_r288 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var message_r291 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](message_r288.msg);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](message_r291.msg);
       }
     }
 
@@ -6373,40 +6369,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var message_r288 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var message_r291 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-        var ctx_r293 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r293.notifyFormat(message_r288), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        var ctx_r296 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", ctx_r293.getAlias(message_r288), " via ", message_r288.msg, ": ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("href", ctx_r296.notifyFormat(message_r291), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", message_r288.amount, " tez");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", ctx_r296.getAlias(message_r291), " via ", message_r291.msg, ": ");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", message_r291.amount, " tez");
       }
     }
 
     function MessagesComponent_div_1_alert_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r298 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r301 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "alert", 4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 5);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MessagesComponent_div_1_alert_1_Template_button_click_1_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r298);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r301);
 
-          var i_r289 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
+          var i_r292 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().index;
 
-          var ctx_r296 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r299 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r296.removeMessage(i_r289);
+          return ctx_r299.removeMessage(i_r292);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "span", 6);
@@ -6425,17 +6421,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var message_r288 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var message_r291 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("type", message_r288.type);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("type", message_r291.type);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !message_r288.email && !message_r288.username && !message_r288.twitterId && message_r288.msg);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !message_r291.email && !message_r291.username && !message_r291.twitterId && message_r291.msg);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r288.email || message_r288.username || message_r288.twitterId);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r291.email || message_r291.username || message_r291.twitterId);
       }
     }
 
@@ -6449,11 +6445,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var message_r288 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+        var message_r291 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](message_r288.msg);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](message_r291.msg);
       }
     }
 
@@ -6467,13 +6463,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var message_r288 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
+        var message_r291 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]().$implicit;
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("type", message_r288.type)("dismissOnTimeout", message_r288.timeout);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("type", message_r291.type)("dismissOnTimeout", message_r291.timeout);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r288.msg);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r291.msg);
       }
     }
 
@@ -6489,15 +6485,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var message_r288 = ctx.$implicit;
+        var message_r291 = ctx.$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !message_r288.timeout);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !message_r291.timeout);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r288.timeout);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", message_r291.timeout);
       }
     }
 
@@ -8096,16 +8092,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function NewImplicitComponent_img_0_Template(rf, ctx) {
       if (rf & 1) {
-        var _r313 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r316 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "img", 2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NewImplicitComponent_img_0_Template_img_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r313);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r316);
 
-          var ctx_r312 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r315 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r312.openModal();
+          return ctx_r315.openModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -8122,17 +8118,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r315 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+        var ctx_r318 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r315.errorMsg);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r318.errorMsg);
       }
     }
 
     function NewImplicitComponent_div_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r317 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r320 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 3);
 
@@ -8141,11 +8137,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 5);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NewImplicitComponent_div_1_Template_div_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r317);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r320);
 
-          var ctx_r316 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r319 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r316.closeModal();
+          return ctx_r319.closeModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](3, "img", 6);
@@ -8175,23 +8171,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "input", 10, 11);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function NewImplicitComponent_div_1_Template_input_ngModelChange_11_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r317);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r320);
 
-          var ctx_r318 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r321 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r318.password = $event;
+          return ctx_r321.password = $event;
         })("input", function NewImplicitComponent_div_1_Template_input_input_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r317);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r320);
 
-          var ctx_r319 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r322 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r319.errorMsg = "";
+          return ctx_r322.errorMsg = "";
         })("change", function NewImplicitComponent_div_1_Template_input_change_11_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r317);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r320);
 
-          var ctx_r320 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r323 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r320.errorMsg = "";
+          return ctx_r323.errorMsg = "";
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -8199,11 +8195,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "button", 12);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function NewImplicitComponent_div_1_Template_button_click_13_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r317);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r320);
 
-          var ctx_r321 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r324 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r321.addPkh();
+          return ctx_r324.addPkh();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, "Confirm");
@@ -8222,15 +8218,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r311 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+        var ctx_r314 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](11);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r311.password);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r314.password);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r311.errorMsg);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r314.errorMsg);
       }
     }
 
@@ -9463,7 +9459,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function ReceiveComponent_div_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r254 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+        var _r257 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 2);
 
@@ -9472,11 +9468,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ReceiveComponent_div_1_Template_div_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r254);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r257);
 
-          var ctx_r253 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+          var ctx_r256 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-          return ctx_r253.closeModal();
+          return ctx_r256.closeModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "img", 5);
@@ -9523,7 +9519,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r252 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r255 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
 
@@ -9531,7 +9527,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](8);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r252.activeAddress);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r255.activeAddress);
       }
     }
 
@@ -9820,16 +9816,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_button_0_Template(rf, ctx) {
       if (rf & 1) {
-        var _r162 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r165 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_button_0_Template_button_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r162);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r165);
 
-          var ctx_r161 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r164 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r161.openModal();
+          return ctx_r164.openModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Send");
@@ -9840,16 +9836,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_span_1_Template(rf, ctx) {
       if (rf & 1) {
-        var _r164 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r167 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_span_1_Template_span_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r164);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r167);
 
-          var ctx_r163 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r166 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r163.openModal();
+          return ctx_r166.openModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Send");
@@ -9900,16 +9896,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_div_2_button_7_Template(rf, ctx) {
       if (rf & 1) {
-        var _r173 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r176 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 13);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_button_7_Template_button_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r173);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r176);
 
-          var ctx_r172 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+          var ctx_r175 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r172.toggleDestination();
+          return ctx_r175.toggleDestination();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, SendComponent_div_2_button_7_ng_container_1_Template, 2, 0, "ng-container", 10);
@@ -9920,30 +9916,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r167 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+        var ctx_r170 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r167.isMultipleDestinations);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r170.isMultipleDestinations);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r167.isMultipleDestinations);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r170.isMultipleDestinations);
       }
     }
 
     function SendComponent_div_2_div_8_button_7_Template(rf, ctx) {
       if (rf & 1) {
-        var _r189 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r192 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 35);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_8_button_7_Template_button_click_0_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r189);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r192);
 
-          var ctx_r188 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r191 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r188.sendEntireBalance($event);
+          return ctx_r191.sendEntireBalance($event);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Send Max");
@@ -9952,9 +9948,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r175 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r178 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("max", ctx_r175.sendMax);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("max", ctx_r178.sendMax);
       }
     }
 
@@ -10002,21 +9998,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var key_r191 = ctx.$implicit;
+        var key_r194 = ctx.$implicit;
 
-        var ctx_r190 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
+        var ctx_r193 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("value", key_r191);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("value", key_r194);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", ctx_r190.torusService.verifierMap[key_r191].name, " Account");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", ctx_r193.torusService.verifierMap[key_r194].name, " Account");
       }
     }
 
     function SendComponent_div_2_div_8_div_20_Template(rf, ctx) {
       if (rf & 1) {
-        var _r193 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r196 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 24);
 
@@ -10031,17 +10027,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "select", 38);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function SendComponent_div_2_div_8_div_20_Template_select_ngModelChange_4_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r193);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r196);
 
-          var ctx_r192 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r195 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r192.torusVerifier = $event;
+          return ctx_r195.torusVerifier = $event;
         })("ngModelChange", function SendComponent_div_2_div_8_div_20_Template_select_ngModelChange_4_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r193);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r196);
 
-          var ctx_r194 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r197 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r194.verifierChange();
+          return ctx_r197.verifierChange();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "option", 39);
@@ -10059,23 +10055,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "input", 41);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_20_Template_input_input_8_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r193);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r196);
 
-          var ctx_r195 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r198 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r195.updateDefaultValues();
+          return ctx_r198.updateDefaultValues();
         })("change", function SendComponent_div_2_div_8_div_20_Template_input_change_8_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r193);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r196);
 
-          var ctx_r196 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r199 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r196.validateReceiverAddress();
+          return ctx_r199.validateReceiverAddress();
         })("ngModelChange", function SendComponent_div_2_div_8_div_20_Template_input_ngModelChange_8_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r193);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r196);
 
-          var ctx_r197 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r200 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r197.toPkh = $event;
+          return ctx_r200.toPkh = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10084,19 +10080,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r181 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r184 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r181.torusVerifier);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r184.torusVerifier);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx_r181.torusService.verifierMapKeys);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx_r184.torusService.verifierMapKeys);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r181.toPkh);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r184.toPkh);
       }
     }
 
@@ -10120,11 +10116,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r199 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
+        var ctx_r202 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r199.torusLookupAddress);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r202.torusLookupAddress);
       }
     }
 
@@ -10140,21 +10136,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r182 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r185 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r182.torusPendingLookup);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r185.torusPendingLookup);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r182.torusPendingLookup && ctx_r182.torusLookupAddress);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r185.torusPendingLookup && ctx_r185.torusLookupAddress);
       }
     }
 
     function SendComponent_div_2_div_8_div_22_Template(rf, ctx) {
       if (rf & 1) {
-        var _r201 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r204 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 24);
 
@@ -10173,23 +10169,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "textarea", 46);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_22_Template_textarea_input_5_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r201);
-
-          var ctx_r200 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
-
-          return ctx_r200.updateDefaultValues();
-        })("change", function SendComponent_div_2_div_8_div_22_Template_textarea_change_5_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r201);
-
-          var ctx_r202 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
-
-          return ctx_r202.validateBatch();
-        })("ngModelChange", function SendComponent_div_2_div_8_div_22_Template_textarea_ngModelChange_5_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r201);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r204);
 
           var ctx_r203 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r203.toMultipleDestinationsString = $event;
+          return ctx_r203.updateDefaultValues();
+        })("change", function SendComponent_div_2_div_8_div_22_Template_textarea_change_5_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r204);
+
+          var ctx_r205 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+
+          return ctx_r205.validateBatch();
+        })("ngModelChange", function SendComponent_div_2_div_8_div_22_Template_textarea_ngModelChange_5_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r204);
+
+          var ctx_r206 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+
+          return ctx_r206.toMultipleDestinationsString = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10198,15 +10194,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r183 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r186 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r183.batchSpace());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r186.batchSpace());
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r183.toMultipleDestinationsString);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r186.toMultipleDestinationsString);
       }
     }
 
@@ -10232,7 +10228,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function SendComponent_div_2_div_8_div_33_Template(rf, ctx) {
       if (rf & 1) {
-        var _r205 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r208 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 47);
 
@@ -10249,11 +10245,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "input", 48);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function SendComponent_div_2_div_8_div_33_Template_input_ngModelChange_5_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r205);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r208);
 
-          var ctx_r204 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r207 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r204.gas = $event;
+          return ctx_r207.gas = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10271,23 +10267,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "input", 49);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_33_Template_input_input_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r205);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r208);
 
-          var ctx_r206 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r209 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r206.updateMaxAmount();
+          return ctx_r209.updateMaxAmount();
         })("paste", function SendComponent_div_2_div_8_div_33_Template_input_paste_9_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r205);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r208);
 
-          var ctx_r207 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r210 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r207.updateMaxAmount();
+          return ctx_r210.updateMaxAmount();
         })("ngModelChange", function SendComponent_div_2_div_8_div_33_Template_input_ngModelChange_9_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r205);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r208);
 
-          var ctx_r208 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r211 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r208.fee = $event;
+          return ctx_r211.fee = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10309,23 +10305,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](14, "input", 49);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("input", function SendComponent_div_2_div_8_div_33_Template_input_input_14_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r205);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r208);
 
-          var ctx_r209 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r212 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r209.updateMaxAmount();
+          return ctx_r212.updateMaxAmount();
         })("paste", function SendComponent_div_2_div_8_div_33_Template_input_paste_14_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r205);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r208);
 
-          var ctx_r210 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r213 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r210.updateMaxAmount();
+          return ctx_r213.updateMaxAmount();
         })("ngModelChange", function SendComponent_div_2_div_8_div_33_Template_input_ngModelChange_14_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r205);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r208);
 
-          var ctx_r211 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r214 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r211.storage = $event;
+          return ctx_r214.storage = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10350,29 +10346,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r186 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r189 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("placeholder", ctx_r186.defaultTransactionParams.gas.toString());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("placeholder", ctx_r189.defaultTransactionParams.gas.toString());
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r186.gas);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r189.gas);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("placeholder", ctx_r186.defaultTransactionParams.fee.toString());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("placeholder", ctx_r189.defaultTransactionParams.fee.toString());
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r186.fee);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r189.fee);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("placeholder", ctx_r186.defaultTransactionParams.storage.toString());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("placeholder", ctx_r189.defaultTransactionParams.storage.toString());
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r186.storage);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r189.storage);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", ctx_r186.burnAmount() ? ctx_r186.burnAmount() : "0 tez");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", ctx_r189.burnAmount() ? ctx_r189.burnAmount() : "0 tez");
       }
     }
 
@@ -10386,17 +10382,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r187 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r190 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r187.formInvalid, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r190.formInvalid, " ");
       }
     }
 
     function SendComponent_div_2_div_8_Template(rf, ctx) {
       if (rf & 1) {
-        var _r213 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r216 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 14);
 
@@ -10405,29 +10401,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "input", 16, 17);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function SendComponent_div_2_div_8_Template_input_ngModelChange_2_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r213);
-
-          var ctx_r212 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
-
-          return ctx_r212.amount = $event;
-        })("click", function SendComponent_div_2_div_8_Template_input_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r213);
-
-          var ctx_r214 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
-
-          return ctx_r214.sendMax = false;
-        })("input", function SendComponent_div_2_div_8_Template_input_input_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r213);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r216);
 
           var ctx_r215 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r215.amountChange();
+          return ctx_r215.amount = $event;
+        })("click", function SendComponent_div_2_div_8_Template_input_click_2_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r216);
+
+          var ctx_r217 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+
+          return ctx_r217.sendMax = false;
+        })("input", function SendComponent_div_2_div_8_Template_input_input_2_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r216);
+
+          var ctx_r218 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+
+          return ctx_r218.amountChange();
         })("change", function SendComponent_div_2_div_8_Template_input_change_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r213);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r216);
 
-          var ctx_r216 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+          var ctx_r219 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r216.amountChange();
+          return ctx_r219.amountChange();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10497,11 +10493,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "input", 29);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function SendComponent_div_2_div_8_Template_input_ngModelChange_28_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r213);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r216);
 
-          var ctx_r217 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+          var ctx_r220 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r217.advancedForm = $event;
+          return ctx_r220.advancedForm = $event;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -10529,11 +10525,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](35, "button", 34);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_8_Template_button_click_35_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r213);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r216);
 
-          var ctx_r218 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+          var ctx_r221 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r218.openModal2();
+          return ctx_r221.openModal2();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](36, "Preview");
@@ -10544,75 +10540,75 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var _r179 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](13);
+        var _r182 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](13);
 
-        var ctx_r168 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+        var ctx_r171 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵstyleProp"]("font-size", ctx_r168.dynSize(), "rem")("width", ctx_r168.amount ? ctx_r168.amount.length + 1 : 3.6, "ch");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵstyleProp"]("font-size", ctx_r171.dynSize(), "rem")("width", ctx_r171.amount ? ctx_r171.amount.length + 1 : 3.6, "ch");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r168.amount)("disabled", ctx_r168.isMultipleDestinations);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r171.amount)("disabled", ctx_r171.isMultipleDestinations);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r168.getAssetName());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r171.getAssetName());
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r168.isMultipleDestinations);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r171.isMultipleDestinations);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r168.isMultipleDestinations);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r171.isMultipleDestinations);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r168.simSemaphore);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r171.simSemaphore);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r168.getTotalBurn())("ngIfElse", _r179);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r171.getTotalBurn())("ngIfElse", _r182);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r168.getTotalCost(true), " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r171.getTotalCost(true), " ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r168.activeAccount.address);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r171.activeAccount.address);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r168.isMultipleDestinations);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r171.isMultipleDestinations);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r168.torusVerifier);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r171.torusVerifier);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r168.isMultipleDestinations);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r171.isMultipleDestinations);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r168.advancedForm);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r171.advancedForm);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r168.advancedForm);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r171.advancedForm);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r168.advancedForm);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r171.advancedForm);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r168.advancedForm);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r171.advancedForm);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r168.formInvalid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r171.formInvalid);
       }
     }
 
@@ -10628,25 +10624,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r219 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r222 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](2, 1, ctx_r219.totalAmount() * ctx_r219.walletService.wallet.XTZrate, "1.0-2"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](2, 1, ctx_r222.totalAmount() * ctx_r222.walletService.wallet.XTZrate, "1.0-2"), " USD");
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_10_Template(rf, ctx) {
-      if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "\u2014");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerEnd"]();
-      }
-    }
-
-    function SendComponent_div_2_div_9_span_12_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_span_10_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 54);
 
@@ -10656,25 +10642,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function SendComponent_div_2_div_9_img_13_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_img_11_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "img", 68);
       }
     }
 
-    function SendComponent_div_2_div_9_img_14_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_template_12_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "img", 69);
       }
 
       if (rf & 2) {
-        var ctx_r223 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r226 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", ctx_r223.tokenService.getAsset(ctx_r223.tokenTransfer).imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", ctx_r226.tokenService.getAsset(ctx_r226.tokenTransfer).imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_15_span_1_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_14_span_1_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 73);
 
@@ -10686,19 +10672,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r234 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
+        var ctx_r237 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/", ctx_r234.torusVerifier, "-logo.svg", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/", ctx_r237.torusVerifier, "-logo.svg", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r234.torusLookupId, "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r237.torusLookupId, "");
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_15_p_4_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_14_p_4_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "p", 75);
 
@@ -10708,19 +10694,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r235 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
+        var ctx_r238 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r235.previewAttention());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r238.previewAttention());
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_15_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_14_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, SendComponent_div_2_div_9_ng_container_15_span_1_Template, 3, 2, "span", 70);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, SendComponent_div_2_div_9_ng_container_14_span_1_Template, 3, 2, "span", 70);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "span", 71);
 
@@ -10728,7 +10714,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, SendComponent_div_2_div_9_ng_container_15_p_4_Template, 2, 1, "p", 72);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](4, SendComponent_div_2_div_9_ng_container_14_p_4_Template, 2, 1, "p", 72);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](5, "div", 60);
 
@@ -10736,23 +10722,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r224 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r227 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r224.torusLookupId);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r227.torusLookupId);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r224.transactions[0].to);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r227.transactions[0].to);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r224.torusLookupId);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r227.torusLookupId);
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_16_tr_12_span_2_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_15_tr_12_span_2_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span");
 
@@ -10762,13 +10748,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_16_tr_12_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_15_tr_12_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, SendComponent_div_2_div_9_ng_container_16_tr_12_span_2_Template, 2, 0, "span", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, SendComponent_div_2_div_9_ng_container_15_tr_12_span_2_Template, 2, 0, "span", 10);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3);
 
@@ -10786,34 +10772,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var transaction_r238 = ctx.$implicit;
+        var transaction_r241 = ctx.$implicit;
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", transaction_r238.storageLimit);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", transaction_r241.storageLimit);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](transaction_r238.to);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](transaction_r241.to);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](6, 3, transaction_r238.amount, "1.0-6"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](6, 3, transaction_r241.amount, "1.0-6"));
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_16_button_13_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_15_button_13_Template(rf, ctx) {
       if (rf & 1) {
-        var _r241 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r244 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 80);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_ng_container_16_button_13_Template_button_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r241);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_ng_container_15_button_13_Template_button_click_0_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r244);
 
-          var ctx_r240 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
+          var ctx_r243 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
 
-          return ctx_r240.toggleTransactions();
+          return ctx_r243.toggleTransactions();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "span", 81);
@@ -10826,15 +10812,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r237 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
+        var ctx_r240 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](4);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r237.showBtn, " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r240.showBtn, " ");
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_16_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_15_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
@@ -10868,13 +10854,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "tbody");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](12, SendComponent_div_2_div_9_ng_container_16_tr_12_Template, 7, 6, "tr", 77);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](12, SendComponent_div_2_div_9_ng_container_15_tr_12_Template, 7, 6, "tr", 77);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](13, SendComponent_div_2_div_9_ng_container_16_button_13_Template, 3, 1, "button", 78);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](13, SendComponent_div_2_div_9_ng_container_15_button_13_Template, 3, 1, "button", 78);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](14, "div", 60);
 
@@ -10882,7 +10868,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r225 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r228 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
 
@@ -10894,15 +10880,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx_r225.showTransactions);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx_r228.showTransactions);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r225.transactions.length > 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r228.transactions.length > 2);
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_17_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_16_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
@@ -10944,23 +10930,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r226 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r229 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/", ctx_r226.walletService.wallet.verifier, "-logo.svg", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/", ctx_r229.walletService.wallet.verifier, "-logo.svg", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r226.walletService.wallet.displayName(), " ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r229.walletService.wallet.displayName(), " ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r226.activeAccount.address);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r229.activeAccount.address);
       }
     }
 
-    function SendComponent_div_2_div_9_ng_container_18_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_container_17_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
 
@@ -10984,15 +10970,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r227 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r230 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r227.activeAccount.address);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r230.activeAccount.address);
       }
     }
 
-    function SendComponent_div_2_div_9_div_26_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_div_25_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 61);
 
@@ -11014,62 +11000,62 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r228 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r231 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](5, 1, ctx_r228.getTotalBurn(), "1.0-6"), " tez");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](5, 1, ctx_r231.getTotalBurn(), "1.0-6"), " tez");
       }
     }
 
-    function SendComponent_div_2_div_9_input_29_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_input_28_Template(rf, ctx) {
       if (rf & 1) {
-        var _r243 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r246 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "input", 82);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function SendComponent_div_2_div_9_input_29_Template_input_ngModelChange_0_listener($event) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r243);
-
-          var ctx_r242 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
-
-          return ctx_r242.password = $event;
-        })("input", function SendComponent_div_2_div_9_input_29_Template_input_input_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r243);
-
-          var ctx_r244 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
-
-          return ctx_r244.pwdValid = "";
-        })("change", function SendComponent_div_2_div_9_input_29_Template_input_change_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r243);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function SendComponent_div_2_div_9_input_28_Template_input_ngModelChange_0_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r246);
 
           var ctx_r245 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r245.pwdValid = "";
+          return ctx_r245.password = $event;
+        })("input", function SendComponent_div_2_div_9_input_28_Template_input_input_0_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r246);
+
+          var ctx_r247 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+
+          return ctx_r247.pwdValid = "";
+        })("change", function SendComponent_div_2_div_9_input_28_Template_input_change_0_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r246);
+
+          var ctx_r248 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+
+          return ctx_r248.pwdValid = "";
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
       }
 
       if (rf & 2) {
-        var ctx_r229 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r232 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r229.password);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r232.password);
       }
     }
 
-    function SendComponent_div_2_div_9_button_30_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_button_29_Template(rf, ctx) {
       if (rf & 1) {
-        var _r247 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r250 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 83);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_button_30_Template_button_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r247);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_button_29_Template_button_click_0_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r250);
 
-          var ctx_r246 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r249 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r246.ledgerRetry();
+          return ctx_r249.ledgerRetry();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1, "Sign with Ledger");
@@ -11078,18 +11064,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function SendComponent_div_2_div_9_ng_template_31_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_ng_template_30_Template(rf, ctx) {
       if (rf & 1) {
-        var _r249 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r252 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "button", 84);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_ng_template_31_Template_button_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r249);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_div_9_ng_template_30_Template_button_click_0_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r252);
 
-          var ctx_r248 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+          var ctx_r251 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-          return ctx_r248.inject();
+          return ctx_r251.inject();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](1);
@@ -11098,17 +11084,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r232 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r235 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx_r232.walletService.isLedgerWallet() && (!ctx_r232.sendResponse || !ctx_r232.sendResponse.payload || !ctx_r232.sendResponse.payload.signedOperation));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx_r235.walletService.isLedgerWallet() && (!ctx_r235.sendResponse || !ctx_r235.sendResponse.payload || !ctx_r235.sendResponse.payload.signedOperation));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r232.walletService.isLedgerWallet() ? "Broadcast" : "Confirm", "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r235.walletService.isLedgerWallet() ? "Broadcast" : "Confirm", "");
       }
     }
 
-    function SendComponent_div_2_div_9_span_33_Template(rf, ctx) {
+    function SendComponent_div_2_div_9_span_32_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "span", 85);
 
@@ -11118,11 +11104,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r233 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+        var ctx_r236 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r233.pwdValid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r236.pwdValid);
       }
     }
 
@@ -11152,139 +11138,129 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](9, SendComponent_div_2_div_9_ng_container_9_Template, 3, 4, "ng-container", 10);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](10, SendComponent_div_2_div_9_ng_container_10_Template, 2, 0, "ng-container", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](11, " USD");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](10, SendComponent_div_2_div_9_span_10_Template, 2, 0, "span", 57);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](12, SendComponent_div_2_div_9_span_12_Template, 2, 0, "span", 57);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](11, SendComponent_div_2_div_9_img_11_Template, 1, 0, "img", 58);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](12, SendComponent_div_2_div_9_ng_template_12_Template, 1, 1, "ng-template", null, 59, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](13, SendComponent_div_2_div_9_img_13_Template, 1, 0, "img", 58);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](14, SendComponent_div_2_div_9_ng_container_14_Template, 6, 3, "ng-container", 10);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](14, SendComponent_div_2_div_9_img_14_Template, 1, 1, "img", 59);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](15, SendComponent_div_2_div_9_ng_container_15_Template, 15, 8, "ng-container", 10);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](16, SendComponent_div_2_div_9_ng_container_16_Template, 12, 3, "ng-container", 10);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](15, SendComponent_div_2_div_9_ng_container_15_Template, 6, 3, "ng-container", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](17, SendComponent_div_2_div_9_ng_container_17_Template, 6, 1, "ng-container", 10);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](16, SendComponent_div_2_div_9_ng_container_16_Template, 15, 8, "ng-container", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "div", 60);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](17, SendComponent_div_2_div_9_ng_container_17_Template, 12, 3, "ng-container", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "div", 61);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](18, SendComponent_div_2_div_9_ng_container_18_Template, 6, 1, "ng-container", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "span");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](19, "div", 60);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "div", 61);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](21, "span");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](22, "Fee");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](21, "Fee");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](23, "span");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](22, "span");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](23);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](25, "number");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](24, "number");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](26, SendComponent_div_2_div_9_div_26_Template, 6, 4, "div", 62);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](25, SendComponent_div_2_div_9_div_25_Template, 6, 4, "div", 62);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](27, "div", 60);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](26, "div", 60);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "div", 63);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](27, "div", 63);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](29, SendComponent_div_2_div_9_input_29_Template, 1, 1, "input", 64);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](28, SendComponent_div_2_div_9_input_28_Template, 1, 1, "input", 64);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](30, SendComponent_div_2_div_9_button_30_Template, 2, 0, "button", 65);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](29, SendComponent_div_2_div_9_button_29_Template, 2, 0, "button", 65);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](31, SendComponent_div_2_div_9_ng_template_31_Template, 2, 2, "ng-template", null, 66, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](30, SendComponent_div_2_div_9_ng_template_30_Template, 2, 2, "ng-template", null, 66, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](33, SendComponent_div_2_div_9_span_33_Template, 2, 1, "span", 67);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](32, SendComponent_div_2_div_9_span_32_Template, 2, 1, "span", 67);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
       }
 
       if (rf & 2) {
-        var _r231 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](32);
+        var _r225 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](13);
 
-        var ctx_r169 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+        var _r234 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](31);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate2"]("", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](7, 17, ctx_r169.totalAmount(), "1.0-6"), " ", ctx_r169.getAssetName(), "");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r169.tokenTransfer);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r169.tokenTransfer);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r169.isMultipleDestinations);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r169.tokenTransfer);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r169.tokenTransfer);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r169.isMultipleDestinations);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r169.isMultipleDestinations);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r169.walletService.wallet.verifier);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r169.walletService.wallet.name);
+        var ctx_r172 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](25, 20, ctx_r169.getTotalFee(), "1.0-6"), " tez");
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r169.getTotalBurn());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate2"]("", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](7, 16, ctx_r172.totalAmount(), "1.0-6"), " ", ctx_r172.getAssetName(), "");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r169.walletService.isLedgerWallet() && !ctx_r169.walletService.isTorusWallet());
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r172.tokenTransfer);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r169.walletService.isLedgerWallet() && ctx_r169.ledgerError)("ngIfElse", _r231);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r172.isMultipleDestinations);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r172.tokenTransfer)("ngIfElse", _r225);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r169.pwdValid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r172.isMultipleDestinations);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r172.isMultipleDestinations);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r172.walletService.wallet.verifier);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r172.walletService.wallet.name);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](24, 19, ctx_r172.getTotalFee(), "1.0-6"), " tez");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r172.getTotalBurn());
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r172.walletService.isLedgerWallet() && !ctx_r172.walletService.isTorusWallet());
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r172.walletService.isLedgerWallet() && ctx_r172.ledgerError)("ngIfElse", _r234);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r172.pwdValid);
       }
     }
 
     function SendComponent_div_2_Template(rf, ctx) {
       if (rf & 1) {
-        var _r251 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r254 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 5);
 
@@ -11293,11 +11269,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 7);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SendComponent_div_2_Template_div_click_2_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r251);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r254);
 
-          var ctx_r250 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r253 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r250.closeModal();
+          return ctx_r253.closeModal();
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](3, "img", 8);
@@ -11316,7 +11292,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](8, SendComponent_div_2_div_8_Template, 37, 22, "div", 12);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](9, SendComponent_div_2_div_9_Template, 34, 23, "div", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](9, SendComponent_div_2_div_9_Template, 33, 22, "div", 12);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -11324,27 +11300,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r160 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+        var ctx_r163 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r160.activeView === 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r163.activeView === 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r160.activeView === 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r163.activeView === 1);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r160.activeView === 0 && !ctx_r160.walletService.isLedgerWallet() && !ctx_r160.tokenTransfer);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r163.activeView === 0 && !ctx_r163.walletService.isLedgerWallet() && !ctx_r163.tokenTransfer);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r160.activeView === 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r163.activeView === 0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r160.activeView === 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r163.activeView === 1);
       }
     }
 
@@ -12345,7 +12321,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             return this.translate.instant('SENDCOMPONENT.INVALIDRECEIVERADDRESS');
           } else if (this.torusVerifier && (!this.inputValidationService.torusAccount(this.toPkh, this.torusVerifier) || this.torusLookupAddress === this.activeAccount.address)) {
             return 'Invalid recipient';
-          } else if (!this.inputValidationService.amount(amount, this.tokenTransfer ? true : false) || finalCheck && (amount === '0' || amount === '') && toPkh.slice(0, 3) !== 'KT1') {
+          } else if (!this.inputValidationService.amount(amount, this.tokenTransfer ? this.tokenService.getAsset(this.tokenTransfer).decimals : undefined) || finalCheck && (amount === '0' || amount === '') && toPkh.slice(0, 3) !== 'KT1') {
             return this.translate.instant('SENDCOMPONENT.INVALIDAMOUNT');
           } else if (!this.inputValidationService.gas(this.gas)) {
             return this.translate.instant('SENDCOMPONENT.INVALIDGASLIMIT');
@@ -12686,7 +12662,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       },
       decls: 3,
       vars: 3,
-      consts: [["class", "purple", 3, "click", 4, "ngIf"], ["class", "token-send", 3, "click", 4, "ngIf"], ["id", "myModal", "class", "kukai-modal", 4, "ngIf"], [1, "purple", 3, "click"], [1, "token-send", 3, "click"], ["id", "myModal", 1, "kukai-modal"], [1, "km-content"], [1, "x", 3, "click"], ["src", "../../../assets/img/x.svg"], [1, "km-header"], [4, "ngIf"], ["class", "small multiple-destinations", 3, "click", 4, "ngIf"], ["class", "km-body", 4, "ngIf"], [1, "small", "multiple-destinations", 3, "click"], [1, "km-body"], [1, "amount"], ["placeholder", "0.00", 1, "custom-large", 3, "ngModel", "disabled", "ngModelChange", "click", "input", "change"], ["amountInput", ""], [1, "tez"], [1, "row-group"], ["tabindex", "-1", "class", "small", 3, "max", "click", 4, "ngIf"], [1, "fee"], [4, "ngIf", "ngIfElse"], ["burn", ""], [1, "group"], ["class", "group", 4, "ngIf"], [1, "advanced"], [1, "switch-container"], [1, "switch"], ["type", "checkbox", "tabindex", "-1", 3, "ngModel", "ngModelChange"], [1, "slider", "round"], [1, "switch-desc"], ["class", "advanced-form", 4, "ngIf"], ["class", "danger no-margin", 4, "ngIf"], [1, "purple", 2, "margin", "2.5rem 0 1.5rem", 3, "click"], ["tabindex", "-1", 1, "small", 3, "click"], ["src", "../../../assets/img/feeLoader.gif"], [2, "justify-content", "space-between", "opacity", "1", "color", "rgba(44, 50, 58, 0.4)"], [1, "select-css", 3, "ngModel", "ngModelChange"], ["value", "", "selected", ""], [3, "value", 4, "ngFor", "ngForOf"], ["type", "text", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], [3, "value"], ["class", "torus-details", 4, "ngIf"], [1, "torus-details"], [1, "batchInfo"], ["type", "text", "rows", "3", "placeholder", "address1 amount1 ; \naddress2 amount2 ; \naddress3 ...", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], [1, "advanced-form"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "ngModelChange"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "input", "paste", "ngModelChange"], ["type", "text", "tabindex", "-1", "readonly", "", 1, "text", "read-only", 3, "value"], [1, "danger", "no-margin"], [1, "preview-top"], [1, "preview-amount"], [1, "section"], [1, "amount-tez"], [1, "amount-usd"], ["class", "section", 4, "ngIf"], ["src", "../../../assets/img/tezos-xtz-logo.svg", "style", "height: 4.5rem; margin-right: 1rem", 4, "ngIf"], ["style", "height: 4.5rem; margin-right: 1rem", 3, "src", 4, "ngIf"], [1, "seperator"], [1, "preview-row"], ["class", "preview-row", 4, "ngIf"], [1, "row-group", 2, "margin", "1.25rem 0 1.5rem"], ["autocomplete", "current-password", "placeholder", "Password", "class", "text password", "type", "password", 3, "ngModel", "ngModelChange", "input", "change", 4, "ngIf"], ["class", "retry", 3, "click", 4, "ngIf", "ngIfElse"], ["elseBlock", ""], ["class", "danger margin", 4, "ngIf"], ["src", "../../../assets/img/tezos-xtz-logo.svg", 2, "height", "4.5rem", "margin-right", "1rem"], [2, "height", "4.5rem", "margin-right", "1rem", 3, "src"], ["class", "torus-to", 4, "ngIf"], [1, "single-to"], ["id", "previewAttention", 4, "ngIf"], [1, "torus-to"], [3, "src"], ["id", "previewAttention"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["style", "margin-left: auto; margin: 0.5rem 0 1rem; height: 2rem;", "type", "button", "class", "show-more", "aria-label", "More", 3, "click", 4, "ngIf"], [1, "txAmount"], ["type", "button", "aria-label", "More", 1, "show-more", 2, "margin-left", "auto", "margin", "0.5rem 0 1rem", "height", "2rem", 3, "click"], ["aria-hidden", "true"], ["autocomplete", "current-password", "placeholder", "Password", "type", "password", 1, "text", "password", 3, "ngModel", "ngModelChange", "input", "change"], [1, "retry", 3, "click"], [1, "purple", "confirm", 3, "disabled", "click"], [1, "danger", "margin"]],
+      consts: [["class", "purple", 3, "click", 4, "ngIf"], ["class", "token-send", 3, "click", 4, "ngIf"], ["id", "myModal", "class", "kukai-modal", 4, "ngIf"], [1, "purple", 3, "click"], [1, "token-send", 3, "click"], ["id", "myModal", 1, "kukai-modal"], [1, "km-content"], [1, "x", 3, "click"], ["src", "../../../assets/img/x.svg"], [1, "km-header"], [4, "ngIf"], ["class", "small multiple-destinations", 3, "click", 4, "ngIf"], ["class", "km-body", 4, "ngIf"], [1, "small", "multiple-destinations", 3, "click"], [1, "km-body"], [1, "amount"], ["placeholder", "0.00", 1, "custom-large", 3, "ngModel", "disabled", "ngModelChange", "click", "input", "change"], ["amountInput", ""], [1, "tez"], [1, "row-group"], ["tabindex", "-1", "class", "small", 3, "max", "click", 4, "ngIf"], [1, "fee"], [4, "ngIf", "ngIfElse"], ["burn", ""], [1, "group"], ["class", "group", 4, "ngIf"], [1, "advanced"], [1, "switch-container"], [1, "switch"], ["type", "checkbox", "tabindex", "-1", 3, "ngModel", "ngModelChange"], [1, "slider", "round"], [1, "switch-desc"], ["class", "advanced-form", 4, "ngIf"], ["class", "danger no-margin", 4, "ngIf"], [1, "purple", 2, "margin", "2.5rem 0 1.5rem", 3, "click"], ["tabindex", "-1", 1, "small", 3, "click"], ["src", "../../../assets/img/feeLoader.gif"], [2, "justify-content", "space-between", "opacity", "1", "color", "rgba(44, 50, 58, 0.4)"], [1, "select-css", 3, "ngModel", "ngModelChange"], ["value", "", "selected", ""], [3, "value", 4, "ngFor", "ngForOf"], ["type", "text", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], [3, "value"], ["class", "torus-details", 4, "ngIf"], [1, "torus-details"], [1, "batchInfo"], ["type", "text", "rows", "3", "placeholder", "address1 amount1 ; \naddress2 amount2 ; \naddress3 ...", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], [1, "advanced-form"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "ngModelChange"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "input", "paste", "ngModelChange"], ["type", "text", "tabindex", "-1", "readonly", "", 1, "text", "read-only", 3, "value"], [1, "danger", "no-margin"], [1, "preview-top"], [1, "preview-amount"], [1, "section"], [1, "amount-tez"], [1, "amount-usd"], ["class", "section", 4, "ngIf"], ["src", "../../../assets/img/tezos-xtz-logo.svg", "style", "height: 4.5rem; margin-right: 1rem", 4, "ngIf", "ngIfElse"], ["imgElseBlock", ""], [1, "seperator"], [1, "preview-row"], ["class", "preview-row", 4, "ngIf"], [1, "row-group", 2, "margin", "1.25rem 0 1.5rem"], ["autocomplete", "current-password", "placeholder", "Password", "class", "text password", "type", "password", 3, "ngModel", "ngModelChange", "input", "change", 4, "ngIf"], ["class", "retry", 3, "click", 4, "ngIf", "ngIfElse"], ["elseBlock", ""], ["class", "danger margin", 4, "ngIf"], ["src", "../../../assets/img/tezos-xtz-logo.svg", 2, "height", "4.5rem", "margin-right", "1rem"], [2, "height", "4.5rem", "margin-right", "1rem", 3, "src"], ["class", "torus-to", 4, "ngIf"], [1, "single-to"], ["id", "previewAttention", 4, "ngIf"], [1, "torus-to"], [3, "src"], ["id", "previewAttention"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["style", "margin-left: auto; margin: 0.5rem 0 1rem; height: 2rem;", "type", "button", "class", "show-more", "aria-label", "More", 3, "click", 4, "ngIf"], [1, "txAmount"], ["type", "button", "aria-label", "More", 1, "show-more", 2, "margin-left", "auto", "margin", "0.5rem 0 1rem", "height", "2rem", 3, "click"], ["aria-hidden", "true"], ["autocomplete", "current-password", "placeholder", "Password", "type", "password", 1, "text", "password", 3, "ngModel", "ngModelChange", "input", "change"], [1, "retry", 3, "click"], [1, "purple", "confirm", 3, "disabled", "click"], [1, "danger", "margin"]],
       template: function SendComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, SendComponent_button_0_Template, 2, 0, "button", 0);
@@ -12843,11 +12819,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var ctx_r322 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+        var ctx_r325 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](13);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r322.messageService.spinnerText);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r325.messageService.spinnerText);
       }
     }
 
@@ -13351,9 +13327,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var key_r147 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
+        var key_r150 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/torus-login/", key_r147, "-color.svg", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/torus-login/", key_r150, "-color.svg", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -13363,34 +13339,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var key_r147 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
+        var key_r150 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]().$implicit;
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/torus-login/", key_r147, "-grey.svg", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("src", "../../../assets/img/torus-login/", key_r150, "-grey.svg", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
       }
     }
 
     function TorusComponent_div_16_Template(rf, ctx) {
       if (rf & 1) {
-        var _r156 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+        var _r159 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 13);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function TorusComponent_div_16_Template_div_click_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r156);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r159);
 
-          var key_r147 = ctx.$implicit;
+          var key_r150 = ctx.$implicit;
 
-          var ctx_r155 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r158 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r155.torusLogin(key_r147);
+          return ctx_r158.torusLogin(key_r150);
         })("mouseover", function TorusComponent_div_16_Template_div_mouseover_0_listener() {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r156);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r159);
 
-          var key_r147 = ctx.$implicit;
+          var key_r150 = ctx.$implicit;
 
-          var ctx_r157 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+          var ctx_r160 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-          return ctx_r157.activeLogin = key_r147;
+          return ctx_r160.activeLogin = key_r150;
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, TorusComponent_div_16_ng_container_1_Template, 1, 0, "ng-container", 14);
@@ -13403,17 +13379,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       if (rf & 2) {
-        var key_r147 = ctx.$implicit;
+        var key_r150 = ctx.$implicit;
 
-        var _r149 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](3);
+        var _r152 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](3);
 
-        var _r151 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](5);
+        var _r154 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](5);
 
-        var ctx_r146 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+        var ctx_r149 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", key_r147 === ctx_r146.activeLogin || ctx_r146.mobile())("ngIfThen", _r149)("ngIfElse", _r151);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", key_r150 === ctx_r149.activeLogin || ctx_r149.mobile())("ngIfThen", _r152)("ngIfElse", _r154);
       }
     }
 
@@ -13741,7 +13717,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   0: {
                     name: 'tzBTC',
                     symbol: 'tzBTC',
-                    decimals: 6,
+                    decimals: 8,
                     description: 'tzBtc delivers the power of Bitcoin as a token on the Tezos blockchain.',
                     imageSrc: '../../../assets/img/tokens/tzbtc.png'
                   }
@@ -18297,7 +18273,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                               return 1;
                             }
                           })) : '');
-                          var input = new Buffer(JSON.stringify(payload), 'base64');
+                          var input = Buffer.from(JSON.stringify(payload), 'base64');
                           var hash = crypto_browserify__WEBPACK_IMPORTED_MODULE_3__["createHash"]('md5').update(input, 'base64').digest('hex');
 
                           if (hash === 'edc66a88461120f2ea9132d64be0d8b9') {
@@ -18435,233 +18411,446 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           key: "getTokenMetadata",
           value: function getTokenMetadata(contractAddress, id) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee64() {
-              var storage, bigMapId, _iterator25, _step25, child, _iterator26, _step26, asset, bigMap, fields, obj, _iterator27, _step27, _child, _iterator28, _step28, entry, _iterator29, _step29, extra;
+              var bigMapId, tokenBigMap, contractBigMap, metadata, extras, _iterator25, _step25, child, _iterator26, _step26, entry, url, _yield$this$fetchApi, interfaces;
 
               return regeneratorRuntime.wrap(function _callee64$(_context65) {
                 while (1) {
                   switch (_context65.prev = _context65.next) {
                     case 0:
                       _context65.next = 2;
-                      return fetch("https://api.better-call.dev/v1/contract/carthagenet/".concat(contractAddress, "/storage")).then(function (response) {
-                        return response.json();
-                      }).then(function (data) {
-                        return data;
-                      });
+                      return this.getBigMapIds(contractAddress);
 
                     case 2:
-                      storage = _context65.sent;
-                      bigMapId = 0;
+                      bigMapId = _context65.sent;
 
-                      try {
-                        _iterator25 = _createForOfIteratorHelper(storage.children);
-
-                        try {
-                          for (_iterator25.s(); !(_step25 = _iterator25.n()).done;) {
-                            child = _step25.value;
-
-                            if ((child === null || child === void 0 ? void 0 : child.name) === 'assets') {
-                              _iterator26 = _createForOfIteratorHelper(child.children);
-
-                              try {
-                                for (_iterator26.s(); !(_step26 = _iterator26.n()).done;) {
-                                  asset = _step26.value;
-
-                                  if ((asset === null || asset === void 0 ? void 0 : asset.name) === 'token_metadata') {
-                                    bigMapId = asset.value;
-                                  }
-                                }
-                              } catch (err) {
-                                _iterator26.e(err);
-                              } finally {
-                                _iterator26.f();
-                              }
-                            }
-                          }
-                        } catch (err) {
-                          _iterator25.e(err);
-                        } finally {
-                          _iterator25.f();
-                        }
-                      } catch (e) {
-                        console.log('error', e);
-                      }
-
-                      if (!(bigMapId && typeof bigMapId === 'number')) {
-                        _context65.next = 41;
+                      if (!bigMapId.token) {
+                        _context65.next = 78;
                         break;
                       }
 
-                      _context65.next = 8;
-                      return fetch("https://api.better-call.dev/v1/bigmap/carthagenet/".concat(bigMapId, "/keys")).then(function (response) {
-                        return response.json();
-                      }).then(function (data) {
-                        return data;
-                      });
+                      _context65.next = 6;
+                      return this.fetchApi("https://api.better-call.dev/v1/bigmap/carthagenet/".concat(bigMapId.token, "/keys"));
 
-                    case 8:
-                      bigMap = _context65.sent;
-                      fields = ['token_id', 'symbol', 'name', 'decimals', 'extras'];
-                      obj = {};
-                      _context65.prev = 11;
-                      _iterator27 = _createForOfIteratorHelper(bigMap);
-                      _context65.prev = 13;
+                    case 6:
+                      tokenBigMap = _context65.sent;
+                      _context65.next = 9;
+                      return this.fetchApi("https://api.better-call.dev/v1/bigmap/carthagenet/".concat(bigMapId.contract, "/keys"));
 
-                      _iterator27.s();
+                    case 9:
+                      contractBigMap = _context65.sent;
+                      metadata = {};
+                      extras = null;
+                      _context65.prev = 12;
+                      _iterator25 = _createForOfIteratorHelper(tokenBigMap);
+                      _context65.prev = 14;
 
-                    case 15:
-                      if ((_step27 = _iterator27.n()).done) {
-                        _context65.next = 23;
+                      _iterator25.s();
+
+                    case 16:
+                      if ((_step25 = _iterator25.n()).done) {
+                        _context65.next = 46;
                         break;
                       }
 
-                      _child = _step27.value;
+                      child = _step25.value;
 
-                      if (!(_child.data.key.value === id.toString())) {
-                        _context65.next = 21;
+                      if (!(child.data.key.value === id.toString())) {
+                        _context65.next = 44;
                         break;
                       }
 
-                      _iterator28 = _createForOfIteratorHelper(_child.data.value.children);
+                      _iterator26 = _createForOfIteratorHelper(child.data.value.children);
+                      _context65.prev = 20;
 
-                      try {
-                        for (_iterator28.s(); !(_step28 = _iterator28.n()).done;) {
-                          entry = _step28.value;
+                      _iterator26.s();
 
-                          if (fields.includes(entry.name)) {
-                            if (entry.name === 'extras') {
-                              _iterator29 = _createForOfIteratorHelper(entry.children);
-
-                              try {
-                                for (_iterator29.s(); !(_step29 = _iterator29.n()).done;) {
-                                  extra = _step29.value;
-
-                                  if (extra.name === 'uri') {
-                                    obj['uri'] = entry.children[0].value; // https://cloudflare-ipfs.com/ipfs/QmTMHwTQhttR5e3R7Kbt2JyqRjrNxE61ENtHGzkp4h6MJD
-                                  }
-                                }
-                              } catch (err) {
-                                _iterator29.e(err);
-                              } finally {
-                                _iterator29.f();
-                              }
-                            } else {
-                              obj[entry.name] = entry.value;
-                            }
-                          }
-                        }
-                      } catch (err) {
-                        _iterator28.e(err);
-                      } finally {
-                        _iterator28.f();
+                    case 22:
+                      if ((_step26 = _iterator26.n()).done) {
+                        _context65.next = 35;
+                        break;
                       }
 
-                      return _context65.abrupt("break", 23);
-
-                    case 21:
-                      _context65.next = 15;
+                      entry = _step26.value;
+                      _context65.t0 = entry.name;
+                      _context65.next = _context65.t0 === 'extras' ? 27 : _context65.t0 === 'name' ? 29 : _context65.t0 === 'symbol' ? 29 : _context65.t0 === 'decimals' ? 31 : 33;
                       break;
 
-                    case 23:
-                      _context65.next = 28;
-                      break;
+                    case 27:
+                      extras = entry.children;
+                      return _context65.abrupt("break", 33);
 
-                    case 25:
-                      _context65.prev = 25;
-                      _context65.t0 = _context65["catch"](13);
+                    case 29:
+                      if (typeof entry.value === 'string') {
+                        metadata[entry.name] = entry.value;
+                      }
 
-                      _iterator27.e(_context65.t0);
-
-                    case 28:
-                      _context65.prev = 28;
-
-                      _iterator27.f();
-
-                      return _context65.finish(28);
+                      return _context65.abrupt("break", 33);
 
                     case 31:
-                      _context65.next = 36;
-                      break;
+                      if (!isNaN(Number(entry.value)) && Number(entry.value >= 0)) {
+                        metadata[entry.name] = Number(entry.value);
+                      }
+
+                      return _context65.abrupt("break", 33);
 
                     case 33:
-                      _context65.prev = 33;
-                      _context65.t1 = _context65["catch"](11);
+                      _context65.next = 22;
+                      break;
+
+                    case 35:
+                      _context65.next = 40;
+                      break;
+
+                    case 37:
+                      _context65.prev = 37;
+                      _context65.t1 = _context65["catch"](20);
+
+                      _iterator26.e(_context65.t1);
+
+                    case 40:
+                      _context65.prev = 40;
+
+                      _iterator26.f();
+
+                      return _context65.finish(40);
+
+                    case 43:
+                      return _context65.abrupt("break", 46);
+
+                    case 44:
+                      _context65.next = 16;
+                      break;
+
+                    case 46:
+                      _context65.next = 51;
+                      break;
+
+                    case 48:
+                      _context65.prev = 48;
+                      _context65.t2 = _context65["catch"](14);
+
+                      _iterator25.e(_context65.t2);
+
+                    case 51:
+                      _context65.prev = 51;
+
+                      _iterator25.f();
+
+                      return _context65.finish(51);
+
+                    case 54:
+                      _context65.next = 60;
+                      break;
+
+                    case 56:
+                      _context65.prev = 56;
+                      _context65.t3 = _context65["catch"](12);
+                      console.log(_context65.t3);
                       return _context65.abrupt("return", null);
 
-                    case 36:
-                      if (!obj.uri) {
-                        _context65.next = 40;
+                    case 60:
+                      _context65.prev = 60;
+                      url = this.uriToUrl(contractBigMap[0].data.value.value);
+
+                      if (!url) {
+                        _context65.next = 68;
                         break;
                       }
 
-                      _context65.next = 39;
-                      return this.getUriMetadata(obj.uri);
+                      _context65.next = 65;
+                      return this.fetchApi(url);
 
-                    case 39:
-                      obj.uriMetadata = _context65.sent;
+                    case 65:
+                      _yield$this$fetchApi = _context65.sent;
+                      interfaces = _yield$this$fetchApi.interfaces;
 
-                    case 40:
-                      return _context65.abrupt("return", obj);
+                      if (interfaces.includes('TZIP-12')) {
+                        metadata['tokenType'] = 'FA2';
+                      } else if (interfaces.includes('TZIP-7')) {
+                        metadata['tokenType'] = 'FA1.2';
+                      }
 
-                    case 41:
+                    case 68:
+                      _context65.next = 72;
+                      break;
+
+                    case 70:
+                      _context65.prev = 70;
+                      _context65.t4 = _context65["catch"](60);
+
+                    case 72:
+                      if (!extras) {
+                        _context65.next = 77;
+                        break;
+                      }
+
+                      _context65.next = 75;
+                      return this.getUriExtras(extras);
+
+                    case 75:
+                      extras = _context65.sent;
+                      metadata = Object.assign(Object.assign({}, metadata), extras);
+
+                    case 77:
+                      return _context65.abrupt("return", metadata);
+
+                    case 78:
                       return _context65.abrupt("return", null);
 
-                    case 42:
+                    case 79:
                     case "end":
                       return _context65.stop();
                   }
                 }
-              }, _callee64, this, [[11, 33], [13, 25, 28, 31]]);
+              }, _callee64, this, [[12, 56], [14, 48, 51, 54], [20, 37, 40, 43], [60, 70]]);
             }));
           }
         }, {
-          key: "getUriMetadata",
-          value: function getUriMetadata(uri) {
+          key: "getBigMapIds",
+          value: function getBigMapIds(contractAddress) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee65() {
-              var uriMetadata, url, uriData, fields, _i, _fields, key;
+              var storage, token, contract, _iterator27, _step27, child, _iterator28, _step28, admin, _iterator29, _step29, asset;
 
               return regeneratorRuntime.wrap(function _callee65$(_context66) {
                 while (1) {
                   switch (_context66.prev = _context66.next) {
                     case 0:
-                      if (!(uri.length > 7 && 'ipfs://')) {
-                        _context66.next = 11;
-                        break;
+                      _context66.next = 2;
+                      return this.fetchApi("https://api.better-call.dev/v1/contract/carthagenet/".concat(contractAddress, "/storage"));
+
+                    case 2:
+                      storage = _context66.sent;
+                      token = -1;
+                      contract = -1;
+
+                      try {
+                        _iterator27 = _createForOfIteratorHelper(storage.children);
+
+                        try {
+                          for (_iterator27.s(); !(_step27 = _iterator27.n()).done;) {
+                            child = _step27.value;
+
+                            if ((child === null || child === void 0 ? void 0 : child.name) === 'admin') {
+                              if (child.children) {
+                                _iterator28 = _createForOfIteratorHelper(child.children);
+
+                                try {
+                                  for (_iterator28.s(); !(_step28 = _iterator28.n()).done;) {
+                                    admin = _step28.value;
+
+                                    if ((admin === null || admin === void 0 ? void 0 : admin.name) === 'metadata') {
+                                      contract = admin.value;
+                                    }
+                                  }
+                                } catch (err) {
+                                  _iterator28.e(err);
+                                } finally {
+                                  _iterator28.f();
+                                }
+                              }
+                            } else if ((child === null || child === void 0 ? void 0 : child.name) === 'assets') {
+                              if (child.children) {
+                                _iterator29 = _createForOfIteratorHelper(child.children);
+
+                                try {
+                                  for (_iterator29.s(); !(_step29 = _iterator29.n()).done;) {
+                                    asset = _step29.value;
+
+                                    if ((asset === null || asset === void 0 ? void 0 : asset.name) === 'token_metadata') {
+                                      token = asset.value;
+                                    }
+                                  }
+                                } catch (err) {
+                                  _iterator29.e(err);
+                                } finally {
+                                  _iterator29.f();
+                                }
+                              }
+                            }
+                          }
+                        } catch (err) {
+                          _iterator27.e(err);
+                        } finally {
+                          _iterator27.f();
+                        }
+                      } catch (e) {
+                        console.log(e);
                       }
 
-                      uriMetadata = {};
-                      url = "https://cloudflare-ipfs.com/ipfs/".concat(uri.slice(7));
-                      _context66.next = 5;
-                      return fetch(url).then(function (response) {
-                        return response.json();
-                      }).then(function (data) {
-                        return data;
+                      return _context66.abrupt("return", {
+                        contract: contract,
+                        token: token
                       });
 
-                    case 5:
-                      uriData = _context66.sent;
-                      console.log('uriData', uriData);
-                      fields = ['imageUri', 'isNft'];
-
-                      for (_i = 0, _fields = fields; _i < _fields.length; _i++) {
-                        key = _fields[_i];
-
-                        if (uriData[key]) {
-                          uriMetadata[key] = uriData[key];
-                        }
-                      }
-
-                      console.log('URImetadata', uriMetadata);
-                      return _context66.abrupt("return", uriMetadata);
-
-                    case 11:
-                      return _context66.abrupt("return", null);
-
-                    case 12:
+                    case 7:
                     case "end":
                       return _context66.stop();
                   }
                 }
-              }, _callee65);
+              }, _callee65, this);
+            }));
+          }
+        }, {
+          key: "getUriExtras",
+          value: function getUriExtras(extras) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee66() {
+              var extraMetadata, url, _iterator30, _step30, extra, extraOff;
+
+              return regeneratorRuntime.wrap(function _callee66$(_context67) {
+                while (1) {
+                  switch (_context67.prev = _context67.next) {
+                    case 0:
+                      extraMetadata = {};
+                      _context67.prev = 1;
+
+                      if (!(extras && extras.length)) {
+                        _context67.next = 29;
+                        break;
+                      }
+
+                      _iterator30 = _createForOfIteratorHelper(extras);
+                      _context67.prev = 4;
+
+                      _iterator30.s();
+
+                    case 6:
+                      if ((_step30 = _iterator30.n()).done) {
+                        _context67.next = 21;
+                        break;
+                      }
+
+                      extra = _step30.value;
+                      _context67.t0 = extra.name;
+                      _context67.next = _context67.t0 === 'uri' ? 11 : _context67.t0 === 'description' ? 13 : _context67.t0 === 'imageUri' ? 15 : _context67.t0 === 'isNft' ? 17 : 19;
+                      break;
+
+                    case 11:
+                      if (typeof extra.value === 'string') {
+                        url = this.uriToUrl(extra.value);
+                      }
+
+                      return _context67.abrupt("break", 19);
+
+                    case 13:
+                      if (typeof extra.value === 'string') {
+                        extraMetadata[extra.name] = extra.value;
+                      }
+
+                      return _context67.abrupt("break", 19);
+
+                    case 15:
+                      if (typeof extra.value === 'string') {
+                        extraMetadata[extra.name] = this.uriToUrl(extra.value);
+                      }
+
+                      return _context67.abrupt("break", 19);
+
+                    case 17:
+                      if (typeof extra.value === 'boolean') {
+                        extraMetadata[extra.name] = extra.value;
+                      }
+
+                      return _context67.abrupt("break", 19);
+
+                    case 19:
+                      _context67.next = 6;
+                      break;
+
+                    case 21:
+                      _context67.next = 26;
+                      break;
+
+                    case 23:
+                      _context67.prev = 23;
+                      _context67.t1 = _context67["catch"](4);
+
+                      _iterator30.e(_context67.t1);
+
+                    case 26:
+                      _context67.prev = 26;
+
+                      _iterator30.f();
+
+                      return _context67.finish(26);
+
+                    case 29:
+                      _context67.next = 35;
+                      break;
+
+                    case 31:
+                      _context67.prev = 31;
+                      _context67.t2 = _context67["catch"](1);
+                      console.log(_context67.t2);
+                      return _context67.abrupt("return", {});
+
+                    case 35:
+                      if (!url) {
+                        _context67.next = 42;
+                        break;
+                      }
+
+                      _context67.next = 38;
+                      return this.fetchApi(url);
+
+                    case 38:
+                      extraOff = _context67.sent;
+
+                      if (extraOff.description && typeof extraOff.description === 'string') {
+                        extraMetadata['description'] = extraOff.description;
+                      }
+
+                      if (extraOff.imageUri && typeof extraOff.imageUri === 'string') {
+                        extraMetadata['imageUri'] = this.uriToUrl(extraOff.imageUri);
+                      }
+
+                      if (extraOff.isNft && typeof extraOff.isNft === 'boolean') {
+                        extraMetadata['isNft'] = extraOff.isNft;
+                      }
+
+                    case 42:
+                      return _context67.abrupt("return", extraMetadata);
+
+                    case 43:
+                    case "end":
+                      return _context67.stop();
+                  }
+                }
+              }, _callee66, this, [[1, 31], [4, 23, 26, 29]]);
+            }));
+          }
+        }, {
+          key: "uriToUrl",
+          value: function uriToUrl(uri) {
+            if (uri && uri.length > 7) {
+              if (uri.slice(0, 7) === 'ipfs://') {
+                return "https://cloudflare-ipfs.com/ipfs/".concat(uri.slice(7));
+              } else if (uri.slice(0, 8) === 'https://') {
+                return uri;
+              }
+            }
+
+            return '';
+          }
+        }, {
+          key: "fetchApi",
+          value: function fetchApi(url) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee67() {
+              return regeneratorRuntime.wrap(function _callee67$(_context68) {
+                while (1) {
+                  switch (_context68.prev = _context68.next) {
+                    case 0:
+                      return _context68.abrupt("return", fetch(url).then(function (response) {
+                        return response.json();
+                      }).then(function (data) {
+                        return data;
+                      }));
+
+                    case 1:
+                    case "end":
+                      return _context68.stop();
+                  }
+                }
+              }, _callee67);
             }));
           }
         }]);
@@ -18864,8 +19053,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "amount",
         value: function amount(_amount2) {
-          var tokenAmount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-          var expr = tokenAmount ? new RegExp(/^(0|[1-9][0-9]{0,8})(\.[0-9]{1,}){0,1}$/g) : new RegExp(/^(0|[1-9][0-9]{0,8})(\.[0-9]{1,6}){0,1}$/g);
+          var decimals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
+          var decimalsPart = decimals ? "(.[0-9]{1,".concat(decimals, "}){0,1}") : '';
+          var expr = new RegExp("^(0|[1-9][0-9]{0,8})".concat(decimalsPart, "$"), 'g');
           console.log(_amount2);
 
           if (_amount2 === '' || _amount2 === '0') {
@@ -19043,54 +19233,54 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LedgerService, [{
         key: "setTransport",
         value: function setTransport() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee66() {
-            return regeneratorRuntime.wrap(function _callee66$(_context67) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee68() {
+            return regeneratorRuntime.wrap(function _callee68$(_context69) {
               while (1) {
-                switch (_context67.prev = _context67.next) {
+                switch (_context69.prev = _context69.next) {
                   case 0:
                     if (this.transport) {
-                      _context67.next = 12;
+                      _context69.next = 12;
                       break;
                     }
 
                     console.log('Trying to use U2F for transport...');
-                    _context67.prev = 2;
-                    _context67.next = 5;
+                    _context69.prev = 2;
+                    _context69.next = 5;
                     return _ledgerhq_hw_transport_u2f__WEBPACK_IMPORTED_MODULE_3__["default"].create();
 
                   case 5:
-                    this.transport = _context67.sent;
+                    this.transport = _context69.sent;
                     console.log('Transport is now set to use U2F!');
-                    _context67.next = 12;
+                    _context69.next = 12;
                     break;
 
                   case 9:
-                    _context67.prev = 9;
-                    _context67.t0 = _context67["catch"](2);
+                    _context69.prev = 9;
+                    _context69.t0 = _context69["catch"](2);
                     console.log('Couldn\'t use U2F for transport!');
 
                   case 12:
                   case "end":
-                    return _context67.stop();
+                    return _context69.stop();
                 }
               }
-            }, _callee66, this, [[2, 9]]);
+            }, _callee68, this, [[2, 9]]);
           }));
         }
       }, {
         key: "transportCheck",
         value: function transportCheck() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee67() {
-            return regeneratorRuntime.wrap(function _callee67$(_context68) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee69() {
+            return regeneratorRuntime.wrap(function _callee69$(_context70) {
               while (1) {
-                switch (_context68.prev = _context68.next) {
+                switch (_context70.prev = _context70.next) {
                   case 0:
                     if (this.transport) {
-                      _context68.next = 3;
+                      _context70.next = 3;
                       break;
                     }
 
-                    _context68.next = 3;
+                    _context70.next = 3;
                     return this.setTransport();
 
                   case 3:
@@ -19100,30 +19290,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 4:
                   case "end":
-                    return _context68.stop();
+                    return _context70.stop();
                 }
               }
-            }, _callee67, this);
+            }, _callee69, this);
           }));
         }
       }, {
         key: "getPublicAddress",
         value: function getPublicAddress(path) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee68() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
             var _this39 = this;
 
             var xtz, result, pk;
-            return regeneratorRuntime.wrap(function _callee68$(_context69) {
+            return regeneratorRuntime.wrap(function _callee70$(_context71) {
               while (1) {
-                switch (_context69.prev = _context69.next) {
+                switch (_context71.prev = _context71.next) {
                   case 0:
-                    _context69.next = 2;
+                    _context71.next = 2;
                     return this.transportCheck();
 
                   case 2:
                     xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
                     console.log(path);
-                    _context69.next = 6;
+                    _context71.next = 6;
                     return xtz.getAddress(path, true)["catch"](function (e) {
                       if (e.message) {
                         _this39.messageService.addError(e.message);
@@ -19135,30 +19325,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 6:
-                    result = _context69.sent;
+                    result = _context71.sent;
                     pk = this.operationService.hex2pk(result.publicKey);
-                    return _context69.abrupt("return", pk);
+                    return _context71.abrupt("return", pk);
 
                   case 9:
                   case "end":
-                    return _context69.stop();
+                    return _context71.stop();
                 }
               }
-            }, _callee68, this);
+            }, _callee70, this);
           }));
         }
       }, {
         key: "signOperation",
         value: function signOperation(op, path) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee69() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee71() {
             var _this40 = this;
 
             var xtz, toSign, result;
-            return regeneratorRuntime.wrap(function _callee69$(_context70) {
+            return regeneratorRuntime.wrap(function _callee71$(_context72) {
               while (1) {
-                switch (_context70.prev = _context70.next) {
+                switch (_context72.prev = _context72.next) {
                   case 0:
-                    _context70.next = 2;
+                    _context72.next = 2;
                     return this.transportCheck();
 
                   case 2:
@@ -19167,7 +19357,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     toSign = '03' + op;
 
                     if (!(toSign.length > 512)) {
-                      _context70.next = 8;
+                      _context72.next = 8;
                       break;
                     }
 
@@ -19175,31 +19365,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     throw new Error('LedgerSignError');
 
                   case 8:
-                    _context70.next = 10;
+                    _context72.next = 10;
                     return xtz.signOperation(path, toSign)["catch"](function (e) {
                       _this40.messageService.addError(e, 0);
                     });
 
                   case 10:
-                    result = _context70.sent;
+                    result = _context72.sent;
                     console.log(JSON.stringify(result));
 
                     if (!(result && result.signature)) {
-                      _context70.next = 14;
+                      _context72.next = 14;
                       break;
                     }
 
-                    return _context70.abrupt("return", result.signature);
+                    return _context72.abrupt("return", result.signature);
 
                   case 14:
-                    return _context70.abrupt("return", null);
+                    return _context72.abrupt("return", null);
 
                   case 15:
                   case "end":
-                    return _context70.stop();
+                    return _context72.stop();
                 }
               }
-            }, _callee69, this);
+            }, _callee71, this);
           }));
         }
       }]);
@@ -19373,14 +19563,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "check",
         value: function check(address) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee71() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee73() {
             var _this41 = this;
 
             var _this$index2, x;
 
-            return regeneratorRuntime.wrap(function _callee71$(_context72) {
+            return regeneratorRuntime.wrap(function _callee73$(_context74) {
               while (1) {
-                switch (_context72.prev = _context72.next) {
+                switch (_context74.prev = _context74.next) {
                   case 0:
                     this.initCheck();
 
@@ -19390,57 +19580,57 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       if (!this.pendingLookups[address] && x === -1) {
                         this.pendingLookups[address] = true;
                         this.operationService.torusKeyLookup(address).subscribe(function (ans) {
-                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this41, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
-                            var keys, verifierMap, _i2, _keys, key, verifierId, verifierArray, twitterId, _yield$this$torusServ4, username;
+                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this41, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee72() {
+                            var keys, verifierMap, _i, _keys, key, verifierId, verifierArray, twitterId, _yield$this$torusServ4, username;
 
-                            return regeneratorRuntime.wrap(function _callee70$(_context71) {
+                            return regeneratorRuntime.wrap(function _callee72$(_context73) {
                               while (1) {
-                                switch (_context71.prev = _context71.next) {
+                                switch (_context73.prev = _context73.next) {
                                   case 0:
                                     if (!ans) {
-                                      _context71.next = 35;
+                                      _context73.next = 35;
                                       break;
                                     }
 
                                     if (!(ans.result && ans.result.Verifiers)) {
-                                      _context71.next = 34;
+                                      _context73.next = 34;
                                       break;
                                     }
 
                                     keys = Object.keys(ans.result.Verifiers);
                                     verifierMap = this.torusService.verifierMap;
-                                    _i2 = 0, _keys = keys;
+                                    _i = 0, _keys = keys;
 
                                   case 5:
-                                    if (!(_i2 < _keys.length)) {
-                                      _context71.next = 31;
+                                    if (!(_i < _keys.length)) {
+                                      _context73.next = 31;
                                       break;
                                     }
 
-                                    key = _keys[_i2];
+                                    key = _keys[_i];
 
                                     if (!(key === verifierMap['google'].verifier)) {
-                                      _context71.next = 11;
+                                      _context73.next = 11;
                                       break;
                                     }
 
                                     this.add(address, ans.result.Verifiers[verifierMap['google'].verifier][0], LookupType.Google);
-                                    _context71.next = 28;
+                                    _context73.next = 28;
                                     break;
 
                                   case 11:
                                     if (!(key === verifierMap['reddit'].verifier)) {
-                                      _context71.next = 15;
+                                      _context73.next = 15;
                                       break;
                                     }
 
                                     this.add(address, ans.result.Verifiers[verifierMap['reddit'].verifier][0], LookupType.Reddit);
-                                    _context71.next = 28;
+                                    _context73.next = 28;
                                     break;
 
                                   case 15:
                                     if (!(key === verifierMap['twitter'].verifier)) {
-                                      _context71.next = 27;
+                                      _context73.next = 27;
                                       break;
                                     }
 
@@ -19448,16 +19638,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                     verifierArray = verifierId.split('|');
 
                                     if (!(verifierArray[0] === 'twitter' && this.inputValidationService.twitterId(verifierArray[1]))) {
-                                      _context71.next = 25;
+                                      _context73.next = 25;
                                       break;
                                     }
 
                                     twitterId = verifierArray[1];
-                                    _context71.next = 22;
+                                    _context73.next = 22;
                                     return this.torusService.twitterLookup(undefined, twitterId);
 
                                   case 22:
-                                    _yield$this$torusServ4 = _context71.sent;
+                                    _yield$this$torusServ4 = _context73.sent;
                                     username = _yield$this$torusServ4.username;
 
                                     if (username) {
@@ -19465,20 +19655,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                     }
 
                                   case 25:
-                                    _context71.next = 28;
+                                    _context73.next = 28;
                                     break;
 
                                   case 27:
                                     console.log('Unhandled verifier result', ans);
 
                                   case 28:
-                                    _i2++;
-                                    _context71.next = 5;
+                                    _i++;
+                                    _context73.next = 5;
                                     break;
 
                                   case 31:
                                     this.pendingLookups[address] = false;
-                                    _context71.next = 35;
+                                    _context73.next = 35;
                                     break;
 
                                   case 34:
@@ -19488,10 +19678,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                                   case 35:
                                   case "end":
-                                    return _context71.stop();
+                                    return _context73.stop();
                                 }
                               }
-                            }, _callee70, this);
+                            }, _callee72, this);
                           }));
                         });
                       }
@@ -19499,10 +19689,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                   case "end":
-                    return _context72.stop();
+                    return _context74.stop();
                 }
               }
-            }, _callee71, this);
+            }, _callee73, this);
           }));
         }
       }, {
@@ -19511,21 +19701,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var record = this.records[address];
 
           if (record) {
-            var _iterator30 = _createForOfIteratorHelper(record),
-                _step30;
+            var _iterator31 = _createForOfIteratorHelper(record),
+                _step31;
 
             try {
-              for (_iterator30.s(); !(_step30 = _iterator30.n()).done;) {
-                var entry = _step30.value;
+              for (_iterator31.s(); !(_step31 = _iterator31.n()).done;) {
+                var entry = _step31.value;
 
                 if (entry.lookupType > 1) {
                   return true;
                 }
               }
             } catch (err) {
-              _iterator30.e(err);
+              _iterator31.e(err);
             } finally {
-              _iterator30.f();
+              _iterator31.f();
             }
           }
 
@@ -19779,39 +19969,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "startSpinner",
         value: function startSpinner() {
           var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee72() {
-            return regeneratorRuntime.wrap(function _callee72$(_context73) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee74() {
+            return regeneratorRuntime.wrap(function _callee74$(_context75) {
               while (1) {
-                switch (_context73.prev = _context73.next) {
+                switch (_context75.prev = _context75.next) {
                   case 0:
                     this.spinnerText = text;
                     this.spinnerOn = true;
 
                   case 2:
                   case "end":
-                    return _context73.stop();
+                    return _context75.stop();
                 }
               }
-            }, _callee72, this);
+            }, _callee74, this);
           }));
         }
       }, {
         key: "stopSpinner",
         value: function stopSpinner() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee73() {
-            return regeneratorRuntime.wrap(function _callee73$(_context74) {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee75() {
+            return regeneratorRuntime.wrap(function _callee75$(_context76) {
               while (1) {
-                switch (_context74.prev = _context74.next) {
+                switch (_context76.prev = _context76.next) {
                   case 0:
                     this.spinnerText = '';
                     this.spinnerOn = false;
 
                   case 2:
                   case "end":
-                    return _context74.stop();
+                    return _context76.stop();
                 }
               }
-            }, _callee73, this);
+            }, _callee75, this);
           }));
         }
       }]);
@@ -20201,7 +20391,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 invocation = this.getFA12Transaction(pkh, transactions[i].to, big_js__WEBPACK_IMPORTED_MODULE_9___default()(Math.pow(10, decimals)).times(transactions[i].amount).toString());
               } else if (kind === 'FA2') {
                 invocation = this.getFA2Transaction(pkh, transactions[i].to, big_js__WEBPACK_IMPORTED_MODULE_9___default()(Math.pow(10, decimals)).times(transactions[i].amount).toString(), id);
-                console.log(JSON.stringify(invocation));
               } else {
                 throw new Error('Unrecognized token kind');
               }
@@ -20799,33 +20988,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "decompress",
         value: function decompress(pk) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee74() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee76() {
             var decodedPk, hexPk, secp256k1, compressed, uncompressed, xy;
-            return regeneratorRuntime.wrap(function _callee74$(_context75) {
+            return regeneratorRuntime.wrap(function _callee76$(_context77) {
               while (1) {
-                switch (_context75.prev = _context75.next) {
+                switch (_context77.prev = _context77.next) {
                   case 0:
                     decodedPk = this.b58cdecode(pk, this.prefix.sppk);
                     hexPk = this.buf2hex(decodedPk);
-                    _context75.next = 4;
+                    _context77.next = 4;
                     return Object(_bitauth_libauth__WEBPACK_IMPORTED_MODULE_15__["instantiateSecp256k1"])();
 
                   case 4:
-                    secp256k1 = _context75.sent;
+                    secp256k1 = _context77.sent;
                     compressed = Object(_bitauth_libauth__WEBPACK_IMPORTED_MODULE_15__["hexToBin"])(hexPk);
                     uncompressed = secp256k1.uncompressPublicKey(compressed);
                     xy = Object(_bitauth_libauth__WEBPACK_IMPORTED_MODULE_15__["binToHex"])(uncompressed).slice(2);
-                    return _context75.abrupt("return", {
+                    return _context77.abrupt("return", {
                       X: xy.slice(0, 64),
                       Y: xy.slice(64, 128)
                     });
 
                   case 9:
                   case "end":
-                    return _context75.stop();
+                    return _context77.stop();
                 }
               }
-            }, _callee74, this);
+            }, _callee76, this);
           }));
         }
       }, {
@@ -21678,7 +21867,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(TokenService, [{
         key: "getAsset",
         value: function getAsset(tokenId) {
-          if (!tokenId.includes(':')) {
+          if (!tokenId || !tokenId.includes(':')) {
             console.warn("Invalid tokenId", tokenId);
             return null;
           }
@@ -21716,8 +21905,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var currentKeys = Object.keys(this.contracts[contractAddress].tokens);
             var newKeys = Object.keys(contract.tokens);
 
-            for (var _i3 = 0, _newKeys = newKeys; _i3 < _newKeys.length; _i3++) {
-              var key = _newKeys[_i3];
+            for (var _i2 = 0, _newKeys = newKeys; _i2 < _newKeys.length; _i2++) {
+              var key = _newKeys[_i2];
 
               if (!currentKeys.includes(key)) {
                 this.contracts[contractAddress].tokens[key] = contract.tokens[key];
@@ -21728,33 +21917,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "searchMetadata",
         value: function searchMetadata(contractAddress, id) {
-          var _a, _b;
-
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee75() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee77() {
             var tokenId, metadata, contract, token;
-            return regeneratorRuntime.wrap(function _callee75$(_context76) {
+            return regeneratorRuntime.wrap(function _callee77$(_context78) {
               while (1) {
-                switch (_context76.prev = _context76.next) {
+                switch (_context78.prev = _context78.next) {
                   case 0:
                     tokenId = "".concat(contractAddress, ":").concat(id);
 
                     if (this.exploredTokenIds.includes(tokenId)) {
-                      _context76.next = 8;
+                      _context78.next = 8;
                       break;
                     }
 
-                    this.exploredTokenIds.push(tokenId);
                     console.log("Searching for tokenId: ".concat(tokenId));
-                    _context76.next = 6;
+                    this.exploredTokenIds.push(tokenId);
+                    _context78.next = 6;
                     return this.indexerService.getTokenMetadata(contractAddress, id);
 
                   case 6:
-                    metadata = _context76.sent;
+                    metadata = _context78.sent;
 
-                    if (metadata) {
-                      console.log('Metadata', metadata);
+                    if (metadata && metadata.name && metadata.symbol && !isNaN(metadata.decimals) && metadata.decimals >= 0) {
                       contract = {
-                        kind: 'FA2',
+                        kind: metadata.tokenType ? metadata.tokenType : 'FA2',
                         category: '',
                         tokens: {}
                       };
@@ -21762,22 +21948,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         name: metadata.name,
                         symbol: metadata.symbol,
                         decimals: Number(metadata.decimals),
-                        description: '',
-                        imageSrc: ((_a = metadata.uriMetadata) === null || _a === void 0 ? void 0 : _a.imageUri) ? metadata.uriMetadata.imageUri : 'default.png',
-                        isNFT: ((_b = metadata.uriMetadata) === null || _b === void 0 ? void 0 : _b.isNft) ? metadata.uriMetadata.isNft : false
+                        description: metadata.description ? metadata.description : '',
+                        imageSrc: metadata.imageUri ? metadata.imageUri : '../../../assets/img/tokens/default.png',
+                        isNft: (metadata === null || metadata === void 0 ? void 0 : metadata.isNft) ? metadata.isNft : false
                       };
                       contract.tokens[id] = token;
                       this.addAsset(contractAddress, contract);
-                    } // Schema: https://api.better-call.dev/v1/contract/carthagenet/KT1XXCz59vAzfbvDsNrrmKKuqSFrzQgpUqGM/storage/schema?fill_type=empty
-                    // Storage: https://api.better-call.dev/v1/contract/carthagenet/KT1XXCz59vAzfbvDsNrrmKKuqSFrzQgpUqGM/storage
-
+                    }
 
                   case 8:
                   case "end":
-                    return _context76.stop();
+                    return _context78.stop();
                 }
               }
-            }, _callee75, this);
+            }, _callee77, this);
           }));
         }
       }]);
@@ -21975,56 +22159,56 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(TorusService, [{
         key: "initTorus",
         value: function initTorus() {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee76() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee78() {
             var torusdirectsdk;
-            return regeneratorRuntime.wrap(function _callee76$(_context77) {
+            return regeneratorRuntime.wrap(function _callee78$(_context79) {
               while (1) {
-                switch (_context77.prev = _context77.next) {
+                switch (_context79.prev = _context79.next) {
                   case 0:
                     if (this.torus) {
-                      _context77.next = 11;
+                      _context79.next = 11;
                       break;
                     }
 
-                    _context77.prev = 1;
+                    _context79.prev = 1;
                     torusdirectsdk = new _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2___default.a({
                       baseUrl: "".concat(location.origin, "/serviceworker"),
                       enableLogging: !(this.proxy.network === 'mainnet'),
                       proxyContractAddress: this.proxy.address,
                       network: this.proxy.network === 'mainnet' ? this.proxy.network : 'testnet'
                     });
-                    _context77.next = 5;
+                    _context79.next = 5;
                     return torusdirectsdk.init({
                       skipSw: false
                     });
 
                   case 5:
                     this.torus = torusdirectsdk;
-                    _context77.next = 11;
+                    _context79.next = 11;
                     break;
 
                   case 8:
-                    _context77.prev = 8;
-                    _context77.t0 = _context77["catch"](1);
-                    console.error(_context77.t0, 'oninit caught');
+                    _context79.prev = 8;
+                    _context79.t0 = _context79["catch"](1);
+                    console.error(_context79.t0, 'oninit caught');
 
                   case 11:
                   case "end":
-                    return _context77.stop();
+                    return _context79.stop();
                 }
               }
-            }, _callee76, this, [[1, 8]]);
+            }, _callee78, this, [[1, 8]]);
           }));
         }
       }, {
         key: "lookupPkh",
         value: function lookupPkh(selectedVerifier, verifierId) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee77() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee79() {
             var fetchNodeDetails, torus, verifier, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, sanitizedVerifierId, twitterId, username, _yield$this$twitterLo, id, pk, pkh;
 
-            return regeneratorRuntime.wrap(function _callee77$(_context78) {
+            return regeneratorRuntime.wrap(function _callee79$(_context80) {
               while (1) {
-                switch (_context78.prev = _context78.next) {
+                switch (_context80.prev = _context80.next) {
                   case 0:
                     fetchNodeDetails = new _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default.a({
                       network: this.proxy.network,
@@ -22034,15 +22218,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     verifier = this.verifierMap[selectedVerifier].verifier;
 
                     if (this.nodeDetails) {
-                      _context78.next = 11;
+                      _context80.next = 11;
                       break;
                     }
 
-                    _context78.next = 6;
+                    _context80.next = 6;
                     return fetchNodeDetails.getNodeDetails();
 
                   case 6:
-                    _yield$fetchNodeDetai = _context78.sent;
+                    _yield$fetchNodeDetai = _context80.sent;
                     torusNodeEndpoints = _yield$fetchNodeDetai.torusNodeEndpoints;
                     torusNodePub = _yield$fetchNodeDetai.torusNodePub;
                     torusIndexes = _yield$fetchNodeDetai.torusIndexes;
@@ -22061,67 +22245,67 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     twitterId = '';
 
                     if (!(selectedVerifier === 'twitter')) {
-                      _context78.next = 26;
+                      _context80.next = 26;
                       break;
                     }
 
                     username = sanitizedVerifierId.replace('@', '');
-                    _context78.next = 18;
+                    _context80.next = 18;
                     return this.twitterLookup(username);
 
                   case 18:
-                    _yield$this$twitterLo = _context78.sent;
+                    _yield$this$twitterLo = _context80.sent;
                     id = _yield$this$twitterLo.id;
 
                     if (!this.inputValidationService.twitterId(id)) {
-                      _context78.next = 25;
+                      _context80.next = 25;
                       break;
                     }
 
                     sanitizedVerifierId = "twitter|".concat(id);
                     twitterId = id;
-                    _context78.next = 26;
+                    _context80.next = 26;
                     break;
 
                   case 25:
                     throw new Error('Twitter handle not found');
 
                   case 26:
-                    _context78.next = 28;
+                    _context80.next = 28;
                     return torus.getPublicAddress(this.nodeDetails.torusNodeEndpoints, this.nodeDetails.torusNodePub, {
                       verifier: verifier,
                       verifierId: sanitizedVerifierId
                     }, true);
 
                   case 28:
-                    pk = _context78.sent;
+                    pk = _context80.sent;
                     pkh = this.operationService.spPointsToPkh(pk.X, pk.Y);
-                    return _context78.abrupt("return", {
+                    return _context80.abrupt("return", {
                       pkh: pkh,
                       twitterId: twitterId
                     });
 
                   case 31:
                   case "end":
-                    return _context78.stop();
+                    return _context80.stop();
                 }
               }
-            }, _callee77, this);
+            }, _callee79, this);
           }));
         }
       }, {
         key: "twitterLookup",
         value: function twitterLookup(username, id) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee78() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee80() {
             var req;
-            return regeneratorRuntime.wrap(function _callee78$(_context79) {
+            return regeneratorRuntime.wrap(function _callee80$(_context81) {
               while (1) {
-                switch (_context79.prev = _context79.next) {
+                switch (_context81.prev = _context81.next) {
                   case 0:
                     req = {};
 
                     if (!(id && username || !id && !username)) {
-                      _context79.next = 6;
+                      _context81.next = 6;
                       break;
                     }
 
@@ -22143,7 +22327,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                   case 7:
-                    _context79.next = 9;
+                    _context81.next = 9;
                     return fetch("https://api.tezos.help/twitter-lookup/", {
                       method: 'POST',
                       headers: {
@@ -22156,28 +22340,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 9:
-                    return _context79.abrupt("return", _context79.sent);
+                    return _context81.abrupt("return", _context81.sent);
 
                   case 10:
                   case "end":
-                    return _context79.stop();
+                    return _context81.stop();
                 }
               }
-            }, _callee78);
+            }, _callee80);
           }));
         }
       }, {
         key: "loginTorus",
         value: function loginTorus(selectedVerifier) {
           var verifierId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee79() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee81() {
             var jwtParams, _this$verifierMap$sel, typeOfLogin, clientId, verifier, loginDetails, keyPair;
 
-            return regeneratorRuntime.wrap(function _callee79$(_context80) {
+            return regeneratorRuntime.wrap(function _callee81$(_context82) {
               while (1) {
-                switch (_context80.prev = _context80.next) {
+                switch (_context82.prev = _context82.next) {
                   case 0:
-                    _context80.prev = 0;
+                    _context82.prev = 0;
                     jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
 
                     if (verifierId && selectedVerifier === GOOGLE) {
@@ -22186,7 +22370,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     _this$verifierMap$sel = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel.typeOfLogin, clientId = _this$verifierMap$sel.clientId, verifier = _this$verifierMap$sel.verifier;
-                    _context80.next = 6;
+                    _context82.next = 6;
                     return this.torus.triggerLogin({
                       verifier: verifier,
                       typeOfLogin: typeOfLogin,
@@ -22195,55 +22379,55 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
 
                   case 6:
-                    loginDetails = _context80.sent;
+                    loginDetails = _context82.sent;
                     keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                     console.log('DirectAuth KeyPair', keyPair);
-                    return _context80.abrupt("return", {
+                    return _context82.abrupt("return", {
                       keyPair: keyPair,
                       userInfo: loginDetails.userInfo
                     });
 
                   case 12:
-                    _context80.prev = 12;
-                    _context80.t0 = _context80["catch"](0);
-                    console.error(_context80.t0, 'login caught');
-                    return _context80.abrupt("return", {
+                    _context82.prev = 12;
+                    _context82.t0 = _context82["catch"](0);
+                    console.error(_context82.t0, 'login caught');
+                    return _context82.abrupt("return", {
                       keyPair: null,
                       userInfo: null
                     });
 
                   case 16:
                   case "end":
-                    return _context80.stop();
+                    return _context82.stop();
                 }
               }
-            }, _callee79, this, [[0, 12]]);
+            }, _callee81, this, [[0, 12]]);
           }));
         }
       }, {
         key: "getTorusKeyPair",
         value: function getTorusKeyPair(selectedVerifier, verifierId) {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee80() {
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee82() {
             var _yield$this$loginToru, keyPair;
 
-            return regeneratorRuntime.wrap(function _callee80$(_context81) {
+            return regeneratorRuntime.wrap(function _callee82$(_context83) {
               while (1) {
-                switch (_context81.prev = _context81.next) {
+                switch (_context83.prev = _context83.next) {
                   case 0:
-                    _context81.next = 2;
+                    _context83.next = 2;
                     return this.loginTorus(selectedVerifier, verifierId);
 
                   case 2:
-                    _yield$this$loginToru = _context81.sent;
+                    _yield$this$loginToru = _context83.sent;
                     keyPair = _yield$this$loginToru.keyPair;
-                    return _context81.abrupt("return", keyPair);
+                    return _context83.abrupt("return", keyPair);
 
                   case 5:
                   case "end":
-                    return _context81.stop();
+                    return _context83.stop();
                 }
               }
-            }, _callee80, this);
+            }, _callee82, this);
           }));
         }
       }]);
@@ -22359,12 +22543,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var tot = 0;
           var change = false;
 
-          var _iterator31 = _createForOfIteratorHelper(accounts),
-              _step31;
+          var _iterator32 = _createForOfIteratorHelper(accounts),
+              _step32;
 
           try {
-            for (_iterator31.s(); !(_step31 = _iterator31.n()).done;) {
-              var account = _step31.value;
+            for (_iterator32.s(); !(_step32 = _iterator32.n()).done;) {
+              var account = _step32.value;
 
               if (account.balanceXTZ !== null) {
                 account.balanceUSD = Number(account.balanceXTZ / 1000000 * this.walletService.wallet.XTZrate);
@@ -22373,9 +22557,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
           } catch (err) {
-            _iterator31.e(err);
+            _iterator32.e(err);
           } finally {
-            _iterator31.f();
+            _iterator32.f();
           }
 
           if (change) {
@@ -22512,11 +22696,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           value: function createEncryptedWallet(mnemonic, password) {
             var passphrase = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
             var hdSeed = arguments.length > 3 ? arguments[3] : undefined;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee81() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee83() {
               var seed, entropy, keyPair, encrypted, encryptedSeed, iv, iv2, encryptedEntropy;
-              return regeneratorRuntime.wrap(function _callee81$(_context82) {
+              return regeneratorRuntime.wrap(function _callee83$(_context84) {
                 while (1) {
-                  switch (_context82.prev = _context82.next) {
+                  switch (_context84.prev = _context84.next) {
                     case 0:
                       seed = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].mnemonicToSeed(mnemonic, passphrase, hdSeed);
                       entropy = Buffer.from(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].mnemonicToEntropy(mnemonic));
@@ -22527,20 +22711,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         keyPair = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].keyPairFromAccountIndex(seed, 0);
                       }
 
-                      _context82.next = 5;
+                      _context84.next = 5;
                       return this.encryptionService.encrypt(seed, password, 3);
 
                     case 5:
-                      encrypted = _context82.sent;
+                      encrypted = _context84.sent;
                       encryptedSeed = encrypted.chiphertext;
                       iv = encrypted.iv;
                       iv2 = this.encryptionService.bumpIV(iv, 1);
-                      _context82.next = 11;
+                      _context84.next = 11;
                       return this.encryptionService.encrypt(entropy, password, 3, iv2);
 
                     case 11:
-                      encryptedEntropy = _context82.sent.chiphertext;
-                      return _context82.abrupt("return", {
+                      encryptedEntropy = _context84.sent.chiphertext;
+                      return _context84.abrupt("return", {
                         data: this.exportKeyStoreInit(hdSeed ? _interfaces__WEBPACK_IMPORTED_MODULE_2__["WalletType"].HdWallet : _interfaces__WEBPACK_IMPORTED_MODULE_2__["WalletType"].FullWallet, encryptedSeed, encryptedEntropy, iv),
                         pkh: keyPair.pkh,
                         pk: keyPair.pk,
@@ -22549,68 +22733,68 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 13:
                     case "end":
-                      return _context82.stop();
+                      return _context84.stop();
                   }
                 }
-              }, _callee81, this);
+              }, _callee83, this);
             }));
           }
         }, {
           key: "getKeys",
           value: function getKeys(pwd, pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee82() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee84() {
               var seed, keyPair, _keyPair, account, _keyPair2;
 
-              return regeneratorRuntime.wrap(function _callee82$(_context83) {
+              return regeneratorRuntime.wrap(function _callee84$(_context85) {
                 while (1) {
-                  switch (_context83.prev = _context83.next) {
+                  switch (_context85.prev = _context85.next) {
                     case 0:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context83.next = 8;
+                        _context85.next = 8;
                         break;
                       }
 
                       console.log('v1');
-                      _context83.next = 4;
+                      _context85.next = 4;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.salt, 1);
 
                     case 4:
-                      seed = _context83.sent;
+                      seed = _context85.sent;
                       console.log('done');
-                      _context83.next = 41;
+                      _context85.next = 41;
                       break;
 
                     case 8:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV2"])) {
-                        _context83.next = 14;
+                        _context85.next = 14;
                         break;
                       }
 
-                      _context83.next = 11;
+                      _context85.next = 11;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.IV, 2);
 
                     case 11:
-                      seed = _context83.sent;
-                      _context83.next = 41;
+                      seed = _context85.sent;
+                      _context85.next = 41;
                       break;
 
                     case 14:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV3"] || this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context83.next = 20;
+                        _context85.next = 20;
                         break;
                       }
 
-                      _context83.next = 17;
+                      _context85.next = 17;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, pwd, this.wallet.IV, 3);
 
                     case 17:
-                      seed = _context83.sent;
-                      _context83.next = 41;
+                      seed = _context85.sent;
+                      _context85.next = 41;
                       break;
 
                     case 20:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LedgerWallet"])) {
-                        _context83.next = 26;
+                        _context85.next = 26;
                         break;
                       }
 
@@ -22620,54 +22804,54 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         pk: this.wallet.implicitAccounts[0].pk,
                         pkh: this.wallet.implicitAccounts[0].pkh
                       };
-                      return _context83.abrupt("return", keyPair);
+                      return _context85.abrupt("return", keyPair);
 
                     case 26:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["TorusWallet"])) {
-                        _context83.next = 40;
+                        _context85.next = 40;
                         break;
                       }
 
                       console.log('torus id ' + this.wallet.id);
-                      _context83.next = 30;
+                      _context85.next = 30;
                       return this.torusService.getTorusKeyPair(this.wallet.verifier, this.wallet.id);
 
                     case 30:
-                      _keyPair = _context83.sent;
+                      _keyPair = _context85.sent;
                       console.log(_keyPair);
 
                       if (!this.wallet.getImplicitAccount(_keyPair.pkh)) {
-                        _context83.next = 36;
+                        _context85.next = 36;
                         break;
                       }
 
-                      return _context83.abrupt("return", _keyPair);
+                      return _context85.abrupt("return", _keyPair);
 
                     case 36:
                       throw new Error('Signed with wrong account');
 
                     case 37:
-                      return _context83.abrupt("return", null);
+                      return _context85.abrupt("return", null);
 
                     case 40:
-                      return _context83.abrupt("return", null);
+                      return _context85.abrupt("return", null);
 
                     case 41:
                       if (seed) {
-                        _context83.next = 43;
+                        _context85.next = 43;
                         break;
                       }
 
-                      return _context83.abrupt("return", null);
+                      return _context85.abrupt("return", null);
 
                     case 43:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context83.next = 52;
+                        _context85.next = 52;
                         break;
                       }
 
                       if (pkh) {
-                        _context83.next = 46;
+                        _context85.next = 46;
                         break;
                       }
 
@@ -22677,88 +22861,88 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       account = this.wallet.getImplicitAccount(pkh);
 
                       if (account.derivationPath) {
-                        _context83.next = 49;
+                        _context85.next = 49;
                         break;
                       }
 
                       throw new Error('No derivationPath found');
 
                     case 49:
-                      return _context83.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
+                      return _context85.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["hd"].seedToKeyPair(seed, account.derivationPath));
 
                     case 52:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV1"])) {
-                        _context83.next = 61;
+                        _context85.next = 61;
                         break;
                       }
 
                       _keyPair2 = this.operationService.seed2keyPair(seed);
 
                       if (!(!_keyPair2.pkh || !pkh || _keyPair2.pkh !== pkh)) {
-                        _context83.next = 58;
+                        _context85.next = 58;
                         break;
                       }
 
-                      return _context83.abrupt("return", null);
+                      return _context85.abrupt("return", null);
 
                     case 58:
-                      return _context83.abrupt("return", _keyPair2);
+                      return _context85.abrupt("return", _keyPair2);
 
                     case 59:
-                      _context83.next = 62;
+                      _context85.next = 62;
                       break;
 
                     case 61:
-                      return _context83.abrupt("return", this.operationService.seed2keyPair(seed));
+                      return _context85.abrupt("return", this.operationService.seed2keyPair(seed));
 
                     case 62:
                     case "end":
-                      return _context83.stop();
+                      return _context85.stop();
                   }
                 }
-              }, _callee82, this);
+              }, _callee84, this);
             }));
           }
         }, {
           key: "revealMnemonicPhrase",
           value: function revealMnemonicPhrase(pwd) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee83() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee85() {
               var iv, entropy;
-              return regeneratorRuntime.wrap(function _callee83$(_context84) {
+              return regeneratorRuntime.wrap(function _callee85$(_context86) {
                 while (1) {
-                  switch (_context84.prev = _context84.next) {
+                  switch (_context86.prev = _context86.next) {
                     case 0:
                       if (!(this.wallet && (this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"] || this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["LegacyWalletV3"]))) {
-                        _context84.next = 10;
+                        _context86.next = 10;
                         break;
                       }
 
                       iv = this.encryptionService.bumpIV(this.wallet.IV, 1);
-                      _context84.next = 4;
+                      _context86.next = 4;
                       return this.encryptionService.decrypt(this.wallet.encryptedEntropy, pwd, iv, 3);
 
                     case 4:
-                      entropy = _context84.sent;
+                      entropy = _context86.sent;
 
                       if (!entropy) {
-                        _context84.next = 9;
+                        _context86.next = 9;
                         break;
                       }
 
-                      return _context84.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].entropyToMnemonic(entropy));
+                      return _context86.abrupt("return", _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_7__["utils"].entropyToMnemonic(entropy));
 
                     case 9:
                       console.log('Invalid password');
 
                     case 10:
-                      return _context84.abrupt("return", '');
+                      return _context86.abrupt("return", '');
 
                     case 11:
                     case "end":
-                      return _context84.stop();
+                      return _context86.stop();
                   }
                 }
-              }, _callee83, this);
+              }, _callee85, this);
             }));
           }
         }, {
@@ -22809,25 +22993,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
           key: "incrementAccountIndex",
           value: function incrementAccountIndex(password) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee84() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee86() {
               var seed, keyPair;
-              return regeneratorRuntime.wrap(function _callee84$(_context85) {
+              return regeneratorRuntime.wrap(function _callee86$(_context87) {
                 while (1) {
-                  switch (_context85.prev = _context85.next) {
+                  switch (_context87.prev = _context87.next) {
                     case 0:
                       if (!(this.wallet instanceof _wallet__WEBPACK_IMPORTED_MODULE_3__["HdWallet"])) {
-                        _context85.next = 13;
+                        _context87.next = 13;
                         break;
                       }
 
-                      _context85.next = 3;
+                      _context87.next = 3;
                       return this.encryptionService.decrypt(this.wallet.encryptedSeed, password, this.wallet.IV, 3);
 
                     case 3:
-                      seed = _context85.sent;
+                      seed = _context87.sent;
 
                       if (!seed) {
-                        _context85.next = 12;
+                        _context87.next = 12;
                         break;
                       }
 
@@ -22835,17 +23019,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.addImplicitAccount(keyPair.pk, this.wallet.index);
                       this.wallet.index++;
                       this.storeWallet();
-                      return _context85.abrupt("return", keyPair.pkh);
+                      return _context87.abrupt("return", keyPair.pkh);
 
                     case 12:
-                      return _context85.abrupt("return", '');
+                      return _context87.abrupt("return", '');
 
                     case 13:
                     case "end":
-                      return _context85.stop();
+                      return _context87.stop();
                   }
                 }
-              }, _callee84, this);
+              }, _callee86, this);
             }));
           }
           /*
@@ -23034,12 +23218,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               this.wallet.lookups = wd.lookups;
             }
 
-            var _iterator32 = _createForOfIteratorHelper(wd.implicitAccounts),
-                _step32;
+            var _iterator33 = _createForOfIteratorHelper(wd.implicitAccounts),
+                _step33;
 
             try {
-              for (_iterator32.s(); !(_step32 = _iterator32.n()).done;) {
-                var implicit = _step32.value;
+              for (_iterator33.s(); !(_step33 = _iterator33.n()).done;) {
+                var implicit = _step33.value;
                 var impAcc = new _wallet__WEBPACK_IMPORTED_MODULE_3__["ImplicitAccount"](implicit.pkh, implicit.pk, implicit.derivationPath ? implicit.derivationPath : null);
                 impAcc.balanceUSD = implicit.balanceUSD;
                 impAcc.balanceXTZ = implicit.balanceXTZ;
@@ -23058,12 +23242,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   impAcc.tokens = implicit.tokens;
                 }
 
-                var _iterator33 = _createForOfIteratorHelper(implicit.originatedAccounts),
-                    _step33;
+                var _iterator34 = _createForOfIteratorHelper(implicit.originatedAccounts),
+                    _step34;
 
                 try {
-                  for (_iterator33.s(); !(_step33 = _iterator33.n()).done;) {
-                    var originated = _step33.value;
+                  for (_iterator34.s(); !(_step34 = _iterator34.n()).done;) {
+                    var originated = _step34.value;
                     var origAcc = new _wallet__WEBPACK_IMPORTED_MODULE_3__["OriginatedAccount"](originated.address, impAcc.pkh, impAcc.pk);
                     origAcc.balanceUSD = originated.balanceUSD;
                     origAcc.balanceXTZ = originated.balanceXTZ;
@@ -23080,17 +23264,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     impAcc.originatedAccounts.push(origAcc);
                   }
                 } catch (err) {
-                  _iterator33.e(err);
+                  _iterator34.e(err);
                 } finally {
-                  _iterator33.f();
+                  _iterator34.f();
                 }
 
                 this.wallet.implicitAccounts.push(impAcc);
               }
             } catch (err) {
-              _iterator32.e(err);
+              _iterator33.e(err);
             } finally {
-              _iterator32.f();
+              _iterator33.f();
             }
           }
         }]);
@@ -23238,34 +23422,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var accounts = [];
 
           if (this.implicitAccounts.length) {
-            var _iterator34 = _createForOfIteratorHelper(this.implicitAccounts),
-                _step34;
+            var _iterator35 = _createForOfIteratorHelper(this.implicitAccounts),
+                _step35;
 
             try {
-              for (_iterator34.s(); !(_step34 = _iterator34.n()).done;) {
-                var implicitAccount = _step34.value;
+              for (_iterator35.s(); !(_step35 = _iterator35.n()).done;) {
+                var implicitAccount = _step35.value;
                 accounts.push(implicitAccount);
 
                 if (implicitAccount.originatedAccounts.length) {
-                  var _iterator35 = _createForOfIteratorHelper(implicitAccount.originatedAccounts),
-                      _step35;
+                  var _iterator36 = _createForOfIteratorHelper(implicitAccount.originatedAccounts),
+                      _step36;
 
                   try {
-                    for (_iterator35.s(); !(_step35 = _iterator35.n()).done;) {
-                      var originatedAccount = _step35.value;
+                    for (_iterator36.s(); !(_step36 = _iterator36.n()).done;) {
+                      var originatedAccount = _step36.value;
                       accounts.push(originatedAccount);
                     }
                   } catch (err) {
-                    _iterator35.e(err);
+                    _iterator36.e(err);
                   } finally {
-                    _iterator35.f();
+                    _iterator36.f();
                   }
                 }
               }
             } catch (err) {
-              _iterator34.e(err);
+              _iterator35.e(err);
             } finally {
-              _iterator34.f();
+              _iterator35.f();
             }
           }
 
@@ -23280,40 +23464,40 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getAccount",
         value: function getAccount(address) {
           if (this.implicitAccounts.length) {
-            var _iterator36 = _createForOfIteratorHelper(this.implicitAccounts),
-                _step36;
+            var _iterator37 = _createForOfIteratorHelper(this.implicitAccounts),
+                _step37;
 
             try {
-              for (_iterator36.s(); !(_step36 = _iterator36.n()).done;) {
-                var implicitAccount = _step36.value;
+              for (_iterator37.s(); !(_step37 = _iterator37.n()).done;) {
+                var implicitAccount = _step37.value;
 
                 if (implicitAccount.address === address) {
                   return implicitAccount;
                 }
 
                 if (implicitAccount.originatedAccounts.length) {
-                  var _iterator37 = _createForOfIteratorHelper(implicitAccount.originatedAccounts),
-                      _step37;
+                  var _iterator38 = _createForOfIteratorHelper(implicitAccount.originatedAccounts),
+                      _step38;
 
                   try {
-                    for (_iterator37.s(); !(_step37 = _iterator37.n()).done;) {
-                      var originatedAccount = _step37.value;
+                    for (_iterator38.s(); !(_step38 = _iterator38.n()).done;) {
+                      var originatedAccount = _step38.value;
 
                       if (originatedAccount.address === address) {
                         return originatedAccount;
                       }
                     }
                   } catch (err) {
-                    _iterator37.e(err);
+                    _iterator38.e(err);
                   } finally {
-                    _iterator37.f();
+                    _iterator38.f();
                   }
                 }
               }
             } catch (err) {
-              _iterator36.e(err);
+              _iterator37.e(err);
             } finally {
-              _iterator36.f();
+              _iterator37.f();
             }
           }
 
@@ -23323,21 +23507,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getImplicitAccount",
         value: function getImplicitAccount(pkh) {
           if (this.implicitAccounts.length) {
-            var _iterator38 = _createForOfIteratorHelper(this.implicitAccounts),
-                _step38;
+            var _iterator39 = _createForOfIteratorHelper(this.implicitAccounts),
+                _step39;
 
             try {
-              for (_iterator38.s(); !(_step38 = _iterator38.n()).done;) {
-                var implicitAccount = _step38.value;
+              for (_iterator39.s(); !(_step39 = _iterator39.n()).done;) {
+                var implicitAccount = _step39.value;
 
                 if (implicitAccount.pkh === pkh) {
                   return implicitAccount;
                 }
               }
             } catch (err) {
-              _iterator38.e(err);
+              _iterator39.e(err);
             } finally {
-              _iterator38.f();
+              _iterator39.f();
             }
           }
 
@@ -23541,21 +23725,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getTokenBalance",
         value: function getTokenBalance(tokenId) {
           if (this.tokens.length) {
-            var _iterator39 = _createForOfIteratorHelper(this.tokens),
-                _step39;
+            var _iterator40 = _createForOfIteratorHelper(this.tokens),
+                _step40;
 
             try {
-              for (_iterator39.s(); !(_step39 = _iterator39.n()).done;) {
-                var token = _step39.value;
+              for (_iterator40.s(); !(_step40 = _iterator40.n()).done;) {
+                var token = _step40.value;
 
                 if (tokenId === token.tokenId) {
                   return token.balance;
                 }
               }
             } catch (err) {
-              _iterator39.e(err);
+              _iterator40.e(err);
             } finally {
-              _iterator39.f();
+              _iterator40.f();
             }
           }
 
@@ -23564,14 +23748,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateTokenBalance",
         value: function updateTokenBalance(tokenId, balance) {
-          console.log(tokenId + ' balance', balance);
-          console.log(JSON.stringify(balance));
-
           if (this.tokens.length) {
             for (var i = 0; i < this.tokens.length; i++) {
               if (tokenId === this.tokens[i].tokenId) {
                 if (this.tokens[i].balance !== balance) {
-                  if (balance === '0') {
+                  if (balance === '0' || balance && balance.slice(0, 1) === '-') {
                     this.tokens.splice(i, 1);
                   } else {
                     this.tokens[i].balance = balance;
@@ -23583,7 +23764,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           }
 
-          if (tokenId.length > 37 && balance !== '0') {
+          if (tokenId.length > 37 && balance && balance !== '0' && balance.slice(0, 1) !== '-') {
             this.tokens.push({
               tokenId: tokenId,
               balance: balance
