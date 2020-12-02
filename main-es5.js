@@ -15446,7 +15446,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     if (account instanceof _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["ImplicitAccount"]) {
                       console.log('TOKENS');
-                      fetch("https://api.better-call.dev/v1/account/".concat(this.constants.NET.NETWORK, "/").concat(account.pkh)).then(function (res) {
+                      fetch("https://you.better-call.dev/v1/account/".concat(this.constants.NET.NETWORK, "/").concat(account.pkh)).then(function (res) {
                         return res.json();
                       }).then(function (data) {
                         var _a;

@@ -8549,7 +8549,7 @@ class ActivityService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             if (account instanceof _wallet_wallet__WEBPACK_IMPORTED_MODULE_5__["ImplicitAccount"]) {
                 console.log('TOKENS');
-                fetch(`https://api.better-call.dev/v1/account/${this.constants.NET.NETWORK}/${account.pkh}`)
+                fetch(`https://you.better-call.dev/v1/account/${this.constants.NET.NETWORK}/${account.pkh}`)
                     .then(res => res.json())
                     .then(data => {
                     var _a;
