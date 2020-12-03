@@ -9949,7 +9949,7 @@ class TzktService {
                     if (hash === 'edc66a88461120f2ea9132d64be0d8b9') { // empty account
                         return '';
                     }
-                    return payload;
+                    return hash;
                 }
                 else {
                     return '';
@@ -12272,6 +12272,9 @@ class TokenService {
                 if (token) {
                     return Object.assign({ kind: contract.kind, category: contract.category, id,
                         contractAddress }, token);
+                }
+                else if (this.AUTO_DISCOVER) {
+                    this.searchMetadata(contractAddress, id); // ToDo: Move this call
                 }
             }
             else if (this.AUTO_DISCOVER) {

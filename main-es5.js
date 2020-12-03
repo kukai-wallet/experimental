@@ -18496,7 +18496,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                             return '';
                           }
 
-                          return payload;
+                          return hash;
                         } else {
                           return '';
                         }
@@ -22122,6 +22122,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   id: id,
                   contractAddress: contractAddress
                 }, token);
+              } else if (this.AUTO_DISCOVER) {
+                this.searchMetadata(contractAddress, id); // ToDo: Move this call
               }
             } else if (this.AUTO_DISCOVER) {
               this.searchMetadata(contractAddress, id); // ToDo: Move this call
