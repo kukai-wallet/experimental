@@ -1120,7 +1120,6 @@ class AccountViewComponent {
         this.tokenService = tokenService;
         this.CONSTANTS = new _constants__WEBPACK_IMPORTED_MODULE_10__["Constants"]();
         this.trigger = true;
-        this.pointerAllowed = true;
     }
     ngOnInit() {
         if (!this.walletService.wallet) {
@@ -10036,9 +10035,8 @@ class TzktService {
     getTokenMetadata(contractAddress, id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const bigMapId = yield this.getBigMapIds(contractAddress);
-            if (bigMapId.token) {
+            if (bigMapId.token !== -1) {
                 const tokenBigMap = yield this.fetchApi(`${this.bcd}/bigmap/carthagenet/${bigMapId.token}/keys`);
-                const contractBigMap = yield this.fetchApi(`${this.bcd}/bigmap/carthagenet/${bigMapId.contract}/keys`);
                 let metadata = {};
                 let extras = null;
                 try {
@@ -10070,19 +10068,22 @@ class TzktService {
                     console.log(e);
                     return null;
                 }
-                try {
-                    const url = this.uriToUrl(contractBigMap[0].data.value.value);
-                    if (url) {
-                        const { interfaces } = yield this.fetchApi(url);
-                        if (interfaces.includes('TZIP-12')) {
-                            metadata['tokenType'] = 'FA2';
-                        }
-                        else if (interfaces.includes('TZIP-7')) {
-                            metadata['tokenType'] = 'FA1.2';
+                if (bigMapId.contract !== -1) {
+                    try {
+                        const contractBigMap = yield this.fetchApi(`${this.bcd}/bigmap/carthagenet/${bigMapId.contract}/keys`);
+                        const url = this.uriToUrl(contractBigMap[0].data.value.value);
+                        if (url) {
+                            const { interfaces } = yield this.fetchApi(url);
+                            if (interfaces.includes('TZIP-12')) {
+                                metadata['tokenType'] = 'FA2';
+                            }
+                            else if (interfaces.includes('TZIP-7')) {
+                                metadata['tokenType'] = 'FA1.2';
+                            }
                         }
                     }
+                    catch (_a) { }
                 }
-                catch (_a) { }
                 if (extras) { // append extra metadata
                     extras = yield this.getUriExtras(extras);
                     metadata = Object.assign(Object.assign({}, metadata), extras);
@@ -12249,8 +12250,12 @@ class TokenService {
     constructor(indexerService) {
         this.indexerService = indexerService;
         this.AUTO_DISCOVER = true;
-        this.exploredTokenIds = [];
+        this.exploredIds = {};
+        this.storeKey = 'tokenMetadata';
+        this.storeKey2 = 'metadataList';
         this.contracts = new _constants__WEBPACK_IMPORTED_MODULE_2__["Constants"]().NET._ASSETS;
+        this.loadMetadata();
+        this.loadExplored();
     }
     getAsset(tokenId) {
         if (!tokenId || !tokenId.includes(':')) {
@@ -12270,7 +12275,7 @@ class TokenService {
                 }
             }
             else if (this.AUTO_DISCOVER) {
-                this.searchMetadata(contractAddress, id);
+                this.searchMetadata(contractAddress, id); // ToDo: Move this call
             }
         }
         return null;
@@ -12292,9 +12297,8 @@ class TokenService {
     searchMetadata(contractAddress, id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const tokenId = `${contractAddress}:${id}`;
-            if (!this.exploredTokenIds.includes(tokenId)) {
+            if (this.explore(tokenId)) {
                 console.log(`Searching for tokenId: ${tokenId}`);
-                this.exploredTokenIds.push(tokenId);
                 const metadata = yield this.indexerService.getTokenMetadata(contractAddress, id);
                 if (metadata &&
                     metadata.name &&
@@ -12308,7 +12312,7 @@ class TokenService {
                     };
                     const token = {
                         name: metadata.name,
-                        symbol: metadata.symbol,
+                        symbol: metadata.symbol.toUpperCase(),
                         decimals: Number(metadata.decimals),
                         description: metadata.description ? metadata.description : '',
                         imageSrc: metadata.imageUri ? metadata.imageUri : '../../../assets/img/tokens/default.png',
@@ -12316,9 +12320,59 @@ class TokenService {
                     };
                     contract.tokens[id] = token;
                     this.addAsset(contractAddress, contract);
+                    this.saveMetadata();
                 }
             }
         });
+    }
+    explore(tokenId) {
+        const now = new Date().getTime();
+        if (!this.exploredIds[tokenId]) {
+            this.exploredIds[tokenId] = { firstCheck: now, lastCheck: now };
+            this.saveExplored();
+            return true;
+        }
+        else {
+            const token = this.exploredIds[tokenId];
+            const timeout = (token.lastCheck - token.firstCheck) > 600000;
+            const reCheck = (now - token.lastCheck) > 2000;
+            if (timeout || !reCheck) {
+                return false;
+            }
+            this.exploredIds[tokenId].lastCheck = now;
+            this.saveExplored();
+            console.log(tokenId + ' - ' + (now - token.firstCheck));
+            return true;
+        }
+    }
+    saveMetadata() {
+        localStorage.setItem(this.storeKey, JSON.stringify(this.contracts));
+    }
+    saveExplored() {
+        localStorage.setItem(this.storeKey2, JSON.stringify(this.exploredIds));
+    }
+    loadMetadata() {
+        console.log('### Load metadata');
+        const metadataJson = localStorage.getItem(this.storeKey);
+        if (metadataJson) {
+            const metadata = JSON.parse(metadataJson);
+            const contractAddresses = Object.keys(metadata);
+            for (const address of contractAddresses) {
+                console.log(metadata[address]);
+                this.addAsset(address, metadata[address]);
+            }
+        }
+    }
+    loadExplored() {
+        const exploredJson = localStorage.getItem(this.storeKey2);
+        if (exploredJson) {
+            const explored = JSON.parse(exploredJson);
+            if (explored) {
+                this.exploredIds = explored;
+            }
+        }
+        console.log('###');
+        console.log(this.exploredIds);
     }
     formatAmount(tokenKey, amount, baseUnit = true) {
         if (!tokenKey) {

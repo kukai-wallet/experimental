@@ -2073,7 +2073,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.tokenService = tokenService;
         this.CONSTANTS = new _constants__WEBPACK_IMPORTED_MODULE_10__["Constants"]();
         this.trigger = true;
-        this.pointerAllowed = true;
       }
 
       _createClass(AccountViewComponent, [{
@@ -18627,7 +18626,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           key: "getTokenMetadata",
           value: function getTokenMetadata(contractAddress, id) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee64() {
-              var bigMapId, tokenBigMap, contractBigMap, metadata, extras, _iterator25, _step25, child, _iterator26, _step26, entry, url, _yield$this$fetchApi, interfaces;
+              var bigMapId, tokenBigMap, metadata, extras, _iterator25, _step25, child, _iterator26, _step26, entry, contractBigMap, url, _yield$this$fetchApi, interfaces;
 
               return regeneratorRuntime.wrap(function _callee64$(_context65) {
                 while (1) {
@@ -18639,8 +18638,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     case 2:
                       bigMapId = _context65.sent;
 
-                      if (!bigMapId.token) {
-                        _context65.next = 78;
+                      if (!(bigMapId.token !== -1)) {
+                        _context65.next = 79;
                         break;
                       }
 
@@ -18649,134 +18648,139 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 6:
                       tokenBigMap = _context65.sent;
-                      _context65.next = 9;
-                      return this.fetchApi("".concat(this.bcd, "/bigmap/carthagenet/").concat(bigMapId.contract, "/keys"));
-
-                    case 9:
-                      contractBigMap = _context65.sent;
                       metadata = {};
                       extras = null;
-                      _context65.prev = 12;
+                      _context65.prev = 9;
                       _iterator25 = _createForOfIteratorHelper(tokenBigMap);
-                      _context65.prev = 14;
+                      _context65.prev = 11;
 
                       _iterator25.s();
 
-                    case 16:
+                    case 13:
                       if ((_step25 = _iterator25.n()).done) {
-                        _context65.next = 46;
+                        _context65.next = 43;
                         break;
                       }
 
                       child = _step25.value;
 
                       if (!(child.data.key.value === id.toString())) {
-                        _context65.next = 44;
+                        _context65.next = 41;
                         break;
                       }
 
                       _iterator26 = _createForOfIteratorHelper(child.data.value.children);
-                      _context65.prev = 20;
+                      _context65.prev = 17;
 
                       _iterator26.s();
 
-                    case 22:
+                    case 19:
                       if ((_step26 = _iterator26.n()).done) {
-                        _context65.next = 35;
+                        _context65.next = 32;
                         break;
                       }
 
                       entry = _step26.value;
                       _context65.t0 = entry.name;
-                      _context65.next = _context65.t0 === 'extras' ? 27 : _context65.t0 === 'name' ? 29 : _context65.t0 === 'symbol' ? 29 : _context65.t0 === 'decimals' ? 31 : 33;
+                      _context65.next = _context65.t0 === 'extras' ? 24 : _context65.t0 === 'name' ? 26 : _context65.t0 === 'symbol' ? 26 : _context65.t0 === 'decimals' ? 28 : 30;
                       break;
 
-                    case 27:
+                    case 24:
                       extras = entry.children;
-                      return _context65.abrupt("break", 33);
+                      return _context65.abrupt("break", 30);
 
-                    case 29:
+                    case 26:
                       if (typeof entry.value === 'string') {
                         metadata[entry.name] = entry.value;
                       }
 
-                      return _context65.abrupt("break", 33);
+                      return _context65.abrupt("break", 30);
 
-                    case 31:
+                    case 28:
                       if (!isNaN(Number(entry.value)) && Number(entry.value >= 0)) {
                         metadata[entry.name] = Number(entry.value);
                       }
 
-                      return _context65.abrupt("break", 33);
+                      return _context65.abrupt("break", 30);
 
-                    case 33:
-                      _context65.next = 22;
+                    case 30:
+                      _context65.next = 19;
                       break;
 
-                    case 35:
-                      _context65.next = 40;
+                    case 32:
+                      _context65.next = 37;
                       break;
 
-                    case 37:
-                      _context65.prev = 37;
-                      _context65.t1 = _context65["catch"](20);
+                    case 34:
+                      _context65.prev = 34;
+                      _context65.t1 = _context65["catch"](17);
 
                       _iterator26.e(_context65.t1);
 
-                    case 40:
-                      _context65.prev = 40;
+                    case 37:
+                      _context65.prev = 37;
 
                       _iterator26.f();
 
-                      return _context65.finish(40);
+                      return _context65.finish(37);
+
+                    case 40:
+                      return _context65.abrupt("break", 43);
+
+                    case 41:
+                      _context65.next = 13;
+                      break;
 
                     case 43:
-                      return _context65.abrupt("break", 46);
-
-                    case 44:
-                      _context65.next = 16;
+                      _context65.next = 48;
                       break;
 
-                    case 46:
-                      _context65.next = 51;
-                      break;
-
-                    case 48:
-                      _context65.prev = 48;
-                      _context65.t2 = _context65["catch"](14);
+                    case 45:
+                      _context65.prev = 45;
+                      _context65.t2 = _context65["catch"](11);
 
                       _iterator25.e(_context65.t2);
 
-                    case 51:
-                      _context65.prev = 51;
+                    case 48:
+                      _context65.prev = 48;
 
                       _iterator25.f();
 
-                      return _context65.finish(51);
+                      return _context65.finish(48);
 
-                    case 54:
-                      _context65.next = 60;
+                    case 51:
+                      _context65.next = 57;
                       break;
 
-                    case 56:
-                      _context65.prev = 56;
-                      _context65.t3 = _context65["catch"](12);
+                    case 53:
+                      _context65.prev = 53;
+                      _context65.t3 = _context65["catch"](9);
                       console.log(_context65.t3);
                       return _context65.abrupt("return", null);
 
-                    case 60:
-                      _context65.prev = 60;
-                      url = this.uriToUrl(contractBigMap[0].data.value.value);
-
-                      if (!url) {
-                        _context65.next = 68;
+                    case 57:
+                      if (!(bigMapId.contract !== -1)) {
+                        _context65.next = 73;
                         break;
                       }
 
-                      _context65.next = 65;
+                      _context65.prev = 58;
+                      _context65.next = 61;
+                      return this.fetchApi("".concat(this.bcd, "/bigmap/carthagenet/").concat(bigMapId.contract, "/keys"));
+
+                    case 61:
+                      contractBigMap = _context65.sent;
+                      url = this.uriToUrl(contractBigMap[0].data.value.value);
+
+                      if (!url) {
+                        _context65.next = 69;
+                        break;
+                      }
+
+                      _context65.next = 66;
                       return this.fetchApi(url);
 
-                    case 65:
+                    case 66:
                       _yield$this$fetchApi = _context65.sent;
                       interfaces = _yield$this$fetchApi.interfaces;
 
@@ -18786,39 +18790,39 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         metadata['tokenType'] = 'FA1.2';
                       }
 
-                    case 68:
-                      _context65.next = 72;
+                    case 69:
+                      _context65.next = 73;
                       break;
 
-                    case 70:
-                      _context65.prev = 70;
-                      _context65.t4 = _context65["catch"](60);
+                    case 71:
+                      _context65.prev = 71;
+                      _context65.t4 = _context65["catch"](58);
 
-                    case 72:
+                    case 73:
                       if (!extras) {
-                        _context65.next = 77;
+                        _context65.next = 78;
                         break;
                       }
 
-                      _context65.next = 75;
+                      _context65.next = 76;
                       return this.getUriExtras(extras);
 
-                    case 75:
+                    case 76:
                       extras = _context65.sent;
                       metadata = Object.assign(Object.assign({}, metadata), extras);
 
-                    case 77:
+                    case 78:
                       return _context65.abrupt("return", metadata);
 
-                    case 78:
+                    case 79:
                       return _context65.abrupt("return", null);
 
-                    case 79:
+                    case 80:
                     case "end":
                       return _context65.stop();
                   }
                 }
-              }, _callee64, this, [[12, 56], [14, 48, 51, 54], [20, 37, 40, 43], [60, 70]]);
+              }, _callee64, this, [[9, 53], [11, 45, 48, 51], [17, 34, 37, 40], [58, 71]]);
             }));
           }
         }, {
@@ -22086,8 +22090,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.indexerService = indexerService;
         this.AUTO_DISCOVER = true;
-        this.exploredTokenIds = [];
+        this.exploredIds = {};
+        this.storeKey = 'tokenMetadata';
+        this.storeKey2 = 'metadataList';
         this.contracts = new _constants__WEBPACK_IMPORTED_MODULE_2__["Constants"]().NET._ASSETS;
+        this.loadMetadata();
+        this.loadExplored();
       }
 
       _createClass(TokenService, [{
@@ -22116,7 +22124,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }, token);
               }
             } else if (this.AUTO_DISCOVER) {
-              this.searchMetadata(contractAddress, id);
+              this.searchMetadata(contractAddress, id); // ToDo: Move this call
             }
           }
 
@@ -22151,17 +22159,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     tokenId = "".concat(contractAddress, ":").concat(id);
 
-                    if (this.exploredTokenIds.includes(tokenId)) {
-                      _context78.next = 8;
+                    if (!this.explore(tokenId)) {
+                      _context78.next = 7;
                       break;
                     }
 
                     console.log("Searching for tokenId: ".concat(tokenId));
-                    this.exploredTokenIds.push(tokenId);
-                    _context78.next = 6;
+                    _context78.next = 5;
                     return this.indexerService.getTokenMetadata(contractAddress, id);
 
-                  case 6:
+                  case 5:
                     metadata = _context78.sent;
 
                     if (metadata && metadata.name && metadata.symbol && !isNaN(metadata.decimals) && metadata.decimals >= 0) {
@@ -22172,7 +22179,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       };
                       token = {
                         name: metadata.name,
-                        symbol: metadata.symbol,
+                        symbol: metadata.symbol.toUpperCase(),
                         decimals: Number(metadata.decimals),
                         description: metadata.description ? metadata.description : '',
                         imageSrc: metadata.imageUri ? metadata.imageUri : '../../../assets/img/tokens/default.png',
@@ -22180,15 +22187,86 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       };
                       contract.tokens[id] = token;
                       this.addAsset(contractAddress, contract);
+                      this.saveMetadata();
                     }
 
-                  case 8:
+                  case 7:
                   case "end":
                     return _context78.stop();
                 }
               }
             }, _callee77, this);
           }));
+        }
+      }, {
+        key: "explore",
+        value: function explore(tokenId) {
+          var now = new Date().getTime();
+
+          if (!this.exploredIds[tokenId]) {
+            this.exploredIds[tokenId] = {
+              firstCheck: now,
+              lastCheck: now
+            };
+            this.saveExplored();
+            return true;
+          } else {
+            var token = this.exploredIds[tokenId];
+            var timeout = token.lastCheck - token.firstCheck > 600000;
+            var reCheck = now - token.lastCheck > 2000;
+
+            if (timeout || !reCheck) {
+              return false;
+            }
+
+            this.exploredIds[tokenId].lastCheck = now;
+            this.saveExplored();
+            console.log(tokenId + ' - ' + (now - token.firstCheck));
+            return true;
+          }
+        }
+      }, {
+        key: "saveMetadata",
+        value: function saveMetadata() {
+          localStorage.setItem(this.storeKey, JSON.stringify(this.contracts));
+        }
+      }, {
+        key: "saveExplored",
+        value: function saveExplored() {
+          localStorage.setItem(this.storeKey2, JSON.stringify(this.exploredIds));
+        }
+      }, {
+        key: "loadMetadata",
+        value: function loadMetadata() {
+          console.log('### Load metadata');
+          var metadataJson = localStorage.getItem(this.storeKey);
+
+          if (metadataJson) {
+            var metadata = JSON.parse(metadataJson);
+            var contractAddresses = Object.keys(metadata);
+
+            for (var _i3 = 0, _contractAddresses = contractAddresses; _i3 < _contractAddresses.length; _i3++) {
+              var address = _contractAddresses[_i3];
+              console.log(metadata[address]);
+              this.addAsset(address, metadata[address]);
+            }
+          }
+        }
+      }, {
+        key: "loadExplored",
+        value: function loadExplored() {
+          var exploredJson = localStorage.getItem(this.storeKey2);
+
+          if (exploredJson) {
+            var explored = JSON.parse(exploredJson);
+
+            if (explored) {
+              this.exploredIds = explored;
+            }
+          }
+
+          console.log('###');
+          console.log(this.exploredIds);
         }
       }, {
         key: "formatAmount",
