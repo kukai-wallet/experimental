@@ -13978,7 +13978,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, Constants);
 
         // Select Testnet or Mainnet
-        this.NET = this.carthagenet();
+        this.NET = this.delphinet();
       }
 
       _createClass(Constants, [{
@@ -14055,7 +14055,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             NETWORK: 'delphinet',
             NODE_URL: 'https://delphinet-tezos.giganode.io/',
             BLOCK_EXPLORER_URL: 'https://delphi.tzkt.io',
-            _ASSETS: {}
+            _ASSETS: {
+              'KT1REPEBMQS3Be8ZybkQQfSwAv3g4pHJViuK': {
+                kind: 'FA1.2',
+                category: 'finance',
+                tokens: {
+                  0: {
+                    name: 'USD tez',
+                    symbol: 'USDtz',
+                    decimals: 6,
+                    description: 'USDtz is a Tezos on-chain stablecoin pegged to the value of the United States Dollar.',
+                    imageSrc: '../../../assets/img/tokens/usdtz.png'
+                  }
+                }
+              }
+            }
           };
         }
       }]);
@@ -18530,13 +18544,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           key: "getContractAddresses",
           value: function getContractAddresses(pkh) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
-              var network;
               return regeneratorRuntime.wrap(function _callee61$(_context62) {
                 while (1) {
                   switch (_context62.prev = _context62.next) {
                     case 0:
-                      network = this.CONSTANTS.NET.network !== 'mainnet' ? '.' + this.CONSTANTS.NET.NETWORK.slice(0, -3) : '';
-                      return _context62.abrupt("return", fetch("https://api".concat(network, ".tzkt.io/v1/operations/originations?contractManager=").concat(pkh)).then(function (response) {
+                      return _context62.abrupt("return", fetch("https://api.".concat(this.CONSTANTS.NET.NETWORK, ".tzkt.io/v1/operations/originations?contractManager=").concat(pkh)).then(function (response) {
                         return response.json();
                       }).then(function (data) {
                         return data.map(function (op) {
@@ -18546,7 +18558,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         });
                       }));
 
-                    case 2:
+                    case 1:
                     case "end":
                       return _context62.stop();
                   }
@@ -18602,14 +18614,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           key: "getOperations",
           value: function getOperations(address) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee63() {
-              var network, ops, tokenTxs;
+              var ops, tokenTxs;
               return regeneratorRuntime.wrap(function _callee63$(_context64) {
                 while (1) {
                   switch (_context64.prev = _context64.next) {
                     case 0:
-                      network = this.CONSTANTS.NET.NETWORK !== 'mainnet' ? '.' + this.CONSTANTS.NET.NETWORK.slice(0, -3) : '';
-                      _context64.next = 3;
-                      return fetch("https://api".concat(network, ".tzkt.io/v1/accounts/").concat(address, "/operations?limit=20&type=delegation,origination,transaction")).then(function (response) {
+                      _context64.next = 2;
+                      return fetch("https://api.".concat(this.CONSTANTS.NET.NETWORK, ".tzkt.io/v1/accounts/").concat(address, "/operations?limit=20&type=delegation,origination,transaction")).then(function (response) {
                         return response.json();
                       }).then(function (data) {
                         return data.map(function (op) {
@@ -18666,9 +18677,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         });
                       });
 
-                    case 3:
+                    case 2:
                       ops = _context64.sent;
-                      _context64.next = 6;
+                      _context64.next = 5;
                       return fetch("".concat(this.bcd, "/tokens/").concat(this.CONSTANTS.NET.NETWORK, "/transfers/").concat(address, "?size=20")).then(function (response) {
                         return response.json();
                       }).then(function (data) {
@@ -18695,13 +18706,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         });
                       });
 
-                    case 6:
+                    case 5:
                       tokenTxs = _context64.sent;
                       return _context64.abrupt("return", ops.concat(tokenTxs).sort(function (a, b) {
                         return b.timestamp - a.timestamp;
                       }));
 
-                    case 8:
+                    case 7:
                     case "end":
                       return _context64.stop();
                   }
@@ -18731,7 +18742,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
 
                       _context65.next = 6;
-                      return this.fetchApi("".concat(this.bcd, "/bigmap/carthagenet/").concat(bigMapId.token, "/keys"));
+                      return this.fetchApi("".concat(this.bcd, "/bigmap/").concat(this.CONSTANTS.NET.NETWORK, "/").concat(bigMapId.token, "/keys"));
 
                     case 6:
                       tokenBigMap = _context65.sent;
@@ -18853,7 +18864,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                       _context65.prev = 58;
                       _context65.next = 61;
-                      return this.fetchApi("".concat(this.bcd, "/bigmap/carthagenet/").concat(bigMapId.contract, "/keys"));
+                      return this.fetchApi("".concat(this.bcd, "/bigmap/").concat(this.CONSTANTS.NET.NETWORK, "/").concat(bigMapId.contract, "/keys"));
 
                     case 61:
                       contractBigMap = _context65.sent;
@@ -18923,7 +18934,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   switch (_context66.prev = _context66.next) {
                     case 0:
                       _context66.next = 2;
-                      return this.fetchApi("".concat(this.bcd, "/contract/carthagenet/").concat(contractAddress, "/storage"));
+                      return this.fetchApi("".concat(this.bcd, "/contract/").concat(this.CONSTANTS.NET.NETWORK, "/").concat(contractAddress, "/storage"));
 
                     case 2:
                       storage = _context66.sent;

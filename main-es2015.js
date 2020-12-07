@@ -6996,7 +6996,7 @@ __webpack_require__.r(__webpack_exports__);
 class Constants {
     constructor() {
         // Select Testnet or Mainnet
-        this.NET = this.carthagenet();
+        this.NET = this.delphinet();
     }
     mainnet() {
         return {
@@ -7066,7 +7066,21 @@ class Constants {
             NETWORK: 'delphinet',
             NODE_URL: 'https://delphinet-tezos.giganode.io/',
             BLOCK_EXPLORER_URL: 'https://delphi.tzkt.io',
-            _ASSETS: {}
+            _ASSETS: {
+                'KT1REPEBMQS3Be8ZybkQQfSwAv3g4pHJViuK': {
+                    kind: 'FA1.2',
+                    category: 'finance',
+                    tokens: {
+                        0: {
+                            name: 'USD tez',
+                            symbol: 'USDtz',
+                            decimals: 6,
+                            description: 'USDtz is a Tezos on-chain stablecoin pegged to the value of the United States Dollar.',
+                            imageSrc: '../../../assets/img/tokens/usdtz.png'
+                        }
+                    }
+                }
+            }
         };
     }
 }
@@ -9966,8 +9980,7 @@ class TzktService {
     }
     getContractAddresses(pkh) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const network = this.CONSTANTS.NET.network !== 'mainnet' ? '.' + this.CONSTANTS.NET.NETWORK.slice(0, -3) : '';
-            return fetch(`https://api${network}.tzkt.io/v1/operations/originations?contractManager=${pkh}`)
+            return fetch(`https://api.${this.CONSTANTS.NET.NETWORK}.tzkt.io/v1/operations/originations?contractManager=${pkh}`)
                 .then(response => response.json())
                 .then(data => data.map((op) => {
                 return op.originatedContract.kind === 'delegator_contract' ? op.originatedContract.address : '';
@@ -10007,8 +10020,7 @@ class TzktService {
     // Todo: Merge with token transactions
     getOperations(address) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const network = this.CONSTANTS.NET.NETWORK !== 'mainnet' ? '.' + this.CONSTANTS.NET.NETWORK.slice(0, -3) : '';
-            const ops = yield fetch(`https://api${network}.tzkt.io/v1/accounts/${address}/operations?limit=20&type=delegation,origination,transaction`)
+            const ops = yield fetch(`https://api.${this.CONSTANTS.NET.NETWORK}.tzkt.io/v1/accounts/${address}/operations?limit=20&type=delegation,origination,transaction`)
                 .then(response => response.json())
                 .then(data => data.map(op => {
                 if (!op.hasInternals && op.status === 'applied') {
@@ -10083,7 +10095,7 @@ class TzktService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const bigMapId = yield this.getBigMapIds(contractAddress);
             if (bigMapId.token !== -1) {
-                const tokenBigMap = yield this.fetchApi(`${this.bcd}/bigmap/carthagenet/${bigMapId.token}/keys`);
+                const tokenBigMap = yield this.fetchApi(`${this.bcd}/bigmap/${this.CONSTANTS.NET.NETWORK}/${bigMapId.token}/keys`);
                 let metadata = {};
                 let extras = null;
                 try {
@@ -10117,7 +10129,7 @@ class TzktService {
                 }
                 if (bigMapId.contract !== -1) {
                     try {
-                        const contractBigMap = yield this.fetchApi(`${this.bcd}/bigmap/carthagenet/${bigMapId.contract}/keys`);
+                        const contractBigMap = yield this.fetchApi(`${this.bcd}/bigmap/${this.CONSTANTS.NET.NETWORK}/${bigMapId.contract}/keys`);
                         const url = this.uriToUrl(contractBigMap[0].data.value.value);
                         if (url) {
                             const { interfaces } = yield this.fetchApi(url);
@@ -10142,7 +10154,7 @@ class TzktService {
     }
     getBigMapIds(contractAddress) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const storage = yield this.fetchApi(`${this.bcd}/contract/carthagenet/${contractAddress}/storage`);
+            const storage = yield this.fetchApi(`${this.bcd}/contract/${this.CONSTANTS.NET.NETWORK}/${contractAddress}/storage`);
             let token = -1;
             let contract = -1;
             try {
