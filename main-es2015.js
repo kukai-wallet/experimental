@@ -9672,10 +9672,10 @@ class ActivityService {
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.accountInfo(account.address, knownTokenIds)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((data) => {
             const counter = data.counter;
             const unknownTokenIds = data.unknownTokenIds ? data.unknownTokenIds : [];
+            this.handleUnknownTokenIds(unknownTokenIds);
             if (account.state !== counter) {
                 console.log(account.state + ' ' + counter);
                 console.log('data', unknownTokenIds);
-                this.handleUnknownTokenIds(unknownTokenIds);
                 if (data.tokens) {
                     this.updateTokenBalances(account, data.tokens);
                 }
@@ -11308,6 +11308,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var crypto_browserify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! crypto-browserify */ "./node_modules/crypto-browserify/index.js");
 /* harmony import */ var crypto_browserify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(crypto_browserify__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! big.js */ "./node_modules/big.js/big.js");
+/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -11319,7 +11322,6 @@ class TzktService {
     }
     getContractAddresses(pkh) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            console.log('ok?');
             return fetch(`https://api.${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}.tzkt.io/v1/operations/originations?contractManager=${pkh}`)
                 .then(response => response.json())
                 .then(data => data.map((op) => {
@@ -11471,16 +11473,45 @@ class TzktService {
     extractTokenMetadata(bigMapId, id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const tokenBigMap = yield this.fetchApi(`${this.bcd}/bigmap/${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}/${bigMapId}/keys`);
+            console.log(`${this.bcd}/bigmap/${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}/${bigMapId}/keys`);
             let url = '';
+            const metadata = {};
+            const lookFor = {
+                strings: ['name', 'symbol', 'description', 'imageUri'],
+                numbers: ['decimals'],
+                booleans: ['isNft', 'nonTransferrable', 'nonTransferable', 'symbolPrecedence', 'binaryAmount']
+            };
             try {
                 for (const child of tokenBigMap) {
                     if (child.data.key.value === id.toString()) {
                         for (const child2 of child.data.value.children) {
                             if (child2.name === 'token_metadata_map') {
                                 for (const child3 of child2.children) {
+                                    console.log(child3.name, child3.value);
                                     if (!child3.name) {
                                         url = this.uriToUrl(child3.value);
-                                        break;
+                                    }
+                                    else {
+                                        for (const key of lookFor.strings) {
+                                            if (child3.name === key) {
+                                                metadata[key] = child3.value;
+                                            }
+                                        }
+                                        for (const key of lookFor.numbers) {
+                                            if (child3.name === key) {
+                                                metadata[key] = this.zarithDecodeInt(child3.value).value;
+                                            }
+                                        }
+                                        for (const key of lookFor.booleans) {
+                                            if (child3.name === key) {
+                                                if (child3.value === '00') {
+                                                    metadata[key] = false;
+                                                }
+                                                else if (child3.value.toUpperCase() === 'FF') {
+                                                    metadata[key] = true;
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                                 break;
@@ -11491,29 +11522,26 @@ class TzktService {
                 }
             }
             catch (e) {
+                console.warn(e);
                 return null;
             }
             if (!url) {
-                return null;
+                if (metadata['imageUri']) {
+                    metadata['imageUri'] = this.uriToUrl(metadata['imageUri']);
+                }
+                return metadata;
             }
             const offChainMeta = yield this.fetchApi(`${url}`);
             if (!offChainMeta) {
                 return null;
             }
-            const lookFor = {
-                strings: ['name', 'symbol', 'description', 'imageUri'],
-                numbers: ['decimals'],
-                booleans: ['isNft', 'nonTransferrable', 'nonTransferable', 'symbolPrecedence', 'binaryAmount']
-            };
-            const metadata = {};
-            console.log('go');
             for (const key of lookFor.strings) {
-                if (offChainMeta[key] && typeof offChainMeta[key] === 'string') {
+                if (offChainMeta[key] && typeof offChainMeta[key] === 'string' && typeof metadata[key] === 'undefined') {
                     metadata[key] = offChainMeta[key];
                 }
             }
             for (const key of lookFor.numbers) {
-                if (offChainMeta[key] !== 'undefined') {
+                if (typeof offChainMeta[key] !== 'undefined' && typeof metadata[key] === 'undefined') {
                     if (typeof offChainMeta[key] === 'string') {
                         metadata[key] = Number(offChainMeta[key]);
                     }
@@ -11523,18 +11551,18 @@ class TzktService {
                 }
             }
             for (const key of lookFor.booleans) {
-                if (offChainMeta[key] !== 'undefined' && typeof offChainMeta[key] === 'boolean') {
+                if (typeof offChainMeta[key] !== 'undefined' && typeof offChainMeta[key] === 'boolean' && typeof metadata[key] === 'undefined') {
                     metadata[key] = offChainMeta[key];
                 }
             }
             if (metadata['imageUri']) {
                 metadata['imageUri'] = this.uriToUrl(metadata['imageUri']);
             }
-            if (metadata['nonTransferrable'] !== 'undefined') {
+            if (typeof metadata['nonTransferrable'] !== 'undefined') { // Temp spelling fix
                 metadata['nonTransferable'] = metadata['nonTransferrable'];
                 delete metadata['nonTransferrable'];
             }
-            // console.log(metadata);
+            console.log(metadata);
             return metadata;
         });
     }
@@ -11567,6 +11595,9 @@ class TzktService {
                         else if (contractMeta.interfaces.includes('TZIP-7')) {
                             metadata['tokenType'] = 'FA1.2';
                         }
+                    }
+                    if (contractMeta['token-category']) {
+                        metadata['tokenCategory'] = contractMeta['token-category'];
                     }
                     return metadata;
                 }
@@ -11625,6 +11656,27 @@ class TzktService {
                 .then(response => response.json())
                 .then(data => data);
         });
+    }
+    zarithDecodeInt(hex) {
+        let count = 0;
+        let value = big_js__WEBPACK_IMPORTED_MODULE_4___default()(0);
+        while (1) {
+            const byte = Number('0x' + hex.slice(0 + count * 2, 2 + count * 2));
+            if (count === 0) {
+                value = big_js__WEBPACK_IMPORTED_MODULE_4___default()(((byte & 63) * (Math.pow(128, count)))).add(value);
+            }
+            else {
+                value = big_js__WEBPACK_IMPORTED_MODULE_4___default()(((byte & 127) * 2) >> 1).times(64 * Math.pow(128, (count - 1))).add(value);
+            }
+            count++;
+            if ((byte & 128) !== 128) {
+                break;
+            }
+        }
+        return {
+            value: value,
+            count: count
+        };
     }
 }
 TzktService.ɵfac = function TzktService_Factory(t) { return new (t || TzktService)(); };
@@ -13790,7 +13842,7 @@ class TokenService {
                     metadata.decimals >= 0) {
                     const contract = {
                         kind: metadata.tokenType ? metadata.tokenType : 'FA2',
-                        category: '',
+                        category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                     };
                     const token = {
