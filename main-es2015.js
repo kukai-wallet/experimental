@@ -6211,7 +6211,7 @@ class SendComponent {
     ngOnChanges(changes) {
         if (this.beaconMode) {
             console.log('change');
-            if (this.operationRequest && !(this.walletService.isLedgerWallet() && this.operationRequest.operationDetails[0].parameters)) {
+            if (this.operationRequest) {
                 console.log('Beacon payload to send', this.operationRequest);
                 if (this.operationRequest.operationDetails[0].kind === 'transaction') {
                     this.openModal();

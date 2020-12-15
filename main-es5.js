@@ -12585,7 +12585,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (this.beaconMode) {
             console.log('change');
 
-            if (this.operationRequest && !(this.walletService.isLedgerWallet() && this.operationRequest.operationDetails[0].parameters)) {
+            if (this.operationRequest) {
               console.log('Beacon payload to send', this.operationRequest);
 
               if (this.operationRequest.operationDetails[0].kind === 'transaction') {
