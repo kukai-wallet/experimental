@@ -11947,7 +11947,7 @@ class LedgerService {
             console.log(op);
             console.log('size', op.length);
             let toSign = '03' + op;
-            if (op.length < 56) {
+            if (op.length < 65) {
                 console.log('skip 0x03 prefix');
                 toSign = op;
                 console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
@@ -13086,9 +13086,7 @@ class OperationService {
         console.log('prehash');
         const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes)));
         console.log('hash L', this.buf2hex(hash).length);
-        const b58 = this.b58cencode(hash, new Uint8Array([]));
-        console.log(b58.length);
-        return b58;
+        return this.buf2hex(hash);
     }
     sign(bytes, sk) {
         if (sk.slice(0, 4) === 'spsk') {
