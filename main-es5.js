@@ -13162,7 +13162,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 3:
                     _context24.prev = 3;
                     op = this.sendResponse.payload.unsignedOperation;
-                    toSign = op.length < 512 ? op : this.operationService.ledgerPreHash(op);
+                    toSign = op.length <= 458 ? op : this.operationService.ledgerPreHash(op);
                     _context24.next = 8;
                     return this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath);
 
@@ -22889,7 +22889,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee96() {
             var _this44 = this;
 
-            var xtz, toSign, result;
+            var xtz, result;
             return regeneratorRuntime.wrap(function _callee96$(_context97) {
               while (1) {
                 switch (_context97.prev = _context97.next) {
@@ -22899,38 +22899,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 2:
                     xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
-                    console.log(path);
-                    console.log(op);
                     console.log('size', op.length);
-                    toSign = '03' + op;
+                    console.log(op);
 
-                    if (op.length < 5) {
-                      console.log('skip 0x03 prefix');
-                      toSign = op;
-                      console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)'); //throw new Error('LedgerSignError');
+                    if (!(op.length !== 64)) {
+                      _context97.next = 12;
+                      break;
                     }
 
-                    console.log(toSign);
-                    _context97.next = 11;
-                    return xtz.signOperation(path, toSign)["catch"](function (e) {
+                    op = '03' + op;
+                    _context97.next = 9;
+                    return xtz.signOperation(path, op)["catch"](function (e) {
                       _this44.messageService.addError(e, 0);
                     });
 
-                  case 11:
+                  case 9:
                     result = _context97.sent;
+                    _context97.next = 15;
+                    break;
+
+                  case 12:
+                    _context97.next = 14;
+                    return xtz.signHash(path, op)["catch"](function (e) {
+                      _this44.messageService.addError(e, 0);
+                    });
+
+                  case 14:
+                    result = _context97.sent;
+
+                  case 15:
                     console.log(JSON.stringify(result));
 
                     if (!(result && result.signature)) {
-                      _context97.next = 15;
+                      _context97.next = 18;
                       break;
                     }
 
                     return _context97.abrupt("return", result.signature);
 
-                  case 15:
+                  case 18:
                     return _context97.abrupt("return", null);
 
-                  case 16:
+                  case 19:
                   case "end":
                     return _context97.stop();
                 }

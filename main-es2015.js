@@ -6541,7 +6541,7 @@ class SendComponent {
                 yield this.messageService.startSpinner('Waiting for Ledger signature...');
                 try {
                     const op = this.sendResponse.payload.unsignedOperation;
-                    const toSign = op.length < 512 ? op : this.operationService.ledgerPreHash(op);
+                    const toSign = op.length <= 458 ? op : this.operationService.ledgerPreHash(op);
                     const signature = yield this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath);
                     if (signature) {
                         const signedOp = op + signature;
@@ -11943,21 +11943,22 @@ class LedgerService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             yield this.transportCheck();
             const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
-            console.log(path);
-            console.log(op);
             console.log('size', op.length);
-            let toSign = '03' + op;
-            if (op.length < 5) {
-                console.log('skip 0x03 prefix');
-                toSign = op;
-                console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
-                //throw new Error('LedgerSignError');
+            let result;
+            console.log(op);
+            if (op.length !== 64) {
+                op = '03' + op;
+                result = yield xtz.signOperation(path, op)
+                    .catch(e => {
+                    this.messageService.addError(e, 0);
+                });
             }
-            console.log(toSign);
-            const result = yield xtz.signOperation(path, toSign)
-                .catch(e => {
-                this.messageService.addError(e, 0);
-            });
+            else {
+                result = yield xtz.signHash(path, op)
+                    .catch(e => {
+                    this.messageService.addError(e, 0);
+                });
+            }
             console.log(JSON.stringify(result));
             if (result && result.signature) {
                 return result.signature;
