@@ -11946,7 +11946,7 @@ class LedgerService {
             const toSign = '03' + op;
             if (toSign.length > 512) {
                 this.messageService.addError('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)', 0);
-                throw new Error('LedgerSignError');
+                //throw new Error('LedgerSignError');
             }
             const result = yield xtz.signOperation(path, toSign)
                 .catch(e => {

@@ -22901,35 +22901,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log(path);
                     toSign = '03' + op;
 
-                    if (!(toSign.length > 512)) {
-                      _context97.next = 8;
-                      break;
+                    if (toSign.length > 512) {
+                      this.messageService.addError('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)', 0); //throw new Error('LedgerSignError');
                     }
 
-                    this.messageService.addError('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)', 0);
-                    throw new Error('LedgerSignError');
-
-                  case 8:
-                    _context97.next = 10;
+                    _context97.next = 8;
                     return xtz.signOperation(path, toSign)["catch"](function (e) {
                       _this44.messageService.addError(e, 0);
                     });
 
-                  case 10:
+                  case 8:
                     result = _context97.sent;
                     console.log(JSON.stringify(result));
 
                     if (!(result && result.signature)) {
-                      _context97.next = 14;
+                      _context97.next = 12;
                       break;
                     }
 
                     return _context97.abrupt("return", result.signature);
 
-                  case 14:
+                  case 12:
                     return _context97.abrupt("return", null);
 
-                  case 15:
+                  case 13:
                   case "end":
                     return _context97.stop();
                 }
