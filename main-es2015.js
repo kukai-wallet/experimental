@@ -11947,12 +11947,13 @@ class LedgerService {
             console.log(op);
             console.log('size', op.length);
             let toSign = '03' + op;
-            if (toSign.length === 32 || toSign.length === 64) {
+            if (op.length === 32 || op.length === 64) {
                 console.log('skip 0x03 prefix');
                 toSign = op;
                 console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
                 //throw new Error('LedgerSignError');
             }
+            console.log(toSign);
             const result = yield xtz.signOperation(path, toSign)
                 .catch(e => {
                 this.messageService.addError(e, 0);

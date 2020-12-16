@@ -22904,32 +22904,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log('size', op.length);
                     toSign = '03' + op;
 
-                    if (toSign.length === 32 || toSign.length === 64) {
+                    if (op.length === 32 || op.length === 64) {
                       console.log('skip 0x03 prefix');
                       toSign = op;
                       console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)'); //throw new Error('LedgerSignError');
                     }
 
-                    _context97.next = 10;
+                    console.log(toSign);
+                    _context97.next = 11;
                     return xtz.signOperation(path, toSign)["catch"](function (e) {
                       _this44.messageService.addError(e, 0);
                     });
 
-                  case 10:
+                  case 11:
                     result = _context97.sent;
                     console.log(JSON.stringify(result));
 
                     if (!(result && result.signature)) {
-                      _context97.next = 14;
+                      _context97.next = 15;
                       break;
                     }
 
                     return _context97.abrupt("return", result.signature);
 
-                  case 14:
+                  case 15:
                     return _context97.abrupt("return", null);
 
-                  case 15:
+                  case 16:
                   case "end":
                     return _context97.stop();
                 }
