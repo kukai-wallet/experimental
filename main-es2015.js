@@ -11944,8 +11944,10 @@ class LedgerService {
             yield this.transportCheck();
             const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
             console.log(path);
+            console.log('size', op.length);
             let toSign = '03' + op;
             if (toSign.length >= 512) {
+                console.log('skip 0x03 prefix');
                 toSign = op;
                 console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
                 //throw new Error('LedgerSignError');
@@ -13079,6 +13081,7 @@ class OperationService {
         return r;
     }
     prehash(bytes) {
+        console.log('prehash');
         return libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
     }
     sign(bytes, sk) {
