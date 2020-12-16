@@ -24676,7 +24676,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ledgerPreHash",
         value: function ledgerPreHash(opbytes) {
           console.log('prehash');
-          return this.b58cencode(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))), new Uint8Array([]));
+          var hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes)));
+          console.log('hash L', this.buf2hex(hash).length);
+          var b58 = this.b58cencode(hash, new Uint8Array([]));
+          console.log(b58.length);
+          return b58;
         }
       }, {
         key: "sign",

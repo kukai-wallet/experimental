@@ -13084,7 +13084,11 @@ class OperationService {
     }
     ledgerPreHash(opbytes) {
         console.log('prehash');
-        return this.b58cencode(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))), new Uint8Array([]));
+        const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes)));
+        console.log('hash L', this.buf2hex(hash).length);
+        const b58 = this.b58cencode(hash, new Uint8Array([]));
+        console.log(b58.length);
+        return b58;
     }
     sign(bytes, sk) {
         if (sk.slice(0, 4) === 'spsk') {
