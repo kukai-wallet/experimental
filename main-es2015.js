@@ -11449,6 +11449,7 @@ class TzktService {
     }
     getTokenMetadata(contractAddress, id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            console.log(contractAddress + ':' + id);
             const bigMapId = yield this.getBigMapIds(contractAddress);
             if (bigMapId.token !== -1) {
                 const tokenMetadata = yield this.extractTokenMetadata(bigMapId.token, id);
@@ -11481,9 +11482,9 @@ class TzktService {
                     if (child.data.key.value === id.toString()) {
                         for (const child2 of child.data.value.children) {
                             if (child2.name === 'token_metadata_map') {
+                                console.log('token_metadata_map', child2.children);
                                 for (const child3 of child2.children) {
-                                    console.log(child3.name, child3.value);
-                                    if (!child3.name) {
+                                    if (!child3.name || child3.name === '""') {
                                         url = this.uriToUrl(child3.value);
                                     }
                                     else {
@@ -11494,7 +11495,7 @@ class TzktService {
                                         }
                                         for (const key of lookFor.numbers) {
                                             if (child3.name === key) {
-                                                metadata[key] = this.zarithDecodeInt(child3.value).value;
+                                                metadata[key] = 0; //this.zarithDecodeInt(child3.value).value;
                                             }
                                         }
                                         for (const key of lookFor.booleans) {
@@ -11520,7 +11521,10 @@ class TzktService {
                 console.warn(e);
                 return null;
             }
+            console.log(metadata);
+            console.log(url);
             if (!url) {
+                console.log('No offchain metadata');
                 if (metadata['imageUri']) {
                     metadata['imageUri'] = this.uriToUrl(metadata['imageUri']);
                 }
@@ -11528,8 +11532,10 @@ class TzktService {
             }
             const offChainMeta = yield this.fetchApi(`${url}`);
             if (!offChainMeta) {
+                console.warn('Failed to fetch offchain metadata');
                 return null;
             }
+            console.log(offChainMeta);
             for (const key of lookFor.strings) {
                 if (offChainMeta[key] && typeof offChainMeta[key] === 'string' && typeof metadata[key] === 'undefined') {
                     metadata[key] = offChainMeta[key];
@@ -11642,6 +11648,12 @@ class TzktService {
             else if (uri.slice(0, 8) === 'https://') {
                 return uri;
             }
+            else {
+                console.warn('wrong prefix', uri);
+            }
+        }
+        else {
+            console.warn('No uri');
         }
         return '';
     }
@@ -12703,29 +12715,25 @@ class OperationService {
       Broadcast a signed operation to the network
     */
     broadcast(sopbytes) {
-        let fop;
-        try {
-            const opbytes = sopbytes.slice(0, sopbytes.length - 128);
-            const edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
+        const opbytes = sopbytes.slice(0, sopbytes.length - 128);
+        const edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_taquito_local_forging__WEBPACK_IMPORTED_MODULE_10__["localForger"].parse(opbytes)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((fop) => {
             fop = this.decodeOpBytes(opbytes);
             fop.signature = edsig;
-        }
-        catch (e) {
-            return this.errHandler('FailedToDecodeBytes');
-        }
-        return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((header) => {
-            fop.protocol = header.protocol;
-            return this.http.post(this.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop])
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((parsed) => {
-                let newPkh = null;
-                for (let i = 0; i < parsed[0].contents.length; i++) {
-                    if (parsed[0].contents[i].kind === 'origination') {
-                        newPkh = parsed[0].contents[i].metadata.operation_result.originated_contracts[0];
+            return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((header) => {
+                fop.protocol = header.protocol;
+                return this.http.post(this.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop])
+                    .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((parsed) => {
+                    let newPkh = null;
+                    for (let i = 0; i < parsed[0].contents.length; i++) {
+                        if (parsed[0].contents[i].kind === 'origination') {
+                            newPkh = parsed[0].contents[i].metadata.operation_result.originated_contracts[0];
+                        }
                     }
-                }
-                return this.http.post(this.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions)
-                    .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((final) => {
-                    return this.opCheck(final, newPkh);
+                    return this.http.post(this.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions)
+                        .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((final) => {
+                        return this.opCheck(final, newPkh);
+                    }));
                 }));
             }));
         })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(err => this.errHandler(err)));
@@ -12813,7 +12821,9 @@ class OperationService {
         else if (error.statusText) {
             error = error.statusText;
         }
-        else if (typeof error !== 'string') {
+        else if (typeof error === 'string') {
+        }
+        else {
             console.warn('Error not categorized', error);
             error = 'Unrecogized error';
         }

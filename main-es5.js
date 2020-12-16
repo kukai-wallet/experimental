@@ -21792,26 +21792,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 while (1) {
                   switch (_context89.prev = _context89.next) {
                     case 0:
-                      _context89.next = 2;
+                      console.log(contractAddress + ':' + id);
+                      _context89.next = 3;
                       return this.getBigMapIds(contractAddress);
 
-                    case 2:
+                    case 3:
                       bigMapId = _context89.sent;
 
                       if (!(bigMapId.token !== -1)) {
-                        _context89.next = 12;
+                        _context89.next = 13;
                         break;
                       }
 
-                      _context89.next = 6;
+                      _context89.next = 7;
                       return this.extractTokenMetadata(bigMapId.token, id);
 
-                    case 6:
+                    case 7:
                       tokenMetadata = _context89.sent;
-                      _context89.next = 9;
+                      _context89.next = 10;
                       return this.extractContractMetadata(bigMapId.contract);
 
-                    case 9:
+                    case 10:
                       contractMetadata = _context89.sent;
 
                       /*
@@ -21823,10 +21824,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       metadata = Object.assign(Object.assign({}, tokenMetadata), contractMetadata);
                       return _context89.abrupt("return", metadata);
 
-                    case 12:
+                    case 13:
                       return _context89.abrupt("return", null);
 
-                    case 13:
+                    case 14:
                     case "end":
                       return _context89.stop();
                   }
@@ -21865,14 +21866,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 11:
                       if ((_step27 = _iterator27.n()).done) {
-                        _context90.next = 36;
+                        _context90.next = 37;
                         break;
                       }
 
                       child = _step27.value;
 
                       if (!(child.data.key.value === id.toString())) {
-                        _context90.next = 34;
+                        _context90.next = 35;
                         break;
                       }
 
@@ -21883,25 +21884,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     case 17:
                       if ((_step28 = _iterator28.n()).done) {
-                        _context90.next = 25;
+                        _context90.next = 26;
                         break;
                       }
 
                       child2 = _step28.value;
 
                       if (!(child2.name === 'token_metadata_map')) {
-                        _context90.next = 23;
+                        _context90.next = 24;
                         break;
                       }
 
+                      console.log('token_metadata_map', child2.children);
                       _iterator29 = _createForOfIteratorHelper(child2.children);
 
                       try {
                         for (_iterator29.s(); !(_step29 = _iterator29.n()).done;) {
                           child3 = _step29.value;
-                          console.log(child3.name, child3.value);
 
-                          if (!child3.name) {
+                          if (!child3.name || child3.name === '""') {
                             url = this.uriToUrl(child3.value);
                           } else {
                             _iterator30 = _createForOfIteratorHelper(lookFor.strings);
@@ -21927,7 +21928,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                 _key = _step31.value;
 
                                 if (child3.name === _key) {
-                                  metadata[_key] = this.zarithDecodeInt(child3.value).value;
+                                  metadata[_key] = 0; //this.zarithDecodeInt(child3.value).value;
                                 }
                               }
                             } catch (err) {
@@ -21963,68 +21964,73 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         _iterator29.f();
                       }
 
-                      return _context90.abrupt("break", 25);
+                      return _context90.abrupt("break", 26);
 
-                    case 23:
+                    case 24:
                       _context90.next = 17;
                       break;
 
-                    case 25:
-                      _context90.next = 30;
+                    case 26:
+                      _context90.next = 31;
                       break;
 
-                    case 27:
-                      _context90.prev = 27;
+                    case 28:
+                      _context90.prev = 28;
                       _context90.t0 = _context90["catch"](15);
 
                       _iterator28.e(_context90.t0);
 
-                    case 30:
-                      _context90.prev = 30;
+                    case 31:
+                      _context90.prev = 31;
 
                       _iterator28.f();
 
-                      return _context90.finish(30);
-
-                    case 33:
-                      return _context90.abrupt("break", 36);
+                      return _context90.finish(31);
 
                     case 34:
+                      return _context90.abrupt("break", 37);
+
+                    case 35:
                       _context90.next = 11;
                       break;
 
-                    case 36:
-                      _context90.next = 41;
+                    case 37:
+                      _context90.next = 42;
                       break;
 
-                    case 38:
-                      _context90.prev = 38;
+                    case 39:
+                      _context90.prev = 39;
                       _context90.t1 = _context90["catch"](9);
 
                       _iterator27.e(_context90.t1);
 
-                    case 41:
-                      _context90.prev = 41;
+                    case 42:
+                      _context90.prev = 42;
 
                       _iterator27.f();
 
-                      return _context90.finish(41);
+                      return _context90.finish(42);
 
-                    case 44:
-                      _context90.next = 50;
+                    case 45:
+                      _context90.next = 51;
                       break;
 
-                    case 46:
-                      _context90.prev = 46;
+                    case 47:
+                      _context90.prev = 47;
                       _context90.t2 = _context90["catch"](7);
                       console.warn(_context90.t2);
                       return _context90.abrupt("return", null);
 
-                    case 50:
+                    case 51:
+                      console.log(metadata);
+                      console.log(url);
+
                       if (url) {
-                        _context90.next = 53;
+                        _context90.next = 57;
                         break;
                       }
+
+                      console.log('No offchain metadata');
 
                       if (metadata['imageUri']) {
                         metadata['imageUri'] = this.uriToUrl(metadata['imageUri']);
@@ -22032,21 +22038,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                       return _context90.abrupt("return", metadata);
 
-                    case 53:
-                      _context90.next = 55;
+                    case 57:
+                      _context90.next = 59;
                       return this.fetchApi("".concat(url));
 
-                    case 55:
+                    case 59:
                       offChainMeta = _context90.sent;
 
                       if (offChainMeta) {
-                        _context90.next = 58;
+                        _context90.next = 63;
                         break;
                       }
 
+                      console.warn('Failed to fetch offchain metadata');
                       return _context90.abrupt("return", null);
 
-                    case 58:
+                    case 63:
+                      console.log(offChainMeta);
                       _iterator33 = _createForOfIteratorHelper(lookFor.strings);
 
                       try {
@@ -22112,12 +22120,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       console.log(metadata);
                       return _context90.abrupt("return", metadata);
 
-                    case 68:
+                    case 74:
                     case "end":
                       return _context90.stop();
                   }
                 }
-              }, _callee89, this, [[7, 46], [9, 38, 41, 44], [15, 27, 30, 33]]);
+              }, _callee89, this, [[7, 47], [9, 39, 42, 45], [15, 28, 31, 34]]);
             }));
           }
         }, {
@@ -22332,7 +22340,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 return "https://cloudflare-ipfs.com/ipfs/".concat(uri.slice(7));
               } else if (uri.slice(0, 8) === 'https://') {
                 return uri;
+              } else {
+                console.warn('wrong prefix', uri);
               }
+            } else {
+              console.warn('No uri');
             }
 
             return '';
@@ -24190,30 +24202,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function broadcast(sopbytes) {
           var _this52 = this;
 
-          var fop;
-
-          try {
-            var opbytes = sopbytes.slice(0, sopbytes.length - 128);
-            var edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
-            fop = this.decodeOpBytes(opbytes);
+          var opbytes = sopbytes.slice(0, sopbytes.length - 128);
+          var edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_taquito_local_forging__WEBPACK_IMPORTED_MODULE_10__["localForger"].parse(opbytes)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (fop) {
+            fop = _this52.decodeOpBytes(opbytes);
             fop.signature = edsig;
-          } catch (e) {
-            return this.errHandler('FailedToDecodeBytes');
-          }
+            return _this52.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
+              fop.protocol = header.protocol;
+              return _this52.http.post(_this52.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (parsed) {
+                var newPkh = null;
 
-          return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
-            fop.protocol = header.protocol;
-            return _this52.http.post(_this52.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (parsed) {
-              var newPkh = null;
-
-              for (var i = 0; i < parsed[0].contents.length; i++) {
-                if (parsed[0].contents[i].kind === 'origination') {
-                  newPkh = parsed[0].contents[i].metadata.operation_result.originated_contracts[0];
+                for (var i = 0; i < parsed[0].contents.length; i++) {
+                  if (parsed[0].contents[i].kind === 'origination') {
+                    newPkh = parsed[0].contents[i].metadata.operation_result.originated_contracts[0];
+                  }
                 }
-              }
 
-              return _this52.http.post(_this52.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final4) {
-                return _this52.opCheck(_final4, newPkh);
+                return _this52.http.post(_this52.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final4) {
+                  return _this52.opCheck(_final4, newPkh);
+                }));
               }));
             }));
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
@@ -24303,7 +24310,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           } else if (error.statusText) {
             error = error.statusText;
-          } else if (typeof error !== 'string') {
+          } else if (typeof error === 'string') {} else {
             console.warn('Error not categorized', error);
             error = 'Unrecogized error';
           }
