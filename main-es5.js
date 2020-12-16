@@ -22900,35 +22900,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 2:
                     xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
                     console.log(path);
+                    console.log(op);
                     console.log('size', op.length);
                     toSign = '03' + op;
 
-                    if (toSign.length === 32) {
+                    if (toSign.length === 32 || toSign.length === 64) {
                       console.log('skip 0x03 prefix');
                       toSign = op;
                       console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)'); //throw new Error('LedgerSignError');
                     }
 
-                    _context97.next = 9;
+                    _context97.next = 10;
                     return xtz.signOperation(path, toSign)["catch"](function (e) {
                       _this44.messageService.addError(e, 0);
                     });
 
-                  case 9:
+                  case 10:
                     result = _context97.sent;
                     console.log(JSON.stringify(result));
 
                     if (!(result && result.signature)) {
-                      _context97.next = 13;
+                      _context97.next = 14;
                       break;
                     }
 
                     return _context97.abrupt("return", result.signature);
 
-                  case 13:
+                  case 14:
                     return _context97.abrupt("return", null);
 
-                  case 14:
+                  case 15:
                   case "end":
                     return _context97.stop();
                 }
@@ -24672,17 +24673,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "prehash",
-        value: function prehash(bytes) {
+        value: function prehash(opbytes) {
           console.log('prehash');
-          return libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
+          return this.buf2hex(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))));
         }
       }, {
         key: "sign",
         value: function sign(bytes, sk) {
           if (sk.slice(0, 4) === 'spsk') {
-            var hash = this.prehash(bytes);
+            var prehash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
             var key = new elliptic__WEBPACK_IMPORTED_MODULE_14__["ec"]('secp256k1').keyFromPrivate(new Uint8Array(this.b58cdecode(sk, this.prefix.spsk)));
-            var sig = key.sign(hash, {
+            var sig = key.sign(prehash, {
               canonical: true
             });
             sig = new Uint8Array(sig.r.toArray().concat(sig.s.toArray()));
@@ -24695,9 +24696,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               sbytes: sbytes
             };
           } else {
-            var _hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
+            var hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
 
-            var _sig = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_sign_detached"](_hash, this.b58cdecode(sk, this.prefix.edsk), 'uint8array');
+            var _sig = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_sign_detached"](hash, this.b58cdecode(sk, this.prefix.edsk), 'uint8array');
 
             var edsig = this.b58cencode(_sig, this.prefix.edsig);
 

@@ -11944,9 +11944,10 @@ class LedgerService {
             yield this.transportCheck();
             const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
             console.log(path);
+            console.log(op);
             console.log('size', op.length);
             let toSign = '03' + op;
-            if (toSign.length === 32) {
+            if (toSign.length === 32 || toSign.length === 64) {
                 console.log('skip 0x03 prefix');
                 toSign = op;
                 console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
@@ -13080,15 +13081,15 @@ class OperationService {
         r.set(b, wm.length);
         return r;
     }
-    prehash(bytes) {
+    prehash(opbytes) {
         console.log('prehash');
-        return libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
+        return this.buf2hex(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))));
     }
     sign(bytes, sk) {
         if (sk.slice(0, 4) === 'spsk') {
-            const hash = this.prehash(bytes);
+            const prehash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
             const key = (new elliptic__WEBPACK_IMPORTED_MODULE_14__["ec"]('secp256k1')).keyFromPrivate(new Uint8Array(this.b58cdecode(sk, this.prefix.spsk)));
-            let sig = key.sign(hash, { canonical: true });
+            let sig = key.sign(prehash, { canonical: true });
             sig = new Uint8Array(sig.r.toArray().concat(sig.s.toArray()));
             const spsig = this.b58cencode(sig, this.prefix.spsig);
             const sbytes = bytes + this.buf2hex(sig);
