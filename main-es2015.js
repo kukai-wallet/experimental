@@ -12711,7 +12711,7 @@ class OperationService {
             fop.signature = edsig;
         }
         catch (e) {
-            return this.errHandler('Invalid bytes');
+            return this.errHandler('FailedToDecodeBytes');
         }
         return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((header) => {
             fop.protocol = header.protocol;

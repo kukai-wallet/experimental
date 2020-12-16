@@ -24198,7 +24198,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             fop = this.decodeOpBytes(opbytes);
             fop.signature = edsig;
           } catch (e) {
-            return this.errHandler('Invalid bytes');
+            return this.errHandler('FailedToDecodeBytes');
           }
 
           return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
