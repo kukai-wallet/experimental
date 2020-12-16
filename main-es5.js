@@ -13162,7 +13162,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 3:
                     _context24.prev = 3;
                     op = this.sendResponse.payload.unsignedOperation;
-                    toSign = op.length < 512 ? op : this.operationService.prehash(op);
+                    toSign = op.length < 512 ? op : this.operationService.ledgerPreHash(op);
                     _context24.next = 8;
                     return this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath);
 
@@ -22904,7 +22904,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log('size', op.length);
                     toSign = '03' + op;
 
-                    if (op.length === 32 || op.length === 64) {
+                    if (op.length < 45) {
                       console.log('skip 0x03 prefix');
                       toSign = op;
                       console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)'); //throw new Error('LedgerSignError');
@@ -24673,10 +24673,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return r;
         }
       }, {
-        key: "prehash",
-        value: function prehash(opbytes) {
+        key: "ledgerPreHash",
+        value: function ledgerPreHash(opbytes) {
           console.log('prehash');
-          return this.buf2hex(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))));
+          return this.b58cencode(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))), new Uint8Array([]));
         }
       }, {
         key: "sign",

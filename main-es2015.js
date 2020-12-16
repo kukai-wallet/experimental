@@ -6541,7 +6541,7 @@ class SendComponent {
                 yield this.messageService.startSpinner('Waiting for Ledger signature...');
                 try {
                     const op = this.sendResponse.payload.unsignedOperation;
-                    const toSign = op.length < 512 ? op : this.operationService.prehash(op);
+                    const toSign = op.length < 512 ? op : this.operationService.ledgerPreHash(op);
                     const signature = yield this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath);
                     if (signature) {
                         const signedOp = op + signature;
@@ -11947,7 +11947,7 @@ class LedgerService {
             console.log(op);
             console.log('size', op.length);
             let toSign = '03' + op;
-            if (op.length === 32 || op.length === 64) {
+            if (op.length < 45) {
                 console.log('skip 0x03 prefix');
                 toSign = op;
                 console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
@@ -13082,9 +13082,9 @@ class OperationService {
         r.set(b, wm.length);
         return r;
     }
-    prehash(opbytes) {
+    ledgerPreHash(opbytes) {
         console.log('prehash');
-        return this.buf2hex(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))));
+        return this.b58cencode(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))), new Uint8Array([]));
     }
     sign(bytes, sk) {
         if (sk.slice(0, 4) === 'spsk') {
