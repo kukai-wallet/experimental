@@ -6541,7 +6541,8 @@ class SendComponent {
                 yield this.messageService.startSpinner('Waiting for Ledger signature...');
                 try {
                     const op = this.sendResponse.payload.unsignedOperation;
-                    const signature = yield this.ledgerService.signOperation(op, this.walletService.wallet.implicitAccounts[0].derivationPath);
+                    const toSign = op.length < 512 ? op : this.operationService.prehash(op);
+                    const signature = yield this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath);
                     if (signature) {
                         const signedOp = op + signature;
                         this.sendResponse.payload.signedOperation = signedOp;
@@ -11943,9 +11944,10 @@ class LedgerService {
             yield this.transportCheck();
             const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
             console.log(path);
-            const toSign = '03' + op;
+            let toSign = '03' + op;
             if (toSign.length > 512) {
-                this.messageService.addError('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)', 0);
+                toSign = op;
+                console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
                 //throw new Error('LedgerSignError');
             }
             const result = yield xtz.signOperation(path, toSign)
@@ -13076,9 +13078,12 @@ class OperationService {
         r.set(b, wm.length);
         return r;
     }
+    prehash(bytes) {
+        return libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
+    }
     sign(bytes, sk) {
         if (sk.slice(0, 4) === 'spsk') {
-            const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
+            const hash = this.prehash(bytes);
             const key = (new elliptic__WEBPACK_IMPORTED_MODULE_14__["ec"]('secp256k1')).keyFromPrivate(new Uint8Array(this.b58cdecode(sk, this.prefix.spsk)));
             let sig = key.sign(hash, { canonical: true });
             sig = new Uint8Array(sig.r.toArray().concat(sig.s.toArray()));

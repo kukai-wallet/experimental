@@ -13146,13 +13146,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "requestLedgerSignature",
         value: function requestLedgerSignature() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee24() {
-            var op, signature, signedOp;
+            var op, toSign, signature, signedOp;
             return regeneratorRuntime.wrap(function _callee24$(_context24) {
               while (1) {
                 switch (_context24.prev = _context24.next) {
                   case 0:
                     if (!(this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_10__["LedgerWallet"])) {
-                      _context24.next = 12;
+                      _context24.next = 13;
                       break;
                     }
 
@@ -13162,10 +13162,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 3:
                     _context24.prev = 3;
                     op = this.sendResponse.payload.unsignedOperation;
-                    _context24.next = 7;
-                    return this.ledgerService.signOperation(op, this.walletService.wallet.implicitAccounts[0].derivationPath);
+                    toSign = op.length < 512 ? op : this.operationService.prehash(op);
+                    _context24.next = 8;
+                    return this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath);
 
-                  case 7:
+                  case 8:
                     signature = _context24.sent;
 
                     if (signature) {
@@ -13175,17 +13176,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.ledgerError = 'Failed to sign transaction';
                     }
 
-                  case 9:
-                    _context24.prev = 9;
+                  case 10:
+                    _context24.prev = 10;
                     this.messageService.stopSpinner();
-                    return _context24.finish(9);
+                    return _context24.finish(10);
 
-                  case 12:
+                  case 13:
                   case "end":
                     return _context24.stop();
                 }
               }
-            }, _callee24, this, [[3,, 9, 12]]);
+            }, _callee24, this, [[3,, 10, 13]]);
           }));
         }
       }, {
@@ -22902,7 +22903,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     toSign = '03' + op;
 
                     if (toSign.length > 512) {
-                      this.messageService.addError('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)', 0); //throw new Error('LedgerSignError');
+                      toSign = op;
+                      console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)'); //throw new Error('LedgerSignError');
                     }
 
                     _context97.next = 8;
@@ -24667,10 +24669,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return r;
         }
       }, {
+        key: "prehash",
+        value: function prehash(bytes) {
+          return libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
+        }
+      }, {
         key: "sign",
         value: function sign(bytes, sk) {
           if (sk.slice(0, 4) === 'spsk') {
-            var hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
+            var hash = this.prehash(bytes);
             var key = new elliptic__WEBPACK_IMPORTED_MODULE_14__["ec"]('secp256k1').keyFromPrivate(new Uint8Array(this.b58cdecode(sk, this.prefix.spsk)));
             var sig = key.sign(hash, {
               canonical: true
