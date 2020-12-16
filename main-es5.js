@@ -22902,7 +22902,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log(path);
                     toSign = '03' + op;
 
-                    if (toSign.length > 512) {
+                    if (toSign.length >= 512) {
                       toSign = op;
                       console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)'); //throw new Error('LedgerSignError');
                     }

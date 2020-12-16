@@ -11945,7 +11945,7 @@ class LedgerService {
             const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
             console.log(path);
             let toSign = '03' + op;
-            if (toSign.length > 512) {
+            if (toSign.length >= 512) {
                 toSign = op;
                 console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
                 //throw new Error('LedgerSignError');
