@@ -21554,7 +21554,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         function TzktService() {
           _classCallCheck(this, TzktService);
 
-          this.bcd = 'https://api.better-call.dev/v1';
+          this.bcd = 'https://you.better-call.dev/v1';
         }
 
         _createClass(TzktService, [{

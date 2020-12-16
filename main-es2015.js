@@ -11309,7 +11309,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class TzktService {
     constructor() {
-        this.bcd = 'https://api.better-call.dev/v1';
+        this.bcd = 'https://you.better-call.dev/v1';
     }
     getContractAddresses(pkh) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
