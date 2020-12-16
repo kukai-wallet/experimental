@@ -12814,6 +12814,7 @@ class OperationService {
             error = error.statusText;
         }
         else {
+            console.log(JSON.stringify(error));
             error = 'Unrecogized error';
             console.warn('Error not categorized', error);
         }

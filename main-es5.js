@@ -24304,6 +24304,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else if (error.statusText) {
             error = error.statusText;
           } else {
+            console.log(JSON.stringify(error));
             error = 'Unrecogized error';
             console.warn('Error not categorized', error);
           }
