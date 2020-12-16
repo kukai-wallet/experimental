@@ -12715,10 +12715,11 @@ class OperationService {
       Broadcast a signed operation to the network
     */
     broadcast(sopbytes) {
+        console.log('Broadcast...');
         const opbytes = sopbytes.slice(0, sopbytes.length - 128);
         const edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_taquito_local_forging__WEBPACK_IMPORTED_MODULE_10__["localForger"].parse(opbytes)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((fop) => {
-            fop = this.decodeOpBytes(opbytes);
+            //fop = this.decodeOpBytes(opbytes);
             fop.signature = edsig;
             return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((header) => {
                 fop.protocol = header.protocol;

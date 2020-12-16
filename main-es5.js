@@ -24202,10 +24202,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function broadcast(sopbytes) {
           var _this52 = this;
 
+          console.log('Broadcast...');
           var opbytes = sopbytes.slice(0, sopbytes.length - 128);
           var edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_taquito_local_forging__WEBPACK_IMPORTED_MODULE_10__["localForger"].parse(opbytes)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (fop) {
-            fop = _this52.decodeOpBytes(opbytes);
+            //fop = this.decodeOpBytes(opbytes);
             fop.signature = edsig;
             return _this52.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
               fop.protocol = header.protocol;
