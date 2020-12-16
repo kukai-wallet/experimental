@@ -12813,10 +12813,9 @@ class OperationService {
         else if (error.statusText) {
             error = error.statusText;
         }
-        else {
-            console.log(JSON.stringify(error));
-            error = 'Unrecogized error';
+        else if (typeof error !== 'string') {
             console.warn('Error not categorized', error);
+            error = 'Unrecogized error';
         }
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
             success: false,
