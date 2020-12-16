@@ -11947,7 +11947,7 @@ class LedgerService {
             console.log(op);
             console.log('size', op.length);
             let toSign = '03' + op;
-            if (op.length < 65) {
+            if (op.length < 5) {
                 console.log('skip 0x03 prefix');
                 toSign = op;
                 console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
@@ -13945,11 +13945,16 @@ class TokenService {
         }
         else {
             const token = this.getAsset(tokenKey);
-            if (token.isNft || token.binaryAmount) {
-                return `${token.name}`;
+            if (token) {
+                if (token.isNft || token.binaryAmount) {
+                    return `${token.name}`;
+                }
+                else {
+                    return `${big_js__WEBPACK_IMPORTED_MODULE_4___default()(amount).div(Math.pow(10, (baseUnit ? token.decimals : 0))).toFixed()} ${token.symbol}`;
+                }
             }
             else {
-                return `${big_js__WEBPACK_IMPORTED_MODULE_4___default()(amount).div(Math.pow(10, (baseUnit ? token.decimals : 0))).toFixed()} ${token.symbol}`;
+                return '';
             }
         }
     }

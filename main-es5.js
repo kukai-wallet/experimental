@@ -22904,7 +22904,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log('size', op.length);
                     toSign = '03' + op;
 
-                    if (op.length < 65) {
+                    if (op.length < 5) {
                       console.log('skip 0x03 prefix');
                       toSign = op;
                       console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)'); //throw new Error('LedgerSignError');
@@ -25738,10 +25738,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else {
             var token = this.getAsset(tokenKey);
 
-            if (token.isNft || token.binaryAmount) {
-              return "".concat(token.name);
+            if (token) {
+              if (token.isNft || token.binaryAmount) {
+                return "".concat(token.name);
+              } else {
+                return "".concat(big_js__WEBPACK_IMPORTED_MODULE_4___default()(amount).div(Math.pow(10, baseUnit ? token.decimals : 0)).toFixed(), " ").concat(token.symbol);
+              }
             } else {
-              return "".concat(big_js__WEBPACK_IMPORTED_MODULE_4___default()(amount).div(Math.pow(10, baseUnit ? token.decimals : 0)).toFixed(), " ").concat(token.symbol);
+              return '';
             }
           }
         }
