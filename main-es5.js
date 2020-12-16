@@ -25642,7 +25642,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 5:
                     metadata = _context104.sent;
 
-                    if (metadata && metadata.name && metadata.symbol && !isNaN(metadata.decimals) && metadata.decimals >= 0) {
+                    if (metadata && metadata.name && metadata.symbol) {
                       contract = {
                         kind: metadata.tokenType ? metadata.tokenType : 'FA2',
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
@@ -25651,7 +25651,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
-                        decimals: Number(metadata.decimals),
+                        decimals: !isNaN(metadata.decimals) && metadata.decimals >= 0 ? Number(metadata.decimals) : 0,
                         description: metadata.description ? metadata.description : '',
                         imageSrc: metadata.imageUri ? metadata.imageUri : '../../../assets/img/tokens/default.png',
                         isNft: (metadata === null || metadata === void 0 ? void 0 : metadata.isNft) ? metadata.isNft : false,
