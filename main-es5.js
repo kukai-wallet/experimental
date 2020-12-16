@@ -17411,6 +17411,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           msg: 'Fee exceeded hard cap!',
           id: 'TooHighFee'
         }, {
+          msg: 'Failed to decode bytes',
+          id: 'FailedToDecodeBytes'
+        }, {
           msg: 'Node error: Timeout has occurred! Please try again later.',
           id: 'Timeout has occurred'
         }];

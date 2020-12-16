@@ -9372,6 +9372,10 @@ class ErrorHandlingPipe {
                 id: 'TooHighFee'
             },
             {
+                msg: 'Failed to decode bytes',
+                id: 'FailedToDecodeBytes'
+            },
+            {
                 msg: 'Node error: Timeout has occurred! Please try again later.',
                 id: 'Timeout has occurred'
             }
