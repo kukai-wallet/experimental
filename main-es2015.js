@@ -11946,7 +11946,7 @@ class LedgerService {
             console.log(path);
             console.log('size', op.length);
             let toSign = '03' + op;
-            if (toSign.length >= 512) {
+            if (toSign.length === 32) {
                 console.log('skip 0x03 prefix');
                 toSign = op;
                 console.warn('Operation is too big for Ledger to sign (' + toSign.length / 2 + ' > 256 bytes)');
