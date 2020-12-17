@@ -22889,63 +22889,66 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee96() {
             var _this44 = this;
 
-            var xtz, result;
+            var transport, xtz, result;
             return regeneratorRuntime.wrap(function _callee96$(_context97) {
               while (1) {
                 switch (_context97.prev = _context97.next) {
                   case 0:
-                    _context97.next = 2;
-                    return this.transportCheck();
+                    // await this.transportCheck();
+                    console.log('Create transport');
+                    _context97.next = 3;
+                    return _ledgerhq_hw_transport_u2f__WEBPACK_IMPORTED_MODULE_3__["default"].create();
 
-                  case 2:
-                    xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
+                  case 3:
+                    transport = _context97.sent;
+                    xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(transport);
                     console.log('size', op.length);
                     console.log(op);
 
                     if (!(op.length !== 64)) {
-                      _context97.next = 12;
+                      _context97.next = 14;
                       break;
                     }
 
                     op = '03' + op;
-                    _context97.next = 9;
+                    _context97.next = 11;
                     return xtz.signOperation(path, op)["catch"](function (e) {
                       _this44.messageService.addError(e, 0);
                     });
 
-                  case 9:
+                  case 11:
                     result = _context97.sent;
-                    _context97.next = 15;
+                    _context97.next = 17;
                     break;
 
-                  case 12:
-                    _context97.next = 14;
+                  case 14:
+                    _context97.next = 16;
                     return xtz.signHash(path, op)["catch"](function (e) {
                       _this44.messageService.addError(e, 0);
                     });
 
-                  case 14:
+                  case 16:
                     result = _context97.sent;
 
-                  case 15:
+                  case 17:
                     console.log(JSON.stringify(result));
 
                     if (!(result && result.signature)) {
-                      _context97.next = 18;
+                      _context97.next = 20;
                       break;
                     }
 
                     return _context97.abrupt("return", result.signature);
 
-                  case 18:
+                  case 20:
                     return _context97.abrupt("return", null);
 
-                  case 19:
+                  case 21:
                   case "end":
                     return _context97.stop();
                 }
               }
-            }, _callee96, this);
+            }, _callee96);
           }));
         }
       }]);

@@ -11941,8 +11941,10 @@ class LedgerService {
     }
     signOperation(op, path) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            yield this.transportCheck();
-            const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
+            // await this.transportCheck();
+            console.log('Create transport');
+            const transport = yield _ledgerhq_hw_transport_u2f__WEBPACK_IMPORTED_MODULE_3__["default"].create();
+            const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(transport);
             console.log('size', op.length);
             let result;
             console.log(op);
