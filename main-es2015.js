@@ -2710,8 +2710,9 @@ class DelegateComponent {
                 this.storedDelegate = this.toPkh;
                 this.activeView = 1;
                 if (this.walletService.isLedgerWallet()) {
-                    const keys = yield this.walletService.getKeys('');
-                    this.sendDelegation(keys);
+                    /*const keys = await this.walletService.getKeys('');
+                    this.sendDelegation(keys);*/
+                    this.ledgerError = 'X';
                 }
             }
         });
@@ -2747,28 +2748,6 @@ class DelegateComponent {
                     else {
                         this.pwdValid = 'Wrong password!';
                     }
-                }
-            }
-        });
-    }
-    open1(template1) {
-        if (this.walletService.wallet) {
-            this.clearForm();
-            this.checkReveal();
-            this.modalRef1 = this.modalService.show(template1, { class: 'first' });
-        }
-    }
-    open2(template) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.formInvalid = this.invalidInput();
-            if (!this.formInvalid) {
-                if (!this.fee) {
-                    this.fee = this.recommendedFee.toString();
-                }
-                this.storedFee = this.fee;
-                this.storedDelegate = this.toPkh;
-                if (this.walletService.isLedgerWallet()) {
-                    this.ledgerError = 'X';
                 }
             }
         });
