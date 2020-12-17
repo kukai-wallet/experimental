@@ -6029,6 +6029,7 @@ function SendComponent_div_1_div_9_ng_template_30_Template(rf, ctx) { if (rf & 1
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r258 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("ledger-roadcast", ctx_r258.walletService.isLedgerWallet());
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx_r258.walletService.isLedgerWallet() && (!ctx_r258.sendResponse || !ctx_r258.sendResponse.payload || !ctx_r258.sendResponse.payload.signedOperation));
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx_r258.walletService.isLedgerWallet() ? "Broadcast" : "Confirm", "");
@@ -6080,7 +6081,7 @@ function SendComponent_div_1_div_9_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](27, "div", 65);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](28, SendComponent_div_1_div_9_input_28_Template, 1, 1, "input", 66);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](29, SendComponent_div_1_div_9_button_29_Template, 2, 0, "button", 67);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](30, SendComponent_div_1_div_9_ng_template_30_Template, 2, 2, "ng-template", null, 68, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](30, SendComponent_div_1_div_9_ng_template_30_Template, 2, 4, "ng-template", null, 68, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](32, SendComponent_div_1_div_9_span_32_Template, 2, 1, "span", 69);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -6322,7 +6323,6 @@ class SendComponent {
     }
     ledgerRetry() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            this.ledgerError = '';
             this.messageService.startSpinner('Preparing transaction...');
             const keys = yield this.walletService.getKeys('');
             if (keys) {
@@ -6539,6 +6539,7 @@ class SendComponent {
                     if (signature) {
                         const signedOp = op + signature;
                         this.sendResponse.payload.signedOperation = signedOp;
+                        this.ledgerError = '';
                     }
                     else {
                         this.ledgerError = 'Failed to sign transaction';

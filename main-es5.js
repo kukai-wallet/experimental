@@ -12269,6 +12269,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 2) {
         var ctx_r258 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("ledger-roadcast", ctx_r258.walletService.isLedgerWallet());
+
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("disabled", ctx_r258.walletService.isLedgerWallet() && (!ctx_r258.sendResponse || !ctx_r258.sendResponse.payload || !ctx_r258.sendResponse.payload.signedOperation));
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
@@ -12371,7 +12373,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](29, SendComponent_div_1_div_9_button_29_Template, 2, 0, "button", 67);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](30, SendComponent_div_1_div_9_ng_template_30_Template, 2, 2, "ng-template", null, 68, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](30, SendComponent_div_1_div_9_ng_template_30_Template, 2, 4, "ng-template", null, 68, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -12742,30 +12744,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context20.prev = _context20.next) {
                   case 0:
-                    this.ledgerError = '';
                     this.messageService.startSpinner('Preparing transaction...');
-                    _context20.next = 4;
+                    _context20.next = 3;
                     return this.walletService.getKeys('');
 
-                  case 4:
+                  case 3:
                     keys = _context20.sent;
 
                     if (!keys) {
-                      _context20.next = 10;
+                      _context20.next = 9;
                       break;
                     }
 
-                    _context20.next = 8;
+                    _context20.next = 7;
                     return this.sendTransaction(keys);
 
-                  case 8:
-                    _context20.next = 11;
+                  case 7:
+                    _context20.next = 10;
                     break;
 
-                  case 10:
+                  case 9:
                     this.messageService.stopSpinner();
 
-                  case 11:
+                  case 10:
                   case "end":
                     return _context20.stop();
                 }
@@ -13133,6 +13134,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     if (signature) {
                       signedOp = op + signature;
                       this.sendResponse.payload.signedOperation = signedOp;
+                      this.ledgerError = '';
                     } else {
                       this.ledgerError = 'Failed to sign transaction';
                     }
