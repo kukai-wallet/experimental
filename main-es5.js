@@ -12690,81 +12690,42 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "openModal2",
         value: function openModal2() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
-            var clearFee, keys;
+            var clearFee;
             return regeneratorRuntime.wrap(function _callee19$(_context19) {
               while (1) {
                 switch (_context19.prev = _context19.next) {
                   case 0:
-                    if (!(!this.simSemaphore && !this.torusPendingLookup)) {
-                      _context19.next = 24;
-                      break;
+                    if (!this.simSemaphore && !this.torusPendingLookup) {
+                      this.formInvalid = this.checkInput(true);
+
+                      if (!this.formInvalid) {
+                        if (!this.amount) {
+                          this.amount = '0';
+                        }
+
+                        clearFee = false;
+
+                        if (!this.fee) {
+                          this.fee = this.defaultTransactionParams.fee.toString();
+                          clearFee = true;
+                        }
+
+                        this.prepTransactions();
+                        this.formInvalid = this.checkBalance();
+
+                        if (!this.formInvalid) {
+                          this.activeView++;
+
+                          if (this.walletService.isLedgerWallet()) {
+                            this.ledgerError = 'X';
+                          }
+                        } else if (clearFee) {
+                          this.fee = '';
+                        }
+                      }
                     }
 
-                    this.formInvalid = this.checkInput(true);
-
-                    if (this.formInvalid) {
-                      _context19.next = 24;
-                      break;
-                    }
-
-                    if (!this.amount) {
-                      this.amount = '0';
-                    }
-
-                    clearFee = false;
-
-                    if (!this.fee) {
-                      this.fee = this.defaultTransactionParams.fee.toString();
-                      clearFee = true;
-                    }
-
-                    this.prepTransactions();
-                    this.formInvalid = this.checkBalance();
-
-                    if (this.formInvalid) {
-                      _context19.next = 23;
-                      break;
-                    }
-
-                    this.activeView++;
-
-                    if (!this.walletService.isLedgerWallet()) {
-                      _context19.next = 21;
-                      break;
-                    }
-
-                    this.messageService.startSpinner('Preparing transaction...');
-                    _context19.next = 14;
-                    return this.walletService.getKeys('');
-
-                  case 14:
-                    keys = _context19.sent;
-
-                    if (!keys) {
-                      _context19.next = 20;
-                      break;
-                    }
-
-                    _context19.next = 18;
-                    return this.sendTransaction(keys);
-
-                  case 18:
-                    _context19.next = 21;
-                    break;
-
-                  case 20:
-                    this.messageService.stopSpinner();
-
-                  case 21:
-                    _context19.next = 24;
-                    break;
-
-                  case 23:
-                    if (clearFee) {
-                      this.fee = '';
-                    }
-
-                  case 24:
+                  case 1:
                   case "end":
                     return _context19.stop();
                 }
@@ -13990,7 +13951,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"]],
       decls: 2,
       vars: 2,
-      consts: [[4, "ngIf"], ["id", "myModal", "class", "kukai-modal", 3, "top", 4, "ngIf"], ["class", "purple", 3, "click", 4, "ngIf"], ["class", "token-send", 3, "click", 4, "ngIf"], [1, "purple", 3, "click"], [1, "token-send", 3, "click"], ["id", "myModal", 1, "kukai-modal"], [1, "km-content"], [1, "x", 3, "click"], ["src", "../../../assets/img/x.svg"], [1, "km-header"], ["class", "small multiple-destinations", 3, "click", 4, "ngIf"], ["class", "km-body", 4, "ngIf"], [1, "small", "multiple-destinations", 3, "click"], [1, "km-body"], [1, "amount"], [1, "row-group"], ["tabindex", "-1", "class", "small", 3, "max", "click", 4, "ngIf"], [1, "fee"], [4, "ngIf", "ngIfElse"], ["burn", ""], [1, "group"], ["class", "group", 4, "ngIf"], [1, "advanced"], [1, "switch-container"], [1, "switch"], ["type", "checkbox", "tabindex", "-1", 3, "ngModel", "ngModelChange"], [1, "slider", "round"], [1, "switch-desc"], ["class", "advanced-form", 4, "ngIf"], ["class", "danger no-margin", 4, "ngIf"], [1, "purple", 2, "margin", "2.5rem 0 1.5rem", 3, "click"], ["placeholder", "0.00", 1, "custom-large", 3, "ngModel", "disabled", "ngModelChange", "mousedown", "input", "keypress", "change"], ["amountInput", ""], [1, "tez"], [2, "height", "100%", "width", "auto", 3, "src"], ["tabindex", "-1", 1, "small", 3, "click"], ["src", "../../../assets/img/feeLoader.gif"], [2, "justify-content", "space-between", "opacity", "1", "color", "rgba(44, 50, 58, 0.4)"], [1, "select-css", 3, "ngModel", "disabled", "ngModelChange"], ["value", "", "selected", ""], [3, "value", 4, "ngFor", "ngForOf"], ["type", "text", 1, "text", 3, "disabled", "ngModel", "input", "change", "ngModelChange"], [3, "value"], [2, "color", "#C83532", "margin-top", "1rem"], ["class", "torus-details", 4, "ngIf"], [1, "torus-details"], [1, "batchInfo"], ["type", "text", "rows", "3", "placeholder", "address1 amount1 ; \naddress2 amount2 ; \naddress3 ...", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], [1, "advanced-form"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "ngModelChange"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "input", "paste", "ngModelChange"], ["type", "text", "tabindex", "-1", "readonly", "", 1, "text", "read-only", 3, "value"], [1, "danger", "no-margin"], [1, "preview-top"], [1, "preview-amount"], [1, "section"], [1, "amount-tez"], [1, "amount-usd"], ["class", "section", 4, "ngIf"], ["src", "../../../assets/img/tezos-xtz-logo.svg", "style", "height: 4.5rem; margin-right: 1rem", 4, "ngIf", "ngIfElse"], ["imgElseBlock", ""], [1, "seperator"], [1, "preview-row"], ["class", "preview-row", 4, "ngIf"], [1, "row-group", 2, "margin", "1.25rem 0 1.5rem"], ["autocomplete", "current-password", "placeholder", "Password", "class", "text password", "type", "password", 3, "ngModel", "ngModelChange", "input", "change", "keydown.enter", 4, "ngIf"], ["class", "retry", 3, "click", 4, "ngIf", "ngIfElse"], ["elseBlock", ""], ["class", "danger margin", 4, "ngIf"], ["src", "../../../assets/img/tezos-xtz-logo.svg", 2, "height", "4.5rem", "margin-right", "1rem"], [2, "height", "4.5rem", "margin-right", "1rem", 3, "src"], ["class", "torus-to", 4, "ngIf"], [1, "single-to"], ["id", "previewAttention", 4, "ngIf"], [1, "torus-to"], [3, "src"], ["id", "previewAttention"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["style", "margin-left: auto; margin: 0.5rem 0 1rem; height: 2rem;", "type", "button", "class", "small", "aria-label", "More", 3, "click", 4, "ngIf"], [1, "txAmount"], ["type", "button", "aria-label", "More", 1, "small", 2, "margin-left", "auto", "margin", "0.5rem 0 1rem", "height", "2rem", 3, "click"], ["aria-hidden", "true"], ["class", "preview", 4, "ngIf"], [1, "tabs-container"], [1, "tabs"], [1, "tab", 3, "click"], ["style", "width: 100%; font-size: 0.875rem", "rows", "10", "readonly", "", 4, "ngIf"], [1, "preview"], ["rows", "10", "readonly", "", 2, "width", "100%", "font-size", "0.875rem"], ["autocomplete", "current-password", "placeholder", "Password", "type", "password", 1, "text", "password", 3, "ngModel", "ngModelChange", "input", "change", "keydown.enter"], [1, "retry", 3, "click"], [1, "purple", "confirm", 3, "disabled", "click"], [1, "danger", "margin"]],
+      consts: [[4, "ngIf"], ["id", "myModal", "class", "kukai-modal", 3, "top", 4, "ngIf"], ["class", "purple", 3, "click", 4, "ngIf"], ["class", "token-send", 3, "click", 4, "ngIf"], [1, "purple", 3, "click"], [1, "token-send", 3, "click"], ["id", "myModal", 1, "kukai-modal"], [1, "km-content"], [1, "x", 3, "click"], ["src", "../../../assets/img/x.svg"], [1, "km-header"], ["class", "small multiple-destinations", 3, "click", 4, "ngIf"], ["class", "km-body", 4, "ngIf"], [1, "small", "multiple-destinations", 3, "click"], [1, "km-body"], [1, "amount"], [1, "row-group"], ["tabindex", "-1", "class", "small", 3, "max", "click", 4, "ngIf"], [1, "fee"], [4, "ngIf", "ngIfElse"], ["burn", ""], [1, "group"], ["class", "group", 4, "ngIf"], [1, "advanced"], [1, "switch-container"], [1, "switch"], ["type", "checkbox", "tabindex", "-1", 3, "ngModel", "ngModelChange"], [1, "slider", "round"], [1, "switch-desc"], ["class", "advanced-form", 4, "ngIf"], ["class", "danger no-margin", 4, "ngIf"], [1, "purple", 2, "margin", "2.5rem 0 1.5rem", 3, "click"], ["placeholder", "0.00", 1, "custom-large", 3, "ngModel", "disabled", "ngModelChange", "mousedown", "input", "keypress", "change"], ["amountInput", ""], [1, "tez"], [2, "height", "100%", "width", "auto", 3, "src"], ["tabindex", "-1", 1, "small", 3, "click"], ["src", "../../../assets/img/feeLoader.gif"], [2, "justify-content", "space-between", "opacity", "1", "color", "rgba(44, 50, 58, 0.4)"], [1, "select-css", 3, "ngModel", "disabled", "ngModelChange"], ["value", "", "selected", ""], [3, "value", 4, "ngFor", "ngForOf"], ["type", "text", 1, "text", 3, "disabled", "ngModel", "input", "change", "ngModelChange"], [3, "value"], [2, "color", "#C83532", "margin-top", "1rem"], ["class", "torus-details", 4, "ngIf"], [1, "torus-details"], [1, "batchInfo"], ["type", "text", "rows", "3", "placeholder", "address1 amount1 ; \naddress2 amount2 ; \naddress3 ...", 1, "text", 3, "ngModel", "input", "change", "ngModelChange"], [1, "advanced-form"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "ngModelChange"], ["type", "text", 1, "text", 3, "placeholder", "ngModel", "input", "paste", "ngModelChange"], ["type", "text", "tabindex", "-1", "readonly", "", 1, "text", "read-only", 3, "value"], [1, "danger", "no-margin"], [1, "preview-top"], [1, "preview-amount"], [1, "section"], [1, "amount-tez"], [1, "amount-usd"], ["class", "section", 4, "ngIf"], ["src", "../../../assets/img/tezos-xtz-logo.svg", "style", "height: 4.5rem; margin-right: 1rem", 4, "ngIf", "ngIfElse"], ["imgElseBlock", ""], [1, "seperator"], [1, "preview-row"], ["class", "preview-row", 4, "ngIf"], [1, "row-group", 2, "margin", "1.25rem 0 1.5rem"], ["autocomplete", "current-password", "placeholder", "Password", "class", "text password", "type", "password", 3, "ngModel", "ngModelChange", "input", "change", "keydown.enter", 4, "ngIf"], ["class", "purple confirm", 3, "click", 4, "ngIf", "ngIfElse"], ["elseBlock", ""], ["class", "danger margin", 4, "ngIf"], ["src", "../../../assets/img/tezos-xtz-logo.svg", 2, "height", "4.5rem", "margin-right", "1rem"], [2, "height", "4.5rem", "margin-right", "1rem", 3, "src"], ["class", "torus-to", 4, "ngIf"], [1, "single-to"], ["id", "previewAttention", 4, "ngIf"], [1, "torus-to"], [3, "src"], ["id", "previewAttention"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["style", "margin-left: auto; margin: 0.5rem 0 1rem; height: 2rem;", "type", "button", "class", "small", "aria-label", "More", 3, "click", 4, "ngIf"], [1, "txAmount"], ["type", "button", "aria-label", "More", 1, "small", 2, "margin-left", "auto", "margin", "0.5rem 0 1rem", "height", "2rem", 3, "click"], ["aria-hidden", "true"], ["class", "preview", 4, "ngIf"], [1, "tabs-container"], [1, "tabs"], [1, "tab", 3, "click"], ["style", "width: 100%; font-size: 0.875rem", "rows", "10", "readonly", "", 4, "ngIf"], [1, "preview"], ["rows", "10", "readonly", "", 2, "width", "100%", "font-size", "0.875rem"], ["autocomplete", "current-password", "placeholder", "Password", "type", "password", 1, "text", "password", 3, "ngModel", "ngModelChange", "input", "change", "keydown.enter"], [1, "purple", "confirm", 3, "click"], [1, "purple", "confirm", 3, "disabled", "click"], [1, "danger", "margin"]],
       template: function SendComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, SendComponent_ng_container_0_Template, 3, 2, "ng-container", 0);
@@ -22889,66 +22850,63 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee96() {
             var _this44 = this;
 
-            var transport, xtz, result;
+            var xtz, result;
             return regeneratorRuntime.wrap(function _callee96$(_context97) {
               while (1) {
                 switch (_context97.prev = _context97.next) {
                   case 0:
-                    // await this.transportCheck();
-                    console.log('Create transport');
-                    _context97.next = 3;
-                    return _ledgerhq_hw_transport_u2f__WEBPACK_IMPORTED_MODULE_3__["default"].create();
+                    _context97.next = 2;
+                    return this.transportCheck();
 
-                  case 3:
-                    transport = _context97.sent;
-                    xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(transport);
+                  case 2:
+                    xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
                     console.log('size', op.length);
                     console.log(op);
 
                     if (!(op.length !== 64)) {
-                      _context97.next = 14;
+                      _context97.next = 12;
                       break;
                     }
 
                     op = '03' + op;
-                    _context97.next = 11;
+                    _context97.next = 9;
                     return xtz.signOperation(path, op)["catch"](function (e) {
                       _this44.messageService.addError(e, 0);
                     });
 
-                  case 11:
+                  case 9:
                     result = _context97.sent;
-                    _context97.next = 17;
+                    _context97.next = 15;
                     break;
 
-                  case 14:
-                    _context97.next = 16;
+                  case 12:
+                    _context97.next = 14;
                     return xtz.signHash(path, op)["catch"](function (e) {
                       _this44.messageService.addError(e, 0);
                     });
 
-                  case 16:
+                  case 14:
                     result = _context97.sent;
 
-                  case 17:
+                  case 15:
                     console.log(JSON.stringify(result));
 
                     if (!(result && result.signature)) {
-                      _context97.next = 20;
+                      _context97.next = 18;
                       break;
                     }
 
                     return _context97.abrupt("return", result.signature);
 
-                  case 20:
+                  case 18:
                     return _context97.abrupt("return", null);
 
-                  case 21:
+                  case 19:
                   case "end":
                     return _context97.stop();
                 }
               }
-            }, _callee96);
+            }, _callee96, this);
           }));
         }
       }]);
