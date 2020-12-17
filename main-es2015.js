@@ -2710,9 +2710,7 @@ class DelegateComponent {
                 this.storedDelegate = this.toPkh;
                 this.activeView = 1;
                 if (this.walletService.isLedgerWallet()) {
-                    /*const keys = await this.walletService.getKeys('');
-                    this.sendDelegation(keys);*/
-                    this.ledgerError = 'X';
+                    this.ledgerError = '?';
                 }
             }
         });
@@ -6189,7 +6187,6 @@ class SendComponent {
     }
     ngOnChanges(changes) {
         if (this.beaconMode) {
-            console.log('change');
             if (this.operationRequest) {
                 console.log('Beacon payload to send', this.operationRequest);
                 if (this.operationRequest.operationDetails[0].kind === 'transaction') {
@@ -6289,7 +6286,7 @@ class SendComponent {
                     if (!this.formInvalid) {
                         this.activeView++;
                         if (this.walletService.isLedgerWallet()) {
-                            this.ledgerError = 'X';
+                            this.ledgerError = '?';
                         }
                     }
                     else if (clearFee) {
@@ -9345,10 +9342,6 @@ class ErrorHandlingPipe {
                 id: 'TooHighFee'
             },
             {
-                msg: 'Failed to decode bytes',
-                id: 'FailedToDecodeBytes'
-            },
-            {
                 msg: 'Node error: Timeout has occurred! Please try again later.',
                 id: 'Timeout has occurred'
             }
@@ -11427,12 +11420,6 @@ class TzktService {
             if (bigMapId.token !== -1) {
                 const tokenMetadata = yield this.extractTokenMetadata(bigMapId.token, id);
                 const contractMetadata = yield this.extractContractMetadata(bigMapId.contract);
-                /*
-                if (extras) { // append extra metadata
-                  extras = await this.getUriExtras(extras);
-                  metadata = { ...metadata, ...extras };
-                }
-                */
                 const metadata = Object.assign(Object.assign({}, tokenMetadata), contractMetadata);
                 return metadata;
             }
@@ -11773,7 +11760,6 @@ class InputValidationService {
     amount(amount, decimals = 6) {
         const decimalsPart = decimals ? `(\.[0-9]{1,${decimals}}){0,1}` : '';
         const expr = new RegExp(`^(0|[1-9][0-9]{0,8})${decimalsPart}$`, 'g');
-        console.log(amount);
         if (amount === '' || amount === '0') { // default value / zero
             return true;
         }
@@ -12698,7 +12684,6 @@ class OperationService {
         const opbytes = sopbytes.slice(0, sopbytes.length - 128);
         const edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_taquito_local_forging__WEBPACK_IMPORTED_MODULE_10__["localForger"].parse(opbytes)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((fop) => {
-            //fop = this.decodeOpBytes(opbytes);
             fop.signature = edsig;
             return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((header) => {
                 fop.protocol = header.protocol;
@@ -12802,6 +12787,7 @@ class OperationService {
             error = error.statusText;
         }
         else if (typeof error === 'string') {
+            error = this.errorHandlingPipe.transform(error);
         }
         else {
             console.warn('Error not categorized', error);
@@ -13056,16 +13042,13 @@ class OperationService {
         return r;
     }
     ledgerPreHash(opbytes) {
-        console.log('prehash');
-        const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes)));
-        console.log('hash L', this.buf2hex(hash).length);
-        return this.buf2hex(hash);
+        return this.buf2hex(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes))));
     }
     sign(bytes, sk) {
         if (sk.slice(0, 4) === 'spsk') {
-            const prehash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
+            const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
             const key = (new elliptic__WEBPACK_IMPORTED_MODULE_14__["ec"]('secp256k1')).keyFromPrivate(new Uint8Array(this.b58cdecode(sk, this.prefix.spsk)));
-            let sig = key.sign(prehash, { canonical: true });
+            let sig = key.sign(hash, { canonical: true });
             sig = new Uint8Array(sig.r.toArray().concat(sig.s.toArray()));
             const spsig = this.b58cencode(sig, this.prefix.spsig);
             const sbytes = bytes + this.buf2hex(sig);
@@ -13097,188 +13080,6 @@ class OperationService {
     }
     sig2edsig(sig) {
         return this.b58cencode(this.hex2buf(sig), this.prefix.edsig);
-    }
-    /*
-      Binary decoding
-    */
-    decodeOpBytes(opbytes) {
-        // First 32 bytes = branch
-        const branch = this.b58cencode(this.hex2buf(opbytes.slice(0, 64)), this.prefix.B);
-        const contents = this.decodeContents(opbytes.slice(64));
-        return {
-            branch: branch,
-            contents: contents
-        };
-    }
-    decodeContents(content) {
-        // Check tag
-        const tag = Number(this.hex2buf(content.slice(0, 2)));
-        switch (tag) {
-            case 4: {
-                return this.decodeActivateAccount(content.slice(2));
-            }
-            case 107: {
-                return this.decodeReveal(content.slice(2));
-            }
-            case 108: {
-                return this.decodeTransaction(content.slice(2));
-            }
-            case 109: {
-                return this.decodeOrigination(content.slice(2));
-            }
-            case 110: {
-                return this.decodeDelegation(content.slice(2));
-            }
-            default: {
-                throw new Error('Unknown tag');
-            }
-        }
-    }
-    decodeActivateAccount(content) {
-        const data = { kind: 'activate' };
-        data.pkh = this.b58cencode(this.hex2buf(content.slice(0, 40)), this.prefix.tz1);
-        data.secret = content.slice(40, 80);
-        return data;
-    }
-    decodeReveal(content) {
-        let index = 0;
-        const op = this.decodeCommon({ kind: 'reveal' }, content);
-        if (op.rest.slice(index, index += 2) !== '00') {
-            throw new Error('TagErrorR1');
-        }
-        op.data.public_key = this.b58cencode(this.hex2buf(op.rest.slice(index, index += 64)), this.prefix.edpk);
-        if (op.rest.length === index) {
-            return [op.data];
-        }
-        else {
-            return [op.data].concat(this.decodeContents(op.rest.slice(index)));
-        }
-    }
-    decodeTransaction(content) {
-        let index = 0;
-        const op = this.decodeCommon({ kind: 'transaction' }, content);
-        const amount = this.zarithDecode(op.rest.slice(index));
-        op.data.amount = amount.value.toString();
-        op.data.destination = this.decodeContractId(op.rest.slice(index += amount.count * 2, index += 44));
-        if (op.rest.slice(index, index += 2) === 'ff') { // parameters?
-            if (op.rest.slice(index, index += 8) !== '02000000') {
-                throw new Error('UnsupportedTagT1');
-            }
-            const size = Number('0x' + op.rest.slice(index, index += 2));
-            const argument = op.rest.slice(index, index += size * 2);
-            if (argument.slice(0, 40) === '02000000' + (size - 5).toString(16) + '0320053d036d0743035d0100000024') {
-                const pkh = this.decodeString(argument.slice(40, 112));
-                if (argument.slice(112, 124) === '0346034e031b') { // KT delegate
-                    op.data.parameters = this.getContractDelegation(pkh);
-                }
-                else if (argument.slice(112, 126) === '031e0743036a00') { // KT to tz transaction
-                    const amount2 = this.zarithDecodeInt(argument.slice(126, argument.length - 12));
-                    if (argument.slice(argument.length - 12, argument.length) !== '034f034d031b') {
-                        throw new Error('UnsupportedTagT4');
-                    }
-                    console.log(' Val: ' + amount2.value);
-                    op.data.parameters = this.getContractPkhTransaction(pkh, amount2.value.toString());
-                }
-                else {
-                    throw new Error('UnsupportedTagT3');
-                }
-            }
-            else if (argument.slice(0, 40) === '02000000' + (size - 5).toString(16) + '0320053d036d0743036e0100000024') { // KT to KT transaction
-                const kt = this.decodeString(argument.slice(40, 112));
-                if (argument.slice(112, 182) !== '0555036c0200000015072f02000000090200000004034f032702000000000743036a00') {
-                }
-                const amount2 = this.zarithDecodeInt(argument.slice(182));
-                if (argument.slice(184 + amount2.count * 2, 194 + amount2.count * 2) !== '4f034d031b') {
-                    throw new Error('UnsupportedTagT6');
-                }
-                op.data.parameters = this.getContractKtTransaction(kt, amount2.value.toString());
-            }
-            else {
-                throw new Error('UnsupportedTagT2');
-            }
-        }
-        if (op.rest.length === index) {
-            return [op.data];
-        }
-        else {
-            return [op.data].concat(this.decodeContents(op.rest.slice(index)));
-        }
-    }
-    decodeOrigination(content) {
-        let index = 0;
-        const op = this.decodeCommon({ kind: 'origination' }, content);
-        const balance = this.zarithDecode(op.rest.slice(index));
-        op.data.balance = balance.value.toString();
-        index += balance.count * 2;
-        if (op.rest.slice(index, index += 2) !== '00') { // delegate?
-            throw new Error('UnsupportedTagO1');
-        }
-        const managerScript = '000000c602000000c105000764085e036c055f036d0000000325646f046c000000082564656661756c740501035d050202000000950200000012020000000d03210316051f02000000020317072e020000006a0743036a00000313020000001e020000000403190325072c020000000002000000090200000004034f0327020000000b051f02000000020321034c031e03540348020000001e020000000403190325072c020000000002000000090200000004034f0327034f0326034202000000080320053d036d0342'; // manager script
-        if (op.rest.slice(index, index += managerScript.length) !== managerScript) {
-            throw new Error('InvalidManagerScript');
-        }
-        const storageDefinition = '0000001a0a00000015';
-        if (op.rest.slice(index, index += storageDefinition.length) !== storageDefinition) {
-            throw new Error('InvalidStorageDefinition');
-        }
-        op.data.script = this.getManagerScript(op.rest.slice(index, index += 42));
-        if (op.rest.length === index) {
-            return [op.data];
-        }
-        else {
-            return [op.data].concat(this.decodeContents(op.rest.slice(index)));
-        }
-    }
-    decodeDelegation(content) {
-        let index = 0;
-        const op = this.decodeCommon({ kind: 'delegation' }, content);
-        if (op.rest.slice(index, index += 2) === 'ff') {
-            op.data.delegate = this.decodePkh(op.rest.slice(index, index += 42));
-        }
-        else if (op.rest.slice(index - 2, index) !== '00') {
-            throw new Error('TagErrorD1');
-        }
-        if (op.rest.length === index) {
-            return [op.data];
-        }
-        else {
-            return [op.data].concat(this.decodeContents(op.rest.slice(index)));
-        }
-    }
-    decodeCommon(data, content) {
-        let index = 0;
-        data.source = this.decodePkh(content.slice(index, index += 42));
-        // data.source = this.decodeContractId(content.slice(index, index += 44));
-        const fee = this.zarithDecode(content.slice(index));
-        data.fee = fee.value.toString();
-        const counter = this.zarithDecode(content.slice(index += fee.count * 2));
-        data.counter = counter.value.toString();
-        const gas_limit = this.zarithDecode(content.slice(index += counter.count * 2));
-        data.gas_limit = gas_limit.value.toString();
-        const storage_limit = this.zarithDecode(content.slice(index += gas_limit.count * 2));
-        data.storage_limit = storage_limit.value.toString();
-        const rest = content.slice(index += storage_limit.count * 2);
-        return {
-            data: data,
-            rest: rest
-        };
-    }
-    decodePkh(bytes) {
-        if (bytes.slice(0, 2) === '00') {
-            return this.b58cencode(this.hex2buf(bytes.slice(2, 42)), this.prefix.tz1);
-        }
-        else if (bytes.slice(0, 2) === '01') {
-            return this.b58cencode(this.hex2buf(bytes.slice(2, 42)), this.prefix.tz2);
-        }
-        else if (bytes.slice(0, 2) === '02') {
-            return this.b58cencode(this.hex2buf(bytes.slice(2, 42)), this.prefix.tz3);
-        }
-        else {
-            throw new Error('TagErrorPkh');
-        }
-    }
-    decodePk() {
-        return null;
     }
     decodeString(bytes) {
         return buffer__WEBPACK_IMPORTED_MODULE_5__["Buffer"].from(this.hex2buf(bytes)).toString('utf-8');
@@ -13319,68 +13120,6 @@ class OperationService {
             value: value,
             count: count
         };
-    }
-    decodeContractId(hex) {
-        if (hex.slice(0, 2) === '00') {
-            return this.decodePkh(hex.slice(2, 44));
-        }
-        else if (hex.slice(0, 2) === '01') {
-            return this.b58cencode(this.hex2buf(hex.slice(2, 42)), this.prefix.KT);
-        }
-        else {
-            throw new Error('TagError');
-        }
-    }
-    /*
-      Output
-    */
-    fop2strings(fop) {
-        const output = [];
-        for (let i = 0; i < fop.contents.length; i++) {
-            if (fop.contents[i].kind !== 'reveal') {
-                let typeTmp = '';
-                let sourceTmp = '';
-                typeTmp = this.translate.instant('OPERATIONSERVICE.TYPE');
-                sourceTmp = this.translate.instant('OPERATIONSERVICE.SOURCE');
-                output.push(typeTmp + ' ' + fop.contents[i].kind);
-                output.push(sourceTmp + ' ' + fop.contents[i].source);
-                if (fop.contents[i].kind === 'transaction') {
-                    let destinationTmp = '';
-                    let amountTmp = '';
-                    destinationTmp = this.translate.instant('OPERATIONSERVICE.DESTINATION');
-                    amountTmp = this.translate.instant('OPERATIONSERVICE.AMOUNT');
-                    output.push(destinationTmp + ' ' + fop.contents[i].destination);
-                    output.push(amountTmp + ' ' + big_js__WEBPACK_IMPORTED_MODULE_9___default()(Number(fop.contents[i].amount)).div(this.microTez).toString() + ' tez');
-                }
-                else if (fop.contents[i].kind === 'origination') {
-                    let managerTmp = '';
-                    let balanceTmp = '';
-                    managerTmp = this.translate.instant('OPERATIONSERVICE.MANAGER');
-                    balanceTmp = this.translate.instant('OPERATIONSERVICE.BALANCE');
-                    // output.push(managerTmp + ' ' + fop.contents[i].managerPubkey);  // betanet
-                    output.push(managerTmp + ' ' + fop.contents[i].manager_pubkey); // zeronet
-                    output.push(balanceTmp + ' ' + big_js__WEBPACK_IMPORTED_MODULE_9___default()(Number(fop.contents[i].balance)).div(this.microTez).toString() + ' tez');
-                }
-                else if (fop.contents[i].kind === 'delegation') {
-                    let delegateTmp = '';
-                    delegateTmp = this.translate.instant('OPERATIONSERVICE.DELEGATE');
-                    output.push(delegateTmp + ' ' + fop.contents[i].delegate);
-                    // output.push('Delegate: ' + fop.contents[i].delegate);
-                }
-                else {
-                    let tagNotSupportedTmp = '';
-                    tagNotSupportedTmp = this.translate.instant('OPERATIONSERVICE.TAGNOTSUPPORTED');
-                    throw new Error(tagNotSupportedTmp);
-                }
-                let feeTmp = '';
-                feeTmp = this.translate.instant('OPERATIONSERVICE.FEE');
-                output.push(feeTmp + ' ' + big_js__WEBPACK_IMPORTED_MODULE_9___default()(Number(fop.contents[i].fee)).div(this.microTez).toString() + ' tez');
-                if (i + 1 < fop.contents.length) {
-                    output.push('');
-                }
-            }
-        }
-        return output;
     }
     getContractDelegation(pkh) {
         return {
