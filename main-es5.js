@@ -415,6 +415,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AppComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          var _this = this;
+
           this.walletService.loadStoredWallet();
 
           if (this.walletService.wallet) {
@@ -428,6 +430,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             window.scrollTo(0, 0);
           });
+          window.addEventListener('storage', function (e) {
+            _this.handleStorageEvent(e);
+          });
+        }
+      }, {
+        key: "handleStorageEvent",
+        value: function handleStorageEvent(e) {
+          if (e.key === 'kukai-wallet') {
+            if (e.oldValue && !e.newValue) {
+              window.location.reload();
+            } else if (!e.oldValue && e.newValue) {
+              setTimeout(function () {
+                window.location.reload();
+              }, 15000);
+            }
+          }
         }
       }, {
         key: "returnLanguage",
@@ -2169,7 +2187,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AccountViewComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this = this;
+          var _this2 = this;
 
           if (!this.walletService.wallet) {
             this.router.navigate(['']);
@@ -2184,14 +2202,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.router.events.pipe(Object(rxjs_internal_operators_filter__WEBPACK_IMPORTED_MODULE_7__["filter"])(function (evt) {
               return evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"];
             })).subscribe(function () {
-              address = _this.route.snapshot.paramMap.get('address');
+              address = _this2.route.snapshot.paramMap.get('address');
 
-              if (_this.walletService.wallet && _this.walletService.addressExists(address)) {
-                _this.account = _this.walletService.wallet.getAccount(address);
+              if (_this2.walletService.wallet && _this2.walletService.addressExists(address)) {
+                _this2.account = _this2.walletService.wallet.getAccount(address);
               }
             });
             setInterval(function () {
-              return _this.trigger = !_this.trigger;
+              return _this2.trigger = !_this2.trigger;
             }, 10 * 1000);
           }
         }
@@ -2954,7 +2972,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "activate",
         value: function activate() {
-          var _this2 = this;
+          var _this3 = this;
 
           this.formInvalid = this.checkInput();
 
@@ -2966,13 +2984,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.operationService.activate(pkh, secret).subscribe(function (ans) {
               if (ans.success) {
                 if (ans.payload.opHash) {
-                  _this2.translate.get('ACTIVATECOMPONENT.ACTIVATESUCCESS').subscribe(function (res) {
-                    return _this2.messageService.addSuccess(res);
+                  _this3.translate.get('ACTIVATECOMPONENT.ACTIVATESUCCESS').subscribe(function (res) {
+                    return _this3.messageService.addSuccess(res);
                   } // 'Activation successfully broadcasted to the blockchain!'
                   );
                 } else {
-                  _this2.translate.get('ACTIVATECOMPONENT.RETRIEVEFAIL').subscribe(function (res) {
-                    return _this2.messageService.addWarning(res);
+                  _this3.translate.get('ACTIVATECOMPONENT.RETRIEVEFAIL').subscribe(function (res) {
+                    return _this3.messageService.addWarning(res);
                   } // Could not retrieve an operation hash
                   );
                 }
@@ -2985,12 +3003,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   errorMessage = 'NodeError ' + JSON.stringify(ans.payload.msg);
                 }
 
-                _this2.messageService.addError(errorMessage);
+                _this3.messageService.addError(errorMessage);
 
                 console.log(JSON.stringify(ans.payload.msg));
               }
             }, function (err) {
-              _this2.translate.get('ACTIVATECOMPONENT.ACTIVATEFAIL').subscribe(function (res) {
+              _this3.translate.get('ACTIVATECOMPONENT.ACTIVATEFAIL').subscribe(function (res) {
                 var errorMessage = '';
                 var activateFailed = res;
 
@@ -3000,7 +3018,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   errorMessage = activateFailed;
                 }
 
-                _this2.messageService.addError(errorMessage);
+                _this3.messageService.addError(errorMessage);
               } // 'Failed to activate wallet!'
               );
 
@@ -5254,7 +5272,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "openModal",
         value: function openModal() {
-          var _this3 = this;
+          var _this4 = this;
 
           if (this.walletService.wallet) {
             // hide body scrollbar
@@ -5267,7 +5285,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             if (window.innerWidth > 1300) {
               setTimeout(function () {
-                var inputElem = _this3.toPkhView.nativeElement;
+                var inputElem = _this4.toPkhView.nativeElement;
                 inputElem.focus();
               }, 100);
             }
@@ -5427,7 +5445,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "sendDelegation",
         value: function sendDelegation(keys) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
-            var _this4 = this;
+            var _this5 = this;
 
             var fee;
             return regeneratorRuntime.wrap(function _callee7$(_context7) {
@@ -5442,7 +5460,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.operationService.delegate(this.activeAccount.address, this.getDelegate(), Number(fee), keys).subscribe(function (ans) {
-                      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this4, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+                      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this5, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
                         var metadata;
                         return regeneratorRuntime.wrap(function _callee6$(_context6) {
                           while (1) {
@@ -5481,7 +5499,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }));
                     }, function (err) {
                       console.log('Error Message ', JSON.stringify(err));
-                      _this4.ledgerError = 'Failed to create operation';
+                      _this5.ledgerError = 'Failed to create operation';
                     });
 
                   case 4:
@@ -5542,7 +5560,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "broadCastLedgerTransaction",
         value: function broadCastLedgerTransaction() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-            var _this5 = this;
+            var _this6 = this;
 
             return regeneratorRuntime.wrap(function _callee9$(_context9) {
               while (1) {
@@ -5550,26 +5568,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     this.messageService.startSpinner('Broadcasting operation');
                     this.operationService.broadcast(this.sendResponse.payload.signedOperation).subscribe(function (ans) {
-                      _this5.sendResponse = ans;
+                      _this6.sendResponse = ans;
 
-                      if (ans.success && _this5.activeAccount.address) {
+                      if (ans.success && _this6.activeAccount.address) {
                         var metadata = {
-                          delegate: _this5.getDelegate(),
+                          delegate: _this6.getDelegate(),
                           opHash: ans.payload.opHash
                         };
 
-                        _this5.coordinatorService.boost(_this5.activeAccount.address, metadata);
+                        _this6.coordinatorService.boost(_this6.activeAccount.address, metadata);
                       } else {
-                        _this5.messageService.addError(_this5.sendResponse.payload.msg, 0);
+                        _this6.messageService.addError(_this6.sendResponse.payload.msg, 0);
                       }
 
-                      _this5.closeModal();
+                      _this6.closeModal();
 
                       console.log('ans: ' + JSON.stringify(ans));
                     }, function (error) {
-                      _this5.messageService.stopSpinner();
+                      _this6.messageService.stopSpinner();
 
-                      _this5.messageService.addError(error, 0);
+                      _this6.messageService.addError(error, 0);
                     });
 
                   case 2:
@@ -5583,17 +5601,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkReveal",
         value: function checkReveal() {
-          var _this6 = this;
+          var _this7 = this;
 
           console.log('check reveal ' + this.activeAccount.pkh);
           this.operationService.isRevealed(this.activeAccount.pkh).subscribe(function (revealed) {
             if (!revealed) {
-              _this6.revealFee = 0.0002;
+              _this7.revealFee = 0.0002;
             } else {
-              _this6.revealFee = 0;
+              _this7.revealFee = 0;
             }
 
-            _this6.checkSource();
+            _this7.checkSource();
           });
         }
       }, {
@@ -5805,7 +5823,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(FooterComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this7 = this;
+          var _this8 = this;
 
           var path = this.location.path();
           var altFooter = ['/terms-of-use', '/privacy-policy', '/settings'];
@@ -5816,12 +5834,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.router.events.subscribe(function (event) {
             if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"]) {
-              path = _this7.location.path();
+              path = _this8.location.path();
 
               if (altFooter.includes(path)) {
-                _this7.darkText = true;
+                _this8.darkText = true;
               } else {
-                _this7.darkText = false;
+                _this8.darkText = false;
               }
             }
           });
@@ -7796,7 +7814,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "retrieve",
         value: function retrieve() {
-          var _this8 = this;
+          var _this9 = this;
 
           if (this.mnemonic) {
             this.mnemonic = this.mnemonic.toLowerCase().replace(/(\r\n|\n|\r)/gm, ' ').trim();
@@ -7808,26 +7826,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           if (!this.inputValidationService.mnemonics(this.mnemonic)) {
             this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDMNEMONIC').subscribe(function (res) {
-              return _this8.messageService.addWarning(res, 10);
+              return _this9.messageService.addWarning(res, 10);
             });
           } else if (this.importOption === 2 && !this.inputValidationService.email(this.email)) {
             this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDEMAIL').subscribe(function (res) {
-              return _this8.messageService.addWarning(res, 10);
+              return _this9.messageService.addWarning(res, 10);
             } // 'Invalid email!'
             );
           } else if (this.importOption === 2 && !this.password) {
             this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSWORD').subscribe(function (res) {
-              return _this8.messageService.addWarning(res, 10);
+              return _this9.messageService.addWarning(res, 10);
             } // 'Invalid password!'
             );
           } else if (!this.inputValidationService.passphrase(this.passphrase)) {
             this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSPHRASE').subscribe(function (res) {
-              return _this8.messageService.addWarning(res, 10);
+              return _this9.messageService.addWarning(res, 10);
             } // 'Invalid passphrase!'
             );
           } else if (this.pkh && !this.inputValidationService.address(this.pkh)) {
             this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPKH').subscribe(function (res) {
-              return _this8.messageService.addWarning(res, 10);
+              return _this9.messageService.addWarning(res, 10);
             } // 'Invalid public key hash!'
             );
           } else {
@@ -7844,11 +7862,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (this.pkh && pkh !== this.pkh) {
               if (this.importOption === 2) {
                 this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDEMAILPASSWORD').subscribe(function (res) {
-                  return _this8.messageService.addWarning(res, 5);
+                  return _this9.messageService.addWarning(res, 5);
                 });
               } else {
                 this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSPHRASE').subscribe(function (res) {
-                  return _this8.messageService.addWarning(res, 5);
+                  return _this9.messageService.addWarning(res, 5);
                 });
               }
             } else {
@@ -7911,17 +7929,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "validPwd",
         value: function validPwd() {
-          var _this9 = this;
+          var _this10 = this;
 
           if (!this.inputValidationService.password(this.pwd1)) {
             this.translate.get('MNEMONICIMPORTCOMPONENT.PASSWORDWEAK').subscribe(function (res) {
-              return _this9.messageService.addWarning(res, 10);
+              return _this10.messageService.addWarning(res, 10);
             } // 'Password is too weak!'
             );
             return false;
           } else if (this.pwd1 !== this.pwd2) {
             this.translate.get('MNEMONICIMPORTCOMPONENT.NOMATCHPASSWORDS').subscribe(function (res) {
-              return _this9.messageService.addWarning(res, 10);
+              return _this10.messageService.addWarning(res, 10);
             } // Passwords don't match!
             );
             return false;
@@ -7954,7 +7972,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "done",
         value: function done() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
-            var _this10 = this;
+            var _this11 = this;
 
             return regeneratorRuntime.wrap(function _callee11$(_context11) {
               while (1) {
@@ -7983,7 +8001,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.translate.get('MNEMONICIMPORTCOMPONENT.WALLETREADY').subscribe(function (res) {
-                      return _this10.messageService.addSuccess(res);
+                      return _this11.messageService.addSuccess(res);
                     });
 
                   case 11:
@@ -8098,7 +8116,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "import",
         value: function _import(keyFile, pwd) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
-            var _this11 = this;
+            var _this12 = this;
 
             return regeneratorRuntime.wrap(function _callee13$(_context13) {
               while (1) {
@@ -8108,18 +8126,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context13.next = 3;
                     return this.importService.importWalletFromJson(keyFile, pwd).then(function (success) {
                       if (success) {
-                        if (_this11.walletService.wallet.implicitAccounts.length === 1 && _this11.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
-                          _this11.router.navigate(["/account/".concat(_this11.walletService.wallet.implicitAccounts[0].address)]);
+                        if (_this12.walletService.wallet.implicitAccounts.length === 1 && _this12.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
+                          _this12.router.navigate(["/account/".concat(_this12.walletService.wallet.implicitAccounts[0].address)]);
                         } else {
-                          _this11.router.navigate(['/accounts']);
+                          _this12.router.navigate(['/accounts']);
                         }
                       } else {
                         console.log(success);
 
-                        _this11.messageService.addError('Something went wrong');
+                        _this12.messageService.addError('Something went wrong');
                       }
                     })["catch"](function (e) {
-                      _this11.messageService.addError(e);
+                      _this12.messageService.addError(e);
                     });
 
                   case 3:
@@ -8133,7 +8151,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "handleFileInput",
         value: function handleFileInput(files) {
-          var _this12 = this;
+          var _this13 = this;
 
           var fileToUpload = files.item(0);
 
@@ -8156,18 +8174,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reader.onload = function () {
               if (typeof reader.result === 'string') {
                 try {
-                  _this12.importPreCheck(reader.result);
+                  _this13.importPreCheck(reader.result);
                 } catch (e) {
-                  _this12.messageService.addError(e, 5);
+                  _this13.messageService.addError(e, 5);
 
-                  _this12.walletJson = null;
+                  _this13.walletJson = null;
                 }
 
-                if (_this12.walletJson) {
-                  _this12.fileName = fileToUpload.name;
+                if (_this13.walletJson) {
+                  _this13.fileName = fileToUpload.name;
                 }
               } else {
-                _this12.walletJson = null;
+                _this13.walletJson = null;
                 throw new Error('Not a string import');
               }
             };
@@ -8506,7 +8524,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(NewImplicitComponent, [{
         key: "openModal",
         value: function openModal() {
-          var _this13 = this;
+          var _this14 = this;
 
           if (this.openPkhSpot()) {
             // hide body scrollbar
@@ -8516,7 +8534,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.clear();
             this.modalOpen = true;
             setTimeout(function () {
-              var inputElem = _this13.pwdView.nativeElement;
+              var inputElem = _this14.pwdView.nativeElement;
               inputElem.focus();
             }, 100);
           } else {
@@ -10140,7 +10158,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "scan",
         value: function scan() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
-            var _this14 = this;
+            var _this15 = this;
 
             var hasCamera;
             return regeneratorRuntime.wrap(function _callee17$(_context17) {
@@ -10160,7 +10178,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"].WORKER_PATH = './assets/js/qr-scanner-worker.min.js';
                     this.qrScanner = new qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"](this.videoplayer.nativeElement, function (result) {
-                      return _this14.handleQrCode(result);
+                      return _this15.handleQrCode(result);
                     });
                     _context17.next = 8;
                     return this.qrScanner.start();
@@ -10436,7 +10454,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "openModal",
         value: function openModal() {
-          var _this15 = this;
+          var _this16 = this;
 
           // hide body scrollbar
           var scrollBarWidth = window.innerWidth - document.body.offsetWidth;
@@ -10444,7 +10462,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           document.body.style.overflow = 'hidden';
           this.modalOpen = true;
           setTimeout(function () {
-            _this15.getQR();
+            _this16.getQR();
           }, 100);
         }
       }, {
@@ -10473,7 +10491,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "open1",
         value: function open1(template1) {
-          var _this16 = this;
+          var _this17 = this;
 
           if (this.activeAddress) {
             this.modalRef1 = this.modalService.show(template1, {
@@ -10481,7 +10499,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }); // modal-sm / modal-lg
 
             setTimeout(function () {
-              _this16.getQR();
+              _this17.getQR();
             }, 100);
           } else {
             this.messageService.add('Select an address first by clicking on it!');
@@ -12908,7 +12926,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "openModal",
         value: function openModal() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
-            var _this17 = this;
+            var _this18 = this;
 
             var scrollBarWidth, asset;
             return regeneratorRuntime.wrap(function _callee19$(_context19) {
@@ -12945,8 +12963,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     if (window.innerWidth > 1300) {
                       setTimeout(function () {
-                        if (_this17.amountInputView) {
-                          var inputElem = _this17.amountInputView.nativeElement;
+                        if (_this18.amountInputView) {
+                          var inputElem = _this18.amountInputView.nativeElement;
                           inputElem.focus();
                         }
                       }, 100);
@@ -13253,7 +13271,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "sendTransaction",
         value: function sendTransaction(keys) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee24() {
-            var _this18 = this;
+            var _this19 = this;
 
             var amount, fee;
             return regeneratorRuntime.wrap(function _callee24$(_context24) {
@@ -13283,7 +13301,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }
 
                     this.operationService.transfer(this.activeAccount.address, this.transactions, Number(fee), keys, this.tokenTransfer).subscribe(function (ans) {
-                      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this18, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee23() {
+                      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this19, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee23() {
                         var metadata, _iterator2, _step2, transaction;
 
                         return regeneratorRuntime.wrap(function _callee23$(_context23) {
@@ -13362,12 +13380,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         }, _callee23, this);
                       }));
                     }, function (err) {
-                      _this18.messageService.stopSpinner();
+                      _this19.messageService.stopSpinner();
 
                       console.log('Error Message ', JSON.stringify(err));
 
-                      if (_this18.walletService.isLedgerWallet()) {
-                        _this18.messageService.addError('Failed to create transaction', 0);
+                      if (_this19.walletService.isLedgerWallet()) {
+                        _this19.messageService.addError('Failed to create transaction', 0);
                       }
                     });
 
@@ -13431,33 +13449,33 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "broadCastLedgerTransaction",
         value: function broadCastLedgerTransaction() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee26() {
-            var _this19 = this;
+            var _this20 = this;
 
             return regeneratorRuntime.wrap(function _callee26$(_context26) {
               while (1) {
                 switch (_context26.prev = _context26.next) {
                   case 0:
                     this.operationService.broadcast(this.sendResponse.payload.signedOperation).subscribe(function (ans) {
-                      _this19.sendResponse = ans;
+                      _this20.sendResponse = ans;
 
-                      if (ans.success && _this19.activeAccount) {
+                      if (ans.success && _this20.activeAccount) {
                         var metadata = {
-                          transactions: _this19.transactions,
+                          transactions: _this20.transactions,
                           opHash: ans.payload.opHash,
-                          tokenTransfer: _this19.tokenTransfer
+                          tokenTransfer: _this20.tokenTransfer
                         };
 
-                        if (_this19.transactions[0].meta) {
-                          _this19.torusNotification(_this19.transactions[0]);
+                        if (_this20.transactions[0].meta) {
+                          _this20.torusNotification(_this20.transactions[0]);
                         }
 
-                        _this19.coordinatorService.boost(_this19.activeAccount.address, metadata);
+                        _this20.coordinatorService.boost(_this20.activeAccount.address, metadata);
 
-                        if (_this19.walletService.addressExists(_this19.transactions[0].to)) {
-                          _this19.coordinatorService.boost(_this19.transactions[0].to);
+                        if (_this20.walletService.addressExists(_this20.transactions[0].to)) {
+                          _this20.coordinatorService.boost(_this20.transactions[0].to);
                         }
                       } else {
-                        _this19.messageService.addError(_this19.sendResponse.payload.msg, 0);
+                        _this20.messageService.addError(_this20.sendResponse.payload.msg, 0);
                       }
 
                       console.log('ans: ' + JSON.stringify(ans));
@@ -13652,7 +13670,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "estimateFees",
         value: function estimateFees() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee28() {
-            var _this20 = this;
+            var _this21 = this;
 
             var prevSimError, equiClass, callback;
             return regeneratorRuntime.wrap(function _callee28$(_context28) {
@@ -13674,18 +13692,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         callback = function callback(res) {
                           if (res) {
                             if (res.error) {
-                              _this20.formInvalid = res.error;
-                              _this20.latestSimError = res.error;
+                              _this21.formInvalid = res.error;
+                              _this21.latestSimError = res.error;
                             } else {
-                              _this20.defaultTransactionParams = res;
-                              _this20.formInvalid = '';
-                              _this20.latestSimError = '';
+                              _this21.defaultTransactionParams = res;
+                              _this21.formInvalid = '';
+                              _this21.latestSimError = '';
 
-                              _this20.updateMaxAmount();
+                              _this21.updateMaxAmount();
                             }
                           }
 
-                          _this20.simSemaphore--;
+                          _this21.simSemaphore--;
                         };
 
                         console.log('simulate...');
@@ -13897,7 +13915,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "invalidInputMultiple",
         value: function invalidInputMultiple() {
-          var _this21 = this;
+          var _this22 = this;
 
           var finalCheck = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
@@ -13922,24 +13940,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var singleSendDataArray = toMultipleDestinationsArray[index].split(' ');
 
               if (singleSendDataArray.length === 2) {
-                var singleSendDataCheckresult = _this21.checkReceiverAndAmount(singleSendDataArray[0], singleSendDataArray[1], finalCheck);
+                var singleSendDataCheckresult = _this22.checkReceiverAndAmount(singleSendDataArray[0], singleSendDataArray[1], finalCheck);
 
                 if (singleSendDataCheckresult === '') {
-                  var gasLimit = _this21.gas ? Number(_this21.gas) : _this21.defaultTransactionParams.customLimits && _this21.defaultTransactionParams.customLimits.length > index ? _this21.defaultTransactionParams.customLimits[index].gasLimit : _this21.defaultTransactionParams.gas;
-                  var storageLimit = _this21.storage ? Number(_this21.storage) : _this21.defaultTransactionParams.customLimits && _this21.defaultTransactionParams.customLimits.length > index ? _this21.defaultTransactionParams.customLimits[index].storageLimit : _this21.defaultTransactionParams.storage;
+                  var gasLimit = _this22.gas ? Number(_this22.gas) : _this22.defaultTransactionParams.customLimits && _this22.defaultTransactionParams.customLimits.length > index ? _this22.defaultTransactionParams.customLimits[index].gasLimit : _this22.defaultTransactionParams.gas;
+                  var storageLimit = _this22.storage ? Number(_this22.storage) : _this22.defaultTransactionParams.customLimits && _this22.defaultTransactionParams.customLimits.length > index ? _this22.defaultTransactionParams.customLimits[index].storageLimit : _this22.defaultTransactionParams.storage;
 
-                  if (_this21.beaconMode && _this21.operationRequest.operationDetails[index].parameters) {
-                    console.log('Beacon param', _this21.operationRequest.operationDetails[index].parameters);
+                  if (_this22.beaconMode && _this22.operationRequest.operationDetails[index].parameters) {
+                    console.log('Beacon param', _this22.operationRequest.operationDetails[index].parameters);
 
-                    _this21.toMultipleDestinations.push({
+                    _this22.toMultipleDestinations.push({
                       to: singleSendDataArray[0],
                       amount: Number(singleSendDataArray[1]),
                       gasLimit: gasLimit,
                       storageLimit: storageLimit,
-                      parameters: _this21.operationRequest.operationDetails[index].parameters
+                      parameters: _this22.operationRequest.operationDetails[index].parameters
                     });
                   } else {
-                    _this21.toMultipleDestinations.push({
+                    _this22.toMultipleDestinations.push({
                       to: singleSendDataArray[0],
                       amount: Number(singleSendDataArray[1]),
                       gasLimit: gasLimit,
@@ -13947,11 +13965,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
                   }
                 } else {
-                  _this21.toMultipleDestinations = [];
+                  _this22.toMultipleDestinations = [];
                   validationError = singleSendDataCheckresult + '. Transaction ' + (index + 1);
                 }
               } else if (singleSendDataArray.length === 1) {
-                validationError = _this21.translate.instant('SENDCOMPONENT.NOADDRESSORAMOUNT') + ' Transaction ' + (index + 1);
+                validationError = _this22.translate.instant('SENDCOMPONENT.NOADDRESSORAMOUNT') + ' Transaction ' + (index + 1);
               } else {
                 validationError = 'Expected semicolon after transaction ' + (index + 1);
               }
@@ -14068,7 +14086,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "torusLookup",
         value: function torusLookup() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee30() {
-            var _this22 = this;
+            var _this23 = this;
 
             var _yield$this$torusServ, pkh, twitterId;
 
@@ -14098,7 +14116,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context30.next = 11;
                     return this.torusService.lookupPkh(this.torusVerifier, this.toPkh)["catch"](function (e) {
                       console.error(e);
-                      _this22.formInvalid = e;
+                      _this23.formInvalid = e;
                       return '';
                     });
 
@@ -15076,7 +15094,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee32() {
-            var _this23 = this;
+            var _this24 = this;
 
             return regeneratorRuntime.wrap(function _callee32$(_context32) {
               while (1) {
@@ -15085,9 +15103,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     this.route.queryParams.filter(function (params) {
                       return params.type;
                     }).subscribe(function (params) {
-                      _this23.deeplinkService.set(params);
+                      _this24.deeplinkService.set(params);
 
-                      _this23.location.replaceState('');
+                      _this24.location.replaceState('');
                     });
 
                     if (this.walletService.wallet) {
@@ -15854,7 +15872,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "torusLogin",
         value: function torusLogin(verifier) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee34() {
-            var _this24 = this;
+            var _this25 = this;
 
             var _yield$this$torusServ2, keyPair, userInfo;
 
@@ -15868,7 +15886,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 2:
                     _context34.next = 4;
                     return this.torusService.loginTorus(verifier)["catch"](function (e) {
-                      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this24, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee33() {
+                      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this25, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee33() {
                         return regeneratorRuntime.wrap(function _callee33$(_context33) {
                           while (1) {
                             switch (_context33.prev = _context33.next) {
@@ -15908,19 +15926,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       if (success) {
                         console.log('success');
 
-                        if (_this24.walletService.wallet.implicitAccounts.length === 1 && _this24.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
+                        if (_this25.walletService.wallet.implicitAccounts.length === 1 && _this25.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
                           console.log('single address');
 
-                          _this24.router.navigate(["/account/".concat(_this24.walletService.wallet.implicitAccounts[0].address)]);
+                          _this25.router.navigate(["/account/".concat(_this25.walletService.wallet.implicitAccounts[0].address)]);
                         } else {
-                          _this24.router.navigate(['/accounts']);
+                          _this25.router.navigate(['/accounts']);
                         }
 
-                        _this24.messageService.stopSpinner();
+                        _this25.messageService.stopSpinner();
                       } else {
-                        _this24.messageService.addError('Torus import failed');
+                        _this25.messageService.addError('Torus import failed');
 
-                        _this24.messageService.stopSpinner();
+                        _this25.messageService.stopSpinner();
                       }
                     });
 
@@ -16178,7 +16196,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var UriHandlerComponent = /*#__PURE__*/function () {
       function UriHandlerComponent(route, messageService, walletService, location, beaconService, deeplinkService) {
-        var _this25 = this;
+        var _this26 = this;
 
         _classCallCheck(this, UriHandlerComponent);
 
@@ -16193,8 +16211,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         /* https://docs.walletbeacon.io/beacon/03.getting-started-wallet.html#setup */
 
         this.connectApp = function () {
-          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this25, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee36() {
-            var _this26 = this;
+          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this26, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee36() {
+            var _this27 = this;
 
             return regeneratorRuntime.wrap(function _callee36$(_context36) {
               while (1) {
@@ -16212,7 +16230,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 3:
                     // Establish P2P connection
                     this.beaconService.client.connect(function (message) {
-                      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this26, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee35() {
+                      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this27, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee35() {
                         return regeneratorRuntime.wrap(function _callee35$(_context35) {
                           while (1) {
                             switch (_context35.prev = _context35.next) {
@@ -18194,24 +18212,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getTransactonsCounter",
         value: function getTransactonsCounter(account) {
-          var _this27 = this;
+          var _this28 = this;
 
           var knownTokenIds = this.tokenService.knownTokenIds();
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.accountInfo(account.address, knownTokenIds)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (data) {
             var counter = data.counter;
             var unknownTokenIds = data.unknownTokenIds ? data.unknownTokenIds : [];
 
-            _this27.handleUnknownTokenIds(unknownTokenIds);
+            _this28.handleUnknownTokenIds(unknownTokenIds);
 
             if (account.state !== counter) {
               console.log(account.state + ' ' + counter);
               console.log('data', unknownTokenIds);
 
               if (data.tokens) {
-                _this27.updateTokenBalances(account, data.tokens);
+                _this28.updateTokenBalances(account, data.tokens);
               }
 
-              return _this27.getAllTransactions(account, counter);
+              return _this28.getAllTransactions(account, counter);
             } else {
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
                 upToDate: true
@@ -18281,13 +18299,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getAllTransactions",
         value: function getAllTransactions(account, counter) {
-          var _this28 = this;
+          var _this29 = this;
 
           var knownTokenIds = this.tokenService.knownTokenIds();
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.getOperations(account.address, knownTokenIds)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (resp) {
             var operations = resp.operations;
 
-            _this28.handleUnknownTokenIds(resp.unknownTokenIds);
+            _this29.handleUnknownTokenIds(resp.unknownTokenIds);
 
             if (Array.isArray(operations)) {
               var oldActivities = account.activities;
@@ -18295,11 +18313,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var oldState = account.state;
               account.state = counter;
 
-              _this28.walletService.storeWallet();
+              _this29.walletService.storeWallet();
 
               if (oldState !== '') {
                 // Exclude inital loading
-                _this28.promptNewActivities(account, oldActivities, operations);
+                _this29.promptNewActivities(account, oldActivities, operations);
               } else {
                 console.log('# Excluded ' + counter);
               }
@@ -18311,9 +18329,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
                   var activity = _step10.value;
 
-                  var counterParty = _this28.getCounterparty(activity, account, false);
+                  var counterParty = _this29.getCounterparty(activity, account, false);
 
-                  _this28.lookupService.check(counterParty);
+                  _this29.lookupService.check(counterParty);
                 }
               } catch (err) {
                 _iterator10.e(err);
@@ -18333,7 +18351,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "promptNewActivities",
         value: function promptNewActivities(account, oldActivities, newActivities) {
-          var _this29 = this;
+          var _this30 = this;
 
           var _iterator11 = _createForOfIteratorHelper(newActivities),
               _step11;
@@ -18348,18 +18366,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               if (index === -1 || index !== -1 && oldActivities[index].status === 0) {
                 if (activity.type === 'transaction') {
                   if (account.address === activity.source) {
-                    _this29.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this29.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                    _this30.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this30.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                   }
 
                   if (account.address === activity.destination) {
-                    _this29.messageService.addSuccess(account.shortAddress() + ': Received ' + _this29.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                    _this30.messageService.addSuccess(account.shortAddress() + ': Received ' + _this30.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                   }
                 } else if (activity.type === 'delegation') {
-                  _this29.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
+                  _this30.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
                 } else if (activity.type === 'origination') {
-                  _this29.messageService.addSuccess(account.shortAddress() + ': Account originated');
+                  _this30.messageService.addSuccess(account.shortAddress() + ': Account originated');
                 } else if (activity.type === 'activation') {
-                  _this29.messageService.addSuccess(account.shortAddress() + ': Account activated');
+                  _this30.messageService.addSuccess(account.shortAddress() + ': Account activated');
                 }
               }
             };
@@ -18531,12 +18549,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getAccountBalance",
         value: function getAccountBalance(account) {
-          var _this30 = this;
+          var _this31 = this;
 
           console.log('for ' + account.address);
           this.operationService.getBalance(account.address).subscribe(function (ans) {
             if (ans.success) {
-              _this30.updateAccountBalance(account, Number(ans.payload.balance));
+              _this31.updateAccountBalance(account, Number(ans.payload.balance));
             } else {
               console.log('Balance Error: ' + JSON.stringify(ans.payload.msg));
             }
@@ -19283,13 +19301,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "startXTZ",
         value: function startXTZ() {
-          var _this31 = this;
+          var _this32 = this;
 
           if (!this.tzrateInterval) {
             console.log('Start scheduler XTZ');
             this.tzrateService.getTzrate();
             this.tzrateInterval = setInterval(function () {
-              return _this31.tzrateService.getTzrate();
+              return _this32.tzrateService.getTzrate();
             }, this.defaultDelayPrice);
           }
         }
@@ -19297,7 +19315,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "start",
         value: function start(pkh) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee59() {
-            var _this32 = this;
+            var _this33 = this;
 
             var scheduleData;
             return regeneratorRuntime.wrap(function _callee59$(_context59) {
@@ -19311,7 +19329,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         pkh: pkh,
                         state: State.UpToDate,
                         interval: setInterval(function () {
-                          return _this32.update(pkh);
+                          return _this33.update(pkh);
                         }, this.defaultDelayActivity),
                         stateCounter: 0
                       };
@@ -19333,7 +19351,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function boost(pkh) {
           var metadata = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee60() {
-            var _this33 = this;
+            var _this34 = this;
 
             var counter;
             return regeneratorRuntime.wrap(function _callee60$(_context60) {
@@ -19367,10 +19385,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       counter = this.scheduler.get(pkh).stateCounter;
                       setTimeout(function () {
                         // Failsafe
-                        if (_this33.scheduler && _this33.scheduler.get(pkh).stateCounter === counter) {
+                        if (_this34.scheduler && _this34.scheduler.get(pkh).stateCounter === counter) {
                           console.log('Timeout from wait state');
 
-                          _this33.changeState(pkh, State.UpToDate);
+                          _this34.changeState(pkh, State.UpToDate);
                         }
                       }, 150000);
                     }
@@ -19387,7 +19405,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "update",
         value: function update(pkh) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
-            var _this34 = this;
+            var _this35 = this;
 
             return regeneratorRuntime.wrap(function _callee61$(_context61) {
               while (1) {
@@ -19395,11 +19413,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 0:
                     this.setDelay(pkh, this.defaultDelayActivity);
                     this.activityService.updateTransactions(pkh).subscribe(function (ans) {
-                      switch (_this34.scheduler.get(pkh) ? _this34.scheduler.get(pkh).state : -1) {
+                      switch (_this35.scheduler.get(pkh) ? _this35.scheduler.get(pkh).state : -1) {
                         case State.UpToDate:
                           {
                             if (!ans.upToDate) {
-                              _this34.changeState(pkh, State.Updating);
+                              _this35.changeState(pkh, State.Updating);
                             }
 
                             break;
@@ -19408,9 +19426,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         case State.Wait:
                           {
                             if (!ans.upToDate) {
-                              _this34.changeState(pkh, State.Updating);
+                              _this35.changeState(pkh, State.Updating);
                             } else {
-                              _this34.setDelay(pkh, _this34.shortDelayActivity);
+                              _this35.setDelay(pkh, _this35.shortDelayActivity);
                             }
 
                             break;
@@ -19419,9 +19437,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         case State.Updating:
                           {
                             if (ans.upToDate) {
-                              _this34.changeState(pkh, State.UpToDate);
+                              _this35.changeState(pkh, State.UpToDate);
                             } else {
-                              _this34.setDelay(pkh, _this34.shortDelayActivity);
+                              _this35.setDelay(pkh, _this35.shortDelayActivity);
                             }
 
                             break;
@@ -19434,7 +19452,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                           }
                       }
 
-                      var acc = _this34.walletService.wallet.getAccount(pkh);
+                      var acc = _this35.walletService.wallet.getAccount(pkh);
 
                       if (acc && acc.activities.length) {
                         var latestActivity = acc.activities[0];
@@ -19450,9 +19468,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     }, function (err) {
                       return console.log('Error in update(): ' + JSON.stringify(err));
                     }, function () {
-                      console.log("account[".concat(_this34.accounts.findIndex(function (a) {
+                      console.log("account[".concat(_this35.accounts.findIndex(function (a) {
                         return a.address === pkh;
-                      }), "][").concat(typeof _this34.scheduler.get(pkh).state !== 'undefined' ? _this34.scheduler.get(pkh).state : '*', "]: <<"));
+                      }), "][").concat(typeof _this35.scheduler.get(pkh).state !== 'undefined' ? _this35.scheduler.get(pkh).state : '*', "]: <<"));
                     });
 
                   case 2:
@@ -19466,7 +19484,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "changeState",
         value: function changeState(pkh, newState) {
-          var _this35 = this;
+          var _this36 = this;
 
           var scheduleData = this.scheduler.get(pkh);
           scheduleData.state = newState;
@@ -19478,7 +19496,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (newState === State.Wait || newState === State.Updating) {
             clearInterval(scheduleData.interval);
             scheduleData.interval = setInterval(function () {
-              return _this35.update(pkh);
+              return _this36.update(pkh);
             }, this.shortDelayActivity);
           }
 
@@ -19488,7 +19506,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "setDelay",
         value: function setDelay(pkh, time) {
-          var _this36 = this;
+          var _this37 = this;
 
           var scheduleData = this.scheduler.get(pkh);
 
@@ -19497,7 +19515,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           scheduleData.interval = setInterval(function () {
-            return _this36.update(pkh);
+            return _this37.update(pkh);
           }, time);
           this.scheduler.set(pkh, scheduleData);
         }
@@ -19541,17 +19559,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateAccountData",
         value: function updateAccountData(pkh) {
-          var _this37 = this;
+          var _this38 = this;
 
           // Maybe also check for originations to account?
           console.log('update account data for ' + pkh);
           this.operationService.getAccount(pkh).subscribe(function (ans) {
             if (ans.success) {
-              _this37.balanceService.updateAccountBalance(_this37.walletService.wallet.getAccount(pkh), Number(ans.payload.balance));
+              _this38.balanceService.updateAccountBalance(_this38.walletService.wallet.getAccount(pkh), Number(ans.payload.balance));
 
-              var acc = _this37.walletService.wallet.getAccount(pkh);
+              var acc = _this38.walletService.wallet.getAccount(pkh);
 
-              _this37.delegateService.handleDelegateResponse(acc, ans.payload.delegate);
+              _this38.delegateService.handleDelegateResponse(acc, ans.payload.delegate);
             } else {
               console.log('updateAccountData -> getAccount failed ', ans.payload.msg);
             }
@@ -19861,11 +19879,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getDelegate",
         value: function getDelegate(account) {
-          var _this38 = this;
+          var _this39 = this;
 
           this.operationService.getDelegate(account.address).subscribe(function (data) {
             if (data.success) {
-              _this38.handleDelegateResponse(account, data.payload.delegate);
+              _this39.handleDelegateResponse(account, data.payload.delegate);
             }
           }, function (err) {
             return console.log(JSON.stringify(err));
@@ -20419,7 +20437,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "preLoadData",
         value: function preLoadData(pkh, pk) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee69() {
-            var _this39 = this;
+            var _this40 = this;
 
             return regeneratorRuntime.wrap(function _callee69$(_context69) {
               while (1) {
@@ -20430,7 +20448,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context69.next = 4;
                     return Promise.all([this.operationService.getHeader().toPromise(), this.getCounter(pkh), this.getManager(pkh)]).then(function (req) {
                       if (req[0] && req[1] && req[2] || req[2] === null) {
-                        _this39.init(req[0].hash, req[0].chain_id, req[1], req[2], pk, pkh);
+                        _this40.init(req[0].hash, req[0].chain_id, req[1], req[2], pk, pkh);
                       }
                     });
 
@@ -20448,7 +20466,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var tokenTransfer = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
           var callback = arguments.length > 3 ? arguments[3] : undefined;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee71() {
-            var _this40 = this;
+            var _this41 = this;
 
             var _loop2;
 
@@ -20473,10 +20491,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         while (1) {
                           switch (_context71.prev = _context71.next) {
                             case 0:
-                              while (_this40.queue.length > 1) {
-                                _this40.queue[0].callback(null);
+                              while (_this41.queue.length > 1) {
+                                _this41.queue[0].callback(null);
 
-                                _this40.queue.shift();
+                                _this41.queue.shift();
                               }
 
                               retry = false;
@@ -20489,10 +20507,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                               }
 
                               _context71.next = 6;
-                              return _this40._estimate(_this40.queue[0].transactions, _this40.queue[0].from, tokenTransfer).then(function (res) {
-                                _this40.queue[0].callback(res);
+                              return _this41._estimate(_this41.queue[0].transactions, _this41.queue[0].from, tokenTransfer).then(function (res) {
+                                _this41.queue[0].callback(res);
                               })["catch"](function (error) {
-                                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this40, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
+                                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this41, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
                                   return regeneratorRuntime.wrap(function _callee70$(_context70) {
                                     while (1) {
                                       switch (_context70.prev = _context70.next) {
@@ -20531,7 +20549,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                               break;
 
                             case 9:
-                              _this40.queue.shift();
+                              _this41.queue.shift();
 
                             case 10:
                             case "end":
@@ -20565,7 +20583,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "_estimate",
         value: function _estimate(transactions, from, tokenTransfer) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee72() {
-            var _this41 = this;
+            var _this42 = this;
 
             var extraGas, simulation, _iterator17, _step17, tx, op, result, reveal, limits, _iterator18, _step18, content, _this$getOpUsage, gasUsage, storageUsage;
 
@@ -20698,14 +20716,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     return this.operationService.localForge(op).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (fop) {
                       var bytes = fop.length / 2 + 64;
 
-                      var gas = _this41.averageGasLimit(limits);
+                      var gas = _this42.averageGasLimit(limits);
 
-                      var storage = _this41.averageStorageLimit(limits);
+                      var storage = _this42.averageStorageLimit(limits);
 
                       var dtp = {
                         customLimits: limits,
-                        fee: _this41.recommendFee(limits, reveal, bytes),
-                        burn: _this41.burnFee(limits),
+                        fee: _this42.recommendFee(limits, reveal, bytes),
+                        burn: _this42.burnFee(limits),
                         gas: gas,
                         storage: storage,
                         reveal: reveal
@@ -20946,18 +20964,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "simulate",
         value: function simulate(op) {
-          var _this42 = this;
+          var _this43 = this;
 
           op.signature = 'edsigtXomBKi5CTRf5cjATJWSyaRvhfYNHqSUGrn4SdbYRcGwQrUGjzEfQDTuqHhuA8b2d8NarZjz8TRf65WkpQmo423BtomS8Q';
           return this.http.post(this.nodeURL + '/chains/main/blocks/head/helpers/scripts/run_operation', {
             operation: op,
             chain_id: this.chainId
           }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (res) {
-            _this42.operationService.checkApplied([res]);
+            _this43.operationService.checkApplied([res]);
 
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(res);
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this42.operationService.errHandler(err);
+            return _this43.operationService.errHandler(err);
           }));
         }
       }, {
@@ -23192,7 +23210,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getPublicAddress",
         value: function getPublicAddress(path) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee96() {
-            var _this43 = this;
+            var _this44 = this;
 
             var xtz, result, pk;
             return regeneratorRuntime.wrap(function _callee96$(_context97) {
@@ -23208,9 +23226,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context97.next = 6;
                     return xtz.getAddress(path, true)["catch"](function (e) {
                       if (e.message) {
-                        _this43.messageService.addError(e.message);
+                        _this44.messageService.addError(e.message);
                       } else {
-                        _this43.messageService.addError(e);
+                        _this44.messageService.addError(e);
                       }
 
                       throw e;
@@ -23233,7 +23251,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "signOperation",
         value: function signOperation(op, path) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee97() {
-            var _this44 = this;
+            var _this45 = this;
 
             var xtz, result;
             return regeneratorRuntime.wrap(function _callee97$(_context98) {
@@ -23256,7 +23274,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     op = '03' + op;
                     _context98.next = 9;
                     return xtz.signOperation(path, op)["catch"](function (e) {
-                      _this44.messageService.addError(e, 0);
+                      _this45.messageService.addError(e, 0);
                     });
 
                   case 9:
@@ -23267,7 +23285,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 12:
                     _context98.next = 14;
                     return xtz.signHash(path, op)["catch"](function (e) {
-                      _this44.messageService.addError(e, 0);
+                      _this45.messageService.addError(e, 0);
                     });
 
                   case 14:
@@ -23466,7 +23484,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "check",
         value: function check(address) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee99() {
-            var _this45 = this;
+            var _this46 = this;
 
             var _this$index2, x;
 
@@ -23482,7 +23500,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       if (!this.pendingLookups[address] && x === -1) {
                         this.pendingLookups[address] = true;
                         this.operationService.torusKeyLookup(address).subscribe(function (ans) {
-                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this45, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee98() {
+                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this46, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee98() {
                             var keys, verifierMap, _i2, _keys, key, verifierId, verifierArray, twitterId, _yield$this$torusServ4, username;
 
                             return regeneratorRuntime.wrap(function _callee98$(_context99) {
@@ -23879,22 +23897,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function removeBeaconMsg() {
           var delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee100() {
-            var _this46 = this;
+            var _this47 = this;
 
             return regeneratorRuntime.wrap(function _callee100$(_context101) {
               while (1) {
                 switch (_context101.prev = _context101.next) {
                   case 0:
                     setTimeout(function () {
-                      for (var i = 0; i < _this46.messages.length; i++) {
-                        if (_this46.messages[i].loader) {
-                          _this46.messages.splice(i, 1);
+                      for (var i = 0; i < _this47.messages.length; i++) {
+                        if (_this47.messages[i].loader) {
+                          _this47.messages.splice(i, 1);
 
-                          _this46.addSuccess(_this46.pairingCompleteMsg, 10);
+                          _this47.addSuccess(_this47.pairingCompleteMsg, 10);
 
                           break;
-                        } else if (_this46.messages[i].msg === _this46.pairingCompleteMsg) {
-                          _this46.messages.splice(i, 1);
+                        } else if (_this47.messages[i].msg === _this47.pairingCompleteMsg) {
+                          _this47.messages.splice(i, 1);
 
                           break;
                         }
@@ -24175,7 +24193,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(OperationService, [{
         key: "activate",
         value: function activate(pkh, secret) {
-          var _this47 = this;
+          var _this48 = this;
 
           return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
             var fop = {
@@ -24186,19 +24204,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 secret: secret
               }]
             };
-            return _this47.http.post(_this47.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opbytes) {
+            return _this48.http.post(_this48.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opbytes) {
               var sopbytes = opbytes + Array(129).join('0');
               fop.protocol = header.protocol;
               fop.signature = 'edsigtXomBKi5CTRf5cjATJWSyaRvhfYNHqSUGrn4SdbYRcGwQrUGjzEfQDTuqHhuA8b2d8NarZjz8TRf65WkpQmo423BtomS8Q';
-              return _this47.http.post(_this47.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (preApplyResult) {
+              return _this48.http.post(_this48.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (preApplyResult) {
                 console.log(JSON.stringify(preApplyResult));
-                return _this47.http.post(_this47.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final) {
-                  return _this47.opCheck(_final);
+                return _this48.http.post(_this48.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final) {
+                  return _this48.opCheck(_final);
                 }));
               }));
             }));
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this47.errHandler(err);
+            return _this48.errHandler(err);
           }));
         }
       }, {
@@ -24231,31 +24249,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "originate",
         value: function originate(pkh, amount) {
-          var _this48 = this;
+          var _this49 = this;
 
           var fee = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
           var keys = arguments.length > 3 ? arguments[3] : undefined;
           return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
-            return _this48.http.get(_this48.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
-              return _this48.http.get(_this48.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
-                if (fee >= _this48.feeHardCap) {
+            return _this49.http.get(_this49.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
+              return _this49.http.get(_this49.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
+                if (fee >= _this49.feeHardCap) {
                   throw new Error('TooHighFee');
                 }
 
                 var counter = Number(actions);
 
-                var script = _this48.getManagerScript(keys.pkh);
+                var script = _this49.getManagerScript(keys.pkh);
 
                 var fop = {
                   branch: header.hash,
                   contents: [{
                     kind: 'origination',
                     source: keys.pkh,
-                    fee: _this48.microTez.times(fee).toString(),
+                    fee: _this49.microTez.times(fee).toString(),
                     counter: (++counter).toString(),
                     gas_limit: '15678',
                     storage_limit: '509',
-                    balance: _this48.microTez.times(amount).toString(),
+                    balance: _this49.microTez.times(amount).toString(),
                     script: script
                   }]
                 };
@@ -24274,11 +24292,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   fop.contents[1].counter = (Number(fop.contents[1].counter) + 1).toString();
                 }
 
-                return _this48.operation(fop, header, keys, true);
+                return _this49.operation(fop, header, keys, true);
               }));
             }));
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this48.errHandler(err);
+            return _this49.errHandler(err);
           }));
         }
         /*
@@ -24288,25 +24306,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "transfer",
         value: function transfer(from, transactions, fee, keys) {
-          var _this49 = this;
+          var _this50 = this;
 
           var tokenTransfer = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
           return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
-            return _this49.http.get(_this49.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
-              return _this49.http.get(_this49.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
-                if (fee >= _this49.feeHardCap) {
+            return _this50.http.get(_this50.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
+              return _this50.http.get(_this50.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
+                if (fee >= _this50.feeHardCap) {
                   throw new Error('TooHighFee');
                 }
 
                 var counter = Number(actions);
 
-                var fop = _this49.createTransactionObject(header.hash, counter, manager, transactions, keys.pkh, keys.pk, from, fee, tokenTransfer);
+                var fop = _this50.createTransactionObject(header.hash, counter, manager, transactions, keys.pkh, keys.pk, from, fee, tokenTransfer);
 
-                return _this49.operation(fop, header, keys);
+                return _this50.operation(fop, header, keys);
               }));
             }));
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this49.errHandler(err);
+            return _this50.errHandler(err);
           }));
         }
       }, {
@@ -24422,14 +24440,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "delegate",
         value: function delegate(from, to) {
-          var _this50 = this;
+          var _this51 = this;
 
           var fee = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
           var keys = arguments.length > 3 ? arguments[3] : undefined;
           return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
-            return _this50.http.get(_this50.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
-              return _this50.http.get(_this50.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
-                if (fee >= _this50.feeHardCap) {
+            return _this51.http.get(_this51.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
+              return _this51.http.get(_this51.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
+                if (fee >= _this51.feeHardCap) {
                   throw new Error('TooHighFee');
                 }
 
@@ -24440,7 +24458,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   delegationOp = {
                     kind: 'delegation',
                     source: from,
-                    fee: _this50.microTez.times(fee).toString(),
+                    fee: _this51.microTez.times(fee).toString(),
                     counter: (++counter).toString(),
                     gas_limit: '1000',
                     storage_limit: '0'
@@ -24453,13 +24471,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   delegationOp = {
                     kind: 'transaction',
                     source: keys.pkh,
-                    fee: _this50.microTez.times(fee).toString(),
+                    fee: _this51.microTez.times(fee).toString(),
                     counter: (++counter).toString(),
                     gas_limit: '4380',
                     storage_limit: '0',
                     amount: '0',
                     destination: from,
-                    parameters: to !== '' ? _this50.getContractDelegation(to) : _this50.getContractUnDelegation()
+                    parameters: to !== '' ? _this51.getContractDelegation(to) : _this51.getContractUnDelegation()
                   };
                 }
 
@@ -24482,11 +24500,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   fop.contents[1].counter = (Number(fop.contents[1].counter) + 1).toString();
                 }
 
-                return _this50.operation(fop, header, keys);
+                return _this51.operation(fop, header, keys);
               }));
             }));
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this50.errHandler(err);
+            return _this51.errHandler(err);
           }));
         }
         /*
@@ -24496,25 +24514,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "operation",
         value: function operation(fop, header, keys) {
-          var _this51 = this;
+          var _this52 = this;
 
           var origination = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
           console.log('fop to send: ' + JSON.stringify(fop));
           return this.http.post(this.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opbytes) {
-            return _this51.localForge(fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (localOpbytes) {
+            return _this52.localForge(fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (localOpbytes) {
               if (opbytes !== localOpbytes) {
                 throw new Error('ValidationError');
               }
 
               if (!keys.sk) {
                 fop.signature = 'edsigtXomBKi5CTRf5cjATJWSyaRvhfYNHqSUGrn4SdbYRcGwQrUGjzEfQDTuqHhuA8b2d8NarZjz8TRf65WkpQmo423BtomS8Q';
-                return _this51.http.post(_this51.nodeURL + '/chains/main/blocks/head/helpers/scripts/run_operation', {
+                return _this52.http.post(_this52.nodeURL + '/chains/main/blocks/head/helpers/scripts/run_operation', {
                   operation: fop,
                   chain_id: header.chain_id
                 }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (applied) {
                   console.log('applied: ' + JSON.stringify(applied));
 
-                  _this51.checkApplied([applied]);
+                  _this52.checkApplied([applied]);
 
                   return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
                     success: true,
@@ -24526,24 +24544,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               } else {
                 fop.protocol = header.protocol;
 
-                var signed = _this51.sign(opbytes, keys.sk);
+                var signed = _this52.sign(opbytes, keys.sk);
 
                 var sopbytes = signed.sbytes;
                 fop.signature = signed.edsig;
-                return _this51.http.post(_this51.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (applied) {
+                return _this52.http.post(_this52.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (applied) {
                   console.log('applied: ' + JSON.stringify(applied));
 
-                  _this51.checkApplied(applied);
+                  _this52.checkApplied(applied);
 
                   console.log('sop: ' + sopbytes);
-                  return _this51.http.post(_this51.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["timeout"])(20000)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final3) {
+                  return _this52.http.post(_this52.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["timeout"])(20000)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final3) {
                     var newPkh = null;
 
                     if (origination) {
                       newPkh = applied[0].contents[fop.contents.length - 1].metadata.operation_result.originated_contracts[0];
                     }
 
-                    return _this51.opCheck(_final3, newPkh);
+                    return _this52.opCheck(_final3, newPkh);
                   }));
                 }));
               }
@@ -24557,16 +24575,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "broadcast",
         value: function broadcast(sopbytes) {
-          var _this52 = this;
+          var _this53 = this;
 
           console.log('Broadcast...');
           var opbytes = sopbytes.slice(0, sopbytes.length - 128);
           var edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
           return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_taquito_local_forging__WEBPACK_IMPORTED_MODULE_10__["localForger"].parse(opbytes)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (fop) {
             fop.signature = edsig;
-            return _this52.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
+            return _this53.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
               fop.protocol = header.protocol;
-              return _this52.http.post(_this52.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (parsed) {
+              return _this53.http.post(_this53.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (parsed) {
                 var newPkh = null;
 
                 for (var i = 0; i < parsed[0].contents.length; i++) {
@@ -24575,19 +24593,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   }
                 }
 
-                return _this52.http.post(_this52.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final4) {
-                  return _this52.opCheck(_final4, newPkh);
+                return _this53.http.post(_this53.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final4) {
+                  return _this53.opCheck(_final4, newPkh);
                 }));
               }));
             }));
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this52.errHandler(err);
+            return _this53.errHandler(err);
           }));
         }
       }, {
         key: "torusKeyLookup",
         value: function torusKeyLookup(tz2address) {
-          var _this53 = this;
+          var _this54 = this;
 
           // Make it into Promise
           // Zero padding
@@ -24601,7 +24619,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 noReveal: true
               });
             } else {
-              return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_this53.decompress(manager)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (pk) {
+              return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_this54.decompress(manager)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (pk) {
                 var torusReq = {
                   jsonrpc: '2.0',
                   method: 'KeyLookupRequest',
@@ -24612,7 +24630,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   }
                 };
                 var url = _environments_environment__WEBPACK_IMPORTED_MODULE_12__["CONSTANTS"].NETWORK === 'mainnet' ? 'https://torus-19.torusnode.com/jrpc' : 'https://teal-15-1.torusnode.com/jrpc';
-                return _this53.http.post(url, JSON.stringify(torusReq), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (ans) {
+                return _this54.http.post(url, JSON.stringify(torusReq), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (ans) {
                   try {
                     if (ans.result.PublicKey.X === pk.X && ans.result.PublicKey.Y === pk.Y) {
                       return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(ans);
@@ -24697,7 +24715,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getBalance",
         value: function getBalance(pkh) {
-          var _this54 = this;
+          var _this55 = this;
 
           return this.http.get(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh + '/balance').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (balance) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
@@ -24707,13 +24725,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             });
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this54.errHandler(err);
+            return _this55.errHandler(err);
           }));
         }
       }, {
         key: "getDelegate",
         value: function getDelegate(pkh) {
-          var _this55 = this;
+          var _this56 = this;
 
           return this.http.get(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (contract) {
             var delegate = '';
@@ -24729,13 +24747,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             });
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this55.errHandler(err);
+            return _this56.errHandler(err);
           }));
         }
       }, {
         key: "getVotingRights",
         value: function getVotingRights() {
-          var _this56 = this;
+          var _this57 = this;
 
           return this.http.get(this.nodeURL + '/chains/main/blocks/head/votes/listings').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (listings) {
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
@@ -24743,7 +24761,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               payload: listings
             });
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this56.errHandler(err);
+            return _this57.errHandler(err);
           }));
         }
       }, {
@@ -24762,7 +24780,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getAccount",
         value: function getAccount(pkh) {
-          var _this57 = this;
+          var _this58 = this;
 
           return this.http.get(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (contract) {
             var delegate = '';
@@ -24781,19 +24799,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             });
           })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-            return _this57.errHandler(err);
+            return _this58.errHandler(err);
           }));
         }
       }, {
         key: "getVerifiedOpBytes",
         value: function getVerifiedOpBytes(operationLevel, operationHash, pkh, pk) {
-          var _this58 = this;
+          var _this59 = this;
 
           return this.http.get(this.nodeURL + '/chains/main/blocks/' + operationLevel + '/operation_hashes', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opHashes) {
             var opIndex = opHashes[3].findIndex(function (a) {
               return a === operationHash;
             });
-            return _this58.http.get(_this58.nodeURL + '/chains/main/blocks/' + operationLevel + '/operations', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (op) {
+            return _this59.http.get(_this59.nodeURL + '/chains/main/blocks/' + operationLevel + '/operations', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (op) {
               var ans = '';
               op = op[3][opIndex];
               var sig = op.signature;
@@ -24812,10 +24830,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
 
-              return _this58.http.post(_this58.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', op).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opBytes) {
-                if (_this58.pk2pkh(pk) === pkh) {
-                  if (_this58.verify(opBytes, sig, pk)) {
-                    ans = opBytes + _this58.buf2hex(_this58.b58cdecode(sig, _this58.prefix.sig));
+              return _this59.http.post(_this59.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', op).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opBytes) {
+                if (_this59.pk2pkh(pk) === pkh) {
+                  if (_this59.verify(opBytes, sig, pk)) {
+                    ans = opBytes + _this59.buf2hex(_this59.b58cdecode(sig, _this59.prefix.sig));
                   } else {
                     throw new Error('InvalidSignature');
                   }
@@ -26351,13 +26369,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(TzrateService, [{
         key: "getTzrate",
         value: function getTzrate() {
-          var _this59 = this;
+          var _this60 = this;
 
           if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["CONSTANTS"].MAINNET) {
             this.http.get(this.apiUrl).subscribe(function (price) {
-              _this59.walletService.wallet.XTZrate = price.tezos.usd;
+              _this60.walletService.wallet.XTZrate = price.tezos.usd;
 
-              _this59.updateFiatBalances();
+              _this60.updateFiatBalances();
             }, function (err) {
               return console.log('Failed to get xtz price: ' + JSON.stringify(err));
             });
@@ -27368,13 +27386,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super = _createSuper(FullWallet);
 
       function FullWallet(encryptedSeed) {
-        var _this60;
+        var _this61;
 
         _classCallCheck(this, FullWallet);
 
-        _this60 = _super.call(this);
-        _this60.encryptedSeed = encryptedSeed;
-        return _this60;
+        _this61 = _super.call(this);
+        _this61.encryptedSeed = encryptedSeed;
+        return _this61;
       }
 
       return FullWallet;
@@ -27386,13 +27404,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super2 = _createSuper(LegacyWalletV1);
 
       function LegacyWalletV1(salt, encrypedSeed) {
-        var _this61;
+        var _this62;
 
         _classCallCheck(this, LegacyWalletV1);
 
-        _this61 = _super2.call(this, encrypedSeed);
-        _this61.salt = salt;
-        return _this61;
+        _this62 = _super2.call(this, encrypedSeed);
+        _this62.salt = salt;
+        return _this62;
       }
 
       return LegacyWalletV1;
@@ -27404,13 +27422,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super3 = _createSuper(LegacyWalletV2);
 
       function LegacyWalletV2(IV, encryptedSeed) {
-        var _this62;
+        var _this63;
 
         _classCallCheck(this, LegacyWalletV2);
 
-        _this62 = _super3.call(this, encryptedSeed);
-        _this62.IV = IV;
-        return _this62;
+        _this63 = _super3.call(this, encryptedSeed);
+        _this63.IV = IV;
+        return _this63;
       }
 
       return LegacyWalletV2;
@@ -27422,14 +27440,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super4 = _createSuper(LegacyWalletV3);
 
       function LegacyWalletV3(IV, encryptedSeed, encryptedEntropy) {
-        var _this63;
+        var _this64;
 
         _classCallCheck(this, LegacyWalletV3);
 
-        _this63 = _super4.call(this, encryptedSeed);
-        _this63.IV = IV;
-        _this63.encryptedEntropy = encryptedEntropy;
-        return _this63;
+        _this64 = _super4.call(this, encryptedSeed);
+        _this64.IV = IV;
+        _this64.encryptedEntropy = encryptedEntropy;
+        return _this64;
       }
 
       return LegacyWalletV3;
@@ -27441,15 +27459,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super5 = _createSuper(HdWallet);
 
       function HdWallet(IV, encryptedSeed, encryptedEntropy) {
-        var _this64;
+        var _this65;
 
         _classCallCheck(this, HdWallet);
 
-        _this64 = _super5.call(this, encryptedSeed);
-        _this64.encryptedEntropy = encryptedEntropy;
-        _this64.IV = IV;
-        _this64.index = 0;
-        return _this64;
+        _this65 = _super5.call(this, encryptedSeed);
+        _this65.encryptedEntropy = encryptedEntropy;
+        _this65.IV = IV;
+        _this65.index = 0;
+        return _this65;
       }
 
       return HdWallet;
@@ -27461,15 +27479,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super6 = _createSuper(TorusWallet);
 
       function TorusWallet(verifier, id, name) {
-        var _this65;
+        var _this66;
 
         _classCallCheck(this, TorusWallet);
 
-        _this65 = _super6.call(this);
-        _this65.verifier = verifier;
-        _this65.id = id;
-        _this65.name = name;
-        return _this65;
+        _this66 = _super6.call(this);
+        _this66.verifier = verifier;
+        _this66.id = id;
+        _this66.name = name;
+        return _this66;
       }
 
       _createClass(TorusWallet, [{
@@ -27531,19 +27549,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       var _super8 = _createSuper(ImplicitAccount);
 
       function ImplicitAccount(pkh, pk, derivationPath) {
-        var _this66;
+        var _this67;
 
         _classCallCheck(this, ImplicitAccount);
 
-        _this66 = _super8.call(this, pkh, pk, pkh);
-        _this66.tokens = [];
-        _this66.originatedAccounts = [];
+        _this67 = _super8.call(this, pkh, pk, pkh);
+        _this67.tokens = [];
+        _this67.originatedAccounts = [];
 
         if (derivationPath) {
-          _this66.derivationPath = derivationPath;
+          _this67.derivationPath = derivationPath;
         }
 
-        return _this66;
+        return _this67;
       }
 
       _createClass(ImplicitAccount, [{

@@ -202,6 +202,19 @@ class AppComponent {
             }
             window.scrollTo(0, 0);
         });
+        window.addEventListener('storage', (e) => { this.handleStorageEvent(e); });
+    }
+    handleStorageEvent(e) {
+        if (e.key === 'kukai-wallet') {
+            if (e.oldValue && !e.newValue) {
+                window.location.reload();
+            }
+            else if (!e.oldValue && e.newValue) {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 15000);
+            }
+        }
     }
     returnLanguage(lang) {
         // this.translate.use(lang);
