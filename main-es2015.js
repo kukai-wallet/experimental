@@ -6989,7 +6989,9 @@ class SendComponent {
         }
     }
     checkReceiverAndAmount(toPkh, amount, finalCheck) {
-        if (!this.torusVerifier && (!this.inputValidationService.address(toPkh) || toPkh === this.activeAccount.address)) {
+        if (!this.torusVerifier && (!this.inputValidationService.address(toPkh) ||
+            toPkh === this.activeAccount.address ||
+            (this.tokenTransfer && toPkh && toPkh.slice(0, 3) === 'KT1'))) {
             return this.translate.instant('SENDCOMPONENT.INVALIDRECEIVERADDRESS');
         }
         else if (this.torusVerifier
