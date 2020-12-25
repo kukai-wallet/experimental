@@ -11531,7 +11531,7 @@ class TzktService {
                     const payload = (data.balance ? data.balance : '') +
                         (data.last_action ? data.last_action : '') +
                         (tokens ? JSON.stringify(tokens) : '');
-                    const input = Buffer.from(JSON.stringify(payload), 'base64');
+                    const input = Buffer.from(payload);
                     const hash = crypto_browserify__WEBPACK_IMPORTED_MODULE_3__["createHash"]('md5').update(input, 'base64').digest('hex');
                     if (hash !== 'edc66a88461120f2ea9132d64be0d8b9' && payload && payload !== '0001-01-01T00:00:00Z[]') {
                         return { counter: hash, unknownTokenIds, tokens };
