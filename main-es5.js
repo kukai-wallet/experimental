@@ -2289,7 +2289,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "receivedKind",
         value: function receivedKind(activity) {
-          return activity.tokenId && !activity.source ? 'Minted' : 'Received';
+          return activity.tokenId && !activity.source.address ? 'Minted' : 'Received';
         }
       }]);
 
