@@ -36,6 +36,298 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"], {
   /***/
+  "./node_modules/moment/locale sync recursive ^\\.\\/.*$":
+  /*!**************************************************!*\
+    !*** ./node_modules/moment/locale sync ^\.\/.*$ ***!
+    \**************************************************/
+
+  /*! no static exports found */
+
+  /***/
+  function node_modulesMomentLocaleSyncRecursive$(module, exports, __webpack_require__) {
+    var map = {
+      "./af": "./node_modules/moment/locale/af.js",
+      "./af.js": "./node_modules/moment/locale/af.js",
+      "./ar": "./node_modules/moment/locale/ar.js",
+      "./ar-dz": "./node_modules/moment/locale/ar-dz.js",
+      "./ar-dz.js": "./node_modules/moment/locale/ar-dz.js",
+      "./ar-kw": "./node_modules/moment/locale/ar-kw.js",
+      "./ar-kw.js": "./node_modules/moment/locale/ar-kw.js",
+      "./ar-ly": "./node_modules/moment/locale/ar-ly.js",
+      "./ar-ly.js": "./node_modules/moment/locale/ar-ly.js",
+      "./ar-ma": "./node_modules/moment/locale/ar-ma.js",
+      "./ar-ma.js": "./node_modules/moment/locale/ar-ma.js",
+      "./ar-sa": "./node_modules/moment/locale/ar-sa.js",
+      "./ar-sa.js": "./node_modules/moment/locale/ar-sa.js",
+      "./ar-tn": "./node_modules/moment/locale/ar-tn.js",
+      "./ar-tn.js": "./node_modules/moment/locale/ar-tn.js",
+      "./ar.js": "./node_modules/moment/locale/ar.js",
+      "./az": "./node_modules/moment/locale/az.js",
+      "./az.js": "./node_modules/moment/locale/az.js",
+      "./be": "./node_modules/moment/locale/be.js",
+      "./be.js": "./node_modules/moment/locale/be.js",
+      "./bg": "./node_modules/moment/locale/bg.js",
+      "./bg.js": "./node_modules/moment/locale/bg.js",
+      "./bm": "./node_modules/moment/locale/bm.js",
+      "./bm.js": "./node_modules/moment/locale/bm.js",
+      "./bn": "./node_modules/moment/locale/bn.js",
+      "./bn.js": "./node_modules/moment/locale/bn.js",
+      "./bo": "./node_modules/moment/locale/bo.js",
+      "./bo.js": "./node_modules/moment/locale/bo.js",
+      "./br": "./node_modules/moment/locale/br.js",
+      "./br.js": "./node_modules/moment/locale/br.js",
+      "./bs": "./node_modules/moment/locale/bs.js",
+      "./bs.js": "./node_modules/moment/locale/bs.js",
+      "./ca": "./node_modules/moment/locale/ca.js",
+      "./ca.js": "./node_modules/moment/locale/ca.js",
+      "./cs": "./node_modules/moment/locale/cs.js",
+      "./cs.js": "./node_modules/moment/locale/cs.js",
+      "./cv": "./node_modules/moment/locale/cv.js",
+      "./cv.js": "./node_modules/moment/locale/cv.js",
+      "./cy": "./node_modules/moment/locale/cy.js",
+      "./cy.js": "./node_modules/moment/locale/cy.js",
+      "./da": "./node_modules/moment/locale/da.js",
+      "./da.js": "./node_modules/moment/locale/da.js",
+      "./de": "./node_modules/moment/locale/de.js",
+      "./de-at": "./node_modules/moment/locale/de-at.js",
+      "./de-at.js": "./node_modules/moment/locale/de-at.js",
+      "./de-ch": "./node_modules/moment/locale/de-ch.js",
+      "./de-ch.js": "./node_modules/moment/locale/de-ch.js",
+      "./de.js": "./node_modules/moment/locale/de.js",
+      "./dv": "./node_modules/moment/locale/dv.js",
+      "./dv.js": "./node_modules/moment/locale/dv.js",
+      "./el": "./node_modules/moment/locale/el.js",
+      "./el.js": "./node_modules/moment/locale/el.js",
+      "./en-SG": "./node_modules/moment/locale/en-SG.js",
+      "./en-SG.js": "./node_modules/moment/locale/en-SG.js",
+      "./en-au": "./node_modules/moment/locale/en-au.js",
+      "./en-au.js": "./node_modules/moment/locale/en-au.js",
+      "./en-ca": "./node_modules/moment/locale/en-ca.js",
+      "./en-ca.js": "./node_modules/moment/locale/en-ca.js",
+      "./en-gb": "./node_modules/moment/locale/en-gb.js",
+      "./en-gb.js": "./node_modules/moment/locale/en-gb.js",
+      "./en-ie": "./node_modules/moment/locale/en-ie.js",
+      "./en-ie.js": "./node_modules/moment/locale/en-ie.js",
+      "./en-il": "./node_modules/moment/locale/en-il.js",
+      "./en-il.js": "./node_modules/moment/locale/en-il.js",
+      "./en-nz": "./node_modules/moment/locale/en-nz.js",
+      "./en-nz.js": "./node_modules/moment/locale/en-nz.js",
+      "./eo": "./node_modules/moment/locale/eo.js",
+      "./eo.js": "./node_modules/moment/locale/eo.js",
+      "./es": "./node_modules/moment/locale/es.js",
+      "./es-do": "./node_modules/moment/locale/es-do.js",
+      "./es-do.js": "./node_modules/moment/locale/es-do.js",
+      "./es-us": "./node_modules/moment/locale/es-us.js",
+      "./es-us.js": "./node_modules/moment/locale/es-us.js",
+      "./es.js": "./node_modules/moment/locale/es.js",
+      "./et": "./node_modules/moment/locale/et.js",
+      "./et.js": "./node_modules/moment/locale/et.js",
+      "./eu": "./node_modules/moment/locale/eu.js",
+      "./eu.js": "./node_modules/moment/locale/eu.js",
+      "./fa": "./node_modules/moment/locale/fa.js",
+      "./fa.js": "./node_modules/moment/locale/fa.js",
+      "./fi": "./node_modules/moment/locale/fi.js",
+      "./fi.js": "./node_modules/moment/locale/fi.js",
+      "./fo": "./node_modules/moment/locale/fo.js",
+      "./fo.js": "./node_modules/moment/locale/fo.js",
+      "./fr": "./node_modules/moment/locale/fr.js",
+      "./fr-ca": "./node_modules/moment/locale/fr-ca.js",
+      "./fr-ca.js": "./node_modules/moment/locale/fr-ca.js",
+      "./fr-ch": "./node_modules/moment/locale/fr-ch.js",
+      "./fr-ch.js": "./node_modules/moment/locale/fr-ch.js",
+      "./fr.js": "./node_modules/moment/locale/fr.js",
+      "./fy": "./node_modules/moment/locale/fy.js",
+      "./fy.js": "./node_modules/moment/locale/fy.js",
+      "./ga": "./node_modules/moment/locale/ga.js",
+      "./ga.js": "./node_modules/moment/locale/ga.js",
+      "./gd": "./node_modules/moment/locale/gd.js",
+      "./gd.js": "./node_modules/moment/locale/gd.js",
+      "./gl": "./node_modules/moment/locale/gl.js",
+      "./gl.js": "./node_modules/moment/locale/gl.js",
+      "./gom-latn": "./node_modules/moment/locale/gom-latn.js",
+      "./gom-latn.js": "./node_modules/moment/locale/gom-latn.js",
+      "./gu": "./node_modules/moment/locale/gu.js",
+      "./gu.js": "./node_modules/moment/locale/gu.js",
+      "./he": "./node_modules/moment/locale/he.js",
+      "./he.js": "./node_modules/moment/locale/he.js",
+      "./hi": "./node_modules/moment/locale/hi.js",
+      "./hi.js": "./node_modules/moment/locale/hi.js",
+      "./hr": "./node_modules/moment/locale/hr.js",
+      "./hr.js": "./node_modules/moment/locale/hr.js",
+      "./hu": "./node_modules/moment/locale/hu.js",
+      "./hu.js": "./node_modules/moment/locale/hu.js",
+      "./hy-am": "./node_modules/moment/locale/hy-am.js",
+      "./hy-am.js": "./node_modules/moment/locale/hy-am.js",
+      "./id": "./node_modules/moment/locale/id.js",
+      "./id.js": "./node_modules/moment/locale/id.js",
+      "./is": "./node_modules/moment/locale/is.js",
+      "./is.js": "./node_modules/moment/locale/is.js",
+      "./it": "./node_modules/moment/locale/it.js",
+      "./it-ch": "./node_modules/moment/locale/it-ch.js",
+      "./it-ch.js": "./node_modules/moment/locale/it-ch.js",
+      "./it.js": "./node_modules/moment/locale/it.js",
+      "./ja": "./node_modules/moment/locale/ja.js",
+      "./ja.js": "./node_modules/moment/locale/ja.js",
+      "./jv": "./node_modules/moment/locale/jv.js",
+      "./jv.js": "./node_modules/moment/locale/jv.js",
+      "./ka": "./node_modules/moment/locale/ka.js",
+      "./ka.js": "./node_modules/moment/locale/ka.js",
+      "./kk": "./node_modules/moment/locale/kk.js",
+      "./kk.js": "./node_modules/moment/locale/kk.js",
+      "./km": "./node_modules/moment/locale/km.js",
+      "./km.js": "./node_modules/moment/locale/km.js",
+      "./kn": "./node_modules/moment/locale/kn.js",
+      "./kn.js": "./node_modules/moment/locale/kn.js",
+      "./ko": "./node_modules/moment/locale/ko.js",
+      "./ko.js": "./node_modules/moment/locale/ko.js",
+      "./ku": "./node_modules/moment/locale/ku.js",
+      "./ku.js": "./node_modules/moment/locale/ku.js",
+      "./ky": "./node_modules/moment/locale/ky.js",
+      "./ky.js": "./node_modules/moment/locale/ky.js",
+      "./lb": "./node_modules/moment/locale/lb.js",
+      "./lb.js": "./node_modules/moment/locale/lb.js",
+      "./lo": "./node_modules/moment/locale/lo.js",
+      "./lo.js": "./node_modules/moment/locale/lo.js",
+      "./lt": "./node_modules/moment/locale/lt.js",
+      "./lt.js": "./node_modules/moment/locale/lt.js",
+      "./lv": "./node_modules/moment/locale/lv.js",
+      "./lv.js": "./node_modules/moment/locale/lv.js",
+      "./me": "./node_modules/moment/locale/me.js",
+      "./me.js": "./node_modules/moment/locale/me.js",
+      "./mi": "./node_modules/moment/locale/mi.js",
+      "./mi.js": "./node_modules/moment/locale/mi.js",
+      "./mk": "./node_modules/moment/locale/mk.js",
+      "./mk.js": "./node_modules/moment/locale/mk.js",
+      "./ml": "./node_modules/moment/locale/ml.js",
+      "./ml.js": "./node_modules/moment/locale/ml.js",
+      "./mn": "./node_modules/moment/locale/mn.js",
+      "./mn.js": "./node_modules/moment/locale/mn.js",
+      "./mr": "./node_modules/moment/locale/mr.js",
+      "./mr.js": "./node_modules/moment/locale/mr.js",
+      "./ms": "./node_modules/moment/locale/ms.js",
+      "./ms-my": "./node_modules/moment/locale/ms-my.js",
+      "./ms-my.js": "./node_modules/moment/locale/ms-my.js",
+      "./ms.js": "./node_modules/moment/locale/ms.js",
+      "./mt": "./node_modules/moment/locale/mt.js",
+      "./mt.js": "./node_modules/moment/locale/mt.js",
+      "./my": "./node_modules/moment/locale/my.js",
+      "./my.js": "./node_modules/moment/locale/my.js",
+      "./nb": "./node_modules/moment/locale/nb.js",
+      "./nb.js": "./node_modules/moment/locale/nb.js",
+      "./ne": "./node_modules/moment/locale/ne.js",
+      "./ne.js": "./node_modules/moment/locale/ne.js",
+      "./nl": "./node_modules/moment/locale/nl.js",
+      "./nl-be": "./node_modules/moment/locale/nl-be.js",
+      "./nl-be.js": "./node_modules/moment/locale/nl-be.js",
+      "./nl.js": "./node_modules/moment/locale/nl.js",
+      "./nn": "./node_modules/moment/locale/nn.js",
+      "./nn.js": "./node_modules/moment/locale/nn.js",
+      "./pa-in": "./node_modules/moment/locale/pa-in.js",
+      "./pa-in.js": "./node_modules/moment/locale/pa-in.js",
+      "./pl": "./node_modules/moment/locale/pl.js",
+      "./pl.js": "./node_modules/moment/locale/pl.js",
+      "./pt": "./node_modules/moment/locale/pt.js",
+      "./pt-br": "./node_modules/moment/locale/pt-br.js",
+      "./pt-br.js": "./node_modules/moment/locale/pt-br.js",
+      "./pt.js": "./node_modules/moment/locale/pt.js",
+      "./ro": "./node_modules/moment/locale/ro.js",
+      "./ro.js": "./node_modules/moment/locale/ro.js",
+      "./ru": "./node_modules/moment/locale/ru.js",
+      "./ru.js": "./node_modules/moment/locale/ru.js",
+      "./sd": "./node_modules/moment/locale/sd.js",
+      "./sd.js": "./node_modules/moment/locale/sd.js",
+      "./se": "./node_modules/moment/locale/se.js",
+      "./se.js": "./node_modules/moment/locale/se.js",
+      "./si": "./node_modules/moment/locale/si.js",
+      "./si.js": "./node_modules/moment/locale/si.js",
+      "./sk": "./node_modules/moment/locale/sk.js",
+      "./sk.js": "./node_modules/moment/locale/sk.js",
+      "./sl": "./node_modules/moment/locale/sl.js",
+      "./sl.js": "./node_modules/moment/locale/sl.js",
+      "./sq": "./node_modules/moment/locale/sq.js",
+      "./sq.js": "./node_modules/moment/locale/sq.js",
+      "./sr": "./node_modules/moment/locale/sr.js",
+      "./sr-cyrl": "./node_modules/moment/locale/sr-cyrl.js",
+      "./sr-cyrl.js": "./node_modules/moment/locale/sr-cyrl.js",
+      "./sr.js": "./node_modules/moment/locale/sr.js",
+      "./ss": "./node_modules/moment/locale/ss.js",
+      "./ss.js": "./node_modules/moment/locale/ss.js",
+      "./sv": "./node_modules/moment/locale/sv.js",
+      "./sv.js": "./node_modules/moment/locale/sv.js",
+      "./sw": "./node_modules/moment/locale/sw.js",
+      "./sw.js": "./node_modules/moment/locale/sw.js",
+      "./ta": "./node_modules/moment/locale/ta.js",
+      "./ta.js": "./node_modules/moment/locale/ta.js",
+      "./te": "./node_modules/moment/locale/te.js",
+      "./te.js": "./node_modules/moment/locale/te.js",
+      "./tet": "./node_modules/moment/locale/tet.js",
+      "./tet.js": "./node_modules/moment/locale/tet.js",
+      "./tg": "./node_modules/moment/locale/tg.js",
+      "./tg.js": "./node_modules/moment/locale/tg.js",
+      "./th": "./node_modules/moment/locale/th.js",
+      "./th.js": "./node_modules/moment/locale/th.js",
+      "./tl-ph": "./node_modules/moment/locale/tl-ph.js",
+      "./tl-ph.js": "./node_modules/moment/locale/tl-ph.js",
+      "./tlh": "./node_modules/moment/locale/tlh.js",
+      "./tlh.js": "./node_modules/moment/locale/tlh.js",
+      "./tr": "./node_modules/moment/locale/tr.js",
+      "./tr.js": "./node_modules/moment/locale/tr.js",
+      "./tzl": "./node_modules/moment/locale/tzl.js",
+      "./tzl.js": "./node_modules/moment/locale/tzl.js",
+      "./tzm": "./node_modules/moment/locale/tzm.js",
+      "./tzm-latn": "./node_modules/moment/locale/tzm-latn.js",
+      "./tzm-latn.js": "./node_modules/moment/locale/tzm-latn.js",
+      "./tzm.js": "./node_modules/moment/locale/tzm.js",
+      "./ug-cn": "./node_modules/moment/locale/ug-cn.js",
+      "./ug-cn.js": "./node_modules/moment/locale/ug-cn.js",
+      "./uk": "./node_modules/moment/locale/uk.js",
+      "./uk.js": "./node_modules/moment/locale/uk.js",
+      "./ur": "./node_modules/moment/locale/ur.js",
+      "./ur.js": "./node_modules/moment/locale/ur.js",
+      "./uz": "./node_modules/moment/locale/uz.js",
+      "./uz-latn": "./node_modules/moment/locale/uz-latn.js",
+      "./uz-latn.js": "./node_modules/moment/locale/uz-latn.js",
+      "./uz.js": "./node_modules/moment/locale/uz.js",
+      "./vi": "./node_modules/moment/locale/vi.js",
+      "./vi.js": "./node_modules/moment/locale/vi.js",
+      "./x-pseudo": "./node_modules/moment/locale/x-pseudo.js",
+      "./x-pseudo.js": "./node_modules/moment/locale/x-pseudo.js",
+      "./yo": "./node_modules/moment/locale/yo.js",
+      "./yo.js": "./node_modules/moment/locale/yo.js",
+      "./zh-cn": "./node_modules/moment/locale/zh-cn.js",
+      "./zh-cn.js": "./node_modules/moment/locale/zh-cn.js",
+      "./zh-hk": "./node_modules/moment/locale/zh-hk.js",
+      "./zh-hk.js": "./node_modules/moment/locale/zh-hk.js",
+      "./zh-tw": "./node_modules/moment/locale/zh-tw.js",
+      "./zh-tw.js": "./node_modules/moment/locale/zh-tw.js"
+    };
+
+    function webpackContext(req) {
+      var id = webpackContextResolve(req);
+      return __webpack_require__(id);
+    }
+
+    function webpackContextResolve(req) {
+      if (!__webpack_require__.o(map, req)) {
+        var e = new Error("Cannot find module '" + req + "'");
+        e.code = 'MODULE_NOT_FOUND';
+        throw e;
+      }
+
+      return map[req];
+    }
+
+    webpackContext.keys = function webpackContextKeys() {
+      return Object.keys(map);
+    };
+
+    webpackContext.resolve = webpackContextResolve;
+    module.exports = webpackContext;
+    webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
+    /***/
+  },
+
+  /***/
   "./node_modules/webpack/buildin/global.js":
   /*!***********************************!*\
     !*** (webpack)/buildin/global.js ***!
@@ -2235,7 +2527,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
             setInterval(function () {
               return _this3.trigger = !_this3.trigger;
-            }, 10 * 1000);
+            }, 1000);
           }
         }
       }, {
@@ -17938,7 +18230,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @ngx-translate/core */
-    "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js"); // Multiple instances created ?
+    "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+    /* harmony import */
+
+
+    var timediff__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! timediff */
+    "./node_modules/timediff/timediff.js");
+    /* harmony import */
+
+
+    var timediff__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(timediff__WEBPACK_IMPORTED_MODULE_2__); // Multiple instances created ?
 
 
     var TimeAgoPipe = /*#__PURE__*/function () {
@@ -17951,110 +18253,73 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(TimeAgoPipe, [{
         key: "transform",
         value: function transform(timestamp) {
-          var result;
-          var secTmp = '';
-          var secsTmp = '';
-          var mnTmp = '';
-          var mnsTmp = '';
-          var hrTmp = '';
-          var hrsTmp = '';
-          var dayTmp = '';
-          var daysTmp = '';
-          var monthTmp = '';
-          var monthsTmp = '';
-          var yearTmp = '';
-          var yearsTmp = '';
-          secTmp = this.translate.instant('TIMEAGOPIPE.SEC'); // console.log('loaded? ' + secTmp);
+          var now = this.translate.instant('TIMEAGOPIPE.JUSTNOW');
+          var sec = this.translate.instant('TIMEAGOPIPE.SEC');
+          var secs = sec;
+          var mn = this.translate.instant('TIMEAGOPIPE.MINUTE');
+          var mns = mn;
+          var hr = this.translate.instant('TIMEAGOPIPE.HOUR');
+          var hrs = this.translate.instant('TIMEAGOPIPE.HOURS');
+          var day = this.translate.instant('TIMEAGOPIPE.DAY');
+          var days = this.translate.instant('TIMEAGOPIPE.DAYS');
+          var month = this.translate.instant('TIMEAGOPIPE.MONTH');
+          var months = this.translate.instant('TIMEAGOPIPE.MONTHS');
+          var year = this.translate.instant('TIMEAGOPIPE.YEAR');
+          var years = this.translate.instant('TIMEAGOPIPE.YEARS');
+          var timeNow = new Date().getTime();
+          var diff = timediff__WEBPACK_IMPORTED_MODULE_2__(timestamp, timeNow, 'YMDHmS');
+          var keys = Object.keys(diff);
+          var count = 0;
+          var output = '';
 
-          secsTmp = secTmp;
-          mnTmp = this.translate.instant('TIMEAGOPIPE.MINUTE');
-          mnsTmp = mnTmp;
-          hrTmp = this.translate.instant('TIMEAGOPIPE.HOUR');
-          hrsTmp = this.translate.instant('TIMEAGOPIPE.HOURS');
-          dayTmp = this.translate.instant('TIMEAGOPIPE.DAY');
-          daysTmp = this.translate.instant('TIMEAGOPIPE.DAYS');
-          monthTmp = this.translate.instant('TIMEAGOPIPE.MONTH');
-          monthsTmp = this.translate.instant('TIMEAGOPIPE.MONTHS');
-          yearTmp = this.translate.instant('TIMEAGOPIPE.YEAR');
-          yearsTmp = this.translate.instant('TIMEAGOPIPE.YEARS'); // Tranforming from String to Date format
-          // current time
+          for (var _i2 = 0, _keys = keys; _i2 < _keys.length; _i2++) {
+            var key = _keys[_i2];
 
-          var now = new Date().getTime(); // time since transaction was made in seconds
+            if (diff[key]) {
+              if (count) {
+                output = output + ' ';
+              }
 
-          var delta = (now - timestamp) / 1000; // If transaction has just been broadcasted then dateString will be null in the first few seconds (prevalidation stage)
+              switch (key) {
+                case 'years':
+                  output = "".concat(diff[key], " ").concat(diff[key] === 1 ? year : years);
+                  break;
 
-          if (delta < 20) {
-            return this.translate.instant('TIMEAGOPIPE.JUSTNOW'); // 'just now';
-          } // Return interval format in seconds, hours or days
+                case 'months':
+                  output = output + "".concat(diff[key], " ").concat(diff[key] === 1 ? month : months);
+                  break;
 
+                case 'days':
+                  output = output + "".concat(diff[key], " ").concat(diff[key] === 1 ? day : days);
+                  break;
 
-          if (delta < 60) {
-            // Sent in last minute
-            // result = Math.floor(delta) + ' sec ';
-            result = Math.round(Math.floor(delta) / 10) * 10 + ' ' + secTmp + ' ';
-          } else if (delta < 120) {
-            // Sent in last hour: 1h = 3600 sec -> displays seconds
-            // result = Math.floor(delta / 60) + ' mn ';
-            result = Math.floor(delta / 60) + ' ' + mnTmp + ' '; // Adds seconds details if there's a remainder in 'delta % 60'
+                case 'hours':
+                  output = output + "".concat(diff[key], " ").concat(diff[key] === 1 ? hr : hrs);
+                  break;
 
-            if (Math.floor(delta % 60) !== 0) {
-              // result = result + Math.floor(delta % 60) + ' sec ';
-              result = result + Math.round(Math.floor(delta % 60) / 10) * 10 + ' ' + secTmp + ' ';
+                case 'minutes':
+                  output = output + "".concat(diff[key], " ").concat(diff[key] === 1 ? mn : mns);
+                  break;
+
+                case 'seconds':
+                  if (!diff.minutes && diff.seconds < 30) {
+                    output = now;
+                  } else if (diff.minutes < 5) {
+                    output = output + "".concat(diff[key], " ").concat(diff[key] === 1 ? sec : secs);
+                  }
+
+                  break;
+              }
+
+              if (count) {
+                break;
+              }
+
+              count++;
             }
-          } else if (delta < 86400) {
-            // Sent on last day: 1d = 86400 sec -> displays hours and seconds
-            result = String(Math.floor(delta / 3600)); // Adds suffix hr or hrs depending on 'delta / 3600' value
-            // result = Math.floor(delta / 3600) > 1 ? result + ' hrs ' : result + ' hr ';
+          }
 
-            result = Math.floor(delta / 3600) > 1 ? result + ' ' + hrsTmp + ' ' : result + ' ' + hrTmp + ' '; // Adds minutes details if there's a remainder in 'delta % 3600'
-
-            if (Math.floor(delta % 3600 / 60) !== 0) {
-              result = result + String(Math.floor(delta % 3600 / 60)) + ' ' + mnTmp + ' '; // result = result + String(Math.floor((delta % 3600) / 60)) + ' mn ';
-              // result = Math.floor((delta % 3600) / 60) > 1 ? result + ' mns ' : result + ' mn '; // there's no plural in mn
-            }
-          } else if (delta < 2592000) {
-            // Sent on last month: 1m = 2592000 sec (30 days) -> displays days and hours
-            result = String(Math.floor(delta / 86400)); // Adds suffix day or days depending on 'delta / 86400' value
-
-            result = Math.floor(delta / 86400) > 1 ? result + ' ' + daysTmp + ' ' : result + ' ' + dayTmp + ' '; // result = Math.floor(delta / 86400) > 1 ? result + ' days ' : result + ' day ';
-            // Adds hours details if there's a remainder in 'delta % 86400'
-
-            if (Math.floor(delta % 86400 / 3600) !== 0) {
-              result = result + String(Math.floor(delta % 86400 / 3600)); // Adds suffix hr or hrs depending on '(delta % 86400) / 3600' value
-
-              result = Math.floor(delta % 86400 / 3600) > 1 ? result + ' ' + hrsTmp + ' ' : result + ' ' + hrTmp + ' '; // result = Math.floor((delta % 86400) / 3600) > 1 ? result + ' hrs ' : result + ' hr ';
-            }
-          } else if (delta < 31536000) {
-            // Sent on last year: 1y = 31536000 sec (365 days) -> displays months and days
-            result = String(Math.floor(delta / 2592000)); // Adds suffix month or months depending on 'delta / 2592000' value
-
-            result = Math.floor(delta / 2592000) > 1 ? result + ' ' + monthsTmp + ' ' : result + ' ' + monthTmp + ' '; // result = Math.floor(delta / 2592000) > 1 ? result + ' months ' : result + ' month ';
-            // Adds days details if there's a remainder in 'delta / 2592000'
-
-            if (Math.floor(delta % 2592000 / 86400) !== 0) {
-              result = result + String(Math.floor(delta % 2592000 / 86400)); // Adds suffix day or days depending on '(delta % 2592000) / 86400' value
-
-              result = Math.floor(delta % 2592000 / 86400) > 1 ? result + ' ' + daysTmp + ' ' : result + ' ' + dayTmp + ' '; // result = Math.floor((delta % 2592000) / 86400) > 1 ? result + ' days ' : result + ' day ';
-            }
-          } else {
-            // Sent more than one year ago -> displays years and months
-            result = String(Math.floor(delta / 31536000)); // Adds suffix year or years depending on 'delta / 31536000' value
-
-            result = Math.floor(delta / 31536000) > 1 ? result + ' ' + yearsTmp + ' ' : result + ' ' + yearTmp + ' '; // result = Math.floor(delta / 31536000) > 1 ? result + ' years ' : result + ' year ';
-            // Adds months details if there's a remainder in 'delta / 31536000' which is more then 1
-
-            if (Math.floor(delta % 31536000 / 2592000) !== 0) {
-              result = result + String(Math.floor(delta % 31536000 / 2592000)); // Adds suffix month or months depending on '(delta % 31536000) / 2592000' value
-
-              result = Math.floor(delta % 31536000 / 2592000) > 1 ? result + ' ' + monthsTmp + ' ' : result + ' ' + monthTmp + ' '; // result = Math.floor((delta % 31536000) / 2592000) > 1 ? result + ' months ' : result + ' month ';
-            }
-          } // const agoTmp = this.translate.instant('TIMEAGOPIPE.AGO');  // not working
-
-
-          var agoTmp = this.translate.instant('TIMEAGOPIPE.AGO');
-          result = result + agoTmp; // console.log('in time-ago return result: ', result);  // working but View not updated when language is changed and pipe is pure
-
-          return result;
+          return output;
         }
       }]);
 
@@ -23590,7 +23855,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         this.pendingLookups[address] = true;
                         this.operationService.torusKeyLookup(address).subscribe(function (ans) {
                           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this47, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee99() {
-                            var keys, verifierMap, _i2, _keys, key, verifierId, verifierArray, twitterId, _yield$this$torusServ4, username;
+                            var keys, verifierMap, _i3, _keys2, key, verifierId, verifierArray, twitterId, _yield$this$torusServ4, username;
 
                             return regeneratorRuntime.wrap(function _callee99$(_context100) {
                               while (1) {
@@ -23608,15 +23873,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                                     keys = Object.keys(ans.result.Verifiers);
                                     verifierMap = this.torusService.verifierMap;
-                                    _i2 = 0, _keys = keys;
+                                    _i3 = 0, _keys2 = keys;
 
                                   case 5:
-                                    if (!(_i2 < _keys.length)) {
+                                    if (!(_i3 < _keys2.length)) {
                                       _context100.next = 31;
                                       break;
                                     }
 
-                                    key = _keys[_i2];
+                                    key = _keys2[_i3];
 
                                     if (!(key === verifierMap['google'].verifier)) {
                                       _context100.next = 11;
@@ -23671,7 +23936,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                                     console.log('Unhandled verifier result', ans);
 
                                   case 28:
-                                    _i2++;
+                                    _i3++;
                                     _context100.next = 5;
                                     break;
 
@@ -25770,8 +26035,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var currentKeys = Object.keys(this.contracts[contractAddress].tokens);
             var newKeys = Object.keys(contract.tokens);
 
-            for (var _i3 = 0, _newKeys = newKeys; _i3 < _newKeys.length; _i3++) {
-              var key = _newKeys[_i3];
+            for (var _i4 = 0, _newKeys = newKeys; _i4 < _newKeys.length; _i4++) {
+              var key = _newKeys[_i4];
 
               if (!currentKeys.includes(key)) {
                 this.contracts[contractAddress].tokens[key] = contract.tokens[key];
@@ -25877,8 +26142,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (metadata === null || metadata === void 0 ? void 0 : metadata.contracts) {
               var contractAddresses = Object.keys(metadata.contracts);
 
-              for (var _i4 = 0, _contractAddresses = contractAddresses; _i4 < _contractAddresses.length; _i4++) {
-                var address = _contractAddresses[_i4];
+              for (var _i5 = 0, _contractAddresses = contractAddresses; _i5 < _contractAddresses.length; _i5++) {
+                var address = _contractAddresses[_i5];
                 this.addAsset(address, metadata.contracts[address]);
               }
             }
