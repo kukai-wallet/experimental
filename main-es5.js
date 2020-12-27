@@ -2289,7 +2289,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "receivedKind",
         value: function receivedKind(activity) {
-          return activity.tokenId && !activity.source.address ? 'Minted' : 'Received';
+          return activity.tokenId && activity.source.address && activity.tokenId.split(':')[0] === activity.source.address ? 'Minted' : 'Received';
         }
       }]);
 
@@ -22173,15 +22173,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                           if (tx.contract && tokenId && tx.status === 'applied') {
                             if (knownTokenIds.includes(tokenId)) {
+                              var source = {
+                                address: tx.from
+                              };
+
+                              if (tx.from === '' && tx.contract) {
+                                source.address = tx.contract;
+
+                                if (tx.alias) {
+                                  source.alias = tx.alias;
+                                }
+                              }
+
                               var activity = {
                                 type: 'transaction',
                                 block: '',
                                 status: 1,
                                 amount: tx.amount,
                                 tokenId: tokenId,
-                                source: {
-                                  address: tx.from
-                                },
+                                source: source,
                                 destination: {
                                   address: tx.to
                                 },

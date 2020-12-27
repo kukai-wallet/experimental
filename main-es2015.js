@@ -1249,7 +1249,7 @@ class AccountViewComponent {
         return this.tokenService.formatAmount(activity.tokenId, activity.amount.toString());
     }
     receivedKind(activity) {
-        return (activity.tokenId && !activity.source.address) ? 'Minted' : 'Received';
+        return (activity.tokenId && activity.source.address && (activity.tokenId.split(':')[0] === activity.source.address)) ? 'Minted' : 'Received';
     }
 }
 AccountViewComponent.ɵfac = function AccountViewComponent_Factory(t) { return new (t || AccountViewComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_2__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_3__["TimeAgoPipe"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_8__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_activity_activity_service__WEBPACK_IMPORTED_MODULE_11__["ActivityService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_token_token_service__WEBPACK_IMPORTED_MODULE_12__["TokenService"])); };
@@ -11606,13 +11606,20 @@ class TzktService {
                 const tokenId = `${tx.contract}:${tx.token_id}`;
                 if (tx.contract && tokenId && tx.status === 'applied') {
                     if (knownTokenIds.includes(tokenId)) {
+                        const source = { address: tx.from };
+                        if (tx.from === '' && tx.contract) {
+                            source.address = tx.contract;
+                            if (tx.alias) {
+                                source.alias = tx.alias;
+                            }
+                        }
                         const activity = {
                             type: 'transaction',
                             block: '',
                             status: 1,
                             amount: tx.amount,
                             tokenId,
-                            source: { address: tx.from },
+                            source,
                             destination: { address: tx.to },
                             hash: tx.hash,
                             timestamp: (new Date(tx.timestamp)).getTime()
