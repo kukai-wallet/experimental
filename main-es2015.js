@@ -149,15 +149,17 @@ AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineI
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/wallet/wallet.service */ "./src/app/services/wallet/wallet.service.ts");
-/* harmony import */ var _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/coordinator/coordinator.service */ "./src/app/services/coordinator/coordinator.service.ts");
-/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
-/* harmony import */ var _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/messages/messages.component */ "./src/app/components/messages/messages.component.ts");
-/* harmony import */ var _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/spinner/spinner.component */ "./src/app/components/spinner/spinner.component.ts");
-/* harmony import */ var _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/agreement/agreement.component */ "./src/app/components/agreement/agreement.component.ts");
-/* harmony import */ var _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/footer/footer.component */ "./src/app/components/footer/footer.component.ts");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+/* harmony import */ var _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/wallet/wallet.service */ "./src/app/services/wallet/wallet.service.ts");
+/* harmony import */ var _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./services/coordinator/coordinator.service */ "./src/app/services/coordinator/coordinator.service.ts");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/__ivy_ngcc__/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/messages/messages.component */ "./src/app/components/messages/messages.component.ts");
+/* harmony import */ var _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/spinner/spinner.component */ "./src/app/components/spinner/spinner.component.ts");
+/* harmony import */ var _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/agreement/agreement.component */ "./src/app/components/agreement/agreement.component.ts");
+/* harmony import */ var _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/footer/footer.component */ "./src/app/components/footer/footer.component.ts");
+
 
 
 
@@ -197,7 +199,7 @@ class AppComponent {
             //this.router.navigate(['/accounts']);
         }
         this.router.events.subscribe((evt) => {
-            if (!(evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"])) {
+            if (!(evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"])) {
                 return;
             }
             window.scrollTo(0, 0);
@@ -210,9 +212,10 @@ class AppComponent {
                 window.location.reload();
             }
             else if (!e.oldValue && e.newValue) {
-                setTimeout(() => {
+                setTimeout(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                    yield this.router.navigate(['']);
                     window.location.reload();
-                }, 15000);
+                }), 10000);
             }
         }
     }
@@ -243,22 +246,22 @@ class AppComponent {
         this.router.navigate(['']);
     }
 }
-AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_2__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_3__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"])); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 5, vars: 0, template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "router-outlet");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "app-messages");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "app-spinner");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "app-agreement");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "app-footer");
-    } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterOutlet"], _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_5__["MessagesComponent"], _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_6__["SpinnerComponent"], _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_7__["AgreementComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_8__["FooterComponent"]], styles: [".main-container[_ngcontent-%COMP%] {\n  width: 100%;\n  min-height: 100%;\n  margin-left: 0;\n  margin-right: 0;\n  margin-top: 1.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding-bottom: 8rem;\n}\n\n#top-main-container[_ngcontent-%COMP%] {\n  min-height: 100%;\n  min-height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXFVzZXJzXFxrbGFzX1xcR2l0XFxrdWthaS9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxvQkFBQTtBQ0NKOztBRENBO0VBQ0ksZ0JBQUE7RUFDQSxnQkFBQTtBQ0VKIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1haW4tY29udGFpbmVyIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgbWluLWhlaWdodDogMTAwJTtcclxuICAgIG1hcmdpbi1sZWZ0OiAwO1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAwO1xyXG4gICAgbWFyZ2luLXRvcDogMS41cmVtO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIHBhZGRpbmctYm90dG9tOiA4cmVtO1xyXG59XHJcbiN0b3AtbWFpbi1jb250YWluZXIge1xyXG4gICAgbWluLWhlaWdodDogMTAwJTtcclxuICAgIG1pbi1oZWlnaHQ6IDEwMCU7XHJcbn0iLCIubWFpbi1jb250YWluZXIge1xuICB3aWR0aDogMTAwJTtcbiAgbWluLWhlaWdodDogMTAwJTtcbiAgbWFyZ2luLWxlZnQ6IDA7XG4gIG1hcmdpbi1yaWdodDogMDtcbiAgbWFyZ2luLXRvcDogMS41cmVtO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgcGFkZGluZy1ib3R0b206IDhyZW07XG59XG5cbiN0b3AtbWFpbi1jb250YWluZXIge1xuICBtaW4taGVpZ2h0OiAxMDAlO1xuICBtaW4taGVpZ2h0OiAxMDAlO1xufSJdfQ== */"] });
-/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppComponent, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_3__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_4__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"])); };
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 5, vars: 0, template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "router-outlet");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](1, "app-messages");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "app-spinner");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](3, "app-agreement");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](4, "app-footer");
+    } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterOutlet"], _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_6__["MessagesComponent"], _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_7__["SpinnerComponent"], _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_8__["AgreementComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_9__["FooterComponent"]], styles: [".main-container[_ngcontent-%COMP%] {\n  width: 100%;\n  min-height: 100%;\n  margin-left: 0;\n  margin-right: 0;\n  margin-top: 1.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding-bottom: 8rem;\n}\n\n#top-main-container[_ngcontent-%COMP%] {\n  min-height: 100%;\n  min-height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXFVzZXJzXFxrbGFzX1xcR2l0XFxrdWthaS9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsZUFBQTtFQUNBLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsdUJBQUE7RUFDQSxvQkFBQTtBQ0NKOztBRENBO0VBQ0ksZ0JBQUE7RUFDQSxnQkFBQTtBQ0VKIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1haW4tY29udGFpbmVyIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgbWluLWhlaWdodDogMTAwJTtcclxuICAgIG1hcmdpbi1sZWZ0OiAwO1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAwO1xyXG4gICAgbWFyZ2luLXRvcDogMS41cmVtO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIHBhZGRpbmctYm90dG9tOiA4cmVtO1xyXG59XHJcbiN0b3AtbWFpbi1jb250YWluZXIge1xyXG4gICAgbWluLWhlaWdodDogMTAwJTtcclxuICAgIG1pbi1oZWlnaHQ6IDEwMCU7XHJcbn0iLCIubWFpbi1jb250YWluZXIge1xuICB3aWR0aDogMTAwJTtcbiAgbWluLWhlaWdodDogMTAwJTtcbiAgbWFyZ2luLWxlZnQ6IDA7XG4gIG1hcmdpbi1yaWdodDogMDtcbiAgbWFyZ2luLXRvcDogMS41cmVtO1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgcGFkZGluZy1ib3R0b206IDhyZW07XG59XG5cbiN0b3AtbWFpbi1jb250YWluZXIge1xuICBtaW4taGVpZ2h0OiAxMDAlO1xuICBtaW4taGVpZ2h0OiAxMDAlO1xufSJdfQ== */"] });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](AppComponent, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
         args: [{
                 selector: 'app-root',
                 templateUrl: './app.component.html',
                 styleUrls: ['./app.component.scss'],
             }]
-    }], function () { return [{ type: _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_2__["WalletService"] }, { type: _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_3__["CoordinatorService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }, { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"] }]; }, null); })();
+    }], function () { return [{ type: _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_3__["WalletService"] }, { type: _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_4__["CoordinatorService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }, { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"] }]; }, null); })();
 
 
 /***/ }),
@@ -1208,7 +1211,7 @@ class AccountViewComponent {
     getType(transaction) {
         if (transaction.type !== 'transaction') {
             if (transaction.type === 'delegation') {
-                if (transaction.destination) {
+                if (transaction.destination.address) {
                     return 'delegated';
                 }
                 else {
@@ -1221,7 +1224,7 @@ class AccountViewComponent {
         }
         else {
             let operationType = '';
-            if (transaction.source === this.account.address) {
+            if (transaction.source.address === this.account.address) {
                 operationType = 'sent';
             }
             else {
@@ -8327,13 +8330,18 @@ UriHandlerComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefi
 /*!*******************************!*\
   !*** ./src/app/interfaces.ts ***!
   \*******************************/
-/*! exports provided: WalletType, PeriodKind */
+/*! exports provided: Activity, WalletType, PeriodKind */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WalletType", function() { return WalletType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PeriodKind", function() { return PeriodKind; });
+/* harmony import */ var _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/wallet/wallet */ "./src/app/services/wallet/wallet.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Activity", function() { return _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_0__["Activity"]; });
+
+
+
 var WalletType;
 (function (WalletType) {
     WalletType[WalletType["FullWallet"] = 0] = "FullWallet";
@@ -9882,7 +9890,7 @@ class ActivityService {
     }
     getAllTransactions(account, counter) {
         const knownTokenIds = this.tokenService.knownTokenIds();
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.getOperations(account.address, knownTokenIds)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((resp) => {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.getOperations(account.address, knownTokenIds, this.walletService.wallet)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])((resp) => {
             const operations = resp.operations;
             this.handleUnknownTokenIds(resp.unknownTokenIds);
             if (Array.isArray(operations)) {
@@ -9916,10 +9924,10 @@ class ActivityService {
             const index = oldActivities.findIndex((a) => a.hash === activity.hash);
             if (index === -1 || (index !== -1 && oldActivities[index].status === 0)) {
                 if (activity.type === 'transaction') {
-                    if (account.address === activity.source) {
+                    if (account.address === activity.source.address) {
                         this.messageService.addSuccess(account.shortAddress() + ': Sent ' + this.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                     }
-                    if (account.address === activity.destination) {
+                    if (account.address === activity.destination.address) {
                         this.messageService.addSuccess(account.shortAddress() + ': Received ' + this.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                     }
                 }
@@ -9936,17 +9944,18 @@ class ActivityService {
         }
     }
     getCounterparty(transaction, account, withLookup = true) {
-        let counterParty = '';
+        let counterParty = { address: '' };
+        let counterPartyAddress = '';
         if (transaction.type === 'delegation') {
             if (transaction.destination) {
                 counterParty = transaction.destination;
             }
             else {
-                counterParty = ''; // User has undelegated
+                counterParty = { address: '' }; // User has undelegated
             }
         }
         else if (transaction.type === 'transaction') {
-            if (account.address === transaction.source) {
+            if (account.address === transaction.source.address) {
                 counterParty = transaction.destination; // to
             }
             else {
@@ -9954,7 +9963,7 @@ class ActivityService {
             }
         }
         else if (transaction.type === 'origination') {
-            if (account.address === transaction.source) {
+            if (account.address === transaction.source.address) {
                 counterParty = transaction.destination;
             }
             else {
@@ -9962,12 +9971,12 @@ class ActivityService {
             }
         }
         else {
-            counterParty = '';
+            counterParty = { address: '' };
         }
         if (withLookup) {
-            counterParty = this.lookupService.resolve(counterParty);
+            counterPartyAddress = this.lookupService.resolve(counterParty);
         }
-        return counterParty;
+        return counterPartyAddress;
     }
 }
 ActivityService.ɵfac = function ActivityService_Factory(t) { return new (t || ActivityService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_2__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_message_message_service__WEBPACK_IMPORTED_MODULE_5__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_6__["LookupService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_indexer_indexer_service__WEBPACK_IMPORTED_MODULE_7__["IndexerService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_token_token_service__WEBPACK_IMPORTED_MODULE_8__["TokenService"])); };
@@ -10478,8 +10487,8 @@ class CoordinatorService {
                     status: 0,
                     amount: big_js__WEBPACK_IMPORTED_MODULE_9___default()(op.amount).times(Math.pow(10, decimals)).toString(),
                     fee: null,
-                    source: from,
-                    destination: op.to,
+                    source: { address: from },
+                    destination: { address: op.to },
                     hash: metadata.opHash,
                     block: null,
                     timestamp: new Date().getTime(),
@@ -10499,8 +10508,8 @@ class CoordinatorService {
                 status: 0,
                 amount: null,
                 fee: null,
-                source: from,
-                destination: metadata.delegate,
+                source: { address: from },
+                destination: { address: metadata.delegate },
                 hash: metadata.opHash,
                 block: null,
                 timestamp: new Date().getTime()
@@ -11441,9 +11450,9 @@ class IndexerService {
             return this.tzktService.accountInfo(address, knownTokenIds);
         });
     }
-    getOperations(address, knownTokenIds) {
+    getOperations(address, knownTokenIds, wallet) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            return this.tzktService.getOperations(address, knownTokenIds);
+            return this.tzktService.getOperations(address, knownTokenIds, wallet);
         });
     }
     getTokenMetadata(contractAddress, id) {
@@ -11533,7 +11542,7 @@ class TzktService {
                         (tokens ? JSON.stringify(tokens) : '');
                     const input = Buffer.from(payload);
                     const hash = crypto_browserify__WEBPACK_IMPORTED_MODULE_3__["createHash"]('md5').update(input, 'base64').digest('hex');
-                    if (hash !== 'edc66a88461120f2ea9132d64be0d8b9' && payload && payload !== '0001-01-01T00:00:00Z[]') {
+                    if (payload && payload !== '0001-01-01T00:00:00Z[]') {
                         return { counter: hash, unknownTokenIds, tokens };
                     }
                 }
@@ -11542,13 +11551,13 @@ class TzktService {
         });
     }
     // Todo: Merge with token transactions
-    getOperations(address, knownTokenIds = []) {
+    getOperations(address, knownTokenIds = [], wallet) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const ops = yield fetch(`https://api.${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}.tzkt.io/v1/accounts/${address}/operations?limit=20&type=delegation,origination,transaction`)
                 .then(response => response.json())
                 .then(data => data.map(op => {
-                if (!op.hasInternals && op.status === 'applied') {
-                    let destination = '';
+                if (!(op.hasInternals && wallet.getAccount(op.target.address)) && op.status === 'applied') {
+                    let destination = { address: '' };
                     let amount = '0';
                     switch (op.type) {
                         case 'transaction':
@@ -11557,18 +11566,18 @@ class TzktService {
                                 op.amount.toString() === '0') {
                                 return null;
                             }
-                            destination = op.target.address;
+                            destination = op.target;
                             amount = op.amount.toString();
                             break;
                         case 'delegation':
                             if (address !== op.sender.address) {
                                 return null;
                             }
-                            destination = op.newDelegate ? op.newDelegate.address : '';
+                            destination = op.newDelegate ? op.newDelegate : { address: '' };
                             amount = '0';
                             break;
                         case 'origination':
-                            destination = op.originatedContract.address;
+                            destination = op.originatedContract;
                             if (op.contractBalance) {
                                 amount = op.contractBalance.toString();
                             }
@@ -11577,16 +11586,17 @@ class TzktService {
                             console.log(`Ignoring kind ${op.type}`);
                             return null;
                     }
-                    return {
+                    const activity = {
                         type: op.type,
                         block: op.block,
                         status: 1,
                         amount,
-                        source: op.sender.address,
+                        source: op.sender,
                         destination,
                         hash: op.hash,
                         timestamp: (new Date(op.timestamp)).getTime()
                     };
+                    return activity;
                 }
             }).filter(obj => obj));
             const unknownTokenIds = [];
@@ -11596,17 +11606,18 @@ class TzktService {
                 const tokenId = `${tx.contract}:${tx.token_id}`;
                 if (tx.contract && tokenId && tx.status === 'applied') {
                     if (knownTokenIds.includes(tokenId)) {
-                        return {
+                        const activity = {
                             type: 'transaction',
                             block: '',
                             status: 1,
                             amount: tx.amount,
                             tokenId,
-                            source: tx.from,
-                            destination: tx.to,
+                            source: { address: tx.from },
+                            destination: { address: tx.to },
                             hash: tx.hash,
                             timestamp: (new Date(tx.timestamp)).getTime()
                         };
+                        return activity;
                     }
                     else {
                         unknownTokenIds.push(tokenId);
@@ -12178,6 +12189,7 @@ var LookupType;
     LookupType[LookupType["Google"] = 2] = "Google";
     LookupType[LookupType["Reddit"] = 3] = "Reddit";
     LookupType[LookupType["Twitter"] = 4] = "Twitter";
+    LookupType[LookupType["Alias"] = 5] = "Alias";
 })(LookupType || (LookupType = {}));
 class LookupService {
     constructor(operationService, torusService, walletService, inputValidationService) {
@@ -12308,13 +12320,16 @@ class LookupService {
         }
         return { x, y };
     }
-    resolve(address) {
+    resolve(party) {
         this.initCheck();
-        const { x, y } = this.indexTop(address);
+        const { x, y } = this.indexTop(party.address);
         if (x !== -1 && y !== -1) {
-            return { name: this.records[x].data[y].name, lookupType: this.records[x].data[y].lookupType, address };
+            return { name: this.records[x].data[y].name, lookupType: this.records[x].data[y].lookupType, address: party.address };
         }
-        return { address };
+        else if (party.alias) {
+            return { name: party.alias, lookupType: LookupType.Alias, address: party.address };
+        }
+        return { address: party.address };
     }
 }
 LookupService.ɵfac = function LookupService_Factory(t) { return new (t || LookupService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_2__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_3__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_4__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_services_input_validation_input_validation_service__WEBPACK_IMPORTED_MODULE_5__["InputValidationService"])); };
@@ -14536,7 +14551,7 @@ class WalletService {
             else {
                 impAcc.state = implicit.state;
             }
-            impAcc.activities = implicit.activities;
+            impAcc.activities = this.activityMigration(implicit.activities);
             if (implicit.tokens) {
                 impAcc.tokens = implicit.tokens;
             }
@@ -14551,11 +14566,22 @@ class WalletService {
                 else {
                     impAcc.state = originated.state;
                 }
-                origAcc.activities = originated.activities;
+                origAcc.activities = this.activityMigration(originated.activities);
                 impAcc.originatedAccounts.push(origAcc);
             }
             this.wallet.implicitAccounts.push(impAcc);
         }
+    }
+    activityMigration(activities) {
+        return activities.map(activity => {
+            if (!activity.source.address) {
+                activity.source = { address: activity.source };
+            }
+            if (!activity.destination.address) {
+                activity.destination = { address: activity.destination };
+            }
+            return activity;
+        });
     }
 }
 WalletService.ɵfac = function WalletService_Factory(t) { return new (t || WalletService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_encryption_encryption_service__WEBPACK_IMPORTED_MODULE_4__["EncryptionService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_operation_operation_service__WEBPACK_IMPORTED_MODULE_5__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_torus_torus_service__WEBPACK_IMPORTED_MODULE_6__["TorusService"])); };
