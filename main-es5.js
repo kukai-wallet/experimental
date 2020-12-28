@@ -11123,7 +11123,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("Send ", ctx_r184.getAssetName(false), "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r184.getTitle());
       }
     }
 
@@ -14593,6 +14593,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "setParametersFormat",
         value: function setParametersFormat(id) {
           this.parametersFormat = id;
+        }
+      }, {
+        key: "getTitle",
+        value: function getTitle() {
+          var _a;
+
+          if (this.beaconMode && ((_a = this.parameters) === null || _a === void 0 ? void 0 : _a.entrypoint) === 'mint') {
+            return 'Mint token';
+          }
+
+          return "Send ".concat(this.getAssetName(false));
         }
       }]);
 
