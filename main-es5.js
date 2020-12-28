@@ -2444,7 +2444,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("expanded", !(ctx_r90.account.isImplicit() || ctx_r90.account.tokens.length));
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("expanded", !ctx_r90.displayTokenCard());
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](11);
 
@@ -2472,7 +2472,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r90.account.isImplicit() || ctx_r90.account.tokens.length);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r90.displayTokenCard());
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
@@ -2582,6 +2582,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "receivedKind",
         value: function receivedKind(activity) {
           return activity.tokenId && activity.source.address && activity.tokenId.split(':')[0] === activity.source.address ? 'Minted' : 'Received';
+        }
+      }, {
+        key: "displayTokenCard",
+        value: function displayTokenCard() {
+          var _a, _b;
+
+          return ((_b = (_a = this.account) === null || _a === void 0 ? void 0 : _a.tokens) === null || _b === void 0 ? void 0 : _b.length) > 0;
         }
       }]);
 
@@ -26057,18 +26064,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context106.prev = _context106.next) {
                   case 0:
+                    if (_environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) {
+                      _context106.next = 2;
+                      break;
+                    }
+
+                    return _context106.abrupt("return");
+
+                  case 2:
                     tokenId = "".concat(contractAddress, ":").concat(id);
 
                     if (!this.explore(tokenId)) {
-                      _context106.next = 7;
+                      _context106.next = 9;
                       break;
                     }
 
                     console.log("Searching for tokenId: ".concat(tokenId));
-                    _context106.next = 5;
+                    _context106.next = 7;
                     return this.indexerService.getTokenMetadata(contractAddress, id);
 
-                  case 5:
+                  case 7:
                     metadata = _context106.sent;
 
                     if (metadata && metadata.name && metadata.symbol) {
@@ -26093,7 +26108,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.saveMetadata();
                     }
 
-                  case 7:
+                  case 9:
                   case "end":
                     return _context106.stop();
                 }
@@ -28838,7 +28853,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     !*** ./src/environments/environment.ts ***!
     \*****************************************/
 
-  /*! exports provided: environment, CONSTANTS */
+  /*! exports provided: environment, CONSTANTS, TRUSTED_TOKEN_CONTRACTS */
 
   /***/
   function srcEnvironmentsEnvironmentTs(module, __webpack_exports__, __webpack_require__) {
@@ -28856,6 +28871,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     __webpack_require__.d(__webpack_exports__, "CONSTANTS", function () {
       return CONSTANTS;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "TRUSTED_TOKEN_CONTRACTS", function () {
+      return TRUSTED_TOKEN_CONTRACTS;
     });
 
     var environment = {
@@ -28899,6 +28920,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }
     };
+    var TRUSTED_TOKEN_CONTRACTS = ['KT1T6uCxdWcvUhKZfeg83QU2wrormgy63Upd'];
     /***/
   },
 
