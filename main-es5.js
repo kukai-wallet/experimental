@@ -19787,6 +19787,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                           if (age > 360000) {
                             acc.activities.shift();
+
+                            _this36.walletService.storeWallet();
                           }
                         }
                       }
@@ -19967,6 +19969,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log('Unknown metadata');
             console.log(metadata);
           }
+
+          this.walletService.storeWallet();
         }
       }]);
 

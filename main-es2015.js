@@ -10660,6 +10660,7 @@ class CoordinatorService {
                         const age = new Date().getTime() - new Date(latestActivity.timestamp).getTime();
                         if (age > 360000) {
                             acc.activities.shift();
+                            this.walletService.storeWallet();
                         }
                     }
                 }
@@ -10766,6 +10767,7 @@ class CoordinatorService {
             console.log('Unknown metadata');
             console.log(metadata);
         }
+        this.walletService.storeWallet();
     }
 }
 CoordinatorService.ɵfac = function CoordinatorService_Factory(t) { return new (t || CoordinatorService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_activity_activity_service__WEBPACK_IMPORTED_MODULE_2__["ActivityService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_tzrate_tzrate_service__WEBPACK_IMPORTED_MODULE_3__["TzrateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_balance_balance_service__WEBPACK_IMPORTED_MODULE_4__["BalanceService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_delegate_delegate_service__WEBPACK_IMPORTED_MODULE_6__["DelegateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_operation_operation_service__WEBPACK_IMPORTED_MODULE_7__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_8__["ErrorHandlingPipe"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_token_token_service__WEBPACK_IMPORTED_MODULE_10__["TokenService"])); };
