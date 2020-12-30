@@ -11927,7 +11927,7 @@ class TzktService {
     }
     extractTokenMetadata(bigMapId, id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            const tokenBigMap = yield this.fetchApi(`${this.bcd}/bigmap/${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}/${bigMapId}/keys`);
+            const tokenBigMap = yield this.fetchApi(`${this.bcd}/bigmap/${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}/${bigMapId}/keys?size=1000`);
             console.log(`${this.bcd}/bigmap/${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}/${bigMapId}/keys`);
             let url = '';
             const metadata = {};

@@ -22616,7 +22616,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   switch (_context92.prev = _context92.next) {
                     case 0:
                       _context92.next = 2;
-                      return this.fetchApi("".concat(this.bcd, "/bigmap/").concat(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK, "/").concat(bigMapId, "/keys"));
+                      return this.fetchApi("".concat(this.bcd, "/bigmap/").concat(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK, "/").concat(bigMapId, "/keys?size=1000"));
 
                     case 2:
                       tokenBigMap = _context92.sent;
