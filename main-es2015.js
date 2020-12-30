@@ -14087,9 +14087,6 @@ class TokenService {
     }
     searchMetadata(contractAddress, id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-            if (!_environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) {
-                return;
-            }
             const tokenId = `${contractAddress}:${id}`;
             if (this.explore(tokenId)) {
                 console.log(`Searching for tokenId: ${tokenId}`);
@@ -14102,12 +14099,13 @@ class TokenService {
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                     };
+                    const imageSrc = (metadata.imageUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
                     const token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
                         decimals: (!isNaN(metadata.decimals) && metadata.decimals >= 0) ? Number(metadata.decimals) : 0,
                         description: metadata.description ? metadata.description : '',
-                        imageSrc: metadata.imageUri ? metadata.imageUri : '../../../assets/img/tokens/default.png',
+                        imageSrc,
                         isNft: (metadata === null || metadata === void 0 ? void 0 : metadata.isNft) ? metadata.isNft : false,
                         nonTransferable: (metadata === null || metadata === void 0 ? void 0 : metadata.nonTransferable) ? metadata.nonTransferable : false,
                         symbolPrecedence: (metadata === null || metadata === void 0 ? void 0 : metadata.symbolPrecedence) ? metadata.symbolPrecedence : false,

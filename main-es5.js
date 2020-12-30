@@ -26099,31 +26099,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "searchMetadata",
         value: function searchMetadata(contractAddress, id) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee105() {
-            var tokenId, metadata, contract, token;
+            var tokenId, metadata, contract, imageSrc, token;
             return regeneratorRuntime.wrap(function _callee105$(_context106) {
               while (1) {
                 switch (_context106.prev = _context106.next) {
                   case 0:
-                    if (_environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) {
-                      _context106.next = 2;
-                      break;
-                    }
-
-                    return _context106.abrupt("return");
-
-                  case 2:
                     tokenId = "".concat(contractAddress, ":").concat(id);
 
                     if (!this.explore(tokenId)) {
-                      _context106.next = 9;
+                      _context106.next = 7;
                       break;
                     }
 
                     console.log("Searching for tokenId: ".concat(tokenId));
-                    _context106.next = 7;
+                    _context106.next = 5;
                     return this.indexerService.getTokenMetadata(contractAddress, id);
 
-                  case 7:
+                  case 5:
                     metadata = _context106.sent;
 
                     if (metadata && metadata.name && metadata.symbol) {
@@ -26132,12 +26124,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                       };
+                      imageSrc = metadata.imageUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
                       token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
                         decimals: !isNaN(metadata.decimals) && metadata.decimals >= 0 ? Number(metadata.decimals) : 0,
                         description: metadata.description ? metadata.description : '',
-                        imageSrc: metadata.imageUri ? metadata.imageUri : '../../../assets/img/tokens/default.png',
+                        imageSrc: imageSrc,
                         isNft: (metadata === null || metadata === void 0 ? void 0 : metadata.isNft) ? metadata.isNft : false,
                         nonTransferable: (metadata === null || metadata === void 0 ? void 0 : metadata.nonTransferable) ? metadata.nonTransferable : false,
                         symbolPrecedence: (metadata === null || metadata === void 0 ? void 0 : metadata.symbolPrecedence) ? metadata.symbolPrecedence : false,
@@ -26148,7 +26141,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.saveMetadata();
                     }
 
-                  case 9:
+                  case 7:
                   case "end":
                     return _context106.stop();
                 }
