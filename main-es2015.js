@@ -14112,7 +14112,7 @@ class TokenService {
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                     };
-                    const imageSrc = (metadata.imageUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
+                    const imageSrc = (metadata.imageUri /* && TRUSTED_TOKEN_CONTRACTS.includes(contractAddress)*/) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
                     const token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
