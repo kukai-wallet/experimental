@@ -6651,11 +6651,10 @@ class SendComponent {
     }
     ngOnChanges(changes) {
         if (this.beaconMode) {
-            if (this.operationRequest) {
+            if (this.operationRequest &&
+                this.operationRequest.operationDetails[0].kind === 'transaction') {
                 console.log('Beacon payload to send', this.operationRequest);
-                if (this.operationRequest.operationDetails[0].kind === 'transaction') {
-                    this.loadBeaconPayload();
-                }
+                this.loadBeaconPayload();
             }
             else {
                 this.operationResponse.emit(null);
@@ -6692,8 +6691,7 @@ class SendComponent {
                 }
                 else {
                     if (this.operationRequest.operationDetails[0].destination) {
-                        const destination = this.operationRequest.operationDetails[0].destination;
-                        this.toPkh = destination;
+                        this.toPkh = this.operationRequest.operationDetails[0].destination;
                     }
                     else {
                         console.warn('No destination');
@@ -10144,7 +10142,6 @@ class ActivityService {
             this.handleUnknownTokenIds(unknownTokenIds);
             if (account.state !== counter) {
                 console.log(account.state + ' ' + counter);
-                console.log('data', unknownTokenIds);
                 if (data.tokens) {
                     this.updateTokenBalances(account, data.tokens);
                 }
@@ -10201,7 +10198,6 @@ class ActivityService {
                 }
             }
             else {
-                console.log('#');
                 console.log(operations);
             }
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
@@ -10809,8 +10805,7 @@ class CoordinatorService {
             account.activities.unshift(delegation);
         }
         else {
-            console.log('Unknown metadata');
-            console.log(metadata);
+            console.log('Unknown metadata', metadata);
         }
         this.walletService.storeWallet();
     }
@@ -11840,7 +11835,6 @@ class TzktService {
             });
         });
     }
-    // Todo: Merge with token transactions
     getOperations(address, knownTokenIds = [], wallet) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             const ops = yield fetch(`https://api.${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}.tzkt.io/v1/accounts/${address}/operations?limit=20&type=delegation,origination,transaction`)
@@ -13985,8 +13979,12 @@ class OperationService {
     }
     parseTokenTransfer(op) {
         const opJson = JSON.stringify(op.parameters);
-        const addresses = opJson.match(/(?<={\"string\":\")[^\"]*/g);
-        const amounts = opJson.match(/(?<={\"int\":\")[^\"]*/g);
+        const addresses = opJson.match(/\{\"string\":\"[^\"]*/g).map(s => {
+            return s.slice(11);
+        });
+        const amounts = opJson.match(/\{\"int\":\"[^\"]*/g).map(i => {
+            return i.slice(8);
+        });
         if (addresses.length === 2) {
             if (amounts.length === 1) {
                 const fa12ref = this.getFA12Transaction(addresses[0], addresses[1], amounts[0]);
@@ -14109,7 +14107,8 @@ class TokenService {
                 const metadata = yield this.indexerService.getTokenMetadata(contractAddress, id);
                 if (metadata &&
                     metadata.name &&
-                    metadata.symbol) {
+                    metadata.symbol &&
+                    (!isNaN(metadata.decimals) && metadata.decimals >= 0)) {
                     const contract = {
                         kind: metadata.tokenType ? metadata.tokenType : 'FA2',
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
@@ -14119,7 +14118,7 @@ class TokenService {
                     const token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
-                        decimals: (!isNaN(metadata.decimals) && metadata.decimals >= 0) ? Number(metadata.decimals) : 0,
+                        decimals: Number(metadata.decimals),
                         description: metadata.description ? metadata.description : '',
                         imageSrc,
                         isNft: (metadata === null || metadata === void 0 ? void 0 : metadata.isNft) ? metadata.isNft : false,

@@ -13198,12 +13198,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnChanges",
         value: function ngOnChanges(changes) {
           if (this.beaconMode) {
-            if (this.operationRequest) {
+            if (this.operationRequest && this.operationRequest.operationDetails[0].kind === 'transaction') {
               console.log('Beacon payload to send', this.operationRequest);
-
-              if (this.operationRequest.operationDetails[0].kind === 'transaction') {
-                this.loadBeaconPayload();
-              }
+              this.loadBeaconPayload();
             } else {
               this.operationResponse.emit(null);
             }
@@ -13213,7 +13210,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "loadBeaconPayload",
         value: function loadBeaconPayload() {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
-            var _iterator, _step, _step$value, i, op, tokenTransfer, asset, destination;
+            var _iterator, _step, _step$value, i, op, tokenTransfer, asset;
 
             return regeneratorRuntime.wrap(function _callee19$(_context19) {
               while (1) {
@@ -13265,8 +13262,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         }
                       } else {
                         if (this.operationRequest.operationDetails[0].destination) {
-                          destination = this.operationRequest.operationDetails[0].destination;
-                          this.toPkh = destination;
+                          this.toPkh = this.operationRequest.operationDetails[0].destination;
                         } else {
                           console.warn('No destination');
                         }
@@ -18623,7 +18619,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             if (account.state !== counter) {
               console.log(account.state + ' ' + counter);
-              console.log('data', unknownTokenIds);
 
               if (data.tokens) {
                 _this29.updateTokenBalances(account, data.tokens);
@@ -18739,7 +18734,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _iterator10.f();
               }
             } else {
-              console.log('#');
               console.log(operations);
             }
 
@@ -20048,8 +20042,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             _account.activities.unshift(delegation);
           } else {
-            console.log('Unknown metadata');
-            console.log(metadata);
+            console.log('Unknown metadata', metadata);
           }
 
           this.walletService.storeWallet();
@@ -22451,8 +22444,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }, _callee88, this);
             }));
-          } // Todo: Merge with token transactions
-
+          }
         }, {
           key: "getOperations",
           value: function getOperations(address) {
@@ -25901,8 +25893,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "parseTokenTransfer",
         value: function parseTokenTransfer(op) {
           var opJson = JSON.stringify(op.parameters);
-          var addresses = opJson.match(/(?<={\"string\":\")[^\"]*/g);
-          var amounts = opJson.match(/(?<={\"int\":\")[^\"]*/g);
+          var addresses = opJson.match(/\{\"string\":\"[^\"]*/g).map(function (s) {
+            return s.slice(11);
+          });
+          var amounts = opJson.match(/\{\"int\":\"[^\"]*/g).map(function (i) {
+            return i.slice(8);
+          });
 
           if (addresses.length === 2) {
             if (amounts.length === 1) {
@@ -26152,7 +26148,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 5:
                     metadata = _context106.sent;
 
-                    if (metadata && metadata.name && metadata.symbol) {
+                    if (metadata && metadata.name && metadata.symbol && !isNaN(metadata.decimals) && metadata.decimals >= 0) {
                       contract = {
                         kind: metadata.tokenType ? metadata.tokenType : 'FA2',
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
@@ -26164,7 +26160,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
-                        decimals: !isNaN(metadata.decimals) && metadata.decimals >= 0 ? Number(metadata.decimals) : 0,
+                        decimals: Number(metadata.decimals),
                         description: metadata.description ? metadata.description : '',
                         imageSrc: imageSrc,
                         isNft: (metadata === null || metadata === void 0 ? void 0 : metadata.isNft) ? metadata.isNft : false,
