@@ -6685,7 +6685,7 @@ class SendComponent {
                     this.amount = big_js__WEBPACK_IMPORTED_MODULE_9___default()(tokenTransfer.amount).div(Math.pow(10, asset.decimals)).toFixed();
                     this.toPkh = tokenTransfer.to;
                     this.tokenTransfer = tokenTransfer.tokenId;
-                    if (asset.isNft || asset.binaryAmount) {
+                    if (asset.booleanAmount) {
                         this.hideAmount = true;
                     }
                 }
@@ -6741,7 +6741,7 @@ class SendComponent {
                 this.clearForm();
                 if (this.tokenTransfer) {
                     const asset = this.tokenService.getAsset(this.tokenTransfer);
-                    if (asset.isNft || asset.binaryAmount) {
+                    if (asset.booleanAmount) {
                         this.hideAmount = true;
                         this.amount = '1';
                         this.amountChange();
@@ -11775,9 +11775,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var crypto_browserify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! crypto-browserify */ "./node_modules/crypto-browserify/index.js");
 /* harmony import */ var crypto_browserify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(crypto_browserify__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! big.js */ "./node_modules/big.js/big.js");
-/* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_4__);
-
 
 
 
@@ -11944,7 +11941,7 @@ class TzktService {
             const lookFor = {
                 strings: ['name', 'symbol', 'description', 'imageUri'],
                 numbers: ['decimals'],
-                booleans: ['isNft', 'nonTransferrable', 'nonTransferable', 'symbolPrecedence', 'binaryAmount']
+                booleans: ['nonTransferable', 'booleanAmount', 'symbolPreference']
             };
             try {
                 for (const child of tokenBigMap) {
@@ -12032,6 +12029,9 @@ class TzktService {
                 metadata['nonTransferable'] = metadata['nonTransferrable'];
                 delete metadata['nonTransferrable'];
             }
+            if (metadata.decimals === undefined) {
+                metadata.decimals = 0;
+            }
             console.log(metadata);
             return metadata;
         });
@@ -12066,9 +12066,10 @@ class TzktService {
                             metadata['tokenType'] = 'FA1.2';
                         }
                     }
-                    if (contractMeta['token-category']) {
-                        metadata['tokenCategory'] = contractMeta['token-category'];
+                    if (contractMeta['tokenCategory']) {
+                        metadata['tokenCategory'] = contractMeta['tokenCategory'];
                     }
+                    console.log('contract metadata', metadata);
                     return metadata;
                 }
                 catch (_a) { }
@@ -12132,27 +12133,6 @@ class TzktService {
                 .then(response => response.json())
                 .then(data => data);
         });
-    }
-    zarithDecodeInt(hex) {
-        let count = 0;
-        let value = big_js__WEBPACK_IMPORTED_MODULE_4___default()(0);
-        while (1) {
-            const byte = Number('0x' + hex.slice(0 + count * 2, 2 + count * 2));
-            if (count === 0) {
-                value = big_js__WEBPACK_IMPORTED_MODULE_4___default()(((byte & 63) * (Math.pow(128, count)))).add(value);
-            }
-            else {
-                value = big_js__WEBPACK_IMPORTED_MODULE_4___default()(((byte & 127) * 2) >> 1).times(64 * Math.pow(128, (count - 1))).add(value);
-            }
-            count++;
-            if ((byte & 128) !== 128) {
-                break;
-            }
-        }
-        return {
-            value: value,
-            count: count
-        };
     }
 }
 TzktService.ɵfac = function TzktService_Factory(t) { return new (t || TzktService)(); };
@@ -14121,10 +14101,8 @@ class TokenService {
                         decimals: Number(metadata.decimals),
                         description: metadata.description ? metadata.description : '',
                         imageSrc,
-                        isNft: (metadata === null || metadata === void 0 ? void 0 : metadata.isNft) ? metadata.isNft : false,
                         nonTransferable: (metadata === null || metadata === void 0 ? void 0 : metadata.nonTransferable) ? metadata.nonTransferable : false,
-                        symbolPrecedence: (metadata === null || metadata === void 0 ? void 0 : metadata.symbolPrecedence) ? metadata.symbolPrecedence : false,
-                        binaryAmount: (metadata === null || metadata === void 0 ? void 0 : metadata.binaryAmount) ? metadata.binaryAmount : false
+                        booleanAmount: (metadata === null || metadata === void 0 ? void 0 : metadata.booleanAmount) ? metadata.booleanAmount : false
                     };
                     contract.tokens[id] = token;
                     this.addAsset(contractAddress, contract);
@@ -14200,7 +14178,7 @@ class TokenService {
         else {
             const token = this.getAsset(tokenKey);
             if (token) {
-                if (token.isNft || token.binaryAmount) {
+                if (!token.symbolPreference) {
                     return `${token.name}`;
                 }
                 else {
@@ -15928,7 +15906,8 @@ const CONSTANTS = {
                     symbol: 'USDtz',
                     decimals: 6,
                     description: 'USDtz is a Tezos on-chain stablecoin pegged to the value of the United States Dollar.',
-                    imageSrc: '../../../assets/img/tokens/usdtz.png'
+                    imageSrc: '../../../assets/img/tokens/usdtz.png',
+                    symbolPreference: true
                 }
             }
         },
@@ -15941,10 +15920,23 @@ const CONSTANTS = {
                     symbol: 'MFIL',
                     decimals: 0,
                     description: 'This certificate verifies that the holder of its private key attended, contributed and completed the Tezos Israel and Madfish Solution Workshop on December 7th to the 9th, 2020. The certificate holder utilized skills in smart contract development and tokenization to build, test and deploy a token on the Tezos blockchain.',
-                    imageSrc: 'https://gateway.pinata.cloud/ipfs/QmQ6TN52PCmm5oLWmJd3m5ceahsXHyHhiA6ZEgqQZU6bZy',
+                    imageSrc: '../../../assets/img/tokens/mfil.jfif',
                     nonTransferable: true,
-                    symbolPrecedence: false,
-                    binaryAmount: true
+                    booleanAmount: true
+                }
+            }
+        },
+        'KT1RXpLtz22YgX24QQhxKVyKvtKZFaAVtTB9': {
+            kind: 'FA1.2',
+            category: 'finance',
+            tokens: {
+                0: {
+                    name: 'Kolibri USD',
+                    symbol: 'kUSD',
+                    decimals: 18,
+                    description: 'Kolibri is a Tezos based stablecoin built on Collateralized Debt Positions (CDPs) known as Ovens.',
+                    imageSrc: '../../../assets/img/tokens/kusd.png',
+                    symbolPreference: true
                 }
             }
         }
