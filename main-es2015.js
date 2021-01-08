@@ -14094,7 +14094,7 @@ class TokenService {
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                     };
-                    const imageSrc = (metadata.imageUri /* && TRUSTED_TOKEN_CONTRACTS.includes(contractAddress)*/) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
+                    const imageSrc = (metadata.imageUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
                     const token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
@@ -15943,7 +15943,7 @@ const CONSTANTS = {
     }
 };
 const TRUSTED_TOKEN_CONTRACTS = [
-    'KT1T6uCxdWcvUhKZfeg83QU2wrormgy63Upd'
+    'KT1LyJV9JdcDCp5zDfw6MxpoShXYrBMG3dfK'
 ];
 
 

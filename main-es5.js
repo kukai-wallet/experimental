@@ -26122,9 +26122,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                       };
-                      imageSrc = metadata.imageUri
-                      /* && TRUSTED_TOKEN_CONTRACTS.includes(contractAddress)*/
-                      ? metadata.imageUri : '../../../assets/img/tokens/default.png';
+                      imageSrc = metadata.imageUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
                       token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
@@ -28993,7 +28991,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }
     };
-    var TRUSTED_TOKEN_CONTRACTS = ['KT1T6uCxdWcvUhKZfeg83QU2wrormgy63Upd'];
+    var TRUSTED_TOKEN_CONTRACTS = ['KT1LyJV9JdcDCp5zDfw6MxpoShXYrBMG3dfK'];
     /***/
   },
 
