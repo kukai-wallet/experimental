@@ -11939,7 +11939,7 @@ class TzktService {
             let url = '';
             const metadata = {};
             const lookFor = {
-                strings: ['name', 'symbol', 'description', 'imageUri'],
+                strings: ['name', 'symbol', 'description', 'displayUri', 'displayURI'],
                 numbers: ['decimals'],
                 booleans: ['nonTransferable', 'booleanAmount', 'symbolPreference']
             };
@@ -11987,12 +11987,16 @@ class TzktService {
                 console.warn(e);
                 return null;
             }
+            if (!metadata['displayUri'] && metadata['displayURI']) {
+                metadata['displayUri'] = metadata['displayURI'];
+                delete metadata['displayURI'];
+            }
             console.log(metadata);
             console.log(url);
             if (!url) {
                 console.log('No offchain metadata');
-                if (metadata['imageUri']) {
-                    metadata['imageUri'] = this.uriToUrl(metadata['imageUri']);
+                if (metadata['displayUri']) {
+                    metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
                 }
                 return metadata;
             }
@@ -12022,8 +12026,8 @@ class TzktService {
                     metadata[key] = offChainMeta[key];
                 }
             }
-            if (metadata['imageUri']) {
-                metadata['imageUri'] = this.uriToUrl(metadata['imageUri']);
+            if (metadata['displayUri']) {
+                metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
             }
             if (typeof metadata['nonTransferrable'] !== 'undefined') { // Temp spelling fix
                 metadata['nonTransferable'] = metadata['nonTransferrable'];
@@ -14094,7 +14098,7 @@ class TokenService {
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                     };
-                    const imageSrc = (metadata.imageUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
+                    const imageSrc = (metadata.displayUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) ? metadata.displayUri : '../../../assets/img/tokens/default.png';
                     const token = {
                         name: metadata.name,
                         symbol: metadata.symbol,

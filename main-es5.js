@@ -22640,7 +22640,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       url = '';
                       metadata = {};
                       lookFor = {
-                        strings: ['name', 'symbol', 'description', 'imageUri'],
+                        strings: ['name', 'symbol', 'description', 'displayUri', 'displayURI'],
                         numbers: ['decimals'],
                         booleans: ['nonTransferable', 'booleanAmount', 'symbolPreference']
                       };
@@ -22808,38 +22808,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       return _context92.abrupt("return", null);
 
                     case 51:
+                      if (!metadata['displayUri'] && metadata['displayURI']) {
+                        metadata['displayUri'] = metadata['displayURI'];
+                        delete metadata['displayURI'];
+                      }
+
                       console.log(metadata);
                       console.log(url);
 
                       if (url) {
-                        _context92.next = 57;
+                        _context92.next = 58;
                         break;
                       }
 
                       console.log('No offchain metadata');
 
-                      if (metadata['imageUri']) {
-                        metadata['imageUri'] = this.uriToUrl(metadata['imageUri']);
+                      if (metadata['displayUri']) {
+                        metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
                       }
 
                       return _context92.abrupt("return", metadata);
 
-                    case 57:
-                      _context92.next = 59;
+                    case 58:
+                      _context92.next = 60;
                       return this.fetchApi("".concat(url));
 
-                    case 59:
+                    case 60:
                       offChainMeta = _context92.sent;
 
                       if (offChainMeta) {
-                        _context92.next = 63;
+                        _context92.next = 64;
                         break;
                       }
 
                       console.warn('Failed to fetch offchain metadata');
                       return _context92.abrupt("return", null);
 
-                    case 63:
+                    case 64:
                       console.log(offChainMeta);
                       _iterator35 = _createForOfIteratorHelper(lookFor.strings);
 
@@ -22893,8 +22898,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         _iterator37.f();
                       }
 
-                      if (metadata['imageUri']) {
-                        metadata['imageUri'] = this.uriToUrl(metadata['imageUri']);
+                      if (metadata['displayUri']) {
+                        metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
                       }
 
                       if (typeof metadata['nonTransferrable'] !== 'undefined') {
@@ -22910,7 +22915,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       console.log(metadata);
                       return _context92.abrupt("return", metadata);
 
-                    case 75:
+                    case 76:
                     case "end":
                       return _context92.stop();
                   }
@@ -26122,7 +26127,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                       };
-                      imageSrc = metadata.imageUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress) ? metadata.imageUri : '../../../assets/img/tokens/default.png';
+                      imageSrc = metadata.displayUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress) ? metadata.displayUri : '../../../assets/img/tokens/default.png';
                       token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
