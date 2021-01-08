@@ -11317,7 +11317,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", ctx_r197.tokenService.getAsset(ctx_r197.tokenTransfer).imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", ctx_r197.tokenService.getAsset(ctx_r197.tokenTransfer).displayUrl, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -12127,7 +12127,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 2) {
         var ctx_r256 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](3);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", ctx_r256.tokenService.getAsset(ctx_r256.tokenTransfer).imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate"]("src", ctx_r256.tokenService.getAsset(ctx_r256.tokenTransfer).displayUrl, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsanitizeUrl"]);
       }
     }
 
@@ -15971,7 +15971,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx_r392.token.imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx_r392.token.displayUrl, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
@@ -16071,7 +16071,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx.token.imageSrc, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate"]("src", ctx.token.displayUrl, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
@@ -26102,7 +26102,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "searchMetadata",
         value: function searchMetadata(contractAddress, id) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee105() {
-            var tokenId, metadata, contract, imageSrc, token;
+            var tokenId, metadata, contract, displayUrl, token;
             return regeneratorRuntime.wrap(function _callee105$(_context106) {
               while (1) {
                 switch (_context106.prev = _context106.next) {
@@ -26127,13 +26127,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         category: metadata.tokenCategory ? metadata.tokenCategory : '',
                         tokens: {}
                       };
-                      imageSrc = metadata.displayUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress) ? metadata.displayUri : '../../../assets/img/tokens/default.png';
+                      displayUrl = metadata.displayUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress) ? metadata.displayUri : '../../../assets/img/tokens/default.png';
                       token = {
                         name: metadata.name,
                         symbol: metadata.symbol,
                         decimals: Number(metadata.decimals),
                         description: metadata.description ? metadata.description : '',
-                        imageSrc: imageSrc,
+                        displayUrl: displayUrl,
                         nonTransferable: (metadata === null || metadata === void 0 ? void 0 : metadata.nonTransferable) ? metadata.nonTransferable : false,
                         booleanAmount: (metadata === null || metadata === void 0 ? void 0 : metadata.booleanAmount) ? metadata.booleanAmount : false
                       };
@@ -26196,7 +26196,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             contractAddress: contractAddress,
             id: id,
             decimals: 0,
-            imageSrc: '../../../assets/img/tokens/default.png',
+            displayUrl: '../../../assets/img/tokens/default.png',
             name: '[Unknown token]',
             symbol: '',
             description: '',
@@ -28960,7 +28960,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               symbol: 'USDtz',
               decimals: 6,
               description: 'USDtz is a Tezos on-chain stablecoin pegged to the value of the United States Dollar.',
-              imageSrc: '../../../assets/img/tokens/usdtz.png',
+              displayUrl: '../../../assets/img/tokens/usdtz.png',
               symbolPreference: true
             }
           }
@@ -28974,7 +28974,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               symbol: 'MFIL',
               decimals: 0,
               description: 'This certificate verifies that the holder of its private key attended, contributed and completed the Tezos Israel and Madfish Solution Workshop on December 7th to the 9th, 2020. The certificate holder utilized skills in smart contract development and tokenization to build, test and deploy a token on the Tezos blockchain.',
-              imageSrc: '../../../assets/img/tokens/mfil.jfif',
+              displayUrl: '../../../assets/img/tokens/mfil.jfif',
               nonTransferable: true,
               booleanAmount: true
             }
@@ -28989,7 +28989,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               symbol: 'kUSD',
               decimals: 18,
               description: 'Kolibri is a Tezos based stablecoin built on Collateralized Debt Positions (CDPs) known as Ovens.',
-              imageSrc: '../../../assets/img/tokens/kusd.png',
+              displayUrl: '../../../assets/img/tokens/kusd.png',
               symbolPreference: true
             }
           }
