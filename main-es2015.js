@@ -12015,14 +12015,14 @@ class TzktService {
                 console.warn(e);
                 return null;
             }
-            if (!metadata['displayUri'] && metadata['displayURI']) {
-                metadata['displayUri'] = metadata['displayURI'];
-                delete metadata['displayURI'];
-            }
             console.log(metadata);
             console.log(url);
             if (!url) {
                 console.log('No offchain metadata');
+                if (!metadata['displayUri'] && metadata['displayURI']) {
+                    metadata['displayUri'] = metadata['displayURI'];
+                    delete metadata['displayURI'];
+                }
                 if (metadata['displayUri']) {
                     metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
                 }
@@ -12053,6 +12053,10 @@ class TzktService {
                 if (typeof offChainMeta[key] !== 'undefined' && typeof offChainMeta[key] === 'boolean' && typeof metadata[key] === 'undefined') {
                     metadata[key] = offChainMeta[key];
                 }
+            }
+            if (!metadata['displayUri'] && metadata['displayURI']) {
+                metadata['displayUri'] = metadata['displayURI'];
+                delete metadata['displayURI'];
             }
             if (metadata['displayUri']) {
                 metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);

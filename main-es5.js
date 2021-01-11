@@ -22865,11 +22865,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       return _context92.abrupt("return", null);
 
                     case 51:
-                      if (!metadata['displayUri'] && metadata['displayURI']) {
-                        metadata['displayUri'] = metadata['displayURI'];
-                        delete metadata['displayURI'];
-                      }
-
                       console.log(metadata);
                       console.log(url);
 
@@ -22879,6 +22874,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }
 
                       console.log('No offchain metadata');
+
+                      if (!metadata['displayUri'] && metadata['displayURI']) {
+                        metadata['displayUri'] = metadata['displayURI'];
+                        delete metadata['displayURI'];
+                      }
 
                       if (metadata['displayUri']) {
                         metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
@@ -22955,6 +22955,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         _iterator37.f();
                       }
 
+                      if (!metadata['displayUri'] && metadata['displayURI']) {
+                        metadata['displayUri'] = metadata['displayURI'];
+                        delete metadata['displayURI'];
+                      }
+
                       if (metadata['displayUri']) {
                         metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
                       }
@@ -22972,7 +22977,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       console.log(metadata);
                       return _context92.abrupt("return", metadata);
 
-                    case 76:
+                    case 77:
                     case "end":
                       return _context92.stop();
                   }
