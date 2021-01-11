@@ -12061,10 +12061,6 @@ class TzktService {
             if (metadata['displayUri']) {
                 metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
             }
-            if (typeof metadata['nonTransferrable'] !== 'undefined') { // Temp spelling fix
-                metadata['nonTransferable'] = metadata['nonTransferrable'];
-                delete metadata['nonTransferrable'];
-            }
             if (metadata.decimals === undefined) {
                 metadata.decimals = 0;
             }

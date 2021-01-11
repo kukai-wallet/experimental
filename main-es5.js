@@ -22964,12 +22964,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                         metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
                       }
 
-                      if (typeof metadata['nonTransferrable'] !== 'undefined') {
-                        // Temp spelling fix
-                        metadata['nonTransferable'] = metadata['nonTransferrable'];
-                        delete metadata['nonTransferrable'];
-                      }
-
                       if (metadata.decimals === undefined) {
                         metadata.decimals = 0;
                       }
@@ -22977,7 +22971,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       console.log(metadata);
                       return _context92.abrupt("return", metadata);
 
-                    case 77:
+                    case 76:
                     case "end":
                       return _context92.stop();
                   }
