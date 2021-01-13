@@ -14350,7 +14350,7 @@ class TorusService {
                         baseUrl: `${location.origin}/serviceworker`,
                         enableLogging: !(this.proxy.network === 'mainnet'),
                         proxyContractAddress: this.proxy.address,
-                        network: (this.proxy.network === 'mainnet') ? this.proxy.network : 'testnet',
+                        network: this.proxy.network,
                     });
                     yield torusdirectsdk.init({ skipSw: false });
                     this.torus = torusdirectsdk;
