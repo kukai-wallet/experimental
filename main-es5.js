@@ -26521,7 +26521,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       baseUrl: "".concat(location.origin, "/serviceworker"),
                       enableLogging: !(this.proxy.network === 'mainnet'),
                       proxyContractAddress: this.proxy.address,
-                      network: this.proxy.network
+                      network: this.proxy.network === 'mainnet' ? this.proxy.network : 'testnet'
                     });
                     _context107.next = 5;
                     return torusdirectsdk.init({
