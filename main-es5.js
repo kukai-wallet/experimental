@@ -15489,7 +15489,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r415.pwdValid);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r415.pwdInvalid);
       }
     }
 
@@ -15653,6 +15653,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.operationService = operationService;
         this.ledgerService = ledgerService;
         this.signResponse = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.password = '';
         this.pwdInvalid = '';
         this.payload = '';
         this.isMessage = false;
@@ -15693,11 +15694,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "isMessageSigning",
         value: function isMessageSigning() {
-          return this.signRequest.payload.match(/^0501[a-f0-9]{8}54657a6f73205369676e6564204d6573736167653a20[a-f0-9]*$/); //05070707070a00000004a83650210a0000001601cc71fa0ddd7113f936438158e407160675706ae800070700010a000000200f0db0ce6f057a8835adb6a2c617fd8a136b8028fac90aab7b4766def688ea0c
-          //05010000004254657a6f73205369676e6564204d6573736167653a206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421
-          //05010000052e54657a6f73205369676e6564204d6573736167653a206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421
-          //206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421
-          // 90
+          return this.signRequest.payload.match(/^0501[a-f0-9]{8}54657a6f73205369676e6564204d6573736167653a20[a-f0-9]*$/);
         }
       }, {
         key: "sign",
@@ -15786,7 +15783,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     signature = _context34.sent;
 
                     if (signature) {
-                      this.acceptSigning(this.operationService.hexsigToDdSig(signature));
+                      this.acceptSigning(this.operationService.hexsigToEdsig(signature));
                     } else {
                       this.pwdInvalid = 'Failed to sign transaction';
                     }
@@ -15809,6 +15806,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function rejectSigning() {
           this.closeModal();
           this.signResponse.emit(null);
+          this.clear();
         }
       }, {
         key: "acceptSigning",
@@ -15816,6 +15814,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.closeModal();
           this.messageService.addSuccess('Payload signed!');
           this.signResponse.emit(signature);
+          this.clear();
+        }
+      }, {
+        key: "clear",
+        value: function clear() {
+          this.password = '';
+          this.pwdInvalid = '';
+          this.payload = '';
+          this.isMessage = false;
         }
       }]);
 
@@ -17706,6 +17713,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context43.prev = _context43.next) {
                   case 0:
+                    if (this.walletService.wallet) {
+                      _context43.next = 5;
+                      break;
+                    }
+
+                    console.log('No wallet found');
+                    return _context43.abrupt("return", false);
+
+                  case 5:
+                    if (this.walletService.wallet.getImplicitAccount(message.sourceAddress)) {
+                      _context43.next = 10;
+                      break;
+                    }
+
+                    console.warn('Source address not recogized');
+                    _context43.next = 9;
+                    return this.beaconService.rejectOnSourceAddress(message);
+
+                  case 9:
+                    return _context43.abrupt("return", false);
+
+                  case 10:
                     if (message.payload.slice(0, 2) === '0x') {
                       message.payload = message.payload.slice(2);
                     }
@@ -17715,57 +17744,57 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     console.log('hex', hexString);
 
                     if (!(message.signingType !== 'raw' || !this.inputValidationService.hexString(hexString))) {
-                      _context43.next = 11;
+                      _context43.next = 21;
                       break;
                     }
 
                     console.warn('Unvalid sign payload');
-                    _context43.next = 8;
+                    _context43.next = 18;
                     return this.beaconService.rejectOnUnknown(message);
 
-                  case 8:
+                  case 18:
                     return _context43.abrupt("return", false);
 
-                  case 11:
+                  case 21:
                     if (!(hexString.slice(0, 2) !== '05')) {
-                      _context43.next = 16;
+                      _context43.next = 26;
                       break;
                     }
 
                     console.warn('Unsupported prefix (expected 05)');
-                    _context43.next = 15;
+                    _context43.next = 25;
                     return this.beaconService.rejectOnUnknown(message);
 
-                  case 15:
+                  case 25:
                     return _context43.abrupt("return", false);
-
-                  case 16:
-                    _context43.prev = 16;
-                    parsedPayload = Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_11__["valueDecoder"])(_taquito_local_forging_dist_lib_uint8array_consumer__WEBPACK_IMPORTED_MODULE_12__["Uint8ArrayConsumer"].fromHexString(hexString.slice(2)));
-                    console.log('Parsed sign payload', parsedPayload);
-                    _context43.next = 27;
-                    break;
-
-                  case 21:
-                    _context43.prev = 21;
-                    _context43.t0 = _context43["catch"](16);
-                    console.warn(_context43.t0.message ? 'Decoding: ' + _context43.t0.message : _context43.t0);
-                    _context43.next = 26;
-                    return this.beaconService.rejectOnUnknown(message);
 
                   case 26:
+                    _context43.prev = 26;
+                    parsedPayload = Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_11__["valueDecoder"])(_taquito_local_forging_dist_lib_uint8array_consumer__WEBPACK_IMPORTED_MODULE_12__["Uint8ArrayConsumer"].fromHexString(hexString.slice(2)));
+                    console.log('Parsed sign payload', parsedPayload);
+                    _context43.next = 37;
+                    break;
+
+                  case 31:
+                    _context43.prev = 31;
+                    _context43.t0 = _context43["catch"](26);
+                    console.warn(_context43.t0.message ? 'Decoding: ' + _context43.t0.message : _context43.t0);
+                    _context43.next = 36;
+                    return this.beaconService.rejectOnUnknown(message);
+
+                  case 36:
                     return _context43.abrupt("return", false);
 
-                  case 27:
+                  case 37:
                     this.activeAccount = this.walletService.wallet.getImplicitAccount(message.sourceAddress);
                     return _context43.abrupt("return", true);
 
-                  case 29:
+                  case 39:
                   case "end":
                     return _context43.stop();
                 }
               }
-            }, _callee43, this, [[16, 21]]);
+            }, _callee43, this, [[26, 31]]);
           }));
         }
       }, {
@@ -20348,6 +20377,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context64.prev = _context64.next) {
                   case 0:
+                    console.log(publicKey);
                     response = {
                       type: _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconMessageType"].PermissionResponse,
                       network: message.network,
@@ -20355,10 +20385,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       id: message.id,
                       publicKey: publicKey
                     };
-                    _context64.next = 3;
+                    _context64.next = 4;
                     return this.client.respond(response);
 
-                  case 3:
+                  case 4:
                   case "end":
                     return _context64.stop();
                 }
@@ -26367,8 +26397,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
       }, {
-        key: "hexsigToDdSig",
-        value: function hexsigToDdSig(hex) {
+        key: "hexsigToEdsig",
+        value: function hexsigToEdsig(hex) {
           return this.b58cencode(this.hex2buf(hex), this.prefix.edsig);
         }
       }, {

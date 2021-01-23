@@ -7940,7 +7940,7 @@ function SignExprComponent_div_0_span_12_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const ctx_r415 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r415.pwdValid);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r415.pwdInvalid);
 } }
 function SignExprComponent_div_0_input_14_Template(rf, ctx) { if (rf & 1) {
     const _r418 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
@@ -8007,6 +8007,7 @@ class SignExprComponent {
         this.operationService = operationService;
         this.ledgerService = ledgerService;
         this.signResponse = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.password = '';
         this.pwdInvalid = '';
         this.payload = '';
         this.isMessage = false;
@@ -8034,11 +8035,6 @@ class SignExprComponent {
     }
     isMessageSigning() {
         return (this.signRequest.payload.match(/^0501[a-f0-9]{8}54657a6f73205369676e6564204d6573736167653a20[a-f0-9]*$/));
-        //05070707070a00000004a83650210a0000001601cc71fa0ddd7113f936438158e407160675706ae800070700010a000000200f0db0ce6f057a8835adb6a2c617fd8a136b8028fac90aab7b4766def688ea0c
-        //05010000004254657a6f73205369676e6564204d6573736167653a206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421
-        //05010000052e54657a6f73205369676e6564204d6573736167653a206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421
-        //206d79646170702e636f6d20323032312d30312d31345431353a31363a30345a2048656c6c6f20776f726c6421
-        // 90
     }
     sign() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -8086,7 +8082,7 @@ class SignExprComponent {
                 const toSign = payload.length <= 2290 ? payload.slice(2) : this.operationService.ledgerPreHash(payload.slice(2), new Uint8Array([5]));
                 const signature = yield this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath, '05');
                 if (signature) {
-                    this.acceptSigning(this.operationService.hexsigToDdSig(signature));
+                    this.acceptSigning(this.operationService.hexsigToEdsig(signature));
                 }
                 else {
                     this.pwdInvalid = 'Failed to sign transaction';
@@ -8100,11 +8096,19 @@ class SignExprComponent {
     rejectSigning() {
         this.closeModal();
         this.signResponse.emit(null);
+        this.clear();
     }
     acceptSigning(signature) {
         this.closeModal();
         this.messageService.addSuccess('Payload signed!');
         this.signResponse.emit(signature);
+        this.clear();
+    }
+    clear() {
+        this.password = '';
+        this.pwdInvalid = '';
+        this.payload = '';
+        this.isMessage = false;
     }
 }
 SignExprComponent.ɵfac = function SignExprComponent_Factory(t) { return new (t || SignExprComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_2__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_3__["MessageService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_operation_operation_service__WEBPACK_IMPORTED_MODULE_6__["OperationService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_ledger_ledger_service__WEBPACK_IMPORTED_MODULE_10__["LedgerService"])); };
@@ -8921,6 +8925,15 @@ class UriHandlerComponent {
     }
     isSupportedSignPayload(message) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            if (!this.walletService.wallet) {
+                console.log('No wallet found');
+                return false;
+            }
+            else if (!this.walletService.wallet.getImplicitAccount(message.sourceAddress)) {
+                console.warn('Source address not recogized');
+                yield this.beaconService.rejectOnSourceAddress(message);
+                return false;
+            }
             if (message.payload.slice(0, 2) === '0x') {
                 message.payload = message.payload.slice(2);
             }
@@ -10896,6 +10909,7 @@ class BeaconService {
     }
     approvePermissionRequest(message, publicKey) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            console.log(publicKey);
             const response = {
                 type: _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconMessageType"].PermissionResponse,
                 network: message.network,
@@ -13970,7 +13984,7 @@ class OperationService {
             };
         }
     }
-    hexsigToDdSig(hex) {
+    hexsigToEdsig(hex) {
         return this.b58cencode(this.hex2buf(hex), this.prefix.edsig);
     }
     verify(bytes, sig, pk) {
