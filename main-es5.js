@@ -17710,61 +17710,62 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       message.payload = message.payload.slice(2);
                     }
 
+                    message.payload = message.payload.toLowerCase();
                     hexString = message.payload;
                     console.log('hex', hexString);
 
                     if (!(message.signingType !== 'raw' || !this.inputValidationService.hexString(hexString))) {
-                      _context43.next = 10;
+                      _context43.next = 11;
                       break;
                     }
 
                     console.warn('Unvalid sign payload');
-                    _context43.next = 7;
+                    _context43.next = 8;
                     return this.beaconService.rejectOnUnknown(message);
 
-                  case 7:
+                  case 8:
                     return _context43.abrupt("return", false);
 
-                  case 10:
+                  case 11:
                     if (!(hexString.slice(0, 2) !== '05')) {
-                      _context43.next = 15;
+                      _context43.next = 16;
                       break;
                     }
 
                     console.warn('Unsupported prefix (expected 05)');
-                    _context43.next = 14;
+                    _context43.next = 15;
                     return this.beaconService.rejectOnUnknown(message);
-
-                  case 14:
-                    return _context43.abrupt("return", false);
 
                   case 15:
-                    _context43.prev = 15;
-                    parsedPayload = Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_11__["valueDecoder"])(_taquito_local_forging_dist_lib_uint8array_consumer__WEBPACK_IMPORTED_MODULE_12__["Uint8ArrayConsumer"].fromHexString(hexString.slice(2)));
-                    console.log('Parsed sign payload', parsedPayload);
-                    _context43.next = 26;
-                    break;
-
-                  case 20:
-                    _context43.prev = 20;
-                    _context43.t0 = _context43["catch"](15);
-                    console.warn(_context43.t0.message ? 'Decoding: ' + _context43.t0.message : _context43.t0);
-                    _context43.next = 25;
-                    return this.beaconService.rejectOnUnknown(message);
-
-                  case 25:
                     return _context43.abrupt("return", false);
 
+                  case 16:
+                    _context43.prev = 16;
+                    parsedPayload = Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_11__["valueDecoder"])(_taquito_local_forging_dist_lib_uint8array_consumer__WEBPACK_IMPORTED_MODULE_12__["Uint8ArrayConsumer"].fromHexString(hexString.slice(2)));
+                    console.log('Parsed sign payload', parsedPayload);
+                    _context43.next = 27;
+                    break;
+
+                  case 21:
+                    _context43.prev = 21;
+                    _context43.t0 = _context43["catch"](16);
+                    console.warn(_context43.t0.message ? 'Decoding: ' + _context43.t0.message : _context43.t0);
+                    _context43.next = 26;
+                    return this.beaconService.rejectOnUnknown(message);
+
                   case 26:
+                    return _context43.abrupt("return", false);
+
+                  case 27:
                     this.activeAccount = this.walletService.wallet.getImplicitAccount(message.sourceAddress);
                     return _context43.abrupt("return", true);
 
-                  case 28:
+                  case 29:
                   case "end":
                     return _context43.stop();
                 }
               }
-            }, _callee43, this, [[15, 20]]);
+            }, _callee43, this, [[16, 21]]);
           }));
         }
       }, {

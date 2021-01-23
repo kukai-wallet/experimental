@@ -8924,6 +8924,7 @@ class UriHandlerComponent {
             if (message.payload.slice(0, 2) === '0x') {
                 message.payload = message.payload.slice(2);
             }
+            message.payload = message.payload.toLowerCase();
             const hexString = message.payload;
             console.log('hex', hexString);
             if (message.signingType !== 'raw' || !this.inputValidationService.hexString(hexString)) {
