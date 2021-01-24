@@ -8041,7 +8041,7 @@ class SignExprComponent {
             else {
                 const pwd = this.password;
                 this.password = '';
-                this.messageService.startSpinner('Signing payload...');
+                this.messageService.startSpinner(`Signing ${this.isMessage ? 'message' : 'payload'}...`);
                 let keys;
                 try {
                     keys = yield this.walletService.getKeys(pwd, this.activeAccount.pkh);

@@ -15721,7 +15721,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case 4:
                     pwd = this.password;
                     this.password = '';
-                    this.messageService.startSpinner('Signing payload...');
+                    this.messageService.startSpinner("Signing ".concat(this.isMessage ? 'message' : 'payload', "..."));
                     _context33.prev = 7;
                     _context33.next = 10;
                     return this.walletService.getKeys(pwd, this.activeAccount.pkh);
