@@ -3135,7 +3135,7 @@ class DelegateComponent {
                 this.messageService.startSpinner('Waiting for Ledger signature');
                 let signature;
                 try {
-                    signature = yield this.ledgerService.signOperation(op, this.walletService.wallet.implicitAccounts[0].derivationPath);
+                    signature = yield this.ledgerService.signOperation('03' + op, this.walletService.wallet.implicitAccounts[0].derivationPath);
                 }
                 finally {
                     this.messageService.stopSpinner();
@@ -7030,8 +7030,13 @@ class SendComponent {
                 yield this.messageService.startSpinner('Waiting for Ledger signature...');
                 try {
                     const op = this.sendResponse.payload.unsignedOperation;
-                    const toSign = op.length <= 2290 ? op : this.operationService.ledgerPreHash(op);
-                    const signature = yield this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath);
+                    let signature = '';
+                    if (op.length <= 2290) {
+                        signature = yield this.ledgerService.signOperation('03' + op, this.walletService.wallet.implicitAccounts[0].derivationPath);
+                    }
+                    else {
+                        signature = yield this.ledgerService.signHash(this.operationService.ledgerPreHash('03' + op), this.walletService.wallet.implicitAccounts[0].derivationPath);
+                    }
                     if (signature) {
                         const signedOp = op + signature;
                         this.sendResponse.payload.signedOperation = signedOp;
@@ -8047,7 +8052,7 @@ class SignExprComponent {
                 }
                 if (keys) {
                     this.pwdInvalid = '';
-                    const signature = this.operationService.sign(this.signRequest.payload.slice(2), keys.sk, new Uint8Array([5])).edsig;
+                    const signature = this.operationService.sign(this.signRequest.payload, keys.sk).edsig;
                     this.messageService.stopSpinner();
                     this.acceptSigning(signature);
                 }
@@ -8068,8 +8073,13 @@ class SignExprComponent {
             yield this.messageService.startSpinner('Waiting for Ledger signature...');
             try {
                 const payload = this.signRequest.payload;
-                const toSign = payload.length <= 2290 ? payload.slice(2) : this.operationService.ledgerPreHash(payload.slice(2), new Uint8Array([5]));
-                const signature = yield this.ledgerService.signOperation(toSign, this.walletService.wallet.implicitAccounts[0].derivationPath, '05');
+                let signature = '';
+                if (payload.length <= 2290) {
+                    signature = yield this.ledgerService.signOperation(payload, this.walletService.wallet.implicitAccounts[0].derivationPath);
+                }
+                else {
+                    signature = yield this.ledgerService.signHash(this.operationService.ledgerPreHash(payload), this.walletService.wallet.implicitAccounts[0].derivationPath);
+                }
                 if (signature) {
                     this.acceptSigning(this.operationService.hexsigToEdsig(signature));
                 }
@@ -8087,6 +8097,7 @@ class SignExprComponent {
         this.signResponse.emit(null);
     }
     acceptSigning(signature) {
+        console.log('verify?', this.operationService.verify(this.signRequest.payload, signature, this.activeAccount.pk));
         this.closeModal();
         this.messageService.addSuccess('Payload signed!');
         this.signResponse.emit(signature);
@@ -12797,26 +12808,39 @@ class LedgerService {
             return pk;
         });
     }
-    signOperation(op, path, prefix = '03') {
+    signOperation(op, path) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            if (!['03', '05'].includes(op.slice(0, 2))) {
+                throw new Error('Invalid prefix');
+            }
             yield this.transportCheck();
             const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
             let result;
-            if (op.length !== 64) {
-                op = prefix + op;
-                console.log('op', op);
-                result = yield xtz.signOperation(path, op)
-                    .catch(e => {
-                    console.warn(e);
-                    this.messageService.addError(e, 0);
-                });
+            console.log('op', op);
+            result = yield xtz.signOperation(path, op)
+                .catch(e => {
+                console.warn(e);
+                this.messageService.addError(e, 0);
+            });
+            console.log(JSON.stringify(result));
+            if (result && result.signature) {
+                return result.signature;
             }
-            else {
-                result = yield xtz.signHash(path, op)
-                    .catch(e => {
-                    this.messageService.addError(e, 0);
-                });
+            return null;
+        });
+    }
+    signHash(hash, path) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            if (hash.length !== 64) {
+                throw new Error('Invalid hash!');
             }
+            yield this.transportCheck();
+            const xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
+            let result;
+            result = yield xtz.signHash(path, hash)
+                .catch(e => {
+                this.messageService.addError(e, 0);
+            });
             console.log(JSON.stringify(result));
             if (result && result.signature) {
                 return result.signature;
@@ -13557,7 +13581,7 @@ class OperationService {
                 }
                 else {
                     fop.protocol = header.protocol;
-                    const signed = this.sign(opbytes, keys.sk);
+                    const signed = this.sign('03' + opbytes, keys.sk);
                     const sopbytes = signed.sbytes;
                     fop.signature = signed.edsig;
                     return this.http.post(this.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop])
@@ -13817,12 +13841,6 @@ class OperationService {
             }));
         }));
     }
-    createKTaddress(sopBytes) {
-        const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(sopBytes));
-        const index = new Uint8Array([0, 0, 0, 0]);
-        const hash2 = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](20, this.mergebuf(index, hash));
-        return this.b58cencode(hash2, this.prefix.KT);
-    }
     getConstants() {
         return this.http.get(this.nodeURL + '/chains/main/blocks/head/context/constants');
     }
@@ -13939,18 +13957,13 @@ class OperationService {
         n = n.slice(prefixx.length);
         return n;
     }
-    mergebuf(b, wm = new Uint8Array([3])) {
-        const r = new Uint8Array(wm.length + b.length);
-        r.set(wm);
-        r.set(b, wm.length);
-        return r;
+    ledgerPreHash(opbytes) {
+        return this.buf2hex(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(opbytes)));
     }
-    ledgerPreHash(opbytes, wm = new Uint8Array([3])) {
-        return this.buf2hex(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(opbytes), wm)));
-    }
-    sign(bytes, sk, wm = new Uint8Array([3])) {
+    sign(bytes, sk) {
         if (sk.slice(0, 4) === 'spsk') {
-            const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes), wm));
+            const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(bytes));
+            bytes = bytes.slice(2);
             const key = (new elliptic__WEBPACK_IMPORTED_MODULE_14__["ec"]('secp256k1')).keyFromPrivate(new Uint8Array(this.b58cdecode(sk, this.prefix.spsk)));
             let sig = key.sign(hash, { canonical: true });
             sig = new Uint8Array(sig.r.toArray().concat(sig.s.toArray()));
@@ -13964,7 +13977,8 @@ class OperationService {
             };
         }
         else {
-            const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes), wm));
+            const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(bytes));
+            bytes = bytes.slice(2);
             const sig = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_sign_detached"](hash, this.b58cdecode(sk, this.prefix.edsk), 'uint8array');
             const edsig = this.b58cencode(sig, this.prefix.edsig);
             const sbytes = bytes + this.buf2hex(sig);
@@ -13980,8 +13994,9 @@ class OperationService {
         return this.b58cencode(this.hex2buf(hex), this.prefix.edsig);
     }
     verify(bytes, sig, pk) {
-        const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.mergebuf(this.hex2buf(bytes)));
-        const signature = this.b58cdecode(sig, this.prefix.sig);
+        console.log('bytes', bytes);
+        const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(bytes));
+        const signature = this.b58cdecode(sig, this.prefix.edsig);
         const publicKey = this.b58cdecode(pk, this.prefix.edpk);
         return libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_sign_verify_detached"](signature, hash, publicKey);
     }
