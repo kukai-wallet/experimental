@@ -8097,8 +8097,8 @@ class SignExprComponent {
         this.signResponse.emit(null);
     }
     acceptSigning(signature) {
+        this.messageService.addSuccess(this.isMessage ? 'Message signed!' : 'Payload signed!');
         this.closeModal();
-        this.messageService.addSuccess('Payload signed!');
         this.signResponse.emit(signature);
     }
     closeModal() {
