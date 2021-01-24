@@ -13961,6 +13961,9 @@ class OperationService {
         return this.buf2hex(libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(opbytes)));
     }
     sign(bytes, sk) {
+        if (!['03', '05'].includes(bytes.slice(0, 2))) {
+            throw new Error('Invalid prefix');
+        }
         if (sk.slice(0, 4) === 'spsk') {
             const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(bytes));
             bytes = bytes.slice(2);
