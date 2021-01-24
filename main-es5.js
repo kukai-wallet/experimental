@@ -15827,7 +15827,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "acceptSigning",
         value: function acceptSigning(signature) {
-          console.log('verify?', this.operationService.verify(this.signRequest.payload, signature, this.activeAccount.pk));
           this.closeModal();
           this.messageService.addSuccess('Payload signed!');
           this.signResponse.emit(signature);

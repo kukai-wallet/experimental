@@ -8097,7 +8097,6 @@ class SignExprComponent {
         this.signResponse.emit(null);
     }
     acceptSigning(signature) {
-        console.log('verify?', this.operationService.verify(this.signRequest.payload, signature, this.activeAccount.pk));
         this.closeModal();
         this.messageService.addSuccess('Payload signed!');
         this.signResponse.emit(signature);
