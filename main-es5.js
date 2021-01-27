@@ -1495,21 +1495,6 @@
     },
 
     /***/
-    13:
-    /*!********************!*\
-      !*** fs (ignored) ***!
-      \********************/
-
-    /*! no static exports found */
-
-    /***/
-    function _(module, exports) {
-      /* (ignored) */
-
-      /***/
-    },
-
-    /***/
     "1U8w":
     /*!***********************************************************!*\
       !*** ./src/app/components/settings/settings.component.ts ***!
@@ -16955,7 +16940,7 @@
           function TzktService() {
             _classCallCheck(this, TzktService);
 
-            this.bcd = 'https://you.better-call.dev/v1';
+            this.bcd = 'https://api.better-call.dev/v1';
           }
 
           _createClass(TzktService, [{
@@ -17728,6 +17713,8 @@
                                     _iterator27.f();
                                   }
                                 }
+                              } else if ((child === null || child === void 0 ? void 0 : child.name) === 'metadata') {
+                                contract = child.value;
                               }
                             }
                           } catch (err) {
@@ -27166,7 +27153,7 @@
                     case 0:
                       if (!this.beaconService.client) {
                         this.beaconService.client = new _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["WalletClient"]({
-                          name: 'Kukai'
+                          name: 'Kukai Wallet'
                         });
                       }
 

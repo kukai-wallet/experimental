@@ -787,17 +787,6 @@ MessageService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineIn
 
 /***/ }),
 
-/***/ 13:
-/*!********************!*\
-  !*** fs (ignored) ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* (ignored) */
-
-/***/ }),
-
 /***/ "1U8w":
 /*!***********************************************************!*\
   !*** ./src/app/components/settings/settings.component.ts ***!
@@ -10439,7 +10428,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class TzktService {
     constructor() {
-        this.bcd = 'https://you.better-call.dev/v1';
+        this.bcd = 'https://api.better-call.dev/v1';
     }
     getContractAddresses(pkh) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -10763,6 +10752,9 @@ class TzktService {
                                 }
                             }
                         }
+                    }
+                    else if ((child === null || child === void 0 ? void 0 : child.name) === 'metadata') {
+                        contract = child.value;
                     }
                 }
             }
@@ -15174,7 +15166,7 @@ class UriHandlerComponent {
         /* https://docs.walletbeacon.io/beacon/03.getting-started-wallet.html#setup */
         this.connectApp = () => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             if (!this.beaconService.client) {
-                this.beaconService.client = new _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["WalletClient"]({ name: 'Kukai' });
+                this.beaconService.client = new _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["WalletClient"]({ name: 'Kukai Wallet' });
             }
             yield this.beaconService.client.init(); // Establish P2P connection
             this.beaconService.client
