@@ -10658,9 +10658,6 @@ class TzktService {
                 if (!merged.tokenKind && res[2]) {
                     merged.tokenKind = res[2];
                 }
-                if (typeof merged.decimals === 'undefined') {
-                    merged.decimals = 0;
-                }
                 return merged;
             });
             return ans ? ans : null;
