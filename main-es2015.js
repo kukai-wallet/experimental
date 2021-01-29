@@ -787,6 +787,17 @@ MessageService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineIn
 
 /***/ }),
 
+/***/ 13:
+/*!********************!*\
+  !*** fs (ignored) ***!
+  \********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
 /***/ "1U8w":
 /*!***********************************************************!*\
   !*** ./src/app/components/settings/settings.component.ts ***!
@@ -4945,6 +4956,7 @@ class TokenService {
     constructor(indexerService) {
         this.indexerService = indexerService;
         this.AUTO_DISCOVER = true;
+        this.version = '1.0.0';
         this.contracts = {};
         this.exploredIds = {};
         this.storeKey = 'tokenMetadata';
@@ -5013,8 +5025,7 @@ class TokenService {
                 console.log(`Searching for tokenId: ${tokenId}`);
                 const metadata = yield this.indexerService.getTokenMetadata(contractAddress, id);
                 if (metadata &&
-                    metadata.name &&
-                    metadata.symbol &&
+                    (metadata.name || metadata.symbol) &&
                     (!isNaN(metadata.decimals) && metadata.decimals >= 0)) {
                     const contract = {
                         kind: metadata.tokenType ? metadata.tokenType : 'FA2',
@@ -5023,8 +5034,8 @@ class TokenService {
                     };
                     const displayUrl = (metadata.displayUri && _environments_environment__WEBPACK_IMPORTED_MODULE_2__["TRUSTED_TOKEN_CONTRACTS"].includes(contractAddress)) ? metadata.displayUri : '../../../assets/img/tokens/unknown-token.png';
                     const token = {
-                        name: metadata.name,
-                        symbol: metadata.symbol,
+                        name: metadata.name ? metadata.name : '',
+                        symbol: metadata.symbol ? metadata.symbol : '',
                         decimals: Number(metadata.decimals),
                         description: metadata.description ? metadata.description : '',
                         displayUrl,
@@ -5081,20 +5092,22 @@ class TokenService {
         };
     }
     saveMetadata() {
-        localStorage.setItem(this.storeKey, JSON.stringify({ contracts: this.contracts, exploredIds: this.exploredIds }));
+        localStorage.setItem(this.storeKey, JSON.stringify({ contracts: this.contracts, exploredIds: this.exploredIds, version: this.version }));
     }
     loadMetadata() {
         const metadataJson = localStorage.getItem(this.storeKey);
         if (metadataJson) {
             const metadata = JSON.parse(metadataJson);
-            if (metadata === null || metadata === void 0 ? void 0 : metadata.contracts) {
-                const contractAddresses = Object.keys(metadata.contracts);
-                for (const address of contractAddresses) {
-                    this.addAsset(address, metadata.contracts[address]);
+            if ((metadata === null || metadata === void 0 ? void 0 : metadata.version) === 5) {
+                if (metadata === null || metadata === void 0 ? void 0 : metadata.contracts) {
+                    const contractAddresses = Object.keys(metadata.contracts);
+                    for (const address of contractAddresses) {
+                        this.addAsset(address, metadata.contracts[address]);
+                    }
                 }
-            }
-            if (metadata === null || metadata === void 0 ? void 0 : metadata.exploredIds) {
-                this.exploredIds = metadata.exploredIds;
+                if (metadata === null || metadata === void 0 ? void 0 : metadata.exploredIds) {
+                    this.exploredIds = metadata.exploredIds;
+                }
             }
         }
     }
@@ -5105,8 +5118,13 @@ class TokenService {
         else {
             const token = this.getAsset(tokenKey);
             if (token) {
-                if (!token.symbolPreference) {
-                    return `${token.name}`;
+                if ((!token.symbolPreference && token.name) || !token.symbol) {
+                    if (token.booleanAmount) {
+                        return `${token.name}`;
+                    }
+                    else {
+                        return `${big_js__WEBPACK_IMPORTED_MODULE_4___default()(amount).div(Math.pow(10, (baseUnit ? token.decimals : 0))).toFixed()} ${token.name}`;
+                    }
                 }
                 else {
                     return `${big_js__WEBPACK_IMPORTED_MODULE_4___default()(amount).div(Math.pow(10, (baseUnit ? token.decimals : 0))).toFixed()} ${token.symbol}`;
@@ -10568,6 +10586,102 @@ class TzktService {
     }
     getTokenMetadata(contractAddress, id) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            const tokenKind = fetch(`${this.bcd}/contract/${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}/${contractAddress}`)
+                .then(response => response.json())
+                .then(data => {
+                var _a;
+                if ((_a = data === null || data === void 0 ? void 0 : data.tags) === null || _a === void 0 ? void 0 : _a.includes('fa2')) {
+                    return 'FA2';
+                }
+                else if (data === null || data === void 0 ? void 0 : data.tags.includes('fa12')) {
+                    return 'FA1.2';
+                }
+                return null;
+            }).catch(e => {
+                return null;
+            });
+            const contractMetadata = fetch(`${this.bcd}/account/${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}/${contractAddress}/metadata`)
+                .then(response => response.json())
+                .then(data => {
+                var _a, _b;
+                const metadata = {};
+                if ((_a = data === null || data === void 0 ? void 0 : data.tags) === null || _a === void 0 ? void 0 : _a.includes('fa2')) {
+                    metadata.tokenKind = 'FA2';
+                }
+                else if ((_b = data === null || data === void 0 ? void 0 : data.tags) === null || _b === void 0 ? void 0 : _b.includes('fa2')) {
+                    metadata.tokenKind = 'FA1.2';
+                }
+                if (data === null || data === void 0 ? void 0 : data.category) {
+                    metadata.category = data.category;
+                }
+                return metadata;
+            }).catch(e => {
+                console.log(`No contract metadata found for ${contractAddress}:${id}`);
+                return {};
+            });
+            const tokenMetadata = fetch(`${this.bcd}/contract/${_environments_environment__WEBPACK_IMPORTED_MODULE_2__["CONSTANTS"].NETWORK}/${contractAddress}/tokens`)
+                .then(response => response.json())
+                .then(datas => {
+                const keys = [
+                    { key: 'name', type: 'string' },
+                    { key: 'decimals', type: 'number' },
+                    { key: 'symbol', type: 'string' },
+                    { key: 'description', type: 'string' },
+                    { key: 'displayUri', type: 'string' },
+                    { key: 'nonTransferable', type: 'boolean' },
+                    { key: 'symbolPreference', type: 'boolean' },
+                    { key: 'booleanAmount', type: 'boolean' }
+                ];
+                for (const data of datas) {
+                    if ((data === null || data === void 0 ? void 0 : data.token_id) === Number(id)) {
+                        this.flattern(data);
+                        const metadata = {};
+                        for (const a of keys) {
+                            if (typeof data[a.key] === a.type) {
+                                metadata[a.key] = data[a.key];
+                            }
+                        }
+                        if (metadata.displayUri) {
+                            metadata.displayUri = this.uriToUrl(metadata.displayUri);
+                        }
+                        return metadata;
+                    }
+                }
+                console.log(`No token metadata found for ${contractAddress}:${id}`);
+                return {};
+            }).catch(e => {
+                return {};
+            });
+            const ans = yield Promise.all([contractMetadata, tokenMetadata, tokenKind])
+                .then(res => {
+                const merged = Object.assign(Object.assign({}, res[0]), res[1]);
+                if (!merged.tokenKind && res[2]) {
+                    merged.tokenKind = res[2];
+                }
+                if (typeof merged.decimals === 'undefined') {
+                    merged.decimals = 0;
+                }
+                return merged;
+            });
+            return ans ? ans : null;
+        });
+    }
+    flattern(obj) {
+        const keys = Object.keys(obj);
+        for (const key of keys) {
+            if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+                const childKeys = Object.keys(obj[key]);
+                for (const childKey of childKeys) {
+                    if (typeof obj[childKey] === 'undefined' && typeof obj[key][childKey] !== 'object') {
+                        obj[childKey] = obj[key][childKey];
+                    }
+                }
+                delete obj[key];
+            }
+        }
+    }
+    getTokenMetadataDepricated(contractAddress, id) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             console.log(contractAddress + ':' + id);
             const bigMapId = yield this.getBigMapIds(contractAddress);
             if (bigMapId.token !== -1) {
@@ -15600,8 +15714,9 @@ class SignExprComponent {
             document.body.style.marginRight = scrollBarWidth.toString();
             document.body.style.overflow = 'hidden';
             this.isMessage = this.inputValidationService.isMessageSigning(this.signRequest.payload);
-            const payload = Object(_taquito_michel_codec__WEBPACK_IMPORTED_MODULE_7__["emitMicheline"])(Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_8__["valueDecoder"])(_taquito_local_forging_dist_lib_uint8array_consumer__WEBPACK_IMPORTED_MODULE_9__["Uint8ArrayConsumer"].fromHexString(this.signRequest.payload.slice(2))), { indent: '  ', newline: '\n' });
-            this.payload = this.isMessage ? payload.slice(1, -1) : payload;
+            const value = Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_8__["valueDecoder"])(_taquito_local_forging_dist_lib_uint8array_consumer__WEBPACK_IMPORTED_MODULE_9__["Uint8ArrayConsumer"].fromHexString(this.signRequest.payload.slice(2)));
+            const payload = Object(_taquito_michel_codec__WEBPACK_IMPORTED_MODULE_7__["emitMicheline"])(value, { indent: '  ', newline: '\n' });
+            this.payload = this.isMessage ? value.string : payload;
         }
     }
     sign() {
