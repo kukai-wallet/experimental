@@ -4956,7 +4956,7 @@ class TokenService {
     constructor(indexerService) {
         this.indexerService = indexerService;
         this.AUTO_DISCOVER = true;
-        this.version = '1.0.0';
+        this.version = '1.0.1';
         this.contracts = {};
         this.exploredIds = {};
         this.storeKey = 'tokenMetadata';
