@@ -703,11 +703,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var languagePreference = window.localStorage.getItem('languagePreference');
         var browserLang = translate.getBrowserLang();
         translate.use('en');
-        /*if (languagePreference) {
-          translate.use(languagePreference.match(/en|fr|ru|jp|kor|por/) ? languagePreference : 'en');
-        } else {
-          translate.use(browserLang.match(/en|fr|ru|jp|kor|por/) ? browserLang : 'en');
-        }*/
       }
 
       _createClass(AppComponent, [{
@@ -10598,7 +10593,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r405.CONSTANTS.mainnet);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r405.CONSTANTS.MAINNET);
       }
     }
 
@@ -17866,7 +17861,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     hexString = message.payload;
                     console.log('hex', hexString);
 
-                    if (!(message.signingType !== 'raw' || !this.inputValidationService.hexString(hexString))) {
+                    if (!(message.signingType !== 'raw' && message.signingType !== 'micheline' || !this.inputValidationService.hexString(hexString))) {
                       _context43.next = 21;
                       break;
                     }
@@ -20071,7 +20066,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.client = null;
         this.peers = [];
         this.permissions = [];
-        console.log('### BEACON SERVICE ###');
       }
 
       _createClass(BeaconService, [{
@@ -23414,7 +23408,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                           }
 
                           tokens.sort(function (a, b) {
-                            if (a.contract < b.contract) {
+                            if ("".concat(a.contract, ":").concat(a.token_id) < "".concat(b.contract, ":").concat(b.token_id)) {
                               return -1;
                             } else {
                               return 1;
@@ -28784,9 +28778,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     if (originated.activitiesCounter) {
                       // prevent storage from breaking (1.11)
-                      impAcc.state = originated.activitiesCounter.toString();
+                      origAcc.state = originated.activitiesCounter.toString();
                     } else {
-                      impAcc.state = originated.state;
+                      origAcc.state = originated.state;
                     }
 
                     origAcc.activities = this.activityMigration(originated.activities);

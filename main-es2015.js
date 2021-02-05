@@ -472,11 +472,6 @@ class AppComponent {
         const languagePreference = window.localStorage.getItem('languagePreference');
         const browserLang = translate.getBrowserLang();
         translate.use('en');
-        /*if (languagePreference) {
-          translate.use(languagePreference.match(/en|fr|ru|jp|kor|por/) ? languagePreference : 'en');
-        } else {
-          translate.use(browserLang.match(/en|fr|ru|jp|kor|por/) ? browserLang : 'en');
-        }*/
     }
     ngOnInit() {
         this.walletService.loadStoredWallet();
@@ -5456,7 +5451,7 @@ function QrScannerComponent_div_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](12);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r405.qrScanner);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r405.CONSTANTS.mainnet);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx_r405.CONSTANTS.MAINNET);
 } }
 class QrScannerComponent {
     constructor(beaconService, deeplinkService, messageService) {
@@ -8992,7 +8987,7 @@ class UriHandlerComponent {
             message.payload = message.payload.toLowerCase();
             const hexString = message.payload;
             console.log('hex', hexString);
-            if (message.signingType !== 'raw' || !this.inputValidationService.hexString(hexString)) {
+            if ((message.signingType !== 'raw' && message.signingType !== 'micheline') || !this.inputValidationService.hexString(hexString)) {
                 console.warn('Invalid sign payload');
                 yield this.beaconService.rejectOnUnknown(message);
                 return false;
@@ -10833,7 +10828,6 @@ class BeaconService {
         this.client = null;
         this.peers = [];
         this.permissions = [];
-        console.log('### BEACON SERVICE ###');
     }
     preNotifyPairing(pairInfoJson) {
         const pairInfo = JSON.parse(pairInfoJson);
@@ -12273,7 +12267,7 @@ class TzktService {
                         }
                     }
                     tokens.sort(function (a, b) {
-                        if (a.contract < b.contract) {
+                        if (`${a.contract}:${a.token_id}` < `${b.contract}:${b.token_id}`) {
                             return -1;
                         }
                         else {
@@ -15441,10 +15435,10 @@ class WalletService {
                 origAcc.balanceXTZ = originated.balanceXTZ;
                 origAcc.delegate = originated.delegate;
                 if (originated.activitiesCounter) { // prevent storage from breaking (1.11)
-                    impAcc.state = originated.activitiesCounter.toString();
+                    origAcc.state = originated.activitiesCounter.toString();
                 }
                 else {
-                    impAcc.state = originated.state;
+                    origAcc.state = originated.state;
                 }
                 origAcc.activities = this.activityMigration(originated.activities);
                 impAcc.originatedAccounts.push(origAcc);
