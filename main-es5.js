@@ -1122,13 +1122,13 @@
             key: "activityMigration",
             value: function activityMigration(activities) {
               return activities.map(function (activity) {
-                if (!activity.source.address) {
+                if (activity.source.address === undefined) {
                   activity.source = {
                     address: activity.source
                   };
                 }
 
-                if (!activity.destination.address) {
+                if (activity.destination.address === undefined) {
                   activity.destination = {
                     address: activity.destination
                   };
@@ -4880,6 +4880,8 @@
         }, {
           key: "addUnconfirmedOperations",
           value: function addUnconfirmedOperations(from, metadata) {
+            var _a;
+
             if (metadata.transactions) {
               console.log('Unconfirmed transactions:');
               console.log(metadata.transactions);
@@ -4905,7 +4907,8 @@
                     hash: metadata.opHash,
                     block: null,
                     timestamp: new Date().getTime(),
-                    tokenId: metadata.tokenTransfer ? metadata.tokenTransfer : undefined
+                    tokenId: metadata.tokenTransfer ? metadata.tokenTransfer : undefined,
+                    entrypoint: ((_a = op.parameters) === null || _a === void 0 ? void 0 : _a.entrypoint) ? op.parameters.entrypoint : ''
                   };
                   var account = this.walletService.wallet.getAccount(from);
                   account.activities.unshift(transaction);
@@ -17070,6 +17073,8 @@
               var knownTokenIds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
               var wallet = arguments.length > 2 ? arguments[2] : undefined;
               return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee54() {
+                var _this35 = this;
+
                 var ops, unknownTokenIds, tokenTxs, operations;
                 return regeneratorRuntime.wrap(function _callee54$(_context54) {
                   while (1) {
@@ -17085,15 +17090,17 @@
                                 address: ''
                               };
                               var amount = '0';
+                              var entrypoint = '';
 
                               switch (op.type) {
                                 case 'transaction':
-                                  if (address !== op.target.address && address !== op.sender.address || op.amount.toString() === '0') {
+                                  if (address !== op.target.address && address !== op.sender.address) {
                                     return null;
                                   }
 
                                   destination = op.target;
                                   amount = op.amount.toString();
+                                  entrypoint = _this35.extractEntrypoint(op);
                                   break;
 
                                 case 'delegation':
@@ -17129,7 +17136,8 @@
                                 source: op.sender,
                                 destination: destination,
                                 hash: op.hash,
-                                timestamp: new Date(op.timestamp).getTime()
+                                timestamp: new Date(op.timestamp).getTime(),
+                                entrypoint: entrypoint
                               };
                               return activity;
                             }
@@ -17163,6 +17171,14 @@
                                 if (tx.alias) {
                                   source.alias = tx.alias;
                                 }
+                              }
+
+                              var index = ops.findIndex(function (op) {
+                                return op.hash === tx.hash;
+                              });
+
+                              if (index !== -1) {
+                                ops.splice(index, 1); // Hide token transfer invokation
                               }
 
                               var activity = {
@@ -17206,10 +17222,31 @@
               }));
             }
           }, {
+            key: "extractEntrypoint",
+            value: function extractEntrypoint(op) {
+              var _a;
+
+              try {
+                if (op.parameters) {
+                  var entrypoint = (_a = op.parameters.match(/\{\"entrypoint\":\"[^\"]*/g)) === null || _a === void 0 ? void 0 : _a.map(function (i) {
+                    return i.slice(15);
+                  });
+
+                  if (entrypoint !== null && entrypoint.length) {
+                    return entrypoint[0];
+                  }
+                }
+              } catch (e) {
+                console.log(e);
+              }
+
+              return '';
+            }
+          }, {
             key: "getTokenMetadata",
             value: function getTokenMetadata(contractAddress, id) {
               return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee55() {
-                var _this35 = this;
+                var _this36 = this;
 
                 var tokenKind, contractMetadata, tokenMetadata, ans;
                 return regeneratorRuntime.wrap(function _callee55$(_context55) {
@@ -17290,7 +17327,7 @@
                               var data = _step15.value;
 
                               if ((data === null || data === void 0 ? void 0 : data.token_id) === Number(id)) {
-                                _this35.flattern(data);
+                                _this36.flattern(data);
 
                                 var metadata = {};
 
@@ -17312,7 +17349,7 @@
                                 }
 
                                 if (metadata.displayUri) {
-                                  metadata.displayUri = _this35.uriToUrl(metadata.displayUri);
+                                  metadata.displayUri = _this36.uriToUrl(metadata.displayUri);
                                 }
 
                                 return metadata;
@@ -18470,7 +18507,7 @@
           key: "preLoadData",
           value: function preLoadData(pkh, pk) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
-              var _this36 = this;
+              var _this37 = this;
 
               return regeneratorRuntime.wrap(function _callee61$(_context61) {
                 while (1) {
@@ -18481,7 +18518,7 @@
                       _context61.next = 4;
                       return Promise.all([this.operationService.getHeader().toPromise(), this.getCounter(pkh), this.getManager(pkh)]).then(function (req) {
                         if (req[0] && req[1] && req[2] || req[2] === null) {
-                          _this36.init(req[0].hash, req[0].chain_id, req[1], req[2], pk, pkh);
+                          _this37.init(req[0].hash, req[0].chain_id, req[1], req[2], pk, pkh);
                         }
                       });
 
@@ -18499,7 +18536,7 @@
             var tokenTransfer = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
             var callback = arguments.length > 3 ? arguments[3] : undefined;
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee63() {
-              var _this37 = this;
+              var _this38 = this;
 
               var _loop;
 
@@ -18524,10 +18561,10 @@
                           while (1) {
                             switch (_context63.prev = _context63.next) {
                               case 0:
-                                while (_this37.queue.length > 1) {
-                                  _this37.queue[0].callback(null);
+                                while (_this38.queue.length > 1) {
+                                  _this38.queue[0].callback(null);
 
-                                  _this37.queue.shift();
+                                  _this38.queue.shift();
                                 }
 
                                 retry = false;
@@ -18540,10 +18577,10 @@
                                 }
 
                                 _context63.next = 6;
-                                return _this37._estimate(_this37.queue[0].transactions, _this37.queue[0].from, tokenTransfer).then(function (res) {
-                                  _this37.queue[0].callback(res);
+                                return _this38._estimate(_this38.queue[0].transactions, _this38.queue[0].from, tokenTransfer).then(function (res) {
+                                  _this38.queue[0].callback(res);
                                 })["catch"](function (error) {
-                                  return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this37, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee62() {
+                                  return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this38, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee62() {
                                     return regeneratorRuntime.wrap(function _callee62$(_context62) {
                                       while (1) {
                                         switch (_context62.prev = _context62.next) {
@@ -18582,7 +18619,7 @@
                                 break;
 
                               case 9:
-                                _this37.queue.shift();
+                                _this38.queue.shift();
 
                               case 10:
                               case "end":
@@ -18616,7 +18653,7 @@
           key: "_estimate",
           value: function _estimate(transactions, from, tokenTransfer) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee64() {
-              var _this38 = this;
+              var _this39 = this;
 
               var extraGas, simulation, _iterator30, _step30, tx, op, result, reveal, limits, _iterator31, _step31, content, _this$getOpUsage, gasUsage, storageUsage;
 
@@ -18749,14 +18786,14 @@
                       return this.operationService.localForge(op).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (fop) {
                         var bytes = fop.length / 2 + 64;
 
-                        var gas = _this38.averageGasLimit(limits);
+                        var gas = _this39.averageGasLimit(limits);
 
-                        var storage = _this38.averageStorageLimit(limits);
+                        var storage = _this39.averageStorageLimit(limits);
 
                         var dtp = {
                           customLimits: limits,
-                          fee: _this38.recommendFee(limits, reveal, bytes),
-                          burn: _this38.burnFee(limits),
+                          fee: _this39.recommendFee(limits, reveal, bytes),
+                          burn: _this39.burnFee(limits),
                           gas: gas,
                           storage: storage,
                           reveal: reveal
@@ -19003,18 +19040,18 @@
         }, {
           key: "simulate",
           value: function simulate(op) {
-            var _this39 = this;
+            var _this40 = this;
 
             op.signature = 'edsigtXomBKi5CTRf5cjATJWSyaRvhfYNHqSUGrn4SdbYRcGwQrUGjzEfQDTuqHhuA8b2d8NarZjz8TRf65WkpQmo423BtomS8Q';
             return this.http.post(this.nodeURL + '/chains/main/blocks/head/helpers/scripts/run_operation', {
               operation: op,
               chain_id: this.chainId
             }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (res) {
-              _this39.operationService.checkApplied([res]);
+              _this40.operationService.checkApplied([res]);
 
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(res);
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this39.operationService.errHandler(err);
+              return _this40.operationService.errHandler(err);
             }));
           }
         }, {
@@ -20035,7 +20072,7 @@
         }, {
           key: "openModal",
           value: function openModal() {
-            var _this40 = this;
+            var _this41 = this;
 
             if (this.walletService.wallet) {
               // hide body scrollbar
@@ -20048,7 +20085,7 @@
 
               if (window.innerWidth > 1300) {
                 setTimeout(function () {
-                  var inputElem = _this40.toPkhView.nativeElement;
+                  var inputElem = _this41.toPkhView.nativeElement;
                   inputElem.focus();
                 }, 100);
               }
@@ -20208,7 +20245,7 @@
           key: "sendDelegation",
           value: function sendDelegation(keys) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee71() {
-              var _this41 = this;
+              var _this42 = this;
 
               var fee;
               return regeneratorRuntime.wrap(function _callee71$(_context72) {
@@ -20223,7 +20260,7 @@
                       }
 
                       this.operationService.delegate(this.activeAccount.address, this.getDelegate(), Number(fee), keys).subscribe(function (ans) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this41, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this42, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
                           var metadata;
                           return regeneratorRuntime.wrap(function _callee70$(_context71) {
                             while (1) {
@@ -20263,7 +20300,7 @@
                         }));
                       }, function (err) {
                         console.log('Error Message ', JSON.stringify(err));
-                        _this41.ledgerError = 'Failed to create operation';
+                        _this42.ledgerError = 'Failed to create operation';
                       });
 
                     case 4:
@@ -20324,7 +20361,7 @@
           key: "broadCastLedgerTransaction",
           value: function broadCastLedgerTransaction() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee73() {
-              var _this42 = this;
+              var _this43 = this;
 
               return regeneratorRuntime.wrap(function _callee73$(_context74) {
                 while (1) {
@@ -20332,30 +20369,30 @@
                     case 0:
                       this.messageService.startSpinner('Broadcasting operation');
                       this.operationService.broadcast(this.sendResponse.payload.signedOperation).subscribe(function (ans) {
-                        _this42.sendResponse = ans;
+                        _this43.sendResponse = ans;
 
-                        if (ans.success && _this42.activeAccount.address) {
+                        if (ans.success && _this43.activeAccount.address) {
                           var metadata = {
-                            delegate: _this42.getDelegate(),
+                            delegate: _this43.getDelegate(),
                             opHash: ans.payload.opHash
                           };
 
-                          _this42.coordinatorService.boost(_this42.activeAccount.address, metadata);
+                          _this43.coordinatorService.boost(_this43.activeAccount.address, metadata);
                         } else {
-                          _this42.messageService.addError(_this42.sendResponse.payload.msg, 0);
+                          _this43.messageService.addError(_this43.sendResponse.payload.msg, 0);
 
-                          _this42.operationResponse.emit('broadcast_error');
+                          _this43.operationResponse.emit('broadcast_error');
                         }
 
-                        _this42.closeModal();
+                        _this43.closeModal();
 
                         console.log('ans: ' + JSON.stringify(ans));
                       }, function (error) {
-                        _this42.messageService.stopSpinner();
+                        _this43.messageService.stopSpinner();
 
-                        _this42.messageService.addError(error, 0);
+                        _this43.messageService.addError(error, 0);
 
-                        _this42.operationResponse.emit('broadcast_error');
+                        _this43.operationResponse.emit('broadcast_error');
                       });
 
                     case 2:
@@ -20369,17 +20406,17 @@
         }, {
           key: "checkReveal",
           value: function checkReveal() {
-            var _this43 = this;
+            var _this44 = this;
 
             console.log('check reveal ' + this.activeAccount.pkh);
             this.operationService.isRevealed(this.activeAccount.pkh).subscribe(function (revealed) {
               if (!revealed) {
-                _this43.revealFee = 0.0002;
+                _this44.revealFee = 0.0002;
               } else {
-                _this43.revealFee = 0;
+                _this44.revealFee = 0;
               }
 
-              _this43.checkSource();
+              _this44.checkSource();
             });
           }
         }, {
@@ -21023,7 +21060,7 @@
           key: "getPublicAddress",
           value: function getPublicAddress(path) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee76() {
-              var _this44 = this;
+              var _this45 = this;
 
               var xtz, result, pk;
               return regeneratorRuntime.wrap(function _callee76$(_context77) {
@@ -21038,9 +21075,9 @@
                       _context77.next = 5;
                       return xtz.getAddress(path, true)["catch"](function (e) {
                         if (e.message) {
-                          _this44.messageService.addError(e.message);
+                          _this45.messageService.addError(e.message);
                         } else {
-                          _this44.messageService.addError(e);
+                          _this45.messageService.addError(e);
                         }
 
                         throw e;
@@ -21063,7 +21100,7 @@
           key: "signOperation",
           value: function signOperation(op, path) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee77() {
-              var _this45 = this;
+              var _this46 = this;
 
               var xtz, result;
               return regeneratorRuntime.wrap(function _callee77$(_context78) {
@@ -21088,7 +21125,7 @@
                       return xtz.signOperation(path, op)["catch"](function (e) {
                         console.warn(e);
 
-                        _this45.messageService.addError(e, 0);
+                        _this46.messageService.addError(e, 0);
                       });
 
                     case 8:
@@ -21117,7 +21154,7 @@
           key: "signHash",
           value: function signHash(hash, path) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee78() {
-              var _this46 = this;
+              var _this47 = this;
 
               var xtz, result;
               return regeneratorRuntime.wrap(function _callee78$(_context79) {
@@ -21139,7 +21176,7 @@
                       xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
                       _context79.next = 7;
                       return xtz.signHash(path, hash)["catch"](function (e) {
-                        _this46.messageService.addError(e, 0);
+                        _this47.messageService.addError(e, 0);
                       });
 
                     case 7:
@@ -21349,7 +21386,7 @@
         }, {
           key: "openModal",
           value: function openModal() {
-            var _this47 = this;
+            var _this48 = this;
 
             // hide body scrollbar
             var scrollBarWidth = window.innerWidth - document.body.offsetWidth;
@@ -21357,7 +21394,7 @@
             document.body.style.overflow = 'hidden';
             this.modalOpen = true;
             setTimeout(function () {
-              _this47.getQR();
+              _this48.getQR();
             }, 100);
           }
         }, {
@@ -21386,7 +21423,7 @@
         }, {
           key: "open1",
           value: function open1(template1) {
-            var _this48 = this;
+            var _this49 = this;
 
             if (this.activeAddress) {
               this.modalRef1 = this.modalService.show(template1, {
@@ -21394,7 +21431,7 @@
               }); // modal-sm / modal-lg
 
               setTimeout(function () {
-                _this48.getQR();
+                _this49.getQR();
               }, 100);
             } else {
               this.messageService.add('Select an address first by clicking on it!');
@@ -21538,13 +21575,13 @@
         _createClass(TzrateService, [{
           key: "getTzrate",
           value: function getTzrate() {
-            var _this49 = this;
+            var _this50 = this;
 
             if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["CONSTANTS"].MAINNET) {
               this.http.get(this.apiUrl).subscribe(function (price) {
-                _this49.walletService.wallet.XTZrate = price.tezos.usd;
+                _this50.walletService.wallet.XTZrate = price.tezos.usd;
 
-                _this49.updateFiatBalances();
+                _this50.updateFiatBalances();
               }, function (err) {
                 return console.log('Failed to get xtz price: ' + JSON.stringify(err));
               });
@@ -22018,7 +22055,39 @@
         }
       }
 
+      function AccountViewComponent_div_1_div_39_ng_container_2_div_4_img_1_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 57);
+        }
+      }
+
+      function AccountViewComponent_div_1_div_39_ng_container_2_div_4_img_2_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 58);
+        }
+      }
+
       function AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_7_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
+        }
+
+        if (rf & 2) {
+          var activity_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
+
+          var ctx_r35 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx_r35.printAmount(activity_r16), "");
+        }
+      }
+
+      function AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_9_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
@@ -22032,15 +22101,15 @@
         if (rf & 2) {
           var activity_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-          var ctx_r33 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+          var ctx_r36 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r33.trigger));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r36.trigger));
         }
       }
 
-      function AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_8_Template(rf, ctx) {
+      function AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_10_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerStart"](0);
 
@@ -22050,7 +22119,7 @@
         }
       }
 
-      function AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_template_12_Template(rf, ctx) {}
+      function AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_template_14_Template(rf, ctx) {}
 
       var _c0 = function _c0(a0) {
         return {
@@ -22062,37 +22131,41 @@
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 50);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 51);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, AccountViewComponent_div_1_div_39_ng_container_2_div_4_img_1_Template, 1, 0, "img", 51);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_39_ng_container_2_div_4_img_2_Template, 1, 0, "img", 52);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 35);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 52);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "span", 53);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 53);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_7_Template, 3, 4, "ng-container", 34);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](8, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_8_Template, 2, 0, "ng-container", 34);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_7_Template, 2, 1, "ng-container", 34);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "a", 54);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 35);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](9, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_9_Template, 3, 4, "ng-container", 34);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 54);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "To \u2014");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](10, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_container_10_Template, 2, 0, "ng-container", 34);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_template_12_Template, 0, 0, "ng-template", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 35);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "span", 55);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "To \u2014");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, AccountViewComponent_div_1_div_39_ng_container_2_div_4_ng_template_14_Template, 0, 0, "ng-template", 56);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -22108,9 +22181,25 @@
 
           var ctx_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Sent ", ctx_r19.printAmount(activity_r16), "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r19.zeroSent(activity_r16));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r19.zeroSent(activity_r16));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("red", !ctx_r19.zeroSent(activity_r16))("black", ctx_r19.zeroSent(activity_r16));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r19.sentKind(activity_r16));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", (activity_r16 == null ? null : activity_r16.amount) !== "0");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -22126,7 +22215,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r17)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](6, _c0, ctx_r19.getCounterparty(activity_r16)));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngTemplateOutlet", _r17)("ngTemplateOutletContext", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](13, _c0, ctx_r19.getCounterparty(activity_r16)));
         }
       }
 
@@ -22144,11 +22233,11 @@
         if (rf & 2) {
           var activity_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-          var ctx_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+          var ctx_r42 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r38.trigger));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r42.trigger));
         }
       }
 
@@ -22166,21 +22255,21 @@
 
       function AccountViewComponent_div_1_div_39_ng_container_2_div_5_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 56);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 59);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 57);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 60);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 58);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 61);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_5_ng_container_7_Template, 3, 4, "ng-container", 34);
 
@@ -22192,13 +22281,13 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 54);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 55);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "From \u2014");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_5_ng_template_12_Template, 0, 0, "ng-template", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_5_ng_template_12_Template, 0, 0, "ng-template", 56);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -22250,11 +22339,11 @@
         if (rf & 2) {
           var activity_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-          var ctx_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+          var ctx_r47 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r43.trigger));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r47.trigger));
         }
       }
 
@@ -22272,21 +22361,21 @@
 
       function AccountViewComponent_div_1_div_39_ng_container_2_div_6_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 59);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 62);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 60);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 63);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 61);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 64);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Delegated");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_6_ng_container_7_Template, 3, 4, "ng-container", 34);
 
@@ -22298,13 +22387,13 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 54);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 55);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "To \u2014");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_6_ng_template_12_Template, 0, 0, "ng-template", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_6_ng_template_12_Template, 0, 0, "ng-template", 56);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -22352,11 +22441,11 @@
         if (rf & 2) {
           var activity_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-          var ctx_r48 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+          var ctx_r52 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r48.trigger));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r52.trigger));
         }
       }
 
@@ -22374,21 +22463,21 @@
 
       function AccountViewComponent_div_1_div_39_ng_container_2_div_7_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 59);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 62);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 60);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "img", 63);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 61);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "span", 64);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Undelegated");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_7_ng_container_7_Template, 3, 4, "ng-container", 34);
 
@@ -22400,13 +22489,13 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 54);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 55);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "To \u2014");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_7_ng_template_12_Template, 0, 0, "ng-template", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_7_ng_template_12_Template, 0, 0, "ng-template", 56);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -22454,11 +22543,11 @@
         if (rf & 2) {
           var activity_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2).$implicit;
 
-          var ctx_r53 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
+          var ctx_r57 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](3);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r53.trigger));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](2, 1, activity_r16.timestamp, ctx_r57.trigger));
         }
       }
 
@@ -22478,11 +22567,11 @@
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 62);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 65);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "span", 63);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "span", 53);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
 
@@ -22490,7 +22579,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 54);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](7, AccountViewComponent_div_1_div_39_ng_container_2_div_8_ng_container_7_Template, 3, 4, "ng-container", 34);
 
@@ -22502,13 +22591,13 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 35);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 54);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "span", 55);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Counterparty \u2014");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_8_ng_template_12_Template, 0, 0, "ng-template", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](12, AccountViewComponent_div_1_div_39_ng_container_2_div_8_ng_template_12_Template, 0, 0, "ng-template", 56);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -22554,7 +22643,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, AccountViewComponent_div_1_div_39_ng_container_2_ng_template_2_Template, 4, 2, "ng-template", null, 37, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplateRefExtractor"]);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, AccountViewComponent_div_1_div_39_ng_container_2_div_4_Template, 13, 8, "div", 38);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, AccountViewComponent_div_1_div_39_ng_container_2_div_4_Template, 15, 15, "div", 38);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](5, AccountViewComponent_div_1_div_39_ng_container_2_div_5_Template, 13, 9, "div", 39);
 
@@ -22624,7 +22713,7 @@
 
       function AccountViewComponent_div_1_Template(rf, ctx) {
         if (rf & 1) {
-          var _r59 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
+          var _r63 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 2);
 
@@ -22659,11 +22748,11 @@
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "img", 11);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AccountViewComponent_div_1_Template_img_click_12_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r59);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r63);
 
-            var ctx_r58 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+            var ctx_r62 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-            return ctx_r58.copy(ctx_r58.account);
+            return ctx_r62.copy(ctx_r62.account);
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -22826,7 +22915,7 @@
         _createClass(AccountViewComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this50 = this;
+            var _this51 = this;
 
             if (!this.walletService.wallet) {
               this.router.navigate(['']);
@@ -22841,14 +22930,14 @@
               this.router.events.pipe(Object(rxjs_internal_operators_filter__WEBPACK_IMPORTED_MODULE_8__["filter"])(function (evt) {
                 return evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"];
               })).subscribe(function () {
-                address = _this50.route.snapshot.paramMap.get('address');
+                address = _this51.route.snapshot.paramMap.get('address');
 
-                if (_this50.walletService.wallet && _this50.walletService.addressExists(address)) {
-                  _this50.account = _this50.walletService.wallet.getAccount(address);
+                if (_this51.walletService.wallet && _this51.walletService.addressExists(address)) {
+                  _this51.account = _this51.walletService.wallet.getAccount(address);
                 }
               });
               setInterval(function () {
-                return _this50.trigger = !_this50.trigger;
+                return _this51.trigger = !_this51.trigger;
               }, 1000);
             }
           }
@@ -22901,6 +22990,20 @@
             return this.tokenService.formatAmount(activity.tokenId, activity.amount.toString());
           }
         }, {
+          key: "sentKind",
+          value: function sentKind(activity) {
+            if (activity.entrypoint) {
+              return "Called ".concat(activity.entrypoint);
+            }
+
+            return 'Sent';
+          }
+        }, {
+          key: "zeroSent",
+          value: function zeroSent(activity) {
+            return this.sentKind(activity).length > 4 && activity.amount === '0';
+          }
+        }, {
           key: "receivedKind",
           value: function receivedKind(activity) {
             return activity.tokenId && activity.source.address && activity.tokenId.split(':')[0] === activity.source.address ? 'Minted' : 'Received';
@@ -22929,7 +23032,7 @@
         },
         decls: 2,
         vars: 2,
-        consts: [[3, "activeAccount"], ["id", "wrapper", 4, "ngIf"], ["id", "wrapper"], [1, "left-container"], [1, "main-container", "small"], [1, "top-container"], ["id", "account-container"], [1, "mid-container"], [1, "address-container"], [2, "margin-top", "0"], [1, "icons"], ["src", "../../../assets/img/copy-icon.svg", 1, "copy-icon", 3, "click"], [3, "activeAddress"], [2, "width", "auto", "font-size", "0.8125rem"], [1, "mark"], [1, "grey", 2, "font-size", "0.75rem"], [1, "bottom-container"], ["class", "main-container small", "style", "margin-top: 2rem", 4, "ngIf"], [1, "main-container", "large"], [2, "float", "left"], ["target", "_blank", 1, "view-all", 3, "href"], ["id", "operations-container", 4, "ngIf"], [1, "main-container", "small", 2, "margin-top", "2rem"], [1, "token-container"], [4, "ngIf", "ngIfElse"], ["noTokens", ""], [4, "ngFor", "ngForOf"], [1, "seperator"], ["unknownToken", ""], [1, "token-row"], [3, "account", "token"], [3, "activeAccount", "tokenTransfer"], [1, "no-tokens"], ["id", "operations-container"], [4, "ngIf"], [1, "line"], [3, "ngSwitch"], ["CounterpartyRef", ""], ["class", "sent", 4, "ngSwitchCase"], ["class", "received", 4, "ngSwitchCase"], ["class", "delegated", 4, "ngSwitchCase"], [4, "ngSwitchDefault"], [1, "grey", "truncate-overflow"], ["elseBlock", ""], ["height", "12", "src", "../../../assets/img/google-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/reddit-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/twitter-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/google-logo.svg"], ["height", "12", "src", "../../../assets/img/reddit-logo.svg"], ["height", "12", "src", "../../../assets/img/twitter-logo.svg"], [1, "sent"], ["src", "../../../assets/img/sent.svg"], [1, "red"], ["target", "_blank", 3, "href"], [1, "grey"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], [1, "received"], ["src", "../../../assets/img/received.svg"], [1, "green"], [1, "delegated"], ["src", "../../../assets/img/delegated.svg"], [1, "blue"], [2, "padding-left", "0.75rem"], [1, "black"]],
+        consts: [[3, "activeAccount"], ["id", "wrapper", 4, "ngIf"], ["id", "wrapper"], [1, "left-container"], [1, "main-container", "small"], [1, "top-container"], ["id", "account-container"], [1, "mid-container"], [1, "address-container"], [2, "margin-top", "0"], [1, "icons"], ["src", "../../../assets/img/copy-icon.svg", 1, "copy-icon", 3, "click"], [3, "activeAddress"], [2, "width", "auto", "font-size", "0.8125rem"], [1, "mark"], [1, "grey", 2, "font-size", "0.75rem"], [1, "bottom-container"], ["class", "main-container small", "style", "margin-top: 2rem", 4, "ngIf"], [1, "main-container", "large"], [2, "float", "left"], ["target", "_blank", 1, "view-all", 3, "href"], ["id", "operations-container", 4, "ngIf"], [1, "main-container", "small", 2, "margin-top", "2rem"], [1, "token-container"], [4, "ngIf", "ngIfElse"], ["noTokens", ""], [4, "ngFor", "ngForOf"], [1, "seperator"], ["unknownToken", ""], [1, "token-row"], [3, "account", "token"], [3, "activeAccount", "tokenTransfer"], [1, "no-tokens"], ["id", "operations-container"], [4, "ngIf"], [1, "line"], [3, "ngSwitch"], ["CounterpartyRef", ""], ["class", "sent", 4, "ngSwitchCase"], ["class", "received", 4, "ngSwitchCase"], ["class", "delegated", 4, "ngSwitchCase"], [4, "ngSwitchDefault"], [1, "grey", "truncate-overflow"], ["elseBlock", ""], ["height", "12", "src", "../../../assets/img/google-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/reddit-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/twitter-logo.svg", 4, "ngSwitchCase"], ["height", "12", "src", "../../../assets/img/google-logo.svg"], ["height", "12", "src", "../../../assets/img/reddit-logo.svg"], ["height", "12", "src", "../../../assets/img/twitter-logo.svg"], [1, "sent"], ["src", "../../../assets/img/sent.svg", 4, "ngIf"], ["src", "../../../assets/img/sent-zero.svg", 4, "ngIf"], [1, "black"], ["target", "_blank", 3, "href"], [1, "grey"], [3, "ngTemplateOutlet", "ngTemplateOutletContext"], ["src", "../../../assets/img/sent.svg"], ["src", "../../../assets/img/sent-zero.svg"], [1, "received"], ["src", "../../../assets/img/received.svg"], [1, "green"], [1, "delegated"], ["src", "../../../assets/img/delegated.svg"], [1, "blue"], [2, "padding-left", "0.75rem"]],
         template: function AccountViewComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "app-header", 0);
@@ -22947,7 +23050,7 @@
         },
         directives: [_header_header_component__WEBPACK_IMPORTED_MODULE_14__["HeaderComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgIf"], _receive_receive_component__WEBPACK_IMPORTED_MODULE_16__["ReceiveComponent"], _delegate_delegate_component__WEBPACK_IMPORTED_MODULE_17__["DelegateComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_18__["SendComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgForOf"], _token_token_component__WEBPACK_IMPORTED_MODULE_19__["TokenComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgSwitch"], _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgSwitchCase"], _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgSwitchDefault"], _angular_common__WEBPACK_IMPORTED_MODULE_15__["NgTemplateOutlet"]],
         pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_15__["DecimalPipe"], _angular_common__WEBPACK_IMPORTED_MODULE_15__["SlicePipe"], _pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_4__["TimeAgoPipe"], _angular_common__WEBPACK_IMPORTED_MODULE_15__["TitleCasePipe"]],
-        styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  min-height: 100vh;\n  display: flex;\n  justify-content: flex-start;\n  flex-direction: column;\n  background: #5963FF;\n}\n\n#wrapper[_ngcontent-%COMP%] {\n  min-height: calc(100% - 8rem);\n  padding-bottom: 8rem;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n\n.left[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: flex-start;\n  flex-direction: column;\n}\n\nimg[_ngcontent-%COMP%] {\n  vertical-align: baseline;\n}\n\na.view-all[_ngcontent-%COMP%] {\n  float: right;\n  margin: 0.375rem 1.25rem 0 0;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  color: #5963ff;\n}\n\n.main-container[_ngcontent-%COMP%] {\n  margin: 0 2.5rem 2rem;\n  width: 25rem;\n  background: #fcfcfc;\n  border: 0.0625rem solid #ffffff;\n  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.14), 0px 16px 24px rgba(0, 0, 0, 0.16);\n  border-radius: 0.75rem;\n}\n\n.main-container.large[_ngcontent-%COMP%] {\n  width: 40rem;\n  height: 100%;\n}\n\n.main-container.small[_ngcontent-%COMP%] {\n  position: relative;\n}\n\n.main-container.small.expanded[_ngcontent-%COMP%] {\n  height: calc(100% - 2rem);\n}\n\n.top-container[_ngcontent-%COMP%] {\n  width: 39.875rem;\n  margin-top: 1rem;\n  height: 2.5rem;\n  width: auto;\n  border-bottom: 1px solid #eaebf9;\n}\n\ndiv.bottom-container[_ngcontent-%COMP%] {\n  width: 100%;\n  padding: 2rem 0 1rem;\n}\n\ndiv#account-container[_ngcontent-%COMP%] {\n  padding: 0 1rem;\n  height: calc(100% - 3.4375rem);\n  display: flex;\n  justify-content: space-between;\n  align-items: space-between;\n  flex-direction: column;\n}\n\n.account-row[_ngcontent-%COMP%]:hover {\n  background-color: #eaebf9 !important;\n  cursor: pointer !important;\n}\n\n.account-icon[_ngcontent-%COMP%] {\n  margin-left: 1rem;\n  margin-top: 0.5rem;\n  margin-bottom: 0.5rem;\n}\n\nspan[_ngcontent-%COMP%] {\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  color: #2c323a;\n}\n\n.main-container[_ngcontent-%COMP%]   H1[_ngcontent-%COMP%] {\n  margin-left: 1rem;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 24px;\n  color: #2c323a;\n}\n\n.main-container[_ngcontent-%COMP%]   H2[_ngcontent-%COMP%] {\n  margin: 1rem 0 0;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 1rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: center;\n  color: #2c323a;\n  opacity: 0.4;\n  -webkit-opacity: 0.4;\n  -khtml-opacity: 0.4;\n}\n\ndiv.address-container[_ngcontent-%COMP%] {\n  padding-top: 0.5rem;\n  display: flex;\n  justify-content: space-between;\n}\n\n.main-container[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-top: 0.5rem;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: flex-end;\n  color: #000000;\n}\n\n#account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n  margin-top: 0.5rem;\n}\n\n#account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]   div.icons[_ngcontent-%COMP%] {\n  position: relative;\n  top: 1.5rem;\n  width: 2.5rem;\n  line-height: 1rem;\n  height: 1rem;\n}\n\nspan.mark[_ngcontent-%COMP%] {\n  margin: 0 0.5rem;\n  padding: 0;\n  align-items: center;\n  color: #000000;\n  background: #fcfcfc;\n  opacity: 0.2;\n  -webkit-opacity: 0.2;\n  -khtml-opacity: 0.2;\n}\n\nspan.grey[_ngcontent-%COMP%] {\n  align-items: center;\n  color: #000000;\n  opacity: 0.4;\n  -webkit-opacity: 0.4;\n  -khtml-opacity: 0.4;\n}\n\n.top-container[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\n  float: right;\n  margin-top: 0.25rem;\n  margin-right: 1rem;\n  cursor: pointer;\n}\n\n.seperator[_ngcontent-%COMP%] {\n  width: 38rem;\n  margin-left: 0.375rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.04);\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\n  padding-bottom: 1.125rem;\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: row;\n  margin: 1rem;\n  height: 100%;\n  margin-bottom: 0;\n  padding-bottom: 1rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.04);\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]:last-child {\n  border-bottom: 0;\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span[_ngcontent-%COMP%], #operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  margin-left: 0.5rem;\n  margin-top: 0.25rem;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: center;\n  float: left;\n  display: flex;\n}\n\nimg.copy-icon[_ngcontent-%COMP%] {\n  margin-right: 0.5rem;\n  cursor: pointer;\n}\n\n#operations-container[_ngcontent-%COMP%]   div.line[_ngcontent-%COMP%]   span[_ngcontent-%COMP%], #operations-container[_ngcontent-%COMP%]   div.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  font-weight: normal;\n  color: #2c323a;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.green[_ngcontent-%COMP%] {\n  color: #18AE39;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.red[_ngcontent-%COMP%] {\n  color: #f01004;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.blue[_ngcontent-%COMP%] {\n  color: #5963FF;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.black[_ngcontent-%COMP%] {\n  color: #000000;\n  font-weight: 500;\n}\n\ndiv.line[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  flex-direction: row;\n}\n\ndiv.line[_ngcontent-%COMP%]:last-child {\n  margin-top: 0.125rem;\n}\n\n.truncate-overflow[_ngcontent-%COMP%] {\n  overflow: hidden;\n  position: relative;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%] {\n  margin: 0rem;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  height: 2.8125rem;\n  margin: 0 -1px;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]    > div.seperator[_ngcontent-%COMP%] {\n  width: calc(100% - 2rem);\n  margin: 0 1rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.04);\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   div.seperator[_ngcontent-%COMP%]:first-child {\n  border-bottom-width: 0;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%]:hover {\n  background-color: #EAEBF9 !important;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%]:last-child {\n  margin-bottom: -1px;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%]:last-child:hover {\n  border-bottom-left-radius: 0.75rem;\n  border-bottom-right-radius: 0.75rem;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%]:last-child {\n  border-bottom: none;\n}\n\n[_nghost-%COMP%]   span.no-tokens[_ngcontent-%COMP%] {\n  padding: 0 0 0.5rem 1rem;\n  font-size: 0.8125rem;\n  color: #2c323a;\n}\n\n@media screen and (max-width: 42rem) {\n  .truncate-overflow[_ngcontent-%COMP%] {\n    width: 16rem;\n  }\n\n  .main-container.large[_ngcontent-%COMP%] {\n    width: 25rem;\n  }\n\n  .truncate-overflow[_ngcontent-%COMP%]:after {\n    content: \"\";\n    text-align: right;\n    position: absolute;\n    bottom: 0;\n    right: -2rem;\n    width: 4rem;\n    height: 1.2em;\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%);\n  }\n}\n\n@media screen and (max-width: 31rem) {\n  .main-container[_ngcontent-%COMP%] {\n    margin-left: 0;\n    margin-right: 0;\n  }\n}\n\n@media screen and (max-width: 27rem) {\n  .main-container.large[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  .truncate-overflow[_ngcontent-%COMP%] {\n    width: 13rem;\n  }\n\n  .main-container.small[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  div.left-container[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  #account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]   div.icons[_ngcontent-%COMP%] {\n    width: 3rem;\n    top: 0;\n  }\n\n  img.copy-icon[_ngcontent-%COMP%] {\n    margin-right: 1rem;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxhY2NvdW50LXZpZXcuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxXQUFBO0VBQ0EsaUJBQUE7RUFDQSxhQUFBO0VBQ0EsMkJBQUE7RUFDQSxzQkFBQTtFQUNBLG1CQUFBO0FBQ0Y7O0FBQ0E7RUFDRSw2QkFBQTtFQUNBLG9CQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQUVGOztBQUFBO0VBQ0UsYUFBQTtFQUNBLDJCQUFBO0VBQ0Esc0JBQUE7QUFHRjs7QUFEQTtFQUNFLHdCQUFBO0FBSUY7O0FBRkE7RUFDRSxZQUFBO0VBQ0EsNEJBQUE7RUFDQSxrQkFBQTtFQUNBLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtFQUNBLGNBQUE7QUFLRjs7QUFIQTtFQUNFLHFCQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0VBQ0EsK0JBQUE7RUFDQSwrR0FBQTtFQUNBLHNCQUFBO0FBTUY7O0FBSkE7RUFDRSxZQUFBO0VBQ0EsWUFBQTtBQU9GOztBQUxBO0VBQ0Usa0JBQUE7QUFRRjs7QUFOQTtFQUNFLHlCQUFBO0FBU0Y7O0FBUEE7RUFDRSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLFdBQUE7RUFDQSxnQ0FBQTtBQVVGOztBQVJBO0VBQ0UsV0FBQTtFQUNBLG9CQUFBO0FBV0Y7O0FBVEE7RUFDRSxlQUFBO0VBQ0EsOEJBQUE7RUFDQSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSwwQkFBQTtFQUNBLHNCQUFBO0FBWUY7O0FBVkE7RUFFRSxvQ0FBQTtFQUNBLDBCQUFBO0FBWUY7O0FBVkE7RUFDRSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EscUJBQUE7QUFhRjs7QUFYQTtFQUNFLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxtQkFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtBQWNGOztBQVpBO0VBQ0UsaUJBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtBQWVGOztBQWJBO0VBQ0UsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsY0FBQTtFQUNBLFlBQUE7RUFDQSxvQkFBQTtFQUNBLG1CQUFBO0FBZ0JGOztBQWRBO0VBQ0UsbUJBQUE7RUFDQSxhQUFBO0VBQ0EsOEJBQUE7QUFpQkY7O0FBZkE7RUFDRSxrQkFBQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxtQkFBQTtFQUNBLGlCQUFBO0VBQ0EsYUFBQTtFQUNBLHFCQUFBO0VBQ0EsY0FBQTtBQWtCRjs7QUFoQkE7RUFDRSxhQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0FBbUJGOztBQWpCQTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLFlBQUE7QUFvQkY7O0FBbEJBO0VBQ0UsZ0JBQUE7RUFDQSxVQUFBO0VBQ0EsbUJBQUE7RUFDQSxjQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0VBQ0Esb0JBQUE7RUFDQSxtQkFBQTtBQXFCRjs7QUFuQkE7RUFDRSxtQkFBQTtFQUNBLGNBQUE7RUFDQSxZQUFBO0VBQ0Esb0JBQUE7RUFDQSxtQkFBQTtBQXNCRjs7QUFwQkE7RUFDRSxZQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7QUF1QkY7O0FBckJBO0VBQ0UsWUFBQTtFQUNBLHFCQUFBO0VBQ0EsNENBQUE7QUF3QkY7O0FBdEJBO0VBQ0Usd0JBQUE7QUF5QkY7O0FBdEJBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLG9CQUFBO0VBQ0EsNENBQUE7QUF5QkY7O0FBdkJBO0VBQ0UsZ0JBQUE7QUEwQkY7O0FBeEJBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUEyQkY7O0FBeEJBOztFQUVFLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxhQUFBO0FBMkJGOztBQXpCQTtFQUNFLG9CQUFBO0VBQ0EsZUFBQTtBQTRCRjs7QUExQkE7O0VBRUUsbUJBQUE7RUFDQSxjQUFBO0FBNkJGOztBQTNCQTtFQUNFLGNBQUE7RUFDQSxnQkFBQTtBQThCRjs7QUE1QkE7RUFDRSxjQUFBO0VBQ0EsZ0JBQUE7QUErQkY7O0FBN0JBO0VBQ0UsY0FBQTtFQUNBLGdCQUFBO0FBZ0NGOztBQTlCQTtFQUNFLGNBQUE7RUFDQSxnQkFBQTtBQWlDRjs7QUEvQkE7RUFDRSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBQWtDRjs7QUFoQ0E7RUFDRSxvQkFBQTtBQW1DRjs7QUFqQ0E7RUFDRSxnQkFBQTtFQUNBLGtCQUFBO0FBb0NGOztBQWxDQTtFQUNFLFlBQUE7QUFxQ0Y7O0FBbkNBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsOEJBQUE7RUFDQSxpQkFBQTtFQUNBLGNBQUE7QUFzQ0Y7O0FBcENBO0VBQ0Usd0JBQUE7RUFDQSxjQUFBO0VBQ0EsNENBQUE7QUF1Q0Y7O0FBckNBO0VBQ0Usc0JBQUE7QUF3Q0Y7O0FBdENBO0VBQ0Usb0NBQUE7QUF5Q0Y7O0FBdkNBO0VBQ0UsbUJBQUE7QUEwQ0Y7O0FBeENBO0VBQ0Usa0NBQUE7RUFDQSxtQ0FBQTtBQTJDRjs7QUF6Q0E7RUFDRSxtQkFBQTtBQTRDRjs7QUExQ0E7RUFDRSx3QkFBQTtFQUNBLG9CQUFBO0VBQ0EsY0FBQTtBQTZDRjs7QUF6Q0E7RUFDRTtJQUNFLFlBQUE7RUE0Q0Y7O0VBMUNBO0lBQ0UsWUFBQTtFQTZDRjs7RUEzQ0E7SUFDRSxXQUFBO0lBQ0EsaUJBQUE7SUFDQSxrQkFBQTtJQUNBLFNBQUE7SUFDQSxZQUFBO0lBQ0EsV0FBQTtJQUNBLGFBQUE7SUFDQSx3RUFBQTtFQThDRjtBQUNGOztBQXhDQTtFQUNFO0lBQ0UsY0FBQTtJQUNBLGVBQUE7RUEwQ0Y7QUFDRjs7QUF4Q0E7RUFDRTtJQUNFLFlBQUE7RUEwQ0Y7O0VBeENBO0lBQ0UsWUFBQTtFQTJDRjs7RUF6Q0E7SUFDRSxZQUFBO0VBNENGOztFQTFDQTtJQUNFLFlBQUE7RUE2Q0Y7O0VBM0NBO0lBQ0UsV0FBQTtJQUNBLE1BQUE7RUE4Q0Y7O0VBNUNBO0lBQ0Usa0JBQUE7RUErQ0Y7QUFDRiIsImZpbGUiOiJhY2NvdW50LXZpZXcuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWluLWhlaWdodDogMTAwdmg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBiYWNrZ3JvdW5kOiAjNTk2M0ZGO1xyXG59XHJcbiN3cmFwcGVyIHtcclxuICBtaW4taGVpZ2h0OiBjYWxjKDEwMCUgLSA4cmVtKTtcclxuICBwYWRkaW5nLWJvdHRvbTogOHJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGZsZXgtd3JhcDogd3JhcDtcclxufVxyXG4ubGVmdCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxufVxyXG5pbWcge1xyXG4gIHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTtcclxufVxyXG5hLnZpZXctYWxsIHtcclxuICBmbG9hdDogcmlnaHQ7XHJcbiAgbWFyZ2luOiAwLjM3NXJlbSAxLjI1cmVtIDAgMDtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcclxuICBmb250LXNpemU6IDAuODc1cmVtO1xyXG4gIGxpbmUtaGVpZ2h0OiAxcmVtO1xyXG4gIGNvbG9yOiAjNTk2M2ZmO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lciB7XHJcbiAgbWFyZ2luOiAwIDIuNXJlbSAycmVtO1xyXG4gIHdpZHRoOiAyNXJlbTtcclxuICBiYWNrZ3JvdW5kOiAjZmNmY2ZjO1xyXG4gIGJvcmRlcjogMC4wNjI1cmVtIHNvbGlkICNmZmZmZmY7XHJcbiAgYm94LXNoYWRvdzogMHB4IDBweCAxcHggcmdiYSgwLCAwLCAwLCAwLjA0KSwgMHB4IDJweCA2cHggcmdiYSgwLCAwLCAwLCAwLjE0KSwgMHB4IDE2cHggMjRweCByZ2JhKDAsIDAsIDAsIDAuMTYpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDAuNzVyZW07XHJcbn1cclxuLm1haW4tY29udGFpbmVyLmxhcmdlIHtcclxuICB3aWR0aDogNDByZW07XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lci5zbWFsbCB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lci5zbWFsbC5leHBhbmRlZCB7XHJcbiAgaGVpZ2h0OiBjYWxjKDEwMCUgLSAycmVtKTtcclxufVxyXG4udG9wLWNvbnRhaW5lciB7XHJcbiAgd2lkdGg6IDM5Ljg3NXJlbTtcclxuICBtYXJnaW4tdG9wOiAxcmVtO1xyXG4gIGhlaWdodDogMi41cmVtO1xyXG4gIHdpZHRoOiBhdXRvO1xyXG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZWFlYmY5O1xyXG59XHJcbmRpdi5ib3R0b20tY29udGFpbmVyIHtcclxuICB3aWR0aDogMTAwJTtcclxuICBwYWRkaW5nOiAycmVtIDAgMXJlbTtcclxufVxyXG5kaXYjYWNjb3VudC1jb250YWluZXIge1xyXG4gIHBhZGRpbmc6IDAgMXJlbTtcclxuICBoZWlnaHQ6IGNhbGMoMTAwJSAtIDMuNDM3NXJlbSk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgYWxpZ24taXRlbXM6IHNwYWNlLWJldHdlZW47XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxufVxyXG4uYWNjb3VudC1yb3c6aG92ZXIge1xyXG4gIC8vI2U2ZmZlNlxyXG4gIGJhY2tncm91bmQtY29sb3I6ICNlYWViZjkgIWltcG9ydGFudDtcclxuICBjdXJzb3I6IHBvaW50ZXIgIWltcG9ydGFudDtcclxufVxyXG4uYWNjb3VudC1pY29uIHtcclxuICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICBtYXJnaW4tdG9wOiAwLjVyZW07XHJcbiAgbWFyZ2luLWJvdHRvbTogMC41cmVtO1xyXG59XHJcbnNwYW4ge1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogbm9ybWFsO1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgY29sb3I6ICMyYzMyM2E7XHJcbn1cclxuLm1haW4tY29udGFpbmVyIEgxIHtcclxuICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIGxpbmUtaGVpZ2h0OiAyNHB4O1xyXG4gIGNvbG9yOiAjMmMzMjNhO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lciBIMiB7XHJcbiAgbWFyZ2luOiAxcmVtIDAgMDtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBmb250LXNpemU6IDFyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGNvbG9yOiAjMmMzMjNhO1xyXG4gIG9wYWNpdHk6IDAuNDtcclxuICAtd2Via2l0LW9wYWNpdHk6IDAuNDtcclxuICAta2h0bWwtb3BhY2l0eTogMC40O1xyXG59XHJcbmRpdi5hZGRyZXNzLWNvbnRhaW5lciB7XHJcbiAgcGFkZGluZy10b3A6IDAuNXJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG4ubWFpbi1jb250YWluZXIgc3BhbiB7XHJcbiAgbWFyZ2luLXRvcDogMC41cmVtO1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogbm9ybWFsO1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogZmxleC1lbmQ7XHJcbiAgY29sb3I6ICMwMDAwMDA7XHJcbn1cclxuI2FjY291bnQtY29udGFpbmVyID4gZGl2Lm1pZC1jb250YWluZXIgPiBkaXYge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWFyZ2luLXRvcDogMC41cmVtO1xyXG59XHJcbiNhY2NvdW50LWNvbnRhaW5lciA+IGRpdi5taWQtY29udGFpbmVyIGRpdi5pY29ucyB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHRvcDogMS41cmVtO1xyXG4gIHdpZHRoOiAyLjVyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgaGVpZ2h0OiAxcmVtO1xyXG59XHJcbnNwYW4ubWFyayB7XHJcbiAgbWFyZ2luOiAwIDAuNXJlbTtcclxuICBwYWRkaW5nOiAwO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgY29sb3I6ICMwMDAwMDA7XHJcbiAgYmFja2dyb3VuZDogI2ZjZmNmYztcclxuICBvcGFjaXR5OiAwLjI7XHJcbiAgLXdlYmtpdC1vcGFjaXR5OiAwLjI7XHJcbiAgLWtodG1sLW9wYWNpdHk6IDAuMjtcclxufVxyXG5zcGFuLmdyZXkge1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgY29sb3I6ICMwMDAwMDA7XHJcbiAgb3BhY2l0eTogMC40O1xyXG4gIC13ZWJraXQtb3BhY2l0eTogMC40O1xyXG4gIC1raHRtbC1vcGFjaXR5OiAwLjQ7XHJcbn1cclxuLnRvcC1jb250YWluZXIgPiBpbWcge1xyXG4gIGZsb2F0OiByaWdodDtcclxuICBtYXJnaW4tdG9wOiAwLjI1cmVtO1xyXG4gIG1hcmdpbi1yaWdodDogMXJlbTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuLnNlcGVyYXRvciB7XHJcbiAgd2lkdGg6IDM4cmVtO1xyXG4gIG1hcmdpbi1sZWZ0OiAwLjM3NXJlbTtcclxuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgcmdiYSgwLCAwLCAwLCAwLjA0KTtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgPiBkaXYgPiBpbWcge1xyXG4gIHBhZGRpbmctYm90dG9tOiAxLjEyNXJlbTtcclxufVxyXG5cclxuI29wZXJhdGlvbnMtY29udGFpbmVyID4gZGl2IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgbWFyZ2luOiAxcmVtO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBtYXJnaW4tYm90dG9tOiAwO1xyXG4gIHBhZGRpbmctYm90dG9tOiAxcmVtO1xyXG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCByZ2JhKDAsIDAsIDAsIDAuMDQpO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciA+IGRpdjpsYXN0LWNoaWxkIHtcclxuICBib3JkZXItYm90dG9tOiAwO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciA+IGRpdiA+IGRpdiB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59XHJcblxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4sXHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgYSB7XHJcbiAgbWFyZ2luLWxlZnQ6IDAuNXJlbTtcclxuICBtYXJnaW4tdG9wOiAwLjI1cmVtO1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogNTAwO1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbn1cclxuaW1nLmNvcHktaWNvbiB7XHJcbiAgbWFyZ2luLXJpZ2h0OiAwLjVyZW07XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYubGluZSBzcGFuLFxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2LmxpbmUgYSB7XHJcbiAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcclxuICBjb2xvcjogIzJjMzIzYTtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4uZ3JlZW4ge1xyXG4gIGNvbG9yOiAjMThBRTM5O1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbn1cclxuI29wZXJhdGlvbnMtY29udGFpbmVyIGRpdiBzcGFuLnJlZCB7XHJcbiAgY29sb3I6ICNmMDEwMDQ7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4uYmx1ZSB7XHJcbiAgY29sb3I6ICM1OTYzRkY7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4uYmxhY2sge1xyXG4gIGNvbG9yOiAjMDAwMDAwO1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbn1cclxuZGl2LmxpbmUge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbn1cclxuZGl2LmxpbmU6bGFzdC1jaGlsZCB7XHJcbiAgbWFyZ2luLXRvcDogMC4xMjVyZW07XHJcbn1cclxuLnRydW5jYXRlLW92ZXJmbG93IHtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG46aG9zdCAudG9rZW4tY29udGFpbmVyIHtcclxuICBtYXJnaW46IDByZW07XHJcbn1cclxuOmhvc3QgLnRva2VuLWNvbnRhaW5lciAudG9rZW4tcm93IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGhlaWdodDogMi44MTI1cmVtO1xyXG4gIG1hcmdpbjogMCAtMXB4O1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgPiBkaXYuc2VwZXJhdG9yIHtcclxuICB3aWR0aDogY2FsYygxMDAlIC0gMnJlbSk7XHJcbiAgbWFyZ2luOiAwIDFyZW07XHJcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIHJnYmEoMCwgMCwgMCwgMC4wNCk7XHJcbn1cclxuOmhvc3QgLnRva2VuLWNvbnRhaW5lciBkaXYuc2VwZXJhdG9yOmZpcnN0LWNoaWxkIHtcclxuICBib3JkZXItYm90dG9tLXdpZHRoOiAwO1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgLnRva2VuLXJvdzpob3ZlciB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI0VBRUJGOSAhaW1wb3J0YW50O1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgLnRva2VuLXJvdzpsYXN0LWNoaWxkIHtcclxuICBtYXJnaW4tYm90dG9tOiAtMXB4O1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgLnRva2VuLXJvdzpsYXN0LWNoaWxkOmhvdmVyIHtcclxuICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiAwLjc1cmVtO1xyXG4gIGJvcmRlci1ib3R0b20tcmlnaHQtcmFkaXVzOiAwLjc1cmVtO1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgLnRva2VuLXJvdzpsYXN0LWNoaWxkIHtcclxuICBib3JkZXItYm90dG9tOiBub25lO1xyXG59XHJcbjpob3N0IHNwYW4ubm8tdG9rZW5zIHtcclxuICBwYWRkaW5nOiAwIDAgMC41cmVtIDFyZW07XHJcbiAgZm9udC1zaXplOiAwLjgxMjVyZW07XHJcbiAgY29sb3I6IHJnYig0NCwgNTAsIDU4KTtcclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA2NXJlbSkge1xyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDQycmVtKSB7XHJcbiAgLnRydW5jYXRlLW92ZXJmbG93IHtcclxuICAgIHdpZHRoOiAxNnJlbTtcclxuICB9XHJcbiAgLm1haW4tY29udGFpbmVyLmxhcmdlIHtcclxuICAgIHdpZHRoOiAyNXJlbTtcclxuICB9XHJcbiAgLnRydW5jYXRlLW92ZXJmbG93OmFmdGVyIHtcclxuICAgIGNvbnRlbnQ6IFwiXCI7XHJcbiAgICB0ZXh0LWFsaWduOiByaWdodDtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIGJvdHRvbTogMDtcclxuICAgIHJpZ2h0OiAtMnJlbTtcclxuICAgIHdpZHRoOiA0cmVtO1xyXG4gICAgaGVpZ2h0OiAxLjJlbTtcclxuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudChcclxuICAgICAgdG8gcmlnaHQsXHJcbiAgICAgIHJnYmEoMjU1LCAyNTUsIDI1NSwgMCksXHJcbiAgICAgIHJnYmEoMjU1LCAyNTUsIDI1NSwgMSkgNTAlXHJcbiAgICApO1xyXG4gIH1cclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiAzMXJlbSkge1xyXG4gIC5tYWluLWNvbnRhaW5lciB7XHJcbiAgICBtYXJnaW4tbGVmdDogMDtcclxuICAgIG1hcmdpbi1yaWdodDogMDtcclxuICB9XHJcbn1cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogMjdyZW0pIHtcclxuICAubWFpbi1jb250YWluZXIubGFyZ2Uge1xyXG4gICAgd2lkdGg6IDIxcmVtO1xyXG4gIH1cclxuICAudHJ1bmNhdGUtb3ZlcmZsb3cge1xyXG4gICAgd2lkdGg6IDEzcmVtO1xyXG4gIH1cclxuICAubWFpbi1jb250YWluZXIuc21hbGwge1xyXG4gICAgd2lkdGg6IDIxcmVtO1xyXG4gIH1cclxuICBkaXYubGVmdC1jb250YWluZXIge1xyXG4gICAgd2lkdGg6IDIxcmVtO1xyXG4gIH1cclxuICAjYWNjb3VudC1jb250YWluZXIgPiBkaXYubWlkLWNvbnRhaW5lciBkaXYuaWNvbnMge1xyXG4gICAgd2lkdGg6IDNyZW07XHJcbiAgICB0b3A6IDA7XHJcbiAgfVxyXG4gIGltZy5jb3B5LWljb24ge1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xyXG4gIH1cclxufVxyXG4iXX0= */"]
+        styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  min-height: 100vh;\n  display: flex;\n  justify-content: flex-start;\n  flex-direction: column;\n  background: #5963FF;\n}\n\n#wrapper[_ngcontent-%COMP%] {\n  min-height: calc(100% - 8rem);\n  padding-bottom: 8rem;\n  display: flex;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n\n.left[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: flex-start;\n  flex-direction: column;\n}\n\nimg[_ngcontent-%COMP%] {\n  vertical-align: baseline;\n}\n\na.view-all[_ngcontent-%COMP%] {\n  float: right;\n  margin: 0.375rem 1.25rem 0 0;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  color: #5963ff;\n}\n\n.main-container[_ngcontent-%COMP%] {\n  margin: 0 2.5rem 2rem;\n  width: 25rem;\n  background: #fcfcfc;\n  border: 0.0625rem solid #ffffff;\n  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.14), 0px 16px 24px rgba(0, 0, 0, 0.16);\n  border-radius: 0.75rem;\n}\n\n.main-container.large[_ngcontent-%COMP%] {\n  width: 40rem;\n  height: 100%;\n}\n\n.main-container.small[_ngcontent-%COMP%] {\n  position: relative;\n}\n\n.main-container.small.expanded[_ngcontent-%COMP%] {\n  height: calc(100% - 2rem);\n}\n\n.top-container[_ngcontent-%COMP%] {\n  width: 39.875rem;\n  margin-top: 1rem;\n  height: 2.5rem;\n  width: auto;\n  border-bottom: 1px solid #eaebf9;\n}\n\ndiv.bottom-container[_ngcontent-%COMP%] {\n  width: 100%;\n  padding: 2rem 0 1rem;\n}\n\ndiv#account-container[_ngcontent-%COMP%] {\n  padding: 0 1rem;\n  height: calc(100% - 3.4375rem);\n  display: flex;\n  justify-content: space-between;\n  align-items: space-between;\n  flex-direction: column;\n}\n\n.account-row[_ngcontent-%COMP%]:hover {\n  background-color: #eaebf9 !important;\n  cursor: pointer !important;\n}\n\n.account-icon[_ngcontent-%COMP%] {\n  margin-left: 1rem;\n  margin-top: 0.5rem;\n  margin-bottom: 0.5rem;\n}\n\nspan[_ngcontent-%COMP%] {\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  color: #2c323a;\n}\n\n.main-container[_ngcontent-%COMP%]   H1[_ngcontent-%COMP%] {\n  margin-left: 1rem;\n  font-style: normal;\n  font-weight: bold;\n  font-size: 20px;\n  line-height: 24px;\n  color: #2c323a;\n}\n\n.main-container[_ngcontent-%COMP%]   H2[_ngcontent-%COMP%] {\n  margin: 1rem 0 0;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 1rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: center;\n  color: #2c323a;\n  opacity: 0.4;\n  -webkit-opacity: 0.4;\n  -khtml-opacity: 0.4;\n}\n\ndiv.address-container[_ngcontent-%COMP%] {\n  padding-top: 0.5rem;\n  display: flex;\n  justify-content: space-between;\n}\n\n.main-container[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-top: 0.5rem;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: flex-end;\n  color: #000000;\n}\n\n#account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  width: 100%;\n  margin-top: 0.5rem;\n}\n\n#account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]   div.icons[_ngcontent-%COMP%] {\n  position: relative;\n  top: 1.5rem;\n  width: 2.5rem;\n  line-height: 1rem;\n  height: 1rem;\n}\n\nspan.mark[_ngcontent-%COMP%] {\n  margin: 0 0.5rem;\n  padding: 0;\n  align-items: center;\n  color: #000000;\n  background: #fcfcfc;\n  opacity: 0.2;\n  -webkit-opacity: 0.2;\n  -khtml-opacity: 0.2;\n}\n\nspan.grey[_ngcontent-%COMP%] {\n  align-items: center;\n  color: #000000;\n  opacity: 0.4;\n  -webkit-opacity: 0.4;\n  -khtml-opacity: 0.4;\n}\n\n.top-container[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\n  float: right;\n  margin-top: 0.25rem;\n  margin-right: 1rem;\n  cursor: pointer;\n}\n\n.seperator[_ngcontent-%COMP%] {\n  width: 38rem;\n  margin-left: 0.375rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.04);\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]    > img[_ngcontent-%COMP%] {\n  padding-bottom: 1.125rem;\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: row;\n  margin: 1rem;\n  height: 100%;\n  margin-bottom: 0;\n  padding-bottom: 1rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.04);\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]:last-child {\n  border-bottom: 0;\n}\n\n#operations-container[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%]    > div[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span[_ngcontent-%COMP%], #operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  margin-left: 0.5rem;\n  margin-top: 0.25rem;\n  font-style: normal;\n  font-weight: 500;\n  font-size: 0.875rem;\n  line-height: 1rem;\n  display: flex;\n  align-items: center;\n  float: left;\n  display: flex;\n}\n\nimg.copy-icon[_ngcontent-%COMP%] {\n  margin-right: 0.5rem;\n  cursor: pointer;\n}\n\n#operations-container[_ngcontent-%COMP%]   div.line[_ngcontent-%COMP%]   span[_ngcontent-%COMP%], #operations-container[_ngcontent-%COMP%]   div.line[_ngcontent-%COMP%]   a[_ngcontent-%COMP%] {\n  font-weight: normal;\n  color: #2c323a;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.green[_ngcontent-%COMP%] {\n  color: #18AE39;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.red[_ngcontent-%COMP%] {\n  color: #f01004;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.blue[_ngcontent-%COMP%] {\n  color: #5963FF;\n  font-weight: 500;\n}\n\n#operations-container[_ngcontent-%COMP%]   div[_ngcontent-%COMP%]   span.black[_ngcontent-%COMP%] {\n  color: #2C323A;\n  font-weight: 500;\n}\n\ndiv.line[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  flex-direction: row;\n}\n\ndiv.line[_ngcontent-%COMP%]:last-child {\n  margin-top: 0.125rem;\n}\n\n.truncate-overflow[_ngcontent-%COMP%] {\n  overflow: hidden;\n  position: relative;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%] {\n  margin: 0rem;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  height: 2.8125rem;\n  margin: 0 -1px;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]    > div.seperator[_ngcontent-%COMP%] {\n  width: calc(100% - 2rem);\n  margin: 0 1rem;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.04);\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   div.seperator[_ngcontent-%COMP%]:first-child {\n  border-bottom-width: 0;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%]:hover {\n  background-color: #EAEBF9 !important;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%]:last-child {\n  margin-bottom: -1px;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%]:last-child:hover {\n  border-bottom-left-radius: 0.75rem;\n  border-bottom-right-radius: 0.75rem;\n}\n\n[_nghost-%COMP%]   .token-container[_ngcontent-%COMP%]   .token-row[_ngcontent-%COMP%]:last-child {\n  border-bottom: none;\n}\n\n[_nghost-%COMP%]   span.no-tokens[_ngcontent-%COMP%] {\n  padding: 0 0 0.5rem 1rem;\n  font-size: 0.8125rem;\n  color: #2c323a;\n}\n\n@media screen and (max-width: 42rem) {\n  .truncate-overflow[_ngcontent-%COMP%] {\n    width: 16rem;\n  }\n\n  .main-container.large[_ngcontent-%COMP%] {\n    width: 25rem;\n  }\n\n  .truncate-overflow[_ngcontent-%COMP%]:after {\n    content: \"\";\n    text-align: right;\n    position: absolute;\n    bottom: 0;\n    right: -2rem;\n    width: 4rem;\n    height: 1.2em;\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%);\n  }\n}\n\n@media screen and (max-width: 31rem) {\n  .main-container[_ngcontent-%COMP%] {\n    margin-left: 0;\n    margin-right: 0;\n  }\n}\n\n@media screen and (max-width: 27rem) {\n  .main-container.large[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  .truncate-overflow[_ngcontent-%COMP%] {\n    width: 13rem;\n  }\n\n  .main-container.small[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  div.left-container[_ngcontent-%COMP%] {\n    width: 21rem;\n  }\n\n  #account-container[_ngcontent-%COMP%]    > div.mid-container[_ngcontent-%COMP%]   div.icons[_ngcontent-%COMP%] {\n    width: 3rem;\n    top: 0;\n  }\n\n  img.copy-icon[_ngcontent-%COMP%] {\n    margin-right: 1rem;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxhY2NvdW50LXZpZXcuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxXQUFBO0VBQ0EsaUJBQUE7RUFDQSxhQUFBO0VBQ0EsMkJBQUE7RUFDQSxzQkFBQTtFQUNBLG1CQUFBO0FBQ0Y7O0FBQ0E7RUFDRSw2QkFBQTtFQUNBLG9CQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtBQUVGOztBQUFBO0VBQ0UsYUFBQTtFQUNBLDJCQUFBO0VBQ0Esc0JBQUE7QUFHRjs7QUFEQTtFQUNFLHdCQUFBO0FBSUY7O0FBRkE7RUFDRSxZQUFBO0VBQ0EsNEJBQUE7RUFDQSxrQkFBQTtFQUNBLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtFQUNBLGNBQUE7QUFLRjs7QUFIQTtFQUNFLHFCQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0VBQ0EsK0JBQUE7RUFDQSwrR0FBQTtFQUNBLHNCQUFBO0FBTUY7O0FBSkE7RUFDRSxZQUFBO0VBQ0EsWUFBQTtBQU9GOztBQUxBO0VBQ0Usa0JBQUE7QUFRRjs7QUFOQTtFQUNFLHlCQUFBO0FBU0Y7O0FBUEE7RUFDRSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLFdBQUE7RUFDQSxnQ0FBQTtBQVVGOztBQVJBO0VBQ0UsV0FBQTtFQUNBLG9CQUFBO0FBV0Y7O0FBVEE7RUFDRSxlQUFBO0VBQ0EsOEJBQUE7RUFDQSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSwwQkFBQTtFQUNBLHNCQUFBO0FBWUY7O0FBVkE7RUFFRSxvQ0FBQTtFQUNBLDBCQUFBO0FBWUY7O0FBVkE7RUFDRSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EscUJBQUE7QUFhRjs7QUFYQTtFQUNFLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxtQkFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtBQWNGOztBQVpBO0VBQ0UsaUJBQUE7RUFDQSxrQkFBQTtFQUNBLGlCQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsY0FBQTtBQWVGOztBQWJBO0VBQ0UsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0VBQ0EsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsY0FBQTtFQUNBLFlBQUE7RUFDQSxvQkFBQTtFQUNBLG1CQUFBO0FBZ0JGOztBQWRBO0VBQ0UsbUJBQUE7RUFDQSxhQUFBO0VBQ0EsOEJBQUE7QUFpQkY7O0FBZkE7RUFDRSxrQkFBQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7RUFDQSxtQkFBQTtFQUNBLGlCQUFBO0VBQ0EsYUFBQTtFQUNBLHFCQUFBO0VBQ0EsY0FBQTtBQWtCRjs7QUFoQkE7RUFDRSxhQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0FBbUJGOztBQWpCQTtFQUNFLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLGFBQUE7RUFDQSxpQkFBQTtFQUNBLFlBQUE7QUFvQkY7O0FBbEJBO0VBQ0UsZ0JBQUE7RUFDQSxVQUFBO0VBQ0EsbUJBQUE7RUFDQSxjQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0VBQ0Esb0JBQUE7RUFDQSxtQkFBQTtBQXFCRjs7QUFuQkE7RUFDRSxtQkFBQTtFQUNBLGNBQUE7RUFDQSxZQUFBO0VBQ0Esb0JBQUE7RUFDQSxtQkFBQTtBQXNCRjs7QUFwQkE7RUFDRSxZQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7QUF1QkY7O0FBckJBO0VBQ0UsWUFBQTtFQUNBLHFCQUFBO0VBQ0EsNENBQUE7QUF3QkY7O0FBdEJBO0VBQ0Usd0JBQUE7QUF5QkY7O0FBdEJBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsWUFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLG9CQUFBO0VBQ0EsNENBQUE7QUF5QkY7O0FBdkJBO0VBQ0UsZ0JBQUE7QUEwQkY7O0FBeEJBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUEyQkY7O0FBeEJBOztFQUVFLG1CQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsbUJBQUE7RUFDQSxpQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLFdBQUE7RUFDQSxhQUFBO0FBMkJGOztBQXpCQTtFQUNFLG9CQUFBO0VBQ0EsZUFBQTtBQTRCRjs7QUExQkE7O0VBRUUsbUJBQUE7RUFDQSxjQUFBO0FBNkJGOztBQTNCQTtFQUNFLGNBQUE7RUFDQSxnQkFBQTtBQThCRjs7QUE1QkE7RUFDRSxjQUFBO0VBQ0EsZ0JBQUE7QUErQkY7O0FBN0JBO0VBQ0UsY0FBQTtFQUNBLGdCQUFBO0FBZ0NGOztBQTlCQTtFQUNFLGNBQUE7RUFDQSxnQkFBQTtBQWlDRjs7QUEvQkE7RUFDRSxhQUFBO0VBQ0EsOEJBQUE7RUFDQSxtQkFBQTtBQWtDRjs7QUFoQ0E7RUFDRSxvQkFBQTtBQW1DRjs7QUFqQ0E7RUFDRSxnQkFBQTtFQUNBLGtCQUFBO0FBb0NGOztBQWxDQTtFQUNFLFlBQUE7QUFxQ0Y7O0FBbkNBO0VBQ0UsYUFBQTtFQUNBLG1CQUFBO0VBQ0EsOEJBQUE7RUFDQSxpQkFBQTtFQUNBLGNBQUE7QUFzQ0Y7O0FBcENBO0VBQ0Usd0JBQUE7RUFDQSxjQUFBO0VBQ0EsNENBQUE7QUF1Q0Y7O0FBckNBO0VBQ0Usc0JBQUE7QUF3Q0Y7O0FBdENBO0VBQ0Usb0NBQUE7QUF5Q0Y7O0FBdkNBO0VBQ0UsbUJBQUE7QUEwQ0Y7O0FBeENBO0VBQ0Usa0NBQUE7RUFDQSxtQ0FBQTtBQTJDRjs7QUF6Q0E7RUFDRSxtQkFBQTtBQTRDRjs7QUExQ0E7RUFDRSx3QkFBQTtFQUNBLG9CQUFBO0VBQ0EsY0FBQTtBQTZDRjs7QUF6Q0E7RUFDRTtJQUNFLFlBQUE7RUE0Q0Y7O0VBMUNBO0lBQ0UsWUFBQTtFQTZDRjs7RUEzQ0E7SUFDRSxXQUFBO0lBQ0EsaUJBQUE7SUFDQSxrQkFBQTtJQUNBLFNBQUE7SUFDQSxZQUFBO0lBQ0EsV0FBQTtJQUNBLGFBQUE7SUFDQSx3RUFBQTtFQThDRjtBQUNGOztBQXhDQTtFQUNFO0lBQ0UsY0FBQTtJQUNBLGVBQUE7RUEwQ0Y7QUFDRjs7QUF4Q0E7RUFDRTtJQUNFLFlBQUE7RUEwQ0Y7O0VBeENBO0lBQ0UsWUFBQTtFQTJDRjs7RUF6Q0E7SUFDRSxZQUFBO0VBNENGOztFQTFDQTtJQUNFLFlBQUE7RUE2Q0Y7O0VBM0NBO0lBQ0UsV0FBQTtJQUNBLE1BQUE7RUE4Q0Y7O0VBNUNBO0lBQ0Usa0JBQUE7RUErQ0Y7QUFDRiIsImZpbGUiOiJhY2NvdW50LXZpZXcuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWluLWhlaWdodDogMTAwdmg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBiYWNrZ3JvdW5kOiAjNTk2M0ZGO1xyXG59XHJcbiN3cmFwcGVyIHtcclxuICBtaW4taGVpZ2h0OiBjYWxjKDEwMCUgLSA4cmVtKTtcclxuICBwYWRkaW5nLWJvdHRvbTogOHJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGZsZXgtd3JhcDogd3JhcDtcclxufVxyXG4ubGVmdCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxufVxyXG5pbWcge1xyXG4gIHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTtcclxufVxyXG5hLnZpZXctYWxsIHtcclxuICBmbG9hdDogcmlnaHQ7XHJcbiAgbWFyZ2luOiAwLjM3NXJlbSAxLjI1cmVtIDAgMDtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcclxuICBmb250LXNpemU6IDAuODc1cmVtO1xyXG4gIGxpbmUtaGVpZ2h0OiAxcmVtO1xyXG4gIGNvbG9yOiAjNTk2M2ZmO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lciB7XHJcbiAgbWFyZ2luOiAwIDIuNXJlbSAycmVtO1xyXG4gIHdpZHRoOiAyNXJlbTtcclxuICBiYWNrZ3JvdW5kOiAjZmNmY2ZjO1xyXG4gIGJvcmRlcjogMC4wNjI1cmVtIHNvbGlkICNmZmZmZmY7XHJcbiAgYm94LXNoYWRvdzogMHB4IDBweCAxcHggcmdiYSgwLCAwLCAwLCAwLjA0KSwgMHB4IDJweCA2cHggcmdiYSgwLCAwLCAwLCAwLjE0KSwgMHB4IDE2cHggMjRweCByZ2JhKDAsIDAsIDAsIDAuMTYpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDAuNzVyZW07XHJcbn1cclxuLm1haW4tY29udGFpbmVyLmxhcmdlIHtcclxuICB3aWR0aDogNDByZW07XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lci5zbWFsbCB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lci5zbWFsbC5leHBhbmRlZCB7XHJcbiAgaGVpZ2h0OiBjYWxjKDEwMCUgLSAycmVtKTtcclxufVxyXG4udG9wLWNvbnRhaW5lciB7XHJcbiAgd2lkdGg6IDM5Ljg3NXJlbTtcclxuICBtYXJnaW4tdG9wOiAxcmVtO1xyXG4gIGhlaWdodDogMi41cmVtO1xyXG4gIHdpZHRoOiBhdXRvO1xyXG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZWFlYmY5O1xyXG59XHJcbmRpdi5ib3R0b20tY29udGFpbmVyIHtcclxuICB3aWR0aDogMTAwJTtcclxuICBwYWRkaW5nOiAycmVtIDAgMXJlbTtcclxufVxyXG5kaXYjYWNjb3VudC1jb250YWluZXIge1xyXG4gIHBhZGRpbmc6IDAgMXJlbTtcclxuICBoZWlnaHQ6IGNhbGMoMTAwJSAtIDMuNDM3NXJlbSk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgYWxpZ24taXRlbXM6IHNwYWNlLWJldHdlZW47XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxufVxyXG4uYWNjb3VudC1yb3c6aG92ZXIge1xyXG4gIC8vI2U2ZmZlNlxyXG4gIGJhY2tncm91bmQtY29sb3I6ICNlYWViZjkgIWltcG9ydGFudDtcclxuICBjdXJzb3I6IHBvaW50ZXIgIWltcG9ydGFudDtcclxufVxyXG4uYWNjb3VudC1pY29uIHtcclxuICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICBtYXJnaW4tdG9wOiAwLjVyZW07XHJcbiAgbWFyZ2luLWJvdHRvbTogMC41cmVtO1xyXG59XHJcbnNwYW4ge1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogbm9ybWFsO1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgY29sb3I6ICMyYzMyM2E7XHJcbn1cclxuLm1haW4tY29udGFpbmVyIEgxIHtcclxuICBtYXJnaW4tbGVmdDogMXJlbTtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgZm9udC1zaXplOiAyMHB4O1xyXG4gIGxpbmUtaGVpZ2h0OiAyNHB4O1xyXG4gIGNvbG9yOiAjMmMzMjNhO1xyXG59XHJcbi5tYWluLWNvbnRhaW5lciBIMiB7XHJcbiAgbWFyZ2luOiAxcmVtIDAgMDtcclxuICBmb250LXN0eWxlOiBub3JtYWw7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBmb250LXNpemU6IDFyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGNvbG9yOiAjMmMzMjNhO1xyXG4gIG9wYWNpdHk6IDAuNDtcclxuICAtd2Via2l0LW9wYWNpdHk6IDAuNDtcclxuICAta2h0bWwtb3BhY2l0eTogMC40O1xyXG59XHJcbmRpdi5hZGRyZXNzLWNvbnRhaW5lciB7XHJcbiAgcGFkZGluZy10b3A6IDAuNXJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG4ubWFpbi1jb250YWluZXIgc3BhbiB7XHJcbiAgbWFyZ2luLXRvcDogMC41cmVtO1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogbm9ybWFsO1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogZmxleC1lbmQ7XHJcbiAgY29sb3I6ICMwMDAwMDA7XHJcbn1cclxuI2FjY291bnQtY29udGFpbmVyID4gZGl2Lm1pZC1jb250YWluZXIgPiBkaXYge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWFyZ2luLXRvcDogMC41cmVtO1xyXG59XHJcbiNhY2NvdW50LWNvbnRhaW5lciA+IGRpdi5taWQtY29udGFpbmVyIGRpdi5pY29ucyB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHRvcDogMS41cmVtO1xyXG4gIHdpZHRoOiAyLjVyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgaGVpZ2h0OiAxcmVtO1xyXG59XHJcbnNwYW4ubWFyayB7XHJcbiAgbWFyZ2luOiAwIDAuNXJlbTtcclxuICBwYWRkaW5nOiAwO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgY29sb3I6ICMwMDAwMDA7XHJcbiAgYmFja2dyb3VuZDogI2ZjZmNmYztcclxuICBvcGFjaXR5OiAwLjI7XHJcbiAgLXdlYmtpdC1vcGFjaXR5OiAwLjI7XHJcbiAgLWtodG1sLW9wYWNpdHk6IDAuMjtcclxufVxyXG5zcGFuLmdyZXkge1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgY29sb3I6ICMwMDAwMDA7XHJcbiAgb3BhY2l0eTogMC40O1xyXG4gIC13ZWJraXQtb3BhY2l0eTogMC40O1xyXG4gIC1raHRtbC1vcGFjaXR5OiAwLjQ7XHJcbn1cclxuLnRvcC1jb250YWluZXIgPiBpbWcge1xyXG4gIGZsb2F0OiByaWdodDtcclxuICBtYXJnaW4tdG9wOiAwLjI1cmVtO1xyXG4gIG1hcmdpbi1yaWdodDogMXJlbTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuLnNlcGVyYXRvciB7XHJcbiAgd2lkdGg6IDM4cmVtO1xyXG4gIG1hcmdpbi1sZWZ0OiAwLjM3NXJlbTtcclxuICBib3JkZXItYm90dG9tOiAxcHggc29saWQgcmdiYSgwLCAwLCAwLCAwLjA0KTtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgPiBkaXYgPiBpbWcge1xyXG4gIHBhZGRpbmctYm90dG9tOiAxLjEyNXJlbTtcclxufVxyXG5cclxuI29wZXJhdGlvbnMtY29udGFpbmVyID4gZGl2IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgbWFyZ2luOiAxcmVtO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBtYXJnaW4tYm90dG9tOiAwO1xyXG4gIHBhZGRpbmctYm90dG9tOiAxcmVtO1xyXG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCByZ2JhKDAsIDAsIDAsIDAuMDQpO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciA+IGRpdjpsYXN0LWNoaWxkIHtcclxuICBib3JkZXItYm90dG9tOiAwO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciA+IGRpdiA+IGRpdiB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59XHJcblxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4sXHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYgYSB7XHJcbiAgbWFyZ2luLWxlZnQ6IDAuNXJlbTtcclxuICBtYXJnaW4tdG9wOiAwLjI1cmVtO1xyXG4gIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxuICBmb250LXdlaWdodDogNTAwO1xyXG4gIGZvbnQtc2l6ZTogMC44NzVyZW07XHJcbiAgbGluZS1oZWlnaHQ6IDFyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZsb2F0OiBsZWZ0O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbn1cclxuaW1nLmNvcHktaWNvbiB7XHJcbiAgbWFyZ2luLXJpZ2h0OiAwLjVyZW07XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiNvcGVyYXRpb25zLWNvbnRhaW5lciBkaXYubGluZSBzcGFuLFxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2LmxpbmUgYSB7XHJcbiAgZm9udC13ZWlnaHQ6IG5vcm1hbDtcclxuICBjb2xvcjogIzJjMzIzYTtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4uZ3JlZW4ge1xyXG4gIGNvbG9yOiAjMThBRTM5O1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbn1cclxuI29wZXJhdGlvbnMtY29udGFpbmVyIGRpdiBzcGFuLnJlZCB7XHJcbiAgY29sb3I6ICNmMDEwMDQ7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4uYmx1ZSB7XHJcbiAgY29sb3I6ICM1OTYzRkY7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxufVxyXG4jb3BlcmF0aW9ucy1jb250YWluZXIgZGl2IHNwYW4uYmxhY2sge1xyXG4gIGNvbG9yOiAjMkMzMjNBO1xyXG4gIGZvbnQtd2VpZ2h0OiA1MDA7XHJcbn1cclxuZGl2LmxpbmUge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbn1cclxuZGl2LmxpbmU6bGFzdC1jaGlsZCB7XHJcbiAgbWFyZ2luLXRvcDogMC4xMjVyZW07XHJcbn1cclxuLnRydW5jYXRlLW92ZXJmbG93IHtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG46aG9zdCAudG9rZW4tY29udGFpbmVyIHtcclxuICBtYXJnaW46IDByZW07XHJcbn1cclxuOmhvc3QgLnRva2VuLWNvbnRhaW5lciAudG9rZW4tcm93IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGhlaWdodDogMi44MTI1cmVtO1xyXG4gIG1hcmdpbjogMCAtMXB4O1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgPiBkaXYuc2VwZXJhdG9yIHtcclxuICB3aWR0aDogY2FsYygxMDAlIC0gMnJlbSk7XHJcbiAgbWFyZ2luOiAwIDFyZW07XHJcbiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIHJnYmEoMCwgMCwgMCwgMC4wNCk7XHJcbn1cclxuOmhvc3QgLnRva2VuLWNvbnRhaW5lciBkaXYuc2VwZXJhdG9yOmZpcnN0LWNoaWxkIHtcclxuICBib3JkZXItYm90dG9tLXdpZHRoOiAwO1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgLnRva2VuLXJvdzpob3ZlciB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI0VBRUJGOSAhaW1wb3J0YW50O1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgLnRva2VuLXJvdzpsYXN0LWNoaWxkIHtcclxuICBtYXJnaW4tYm90dG9tOiAtMXB4O1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgLnRva2VuLXJvdzpsYXN0LWNoaWxkOmhvdmVyIHtcclxuICBib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiAwLjc1cmVtO1xyXG4gIGJvcmRlci1ib3R0b20tcmlnaHQtcmFkaXVzOiAwLjc1cmVtO1xyXG59XHJcbjpob3N0IC50b2tlbi1jb250YWluZXIgLnRva2VuLXJvdzpsYXN0LWNoaWxkIHtcclxuICBib3JkZXItYm90dG9tOiBub25lO1xyXG59XHJcbjpob3N0IHNwYW4ubm8tdG9rZW5zIHtcclxuICBwYWRkaW5nOiAwIDAgMC41cmVtIDFyZW07XHJcbiAgZm9udC1zaXplOiAwLjgxMjVyZW07XHJcbiAgY29sb3I6IHJnYig0NCwgNTAsIDU4KTtcclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA2NXJlbSkge1xyXG59XHJcbkBtZWRpYSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDQycmVtKSB7XHJcbiAgLnRydW5jYXRlLW92ZXJmbG93IHtcclxuICAgIHdpZHRoOiAxNnJlbTtcclxuICB9XHJcbiAgLm1haW4tY29udGFpbmVyLmxhcmdlIHtcclxuICAgIHdpZHRoOiAyNXJlbTtcclxuICB9XHJcbiAgLnRydW5jYXRlLW92ZXJmbG93OmFmdGVyIHtcclxuICAgIGNvbnRlbnQ6IFwiXCI7XHJcbiAgICB0ZXh0LWFsaWduOiByaWdodDtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIGJvdHRvbTogMDtcclxuICAgIHJpZ2h0OiAtMnJlbTtcclxuICAgIHdpZHRoOiA0cmVtO1xyXG4gICAgaGVpZ2h0OiAxLjJlbTtcclxuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudChcclxuICAgICAgdG8gcmlnaHQsXHJcbiAgICAgIHJnYmEoMjU1LCAyNTUsIDI1NSwgMCksXHJcbiAgICAgIHJnYmEoMjU1LCAyNTUsIDI1NSwgMSkgNTAlXHJcbiAgICApO1xyXG4gIH1cclxufVxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiAzMXJlbSkge1xyXG4gIC5tYWluLWNvbnRhaW5lciB7XHJcbiAgICBtYXJnaW4tbGVmdDogMDtcclxuICAgIG1hcmdpbi1yaWdodDogMDtcclxuICB9XHJcbn1cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDogMjdyZW0pIHtcclxuICAubWFpbi1jb250YWluZXIubGFyZ2Uge1xyXG4gICAgd2lkdGg6IDIxcmVtO1xyXG4gIH1cclxuICAudHJ1bmNhdGUtb3ZlcmZsb3cge1xyXG4gICAgd2lkdGg6IDEzcmVtO1xyXG4gIH1cclxuICAubWFpbi1jb250YWluZXIuc21hbGwge1xyXG4gICAgd2lkdGg6IDIxcmVtO1xyXG4gIH1cclxuICBkaXYubGVmdC1jb250YWluZXIge1xyXG4gICAgd2lkdGg6IDIxcmVtO1xyXG4gIH1cclxuICAjYWNjb3VudC1jb250YWluZXIgPiBkaXYubWlkLWNvbnRhaW5lciBkaXYuaWNvbnMge1xyXG4gICAgd2lkdGg6IDNyZW07XHJcbiAgICB0b3A6IDA7XHJcbiAgfVxyXG4gIGltZy5jb3B5LWljb24ge1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAxcmVtO1xyXG4gIH1cclxufVxyXG4iXX0= */"]
       });
       /*@__PURE__*/
 
@@ -23216,13 +23319,13 @@
         var _super = _createSuper(FullWallet);
 
         function FullWallet(encryptedSeed) {
-          var _this51;
+          var _this52;
 
           _classCallCheck(this, FullWallet);
 
-          _this51 = _super.call(this);
-          _this51.encryptedSeed = encryptedSeed;
-          return _this51;
+          _this52 = _super.call(this);
+          _this52.encryptedSeed = encryptedSeed;
+          return _this52;
         }
 
         return FullWallet;
@@ -23234,13 +23337,13 @@
         var _super2 = _createSuper(LegacyWalletV1);
 
         function LegacyWalletV1(salt, encrypedSeed) {
-          var _this52;
+          var _this53;
 
           _classCallCheck(this, LegacyWalletV1);
 
-          _this52 = _super2.call(this, encrypedSeed);
-          _this52.salt = salt;
-          return _this52;
+          _this53 = _super2.call(this, encrypedSeed);
+          _this53.salt = salt;
+          return _this53;
         }
 
         return LegacyWalletV1;
@@ -23252,13 +23355,13 @@
         var _super3 = _createSuper(LegacyWalletV2);
 
         function LegacyWalletV2(IV, encryptedSeed) {
-          var _this53;
+          var _this54;
 
           _classCallCheck(this, LegacyWalletV2);
 
-          _this53 = _super3.call(this, encryptedSeed);
-          _this53.IV = IV;
-          return _this53;
+          _this54 = _super3.call(this, encryptedSeed);
+          _this54.IV = IV;
+          return _this54;
         }
 
         return LegacyWalletV2;
@@ -23270,14 +23373,14 @@
         var _super4 = _createSuper(LegacyWalletV3);
 
         function LegacyWalletV3(IV, encryptedSeed, encryptedEntropy) {
-          var _this54;
+          var _this55;
 
           _classCallCheck(this, LegacyWalletV3);
 
-          _this54 = _super4.call(this, encryptedSeed);
-          _this54.IV = IV;
-          _this54.encryptedEntropy = encryptedEntropy;
-          return _this54;
+          _this55 = _super4.call(this, encryptedSeed);
+          _this55.IV = IV;
+          _this55.encryptedEntropy = encryptedEntropy;
+          return _this55;
         }
 
         return LegacyWalletV3;
@@ -23289,15 +23392,15 @@
         var _super5 = _createSuper(HdWallet);
 
         function HdWallet(IV, encryptedSeed, encryptedEntropy) {
-          var _this55;
+          var _this56;
 
           _classCallCheck(this, HdWallet);
 
-          _this55 = _super5.call(this, encryptedSeed);
-          _this55.encryptedEntropy = encryptedEntropy;
-          _this55.IV = IV;
-          _this55.index = 0;
-          return _this55;
+          _this56 = _super5.call(this, encryptedSeed);
+          _this56.encryptedEntropy = encryptedEntropy;
+          _this56.IV = IV;
+          _this56.index = 0;
+          return _this56;
         }
 
         return HdWallet;
@@ -23309,15 +23412,15 @@
         var _super6 = _createSuper(TorusWallet);
 
         function TorusWallet(verifier, id, name) {
-          var _this56;
+          var _this57;
 
           _classCallCheck(this, TorusWallet);
 
-          _this56 = _super6.call(this);
-          _this56.verifier = verifier;
-          _this56.id = id;
-          _this56.name = name;
-          return _this56;
+          _this57 = _super6.call(this);
+          _this57.verifier = verifier;
+          _this57.id = id;
+          _this57.name = name;
+          return _this57;
         }
 
         _createClass(TorusWallet, [{
@@ -23430,18 +23533,18 @@
         var _super8 = _createSuper(ImplicitAccount);
 
         function ImplicitAccount(pkh, pk, derivationPath) {
-          var _this57;
+          var _this58;
 
           _classCallCheck(this, ImplicitAccount);
 
-          _this57 = _super8.call(this, pkh, pk, pkh);
-          _this57.originatedAccounts = [];
+          _this58 = _super8.call(this, pkh, pk, pkh);
+          _this58.originatedAccounts = [];
 
           if (derivationPath) {
-            _this57.derivationPath = derivationPath;
+            _this58.derivationPath = derivationPath;
           }
 
-          return _this57;
+          return _this58;
         }
 
         _createClass(ImplicitAccount, [{
@@ -23697,7 +23800,7 @@
           key: "scan",
           value: function scan() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee79() {
-              var _this58 = this;
+              var _this59 = this;
 
               var hasCamera;
               return regeneratorRuntime.wrap(function _callee79$(_context80) {
@@ -23717,7 +23820,7 @@
 
                       qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"].WORKER_PATH = './assets/js/qr-scanner-worker.min.js';
                       this.qrScanner = new qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"](this.videoplayer.nativeElement, function (result) {
-                        return _this58.handleQrCode(result);
+                        return _this59.handleQrCode(result);
                       });
                       _context80.next = 8;
                       return this.qrScanner.start();
@@ -24781,7 +24884,7 @@
         }, {
           key: "retrieve",
           value: function retrieve() {
-            var _this59 = this;
+            var _this60 = this;
 
             if (this.mnemonic) {
               this.mnemonic = this.mnemonic.toLowerCase().replace(/(\r\n|\n|\r)/gm, ' ').trim();
@@ -24793,26 +24896,26 @@
 
             if (!this.inputValidationService.mnemonics(this.mnemonic)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDMNEMONIC').subscribe(function (res) {
-                return _this59.messageService.addWarning(res, 10);
+                return _this60.messageService.addWarning(res, 10);
               });
             } else if (this.importOption === 2 && !this.inputValidationService.email(this.email)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDEMAIL').subscribe(function (res) {
-                return _this59.messageService.addWarning(res, 10);
+                return _this60.messageService.addWarning(res, 10);
               } // 'Invalid email!'
               );
             } else if (this.importOption === 2 && !this.password) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSWORD').subscribe(function (res) {
-                return _this59.messageService.addWarning(res, 10);
+                return _this60.messageService.addWarning(res, 10);
               } // 'Invalid password!'
               );
             } else if (!this.inputValidationService.passphrase(this.passphrase)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSPHRASE').subscribe(function (res) {
-                return _this59.messageService.addWarning(res, 10);
+                return _this60.messageService.addWarning(res, 10);
               } // 'Invalid passphrase!'
               );
             } else if (this.pkh && !this.inputValidationService.address(this.pkh)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPKH').subscribe(function (res) {
-                return _this59.messageService.addWarning(res, 10);
+                return _this60.messageService.addWarning(res, 10);
               } // 'Invalid public key hash!'
               );
             } else {
@@ -24829,11 +24932,11 @@
               if (this.pkh && pkh !== this.pkh) {
                 if (this.importOption === 2) {
                   this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDEMAILPASSWORD').subscribe(function (res) {
-                    return _this59.messageService.addWarning(res, 5);
+                    return _this60.messageService.addWarning(res, 5);
                   });
                 } else {
                   this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSPHRASE').subscribe(function (res) {
-                    return _this59.messageService.addWarning(res, 5);
+                    return _this60.messageService.addWarning(res, 5);
                   });
                 }
               } else {
@@ -24896,17 +24999,17 @@
         }, {
           key: "validPwd",
           value: function validPwd() {
-            var _this60 = this;
+            var _this61 = this;
 
             if (!this.inputValidationService.password(this.pwd1)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.PASSWORDWEAK').subscribe(function (res) {
-                return _this60.messageService.addWarning(res, 10);
+                return _this61.messageService.addWarning(res, 10);
               } // 'Password is too weak!'
               );
               return false;
             } else if (this.pwd1 !== this.pwd2) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.NOMATCHPASSWORDS').subscribe(function (res) {
-                return _this60.messageService.addWarning(res, 10);
+                return _this61.messageService.addWarning(res, 10);
               } // Passwords don't match!
               );
               return false;
@@ -24939,7 +25042,7 @@
           key: "done",
           value: function done() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee81() {
-              var _this61 = this;
+              var _this62 = this;
 
               return regeneratorRuntime.wrap(function _callee81$(_context82) {
                 while (1) {
@@ -24968,7 +25071,7 @@
                       }
 
                       this.translate.get('MNEMONICIMPORTCOMPONENT.WALLETREADY').subscribe(function (res) {
-                        return _this61.messageService.addSuccess(res);
+                        return _this62.messageService.addSuccess(res);
                       });
 
                     case 11:
@@ -25083,7 +25186,7 @@
           key: "import",
           value: function _import(keyFile, pwd) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee83() {
-              var _this62 = this;
+              var _this63 = this;
 
               return regeneratorRuntime.wrap(function _callee83$(_context84) {
                 while (1) {
@@ -25093,18 +25196,18 @@
                       _context84.next = 3;
                       return this.importService.importWalletFromJson(keyFile, pwd).then(function (success) {
                         if (success) {
-                          if (_this62.walletService.wallet.implicitAccounts.length === 1 && _this62.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
-                            _this62.router.navigate(["/account/".concat(_this62.walletService.wallet.implicitAccounts[0].address)]);
+                          if (_this63.walletService.wallet.implicitAccounts.length === 1 && _this63.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
+                            _this63.router.navigate(["/account/".concat(_this63.walletService.wallet.implicitAccounts[0].address)]);
                           } else {
-                            _this62.router.navigate(['/accounts']);
+                            _this63.router.navigate(['/accounts']);
                           }
                         } else {
                           console.log(success);
 
-                          _this62.messageService.addError('Something went wrong');
+                          _this63.messageService.addError('Something went wrong');
                         }
                       })["catch"](function (e) {
-                        _this62.messageService.addError(e);
+                        _this63.messageService.addError(e);
                       });
 
                     case 3:
@@ -25118,7 +25221,7 @@
         }, {
           key: "handleFileInput",
           value: function handleFileInput(files) {
-            var _this63 = this;
+            var _this64 = this;
 
             var fileToUpload = files.item(0);
 
@@ -25141,18 +25244,18 @@
               reader.onload = function () {
                 if (typeof reader.result === 'string') {
                   try {
-                    _this63.importPreCheck(reader.result);
+                    _this64.importPreCheck(reader.result);
                   } catch (e) {
-                    _this63.messageService.addError(e, 5);
+                    _this64.messageService.addError(e, 5);
 
-                    _this63.walletJson = null;
+                    _this64.walletJson = null;
                   }
 
-                  if (_this63.walletJson) {
-                    _this63.fileName = fileToUpload.name;
+                  if (_this64.walletJson) {
+                    _this64.fileName = fileToUpload.name;
                   }
                 } else {
-                  _this63.walletJson = null;
+                  _this64.walletJson = null;
                   throw new Error('Not a string import');
                 }
               };
@@ -25935,7 +26038,7 @@
         }, {
           key: "activate",
           value: function activate() {
-            var _this64 = this;
+            var _this65 = this;
 
             this.formInvalid = this.checkInput();
 
@@ -25947,13 +26050,13 @@
               this.operationService.activate(pkh, secret).subscribe(function (ans) {
                 if (ans.success) {
                   if (ans.payload.opHash) {
-                    _this64.translate.get('ACTIVATECOMPONENT.ACTIVATESUCCESS').subscribe(function (res) {
-                      return _this64.messageService.addSuccess(res);
+                    _this65.translate.get('ACTIVATECOMPONENT.ACTIVATESUCCESS').subscribe(function (res) {
+                      return _this65.messageService.addSuccess(res);
                     } // 'Activation successfully broadcasted to the blockchain!'
                     );
                   } else {
-                    _this64.translate.get('ACTIVATECOMPONENT.RETRIEVEFAIL').subscribe(function (res) {
-                      return _this64.messageService.addWarning(res);
+                    _this65.translate.get('ACTIVATECOMPONENT.RETRIEVEFAIL').subscribe(function (res) {
+                      return _this65.messageService.addWarning(res);
                     } // Could not retrieve an operation hash
                     );
                   }
@@ -25966,12 +26069,12 @@
                     errorMessage = 'NodeError ' + JSON.stringify(ans.payload.msg);
                   }
 
-                  _this64.messageService.addError(errorMessage);
+                  _this65.messageService.addError(errorMessage);
 
                   console.log(JSON.stringify(ans.payload.msg));
                 }
               }, function (err) {
-                _this64.translate.get('ACTIVATECOMPONENT.ACTIVATEFAIL').subscribe(function (res) {
+                _this65.translate.get('ACTIVATECOMPONENT.ACTIVATEFAIL').subscribe(function (res) {
                   var errorMessage = '';
                   var activateFailed = res;
 
@@ -25981,7 +26084,7 @@
                     errorMessage = activateFailed;
                   }
 
-                  _this64.messageService.addError(errorMessage);
+                  _this65.messageService.addError(errorMessage);
                 } // 'Failed to activate wallet!'
                 );
 
@@ -26441,21 +26544,21 @@
         }, {
           key: "getTransactonsCounter",
           value: function getTransactonsCounter(account) {
-            var _this65 = this;
+            var _this66 = this;
 
             var knownTokenIds = this.tokenService.knownTokenIds();
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.accountInfo(account.address, knownTokenIds)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (data) {
               var counter = data.counter;
               var unknownTokenIds = data.unknownTokenIds ? data.unknownTokenIds : [];
 
-              _this65.handleUnknownTokenIds(unknownTokenIds);
+              _this66.handleUnknownTokenIds(unknownTokenIds);
 
               if (account.state !== counter) {
                 if (data.tokens) {
-                  _this65.updateTokenBalances(account, data.tokens);
+                  _this66.updateTokenBalances(account, data.tokens);
                 }
 
-                return _this65.getAllTransactions(account, counter);
+                return _this66.getAllTransactions(account, counter);
               } else {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
                   upToDate: true
@@ -26525,13 +26628,13 @@
         }, {
           key: "getAllTransactions",
           value: function getAllTransactions(account, counter) {
-            var _this66 = this;
+            var _this67 = this;
 
             var knownTokenIds = this.tokenService.knownTokenIds();
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.getOperations(account.address, knownTokenIds, this.walletService.wallet)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (resp) {
               var operations = resp.operations;
 
-              _this66.handleUnknownTokenIds(resp.unknownTokenIds);
+              _this67.handleUnknownTokenIds(resp.unknownTokenIds);
 
               if (Array.isArray(operations)) {
                 var oldActivities = account.activities;
@@ -26539,11 +26642,11 @@
                 var oldState = account.state;
                 account.state = counter;
 
-                _this66.walletService.storeWallet();
+                _this67.walletService.storeWallet();
 
                 if (oldState !== '') {
                   // Exclude inital loading
-                  _this66.promptNewActivities(account, oldActivities, operations);
+                  _this67.promptNewActivities(account, oldActivities, operations);
                 } else {
                   console.log('# Excluded ' + counter);
                 }
@@ -26555,9 +26658,9 @@
                   for (_iterator50.s(); !(_step50 = _iterator50.n()).done;) {
                     var activity = _step50.value;
 
-                    var counterParty = _this66.getCounterparty(activity, account, false);
+                    var counterParty = _this67.getCounterparty(activity, account, false);
 
-                    _this66.lookupService.check(counterParty);
+                    _this67.lookupService.check(counterParty);
                   }
                 } catch (err) {
                   _iterator50.e(err);
@@ -26576,7 +26679,7 @@
         }, {
           key: "promptNewActivities",
           value: function promptNewActivities(account, oldActivities, newActivities) {
-            var _this67 = this;
+            var _this68 = this;
 
             var _iterator51 = _createForOfIteratorHelper(newActivities),
                 _step51;
@@ -26591,18 +26694,18 @@
                 if (index === -1 || index !== -1 && oldActivities[index].status === 0) {
                   if (activity.type === 'transaction') {
                     if (account.address === activity.source.address) {
-                      _this67.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this67.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                      _this68.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this68.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                     }
 
                     if (account.address === activity.destination.address) {
-                      _this67.messageService.addSuccess(account.shortAddress() + ': Received ' + _this67.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                      _this68.messageService.addSuccess(account.shortAddress() + ': Received ' + _this68.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                     }
                   } else if (activity.type === 'delegation') {
-                    _this67.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
+                    _this68.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
                   } else if (activity.type === 'origination') {
-                    _this67.messageService.addSuccess(account.shortAddress() + ': Account originated');
+                    _this68.messageService.addSuccess(account.shortAddress() + ': Account originated');
                   } else if (activity.type === 'activation') {
-                    _this67.messageService.addSuccess(account.shortAddress() + ': Account activated');
+                    _this68.messageService.addSuccess(account.shortAddress() + ': Account activated');
                   }
                 }
               };
@@ -27392,7 +27495,7 @@
 
       var UriHandlerComponent = /*#__PURE__*/function () {
         function UriHandlerComponent(route, messageService, walletService, location, beaconService, deeplinkService, inputValidationService) {
-          var _this68 = this;
+          var _this69 = this;
 
           _classCallCheck(this, UriHandlerComponent);
 
@@ -27409,8 +27512,8 @@
           /* https://docs.walletbeacon.io/beacon/03.getting-started-wallet.html#setup */
 
           this.connectApp = function () {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this68, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee112() {
-              var _this69 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this69, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee112() {
+              var _this70 = this;
 
               return regeneratorRuntime.wrap(function _callee112$(_context113) {
                 while (1) {
@@ -27428,7 +27531,7 @@
                     case 3:
                       // Establish P2P connection
                       this.beaconService.client.connect(function (message) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this69, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee111() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this70, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee111() {
                           return regeneratorRuntime.wrap(function _callee111$(_context112) {
                             while (1) {
                               switch (_context112.prev = _context112.next) {
@@ -30423,12 +30526,12 @@
         }, {
           key: "getAccountBalance",
           value: function getAccountBalance(account) {
-            var _this70 = this;
+            var _this71 = this;
 
             console.log('for ' + account.address);
             this.operationService.getBalance(account.address).subscribe(function (ans) {
               if (ans.success) {
-                _this70.updateAccountBalance(account, Number(ans.payload.balance));
+                _this71.updateAccountBalance(account, Number(ans.payload.balance));
               } else {
                 console.log('Balance Error: ' + JSON.stringify(ans.payload.msg));
               }
