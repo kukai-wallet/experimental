@@ -17324,7 +17324,7 @@
                           }, {
                             key: 'displayUri',
                             type: 'string'
-                          },, {
+                          }, {
                             key: 'thumbnailUri',
                             type: 'string'
                           }, {

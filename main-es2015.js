@@ -10660,7 +10660,7 @@ class TzktService {
                     { key: 'decimals', type: 'number' },
                     { key: 'symbol', type: 'string' },
                     { key: 'description', type: 'string' },
-                    { key: 'displayUri', type: 'string' }, ,
+                    { key: 'displayUri', type: 'string' },
                     { key: 'thumbnailUri', type: 'string' },
                     { key: 'nonTransferable', type: 'boolean' },
                     { key: 'symbolPreference', type: 'boolean' },
