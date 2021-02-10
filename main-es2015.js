@@ -2833,8 +2833,9 @@ class CoordinatorService {
                     this.update(pkh);
                     const counter = this.scheduler.get(pkh).stateCounter;
                     setTimeout(() => {
+                        var _a;
                         // Failsafe
-                        if (this.scheduler &&
+                        if (((_a = this.scheduler) === null || _a === void 0 ? void 0 : _a.size) &&
                             this.scheduler.get(pkh).stateCounter === counter) {
                             console.log('Timeout from wait state');
                             this.changeState(pkh, State.UpToDate);

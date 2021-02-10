@@ -4690,8 +4690,10 @@
                         this.update(pkh);
                         counter = this.scheduler.get(pkh).stateCounter;
                         setTimeout(function () {
-                          // Failsafe
-                          if (_this18.scheduler && _this18.scheduler.get(pkh).stateCounter === counter) {
+                          var _a; // Failsafe
+
+
+                          if (((_a = _this18.scheduler) === null || _a === void 0 ? void 0 : _a.size) && _this18.scheduler.get(pkh).stateCounter === counter) {
                             console.log('Timeout from wait state');
 
                             _this18.changeState(pkh, State.UpToDate);
