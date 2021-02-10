@@ -2738,6 +2738,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! big.js */ "nc0P");
 /* harmony import */ var big_js__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(big_js__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _token_token_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../token/token.service */ "DlHu");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../environments/environment */ "AytR");
+
 
 
 
@@ -2775,9 +2777,9 @@ class CoordinatorService {
         this.errorHandlingPipe = errorHandlingPipe;
         this.tokenService = tokenService;
         this.scheduler = new Map(); // pkh + delay
-        this.defaultDelayActivity = 30000; // 30s
+        this.defaultDelayActivity = _environments_environment__WEBPACK_IMPORTED_MODULE_11__["CONSTANTS"].MAINNET ? 60000 : 30000; // 60/30s
         this.shortDelayActivity = 5000; // 5s
-        this.defaultDelayPrice = 300000; // 300s
+        this.defaultDelayPrice = _environments_environment__WEBPACK_IMPORTED_MODULE_11__["CONSTANTS"].MAINNET ? 300000 : 3600000; // 5/60m
     }
     startAll() {
         if (this.walletService.wallet) {
@@ -2888,7 +2890,8 @@ class CoordinatorService {
                     }
                 }
             }, err => console.log('Error in update(): ' + JSON.stringify(err)), () => {
-                console.log(`account[${this.accounts.findIndex((a) => a.address === pkh)}][${typeof this.scheduler.get(pkh).state !== 'undefined' ? this.scheduler.get(pkh).state : '*'}]: <<`);
+                var _a;
+                console.log(`account[${this.accounts.findIndex((a) => a.address === pkh)}][${typeof ((_a = this.scheduler.get(pkh)) === null || _a === void 0 ? void 0 : _a.state) !== 'undefined' ? this.scheduler.get(pkh).state : '*'}]: <<`);
             });
         });
     }
@@ -15018,22 +15021,26 @@ class ActivityService {
         for (const activity of newActivities) {
             const index = oldActivities.findIndex((a) => a.hash === activity.hash);
             if (index === -1 || (index !== -1 && oldActivities[index].status === 0)) {
-                if (activity.type === 'transaction') {
-                    if (account.address === activity.source.address) {
-                        this.messageService.addSuccess(account.shortAddress() + ': Sent ' + this.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                const now = (new Date()).getTime();
+                const timeDiff = now - ((activity === null || activity === void 0 ? void 0 : activity.timestamp) ? activity.timestamp : now);
+                if (timeDiff < 3600000) { // 1 hour
+                    if (activity.type === 'transaction') {
+                        if (account.address === activity.source.address) {
+                            this.messageService.addSuccess(account.shortAddress() + ': Sent ' + this.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                        }
+                        if (account.address === activity.destination.address) {
+                            this.messageService.addSuccess(account.shortAddress() + ': Received ' + this.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                        }
                     }
-                    if (account.address === activity.destination.address) {
-                        this.messageService.addSuccess(account.shortAddress() + ': Received ' + this.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                    else if (activity.type === 'delegation') {
+                        this.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
                     }
-                }
-                else if (activity.type === 'delegation') {
-                    this.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
-                }
-                else if (activity.type === 'origination') {
-                    this.messageService.addSuccess(account.shortAddress() + ': Account originated');
-                }
-                else if (activity.type === 'activation') {
-                    this.messageService.addSuccess(account.shortAddress() + ': Account activated');
+                    else if (activity.type === 'origination') {
+                        this.messageService.addSuccess(account.shortAddress() + ': Account originated');
+                    }
+                    else if (activity.type === 'activation') {
+                        this.messageService.addSuccess(account.shortAddress() + ': Account activated');
+                    }
                 }
             }
         }

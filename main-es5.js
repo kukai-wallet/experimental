@@ -4553,6 +4553,12 @@
       var _token_token_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! ../token/token.service */
       "DlHu");
+      /* harmony import */
+
+
+      var _environments_environment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! ../../../environments/environment */
+      "AytR");
 
       var State;
 
@@ -4576,11 +4582,11 @@
           this.tokenService = tokenService;
           this.scheduler = new Map(); // pkh + delay
 
-          this.defaultDelayActivity = 30000; // 30s
+          this.defaultDelayActivity = _environments_environment__WEBPACK_IMPORTED_MODULE_11__["CONSTANTS"].MAINNET ? 60000 : 30000; // 60/30s
 
           this.shortDelayActivity = 5000; // 5s
 
-          this.defaultDelayPrice = 300000; // 300s
+          this.defaultDelayPrice = _environments_environment__WEBPACK_IMPORTED_MODULE_11__["CONSTANTS"].MAINNET ? 300000 : 3600000; // 5/60m
         }
 
         _createClass(CoordinatorService, [{
@@ -4770,9 +4776,11 @@
                       }, function (err) {
                         return console.log('Error in update(): ' + JSON.stringify(err));
                       }, function () {
+                        var _a;
+
                         console.log("account[".concat(_this19.accounts.findIndex(function (a) {
                           return a.address === pkh;
-                        }), "][").concat(typeof _this19.scheduler.get(pkh).state !== 'undefined' ? _this19.scheduler.get(pkh).state : '*', "]: <<"));
+                        }), "][").concat(typeof ((_a = _this19.scheduler.get(pkh)) === null || _a === void 0 ? void 0 : _a.state) !== 'undefined' ? _this19.scheduler.get(pkh).state : '*', "]: <<"));
                       });
 
                     case 2:
@@ -26715,20 +26723,26 @@
                 });
 
                 if (index === -1 || index !== -1 && oldActivities[index].status === 0) {
-                  if (activity.type === 'transaction') {
-                    if (account.address === activity.source.address) {
-                      _this68.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this68.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
-                    }
+                  var now = new Date().getTime();
+                  var timeDiff = now - ((activity === null || activity === void 0 ? void 0 : activity.timestamp) ? activity.timestamp : now);
 
-                    if (account.address === activity.destination.address) {
-                      _this68.messageService.addSuccess(account.shortAddress() + ': Received ' + _this68.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                  if (timeDiff < 3600000) {
+                    // 1 hour
+                    if (activity.type === 'transaction') {
+                      if (account.address === activity.source.address) {
+                        _this68.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this68.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                      }
+
+                      if (account.address === activity.destination.address) {
+                        _this68.messageService.addSuccess(account.shortAddress() + ': Received ' + _this68.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                      }
+                    } else if (activity.type === 'delegation') {
+                      _this68.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
+                    } else if (activity.type === 'origination') {
+                      _this68.messageService.addSuccess(account.shortAddress() + ': Account originated');
+                    } else if (activity.type === 'activation') {
+                      _this68.messageService.addSuccess(account.shortAddress() + ': Account activated');
                     }
-                  } else if (activity.type === 'delegation') {
-                    _this68.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
-                  } else if (activity.type === 'origination') {
-                    _this68.messageService.addSuccess(account.shortAddress() + ': Account originated');
-                  } else if (activity.type === 'activation') {
-                    _this68.messageService.addSuccess(account.shortAddress() + ': Account activated');
                   }
                 }
               };
