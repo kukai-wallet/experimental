@@ -3557,7 +3557,7 @@ function SigninComponent_div_3_ng_container_1_Template(rf, ctx) { if (rf & 1) {
     const _r423 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerStart"](0);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "img", 5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SigninComponent_div_3_ng_container_1_Template_img_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r423); const ctx_r422 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2); return ctx_r422.login(ctx_r422.verifier); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SigninComponent_div_3_ng_container_1_Template_img_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r423); const key_r421 = ctx.$implicit; const ctx_r422 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2); return ctx_r422.login(key_r421); });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementContainerEnd"]();
 } if (rf & 2) {
@@ -3594,8 +3594,9 @@ class SigninComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 this.messageService.startSpinner('Mocking DirectAuth wallet...');
-                const loginData = yield this.mockLogin(); // Mock locally
-                //const loginData = this.torusService.loginTorus(typeOfLogin);
+                //const loginData = await this.mockLogin(); // Mock locally
+                const loginData = this.torusService.loginTorus(typeOfLogin);
+                console.warn(typeOfLogin);
                 this.loginResponse.emit(loginData);
             }
             finally {

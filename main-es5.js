@@ -6688,9 +6688,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SigninComponent_div_3_ng_container_1_Template_img_click_1_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r423);
 
+          var key_r421 = ctx.$implicit;
+
           var ctx_r422 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
-          return ctx_r422.login(ctx_r422.verifier);
+          return ctx_r422.login(key_r421);
         });
 
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -6766,28 +6768,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context12.prev = _context12.next) {
                   case 0:
-                    _context12.prev = 0;
-                    this.messageService.startSpinner('Mocking DirectAuth wallet...');
-                    _context12.next = 4;
-                    return this.mockLogin();
+                    try {
+                      this.messageService.startSpinner('Mocking DirectAuth wallet...'); //const loginData = await this.mockLogin(); // Mock locally
 
-                  case 4:
-                    loginData = _context12.sent;
-                    // Mock locally
-                    //const loginData = this.torusService.loginTorus(typeOfLogin);
-                    this.loginResponse.emit(loginData);
+                      loginData = this.torusService.loginTorus(typeOfLogin);
+                      console.warn(typeOfLogin);
+                      this.loginResponse.emit(loginData);
+                    } finally {
+                      this.messageService.stopSpinner();
+                    }
 
-                  case 6:
-                    _context12.prev = 6;
-                    this.messageService.stopSpinner();
-                    return _context12.finish(6);
-
-                  case 9:
+                  case 1:
                   case "end":
                     return _context12.stop();
                 }
               }
-            }, _callee12, this, [[0,, 6, 9]]);
+            }, _callee12, this);
           }));
         }
       }, {
