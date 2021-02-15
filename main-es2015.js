@@ -3595,7 +3595,7 @@ class SigninComponent {
             try {
                 this.messageService.startSpinner('Mocking DirectAuth wallet...');
                 //const loginData = await this.mockLogin(); // Mock locally
-                const loginData = this.torusService.loginTorus(typeOfLogin);
+                const loginData = yield this.torusService.loginTorus(typeOfLogin);
                 console.warn(typeOfLogin);
                 this.loginResponse.emit(loginData);
             }
