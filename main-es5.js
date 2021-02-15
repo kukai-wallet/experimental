@@ -818,13 +818,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           window.localStorage.setItem('languagePreference', lang);
           this.translate.use(lang);
         }
-      }, {
-        key: "logout",
-        value: function logout() {
-          this.coordinatorService.stopAll();
-          this.walletService.clearWallet();
-          this.router.navigate(['']);
-        }
       }]);
 
       return AppComponent;
@@ -6304,19 +6297,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ../../services/lookup/lookup.service */
+    "./src/app/services/lookup/lookup.service.ts");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! @angular/common */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
     /* harmony import */
 
 
-    var _signin_signin_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    var _signin_signin_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ./signin/signin.component */
     "./src/app/components/embedded/signin/signin.component.ts");
     /* harmony import */
 
 
-    var _send_send_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    var _send_send_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
     /*! ../send/send.component */
     "./src/app/components/send/send.component.ts");
 
@@ -6375,7 +6374,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     })(MessageTypes || (MessageTypes = {}));
 
     var EmbeddedComponent = /*#__PURE__*/function () {
-      function EmbeddedComponent(torusService, importService, walletService, coordinatorService, route) {
+      function EmbeddedComponent(torusService, importService, walletService, coordinatorService, route, lookupService) {
         var _this9 = this;
 
         _classCallCheck(this, EmbeddedComponent);
@@ -6385,6 +6384,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.walletService = walletService;
         this.coordinatorService = coordinatorService;
         this.route = route;
+        this.lookupService = lookupService;
         this.allowedOrigins = ['http://localhost', 'https://www.tezos.help'];
         this.origin = '';
         this.login = false;
@@ -6411,6 +6411,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   case MessageTypes.operationRequest:
                     if (_this9.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && evt.origin === _this9.walletService.wallet.origin && data.operations) {
                       _this9.operationRequests = _this9.beaconTypeGuard(data.operations);
+                    } else {
+                      _this9.noWalletError();
+                    }
+
+                    break;
+
+                  case MessageTypes.logoutRequest:
+                    if (_this9.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && evt.origin === _this9.walletService.wallet.origin && _this9.walletService.wallet.instanceId) {
+                      var instanceId = _this9.walletService.wallet.instanceId;
+
+                      _this9.logout(instanceId);
+
+                      _this9.sendResponse({
+                        type: MessageTypes.logoutResponse,
+                        instanceId: instanceId
+                      });
+                    } else {
+                      _this9.noWalletError();
                     }
 
                     break;
@@ -6462,7 +6480,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 userInfo = loginData.userInfo;
             var filteredUserInfo = {
               typeOfLogin: userInfo.typeOfLogin,
-              id: userInfo.verifierId
+              id: userInfo.verifierId,
+              name: userInfo.name
             };
             var instanceId = this.generateInstanceId();
             this.sendResponse({
@@ -6488,6 +6507,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             type: MessageTypes.loginResponse,
             failed: true,
             error: 'ABORTED_BY_USER'
+          });
+        }
+      }, {
+        key: "noWalletError",
+        value: function noWalletError() {
+          this.sendResponse({
+            type: MessageTypes.logoutResponse,
+            failed: true,
+            error: 'NO_WALLET_FOUND'
           });
         }
       }, {
@@ -6570,13 +6598,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function generateInstanceId() {
           return _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__["common"].base58encode(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__["utils"].mnemonicToEntropy(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__["utils"].generateMnemonic(15)), new Uint8Array([]));
         }
+      }, {
+        key: "logout",
+        value: function logout(instanceId) {
+          this.coordinatorService.stopAll();
+          this.walletService.clearWallet(instanceId);
+          this.lookupService.clear();
+        }
       }]);
 
       return EmbeddedComponent;
     }();
 
     EmbeddedComponent.ɵfac = function EmbeddedComponent_Factory(t) {
-      return new (t || EmbeddedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]));
+      return new (t || EmbeddedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"]));
     };
 
     EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
@@ -6600,7 +6635,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount);
         }
       },
-      directives: [_angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_11__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_12__["SendComponent"]],
+      directives: [_angular_common__WEBPACK_IMPORTED_MODULE_11__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_12__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_13__["SendComponent"]],
       styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9lbWJlZGRlZC9DOlxcVXNlcnNcXGtsYXNfXFxHaXRcXGt1a2FpLWljYWJvZC9zcmNcXGFwcFxcY29tcG9uZW50c1xcZW1iZWRkZWRcXGVtYmVkZGVkLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL2VtYmVkZGVkL2VtYmVkZGVkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZW1iZWRkZWQvZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59IiwiOmhvc3Qge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xufSJdfQ== */"]
     });
     /*@__PURE__*/
@@ -6624,6 +6659,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]
+        }, {
+          type: _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"]
         }];
       }, null);
     })();
@@ -6780,19 +6817,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 4:
                     loginData = _context12.sent;
+                    _context12.next = 7;
+                    return this.messageService.stopSpinner();
+
+                  case 7:
                     this.loginResponse.emit(loginData);
+                    _context12.next = 14;
+                    break;
 
-                  case 6:
-                    _context12.prev = 6;
-                    this.messageService.stopSpinner();
-                    return _context12.finish(6);
+                  case 10:
+                    _context12.prev = 10;
+                    _context12.t0 = _context12["catch"](0);
+                    _context12.next = 14;
+                    return this.messageService.stopSpinner();
 
-                  case 9:
+                  case 14:
                   case "end":
                     return _context12.stop();
                 }
               }
-            }, _callee12, this, [[0,, 6, 9]]);
+            }, _callee12, this, [[0, 10]]);
           }));
         }
       }, {
@@ -22863,7 +22907,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     _context84.prev = 7;
                     _context84.t0 = _context84["catch"](0);
                     console.warn(_context84.t0);
-                    this.walletService.clearWallet();
+                    this.walletService.clearWallet(instanceId);
                     return _context84.abrupt("return", false);
 
                   case 12:
@@ -28371,9 +28415,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }, {
           key: "clearWallet",
           value: function clearWallet() {
+            var instanceId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
             this.wallet = null;
             this.storageId = 0;
-            localStorage.removeItem(this.storeKey);
+
+            if (instanceId) {
+              sessionStorage.removeItem(instanceId);
+            } else {
+              localStorage.removeItem(this.storeKey);
+            }
           }
           /*
           Used to decide wallet type
@@ -28512,11 +28562,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 console.log(this.wallet);
               } else {
                 console.log('couldnt load a wallet');
-                this.clearWallet();
+                this.clearWallet(instanceId);
               }
             } else {
               console.log('couldnt load a wallet');
-              this.clearWallet();
+              this.clearWallet(instanceId);
             }
           }
         }, {

@@ -546,11 +546,6 @@ class AppComponent {
         window.localStorage.setItem('languagePreference', lang);
         this.translate.use(lang);
     }
-    logout() {
-        this.coordinatorService.stopAll();
-        this.walletService.clearWallet();
-        this.router.navigate(['']);
-    }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_3__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_4__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_6__["Location"])); };
 AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 5, vars: 2, consts: [[4, "ngIf"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
@@ -3331,9 +3326,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @tezos-core-tools/crypto-utils */ "./node_modules/@tezos-core-tools/crypto-utils/dist/main.js");
 /* harmony import */ var _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
-/* harmony import */ var _signin_signin_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./signin/signin.component */ "./src/app/components/embedded/signin/signin.component.ts");
-/* harmony import */ var _send_send_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../send/send.component */ "./src/app/components/send/send.component.ts");
+/* harmony import */ var _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../services/lookup/lookup.service */ "./src/app/services/lookup/lookup.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+/* harmony import */ var _signin_signin_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./signin/signin.component */ "./src/app/components/embedded/signin/signin.component.ts");
+/* harmony import */ var _send_send_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../send/send.component */ "./src/app/components/send/send.component.ts");
+
+
 
 
 
@@ -3379,12 +3377,13 @@ var MessageTypes;
     MessageTypes["logoutResponse"] = "logout_response";
 })(MessageTypes || (MessageTypes = {}));
 class EmbeddedComponent {
-    constructor(torusService, importService, walletService, coordinatorService, route) {
+    constructor(torusService, importService, walletService, coordinatorService, route, lookupService) {
         this.torusService = torusService;
         this.importService = importService;
         this.walletService = walletService;
         this.coordinatorService = coordinatorService;
         this.route = route;
+        this.lookupService = lookupService;
         this.allowedOrigins = ['http://localhost', 'https://www.tezos.help'];
         this.origin = '';
         this.login = false;
@@ -3405,6 +3404,23 @@ class EmbeddedComponent {
                                 if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && evt.origin === this.walletService.wallet.origin &&
                                     data.operations) {
                                     this.operationRequests = this.beaconTypeGuard(data.operations);
+                                }
+                                else {
+                                    this.noWalletError();
+                                }
+                                break;
+                            case MessageTypes.logoutRequest:
+                                if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && evt.origin === this.walletService.wallet.origin &&
+                                    this.walletService.wallet.instanceId) {
+                                    const instanceId = this.walletService.wallet.instanceId;
+                                    this.logout(instanceId);
+                                    this.sendResponse({
+                                        type: MessageTypes.logoutResponse,
+                                        instanceId
+                                    });
+                                }
+                                else {
+                                    this.noWalletError();
                                 }
                                 break;
                             default:
@@ -3443,7 +3459,7 @@ class EmbeddedComponent {
     loginResponse(loginData) {
         if (loginData) {
             const { keyPair, userInfo } = loginData;
-            const filteredUserInfo = { typeOfLogin: userInfo.typeOfLogin, id: userInfo.verifierId };
+            const filteredUserInfo = { typeOfLogin: userInfo.typeOfLogin, id: userInfo.verifierId, name: userInfo.name };
             const instanceId = this.generateInstanceId();
             this.sendResponse({
                 type: MessageTypes.loginResponse,
@@ -3463,6 +3479,13 @@ class EmbeddedComponent {
     }
     abort() {
         this.sendResponse({ type: MessageTypes.loginResponse, failed: true, error: 'ABORTED_BY_USER' });
+    }
+    noWalletError() {
+        this.sendResponse({
+            type: MessageTypes.logoutResponse,
+            failed: true,
+            error: 'NO_WALLET_FOUND'
+        });
     }
     operationResponse(opHash) {
         this.operationRequests = null;
@@ -3508,8 +3531,13 @@ class EmbeddedComponent {
     generateInstanceId() {
         return _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__["common"].base58encode(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__["utils"].mnemonicToEntropy(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__["utils"].generateMnemonic(15)), new Uint8Array([]));
     }
+    logout(instanceId) {
+        this.coordinatorService.stopAll();
+        this.walletService.clearWallet(instanceId);
+        this.lookupService.clear();
+    }
 }
-EmbeddedComponent.ɵfac = function EmbeddedComponent_Factory(t) { return new (t || EmbeddedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"])); };
+EmbeddedComponent.ɵfac = function EmbeddedComponent_Factory(t) { return new (t || EmbeddedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"])); };
 EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: EmbeddedComponent, selectors: [["app-embedded"]], decls: 2, vars: 2, consts: [[3, "loginResponse", 4, "ngIf"], [3, "beaconMode", "operationRequest", "activeAccount", "operationResponse", 4, "ngIf"], [3, "loginResponse"], [3, "beaconMode", "operationRequest", "activeAccount", "operationResponse"]], template: function EmbeddedComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, EmbeddedComponent_app_signin_0_Template, 1, 0, "app-signin", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, EmbeddedComponent_app_send_1_Template, 1, 3, "app-send", 1);
@@ -3517,7 +3545,7 @@ EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.login);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_10__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_11__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_12__["SendComponent"]], styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9lbWJlZGRlZC9DOlxcVXNlcnNcXGtsYXNfXFxHaXRcXGt1a2FpLWljYWJvZC9zcmNcXGFwcFxcY29tcG9uZW50c1xcZW1iZWRkZWRcXGVtYmVkZGVkLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL2VtYmVkZGVkL2VtYmVkZGVkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZW1iZWRkZWQvZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59IiwiOmhvc3Qge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xufSJdfQ== */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_11__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_12__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_13__["SendComponent"]], styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9lbWJlZGRlZC9DOlxcVXNlcnNcXGtsYXNfXFxHaXRcXGt1a2FpLWljYWJvZC9zcmNcXGFwcFxcY29tcG9uZW50c1xcZW1iZWRkZWRcXGVtYmVkZGVkLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL2VtYmVkZGVkL2VtYmVkZGVkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBQTtFQUNBLFlBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZW1iZWRkZWQvZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59IiwiOmhvc3Qge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xufSJdfQ== */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](EmbeddedComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
         args: [{
@@ -3525,7 +3553,7 @@ EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefine
                 templateUrl: './embedded.component.html',
                 styleUrls: ['./embedded.component.scss']
             }]
-    }], function () { return [{ type: _services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"] }, { type: _services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"] }, { type: _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"] }, { type: _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"] }]; }, null); })();
+    }], function () { return [{ type: _services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"] }, { type: _services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"] }, { type: _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"] }, { type: _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"] }, { type: _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"] }]; }, null); })();
 
 
 /***/ }),
@@ -3597,10 +3625,11 @@ class SigninComponent {
                 this.messageService.startSpinner('Mocking DirectAuth wallet...');
                 //const loginData = await this.mockLogin(); // Mock locally
                 const loginData = yield this.torusService.loginTorus(typeOfLogin);
+                yield this.messageService.stopSpinner();
                 this.loginResponse.emit(loginData);
             }
-            finally {
-                this.messageService.stopSpinner();
+            catch (_a) {
+                yield this.messageService.stopSpinner();
             }
         });
     }
@@ -12101,7 +12130,7 @@ class ImportService {
             }
             catch (err) {
                 console.warn(err);
-                this.walletService.clearWallet();
+                this.walletService.clearWallet(instanceId);
                 return false;
             }
         });
@@ -15240,10 +15269,15 @@ class WalletService {
     /*
       Clear wallet data from browser
     */
-    clearWallet() {
+    clearWallet(instanceId = '') {
         this.wallet = null;
         this.storageId = 0;
-        localStorage.removeItem(this.storeKey);
+        if (instanceId) {
+            sessionStorage.removeItem(instanceId);
+        }
+        else {
+            localStorage.removeItem(this.storeKey);
+        }
     }
     /*
     Used to decide wallet type
@@ -15346,12 +15380,12 @@ class WalletService {
             }
             else {
                 console.log('couldnt load a wallet');
-                this.clearWallet();
+                this.clearWallet(instanceId);
             }
         }
         else {
             console.log('couldnt load a wallet');
-            this.clearWallet();
+            this.clearWallet(instanceId);
         }
     }
     deserializeStoredWallet(wd, type) {
