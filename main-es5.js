@@ -6766,21 +6766,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               while (1) {
                 switch (_context12.prev = _context12.next) {
                   case 0:
-                    try {
-                      this.messageService.startSpinner('Mocking DirectAuth wallet...'); //const loginData = await this.mockLogin(); // Mock locally
+                    _context12.prev = 0;
+                    this.messageService.startSpinner('Mocking DirectAuth wallet...');
+                    _context12.next = 4;
+                    return this.mockLogin();
 
-                      loginData = this.torusService.loginTorus(typeOfLogin);
-                      this.loginResponse.emit(loginData);
-                    } finally {
-                      this.messageService.stopSpinner();
-                    }
+                  case 4:
+                    loginData = _context12.sent;
+                    // Mock locally
+                    //const loginData = this.torusService.loginTorus(typeOfLogin);
+                    this.loginResponse.emit(loginData);
 
-                  case 1:
+                  case 6:
+                    _context12.prev = 6;
+                    this.messageService.stopSpinner();
+                    return _context12.finish(6);
+
+                  case 9:
                   case "end":
                     return _context12.stop();
                 }
               }
-            }, _callee12, this);
+            }, _callee12, this, [[0,, 6, 9]]);
           }));
         }
       }, {

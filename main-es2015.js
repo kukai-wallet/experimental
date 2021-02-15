@@ -3594,8 +3594,8 @@ class SigninComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 this.messageService.startSpinner('Mocking DirectAuth wallet...');
-                //const loginData = await this.mockLogin(); // Mock locally
-                const loginData = this.torusService.loginTorus(typeOfLogin);
+                const loginData = yield this.mockLogin(); // Mock locally
+                //const loginData = this.torusService.loginTorus(typeOfLogin);
                 this.loginResponse.emit(loginData);
             }
             finally {
