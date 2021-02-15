@@ -6460,6 +6460,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (loginData) {
             var keyPair = loginData.keyPair,
                 userInfo = loginData.userInfo;
+            var filteredUserInfo = {
+              typeOfLogin: userInfo.typeOfLogin,
+              id: userInfo.verifierId
+            };
             var instanceId = this.generateInstanceId();
             this.sendResponse({
               type: MessageTypes.loginResponse,
@@ -6468,7 +6472,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               instanceId: instanceId,
               pk: keyPair.pk,
               pkh: keyPair.pkh,
-              userData: userInfo
+              userData: filteredUserInfo
             });
             this.importAccount(keyPair, userInfo, instanceId);
           } else {
@@ -6776,20 +6780,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                   case 4:
                     loginData = _context12.sent;
-                    console.warn(typeOfLogin);
                     this.loginResponse.emit(loginData);
 
-                  case 7:
-                    _context12.prev = 7;
+                  case 6:
+                    _context12.prev = 6;
                     this.messageService.stopSpinner();
-                    return _context12.finish(7);
+                    return _context12.finish(6);
 
-                  case 10:
+                  case 9:
                   case "end":
                     return _context12.stop();
                 }
               }
-            }, _callee12, this, [[0,, 7, 10]]);
+            }, _callee12, this, [[0,, 6, 9]]);
           }));
         }
       }, {

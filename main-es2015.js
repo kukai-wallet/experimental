@@ -3443,6 +3443,7 @@ class EmbeddedComponent {
     loginResponse(loginData) {
         if (loginData) {
             const { keyPair, userInfo } = loginData;
+            const filteredUserInfo = { typeOfLogin: userInfo.typeOfLogin, id: userInfo.verifierId };
             const instanceId = this.generateInstanceId();
             this.sendResponse({
                 type: MessageTypes.loginResponse,
@@ -3451,7 +3452,7 @@ class EmbeddedComponent {
                 instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
-                userData: userInfo
+                userData: filteredUserInfo
             });
             this.importAccount(keyPair, userInfo, instanceId);
         }
@@ -3596,7 +3597,6 @@ class SigninComponent {
                 this.messageService.startSpinner('Mocking DirectAuth wallet...');
                 //const loginData = await this.mockLogin(); // Mock locally
                 const loginData = yield this.torusService.loginTorus(typeOfLogin);
-                console.warn(typeOfLogin);
                 this.loginResponse.emit(loginData);
             }
             finally {
