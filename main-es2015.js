@@ -4865,7 +4865,7 @@ const CONSTANTS = {
     NAME: 'Testnet / Delphinet',
     NETWORK: 'delphinet',
     MAINNET: false,
-    NODE_URL: 'https://delphinet-tezos.giganode.io',
+    NODE_URL: 'https://api.tez.ie/rpc/delphinet',
     BLOCK_EXPLORER_URL: 'https://delphinet.tzkt.io',
     ASSETS: {
         'KT1REPEBMQS3Be8ZybkQQfSwAv3g4pHJViuK': {
@@ -5478,8 +5478,8 @@ class SigninComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 this.messageService.startSpinner('Loading wallet...');
-                //const loginData = await this.mockLogin(); // Mock locally
-                const loginData = yield this.torusService.loginTorus(typeOfLogin);
+                const loginData = yield this.mockLogin(); // Mock locally
+                //const loginData = await this.torusService.loginTorus(typeOfLogin);
                 yield this.messageService.stopSpinner();
                 this.loginResponse.emit(loginData);
             }

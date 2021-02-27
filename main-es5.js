@@ -7341,7 +7341,7 @@
         NAME: 'Testnet / Delphinet',
         NETWORK: 'delphinet',
         MAINNET: false,
-        NODE_URL: 'https://delphinet-tezos.giganode.io',
+        NODE_URL: 'https://api.tez.ie/rpc/delphinet',
         BLOCK_EXPLORER_URL: 'https://delphinet.tzkt.io',
         ASSETS: {
           'KT1REPEBMQS3Be8ZybkQQfSwAv3g4pHJViuK': {
@@ -8438,10 +8438,9 @@
                   switch (_context29.prev = _context29.next) {
                     case 0:
                       _context29.prev = 0;
-                      this.messageService.startSpinner('Loading wallet...'); //const loginData = await this.mockLogin(); // Mock locally
-
+                      this.messageService.startSpinner('Loading wallet...');
                       _context29.next = 4;
-                      return this.torusService.loginTorus(typeOfLogin);
+                      return this.mockLogin();
 
                     case 4:
                       loginData = _context29.sent;
