@@ -7341,7 +7341,7 @@
         NAME: 'Testnet / Delphinet',
         NETWORK: 'delphinet',
         MAINNET: false,
-        NODE_URL: 'https://api.tez.ie/rpc/delphinet',
+        NODE_URL: 'https://delphinet-tezos.giganode.io',
         BLOCK_EXPLORER_URL: 'https://delphinet.tzkt.io',
         ASSETS: {
           'KT1REPEBMQS3Be8ZybkQQfSwAv3g4pHJViuK': {
@@ -19813,19 +19813,13 @@
       !*** ./src/app/components/embedded/embedded.component.ts ***!
       \***********************************************************/
 
-    /*! exports provided: MessageTypes, EmbeddedComponent */
+    /*! exports provided: EmbeddedComponent */
 
     /***/
     function fYcN(module, __webpack_exports__, __webpack_require__) {
       "use strict";
 
       __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "MessageTypes", function () {
-        return MessageTypes;
-      });
       /* harmony export (binding) */
 
 
@@ -19905,19 +19899,25 @@
       /* harmony import */
 
 
-      var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      var kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+      /*! kukai-embed/dist/types */
+      "OFNV");
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
       /*! @angular/common */
       "ofXK");
       /* harmony import */
 
 
-      var _signin_signin_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+      var _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
       /*! ./signin/signin.component */
       "HlfV");
       /* harmony import */
 
 
-      var _send_send_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+      var _send_send_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
       /*! ../send/send.component */
       "MlEp");
 
@@ -19961,19 +19961,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("beaconMode", true)("operationRequest", ctx_r1.operationRequests)("activeAccount", ctx_r1.activeAccount);
         }
-      } // could use literals instead of an enum
-
-
-      var MessageTypes;
-
-      (function (MessageTypes) {
-        MessageTypes["loginRequest"] = "login_request";
-        MessageTypes["loginResponse"] = "login_response";
-        MessageTypes["operationRequest"] = "operation_request";
-        MessageTypes["operationResponse"] = "operation_response";
-        MessageTypes["logoutRequest"] = "logout_request";
-        MessageTypes["logoutResponse"] = "logout_response";
-      })(MessageTypes || (MessageTypes = {}));
+      }
 
       var EmbeddedComponent = /*#__PURE__*/function () {
         function EmbeddedComponent(torusService, importService, walletService, coordinatorService, route, lookupService) {
@@ -19987,7 +19975,7 @@
           this.coordinatorService = coordinatorService;
           this.route = route;
           this.lookupService = lookupService;
-          this.allowedOrigins = ['http://localhost', 'https://www.tezos.help'];
+          this.allowedOrigins = ['http://localhost:3000', 'https://www.tezos.help', 'https://x-tz.com'];
           this.origin = '';
           this.login = false;
           this.activeAccount = null;
@@ -20006,32 +19994,23 @@
                   _this41.origin = evt.origin;
 
                   switch (data.type) {
-                    case MessageTypes.loginRequest:
-                      _this41.login = true;
-                      break;
-
-                    case MessageTypes.operationRequest:
-                      if (_this41.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && evt.origin === _this41.walletService.wallet.origin && data.operations) {
-                        _this41.operationRequests = _this41.beaconTypeGuard(data.operations);
-                      } else {
-                        _this41.noWalletError();
-                      }
+                    case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["RequestTypes"].loginRequest:
+                      _this41.handleLoginRequest(data);
 
                       break;
 
-                    case MessageTypes.logoutRequest:
-                      if (_this41.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && evt.origin === _this41.walletService.wallet.origin && _this41.walletService.wallet.instanceId) {
-                        var instanceId = _this41.walletService.wallet.instanceId;
+                    case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["RequestTypes"].operationRequest:
+                      _this41.handleOperationRequest(data);
 
-                        _this41.logout(instanceId);
+                      break;
 
-                        _this41.sendResponse({
-                          type: MessageTypes.logoutResponse,
-                          instanceId: instanceId
-                        });
-                      } else {
-                        _this41.noWalletError();
-                      }
+                    case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["RequestTypes"].trackRequest:
+                      _this41.handleTrackRequest(data);
+
+                      break;
+
+                    case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["RequestTypes"].logoutRequest:
+                      _this41.handleLogoutRequest(data);
 
                       break;
 
@@ -20073,6 +20052,53 @@
                 _this42.coordinatorService.startAll();
               }
             });
+            window.parent.window.postMessage(JSON.stringify({
+              type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].initResponse,
+              failed: false
+            }), this.origin || '*');
+          }
+        }, {
+          key: "handleLoginRequest",
+          value: function handleLoginRequest(req) {
+            this.login = true;
+          }
+        }, {
+          key: "handleOperationRequest",
+          value: function handleOperationRequest(req) {
+            if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && req.operations) {
+              this.operationRequests = this.beaconTypeGuard(req.operations);
+            } else {
+              this.sendResponse({
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
+                failed: true,
+                error: 'NO_WALLET_FOUND'
+              });
+            }
+          }
+        }, {
+          key: "handleTrackRequest",
+          value: function handleTrackRequest(req) {
+            this.sendResponse({
+              type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].trackResponse,
+              opHash: req.opHash,
+              failed: true,
+              error: 'NOT_IMPLEMENTED'
+            });
+          }
+        }, {
+          key: "handleLogoutRequest",
+          value: function handleLogoutRequest(req) {
+            if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && this.walletService.wallet.instanceId) {
+              var instanceId = this.walletService.wallet.instanceId;
+              this.logout(instanceId);
+              this.sendResponse({
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].logoutResponse,
+                instanceId: instanceId,
+                failed: false
+              });
+            } else {
+              this.noWalletError();
+            }
           }
         }, {
           key: "loginResponse",
@@ -20084,16 +20110,16 @@
                 typeOfLogin: userInfo.typeOfLogin,
                 id: userInfo.verifierId,
                 name: userInfo.name
-              };
+              }; // 160 bits of entropy, base58 encoded
+
               var instanceId = this.generateInstanceId();
               this.sendResponse({
-                type: MessageTypes.loginResponse,
-                // 128 bits of entropy, base58 encoded
-                // TODO should the OperationsService be used instead of this dependancy??
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
                 instanceId: instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
-                userData: filteredUserInfo
+                userData: filteredUserInfo,
+                failed: false
               });
               this.importAccount(keyPair, userInfo, instanceId);
             } else {
@@ -20106,7 +20132,7 @@
           key: "abort",
           value: function abort() {
             this.sendResponse({
-              type: MessageTypes.loginResponse,
+              type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
               failed: true,
               error: 'ABORTED_BY_USER'
             });
@@ -20115,7 +20141,7 @@
           key: "noWalletError",
           value: function noWalletError() {
             this.sendResponse({
-              type: MessageTypes.logoutResponse,
+              type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].logoutResponse,
               failed: true,
               error: 'NO_WALLET_FOUND'
             });
@@ -20128,20 +20154,21 @@
 
             if (!opHash) {
               response = {
-                type: MessageTypes.operationResponse,
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
                 failed: true,
                 error: 'ABORTED_BY_USER'
               };
             } else if (opHash === 'broadcast_error') {
               response = {
-                type: MessageTypes.operationResponse,
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
                 failed: true,
                 error: 'BROADCAST_ERROR'
               };
             } else {
               response = {
-                type: MessageTypes.operationResponse,
-                opHash: opHash
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
+                opHash: opHash,
+                failed: false
               };
             }
 
@@ -20251,7 +20278,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount);
           }
         },
-        directives: [_angular_common__WEBPACK_IMPORTED_MODULE_11__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_12__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_13__["SendComponent"]],
+        directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_14__["SendComponent"]],
         styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxlbWJlZGRlZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FBQ0YiLCJmaWxlIjoiZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59Il19 */"]
       });
 
