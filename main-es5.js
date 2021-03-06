@@ -19975,7 +19975,7 @@
           this.coordinatorService = coordinatorService;
           this.route = route;
           this.lookupService = lookupService;
-          this.allowedOrigins = ['http://localhost:3000', 'https://www.tezos.help', 'https://x-tz.com'];
+          this.allowedOrigins = ['http://localhost', 'http://localhost:3000', 'https://www.tezos.help', 'https://x-tz.com'];
           this.origin = '';
           this.login = false;
           this.activeAccount = null;
