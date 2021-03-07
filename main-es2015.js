@@ -5478,8 +5478,8 @@ class SigninComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 this.messageService.startSpinner('Loading wallet...');
-                const loginData = yield this.mockLogin(); // Mock locally
-                //const loginData = await this.torusService.loginTorus(typeOfLogin);
+                //const loginData = await this.mockLogin(); // Mock locally
+                const loginData = yield this.torusService.loginTorus(typeOfLogin);
                 yield this.messageService.stopSpinner();
                 this.loginResponse.emit(loginData);
             }

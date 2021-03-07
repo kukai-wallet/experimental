@@ -8438,9 +8438,10 @@
                   switch (_context29.prev = _context29.next) {
                     case 0:
                       _context29.prev = 0;
-                      this.messageService.startSpinner('Loading wallet...');
+                      this.messageService.startSpinner('Loading wallet...'); //const loginData = await this.mockLogin(); // Mock locally
+
                       _context29.next = 4;
-                      return this.mockLogin();
+                      return this.torusService.loginTorus(typeOfLogin);
 
                     case 4:
                       loginData = _context29.sent;
