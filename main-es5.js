@@ -16621,19 +16621,25 @@
       var _send_send_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
       /*! ../send/send.component */
       "MlEp");
+      /* harmony import */
+
+
+      var _card_card_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! ../card/card.component */
+      "lXt9");
 
       function EmbeddedComponent_app_signin_0_Template(rf, ctx) {
         if (rf & 1) {
-          var _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+          var _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "app-signin", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "app-signin", 3);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("loginResponse", function EmbeddedComponent_app_signin_0_Template_app_signin_loginResponse_0_listener($event) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r4);
 
-            var ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+            var ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-            return ctx_r2.loginResponse($event);
+            return ctx_r3.loginResponse($event);
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -16642,16 +16648,16 @@
 
       function EmbeddedComponent_app_send_1_Template(rf, ctx) {
         if (rf & 1) {
-          var _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+          var _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "app-send", 3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "app-send", 4);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("operationResponse", function EmbeddedComponent_app_send_1_Template_app_send_operationResponse_0_listener($event) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r5);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r6);
 
-            var ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+            var ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
-            return ctx_r4.operationResponse($event);
+            return ctx_r5.operationResponse($event);
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -16661,6 +16667,18 @@
           var ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("headless", true)("operationRequest", ctx_r1.operationRequests)("activeAccount", ctx_r1.activeAccount);
+        }
+      }
+
+      function EmbeddedComponent_app_card_2_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-card", 5);
+        }
+
+        if (rf & 2) {
+          var ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("activeAccount", ctx_r2.activeAccount);
         }
       }
 
@@ -16965,14 +16983,16 @@
       EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
         type: EmbeddedComponent,
         selectors: [["app-embedded"]],
-        decls: 2,
-        vars: 2,
-        consts: [[3, "loginResponse", 4, "ngIf"], [3, "headless", "operationRequest", "activeAccount", "operationResponse", 4, "ngIf"], [3, "loginResponse"], [3, "headless", "operationRequest", "activeAccount", "operationResponse"]],
+        decls: 3,
+        vars: 3,
+        consts: [[3, "loginResponse", 4, "ngIf"], [3, "headless", "operationRequest", "activeAccount", "operationResponse", 4, "ngIf"], [3, "activeAccount", 4, "ngIf"], [3, "loginResponse"], [3, "headless", "operationRequest", "activeAccount", "operationResponse"], [3, "activeAccount"]],
         template: function EmbeddedComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, EmbeddedComponent_app_signin_0_Template, 1, 0, "app-signin", 0);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, EmbeddedComponent_app_send_1_Template, 1, 3, "app-send", 1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, EmbeddedComponent_app_card_2_Template, 1, 1, "app-card", 2);
           }
 
           if (rf & 2) {
@@ -16981,9 +17001,13 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !ctx.operationRequests);
           }
         },
-        directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_14__["SendComponent"]],
+        directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_14__["SendComponent"], _card_card_component__WEBPACK_IMPORTED_MODULE_15__["CardComponent"]],
         styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxlbWJlZGRlZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FBQ0YiLCJmaWxlIjoiZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59Il19 */"]
       });
 
@@ -21112,14 +21136,14 @@
         },
         decls: 12,
         vars: 4,
-        consts: [["width", "24", 3, "src"]],
+        consts: [[1, "container"], ["width", "24", 3, "src"]],
         template: function CardComponent_Template(rf, ctx) {
           if (rf & 1) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 0);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 1);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "h4");
 
@@ -21172,7 +21196,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.activeAccount.balanceUSD || 0, " USD");
           }
         },
-        styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5zY3NzIn0= */"]
+        styles: ["[_nghost-%COMP%]   div.container[_ngcontent-%COMP%] {\n  background: #5963FF;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxjYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUFDSiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgZGl2LmNvbnRhaW5lciB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjNTk2M0ZGO1xyXG59XHJcbiJdfQ== */"]
       });
 
       (function () {
