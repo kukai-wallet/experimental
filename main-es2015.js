@@ -3216,6 +3216,44 @@ IndexerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineIn
 
 /***/ }),
 
+/***/ "874q":
+/*!*******************************!*\
+  !*** ../icabod/dist/types.js ***!
+  \*******************************/
+/*! exports provided: Networks, RequestTypes, ResponseTypes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Networks", function() { return Networks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestTypes", function() { return RequestTypes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResponseTypes", function() { return ResponseTypes; });
+var Networks;
+(function (Networks) {
+    Networks["main"] = "main";
+    Networks["delphi"] = "delphi";
+    Networks["edo"] = "edo";
+    Networks["dev"] = "dev";
+})(Networks || (Networks = {}));
+var RequestTypes;
+(function (RequestTypes) {
+    RequestTypes["loginRequest"] = "login_request";
+    RequestTypes["operationRequest"] = "operation_request";
+    RequestTypes["trackRequest"] = "track_request";
+    RequestTypes["logoutRequest"] = "logout_request";
+})(RequestTypes || (RequestTypes = {}));
+var ResponseTypes;
+(function (ResponseTypes) {
+    ResponseTypes["loginResponse"] = "login_response";
+    ResponseTypes["operationResponse"] = "operation_response";
+    ResponseTypes["trackResponse"] = "track_response";
+    ResponseTypes["logoutResponse"] = "logout_response";
+    ResponseTypes["resize"] = "resize";
+})(ResponseTypes || (ResponseTypes = {}));
+
+
+/***/ }),
+
 /***/ "8ZjU":
 /*!**********************************************!*\
   !*** ./src/app/pipes/error-handling.pipe.ts ***!
@@ -10048,7 +10086,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../services/lookup/lookup.service */ "QDvW");
-/* harmony import */ var kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! kukai-embed/dist/types */ "OFNV");
+/* harmony import */ var kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! kukai-embed/dist/types */ "874q");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./signin/signin.component */ "HlfV");
 /* harmony import */ var _send_send_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../send/send.component */ "MlEp");
@@ -10164,16 +10202,18 @@ class EmbeddedComponent {
                 this.coordinatorService.startAll();
             }
         });
-        window.parent.window.postMessage(JSON.stringify({ type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].initResponse, failed: false }), this.origin || '*');
     }
     handleLoginRequest(req) {
         this.login = true;
+        this.sendResizeReady();
     }
     handleOperationRequest(req) {
         if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && req.operations) {
             this.operationRequests = this.isValidOperation(req.operations) ? req.operations : null;
+            this.sendResizeReady();
         }
         else {
+            this.sendResizeReady();
             this.sendResponse({
                 type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
                 failed: true,
@@ -10222,7 +10262,9 @@ class EmbeddedComponent {
         else {
             this.abort();
         }
-        this.login = false;
+        setTimeout(() => {
+            this.login = false;
+        }, 1);
     }
     abort() {
         this.sendResponse({ type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse, failed: true, error: 'ABORTED_BY_USER' });
@@ -10235,7 +10277,6 @@ class EmbeddedComponent {
         });
     }
     operationResponse(opHash) {
-        this.operationRequests = null;
         let response;
         if (!opHash) {
             response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse, failed: true, error: 'ABORTED_BY_USER' };
@@ -10250,9 +10291,18 @@ class EmbeddedComponent {
             response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse, opHash, failed: false };
         }
         this.sendResponse(response);
+        setTimeout(() => {
+            this.operationRequests = null;
+        }, 1);
     }
     sendResponse(resp) {
         window.parent.window.postMessage(JSON.stringify(resp), this.origin);
+    }
+    sendResizeReady() {
+        this.sendResponse({
+            type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].resize,
+            failed: false
+        });
     }
     importAccount(keyPair, userInfo, instanceId) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -10305,7 +10355,7 @@ EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !(ctx.operationRequests || ctx.login));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !ctx.operationRequests);
     } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_14__["SendComponent"], _card_card_component__WEBPACK_IMPORTED_MODULE_15__["CardComponent"]], styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxlbWJlZGRlZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FBQ0YiLCJmaWxlIjoiZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59Il19 */"] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](EmbeddedComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
@@ -12391,7 +12441,7 @@ CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.activeAccount.pkh);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.activeAccount.balanceUSD || 0, " USD");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.activeAccount.balanceXTZ || 0, " XTZ");
     } }, styles: ["[_nghost-%COMP%]   div.container[_ngcontent-%COMP%] {\n  background: #5963FF;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxjYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUFDSiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgZGl2LmNvbnRhaW5lciB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjNTk2M0ZGO1xyXG59XHJcbiJdfQ== */"] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CardComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
