@@ -10244,27 +10244,29 @@ class EmbeddedComponent {
         }
     }
     loginResponse(loginData) {
+        this.login = false;
         if (loginData) {
             const { keyPair, userInfo } = loginData;
             const filteredUserInfo = { typeOfLogin: userInfo.typeOfLogin, id: userInfo.verifierId, name: userInfo.name };
             // 160 bits of entropy, base58 encoded
             const instanceId = this.generateInstanceId();
-            this.sendResponse({
-                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
-                instanceId,
-                pk: keyPair.pk,
-                pkh: keyPair.pkh,
-                userData: filteredUserInfo,
-                failed: false
-            });
+            setTimeout(() => {
+                this.sendResponse({
+                    type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
+                    instanceId,
+                    pk: keyPair.pk,
+                    pkh: keyPair.pkh,
+                    userData: filteredUserInfo,
+                    failed: false
+                });
+            }, 10);
             this.importAccount(keyPair, userInfo, instanceId);
         }
         else {
-            this.abort();
+            setTimeout(() => {
+                this.abort();
+            }, 10);
         }
-        setTimeout(() => {
-            this.login = false;
-        }, 100); // Temporary fix
     }
     abort() {
         this.sendResponse({ type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse, failed: true, error: 'ABORTED_BY_USER' });
@@ -10290,10 +10292,10 @@ class EmbeddedComponent {
         else {
             response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse, opHash, failed: false };
         }
-        this.sendResponse(response);
+        this.operationRequests = null;
         setTimeout(() => {
-            this.operationRequests = null;
-        }, 100); // Temporary fix
+            this.sendResponse(response);
+        }, 10);
     }
     sendResponse(resp) {
         window.parent.window.postMessage(JSON.stringify(resp), this.origin);

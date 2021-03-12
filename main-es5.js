@@ -16886,6 +16886,8 @@
           value: function loginResponse(loginData) {
             var _this38 = this;
 
+            this.login = false;
+
             if (loginData) {
               var keyPair = loginData.keyPair,
                   userInfo = loginData.userInfo;
@@ -16896,22 +16898,22 @@
               }; // 160 bits of entropy, base58 encoded
 
               var instanceId = this.generateInstanceId();
-              this.sendResponse({
-                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
-                instanceId: instanceId,
-                pk: keyPair.pk,
-                pkh: keyPair.pkh,
-                userData: filteredUserInfo,
-                failed: false
-              });
+              setTimeout(function () {
+                _this38.sendResponse({
+                  type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
+                  instanceId: instanceId,
+                  pk: keyPair.pk,
+                  pkh: keyPair.pkh,
+                  userData: filteredUserInfo,
+                  failed: false
+                });
+              }, 10);
               this.importAccount(keyPair, userInfo, instanceId);
             } else {
-              this.abort();
+              setTimeout(function () {
+                _this38.abort();
+              }, 10);
             }
-
-            setTimeout(function () {
-              _this38.login = false;
-            }, 100); // Temporary fix
           }
         }, {
           key: "abort",
@@ -16964,10 +16966,10 @@
               };
             }
 
-            this.sendResponse(response);
+            this.operationRequests = null;
             setTimeout(function () {
-              _this39.operationRequests = null;
-            }, 100); // Temporary fix
+              _this39.sendResponse(response);
+            }, 10);
           }
         }, {
           key: "sendResponse",
