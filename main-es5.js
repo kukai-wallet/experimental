@@ -16911,7 +16911,7 @@
 
             setTimeout(function () {
               _this38.login = false;
-            }, 10);
+            }, 100); // Temporary fix
           }
         }, {
           key: "abort",
@@ -16967,7 +16967,7 @@
             this.sendResponse(response);
             setTimeout(function () {
               _this39.operationRequests = null;
-            }, 10);
+            }, 100); // Temporary fix
           }
         }, {
           key: "sendResponse",

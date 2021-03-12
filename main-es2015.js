@@ -10264,7 +10264,7 @@ class EmbeddedComponent {
         }
         setTimeout(() => {
             this.login = false;
-        }, 10);
+        }, 100); // Temporary fix
     }
     abort() {
         this.sendResponse({ type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse, failed: true, error: 'ABORTED_BY_USER' });
@@ -10293,7 +10293,7 @@ class EmbeddedComponent {
         this.sendResponse(response);
         setTimeout(() => {
             this.operationRequests = null;
-        }, 10);
+        }, 100); // Temporary fix
     }
     sendResponse(resp) {
         window.parent.window.postMessage(JSON.stringify(resp), this.origin);
