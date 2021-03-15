@@ -212,7 +212,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability..");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -17007,7 +17007,7 @@
                 type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].resize,
                 failed: false
               });
-            }, 0);
+            }, 1000);
           }
         }, {
           key: "importAccount",
