@@ -212,7 +212,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability..");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -552,6 +552,7 @@
             this.encryptionService = encryptionService;
             this.operationService = operationService;
             this.torusService = torusService;
+            this.storeKey = 'kukai-wallet';
             this.storageId = 0;
           }
           /*
@@ -16845,8 +16846,19 @@
           key: "handleOperationRequest",
           value: function handleOperationRequest(req) {
             if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && req.operations) {
-              this.operationRequests = this.isValidOperation(req.operations) ? req.operations : null;
               this.sendResizeReady();
+              this.operationRequests = this.isValidOperation(req.operations) ? req.operations : null;
+
+              if (this.isValidOperation(req.operations)) {
+                this.operationRequests = req.operations;
+              } else {
+                this.operationRequests = null;
+                this.sendResponse({
+                  type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
+                  failed: true,
+                  error: 'INVALID_TRANSACTION'
+                });
+              }
             } else {
               this.sendResizeReady();
               this.sendResponse({
@@ -16886,6 +16898,8 @@
           value: function loginResponse(loginData) {
             var _this38 = this;
 
+            var response;
+
             if (loginData) {
               var keyPair = loginData.keyPair,
                   userInfo = loginData.userInfo;
@@ -16896,31 +16910,27 @@
               }; // 160 bits of entropy, base58 encoded
 
               var instanceId = this.generateInstanceId();
-              this.sendResponse({
+              response = {
                 type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
                 instanceId: instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
                 userData: filteredUserInfo,
                 failed: false
-              });
+              };
               this.importAccount(keyPair, userInfo, instanceId);
             } else {
-              this.abort();
+              response = {
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
+                failed: true,
+                error: 'ABORTED_BY_USER'
+              };
             }
 
+            this.login = false;
             setTimeout(function () {
-              _this38.login = false;
-            }, 1);
-          }
-        }, {
-          key: "abort",
-          value: function abort() {
-            this.sendResponse({
-              type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
-              failed: true,
-              error: 'ABORTED_BY_USER'
-            });
+              _this38.sendResponse(response);
+            }, 0);
           }
         }, {
           key: "noWalletError",
@@ -16964,10 +16974,10 @@
               };
             }
 
-            this.sendResponse(response);
+            this.operationRequests = null;
             setTimeout(function () {
-              _this39.operationRequests = null;
-            }, 1);
+              _this39.sendResponse(response);
+            }, 0);
           }
         }, {
           key: "sendResponse",
@@ -17082,7 +17092,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !(ctx.operationRequests || ctx.login));
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !ctx.operationRequests);
           }
         },
         directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_14__["SendComponent"], _card_card_component__WEBPACK_IMPORTED_MODULE_15__["CardComponent"]],
@@ -21214,14 +21224,14 @@
         },
         decls: 12,
         vars: 4,
-        consts: [["width", "24", 3, "src"]],
+        consts: [[1, "container"], ["width", "24", 3, "src"]],
         template: function CardComponent_Template(rf, ctx) {
           if (rf & 1) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 0);
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 1);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "h4");
 
@@ -21274,7 +21284,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.activeAccount.balanceXTZ || 0, " XTZ");
           }
         },
-        styles: ["[_nghost-%COMP%]    > div[_ngcontent-%COMP%] {\n  background: #5963FF;\n  padding: 1rem;\n  height: 100vh;\n  width: 100vw;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxjYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7RUFDQSxhQUFBO0VBQ0EsYUFBQTtFQUNBLFlBQUE7QUFDSiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgPiBkaXYge1xyXG4gICAgYmFja2dyb3VuZDogIzU5NjNGRjtcclxuICAgIHBhZGRpbmc6IDFyZW07XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG59XHJcbiJdfQ== */"]
+        styles: ["[_nghost-%COMP%]   div.container[_ngcontent-%COMP%] {\n  background: #FFFFFF;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxjYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUFDSiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgZGl2LmNvbnRhaW5lciB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjRkZGRkZGO1xyXG59XHJcbiJdfQ== */"]
       });
 
       (function () {

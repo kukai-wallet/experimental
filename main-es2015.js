@@ -66,7 +66,7 @@ StartComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](4, "object", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability..");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 4);
@@ -228,6 +228,7 @@ class WalletService {
         this.encryptionService = encryptionService;
         this.operationService = operationService;
         this.torusService = torusService;
+        this.storeKey = 'kukai-wallet';
         this.storageId = 0;
     }
     /*
@@ -10209,8 +10210,19 @@ class EmbeddedComponent {
     }
     handleOperationRequest(req) {
         if (this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"] && req.operations) {
-            this.operationRequests = this.isValidOperation(req.operations) ? req.operations : null;
             this.sendResizeReady();
+            this.operationRequests = this.isValidOperation(req.operations) ? req.operations : null;
+            if (this.isValidOperation(req.operations)) {
+                this.operationRequests = req.operations;
+            }
+            else {
+                this.operationRequests = null;
+                this.sendResponse({
+                    type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
+                    failed: true,
+                    error: 'INVALID_TRANSACTION'
+                });
+            }
         }
         else {
             this.sendResizeReady();
@@ -10244,30 +10256,29 @@ class EmbeddedComponent {
         }
     }
     loginResponse(loginData) {
+        let response;
         if (loginData) {
             const { keyPair, userInfo } = loginData;
             const filteredUserInfo = { typeOfLogin: userInfo.typeOfLogin, id: userInfo.verifierId, name: userInfo.name };
             // 160 bits of entropy, base58 encoded
             const instanceId = this.generateInstanceId();
-            this.sendResponse({
+            response = {
                 type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
                 instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
                 userData: filteredUserInfo,
                 failed: false
-            });
+            };
             this.importAccount(keyPair, userInfo, instanceId);
         }
         else {
-            this.abort();
+            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse, failed: true, error: 'ABORTED_BY_USER' };
         }
+        this.login = false;
         setTimeout(() => {
-            this.login = false;
-        }, 1);
-    }
-    abort() {
-        this.sendResponse({ type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse, failed: true, error: 'ABORTED_BY_USER' });
+            this.sendResponse(response);
+        }, 0);
     }
     noWalletError() {
         this.sendResponse({
@@ -10290,10 +10301,10 @@ class EmbeddedComponent {
         else {
             response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse, opHash, failed: false };
         }
-        this.sendResponse(response);
+        this.operationRequests = null;
         setTimeout(() => {
-            this.operationRequests = null;
-        }, 1);
+            this.sendResponse(response);
+        }, 0);
     }
     sendResponse(resp) {
         window.parent.window.postMessage(JSON.stringify(resp), this.origin);
@@ -10355,7 +10366,7 @@ EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !(ctx.operationRequests || ctx.login));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !ctx.operationRequests);
     } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_14__["SendComponent"], _card_card_component__WEBPACK_IMPORTED_MODULE_15__["CardComponent"]], styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxlbWJlZGRlZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FBQ0YiLCJmaWxlIjoiZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59Il19 */"] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](EmbeddedComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
@@ -12413,10 +12424,10 @@ class CardComponent {
     }
 }
 CardComponent.ɵfac = function CardComponent_Factory(t) { return new (t || CardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_1__["WalletService"])); };
-CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CardComponent, selectors: [["app-card"]], inputs: { activeAccount: "activeAccount" }, decls: 12, vars: 4, consts: [["width", "24", 3, "src"]], template: function CardComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div");
+CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: CardComponent, selectors: [["app-card"]], inputs: { activeAccount: "activeAccount" }, decls: 12, vars: 4, consts: [[1, "container"], ["width", "24", 3, "src"]], template: function CardComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "h4");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -12442,7 +12453,7 @@ CardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.activeAccount.pkh);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", ctx.activeAccount.balanceXTZ || 0, " XTZ");
-    } }, styles: ["[_nghost-%COMP%]    > div[_ngcontent-%COMP%] {\n  background: #5963FF;\n  padding: 1rem;\n  height: 100vh;\n  width: 100vw;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxjYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7RUFDQSxhQUFBO0VBQ0EsYUFBQTtFQUNBLFlBQUE7QUFDSiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgPiBkaXYge1xyXG4gICAgYmFja2dyb3VuZDogIzU5NjNGRjtcclxuICAgIHBhZGRpbmc6IDFyZW07XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG59XHJcbiJdfQ== */"] });
+    } }, styles: ["[_nghost-%COMP%]   div.container[_ngcontent-%COMP%] {\n  background: #FFFFFF;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxjYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksbUJBQUE7QUFDSiIsImZpbGUiOiJjYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgZGl2LmNvbnRhaW5lciB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjRkZGRkZGO1xyXG59XHJcbiJdfQ== */"] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](CardComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
