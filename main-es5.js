@@ -212,7 +212,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -16761,6 +16761,7 @@
           this.allowedOrigins = ['http://localhost', 'http://localhost:3000', 'https://www.tezos.help', 'https://z-tz.com'];
           this.origin = '';
           this.login = false;
+          this.blockCard = false;
           this.activeAccount = null;
           this.operationRequests = null;
 
@@ -16809,6 +16810,11 @@
         }
 
         _createClass(EmbeddedComponent, [{
+          key: "onResize",
+          value: function onResize(event) {
+            console.log(event.target.innerWidth);
+          }
+        }, {
           key: "ngOnInit",
           value: function ngOnInit() {
             var _this37 = this;
@@ -16989,6 +16995,7 @@
           value: function sendResizeReady() {
             var _this40 = this;
 
+            this.blockCard = true;
             setTimeout(function () {
               _this40.sendResponse({
                 type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].resize,
@@ -17075,6 +17082,13 @@
       EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
         type: EmbeddedComponent,
         selectors: [["app-embedded"]],
+        hostBindings: function EmbeddedComponent_HostBindings(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("resize", function EmbeddedComponent_resize_HostBindingHandler($event) {
+              return ctx.onResize($event);
+            }, false, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresolveWindow"]);
+          }
+        },
         decls: 3,
         vars: 3,
         consts: [[3, "loginResponse", 4, "ngIf"], [3, "headless", "operationRequest", "activeAccount", "operationResponse", 4, "ngIf"], [3, "activeAccount", 4, "ngIf"], [3, "loginResponse"], [3, "headless", "operationRequest", "activeAccount", "operationResponse"], [3, "activeAccount"]],
@@ -17096,7 +17110,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !ctx.operationRequests && !ctx.login);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !ctx.blockCard && !ctx.operationRequests && !ctx.login);
           }
         },
         directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_14__["SendComponent"], _card_card_component__WEBPACK_IMPORTED_MODULE_15__["CardComponent"]],
@@ -17125,7 +17139,12 @@
           }, {
             type: _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"]
           }];
-        }, null);
+        }, {
+          onResize: [{
+            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"],
+            args: ['window:resize', ['$event']]
+          }]
+        });
       })();
       /***/
 
