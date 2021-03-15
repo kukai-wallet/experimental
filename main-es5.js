@@ -212,7 +212,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability..");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -16812,7 +16812,10 @@
         _createClass(EmbeddedComponent, [{
           key: "onResize",
           value: function onResize(event) {
+            console.log('ev', event);
+
             if (event.target.innerWidth === 400) {
+              console.log('Unblock card');
               this.blockCard = false;
             }
           }
@@ -17108,7 +17111,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.operationRequests && ctx.activeAccount);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
 
