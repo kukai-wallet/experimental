@@ -212,7 +212,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability...");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -1475,6 +1475,14 @@
                 while (1) {
                   switch (_context8.prev = _context8.next) {
                     case 0:
+                      if (this.spinnerOn) {
+                        _context8.next = 2;
+                        break;
+                      }
+
+                      return _context8.abrupt("return");
+
+                    case 2:
                       this.spinnerText = '';
                       this.spinnerOn = false;
                       return _context8.abrupt("return", new Promise(function (resolve) {
@@ -1483,7 +1491,7 @@
                         });
                       }));
 
-                    case 3:
+                    case 5:
                     case "end":
                       return _context8.stop();
                   }
