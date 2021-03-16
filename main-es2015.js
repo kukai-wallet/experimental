@@ -66,7 +66,7 @@ StartComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](4, "object", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability...");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 4);
@@ -635,6 +635,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageService", function() { return MessageService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+
 
 
 
@@ -755,6 +757,14 @@ class MessageService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             this.spinnerText = '';
             this.spinnerOn = false;
+            return new Promise(resolve => {
+                this.checked.subscribe((checked) => { resolve(); });
+            });
+        });
+    }
+    spinnerChecked() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.checked = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(true);
         });
     }
 }
@@ -10046,6 +10056,11 @@ class SpinnerComponent {
     }
     ngOnInit() {
     }
+    ngAfterContentChecked() {
+        if (!this.messageService.spinnerOn) {
+            this.messageService.spinnerChecked();
+        }
+    }
 }
 SpinnerComponent.ɵfac = function SpinnerComponent_Factory(t) { return new (t || SpinnerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_message_message_service__WEBPACK_IMPORTED_MODULE_1__["MessageService"])); };
 SpinnerComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: SpinnerComponent, selectors: [["app-spinner"]], decls: 1, vars: 1, consts: [["class", "spinner-wrapper", 4, "ngIf"], [1, "spinner-wrapper"], [1, "container"], [1, "row"], ["id", "loader"], [1, "dot"], [1, "loading"]], template: function SpinnerComponent_Template(rf, ctx) { if (rf & 1) {
@@ -10185,9 +10200,7 @@ class EmbeddedComponent {
         };
     }
     onResize(event) {
-        console.log('iw', event.target.innerWidth);
         if (event.target.innerWidth === 400) {
-            console.log('Unblock card');
             this.blockCard = false;
         }
     }
@@ -10318,7 +10331,6 @@ class EmbeddedComponent {
         window.parent.window.postMessage(JSON.stringify(resp), this.origin);
     }
     sendResizeReady() {
-        console.log('block card');
         this.blockCard = true;
         setTimeout(() => {
             this.sendResponse({
@@ -15475,8 +15487,8 @@ class ConfirmSendComponent {
                 if (ans.success === true) {
                     console.log('Transaction successful ', ans);
                     if (ans.payload.opHash) {
+                        yield this.messageService.stopSpinner();
                         this.operationResponse.emit(ans.payload.opHash);
-                        this.messageService.stopSpinner();
                         const metadata = { transactions: this.transactions, opHash: ans.payload.opHash, tokenTransfer: this.tokenTransfer };
                         yield this.coordinatorService.boost(this.activeAccount.address, metadata);
                         if (this.transactions[0].meta) {
@@ -15494,7 +15506,7 @@ class ConfirmSendComponent {
                     }
                 }
                 else {
-                    this.messageService.stopSpinner();
+                    yield this.messageService.stopSpinner();
                     console.log('Transaction error id ', ans.payload.msg);
                     this.messageService.addError(ans.payload.msg, 0);
                     this.operationResponse.emit('broadcast_error');
