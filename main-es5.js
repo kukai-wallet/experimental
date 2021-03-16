@@ -212,7 +212,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability..");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -8480,9 +8480,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 9);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "img", 10);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SigninComponent_div_6_ng_container_1_Template_img_click_2_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SigninComponent_div_6_ng_container_1_Template_div_click_1_listener() {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r4);
 
             var key_r2 = ctx.$implicit;
@@ -8490,6 +8488,18 @@
             var ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
 
             return ctx_r3.login(key_r2);
+          });
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "img", 10);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function SigninComponent_div_6_ng_container_1_Template_img_click_2_listener() {
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r4);
+
+            var key_r2 = ctx.$implicit;
+
+            var ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"](2);
+
+            return ctx_r5.login(key_r2);
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -8652,7 +8662,7 @@
         },
         decls: 10,
         vars: 1,
-        consts: [[1, "direct-auth-login"], [1, "header"], ["src", "../../../../assets/img/kukai_400x400.jpg"], [1, "body"], ["class", "login-options", 4, "ngIf"], [1, "footer"], ["src", "../../../../assets/img/kukai-logo-black.svg"], [1, "login-options"], [4, "ngFor", "ngForOf"], [1, "login-option"], ["width", "24", 3, "src", "click"]],
+        consts: [[1, "direct-auth-login"], [1, "header"], ["src", "../../../../assets/img/kukai_400x400.jpg"], [1, "body"], ["class", "login-options", 4, "ngIf"], [1, "footer"], ["src", "../../../../assets/img/kukai-logo-black.svg"], [1, "login-options"], [4, "ngFor", "ngForOf"], [1, "login-option", 3, "click"], ["width", "24", 3, "src", "click"]],
         template: function SigninComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0);
