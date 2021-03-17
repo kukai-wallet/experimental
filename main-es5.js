@@ -11187,15 +11187,15 @@
       /* harmony import */
 
 
-      var _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
-      /*! ./components/messages/messages.component */
-      "wa57");
+      var _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ./components/spinner/spinner.component */
+      "e5sC");
       /* harmony import */
 
 
-      var _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
-      /*! ./components/spinner/spinner.component */
-      "e5sC");
+      var _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! ./components/messages/messages.component */
+      "wa57");
       /* harmony import */
 
 
@@ -11208,6 +11208,12 @@
       var _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! ./components/footer/footer.component */
       "LmEr");
+
+      function AppComponent_app_messages_1_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "app-messages");
+        }
+      }
 
       function AppComponent_app_agreement_3_Template(rf, ctx) {
         if (rf & 1) {
@@ -11331,13 +11337,13 @@
         type: AppComponent,
         selectors: [["app-root"]],
         decls: 5,
-        vars: 2,
+        vars: 3,
         consts: [[4, "ngIf"]],
         template: function AppComponent_Template(rf, ctx) {
           if (rf & 1) {
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "router-outlet");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](1, "app-messages");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, AppComponent_app_messages_1_Template, 1, 0, "app-messages", 0);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "app-spinner");
 
@@ -11347,7 +11353,11 @@
           }
 
           if (rf & 2) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx.embedded);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx.embedded);
 
@@ -11356,7 +11366,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", !ctx.embedded);
           }
         },
-        directives: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterOutlet"], _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_7__["MessagesComponent"], _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_8__["SpinnerComponent"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_9__["AgreementComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_10__["FooterComponent"]],
+        directives: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterOutlet"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_7__["SpinnerComponent"], _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_8__["MessagesComponent"], _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_9__["AgreementComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_10__["FooterComponent"]],
         styles: [".main-container[_ngcontent-%COMP%] {\n  width: 100%;\n  min-height: 100%;\n  margin-left: 0;\n  margin-right: 0;\n  margin-top: 1.5rem;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding-bottom: 8rem;\n}\n\n#top-main-container[_ngcontent-%COMP%] {\n  min-height: 100%;\n  min-height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksV0FBQTtFQUNBLGdCQUFBO0VBQ0EsY0FBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0Esb0JBQUE7QUFDSjs7QUFDQTtFQUNJLGdCQUFBO0VBQ0EsZ0JBQUE7QUFFSiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWFpbi1jb250YWluZXIge1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBtaW4taGVpZ2h0OiAxMDAlO1xyXG4gICAgbWFyZ2luLWxlZnQ6IDA7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDA7XHJcbiAgICBtYXJnaW4tdG9wOiAxLjVyZW07XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgcGFkZGluZy1ib3R0b206IDhyZW07XHJcbn1cclxuI3RvcC1tYWluLWNvbnRhaW5lciB7XHJcbiAgICBtaW4taGVpZ2h0OiAxMDAlO1xyXG4gICAgbWluLWhlaWdodDogMTAwJTtcclxufSJdfQ== */"]
       });
 
