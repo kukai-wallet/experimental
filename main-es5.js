@@ -212,7 +212,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability..");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 
@@ -5508,6 +5508,8 @@
         RequestTypes["operationRequest"] = "operation_request";
         RequestTypes["trackRequest"] = "track_request";
         RequestTypes["logoutRequest"] = "logout_request";
+        RequestTypes["enableCard"] = "enable_card";
+        RequestTypes["disableCard"] = "disable_card";
       })(RequestTypes || (RequestTypes = {}));
 
       var ResponseTypes;
@@ -5518,6 +5520,8 @@
         ResponseTypes["trackResponse"] = "track_response";
         ResponseTypes["logoutResponse"] = "logout_response";
         ResponseTypes["resize"] = "resize";
+        ResponseTypes["cardEnabled"] = "card_enabled";
+        ResponseTypes["cardDisabled"] = "card_disabled";
       })(ResponseTypes || (ResponseTypes = {}));
       /***/
 
@@ -7518,7 +7522,7 @@
           }
         }
       };
-      var TRUSTED_TOKEN_CONTRACTS = ['KT1LyJV9JdcDCp5zDfw6MxpoShXYrBMG3dfK', 'KT1RfMoskMhR1hDFJTVN6gGMwQLDSTmLeDsc', 'KT1Szwqme712TkQ7LdP1hBqKjdUUBjxoB8bR', 'KT1PS2jZVzNMW54UsnqBqwwkArXnAZ29jiTF', 'KT1XgGvzQSYrvo4NCxwTvJ7tSbZqGcji4BeV', 'KT1R3TqdxsHPYxNQBdY7jmXAeU17WpucMXDh'];
+      var TRUSTED_TOKEN_CONTRACTS = ['KT1LyJV9JdcDCp5zDfw6MxpoShXYrBMG3dfK', 'KT1RfMoskMhR1hDFJTVN6gGMwQLDSTmLeDsc', 'KT1Szwqme712TkQ7LdP1hBqKjdUUBjxoB8bR', 'KT1PS2jZVzNMW54UsnqBqwwkArXnAZ29jiTF', 'KT1XgGvzQSYrvo4NCxwTvJ7tSbZqGcji4BeV', 'KT1R3TqdxsHPYxNQBdY7jmXAeU17WpucMXDh', 'KT1PS2jZVzNMW54UsnqBqwwkArXnAZ29jiTF'];
       /***/
     },
 
@@ -16275,6 +16279,18 @@
                     gasUsage: 59920,
                     storageUsage: 150
                   };
+
+                case 'KT1PS2jZVzNMW54UsnqBqwwkArXnAZ29jiTF:reward':
+                  return {
+                    gasUsage: 35920,
+                    storageUsage: 67
+                  };
+
+                case 'KT1Szwqme712TkQ7LdP1hBqKjdUUBjxoB8bR:reward':
+                  return {
+                    gasUsage: 35920,
+                    storageUsage: 67
+                  };
               }
             }
 
@@ -17124,6 +17140,7 @@
             this.coordinatorService.stopAll();
             this.walletService.clearWallet(instanceId);
             this.lookupService.clear();
+            this.activeAccount = null;
           }
         }]);
 

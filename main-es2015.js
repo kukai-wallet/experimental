@@ -66,7 +66,7 @@ StartComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "div", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](4, "object", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability..");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Kukai is a Tezos web wallet based on three principles: Security, Community and Reliability.");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 4);
@@ -3255,6 +3255,8 @@ var RequestTypes;
     RequestTypes["operationRequest"] = "operation_request";
     RequestTypes["trackRequest"] = "track_request";
     RequestTypes["logoutRequest"] = "logout_request";
+    RequestTypes["enableCard"] = "enable_card";
+    RequestTypes["disableCard"] = "disable_card";
 })(RequestTypes || (RequestTypes = {}));
 var ResponseTypes;
 (function (ResponseTypes) {
@@ -3263,6 +3265,8 @@ var ResponseTypes;
     ResponseTypes["trackResponse"] = "track_response";
     ResponseTypes["logoutResponse"] = "logout_response";
     ResponseTypes["resize"] = "resize";
+    ResponseTypes["cardEnabled"] = "card_enabled";
+    ResponseTypes["cardDisabled"] = "card_disabled";
 })(ResponseTypes || (ResponseTypes = {}));
 
 
@@ -4996,7 +5000,8 @@ const TRUSTED_TOKEN_CONTRACTS = [
     'KT1Szwqme712TkQ7LdP1hBqKjdUUBjxoB8bR',
     'KT1PS2jZVzNMW54UsnqBqwwkArXnAZ29jiTF',
     'KT1XgGvzQSYrvo4NCxwTvJ7tSbZqGcji4BeV',
-    'KT1R3TqdxsHPYxNQBdY7jmXAeU17WpucMXDh'
+    'KT1R3TqdxsHPYxNQBdY7jmXAeU17WpucMXDh',
+    'KT1PS2jZVzNMW54UsnqBqwwkArXnAZ29jiTF'
 ];
 
 
@@ -9925,6 +9930,10 @@ class EstimateService {
             switch (`${destination}:${entrypoint}`) {
                 case 'KT1TWb6cE56q2L8yTeNNchXqDSXacrNqyVNZ:reward':
                     return { gasUsage: 59920, storageUsage: 150 };
+                case 'KT1PS2jZVzNMW54UsnqBqwwkArXnAZ29jiTF:reward':
+                    return { gasUsage: 35920, storageUsage: 67 };
+                case 'KT1Szwqme712TkQ7LdP1hBqKjdUUBjxoB8bR:reward':
+                    return { gasUsage: 35920, storageUsage: 67 };
             }
         }
         return null;
@@ -10386,6 +10395,7 @@ class EmbeddedComponent {
         this.coordinatorService.stopAll();
         this.walletService.clearWallet(instanceId);
         this.lookupService.clear();
+        this.activeAccount = null;
     }
 }
 EmbeddedComponent.ɵfac = function EmbeddedComponent_Factory(t) { return new (t || EmbeddedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"])); };
