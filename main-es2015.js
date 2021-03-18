@@ -3230,48 +3230,6 @@ IndexerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineIn
 
 /***/ }),
 
-/***/ "874q":
-/*!*******************************!*\
-  !*** ../icabod/dist/types.js ***!
-  \*******************************/
-/*! exports provided: Networks, RequestTypes, ResponseTypes */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Networks", function() { return Networks; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestTypes", function() { return RequestTypes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResponseTypes", function() { return ResponseTypes; });
-var Networks;
-(function (Networks) {
-    Networks["main"] = "main";
-    Networks["delphi"] = "delphi";
-    Networks["edo"] = "edo";
-    Networks["dev"] = "dev";
-})(Networks || (Networks = {}));
-var RequestTypes;
-(function (RequestTypes) {
-    RequestTypes["loginRequest"] = "login_request";
-    RequestTypes["operationRequest"] = "operation_request";
-    RequestTypes["trackRequest"] = "track_request";
-    RequestTypes["logoutRequest"] = "logout_request";
-    RequestTypes["enableCard"] = "enable_card";
-    RequestTypes["disableCard"] = "disable_card";
-})(RequestTypes || (RequestTypes = {}));
-var ResponseTypes;
-(function (ResponseTypes) {
-    ResponseTypes["loginResponse"] = "login_response";
-    ResponseTypes["operationResponse"] = "operation_response";
-    ResponseTypes["trackResponse"] = "track_response";
-    ResponseTypes["logoutResponse"] = "logout_response";
-    ResponseTypes["resize"] = "resize";
-    ResponseTypes["cardEnabled"] = "card_enabled";
-    ResponseTypes["cardDisabled"] = "card_disabled";
-})(ResponseTypes || (ResponseTypes = {}));
-
-
-/***/ }),
-
 /***/ "8ZjU":
 /*!**********************************************!*\
   !*** ./src/app/pipes/error-handling.pipe.ts ***!
@@ -10118,11 +10076,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../services/lookup/lookup.service */ "QDvW");
-/* harmony import */ var kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! kukai-embed/dist/types */ "874q");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./signin/signin.component */ "HlfV");
-/* harmony import */ var _send_send_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../send/send.component */ "MlEp");
-/* harmony import */ var _card_card_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../card/card.component */ "lXt9");
+/* harmony import */ var _services_activity_activity_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../services/activity/activity.service */ "s6Pj");
+/* harmony import */ var kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! kukai-embed/dist/types */ "OFNV");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _signin_signin_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./signin/signin.component */ "HlfV");
+/* harmony import */ var _send_send_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../send/send.component */ "MlEp");
+/* harmony import */ var _card_card_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../card/card.component */ "lXt9");
+
+
 
 
 
@@ -10168,14 +10129,16 @@ function EmbeddedComponent_app_card_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("activeAccount", ctx_r2.activeAccount);
 } }
 class EmbeddedComponent {
-    constructor(torusService, importService, walletService, coordinatorService, route, lookupService) {
+    constructor(torusService, importService, walletService, coordinatorService, route, lookupService, activityService) {
         this.torusService = torusService;
         this.importService = importService;
         this.walletService = walletService;
         this.coordinatorService = coordinatorService;
         this.route = route;
         this.lookupService = lookupService;
+        this.activityService = activityService;
         this.allowedOrigins = ['http://localhost', 'http://localhost:3000', 'https://www.tezos.help', 'https://x-tz.com'];
+        this.pendingOps = [];
         this.origin = '';
         this.login = false;
         this.blockCard = false;
@@ -10191,20 +10154,20 @@ class EmbeddedComponent {
                         /* restricted to dev enviroment for now */ !_environments_environment__WEBPACK_IMPORTED_MODULE_3__["CONSTANTS"].MAINNET) {
                         this.origin = evt.origin;
                         switch (data.type) {
-                            case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["RequestTypes"].loginRequest:
+                            case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["RequestTypes"].loginRequest:
                                 this.handleLoginRequest(data);
                                 break;
-                            case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["RequestTypes"].operationRequest:
+                            case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["RequestTypes"].operationRequest:
                                 this.handleOperationRequest(data);
                                 break;
-                            case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["RequestTypes"].trackRequest:
+                            case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["RequestTypes"].trackRequest:
                                 this.handleTrackRequest(data);
                                 break;
-                            case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["RequestTypes"].logoutRequest:
+                            case kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["RequestTypes"].logoutRequest:
                                 this.handleLogoutRequest(data);
                                 break;
                             default:
-                                console.warn('Unknown request');
+                                console.warn('Unknown request', data);
                         }
                     }
                 }
@@ -10238,12 +10201,13 @@ class EmbeddedComponent {
                 this.origin = this.walletService.wallet.origin;
                 this.activeAccount = this.walletService.wallet.implicitAccounts[0];
                 this.coordinatorService.startAll();
+                this.subscribeToConfirmedOps();
             }
         });
     }
     handleLoginRequest(req) {
         if (this.activeAccount) {
-            const response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse, failed: true, error: 'ALREADY_LOGGED_IN' };
+            const response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].loginResponse, failed: true, error: 'ALREADY_LOGGED_IN' };
             this.sendResponse(response);
         }
         else {
@@ -10261,7 +10225,7 @@ class EmbeddedComponent {
             else {
                 this.operationRequests = null;
                 this.sendResponse({
-                    type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
+                    type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].operationResponse,
                     failed: true,
                     error: 'INVALID_TRANSACTION'
                 });
@@ -10270,18 +10234,15 @@ class EmbeddedComponent {
         else {
             this.sendResizeReady();
             this.sendResponse({
-                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse,
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].operationResponse,
                 failed: true,
                 error: 'NO_WALLET_FOUND'
             });
         }
     }
     handleTrackRequest(req) {
-        this.sendResponse({
-            type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].trackResponse,
-            opHash: req.opHash,
-            failed: true,
-            error: 'NOT_IMPLEMENTED'
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+            this.pendingOps.push(req.opHash);
         });
     }
     handleLogoutRequest(req) {
@@ -10289,7 +10250,7 @@ class EmbeddedComponent {
             const instanceId = this.walletService.wallet.instanceId;
             this.logout(instanceId);
             this.sendResponse({
-                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].logoutResponse,
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].logoutResponse,
                 instanceId,
                 failed: false
             });
@@ -10306,7 +10267,7 @@ class EmbeddedComponent {
             // 160 bits of entropy, base58 encoded
             const instanceId = this.generateInstanceId();
             response = {
-                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse,
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].loginResponse,
                 instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
@@ -10316,7 +10277,7 @@ class EmbeddedComponent {
             this.importAccount(keyPair, userInfo, instanceId);
         }
         else {
-            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].loginResponse, failed: true, error: 'ABORTED_BY_USER' };
+            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].loginResponse, failed: true, error: 'ABORTED_BY_USER' };
         }
         this.login = false;
         setTimeout(() => {
@@ -10325,7 +10286,7 @@ class EmbeddedComponent {
     }
     noWalletError() {
         this.sendResponse({
-            type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].logoutResponse,
+            type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].logoutResponse,
             failed: true,
             error: 'NO_WALLET_FOUND'
         });
@@ -10333,16 +10294,16 @@ class EmbeddedComponent {
     operationResponse(opHash) {
         let response;
         if (!opHash) {
-            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse, failed: true, error: 'ABORTED_BY_USER' };
+            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].operationResponse, failed: true, error: 'ABORTED_BY_USER' };
         }
         else if (opHash === 'broadcast_error') {
-            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse, failed: true, error: 'BROADCAST_ERROR' };
+            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].operationResponse, failed: true, error: 'BROADCAST_ERROR' };
         }
         else if (opHash === 'invalid_parameters') {
-            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse, failed: true, error: 'INVALID_PARAMETERS' };
+            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].operationResponse, failed: true, error: 'INVALID_PARAMETERS' };
         }
         else {
-            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].operationResponse, opHash, failed: false };
+            response = { type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].operationResponse, opHash, failed: false };
         }
         this.operationRequests = null;
         setTimeout(() => {
@@ -10356,7 +10317,7 @@ class EmbeddedComponent {
         this.blockCard = true;
         setTimeout(() => {
             this.sendResponse({
-                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_11__["ResponseTypes"].resize,
+                type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].resize,
                 failed: false
             });
         }, 0);
@@ -10368,10 +10329,9 @@ class EmbeddedComponent {
                     .importWalletFromPk(keyPair.pk, '', { verifier: userInfo.typeOfLogin, id: userInfo.verifierId, name: userInfo.name, embedded: true, origin: this.origin }, keyPair.sk, instanceId)
                     .then((success) => {
                     if (success) {
-                        console.log('success');
                         this.activeAccount = this.walletService.wallet.implicitAccounts[0];
-                        // should disable the message component in headless mode
                         this.coordinatorService.startAll();
+                        this.subscribeToConfirmedOps();
                     }
                 });
             }
@@ -10401,9 +10361,26 @@ class EmbeddedComponent {
         this.walletService.clearWallet(instanceId);
         this.lookupService.clear();
         this.activeAccount = null;
+        this.ophashSubscription.unsubscribe();
+    }
+    subscribeToConfirmedOps() {
+        this.ophashSubscription = this.activityService.confirmedOp.subscribe((opHash) => {
+            if (this.pendingOps.includes(opHash)) {
+                this.sendResponse({
+                    type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_12__["ResponseTypes"].trackResponse,
+                    opHash: opHash,
+                    failed: false
+                });
+                for (let i = 0; i < this.pendingOps.length; i++) {
+                    if (this.pendingOps[i] === opHash) {
+                        this.pendingOps.splice(i, 1);
+                    }
+                }
+            }
+        });
     }
 }
-EmbeddedComponent.ɵfac = function EmbeddedComponent_Factory(t) { return new (t || EmbeddedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"])); };
+EmbeddedComponent.ɵfac = function EmbeddedComponent_Factory(t) { return new (t || EmbeddedComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_activity_activity_service__WEBPACK_IMPORTED_MODULE_11__["ActivityService"])); };
 EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: EmbeddedComponent, selectors: [["app-embedded"]], hostBindings: function EmbeddedComponent_HostBindings(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("resize", function EmbeddedComponent_resize_HostBindingHandler($event) { return ctx.onResize($event); }, false, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresolveWindow"]);
     } }, decls: 3, vars: 3, consts: [[3, "loginResponse", 4, "ngIf"], [3, "headless", "operationRequest", "activeAccount", "operationResponse", 4, "ngIf"], [3, "activeAccount", 4, "ngIf"], [3, "loginResponse"], [3, "headless", "operationRequest", "activeAccount", "operationResponse"], [3, "activeAccount"]], template: function EmbeddedComponent_Template(rf, ctx) { if (rf & 1) {
@@ -10416,7 +10393,7 @@ EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.operationRequests && ctx.activeAccount);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.activeAccount && !ctx.blockCard && (!ctx.operationRequests && !ctx.login));
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_13__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_14__["SendComponent"], _card_card_component__WEBPACK_IMPORTED_MODULE_15__["CardComponent"]], styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxlbWJlZGRlZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FBQ0YiLCJmaWxlIjoiZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59Il19 */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_13__["NgIf"], _signin_signin_component__WEBPACK_IMPORTED_MODULE_14__["SigninComponent"], _send_send_component__WEBPACK_IMPORTED_MODULE_15__["SendComponent"], _card_card_component__WEBPACK_IMPORTED_MODULE_16__["CardComponent"]], styles: ["[_nghost-%COMP%] {\n  width: 100%;\n  height: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uXFwuLlxcLi5cXC4uXFxlbWJlZGRlZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQUE7RUFDQSxZQUFBO0FBQ0YiLCJmaWxlIjoiZW1iZWRkZWQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG59Il19 */"] });
 (function () { (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](EmbeddedComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
         args: [{
@@ -10424,7 +10401,7 @@ EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefine
                 templateUrl: './embedded.component.html',
                 styleUrls: ['./embedded.component.scss']
             }]
-    }], function () { return [{ type: _services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"] }, { type: _services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"] }, { type: _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"] }, { type: _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"] }, { type: _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"] }]; }, { onResize: [{
+    }], function () { return [{ type: _services_torus_torus_service__WEBPACK_IMPORTED_MODULE_2__["TorusService"] }, { type: _services_import_import_service__WEBPACK_IMPORTED_MODULE_4__["ImportService"] }, { type: _services_wallet_wallet_service__WEBPACK_IMPORTED_MODULE_5__["WalletService"] }, { type: _services_coordinator_coordinator_service__WEBPACK_IMPORTED_MODULE_7__["CoordinatorService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["ActivatedRoute"] }, { type: _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__["LookupService"] }, { type: _services_activity_activity_service__WEBPACK_IMPORTED_MODULE_11__["ActivityService"] }]; }, { onResize: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"],
             args: ['window:resize', ['$event']]
         }] }); })();
@@ -15861,6 +15838,7 @@ class ActivityService {
         this.lookupService = lookupService;
         this.indexerService = indexerService;
         this.tokenService = tokenService;
+        this.confirmedOp = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
         this.maxTransactions = 10;
     }
     updateTransactions(pkh) {
@@ -15951,6 +15929,9 @@ class ActivityService {
                 const now = (new Date()).getTime();
                 const timeDiff = now - ((activity === null || activity === void 0 ? void 0 : activity.timestamp) ? activity.timestamp : now);
                 if (timeDiff < 3600000) { // 1 hour
+                    if (activity.hash) {
+                        this.confirmedOp.next(activity.hash);
+                    }
                     if (activity.type === 'transaction') {
                         if (account.address === activity.source.address) {
                             this.messageService.addSuccess(account.shortAddress() + ': Sent ' + this.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
