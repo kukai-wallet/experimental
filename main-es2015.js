@@ -6695,8 +6695,8 @@ class AccountsComponent {
             this.onResize();
             this.coordinatorService.startAll();
             this.implicitAccounts = this.walletService.wallet.implicitAccounts;
-            this.fetchApi('https://api.better-call.dev/v1/contract/mainnet/KT1JBThDEqyqrEHimhxoUBCSnsKAqFcuHMkP/tokens?size=100000').then(ans => {
-                console.log('100k', ans);
+            this.fetchApi('https://api.better-call.dev/v1/contract/mainnet/KT1JBThDEqyqrEHimhxoUBCSnsKAqFcuHMkP/tokens?size=1000000').then(ans => {
+                console.log('1kk', ans);
             });
         }
     }
