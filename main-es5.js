@@ -16940,6 +16940,7 @@
             if (loginData) {
               var keyPair = loginData.keyPair,
                   userInfo = loginData.userInfo;
+              console.log('userInfo', userInfo);
               var filteredUserInfo = {
                 typeOfLogin: userInfo.typeOfLogin,
                 id: userInfo.verifierId,
@@ -16952,7 +16953,7 @@
                 instanceId: instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
-                userData: filteredUserInfo,
+                userData: userInfo,
                 failed: false
               };
               this.importAccount(keyPair, userInfo, instanceId);

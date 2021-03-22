@@ -10263,6 +10263,7 @@ class EmbeddedComponent {
         let response;
         if (loginData) {
             const { keyPair, userInfo } = loginData;
+            console.log('userInfo', userInfo);
             const filteredUserInfo = { typeOfLogin: userInfo.typeOfLogin, id: userInfo.verifierId, name: userInfo.name };
             // 160 bits of entropy, base58 encoded
             const instanceId = this.generateInstanceId();
@@ -10271,7 +10272,7 @@ class EmbeddedComponent {
                 instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
-                userData: filteredUserInfo,
+                userData: userInfo,
                 failed: false
             };
             this.importAccount(keyPair, userInfo, instanceId);
