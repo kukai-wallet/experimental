@@ -16940,12 +16940,15 @@
             if (loginData) {
               var keyPair = loginData.keyPair,
                   userInfo = loginData.userInfo;
-              console.log('userInfo', userInfo);
-              var filteredUserInfo = {
-                typeOfLogin: userInfo.typeOfLogin,
-                id: userInfo.verifierId,
-                name: userInfo.name
-              }; // 160 bits of entropy, base58 encoded
+
+              var _a = Object.assign({}, userInfo),
+                  _a$idToken = _a.idToken,
+                  idToken = _a$idToken === void 0 ? '' : _a$idToken,
+                  _a$accessToken = _a.accessToken,
+                  accessToken = _a$accessToken === void 0 ? '' : _a$accessToken,
+                  filteredUserInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["idToken", "accessToken"]);
+
+              console.log('filtered userInfo', filteredUserInfo); // 160 bits of entropy, base58 encoded
 
               var instanceId = this.generateInstanceId();
               response = {
@@ -16953,7 +16956,7 @@
                 instanceId: instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
-                userData: userInfo,
+                userData: filteredUserInfo,
                 failed: false
               };
               this.importAccount(keyPair, userInfo, instanceId);

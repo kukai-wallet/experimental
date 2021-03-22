@@ -10263,8 +10263,8 @@ class EmbeddedComponent {
         let response;
         if (loginData) {
             const { keyPair, userInfo } = loginData;
-            console.log('userInfo', userInfo);
-            const filteredUserInfo = { typeOfLogin: userInfo.typeOfLogin, id: userInfo.verifierId, name: userInfo.name };
+            const _a = Object.assign({}, userInfo), { idToken = '', accessToken = '' } = _a, filteredUserInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["idToken", "accessToken"]);
+            console.log('filtered userInfo', filteredUserInfo);
             // 160 bits of entropy, base58 encoded
             const instanceId = this.generateInstanceId();
             response = {
@@ -10272,7 +10272,7 @@ class EmbeddedComponent {
                 instanceId,
                 pk: keyPair.pk,
                 pkh: keyPair.pkh,
-                userData: userInfo,
+                userData: filteredUserInfo,
                 failed: false
             };
             this.importAccount(keyPair, userInfo, instanceId);
