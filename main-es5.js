@@ -5461,71 +5461,6 @@
     },
 
     /***/
-    "874q":
-    /*!*******************************!*\
-      !*** ../icabod/dist/types.js ***!
-      \*******************************/
-
-    /*! exports provided: Networks, RequestTypes, ResponseTypes */
-
-    /***/
-    function q(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "Networks", function () {
-        return Networks;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "RequestTypes", function () {
-        return RequestTypes;
-      });
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ResponseTypes", function () {
-        return ResponseTypes;
-      });
-
-      var Networks;
-
-      (function (Networks) {
-        Networks["mainnet"] = "mainnet";
-        Networks["delphinet"] = "delphinet";
-        Networks["edonet"] = "edonet";
-        Networks["dev"] = "dev";
-      })(Networks || (Networks = {}));
-
-      var RequestTypes;
-
-      (function (RequestTypes) {
-        RequestTypes["loginRequest"] = "login_request";
-        RequestTypes["operationRequest"] = "operation_request";
-        RequestTypes["trackRequest"] = "track_request";
-        RequestTypes["logoutRequest"] = "logout_request";
-        RequestTypes["authRequest"] = "authentication_request";
-      })(RequestTypes || (RequestTypes = {}));
-
-      var ResponseTypes;
-
-      (function (ResponseTypes) {
-        ResponseTypes["loginResponse"] = "login_response";
-        ResponseTypes["operationResponse"] = "operation_response";
-        ResponseTypes["trackResponse"] = "track_response";
-        ResponseTypes["logoutResponse"] = "logout_response";
-        ResponseTypes["authResponse"] = "authentication_response";
-        ResponseTypes["resize"] = "resize";
-      })(ResponseTypes || (ResponseTypes = {}));
-      /***/
-
-    },
-
-    /***/
     "8ZjU":
     /*!**********************************************!*\
       !*** ./src/app/pipes/error-handling.pipe.ts ***!
@@ -8876,20 +8811,15 @@
               address: address,
               domain: domain
             };
-            console.log(authPayload, authPayload);
             return "Tezos Signed Message: ".concat(JSON.stringify(authPayload));
           }
         }, {
           key: "signMessage",
           value: function signMessage(message, sk) {
-            console.log('message', message);
             var p = new _taquito_michel_codec__WEBPACK_IMPORTED_MODULE_4__["Parser"]();
             var res = p.parseMichelineExpression("\"".concat(message.replace('"', '\"'), "\""));
-            console.log('res', res);
             var hexMessage = "05".concat(Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_5__["valueEncoder"])(res));
-            console.log('hexMessage', hexMessage);
             var signature = this.operationService.sign(hexMessage, sk).edsig;
-            console.log('signature', signature);
             return signature;
           }
         }]);
@@ -16947,7 +16877,7 @@
 
       var kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
       /*! kukai-embed/dist/types */
-      "874q");
+      "OFNV");
       /* harmony import */
 
 

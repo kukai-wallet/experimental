@@ -3230,46 +3230,6 @@ IndexerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineIn
 
 /***/ }),
 
-/***/ "874q":
-/*!*******************************!*\
-  !*** ../icabod/dist/types.js ***!
-  \*******************************/
-/*! exports provided: Networks, RequestTypes, ResponseTypes */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Networks", function() { return Networks; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestTypes", function() { return RequestTypes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResponseTypes", function() { return ResponseTypes; });
-var Networks;
-(function (Networks) {
-    Networks["mainnet"] = "mainnet";
-    Networks["delphinet"] = "delphinet";
-    Networks["edonet"] = "edonet";
-    Networks["dev"] = "dev";
-})(Networks || (Networks = {}));
-var RequestTypes;
-(function (RequestTypes) {
-    RequestTypes["loginRequest"] = "login_request";
-    RequestTypes["operationRequest"] = "operation_request";
-    RequestTypes["trackRequest"] = "track_request";
-    RequestTypes["logoutRequest"] = "logout_request";
-    RequestTypes["authRequest"] = "authentication_request";
-})(RequestTypes || (RequestTypes = {}));
-var ResponseTypes;
-(function (ResponseTypes) {
-    ResponseTypes["loginResponse"] = "login_response";
-    ResponseTypes["operationResponse"] = "operation_response";
-    ResponseTypes["trackResponse"] = "track_response";
-    ResponseTypes["logoutResponse"] = "logout_response";
-    ResponseTypes["authResponse"] = "authentication_response";
-    ResponseTypes["resize"] = "resize";
-})(ResponseTypes || (ResponseTypes = {}));
-
-
-/***/ }),
-
 /***/ "8ZjU":
 /*!**********************************************!*\
   !*** ./src/app/pipes/error-handling.pipe.ts ***!
@@ -5698,18 +5658,13 @@ class EmbeddedAuthService {
             address,
             domain
         };
-        console.log(authPayload, authPayload);
         return `Tezos Signed Message: ${JSON.stringify(authPayload)}`;
     }
     signMessage(message, sk) {
-        console.log('message', message);
         const p = new _taquito_michel_codec__WEBPACK_IMPORTED_MODULE_4__["Parser"]();
         const res = p.parseMichelineExpression(`"${message.replace('"', '\"')}"`);
-        console.log('res', res);
         const hexMessage = `05${Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_5__["valueEncoder"])(res)}`;
-        console.log('hexMessage', hexMessage);
         const signature = this.operationService.sign(hexMessage, sk).edsig;
-        console.log('signature', signature);
         return signature;
     }
 }
@@ -10212,7 +10167,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_lookup_lookup_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../services/lookup/lookup.service */ "QDvW");
 /* harmony import */ var _services_activity_activity_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../services/activity/activity.service */ "s6Pj");
 /* harmony import */ var _services_embedded_auth_embedded_auth_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../services/embedded-auth/embedded-auth.service */ "JJGL");
-/* harmony import */ var kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! kukai-embed/dist/types */ "874q");
+/* harmony import */ var kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! kukai-embed/dist/types */ "OFNV");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _signin_signin_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./signin/signin.component */ "HlfV");
 /* harmony import */ var _send_send_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../send/send.component */ "MlEp");
