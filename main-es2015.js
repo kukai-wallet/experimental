@@ -5704,7 +5704,7 @@ class EmbeddedAuthService {
     signMessage(message, sk) {
         console.log('message', message);
         const p = new _taquito_michel_codec__WEBPACK_IMPORTED_MODULE_4__["Parser"]();
-        const res = p.parseMichelineExpression(`"${encodeURI(message)}"`);
+        const res = p.parseMichelineExpression(`"${message.replace('"', '\"')}"`);
         console.log('res', res);
         const hexMessage = `05${Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_5__["valueEncoder"])(res)}`;
         console.log('hexMessage', hexMessage);
