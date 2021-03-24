@@ -5698,13 +5698,18 @@ class EmbeddedAuthService {
             address,
             domain
         };
+        console.log(authPayload, authPayload);
         return `Tezos Signed Message: ${JSON.stringify(authPayload)}`;
     }
     signMessage(message, sk) {
+        console.log('message', message);
         const p = new _taquito_michel_codec__WEBPACK_IMPORTED_MODULE_4__["Parser"]();
         const res = p.parseMichelineExpression(message);
+        console.log('res', res);
         const hexMessage = `05${Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_5__["valueEncoder"])(res)}`;
+        console.log('hexMessage', hexMessage);
         const signature = this.operationService.sign(hexMessage, sk).edsig;
+        console.log('signature', signature);
         return signature;
     }
 }
@@ -10433,7 +10438,7 @@ class EmbeddedComponent {
                 this.sendResponse({
                     type: kukai_embed_dist_types__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].authResponse,
                     failed: true,
-                    error: e.message
+                    error: e.message ? e.message : 'UNKNOWN_ERROR'
                 });
             });
         });
