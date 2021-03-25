@@ -2100,6 +2100,7 @@ class OperationService {
         }
         if (sk.slice(0, 4) === 'spsk') {
             const hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(bytes));
+            console.log('hash to sign', hash);
             bytes = bytes.slice(2);
             const key = (new elliptic__WEBPACK_IMPORTED_MODULE_14__["ec"]('secp256k1')).keyFromPrivate(new Uint8Array(this.b58cdecode(sk, this.prefix.spsk)));
             let sig = key.sign(hash, { canonical: true });
@@ -5662,8 +5663,12 @@ class EmbeddedAuthService {
     }
     signMessage(message, sk) {
         const p = new _taquito_michel_codec__WEBPACK_IMPORTED_MODULE_4__["Parser"]();
-        const res = p.parseMichelineExpression(`"${message.replace('"', '\"')}"`);
+        const s = `"${message.replace('"', '\"')}"`;
+        console.log('string to sign', s);
+        const res = p.parseMichelineExpression(s);
+        console.log('expr to sign', res);
         const hexMessage = `05${Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_5__["valueEncoder"])(res)}`;
+        console.log('hex to sign', hexMessage);
         const signature = this.operationService.sign(hexMessage, sk).edsig;
         return signature;
     }

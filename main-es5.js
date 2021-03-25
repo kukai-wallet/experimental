@@ -3677,6 +3677,7 @@
 
             if (sk.slice(0, 4) === 'spsk') {
               var hash = libsodium_wrappers__WEBPACK_IMPORTED_MODULE_6__["crypto_generichash"](32, this.hex2buf(bytes));
+              console.log('hash to sign', hash);
               bytes = bytes.slice(2);
               var key = new elliptic__WEBPACK_IMPORTED_MODULE_14__["ec"]('secp256k1').keyFromPrivate(new Uint8Array(this.b58cdecode(sk, this.prefix.spsk)));
               var sig = key.sign(hash, {
@@ -8817,8 +8818,12 @@
           key: "signMessage",
           value: function signMessage(message, sk) {
             var p = new _taquito_michel_codec__WEBPACK_IMPORTED_MODULE_4__["Parser"]();
-            var res = p.parseMichelineExpression("\"".concat(message.replace('"', '\"'), "\""));
+            var s = "\"".concat(message.replace('"', '\"'), "\"");
+            console.log('string to sign', s);
+            var res = p.parseMichelineExpression(s);
+            console.log('expr to sign', res);
             var hexMessage = "05".concat(Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_5__["valueEncoder"])(res));
+            console.log('hex to sign', hexMessage);
             var signature = this.operationService.sign(hexMessage, sk).edsig;
             return signature;
           }
