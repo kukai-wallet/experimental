@@ -5663,7 +5663,7 @@ class EmbeddedAuthService {
     }
     signMessage(message, sk) {
         const p = new _taquito_michel_codec__WEBPACK_IMPORTED_MODULE_4__["Parser"]();
-        const s = `"${message.replace('"', '\"')}"`;
+        const s = `"${message.replace(/"/g, '\\"')}"`;
         console.log('string to sign', s);
         const res = p.parseMichelineExpression(s);
         console.log('expr to sign', res);

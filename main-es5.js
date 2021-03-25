@@ -8818,7 +8818,7 @@
           key: "signMessage",
           value: function signMessage(message, sk) {
             var p = new _taquito_michel_codec__WEBPACK_IMPORTED_MODULE_4__["Parser"]();
-            var s = "\"".concat(message.replace('"', '\"'), "\"");
+            var s = "\"".concat(message.replace(/"/g, '\\"'), "\"");
             console.log('string to sign', s);
             var res = p.parseMichelineExpression(s);
             console.log('expr to sign', res);
