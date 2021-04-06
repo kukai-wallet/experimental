@@ -707,7 +707,8 @@ class KukaiEmbed {
                 await init(instanceId);
                 __classPrivateFieldSet(this, _user, JSON.parse(user));
                 __classPrivateFieldGet(this, _iframe).toCard();
-                (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.init(() => __classPrivateFieldGet(this, _iframe).hide()).then(() => { var _a; return (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.show(); });
+                __classPrivateFieldGet(this, _iframe).hide();
+                (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.init(() => this.toggle()).then(() => { var _a; return (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.show(); });
             }
             else {
                 await init();
@@ -840,6 +841,7 @@ class KukaiEmbed {
     }
     async toggle() {
         if (__classPrivateFieldGet(this, _iframe).isHidden()) {
+            __classPrivateFieldGet(this, _iframe).toCard();
             __classPrivateFieldGet(this, _iframe).show();
             __classPrivateFieldGet(this, _messages).card(true);
         }
@@ -11409,7 +11411,7 @@ class EmbeddedComponent {
         else {
             window.attachEvent('onmessage', this.handleRequest);
         }
-        console.log('icabod is connected..');
+        console.log('icabod is connected...');
         this.route.queryParams
             .filter(params => params.instanceId)
             .subscribe(params => {
@@ -11522,9 +11524,7 @@ class EmbeddedComponent {
         });
     }
     handleCardRequest(req) {
-        console.log('handle');
         this.blockCard = !req.show;
-        console.log('handled');
         const response = { type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].cardResponse, failed: false };
         this.sendResponse(response);
     }

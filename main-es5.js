@@ -1439,14 +1439,14 @@
                       }();
 
                       if (!instanceId) {
-                        _context7.next = 19;
+                        _context7.next = 20;
                         break;
                       }
 
                       user = window.sessionStorage.getItem(instanceId);
 
                       if (!user) {
-                        _context7.next = 15;
+                        _context7.next = 16;
                         break;
                       }
 
@@ -1458,29 +1458,31 @@
 
                       __classPrivateFieldGet(this, _iframe).toCard();
 
+                      __classPrivateFieldGet(this, _iframe).hide();
+
                       (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.init(function () {
-                        return __classPrivateFieldGet(_this2, _iframe).hide();
+                        return _this2.toggle();
                       }).then(function () {
                         var _a;
 
                         return (_a = __classPrivateFieldGet(_this2, _icon)) === null || _a === void 0 ? void 0 : _a.show();
                       });
-                      _context7.next = 17;
+                      _context7.next = 18;
                       break;
 
-                    case 15:
-                      _context7.next = 17;
+                    case 16:
+                      _context7.next = 18;
                       return init();
 
-                    case 17:
-                      _context7.next = 21;
+                    case 18:
+                      _context7.next = 22;
                       break;
 
-                    case 19:
-                      _context7.next = 21;
+                    case 20:
+                      _context7.next = 22;
                       return init();
 
-                    case 21:
+                    case 22:
                     case "end":
                       return _context7.stop();
                   }
@@ -1842,24 +1844,26 @@
                   switch (_context13.prev = _context13.next) {
                     case 0:
                       if (!__classPrivateFieldGet(this, _iframe).isHidden()) {
-                        _context13.next = 5;
+                        _context13.next = 6;
                         break;
                       }
+
+                      __classPrivateFieldGet(this, _iframe).toCard();
 
                       __classPrivateFieldGet(this, _iframe).show();
 
                       __classPrivateFieldGet(this, _messages).card(true);
 
-                      _context13.next = 7;
+                      _context13.next = 8;
                       break;
 
-                    case 5:
-                      _context13.next = 7;
+                    case 6:
+                      _context13.next = 8;
                       return __classPrivateFieldGet(this, _messages).card(false).then(function () {
                         __classPrivateFieldGet(_this6, _iframe).hide();
                       });
 
-                    case 7:
+                    case 8:
                     case "end":
                       return _context13.stop();
                   }
@@ -19770,7 +19774,7 @@
               window.attachEvent('onmessage', this.handleRequest);
             }
 
-            console.log('icabod is connected..');
+            console.log('icabod is connected...');
             this.route.queryParams.filter(function (params) {
               return params.instanceId;
             }).subscribe(function (params) {
@@ -19947,9 +19951,7 @@
         }, {
           key: "handleCardRequest",
           value: function handleCardRequest(req) {
-            console.log('handle');
             this.blockCard = !req.show;
-            console.log('handled');
             var response = {
               type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].cardResponse,
               failed: false
