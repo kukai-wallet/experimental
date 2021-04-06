@@ -19774,7 +19774,7 @@
               window.attachEvent('onmessage', this.handleRequest);
             }
 
-            console.log('icabod is connected..._');
+            console.log('icabod is connected...');
             this.route.queryParams.filter(function (params) {
               return params.instanceId;
             }).subscribe(function (params) {
@@ -19951,19 +19951,14 @@
         }, {
           key: "handleCardRequest",
           value: function handleCardRequest(req) {
-            var _this51 = this;
-
             console.log('handle');
             this.blockCard = !req.show;
-            setTimeout(function () {
-              console.log('handled');
-              var response = {
-                type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].cardResponse,
-                failed: false
-              };
-
-              _this51.sendResponse(response);
-            }, 1);
+            console.log('handled');
+            var response = {
+              type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].cardResponse,
+              failed: false
+            };
+            this.sendResponse(response);
           }
         }, {
           key: "noWalletError",
@@ -19977,7 +19972,7 @@
         }, {
           key: "operationResponse",
           value: function operationResponse(opHash) {
-            var _this52 = this;
+            var _this51 = this;
 
             var response;
 
@@ -20017,7 +20012,7 @@
             this.template = null;
             this.operationRequests = null;
             setTimeout(function () {
-              _this52.sendResponse(response);
+              _this51.sendResponse(response);
             }, 0);
           }
         }, {
@@ -20029,7 +20024,7 @@
           key: "importAccount",
           value: function importAccount(keyPair, userInfo, instanceId) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee90() {
-              var _this53 = this;
+              var _this52 = this;
 
               return regeneratorRuntime.wrap(function _callee90$(_context91) {
                 while (1) {
@@ -20049,11 +20044,11 @@
                         origin: this.origin
                       }, keyPair.sk, instanceId).then(function (success) {
                         if (success) {
-                          _this53.activeAccount = _this53.walletService.wallet.implicitAccounts[0];
+                          _this52.activeAccount = _this52.walletService.wallet.implicitAccounts[0];
 
-                          _this53.coordinatorService.startAll();
+                          _this52.coordinatorService.startAll();
 
-                          _this53.subscribeToConfirmedOps();
+                          _this52.subscribeToConfirmedOps();
                         }
                       });
 
@@ -20098,19 +20093,19 @@
         }, {
           key: "subscribeToConfirmedOps",
           value: function subscribeToConfirmedOps() {
-            var _this54 = this;
+            var _this53 = this;
 
             this.ophashSubscription = this.activityService.confirmedOp.subscribe(function (opHash) {
-              if (_this54.pendingOps.includes(opHash)) {
-                _this54.sendResponse({
+              if (_this53.pendingOps.includes(opHash)) {
+                _this53.sendResponse({
                   type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].trackResponse,
                   opHash: opHash,
                   failed: false
                 });
 
-                for (var i = 0; i < _this54.pendingOps.length; i++) {
-                  if (_this54.pendingOps[i] === opHash) {
-                    _this54.pendingOps.splice(i, 1);
+                for (var i = 0; i < _this53.pendingOps.length; i++) {
+                  if (_this53.pendingOps[i] === opHash) {
+                    _this53.pendingOps.splice(i, 1);
                   }
                 }
               }
@@ -20844,7 +20839,7 @@
         }, {
           key: "openModal",
           value: function openModal() {
-            var _this55 = this;
+            var _this54 = this;
 
             if (this.walletService.wallet) {
               // hide body scrollbar
@@ -20857,7 +20852,7 @@
 
               if (window.innerWidth > 1300) {
                 setTimeout(function () {
-                  var inputElem = _this55.toPkhView.nativeElement;
+                  var inputElem = _this54.toPkhView.nativeElement;
                   inputElem.focus();
                 }, 100);
               }
@@ -21017,7 +21012,7 @@
           key: "sendDelegation",
           value: function sendDelegation(keys) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee95() {
-              var _this56 = this;
+              var _this55 = this;
 
               var fee;
               return regeneratorRuntime.wrap(function _callee95$(_context96) {
@@ -21032,7 +21027,7 @@
                       }
 
                       this.operationService.delegate(this.activeAccount.address, this.getDelegate(), Number(fee), keys).subscribe(function (ans) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this56, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee94() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this55, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee94() {
                           var metadata;
                           return regeneratorRuntime.wrap(function _callee94$(_context95) {
                             while (1) {
@@ -21072,7 +21067,7 @@
                         }));
                       }, function (err) {
                         console.log('Error Message ', JSON.stringify(err));
-                        _this56.ledgerError = 'Failed to create operation';
+                        _this55.ledgerError = 'Failed to create operation';
                       });
 
                     case 4:
@@ -21133,7 +21128,7 @@
           key: "broadCastLedgerTransaction",
           value: function broadCastLedgerTransaction() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee97() {
-              var _this57 = this;
+              var _this56 = this;
 
               return regeneratorRuntime.wrap(function _callee97$(_context98) {
                 while (1) {
@@ -21141,30 +21136,30 @@
                     case 0:
                       this.messageService.startSpinner('Broadcasting operation');
                       this.operationService.broadcast(this.sendResponse.payload.signedOperation).subscribe(function (ans) {
-                        _this57.sendResponse = ans;
+                        _this56.sendResponse = ans;
 
-                        if (ans.success && _this57.activeAccount.address) {
+                        if (ans.success && _this56.activeAccount.address) {
                           var metadata = {
-                            delegate: _this57.getDelegate(),
+                            delegate: _this56.getDelegate(),
                             opHash: ans.payload.opHash
                           };
 
-                          _this57.coordinatorService.boost(_this57.activeAccount.address, metadata);
+                          _this56.coordinatorService.boost(_this56.activeAccount.address, metadata);
                         } else {
-                          _this57.messageService.addError(_this57.sendResponse.payload.msg, 0);
+                          _this56.messageService.addError(_this56.sendResponse.payload.msg, 0);
 
-                          _this57.operationResponse.emit('broadcast_error');
+                          _this56.operationResponse.emit('broadcast_error');
                         }
 
-                        _this57.closeModal();
+                        _this56.closeModal();
 
                         console.log('ans: ' + JSON.stringify(ans));
                       }, function (error) {
-                        _this57.messageService.stopSpinner();
+                        _this56.messageService.stopSpinner();
 
-                        _this57.messageService.addError(error, 0);
+                        _this56.messageService.addError(error, 0);
 
-                        _this57.operationResponse.emit('broadcast_error');
+                        _this56.operationResponse.emit('broadcast_error');
                       });
 
                     case 2:
@@ -21178,17 +21173,17 @@
         }, {
           key: "checkReveal",
           value: function checkReveal() {
-            var _this58 = this;
+            var _this57 = this;
 
             console.log('check reveal ' + this.activeAccount.pkh);
             this.operationService.isRevealed(this.activeAccount.pkh).subscribe(function (revealed) {
               if (!revealed) {
-                _this58.revealFee = 0.0002;
+                _this57.revealFee = 0.0002;
               } else {
-                _this58.revealFee = 0;
+                _this57.revealFee = 0;
               }
 
-              _this58.checkSource();
+              _this57.checkSource();
             });
           }
         }, {
@@ -21829,7 +21824,7 @@
           key: "getPublicAddress",
           value: function getPublicAddress(path) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee100() {
-              var _this59 = this;
+              var _this58 = this;
 
               var xtz, result, pk;
               return regeneratorRuntime.wrap(function _callee100$(_context101) {
@@ -21844,9 +21839,9 @@
                       _context101.next = 5;
                       return xtz.getAddress(path, true)["catch"](function (e) {
                         if (e.message) {
-                          _this59.messageService.addError(e.message);
+                          _this58.messageService.addError(e.message);
                         } else {
-                          _this59.messageService.addError(e);
+                          _this58.messageService.addError(e);
                         }
 
                         throw e;
@@ -21869,7 +21864,7 @@
           key: "signOperation",
           value: function signOperation(op, path) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee101() {
-              var _this60 = this;
+              var _this59 = this;
 
               var xtz, result;
               return regeneratorRuntime.wrap(function _callee101$(_context102) {
@@ -21894,7 +21889,7 @@
                       return xtz.signOperation(path, op)["catch"](function (e) {
                         console.warn(e);
 
-                        _this60.messageService.addError(e, 0);
+                        _this59.messageService.addError(e, 0);
                       });
 
                     case 8:
@@ -21923,7 +21918,7 @@
           key: "signHash",
           value: function signHash(hash, path) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee102() {
-              var _this61 = this;
+              var _this60 = this;
 
               var xtz, result;
               return regeneratorRuntime.wrap(function _callee102$(_context103) {
@@ -21945,7 +21940,7 @@
                       xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
                       _context103.next = 7;
                       return xtz.signHash(path, hash)["catch"](function (e) {
-                        _this61.messageService.addError(e, 0);
+                        _this60.messageService.addError(e, 0);
                       });
 
                     case 7:
@@ -23163,7 +23158,7 @@
           key: "estimateFees",
           value: function estimateFees() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee104() {
-              var _this62 = this;
+              var _this61 = this;
 
               var prevSimError, txs, equiClass, callback;
               return regeneratorRuntime.wrap(function _callee104$(_context105) {
@@ -23193,20 +23188,20 @@
                           callback = function callback(res) {
                             if (res) {
                               if (res.error) {
-                                _this62.formInvalid = res.error;
-                                _this62.latestSimError = res.error;
+                                _this61.formInvalid = res.error;
+                                _this61.latestSimError = res.error;
                               } else {
-                                _this62.defaultTransactionParams = res;
-                                _this62.formInvalid = '';
-                                _this62.latestSimError = '';
+                                _this61.defaultTransactionParams = res;
+                                _this61.formInvalid = '';
+                                _this61.latestSimError = '';
 
-                                _this62.updateMaxAmount();
+                                _this61.updateMaxAmount();
                               }
                             } else {
                               console.log('no res');
                             }
 
-                            _this62.simSemaphore--;
+                            _this61.simSemaphore--;
                           };
 
                           this.estimateService.estimate(JSON.parse(JSON.stringify(txs)), this.activeAccount.address, this.tokenTransfer, callback);
@@ -23330,7 +23325,7 @@
         }, {
           key: "getBatch",
           value: function getBatch() {
-            var _this63 = this;
+            var _this62 = this;
 
             var finalCheck = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
             var txs = this.toMultipleDestinationsString.trim().split(';').map(function (row, i) {
@@ -23341,10 +23336,10 @@
                   return col;
                 });
                 assert__WEBPACK_IMPORTED_MODULE_10___default()((cols === null || cols === void 0 ? void 0 : cols.length) === 2, "Transaction ".concat(i + 1, " has invalid number of arguments. Expected 2, but got ").concat(cols === null || cols === void 0 ? void 0 : cols.length, "."));
-                assert__WEBPACK_IMPORTED_MODULE_10___default()(_this63.inputValidationService.address(cols[0]), "Transaction ".concat(i + 1, " contains an invalid destination."));
-                assert__WEBPACK_IMPORTED_MODULE_10___default()(_this63.inputValidationService.amount(cols[1]), "Transaction ".concat(i + 1, " contains an invalid amount."));
+                assert__WEBPACK_IMPORTED_MODULE_10___default()(_this62.inputValidationService.address(cols[0]), "Transaction ".concat(i + 1, " contains an invalid destination."));
+                assert__WEBPACK_IMPORTED_MODULE_10___default()(_this62.inputValidationService.amount(cols[1]), "Transaction ".concat(i + 1, " contains an invalid amount."));
 
-                _this63.checkTx(cols[0], cols[1], finalCheck);
+                _this62.checkTx(cols[0], cols[1], finalCheck);
 
                 var tx = {
                   kind: 'transaction',
@@ -23572,7 +23567,7 @@
           key: "torusLookup",
           value: function torusLookup() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee106() {
-              var _this64 = this;
+              var _this63 = this;
 
               var _yield$this$torusServ3, pkh, twitterId;
 
@@ -23610,7 +23605,7 @@
                       _context107.next = 13;
                       return this.torusService.lookupPkh(this.torusVerifier, this.toPkh)["catch"](function (e) {
                         console.error(e);
-                        _this64.formInvalid = e;
+                        _this63.formInvalid = e;
                         return '';
                       });
 
@@ -23939,7 +23934,7 @@
         }, {
           key: "openModal",
           value: function openModal() {
-            var _this65 = this;
+            var _this64 = this;
 
             // hide body scrollbar
             var scrollBarWidth = window.innerWidth - document.body.offsetWidth;
@@ -23947,7 +23942,7 @@
             document.body.style.overflow = 'hidden';
             this.modalOpen = true;
             setTimeout(function () {
-              _this65.getQR();
+              _this64.getQR();
             }, 100);
           }
         }, {
@@ -23976,7 +23971,7 @@
         }, {
           key: "open1",
           value: function open1(template1) {
-            var _this66 = this;
+            var _this65 = this;
 
             if (this.activeAddress) {
               this.modalRef1 = this.modalService.show(template1, {
@@ -23984,7 +23979,7 @@
               }); // modal-sm / modal-lg
 
               setTimeout(function () {
-                _this66.getQR();
+                _this65.getQR();
               }, 100);
             } else {
               this.messageService.add('Select an address first by clicking on it!');
@@ -24127,13 +24122,13 @@
         _createClass(TzrateService, [{
           key: "getTzrate",
           value: function getTzrate() {
-            var _this67 = this;
+            var _this66 = this;
 
             if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["CONSTANTS"].MAINNET) {
               this.http.get(this.apiUrl).subscribe(function (price) {
-                _this67.walletService.wallet.XTZrate = price.tezos.usd;
+                _this66.walletService.wallet.XTZrate = price.tezos.usd;
 
-                _this67.updateFiatBalances();
+                _this66.updateFiatBalances();
               }, function (err) {
                 return console.log('Failed to get xtz price: ' + JSON.stringify(err));
               });
@@ -25634,7 +25629,7 @@
         _createClass(AccountViewComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this68 = this;
+            var _this67 = this;
 
             if (!this.walletService.wallet) {
               this.router.navigate(['']);
@@ -25649,14 +25644,14 @@
               this.router.events.pipe(Object(rxjs_internal_operators_filter__WEBPACK_IMPORTED_MODULE_8__["filter"])(function (evt) {
                 return evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"];
               })).subscribe(function () {
-                address = _this68.route.snapshot.paramMap.get('address');
+                address = _this67.route.snapshot.paramMap.get('address');
 
-                if (_this68.walletService.wallet && _this68.walletService.addressExists(address)) {
-                  _this68.account = _this68.walletService.wallet.getAccount(address);
+                if (_this67.walletService.wallet && _this67.walletService.addressExists(address)) {
+                  _this67.account = _this67.walletService.wallet.getAccount(address);
                 }
               });
               setInterval(function () {
-                return _this68.trigger = !_this68.trigger;
+                return _this67.trigger = !_this67.trigger;
               }, 1000);
             }
           }
@@ -26043,13 +26038,13 @@
         var _super = _createSuper(FullWallet);
 
         function FullWallet(encryptedSeed) {
-          var _this69;
+          var _this68;
 
           _classCallCheck(this, FullWallet);
 
-          _this69 = _super.call(this);
-          _this69.encryptedSeed = encryptedSeed;
-          return _this69;
+          _this68 = _super.call(this);
+          _this68.encryptedSeed = encryptedSeed;
+          return _this68;
         }
 
         return FullWallet;
@@ -26061,13 +26056,13 @@
         var _super2 = _createSuper(LegacyWalletV1);
 
         function LegacyWalletV1(salt, encrypedSeed) {
-          var _this70;
+          var _this69;
 
           _classCallCheck(this, LegacyWalletV1);
 
-          _this70 = _super2.call(this, encrypedSeed);
-          _this70.salt = salt;
-          return _this70;
+          _this69 = _super2.call(this, encrypedSeed);
+          _this69.salt = salt;
+          return _this69;
         }
 
         return LegacyWalletV1;
@@ -26079,13 +26074,13 @@
         var _super3 = _createSuper(LegacyWalletV2);
 
         function LegacyWalletV2(IV, encryptedSeed) {
-          var _this71;
+          var _this70;
 
           _classCallCheck(this, LegacyWalletV2);
 
-          _this71 = _super3.call(this, encryptedSeed);
-          _this71.IV = IV;
-          return _this71;
+          _this70 = _super3.call(this, encryptedSeed);
+          _this70.IV = IV;
+          return _this70;
         }
 
         return LegacyWalletV2;
@@ -26097,14 +26092,14 @@
         var _super4 = _createSuper(LegacyWalletV3);
 
         function LegacyWalletV3(IV, encryptedSeed, encryptedEntropy) {
-          var _this72;
+          var _this71;
 
           _classCallCheck(this, LegacyWalletV3);
 
-          _this72 = _super4.call(this, encryptedSeed);
-          _this72.IV = IV;
-          _this72.encryptedEntropy = encryptedEntropy;
-          return _this72;
+          _this71 = _super4.call(this, encryptedSeed);
+          _this71.IV = IV;
+          _this71.encryptedEntropy = encryptedEntropy;
+          return _this71;
         }
 
         return LegacyWalletV3;
@@ -26116,15 +26111,15 @@
         var _super5 = _createSuper(HdWallet);
 
         function HdWallet(IV, encryptedSeed, encryptedEntropy) {
-          var _this73;
+          var _this72;
 
           _classCallCheck(this, HdWallet);
 
-          _this73 = _super5.call(this, encryptedSeed);
-          _this73.encryptedEntropy = encryptedEntropy;
-          _this73.IV = IV;
-          _this73.index = 0;
-          return _this73;
+          _this72 = _super5.call(this, encryptedSeed);
+          _this72.encryptedEntropy = encryptedEntropy;
+          _this72.IV = IV;
+          _this72.index = 0;
+          return _this72;
         }
 
         return HdWallet;
@@ -26136,15 +26131,15 @@
         var _super6 = _createSuper(TorusWallet);
 
         function TorusWallet(verifier, id, name) {
-          var _this74;
+          var _this73;
 
           _classCallCheck(this, TorusWallet);
 
-          _this74 = _super6.call(this);
-          _this74.verifier = verifier;
-          _this74.id = id;
-          _this74.name = name;
-          return _this74;
+          _this73 = _super6.call(this);
+          _this73.verifier = verifier;
+          _this73.id = id;
+          _this73.name = name;
+          return _this73;
         }
 
         _createClass(TorusWallet, [{
@@ -26167,15 +26162,15 @@
         var _super7 = _createSuper(EmbeddedTorusWallet);
 
         function EmbeddedTorusWallet(verifier, id, name, origin, sk, instanceId) {
-          var _this75;
+          var _this74;
 
           _classCallCheck(this, EmbeddedTorusWallet);
 
-          _this75 = _super7.call(this, verifier, id, name);
-          _this75.origin = origin;
-          _this75.sk = sk;
-          _this75.instanceId = instanceId;
-          return _this75;
+          _this74 = _super7.call(this, verifier, id, name);
+          _this74.origin = origin;
+          _this74.sk = sk;
+          _this74.instanceId = instanceId;
+          return _this74;
         }
 
         return EmbeddedTorusWallet;
@@ -26277,18 +26272,18 @@
         var _super9 = _createSuper(ImplicitAccount);
 
         function ImplicitAccount(pkh, pk, derivationPath) {
-          var _this76;
+          var _this75;
 
           _classCallCheck(this, ImplicitAccount);
 
-          _this76 = _super9.call(this, pkh, pk, pkh);
-          _this76.originatedAccounts = [];
+          _this75 = _super9.call(this, pkh, pk, pkh);
+          _this75.originatedAccounts = [];
 
           if (derivationPath) {
-            _this76.derivationPath = derivationPath;
+            _this75.derivationPath = derivationPath;
           }
 
-          return _this76;
+          return _this75;
         }
 
         _createClass(ImplicitAccount, [{
@@ -26544,7 +26539,7 @@
           key: "scan",
           value: function scan() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee107() {
-              var _this77 = this;
+              var _this76 = this;
 
               var hasCamera;
               return regeneratorRuntime.wrap(function _callee107$(_context108) {
@@ -26564,7 +26559,7 @@
 
                       qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"].WORKER_PATH = './assets/js/qr-scanner-worker.min.js';
                       this.qrScanner = new qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"](this.videoplayer.nativeElement, function (result) {
-                        return _this77.handleQrCode(result);
+                        return _this76.handleQrCode(result);
                       });
                       _context108.next = 8;
                       return this.qrScanner.start();
@@ -27627,7 +27622,7 @@
         }, {
           key: "retrieve",
           value: function retrieve() {
-            var _this78 = this;
+            var _this77 = this;
 
             if (this.mnemonic) {
               this.mnemonic = this.mnemonic.toLowerCase().replace(/(\r\n|\n|\r)/gm, ' ').trim();
@@ -27639,26 +27634,26 @@
 
             if (!this.inputValidationService.mnemonics(this.mnemonic)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDMNEMONIC').subscribe(function (res) {
-                return _this78.messageService.addWarning(res, 10);
+                return _this77.messageService.addWarning(res, 10);
               });
             } else if (this.importOption === 2 && !this.inputValidationService.email(this.email)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDEMAIL').subscribe(function (res) {
-                return _this78.messageService.addWarning(res, 10);
+                return _this77.messageService.addWarning(res, 10);
               } // 'Invalid email!'
               );
             } else if (this.importOption === 2 && !this.password) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSWORD').subscribe(function (res) {
-                return _this78.messageService.addWarning(res, 10);
+                return _this77.messageService.addWarning(res, 10);
               } // 'Invalid password!'
               );
             } else if (!this.inputValidationService.passphrase(this.passphrase)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSPHRASE').subscribe(function (res) {
-                return _this78.messageService.addWarning(res, 10);
+                return _this77.messageService.addWarning(res, 10);
               } // 'Invalid passphrase!'
               );
             } else if (this.pkh && !this.inputValidationService.address(this.pkh)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPKH').subscribe(function (res) {
-                return _this78.messageService.addWarning(res, 10);
+                return _this77.messageService.addWarning(res, 10);
               } // 'Invalid public key hash!'
               );
             } else {
@@ -27675,11 +27670,11 @@
               if (this.pkh && pkh !== this.pkh) {
                 if (this.importOption === 2) {
                   this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDEMAILPASSWORD').subscribe(function (res) {
-                    return _this78.messageService.addWarning(res, 5);
+                    return _this77.messageService.addWarning(res, 5);
                   });
                 } else {
                   this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSPHRASE').subscribe(function (res) {
-                    return _this78.messageService.addWarning(res, 5);
+                    return _this77.messageService.addWarning(res, 5);
                   });
                 }
               } else {
@@ -27742,17 +27737,17 @@
         }, {
           key: "validPwd",
           value: function validPwd() {
-            var _this79 = this;
+            var _this78 = this;
 
             if (!this.inputValidationService.password(this.pwd1)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.PASSWORDWEAK').subscribe(function (res) {
-                return _this79.messageService.addWarning(res, 10);
+                return _this78.messageService.addWarning(res, 10);
               } // 'Password is too weak!'
               );
               return false;
             } else if (this.pwd1 !== this.pwd2) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.NOMATCHPASSWORDS').subscribe(function (res) {
-                return _this79.messageService.addWarning(res, 10);
+                return _this78.messageService.addWarning(res, 10);
               } // Passwords don't match!
               );
               return false;
@@ -27785,7 +27780,7 @@
           key: "done",
           value: function done() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee109() {
-              var _this80 = this;
+              var _this79 = this;
 
               return regeneratorRuntime.wrap(function _callee109$(_context110) {
                 while (1) {
@@ -27814,7 +27809,7 @@
                       }
 
                       this.translate.get('MNEMONICIMPORTCOMPONENT.WALLETREADY').subscribe(function (res) {
-                        return _this80.messageService.addSuccess(res);
+                        return _this79.messageService.addSuccess(res);
                       });
 
                     case 11:
@@ -27929,7 +27924,7 @@
           key: "import",
           value: function _import(keyFile, pwd) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee111() {
-              var _this81 = this;
+              var _this80 = this;
 
               return regeneratorRuntime.wrap(function _callee111$(_context112) {
                 while (1) {
@@ -27939,18 +27934,18 @@
                       _context112.next = 3;
                       return this.importService.importWalletFromJson(keyFile, pwd).then(function (success) {
                         if (success) {
-                          if (_this81.walletService.wallet.implicitAccounts.length === 1 && _this81.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
-                            _this81.router.navigate(["/account/".concat(_this81.walletService.wallet.implicitAccounts[0].address)]);
+                          if (_this80.walletService.wallet.implicitAccounts.length === 1 && _this80.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
+                            _this80.router.navigate(["/account/".concat(_this80.walletService.wallet.implicitAccounts[0].address)]);
                           } else {
-                            _this81.router.navigate(['/accounts']);
+                            _this80.router.navigate(['/accounts']);
                           }
                         } else {
                           console.log(success);
 
-                          _this81.messageService.addError('Something went wrong');
+                          _this80.messageService.addError('Something went wrong');
                         }
                       })["catch"](function (e) {
-                        _this81.messageService.addError(e);
+                        _this80.messageService.addError(e);
                       });
 
                     case 3:
@@ -27964,7 +27959,7 @@
         }, {
           key: "handleFileInput",
           value: function handleFileInput(files) {
-            var _this82 = this;
+            var _this81 = this;
 
             var fileToUpload = files.item(0);
 
@@ -27987,18 +27982,18 @@
               reader.onload = function () {
                 if (typeof reader.result === 'string') {
                   try {
-                    _this82.importPreCheck(reader.result);
+                    _this81.importPreCheck(reader.result);
                   } catch (e) {
-                    _this82.messageService.addError(e, 5);
+                    _this81.messageService.addError(e, 5);
 
-                    _this82.walletJson = null;
+                    _this81.walletJson = null;
                   }
 
-                  if (_this82.walletJson) {
-                    _this82.fileName = fileToUpload.name;
+                  if (_this81.walletJson) {
+                    _this81.fileName = fileToUpload.name;
                   }
                 } else {
-                  _this82.walletJson = null;
+                  _this81.walletJson = null;
                   throw new Error('Not a string import');
                 }
               };
@@ -28779,7 +28774,7 @@
         }, {
           key: "activate",
           value: function activate() {
-            var _this83 = this;
+            var _this82 = this;
 
             this.formInvalid = this.checkInput();
 
@@ -28791,13 +28786,13 @@
               this.operationService.activate(pkh, secret).subscribe(function (ans) {
                 if (ans.success) {
                   if (ans.payload.opHash) {
-                    _this83.translate.get('ACTIVATECOMPONENT.ACTIVATESUCCESS').subscribe(function (res) {
-                      return _this83.messageService.addSuccess(res);
+                    _this82.translate.get('ACTIVATECOMPONENT.ACTIVATESUCCESS').subscribe(function (res) {
+                      return _this82.messageService.addSuccess(res);
                     } // 'Activation successfully broadcasted to the blockchain!'
                     );
                   } else {
-                    _this83.translate.get('ACTIVATECOMPONENT.RETRIEVEFAIL').subscribe(function (res) {
-                      return _this83.messageService.addWarning(res);
+                    _this82.translate.get('ACTIVATECOMPONENT.RETRIEVEFAIL').subscribe(function (res) {
+                      return _this82.messageService.addWarning(res);
                     } // Could not retrieve an operation hash
                     );
                   }
@@ -28810,12 +28805,12 @@
                     errorMessage = 'NodeError ' + JSON.stringify(ans.payload.msg);
                   }
 
-                  _this83.messageService.addError(errorMessage);
+                  _this82.messageService.addError(errorMessage);
 
                   console.log(JSON.stringify(ans.payload.msg));
                 }
               }, function (err) {
-                _this83.translate.get('ACTIVATECOMPONENT.ACTIVATEFAIL').subscribe(function (res) {
+                _this82.translate.get('ACTIVATECOMPONENT.ACTIVATEFAIL').subscribe(function (res) {
                   var errorMessage = '';
                   var activateFailed = res;
 
@@ -28825,7 +28820,7 @@
                     errorMessage = activateFailed;
                   }
 
-                  _this83.messageService.addError(errorMessage);
+                  _this82.messageService.addError(errorMessage);
                 } // 'Failed to activate wallet!'
                 );
 
@@ -30738,14 +30733,14 @@
           key: "sendTransaction",
           value: function sendTransaction(keys) {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee137() {
-              var _this84 = this;
+              var _this83 = this;
 
               return regeneratorRuntime.wrap(function _callee137$(_context138) {
                 while (1) {
                   switch (_context138.prev = _context138.next) {
                     case 0:
                       this.operationService.transfer(this.activeAccount.address, this.transactions, Number(this.getTotalFee()), keys, this.tokenTransfer).subscribe(function (ans) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this84, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee136() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this83, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee136() {
                           var metadata, _iterator54, _step54, transaction;
 
                           return regeneratorRuntime.wrap(function _callee136$(_context137) {
@@ -30866,17 +30861,17 @@
                           }, _callee136, this, [[12, 23, 26, 29]]);
                         }));
                       }, function (err) {
-                        _this84.messageService.stopSpinner();
+                        _this83.messageService.stopSpinner();
 
                         console.log('Error Message ', JSON.stringify(err));
 
-                        if (_this84.walletService.isLedgerWallet()) {
-                          _this84.messageService.addError('Failed to create transaction', 0);
+                        if (_this83.walletService.isLedgerWallet()) {
+                          _this83.messageService.addError('Failed to create transaction', 0);
 
-                          _this84.operationResponse.emit('broadcast_error');
+                          _this83.operationResponse.emit('broadcast_error');
                         }
 
-                        _this84.reset();
+                        _this83.reset();
                       });
 
                     case 1:
@@ -30955,14 +30950,14 @@
           key: "broadCastLedgerTransaction",
           value: function broadCastLedgerTransaction() {
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee140() {
-              var _this85 = this;
+              var _this84 = this;
 
               return regeneratorRuntime.wrap(function _callee140$(_context141) {
                 while (1) {
                   switch (_context141.prev = _context141.next) {
                     case 0:
                       this.operationService.broadcast(this.sendResponse.payload.signedOperation).subscribe(function (ans) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this85, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee139() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this84, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee139() {
                           var metadata;
                           return regeneratorRuntime.wrap(function _callee139$(_context140) {
                             while (1) {
@@ -31538,21 +31533,21 @@
         }, {
           key: "getTransactonsCounter",
           value: function getTransactonsCounter(account) {
-            var _this86 = this;
+            var _this85 = this;
 
             var knownTokenIds = this.tokenService.knownTokenIds();
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.accountInfo(account.address, knownTokenIds)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (data) {
               var counter = data.counter;
               var unknownTokenIds = data.unknownTokenIds ? data.unknownTokenIds : [];
 
-              _this86.handleUnknownTokenIds(unknownTokenIds);
+              _this85.handleUnknownTokenIds(unknownTokenIds);
 
               if (account.state !== counter) {
                 if (data.tokens) {
-                  _this86.updateTokenBalances(account, data.tokens);
+                  _this85.updateTokenBalances(account, data.tokens);
                 }
 
-                return _this86.getAllTransactions(account, counter);
+                return _this85.getAllTransactions(account, counter);
               } else {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
                   upToDate: true
@@ -31622,13 +31617,13 @@
         }, {
           key: "getAllTransactions",
           value: function getAllTransactions(account, counter) {
-            var _this87 = this;
+            var _this86 = this;
 
             var knownTokenIds = this.tokenService.knownTokenIds();
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.getOperations(account.address, knownTokenIds, this.walletService.wallet)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (resp) {
               var operations = resp.operations;
 
-              _this87.handleUnknownTokenIds(resp.unknownTokenIds);
+              _this86.handleUnknownTokenIds(resp.unknownTokenIds);
 
               if (Array.isArray(operations)) {
                 var oldActivities = account.activities;
@@ -31636,11 +31631,11 @@
                 var oldState = account.state;
                 account.state = counter;
 
-                _this87.walletService.storeWallet();
+                _this86.walletService.storeWallet();
 
                 if (oldState !== '') {
                   // Exclude inital loading
-                  _this87.promptNewActivities(account, oldActivities, operations);
+                  _this86.promptNewActivities(account, oldActivities, operations);
                 } else {
                   console.log('# Excluded ' + counter);
                 }
@@ -31652,9 +31647,9 @@
                   for (_iterator57.s(); !(_step57 = _iterator57.n()).done;) {
                     var activity = _step57.value;
 
-                    var counterParty = _this87.getCounterparty(activity, account, false);
+                    var counterParty = _this86.getCounterparty(activity, account, false);
 
-                    _this87.lookupService.check(counterParty);
+                    _this86.lookupService.check(counterParty);
                   }
                 } catch (err) {
                   _iterator57.e(err);
@@ -31673,7 +31668,7 @@
         }, {
           key: "promptNewActivities",
           value: function promptNewActivities(account, oldActivities, newActivities) {
-            var _this88 = this;
+            var _this87 = this;
 
             var _iterator58 = _createForOfIteratorHelper(newActivities),
                 _step58;
@@ -31692,23 +31687,23 @@
                   if (timeDiff < 3600000) {
                     // 1 hour
                     if (activity.hash) {
-                      _this88.confirmedOp.next(activity.hash);
+                      _this87.confirmedOp.next(activity.hash);
                     }
 
                     if (activity.type === 'transaction') {
                       if (account.address === activity.source.address) {
-                        _this88.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this88.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                        _this87.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this87.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                       }
 
                       if (account.address === activity.destination.address) {
-                        _this88.messageService.addSuccess(account.shortAddress() + ': Received ' + _this88.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                        _this87.messageService.addSuccess(account.shortAddress() + ': Received ' + _this87.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                       }
                     } else if (activity.type === 'delegation') {
-                      _this88.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
+                      _this87.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
                     } else if (activity.type === 'origination') {
-                      _this88.messageService.addSuccess(account.shortAddress() + ': Account originated');
+                      _this87.messageService.addSuccess(account.shortAddress() + ': Account originated');
                     } else if (activity.type === 'activation') {
-                      _this88.messageService.addSuccess(account.shortAddress() + ': Account activated');
+                      _this87.messageService.addSuccess(account.shortAddress() + ': Account activated');
                     }
                   }
                 }
@@ -32507,7 +32502,7 @@
 
       var UriHandlerComponent = /*#__PURE__*/function () {
         function UriHandlerComponent(route, messageService, walletService, location, beaconService, deeplinkService, inputValidationService) {
-          var _this89 = this;
+          var _this88 = this;
 
           _classCallCheck(this, UriHandlerComponent);
 
@@ -32524,8 +32519,8 @@
           /* https://docs.walletbeacon.io/beacon/03.getting-started-wallet.html#setup */
 
           this.connectApp = function () {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this89, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee151() {
-              var _this90 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this88, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee151() {
+              var _this89 = this;
 
               return regeneratorRuntime.wrap(function _callee151$(_context152) {
                 while (1) {
@@ -32543,7 +32538,7 @@
                     case 3:
                       // Establish P2P connection
                       this.beaconService.client.connect(function (message) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this90, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee150() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this89, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee150() {
                           var _a;
 
                           return regeneratorRuntime.wrap(function _callee150$(_context151) {
@@ -35564,12 +35559,12 @@
         }, {
           key: "getAccountBalance",
           value: function getAccountBalance(account) {
-            var _this91 = this;
+            var _this90 = this;
 
             console.log('for ' + account.address);
             this.operationService.getBalance(account.address).subscribe(function (ans) {
               if (ans.success) {
-                _this91.updateAccountBalance(account, Number(ans.payload.balance));
+                _this90.updateAccountBalance(account, Number(ans.payload.balance));
               } else {
                 console.log('Balance Error: ' + JSON.stringify(ans.payload.msg));
               }
