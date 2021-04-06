@@ -19451,7 +19451,7 @@
             if (!this.messageService.spinnerOn) {
               setTimeout(function () {
                 _this45.messageService.spinnerChecked();
-              });
+              }, 0);
             }
           }
         }]);
@@ -19777,7 +19777,7 @@
               window.attachEvent('onmessage', this.handleRequest);
             }
 
-            console.log('icabod is connected...');
+            console.log('icabod is connected...*');
             this.route.queryParams.filter(function (params) {
               return params.instanceId;
             }).subscribe(function (params) {

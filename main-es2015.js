@@ -11245,7 +11245,7 @@ class SpinnerComponent {
         if (!this.messageService.spinnerOn) {
             setTimeout(() => {
                 this.messageService.spinnerChecked();
-            });
+            }, 0);
         }
     }
 }
@@ -11411,7 +11411,7 @@ class EmbeddedComponent {
         else {
             window.attachEvent('onmessage', this.handleRequest);
         }
-        console.log('icabod is connected...');
+        console.log('icabod is connected...*');
         this.route.queryParams
             .filter(params => params.instanceId)
             .subscribe(params => {
