@@ -19777,7 +19777,7 @@
               window.attachEvent('onmessage', this.handleRequest);
             }
 
-            console.log('icabod is connected...*');
+            console.log('icabod is connected...|');
             this.route.queryParams.filter(function (params) {
               return params.instanceId;
             }).subscribe(function (params) {
@@ -19873,6 +19873,7 @@
             var _this48 = this;
 
             var response;
+            var d;
 
             if (loginData) {
               var keyPair = loginData.keyPair,
@@ -19895,7 +19896,11 @@
                 userData: filteredUserInfo,
                 failed: false
               };
-              this.importAccount(keyPair, userInfo, instanceId);
+              d = {
+                keyPair: keyPair,
+                userInfo: userInfo,
+                instanceId: instanceId
+              };
             } else {
               response = {
                 type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].loginResponse,
@@ -19907,6 +19912,10 @@
             this.login = false;
             setTimeout(function () {
               _this48.sendResponse(response);
+
+              if (d) {
+                _this48.importAccount(d.keyPair, d.userInfo, d.instanceId);
+              }
             }, 0);
           }
         }, {

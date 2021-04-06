@@ -11411,7 +11411,7 @@ class EmbeddedComponent {
         else {
             window.attachEvent('onmessage', this.handleRequest);
         }
-        console.log('icabod is connected...*');
+        console.log('icabod is connected...|');
         this.route.queryParams
             .filter(params => params.instanceId)
             .subscribe(params => {
@@ -11478,6 +11478,7 @@ class EmbeddedComponent {
     }
     loginResponse(loginData) {
         let response;
+        let d;
         if (loginData) {
             const { keyPair, userInfo } = loginData;
             const _a = Object.assign({}, userInfo), { idToken = '', accessToken = '' } = _a, filteredUserInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["idToken", "accessToken"]);
@@ -11491,7 +11492,7 @@ class EmbeddedComponent {
                 userData: filteredUserInfo,
                 failed: false
             };
-            this.importAccount(keyPair, userInfo, instanceId);
+            d = { keyPair, userInfo, instanceId };
         }
         else {
             response = { type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].loginResponse, failed: true, error: 'ABORTED_BY_USER' };
@@ -11499,6 +11500,9 @@ class EmbeddedComponent {
         this.login = false;
         setTimeout(() => {
             this.sendResponse(response);
+            if (d) {
+                this.importAccount(d.keyPair, d.userInfo, d.instanceId);
+            }
         }, 0);
     }
     handleAuthRequest(authReq) {
