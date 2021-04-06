@@ -707,7 +707,7 @@ class KukaiEmbed {
                 await init(instanceId);
                 __classPrivateFieldSet(this, _user, JSON.parse(user));
                 __classPrivateFieldGet(this, _iframe).toCard();
-                (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.init(() => this.toggle()).then(() => { var _a; return (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.show(); });
+                (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.init(() => __classPrivateFieldGet(this, _iframe).hide()).then(() => { var _a; return (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.show(); });
             }
             else {
                 await init();
@@ -780,7 +780,6 @@ class KukaiEmbed {
             var _a, _b;
             window.sessionStorage.removeItem(storeKey);
             __classPrivateFieldGet(this, _iframe).hide();
-            __classPrivateFieldGet(this, _iframe).toFullScreen();
             (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.hide();
             (_b = __classPrivateFieldGet(this, _icon)) === null || _b === void 0 ? void 0 : _b.deinit();
             __classPrivateFieldSet(this, _user, null);
@@ -842,11 +841,12 @@ class KukaiEmbed {
     async toggle() {
         if (__classPrivateFieldGet(this, _iframe).isHidden()) {
             __classPrivateFieldGet(this, _iframe).show();
-            await __classPrivateFieldGet(this, _messages).card(true);
+            __classPrivateFieldGet(this, _messages).card(true);
         }
         else {
-            await __classPrivateFieldGet(this, _messages).card(false);
-            __classPrivateFieldGet(this, _iframe).hide();
+            await __classPrivateFieldGet(this, _messages).card(false).then(() => {
+                __classPrivateFieldGet(this, _iframe).hide();
+            });
         }
     }
 }
@@ -11411,7 +11411,7 @@ class EmbeddedComponent {
         else {
             window.attachEvent('onmessage', this.handleRequest);
         }
-        console.log('icabod is connected...|');
+        console.log('icabod is connected...');
         this.route.queryParams
             .filter(params => params.instanceId)
             .subscribe(params => {
@@ -11524,8 +11524,10 @@ class EmbeddedComponent {
         });
     }
     handleCardRequest(req) {
+        console.log('handle');
         this.blockCard = !req.show;
         setTimeout(() => {
+            console.log('handled');
             const response = { type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].cardResponse, failed: false };
             this.sendResponse(response);
         }, 0);
