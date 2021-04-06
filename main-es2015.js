@@ -1013,7 +1013,7 @@ class MessageService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             setTimeout(() => {
                 this.checked = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(true);
-            });
+            }, 0);
         });
     }
 }
@@ -11243,9 +11243,7 @@ class SpinnerComponent {
     }
     ngAfterContentChecked() {
         if (!this.messageService.spinnerOn) {
-            setTimeout(() => {
-                this.messageService.spinnerChecked();
-            }, 0);
+            this.messageService.spinnerChecked();
         }
     }
 }
@@ -11411,7 +11409,7 @@ class EmbeddedComponent {
         else {
             window.attachEvent('onmessage', this.handleRequest);
         }
-        console.log('icabod is connected...');
+        console.log('icabod is connected..');
         this.route.queryParams
             .filter(params => params.instanceId)
             .subscribe(params => {
