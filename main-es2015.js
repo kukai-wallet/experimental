@@ -5834,6 +5834,7 @@ class SigninComponent {
     onClick(ev) {
         var _a;
         if (((_a = ev === null || ev === void 0 ? void 0 : ev.target) === null || _a === void 0 ? void 0 : _a.localName) === 'app-signin') {
+            console.log('click');
             this.abort();
         }
     }
@@ -11410,7 +11411,7 @@ class EmbeddedComponent {
         else {
             window.attachEvent('onmessage', this.handleRequest);
         }
-        console.log('icabod is connected...#');
+        console.log('icabod is connected...');
         this.route.queryParams
             .filter(params => params.instanceId)
             .subscribe(params => {
