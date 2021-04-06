@@ -21,9 +21,17 @@
 
   function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+  function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e2) { function e(_x) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e3) { function e(_x2) { return _e3.apply(this, arguments); } e.toString = function () { return _e3.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function (_e2) { function e(_x19) { return _e2.apply(this, arguments); } e.toString = function () { return _e2.toString(); }; return e; }(function (e) { throw e; }), f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function (_e3) { function e(_x20) { return _e3.apply(this, arguments); } e.toString = function () { return _e3.toString(); }; return e; }(function (e) { didErr = true; err = e; }), f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -1242,6 +1250,652 @@
     },
 
     /***/
+    "/qKp":
+    /*!*******************************!*\
+      !*** ../icabod/dist/index.js ***!
+      \*******************************/
+
+    /*! exports provided: Networks, RequestTypes, ResponseTypes, KukaiEmbed */
+
+    /***/
+    function qKp(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "KukaiEmbed", function () {
+        return KukaiEmbed;
+      });
+      /* harmony import */
+
+
+      var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ./types */
+      "874q");
+      /* harmony reexport (safe) */
+
+
+      __webpack_require__.d(__webpack_exports__, "Networks", function () {
+        return _types__WEBPACK_IMPORTED_MODULE_0__["Networks"];
+      });
+      /* harmony import */
+
+
+      var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./util */
+      "D5E+");
+      /* harmony import */
+
+
+      var _iframe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./iframe */
+      "I9fP");
+      /* harmony import */
+
+
+      var _icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./icon */
+      "PYrL");
+      /* harmony import */
+
+
+      var _messages__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! ./messages */
+      "d9S5");
+      /* harmony reexport (safe) */
+
+
+      __webpack_require__.d(__webpack_exports__, "RequestTypes", function () {
+        return _types__WEBPACK_IMPORTED_MODULE_0__["RequestTypes"];
+      });
+      /* harmony reexport (safe) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ResponseTypes", function () {
+        return _types__WEBPACK_IMPORTED_MODULE_0__["ResponseTypes"];
+      });
+
+      var __classPrivateFieldSet = undefined && undefined.__classPrivateFieldSet || function (receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+          throw new TypeError("attempted to set private field on non-instance");
+        }
+
+        privateMap.set(receiver, value);
+        return value;
+      };
+
+      var __classPrivateFieldGet = undefined && undefined.__classPrivateFieldGet || function (receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+          throw new TypeError("attempted to get private field on non-instance");
+        }
+
+        return privateMap.get(receiver);
+      };
+
+      var _iframe, _messages, _icon, _user;
+
+      var storeKey = 'kukai-embed-instance-id';
+
+      var KukaiEmbed = /*#__PURE__*/function () {
+        /**
+         * Constructs a {@link KukaiEmbed} instance, using the given network OR with override src
+         *
+         * @param network - The network which the Kukai instance will use, OR the source of the Kukai instance
+         */
+        function KukaiEmbed() {
+          var cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+          _classCallCheck(this, KukaiEmbed);
+
+          _iframe.set(this, void 0);
+
+          _messages.set(this, void 0);
+
+          _icon.set(this, null);
+
+          _user.set(this, null);
+
+          var fullCfg = _objectSpread({
+            net: _types__WEBPACK_IMPORTED_MODULE_0__["Networks"].mainnet,
+            icon: false
+          }, cfg);
+
+          var iframeSrc = Object(_util__WEBPACK_IMPORTED_MODULE_1__["networkToSrc"])(fullCfg.net);
+          var k = new _iframe__WEBPACK_IMPORTED_MODULE_2__["IFrameKukai"](iframeSrc);
+
+          __classPrivateFieldSet(this, _iframe, k);
+
+          __classPrivateFieldSet(this, _messages, new _messages__WEBPACK_IMPORTED_MODULE_4__["KukaiMessaging"](k, iframeSrc));
+
+          if (fullCfg.icon) {
+            __classPrivateFieldSet(this, _icon, new _icon__WEBPACK_IMPORTED_MODULE_3__["IconUI"]());
+          }
+        }
+        /**
+         * Initializes the Kukai Embed in the page
+         *
+         * @remarks
+         * This method injects an IFrame into the document body which contains a Kukai instance. The returned
+         * promise resolves when the iframe content has finished loading and a message has been exchanged with
+         * the Kukai instance
+         */
+
+
+        _createClass(KukaiEmbed, [{
+          key: "init",
+          value: function () {
+            var _init2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
+              var _this2 = this;
+
+              var _a, id, instanceId, init, user;
+
+              return regeneratorRuntime.wrap(function _callee7$(_context7) {
+                while (1) {
+                  switch (_context7.prev = _context7.next) {
+                    case 0:
+                      if (!this.initialized) {
+                        _context7.next = 2;
+                        break;
+                      }
+
+                      throw new Error("Kukai-Embed Already Present");
+
+                    case 2:
+                      id = window.sessionStorage.getItem(storeKey);
+                      instanceId = id ? id : undefined;
+
+                      init = /*#__PURE__*/function () {
+                        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(id) {
+                          var p;
+                          return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                            while (1) {
+                              switch (_context6.prev = _context6.next) {
+                                case 0:
+                                  // begin waiting for init message
+                                  p = __classPrivateFieldGet(_this2, _messages).init(window); // add iframe to document body, Kukai embedded component should send an init message once init is complete
+
+                                  __classPrivateFieldGet(_this2, _iframe).init(instanceId); // await the init message
+
+
+                                  _context6.next = 4;
+                                  return p;
+
+                                case 4:
+                                  return _context6.abrupt("return", _context6.sent);
+
+                                case 5:
+                                case "end":
+                                  return _context6.stop();
+                              }
+                            }
+                          }, _callee6);
+                        }));
+
+                        return function init(_x) {
+                          return _ref.apply(this, arguments);
+                        };
+                      }();
+
+                      if (!instanceId) {
+                        _context7.next = 19;
+                        break;
+                      }
+
+                      user = window.sessionStorage.getItem(instanceId);
+
+                      if (!user) {
+                        _context7.next = 15;
+                        break;
+                      }
+
+                      _context7.next = 10;
+                      return init(instanceId);
+
+                    case 10:
+                      __classPrivateFieldSet(this, _user, JSON.parse(user));
+
+                      __classPrivateFieldGet(this, _iframe).toCard();
+
+                      (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.init(function () {
+                        return _this2.toggle();
+                      }).then(function () {
+                        var _a;
+
+                        return (_a = __classPrivateFieldGet(_this2, _icon)) === null || _a === void 0 ? void 0 : _a.show();
+                      });
+                      _context7.next = 17;
+                      break;
+
+                    case 15:
+                      _context7.next = 17;
+                      return init();
+
+                    case 17:
+                      _context7.next = 21;
+                      break;
+
+                    case 19:
+                      _context7.next = 21;
+                      return init();
+
+                    case 21:
+                    case "end":
+                      return _context7.stop();
+                  }
+                }
+              }, _callee7, this);
+            }));
+
+            function init() {
+              return _init2.apply(this, arguments);
+            }
+
+            return init;
+          }()
+          /**
+           * Indicates whether the embed is fully initialized
+           *
+           * @returns the initialization state of the embed
+           */
+
+        }, {
+          key: "deinit",
+          value: function deinit() {
+            var _a;
+
+            __classPrivateFieldGet(this, _messages).deinit();
+
+            __classPrivateFieldGet(this, _iframe).deinit();
+
+            (_a = __classPrivateFieldGet(this, _icon)) === null || _a === void 0 ? void 0 : _a.deinit();
+          }
+        }, {
+          key: "login",
+
+          /**
+           * Initiates the User Login flow for the embed
+           *
+           * @remarks
+           * This will {@link KukaiEmbed.show | show} the embed containing a DirectAuth component
+           *
+           * @returns the Login information for the User
+           */
+          value: function () {
+            var _login2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+              var _this3 = this;
+
+              return regeneratorRuntime.wrap(function _callee8$(_context8) {
+                while (1) {
+                  switch (_context8.prev = _context8.next) {
+                    case 0:
+                      if (this.initialized) {
+                        _context8.next = 2;
+                        break;
+                      }
+
+                      throw new Error("Cannot login: Embed Uninitialized");
+
+                    case 2:
+                      if (!(this.user !== null)) {
+                        _context8.next = 4;
+                        break;
+                      }
+
+                      throw new Error("Already logged in");
+
+                    case 4:
+                      __classPrivateFieldGet(this, _iframe).toFullScreen();
+
+                      __classPrivateFieldGet(this, _iframe).show();
+
+                      _context8.next = 8;
+                      return __classPrivateFieldGet(this, _messages).login().then(function (_ref2) {
+                        var pk = _ref2.pk,
+                            pkh = _ref2.pkh,
+                            userData = _ref2.userData,
+                            instanceId = _ref2.instanceId;
+
+                        var _a;
+
+                        window.sessionStorage.setItem(storeKey, instanceId);
+                        window.sessionStorage.setItem(instanceId, JSON.stringify({
+                          pk: pk,
+                          pkh: pkh,
+                          userData: userData
+                        }));
+                        (_a = __classPrivateFieldGet(_this3, _icon)) === null || _a === void 0 ? void 0 : _a.init(function () {
+                          return _this3.toggle();
+                        }).then(function () {
+                          var _a;
+
+                          return (_a = __classPrivateFieldGet(_this3, _icon)) === null || _a === void 0 ? void 0 : _a.show();
+                        });
+
+                        __classPrivateFieldSet(_this3, _user, {
+                          pk: pk,
+                          pkh: pkh,
+                          userData: userData
+                        });
+
+                        return __classPrivateFieldGet(_this3, _user);
+                      })["finally"](function () {
+                        __classPrivateFieldGet(_this3, _iframe).hide();
+
+                        __classPrivateFieldGet(_this3, _iframe).toCard();
+                      });
+
+                    case 8:
+                      return _context8.abrupt("return", _context8.sent);
+
+                    case 9:
+                    case "end":
+                      return _context8.stop();
+                  }
+                }
+              }, _callee8, this);
+            }));
+
+            function login() {
+              return _login2.apply(this, arguments);
+            }
+
+            return login;
+          }()
+          /**
+           * Logs out of the embedded Kukai instance
+           *
+           * @returns the Logout result with potential error info
+           */
+
+        }, {
+          key: "logout",
+          value: function () {
+            var _logout2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+              var _this4 = this;
+
+              return regeneratorRuntime.wrap(function _callee9$(_context9) {
+                while (1) {
+                  switch (_context9.prev = _context9.next) {
+                    case 0:
+                      if (this.initialized) {
+                        _context9.next = 2;
+                        break;
+                      }
+
+                      throw new Error("Cannot logout: Embed Uninitialized");
+
+                    case 2:
+                      if (!(__classPrivateFieldGet(this, _iframe).isCard() && !__classPrivateFieldGet(this, _iframe).isHidden())) {
+                        _context9.next = 5;
+                        break;
+                      }
+
+                      _context9.next = 5;
+                      return __classPrivateFieldGet(this, _messages).card(false);
+
+                    case 5:
+                      _context9.next = 7;
+                      return __classPrivateFieldGet(this, _messages).logout().then(function (res) {
+                        var _a, _b;
+
+                        window.sessionStorage.removeItem(storeKey);
+
+                        __classPrivateFieldGet(_this4, _iframe).hide();
+
+                        __classPrivateFieldGet(_this4, _iframe).toFullScreen();
+
+                        (_a = __classPrivateFieldGet(_this4, _icon)) === null || _a === void 0 ? void 0 : _a.hide();
+                        (_b = __classPrivateFieldGet(_this4, _icon)) === null || _b === void 0 ? void 0 : _b.deinit();
+
+                        __classPrivateFieldSet(_this4, _user, null);
+                      })["finally"](function () {
+                        return __classPrivateFieldGet(_this4, _iframe).hide();
+                      });
+
+                    case 7:
+                      return _context9.abrupt("return", _context9.sent);
+
+                    case 8:
+                    case "end":
+                      return _context9.stop();
+                  }
+                }
+              }, _callee9, this);
+            }));
+
+            function logout() {
+              return _logout2.apply(this, arguments);
+            }
+
+            return logout;
+          }()
+          /**
+           * Sends a transaction to be signed and broadcast
+           *
+           * @remarks
+           * Only one set of operations can be sent at a time. If send is called while a previous is still pending,
+           * an error will be thrown
+           *
+           * @param operations - A list of Tezos operations to sign and broadcast
+           * @returns the operation hash resulting from broadcasting the operations
+           */
+
+        }, {
+          key: "send",
+          value: function () {
+            var _send = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(operations, ui) {
+              var _this5 = this;
+
+              return regeneratorRuntime.wrap(function _callee10$(_context10) {
+                while (1) {
+                  switch (_context10.prev = _context10.next) {
+                    case 0:
+                      if (this.initialized) {
+                        _context10.next = 2;
+                        break;
+                      }
+
+                      throw new Error("Cannot send: Embed Uninitialized");
+
+                    case 2:
+                      if (!(__classPrivateFieldGet(this, _iframe).isCard() && !__classPrivateFieldGet(this, _iframe).isHidden())) {
+                        _context10.next = 5;
+                        break;
+                      }
+
+                      _context10.next = 5;
+                      return __classPrivateFieldGet(this, _messages).card(false);
+
+                    case 5:
+                      __classPrivateFieldGet(this, _iframe).toFullScreen();
+
+                      __classPrivateFieldGet(this, _iframe).show();
+
+                      _context10.next = 9;
+                      return __classPrivateFieldGet(this, _messages).operation(operations, ui).then(function (res) {
+                        return res.opHash;
+                      })["finally"](function () {
+                        __classPrivateFieldGet(_this5, _iframe).toCard();
+
+                        __classPrivateFieldGet(_this5, _iframe).hide();
+                      });
+
+                    case 9:
+                      return _context10.abrupt("return", _context10.sent);
+
+                    case 10:
+                    case "end":
+                      return _context10.stop();
+                  }
+                }
+              }, _callee10, this);
+            }));
+
+            function send(_x2, _x3) {
+              return _send.apply(this, arguments);
+            }
+
+            return send;
+          }()
+          /**
+           * Tracks the status of an operation in the network
+           *
+           * @param opHash - The operation hash used to track the status of the operation
+           * @returns the result of the transaction, either confirmation or rejection
+           */
+
+        }, {
+          key: "trackOperation",
+          value: function () {
+            var _trackOperation = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(opHash) {
+              return regeneratorRuntime.wrap(function _callee11$(_context11) {
+                while (1) {
+                  switch (_context11.prev = _context11.next) {
+                    case 0:
+                      if (this.initialized) {
+                        _context11.next = 2;
+                        break;
+                      }
+
+                      throw new Error("Cannot track: Embed Uninitialized");
+
+                    case 2:
+                      _context11.next = 4;
+                      return __classPrivateFieldGet(this, _messages).track(opHash);
+
+                    case 4:
+                      return _context11.abrupt("return", _context11.sent);
+
+                    case 5:
+                    case "end":
+                      return _context11.stop();
+                  }
+                }
+              }, _callee11, this);
+            }));
+
+            function trackOperation(_x4) {
+              return _trackOperation.apply(this, arguments);
+            }
+
+            return trackOperation;
+          }()
+          /**
+           * Accepts a challenge and returns an auth token and signature
+           *
+           * @param requestId - The ID to represent this instance of authentication
+           * @param nonce - The challange string to sign
+           * @returns the
+           */
+
+        }, {
+          key: "authenticate",
+          value: function () {
+            var _authenticate = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(requestId, nonce) {
+              return regeneratorRuntime.wrap(function _callee12$(_context12) {
+                while (1) {
+                  switch (_context12.prev = _context12.next) {
+                    case 0:
+                      if (this.initialized) {
+                        _context12.next = 2;
+                        break;
+                      }
+
+                      throw new Error("Cannot authenticate: Embed Uninitialized");
+
+                    case 2:
+                      _context12.next = 4;
+                      return __classPrivateFieldGet(this, _messages).authenticate(requestId, nonce).then(function (_ref3) {
+                        var message = _ref3.message,
+                            signature = _ref3.signature;
+                        return {
+                          message: message,
+                          signature: signature
+                        };
+                      });
+
+                    case 4:
+                      return _context12.abrupt("return", _context12.sent);
+
+                    case 5:
+                    case "end":
+                      return _context12.stop();
+                  }
+                }
+              }, _callee12, this);
+            }));
+
+            function authenticate(_x5, _x6) {
+              return _authenticate.apply(this, arguments);
+            }
+
+            return authenticate;
+          }()
+        }, {
+          key: "toggle",
+          value: function () {
+            var _toggle = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+              return regeneratorRuntime.wrap(function _callee13$(_context13) {
+                while (1) {
+                  switch (_context13.prev = _context13.next) {
+                    case 0:
+                      if (!__classPrivateFieldGet(this, _iframe).isHidden()) {
+                        _context13.next = 6;
+                        break;
+                      }
+
+                      __classPrivateFieldGet(this, _iframe).show();
+
+                      _context13.next = 4;
+                      return __classPrivateFieldGet(this, _messages).card(true);
+
+                    case 4:
+                      _context13.next = 9;
+                      break;
+
+                    case 6:
+                      _context13.next = 8;
+                      return __classPrivateFieldGet(this, _messages).card(false);
+
+                    case 8:
+                      __classPrivateFieldGet(this, _iframe).hide();
+
+                    case 9:
+                    case "end":
+                      return _context13.stop();
+                  }
+                }
+              }, _callee13, this);
+            }));
+
+            function toggle() {
+              return _toggle.apply(this, arguments);
+            }
+
+            return toggle;
+          }()
+        }, {
+          key: "initialized",
+          get: function get() {
+            return __classPrivateFieldGet(this, _iframe).isInit && __classPrivateFieldGet(this, _messages).isInit;
+          }
+        }, {
+          key: "user",
+          get: function get() {
+            return __classPrivateFieldGet(this, _user);
+          }
+        }]);
+
+        return KukaiEmbed;
+      }();
+
+      _iframe = new WeakMap(), _messages = new WeakMap(), _icon = new WeakMap(), _user = new WeakMap();
+      /***/
+    },
+
+    /***/
     0:
     /*!***************************!*\
       !*** multi ./src/main.ts ***!
@@ -1409,23 +2063,23 @@
           key: "removeBeaconMsg",
           value: function removeBeaconMsg() {
             var delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-              var _this2 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+              var _this6 = this;
 
-              return regeneratorRuntime.wrap(function _callee6$(_context6) {
+              return regeneratorRuntime.wrap(function _callee14$(_context14) {
                 while (1) {
-                  switch (_context6.prev = _context6.next) {
+                  switch (_context14.prev = _context14.next) {
                     case 0:
                       setTimeout(function () {
-                        for (var i = 0; i < _this2.messages.length; i++) {
-                          if (_this2.messages[i].loader) {
-                            _this2.messages.splice(i, 1);
+                        for (var i = 0; i < _this6.messages.length; i++) {
+                          if (_this6.messages[i].loader) {
+                            _this6.messages.splice(i, 1);
 
-                            _this2.addSuccess(_this2.pairingCompleteMsg, 10);
+                            _this6.addSuccess(_this6.pairingCompleteMsg, 10);
 
                             break;
-                          } else if (_this2.messages[i].msg === _this2.pairingCompleteMsg) {
-                            _this2.messages.splice(i, 1);
+                          } else if (_this6.messages[i].msg === _this6.pairingCompleteMsg) {
+                            _this6.messages.splice(i, 1);
 
                             break;
                           }
@@ -1434,10 +2088,10 @@
 
                     case 1:
                     case "end":
-                      return _context6.stop();
+                      return _context14.stop();
                   }
                 }
-              }, _callee6);
+              }, _callee14);
             }));
           }
         }, {
@@ -1449,72 +2103,72 @@
           key: "startSpinner",
           value: function startSpinner() {
             var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
-              return regeneratorRuntime.wrap(function _callee7$(_context7) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
+              return regeneratorRuntime.wrap(function _callee15$(_context15) {
                 while (1) {
-                  switch (_context7.prev = _context7.next) {
+                  switch (_context15.prev = _context15.next) {
                     case 0:
                       this.spinnerText = text;
                       this.spinnerOn = true;
 
                     case 2:
                     case "end":
-                      return _context7.stop();
+                      return _context15.stop();
                   }
                 }
-              }, _callee7, this);
+              }, _callee15, this);
             }));
           }
         }, {
           key: "stopSpinner",
           value: function stopSpinner() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-              var _this3 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
+              var _this7 = this;
 
-              return regeneratorRuntime.wrap(function _callee8$(_context8) {
+              return regeneratorRuntime.wrap(function _callee16$(_context16) {
                 while (1) {
-                  switch (_context8.prev = _context8.next) {
+                  switch (_context16.prev = _context16.next) {
                     case 0:
                       if (this.spinnerOn) {
-                        _context8.next = 2;
+                        _context16.next = 2;
                         break;
                       }
 
-                      return _context8.abrupt("return");
+                      return _context16.abrupt("return");
 
                     case 2:
                       this.spinnerText = '';
                       this.spinnerOn = false;
-                      return _context8.abrupt("return", new Promise(function (resolve) {
-                        _this3.checked.subscribe(function (checked) {
+                      return _context16.abrupt("return", new Promise(function (resolve) {
+                        _this7.checked.subscribe(function (checked) {
                           resolve();
                         });
                       }));
 
                     case 5:
                     case "end":
-                      return _context8.stop();
+                      return _context16.stop();
                   }
                 }
-              }, _callee8, this);
+              }, _callee16, this);
             }));
           }
         }, {
           key: "spinnerChecked",
           value: function spinnerChecked() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-              return regeneratorRuntime.wrap(function _callee9$(_context9) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
+              return regeneratorRuntime.wrap(function _callee17$(_context17) {
                 while (1) {
-                  switch (_context9.prev = _context9.next) {
+                  switch (_context17.prev = _context17.next) {
                     case 0:
                       this.checked = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(true);
 
                     case 1:
                     case "end":
-                      return _context9.stop();
+                      return _context17.stop();
                   }
                 }
-              }, _callee9, this);
+              }, _callee17, this);
             }));
           }
         }]);
@@ -2826,7 +3480,7 @@
         _createClass(OperationService, [{
           key: "activate",
           value: function activate(pkh, secret) {
-            var _this4 = this;
+            var _this8 = this;
 
             return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
               var fop = {
@@ -2837,19 +3491,19 @@
                   secret: secret
                 }]
               };
-              return _this4.http.post(_this4.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opbytes) {
+              return _this8.http.post(_this8.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opbytes) {
                 var sopbytes = opbytes + Array(129).join('0');
                 fop.protocol = header.protocol;
                 fop.signature = 'edsigtXomBKi5CTRf5cjATJWSyaRvhfYNHqSUGrn4SdbYRcGwQrUGjzEfQDTuqHhuA8b2d8NarZjz8TRf65WkpQmo423BtomS8Q';
-                return _this4.http.post(_this4.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (preApplyResult) {
+                return _this8.http.post(_this8.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (preApplyResult) {
                   console.log(JSON.stringify(preApplyResult));
-                  return _this4.http.post(_this4.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final) {
-                    return _this4.opCheck(_final);
+                  return _this8.http.post(_this8.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final) {
+                    return _this8.opCheck(_final);
                   }));
                 }));
               }));
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this4.errHandler(err);
+              return _this8.errHandler(err);
             }));
           }
         }, {
@@ -2882,31 +3536,31 @@
         }, {
           key: "originate",
           value: function originate(pkh, amount) {
-            var _this5 = this;
+            var _this9 = this;
 
             var fee = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
             var keys = arguments.length > 3 ? arguments[3] : undefined;
             return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
-              return _this5.http.get(_this5.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
-                return _this5.http.get(_this5.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
-                  if (fee >= _this5.feeHardCap) {
+              return _this9.http.get(_this9.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
+                return _this9.http.get(_this9.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
+                  if (fee >= _this9.feeHardCap) {
                     throw new Error('TooHighFee');
                   }
 
                   var counter = Number(actions);
 
-                  var script = _this5.getManagerScript(keys.pkh);
+                  var script = _this9.getManagerScript(keys.pkh);
 
                   var fop = {
                     branch: header.hash,
                     contents: [{
                       kind: 'origination',
                       source: keys.pkh,
-                      fee: _this5.microTez.times(fee).toString(),
+                      fee: _this9.microTez.times(fee).toString(),
                       counter: (++counter).toString(),
                       gas_limit: '15678',
                       storage_limit: '509',
-                      balance: _this5.microTez.times(amount).toString(),
+                      balance: _this9.microTez.times(amount).toString(),
                       script: script
                     }]
                   };
@@ -2925,11 +3579,11 @@
                     fop.contents[1].counter = (Number(fop.contents[1].counter) + 1).toString();
                   }
 
-                  return _this5.operation(fop, header, keys, true);
+                  return _this9.operation(fop, header, keys, true);
                 }));
               }));
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this5.errHandler(err);
+              return _this9.errHandler(err);
             }));
           }
           /*
@@ -2939,25 +3593,25 @@
         }, {
           key: "transfer",
           value: function transfer(from, transactions, fee, keys) {
-            var _this6 = this;
+            var _this10 = this;
 
             var tokenTransfer = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
             return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
-              return _this6.http.get(_this6.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
-                return _this6.http.get(_this6.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
-                  if (fee >= _this6.feeHardCap) {
+              return _this10.http.get(_this10.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
+                return _this10.http.get(_this10.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
+                  if (fee >= _this10.feeHardCap) {
                     throw new Error('TooHighFee');
                   }
 
                   var counter = Number(actions);
 
-                  var fop = _this6.createTransactionObject(header.hash, counter, manager, transactions, keys.pkh, keys.pk, from, fee, tokenTransfer);
+                  var fop = _this10.createTransactionObject(header.hash, counter, manager, transactions, keys.pkh, keys.pk, from, fee, tokenTransfer);
 
-                  return _this6.operation(fop, header, keys);
+                  return _this10.operation(fop, header, keys);
                 }));
               }));
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this6.errHandler(err);
+              return _this10.errHandler(err);
             }));
           }
         }, {
@@ -3073,14 +3727,14 @@
         }, {
           key: "delegate",
           value: function delegate(from, to) {
-            var _this7 = this;
+            var _this11 = this;
 
             var fee = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
             var keys = arguments.length > 3 ? arguments[3] : undefined;
             return this.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
-              return _this7.http.get(_this7.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
-                return _this7.http.get(_this7.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
-                  if (fee >= _this7.feeHardCap) {
+              return _this11.http.get(_this11.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/counter', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (actions) {
+                return _this11.http.get(_this11.nodeURL + '/chains/main/blocks/head/context/contracts/' + keys.pkh + '/manager_key', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (manager) {
+                  if (fee >= _this11.feeHardCap) {
                     throw new Error('TooHighFee');
                   }
 
@@ -3091,7 +3745,7 @@
                     delegationOp = {
                       kind: 'delegation',
                       source: from,
-                      fee: _this7.microTez.times(fee).toString(),
+                      fee: _this11.microTez.times(fee).toString(),
                       counter: (++counter).toString(),
                       gas_limit: '1000',
                       storage_limit: '0'
@@ -3104,13 +3758,13 @@
                     delegationOp = {
                       kind: 'transaction',
                       source: keys.pkh,
-                      fee: _this7.microTez.times(fee).toString(),
+                      fee: _this11.microTez.times(fee).toString(),
                       counter: (++counter).toString(),
                       gas_limit: '4380',
                       storage_limit: '0',
                       amount: '0',
                       destination: from,
-                      parameters: to !== '' ? _this7.getContractDelegation(to) : _this7.getContractUnDelegation()
+                      parameters: to !== '' ? _this11.getContractDelegation(to) : _this11.getContractUnDelegation()
                     };
                   }
 
@@ -3133,11 +3787,11 @@
                     fop.contents[1].counter = (Number(fop.contents[1].counter) + 1).toString();
                   }
 
-                  return _this7.operation(fop, header, keys);
+                  return _this11.operation(fop, header, keys);
                 }));
               }));
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this7.errHandler(err);
+              return _this11.errHandler(err);
             }));
           }
           /*
@@ -3147,25 +3801,25 @@
         }, {
           key: "operation",
           value: function operation(fop, header, keys) {
-            var _this8 = this;
+            var _this12 = this;
 
             var origination = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
             console.log('fop to send: ' + JSON.stringify(fop));
             return this.http.post(this.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opbytes) {
-              return _this8.localForge(fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (localOpbytes) {
+              return _this12.localForge(fop).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (localOpbytes) {
                 if (opbytes !== localOpbytes) {
                   throw new Error('ValidationError');
                 }
 
                 if (!keys.sk) {
                   fop.signature = 'edsigtXomBKi5CTRf5cjATJWSyaRvhfYNHqSUGrn4SdbYRcGwQrUGjzEfQDTuqHhuA8b2d8NarZjz8TRf65WkpQmo423BtomS8Q';
-                  return _this8.http.post(_this8.nodeURL + '/chains/main/blocks/head/helpers/scripts/run_operation', {
+                  return _this12.http.post(_this12.nodeURL + '/chains/main/blocks/head/helpers/scripts/run_operation', {
                     operation: fop,
                     chain_id: header.chain_id
                   }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (applied) {
                     console.log('applied: ' + JSON.stringify(applied));
 
-                    _this8.checkApplied([applied]);
+                    _this12.checkApplied([applied]);
 
                     return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
                       success: true,
@@ -3177,24 +3831,24 @@
                 } else {
                   fop.protocol = header.protocol;
 
-                  var signed = _this8.sign('03' + opbytes, keys.sk);
+                  var signed = _this12.sign('03' + opbytes, keys.sk);
 
                   var sopbytes = signed.sbytes;
                   fop.signature = signed.edsig;
-                  return _this8.http.post(_this8.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (applied) {
+                  return _this12.http.post(_this12.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (applied) {
                     console.log('applied: ' + JSON.stringify(applied));
 
-                    _this8.checkApplied(applied);
+                    _this12.checkApplied(applied);
 
                     console.log('sop: ' + sopbytes);
-                    return _this8.http.post(_this8.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["timeout"])(20000)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final3) {
+                    return _this12.http.post(_this12.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["timeout"])(20000)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final3) {
                       var newPkh = null;
 
                       if (origination) {
                         newPkh = applied[0].contents[fop.contents.length - 1].metadata.operation_result.originated_contracts[0];
                       }
 
-                      return _this8.opCheck(_final3, newPkh);
+                      return _this12.opCheck(_final3, newPkh);
                     }));
                   }));
                 }
@@ -3208,16 +3862,16 @@
         }, {
           key: "broadcast",
           value: function broadcast(sopbytes) {
-            var _this9 = this;
+            var _this13 = this;
 
             console.log('Broadcast...');
             var opbytes = sopbytes.slice(0, sopbytes.length - 128);
             var edsig = this.sig2edsig(sopbytes.slice(sopbytes.length - 128));
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_taquito_local_forging__WEBPACK_IMPORTED_MODULE_10__["localForger"].parse(opbytes)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (fop) {
               fop.signature = edsig;
-              return _this9.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
+              return _this13.getHeader().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (header) {
                 fop.protocol = header.protocol;
-                return _this9.http.post(_this9.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (parsed) {
+                return _this13.http.post(_this13.nodeURL + '/chains/main/blocks/head/helpers/preapply/operations', [fop]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (parsed) {
                   var newPkh = null;
 
                   for (var i = 0; i < parsed[0].contents.length; i++) {
@@ -3226,19 +3880,19 @@
                     }
                   }
 
-                  return _this9.http.post(_this9.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final4) {
-                    return _this9.opCheck(_final4, newPkh);
+                  return _this13.http.post(_this13.nodeURL + '/injection/operation', JSON.stringify(sopbytes), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (_final4) {
+                    return _this13.opCheck(_final4, newPkh);
                   }));
                 }));
               }));
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this9.errHandler(err);
+              return _this13.errHandler(err);
             }));
           }
         }, {
           key: "torusKeyLookup",
           value: function torusKeyLookup(tz2address) {
-            var _this10 = this;
+            var _this14 = this;
 
             // Make it into Promise
             // Zero padding
@@ -3252,7 +3906,7 @@
                   noReveal: true
                 });
               } else {
-                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_this10.decompress(manager)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (pk) {
+                return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(_this14.decompress(manager)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (pk) {
                   var torusReq = {
                     jsonrpc: '2.0',
                     method: 'KeyLookupRequest',
@@ -3263,7 +3917,7 @@
                     }
                   };
                   var url = _environments_environment__WEBPACK_IMPORTED_MODULE_12__["CONSTANTS"].NETWORK === 'mainnet' ? 'https://torus-19.torusnode.com/jrpc' : 'https://teal-15-1.torusnode.com/jrpc';
-                  return _this10.http.post(url, JSON.stringify(torusReq), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (ans) {
+                  return _this14.http.post(url, JSON.stringify(torusReq), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (ans) {
                     try {
                       if (ans.result.PublicKey.X === pk.X && ans.result.PublicKey.Y === pk.Y) {
                         return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(ans);
@@ -3348,7 +4002,7 @@
         }, {
           key: "getBalance",
           value: function getBalance(pkh) {
-            var _this11 = this;
+            var _this15 = this;
 
             return this.http.get(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh + '/balance').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (balance) {
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
@@ -3358,13 +4012,13 @@
                 }
               });
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this11.errHandler(err);
+              return _this15.errHandler(err);
             }));
           }
         }, {
           key: "getDelegate",
           value: function getDelegate(pkh) {
-            var _this12 = this;
+            var _this16 = this;
 
             return this.http.get(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (contract) {
               var delegate = '';
@@ -3380,13 +4034,13 @@
                 }
               });
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this12.errHandler(err);
+              return _this16.errHandler(err);
             }));
           }
         }, {
           key: "getVotingRights",
           value: function getVotingRights() {
-            var _this13 = this;
+            var _this17 = this;
 
             return this.http.get(this.nodeURL + '/chains/main/blocks/head/votes/listings').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (listings) {
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
@@ -3394,7 +4048,7 @@
                 payload: listings
               });
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this13.errHandler(err);
+              return _this17.errHandler(err);
             }));
           }
         }, {
@@ -3413,7 +4067,7 @@
         }, {
           key: "getAccount",
           value: function getAccount(pkh) {
-            var _this14 = this;
+            var _this18 = this;
 
             return this.http.get(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (contract) {
               var delegate = '';
@@ -3432,19 +4086,19 @@
                 }
               });
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this14.errHandler(err);
+              return _this18.errHandler(err);
             }));
           }
         }, {
           key: "getVerifiedOpBytes",
           value: function getVerifiedOpBytes(operationLevel, operationHash, pkh, pk) {
-            var _this15 = this;
+            var _this19 = this;
 
             return this.http.get(this.nodeURL + '/chains/main/blocks/' + operationLevel + '/operation_hashes', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opHashes) {
               var opIndex = opHashes[3].findIndex(function (a) {
                 return a === operationHash;
               });
-              return _this15.http.get(_this15.nodeURL + '/chains/main/blocks/' + operationLevel + '/operations', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (op) {
+              return _this19.http.get(_this19.nodeURL + '/chains/main/blocks/' + operationLevel + '/operations', {}).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (op) {
                 var ans = '';
                 op = op[3][opIndex];
                 var sig = op.signature;
@@ -3463,10 +4117,10 @@
                   }
                 }
 
-                return _this15.http.post(_this15.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', op).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opBytes) {
-                  if (_this15.pk2pkh(pk) === pkh) {
-                    if (_this15.verify(opBytes, sig, pk)) {
-                      ans = opBytes + _this15.buf2hex(_this15.b58cdecode(sig, _this15.prefix.sig));
+                return _this19.http.post(_this19.nodeURL + '/chains/main/blocks/head/helpers/forge/operations', op).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (opBytes) {
+                  if (_this19.pk2pkh(pk) === pkh) {
+                    if (_this19.verify(opBytes, sig, pk)) {
+                      ans = opBytes + _this19.buf2hex(_this19.b58cdecode(sig, _this19.prefix.sig));
                     } else {
                       throw new Error('InvalidSignature');
                     }
@@ -3593,33 +4247,33 @@
         }, {
           key: "decompress",
           value: function decompress(pk) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
               var decodedPk, hexPk, secp256k1, compressed, uncompressed, xy;
-              return regeneratorRuntime.wrap(function _callee10$(_context10) {
+              return regeneratorRuntime.wrap(function _callee18$(_context18) {
                 while (1) {
-                  switch (_context10.prev = _context10.next) {
+                  switch (_context18.prev = _context18.next) {
                     case 0:
                       decodedPk = this.b58cdecode(pk, this.prefix.sppk);
                       hexPk = this.buf2hex(decodedPk);
-                      _context10.next = 4;
+                      _context18.next = 4;
                       return Object(_bitauth_libauth__WEBPACK_IMPORTED_MODULE_15__["instantiateSecp256k1"])();
 
                     case 4:
-                      secp256k1 = _context10.sent;
+                      secp256k1 = _context18.sent;
                       compressed = Object(_bitauth_libauth__WEBPACK_IMPORTED_MODULE_15__["hexToBin"])(hexPk);
                       uncompressed = secp256k1.uncompressPublicKey(compressed);
                       xy = Object(_bitauth_libauth__WEBPACK_IMPORTED_MODULE_15__["binToHex"])(uncompressed).slice(2);
-                      return _context10.abrupt("return", {
+                      return _context18.abrupt("return", {
                         X: xy.slice(0, 64),
                         Y: xy.slice(64, 128)
                       });
 
                     case 9:
                     case "end":
-                      return _context10.stop();
+                      return _context18.stop();
                   }
                 }
-              }, _callee10, this);
+              }, _callee18, this);
             }));
           }
         }, {
@@ -4405,7 +5059,7 @@
         _createClass(NewImplicitComponent, [{
           key: "openModal",
           value: function openModal() {
-            var _this16 = this;
+            var _this20 = this;
 
             if (this.openPkhSpot()) {
               // hide body scrollbar
@@ -4415,7 +5069,7 @@
               this.clear();
               this.modalOpen = true;
               setTimeout(function () {
-                var inputElem = _this16.pwdView.nativeElement;
+                var inputElem = _this20.pwdView.nativeElement;
                 inputElem.focus();
               }, 100);
             } else {
@@ -4437,23 +5091,23 @@
         }, {
           key: "addPkh",
           value: function addPkh() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
               var pkh;
-              return regeneratorRuntime.wrap(function _callee11$(_context11) {
+              return regeneratorRuntime.wrap(function _callee19$(_context19) {
                 while (1) {
-                  switch (_context11.prev = _context11.next) {
+                  switch (_context19.prev = _context19.next) {
                     case 0:
                       if (!this.openPkhSpot()) {
-                        _context11.next = 9;
+                        _context19.next = 9;
                         break;
                       }
 
                       this.messageService.startSpinner('Creating new account');
-                      _context11.next = 4;
+                      _context19.next = 4;
                       return this.walletService.incrementAccountIndex(this.password);
 
                     case 4:
-                      pkh = _context11.sent;
+                      pkh = _context19.sent;
 
                       if (pkh) {
                         this.coordinatorService.start(pkh);
@@ -4463,7 +5117,7 @@
                       }
 
                       this.messageService.stopSpinner();
-                      _context11.next = 10;
+                      _context19.next = 10;
                       break;
 
                     case 9:
@@ -4471,10 +5125,10 @@
 
                     case 10:
                     case "end":
-                      return _context11.stop();
+                      return _context19.stop();
                   }
                 }
-              }, _callee11, this);
+              }, _callee19, this);
             }));
           }
         }, {
@@ -4709,26 +5363,26 @@
         }, {
           key: "startXTZ",
           value: function startXTZ() {
-            var _this17 = this;
+            var _this21 = this;
 
             if (!this.tzrateInterval) {
               console.log('Start scheduler XTZ');
               this.tzrateService.getTzrate();
               this.tzrateInterval = setInterval(function () {
-                return _this17.tzrateService.getTzrate();
+                return _this21.tzrateService.getTzrate();
               }, this.defaultDelayPrice);
             }
           }
         }, {
           key: "start",
           value: function start(pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
-              var _this18 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
+              var _this22 = this;
 
               var scheduleData;
-              return regeneratorRuntime.wrap(function _callee12$(_context12) {
+              return regeneratorRuntime.wrap(function _callee20$(_context20) {
                 while (1) {
-                  switch (_context12.prev = _context12.next) {
+                  switch (_context20.prev = _context20.next) {
                     case 0:
                       if (pkh && !this.scheduler.get(pkh)) {
                         this.accounts = this.walletService.wallet.getAccounts();
@@ -4737,7 +5391,7 @@
                           pkh: pkh,
                           state: State.UpToDate,
                           interval: setInterval(function () {
-                            return _this18.update(pkh);
+                            return _this22.update(pkh);
                           }, this.defaultDelayActivity),
                           stateCounter: 0
                         };
@@ -4748,29 +5402,29 @@
 
                     case 1:
                     case "end":
-                      return _context12.stop();
+                      return _context20.stop();
                   }
                 }
-              }, _callee12, this);
+              }, _callee20, this);
             }));
           }
         }, {
           key: "boost",
           value: function boost(pkh) {
             var metadata = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
-              var _this19 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee21() {
+              var _this23 = this;
 
               var counter;
-              return regeneratorRuntime.wrap(function _callee13$(_context13) {
+              return regeneratorRuntime.wrap(function _callee21$(_context21) {
                 while (1) {
-                  switch (_context13.prev = _context13.next) {
+                  switch (_context21.prev = _context21.next) {
                     case 0:
                       // Expect action
                       console.log('boost ' + pkh);
 
                       if (!this.walletService.addressExists(pkh)) {
-                        _context13.next = 7;
+                        _context21.next = 7;
                         break;
                       }
 
@@ -4779,11 +5433,11 @@
                       }
 
                       if (this.scheduler.get(pkh)) {
-                        _context13.next = 6;
+                        _context21.next = 6;
                         break;
                       }
 
-                      _context13.next = 6;
+                      _context21.next = 6;
                       return this.start(pkh);
 
                     case 6:
@@ -4795,39 +5449,39 @@
                           var _a; // Failsafe
 
 
-                          if (((_a = _this19.scheduler) === null || _a === void 0 ? void 0 : _a.size) && _this19.scheduler.get(pkh).stateCounter === counter) {
+                          if (((_a = _this23.scheduler) === null || _a === void 0 ? void 0 : _a.size) && _this23.scheduler.get(pkh).stateCounter === counter) {
                             console.log('Timeout from wait state');
 
-                            _this19.changeState(pkh, State.UpToDate);
+                            _this23.changeState(pkh, State.UpToDate);
                           }
                         }, 150000);
                       }
 
                     case 7:
                     case "end":
-                      return _context13.stop();
+                      return _context21.stop();
                   }
                 }
-              }, _callee13, this);
+              }, _callee21, this);
             }));
           }
         }, {
           key: "update",
           value: function update(pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
-              var _this20 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee22() {
+              var _this24 = this;
 
-              return regeneratorRuntime.wrap(function _callee14$(_context14) {
+              return regeneratorRuntime.wrap(function _callee22$(_context22) {
                 while (1) {
-                  switch (_context14.prev = _context14.next) {
+                  switch (_context22.prev = _context22.next) {
                     case 0:
                       this.setDelay(pkh, this.defaultDelayActivity);
                       this.activityService.updateTransactions(pkh).subscribe(function (ans) {
-                        switch (_this20.scheduler.get(pkh) ? _this20.scheduler.get(pkh).state : -1) {
+                        switch (_this24.scheduler.get(pkh) ? _this24.scheduler.get(pkh).state : -1) {
                           case State.UpToDate:
                             {
                               if (!ans.upToDate) {
-                                _this20.changeState(pkh, State.Updating);
+                                _this24.changeState(pkh, State.Updating);
                               }
 
                               break;
@@ -4836,9 +5490,9 @@
                           case State.Wait:
                             {
                               if (!ans.upToDate) {
-                                _this20.changeState(pkh, State.Updating);
+                                _this24.changeState(pkh, State.Updating);
                               } else {
-                                _this20.setDelay(pkh, _this20.shortDelayActivity);
+                                _this24.setDelay(pkh, _this24.shortDelayActivity);
                               }
 
                               break;
@@ -4847,9 +5501,9 @@
                           case State.Updating:
                             {
                               if (ans.upToDate) {
-                                _this20.changeState(pkh, State.UpToDate);
+                                _this24.changeState(pkh, State.UpToDate);
                               } else {
-                                _this20.setDelay(pkh, _this20.shortDelayActivity);
+                                _this24.setDelay(pkh, _this24.shortDelayActivity);
                               }
 
                               break;
@@ -4862,7 +5516,7 @@
                             }
                         }
 
-                        var acc = _this20.walletService.wallet.getAccount(pkh);
+                        var acc = _this24.walletService.wallet.getAccount(pkh);
 
                         if (acc && acc.activities.length) {
                           var latestActivity = acc.activities[0];
@@ -4873,7 +5527,7 @@
                             if (age > 360000) {
                               acc.activities.shift();
 
-                              _this20.walletService.storeWallet();
+                              _this24.walletService.storeWallet();
                             }
                           }
                         }
@@ -4882,23 +5536,23 @@
                       }, function () {
                         var _a;
 
-                        console.log("account[".concat(_this20.accounts.findIndex(function (a) {
+                        console.log("account[".concat(_this24.accounts.findIndex(function (a) {
                           return a.address === pkh;
-                        }), "][").concat(typeof ((_a = _this20.scheduler.get(pkh)) === null || _a === void 0 ? void 0 : _a.state) !== 'undefined' ? _this20.scheduler.get(pkh).state : '*', "]: <<"));
+                        }), "][").concat(typeof ((_a = _this24.scheduler.get(pkh)) === null || _a === void 0 ? void 0 : _a.state) !== 'undefined' ? _this24.scheduler.get(pkh).state : '*', "]: <<"));
                       });
 
                     case 2:
                     case "end":
-                      return _context14.stop();
+                      return _context22.stop();
                   }
                 }
-              }, _callee14, this);
+              }, _callee22, this);
             }));
           }
         }, {
           key: "changeState",
           value: function changeState(pkh, newState) {
-            var _this21 = this;
+            var _this25 = this;
 
             var scheduleData = this.scheduler.get(pkh);
             scheduleData.state = newState;
@@ -4910,7 +5564,7 @@
             if (newState === State.Wait || newState === State.Updating) {
               clearInterval(scheduleData.interval);
               scheduleData.interval = setInterval(function () {
-                return _this21.update(pkh);
+                return _this25.update(pkh);
               }, this.shortDelayActivity);
             }
 
@@ -4920,7 +5574,7 @@
         }, {
           key: "setDelay",
           value: function setDelay(pkh, time) {
-            var _this22 = this;
+            var _this26 = this;
 
             var scheduleData = this.scheduler.get(pkh);
 
@@ -4929,7 +5583,7 @@
             }
 
             scheduleData.interval = setInterval(function () {
-              return _this22.update(pkh);
+              return _this26.update(pkh);
             }, time);
             this.scheduler.set(pkh, scheduleData);
           }
@@ -4950,10 +5604,10 @@
         }, {
           key: "stop",
           value: function stop(pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
-              return regeneratorRuntime.wrap(function _callee15$(_context15) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee23() {
+              return regeneratorRuntime.wrap(function _callee23$(_context23) {
                 while (1) {
-                  switch (_context15.prev = _context15.next) {
+                  switch (_context23.prev = _context23.next) {
                     case 0:
                       console.log('Stop scheduler ' + this.accounts.findIndex(function (a) {
                         return a.address === pkh;
@@ -4964,26 +5618,26 @@
 
                     case 4:
                     case "end":
-                      return _context15.stop();
+                      return _context23.stop();
                   }
                 }
-              }, _callee15, this);
+              }, _callee23, this);
             }));
           }
         }, {
           key: "updateAccountData",
           value: function updateAccountData(pkh) {
-            var _this23 = this;
+            var _this27 = this;
 
             // Maybe also check for originations to account?
             console.log('update account data for ' + pkh);
             this.operationService.getAccount(pkh).subscribe(function (ans) {
               if (ans.success) {
-                _this23.balanceService.updateAccountBalance(_this23.walletService.wallet.getAccount(pkh), Number(ans.payload.balance));
+                _this27.balanceService.updateAccountBalance(_this27.walletService.wallet.getAccount(pkh), Number(ans.payload.balance));
 
-                var acc = _this23.walletService.wallet.getAccount(pkh);
+                var acc = _this27.walletService.wallet.getAccount(pkh);
 
-                _this23.delegateService.handleDelegateResponse(acc, ans.payload.delegate);
+                _this27.delegateService.handleDelegateResponse(acc, ans.payload.delegate);
               } else {
                 console.log('updateAccountData -> getAccount failed ', ans.payload.msg);
               }
@@ -5329,74 +5983,74 @@
         _createClass(IndexerService, [{
           key: "getContractAddresses",
           value: function getContractAddresses(address) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
-              return regeneratorRuntime.wrap(function _callee16$(_context16) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee24() {
+              return regeneratorRuntime.wrap(function _callee24$(_context24) {
                 while (1) {
-                  switch (_context16.prev = _context16.next) {
+                  switch (_context24.prev = _context24.next) {
                     case 0:
-                      return _context16.abrupt("return", this.tzktService.getContractAddresses(address));
+                      return _context24.abrupt("return", this.tzktService.getContractAddresses(address));
 
                     case 1:
                     case "end":
-                      return _context16.stop();
+                      return _context24.stop();
                   }
                 }
-              }, _callee16, this);
+              }, _callee24, this);
             }));
           }
         }, {
           key: "accountInfo",
           value: function accountInfo(address) {
             var knownTokenIds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
-              return regeneratorRuntime.wrap(function _callee17$(_context17) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee25() {
+              return regeneratorRuntime.wrap(function _callee25$(_context25) {
                 while (1) {
-                  switch (_context17.prev = _context17.next) {
+                  switch (_context25.prev = _context25.next) {
                     case 0:
-                      return _context17.abrupt("return", this.tzktService.accountInfo(address, knownTokenIds));
+                      return _context25.abrupt("return", this.tzktService.accountInfo(address, knownTokenIds));
 
                     case 1:
                     case "end":
-                      return _context17.stop();
+                      return _context25.stop();
                   }
                 }
-              }, _callee17, this);
+              }, _callee25, this);
             }));
           }
         }, {
           key: "getOperations",
           value: function getOperations(address, knownTokenIds, wallet) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee18() {
-              return regeneratorRuntime.wrap(function _callee18$(_context18) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee26() {
+              return regeneratorRuntime.wrap(function _callee26$(_context26) {
                 while (1) {
-                  switch (_context18.prev = _context18.next) {
+                  switch (_context26.prev = _context26.next) {
                     case 0:
-                      return _context18.abrupt("return", this.tzktService.getOperations(address, knownTokenIds, wallet));
+                      return _context26.abrupt("return", this.tzktService.getOperations(address, knownTokenIds, wallet));
 
                     case 1:
                     case "end":
-                      return _context18.stop();
+                      return _context26.stop();
                   }
                 }
-              }, _callee18, this);
+              }, _callee26, this);
             }));
           }
         }, {
           key: "getTokenMetadata",
           value: function getTokenMetadata(contractAddress, id) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee19() {
-              return regeneratorRuntime.wrap(function _callee19$(_context19) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee27() {
+              return regeneratorRuntime.wrap(function _callee27$(_context27) {
                 while (1) {
-                  switch (_context19.prev = _context19.next) {
+                  switch (_context27.prev = _context27.next) {
                     case 0:
-                      return _context19.abrupt("return", this.tzktService.getTokenMetadata(contractAddress, id));
+                      return _context27.abrupt("return", this.tzktService.getTokenMetadata(contractAddress, id));
 
                     case 1:
                     case "end":
-                      return _context19.stop();
+                      return _context27.stop();
                   }
                 }
-              }, _callee19, this);
+              }, _callee27, this);
             }));
           }
         }]);
@@ -5458,6 +6112,73 @@
       /* (ignored) */
 
       /***/
+    },
+
+    /***/
+    "874q":
+    /*!*******************************!*\
+      !*** ../icabod/dist/types.js ***!
+      \*******************************/
+
+    /*! exports provided: Networks, RequestTypes, ResponseTypes */
+
+    /***/
+    function q(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "Networks", function () {
+        return Networks;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "RequestTypes", function () {
+        return RequestTypes;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ResponseTypes", function () {
+        return ResponseTypes;
+      });
+
+      var Networks;
+
+      (function (Networks) {
+        Networks["mainnet"] = "mainnet";
+        Networks["delphinet"] = "delphinet";
+        Networks["edonet"] = "edonet";
+        Networks["dev"] = "dev";
+      })(Networks || (Networks = {}));
+
+      var RequestTypes;
+
+      (function (RequestTypes) {
+        RequestTypes["loginRequest"] = "login_request";
+        RequestTypes["operationRequest"] = "operation_request";
+        RequestTypes["trackRequest"] = "track_request";
+        RequestTypes["logoutRequest"] = "logout_request";
+        RequestTypes["authRequest"] = "authentication_request";
+        RequestTypes["cardRequest"] = "card_request";
+      })(RequestTypes || (RequestTypes = {}));
+
+      var ResponseTypes;
+
+      (function (ResponseTypes) {
+        ResponseTypes["initComplete"] = "init_complete";
+        ResponseTypes["loginResponse"] = "login_response";
+        ResponseTypes["operationResponse"] = "operation_response";
+        ResponseTypes["trackResponse"] = "track_response";
+        ResponseTypes["logoutResponse"] = "logout_response";
+        ResponseTypes["authResponse"] = "authentication_response";
+        ResponseTypes["cardResponse"] = "card_response";
+      })(ResponseTypes || (ResponseTypes = {}));
+      /***/
+
     },
 
     /***/
@@ -6701,53 +7422,53 @@
         }, {
           key: "torusLogin",
           value: function torusLogin(verifier) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee21() {
-              var _this24 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee29() {
+              var _this28 = this;
 
               var _yield$this$torusServ, keyPair, userInfo;
 
-              return regeneratorRuntime.wrap(function _callee21$(_context21) {
+              return regeneratorRuntime.wrap(function _callee29$(_context29) {
                 while (1) {
-                  switch (_context21.prev = _context21.next) {
+                  switch (_context29.prev = _context29.next) {
                     case 0:
-                      _context21.next = 2;
+                      _context29.next = 2;
                       return this.messageService.startSpinner('Loading wallet...');
 
                     case 2:
-                      _context21.next = 4;
+                      _context29.next = 4;
                       return this.torusService.loginTorus(verifier)["catch"](function (e) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this24, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee20() {
-                          return regeneratorRuntime.wrap(function _callee20$(_context20) {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this28, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee28() {
+                          return regeneratorRuntime.wrap(function _callee28$(_context28) {
                             while (1) {
-                              switch (_context20.prev = _context20.next) {
+                              switch (_context28.prev = _context28.next) {
                                 case 0:
-                                  _context20.next = 2;
+                                  _context28.next = 2;
                                   return this.messageService.stopSpinner();
 
                                 case 2:
-                                  return _context20.abrupt("return", _context20.sent);
+                                  return _context28.abrupt("return", _context28.sent);
 
                                 case 3:
                                 case "end":
-                                  return _context20.stop();
+                                  return _context28.stop();
                               }
                             }
-                          }, _callee20, this);
+                          }, _callee28, this);
                         }));
                       });
 
                     case 4:
-                      _yield$this$torusServ = _context21.sent;
+                      _yield$this$torusServ = _context29.sent;
                       keyPair = _yield$this$torusServ.keyPair;
                       userInfo = _yield$this$torusServ.userInfo;
                       console.log('login done');
 
                       if (!keyPair) {
-                        _context21.next = 13;
+                        _context29.next = 13;
                         break;
                       }
 
-                      _context21.next = 11;
+                      _context29.next = 11;
                       return this.importService.importWalletFromPk(keyPair.pk, '', {
                         verifier: userInfo.typeOfLogin,
                         id: userInfo.verifierId,
@@ -6756,36 +7477,36 @@
                         if (success) {
                           console.log('success');
 
-                          if (_this24.walletService.wallet.implicitAccounts.length === 1 && _this24.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
+                          if (_this28.walletService.wallet.implicitAccounts.length === 1 && _this28.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
                             console.log('single address');
 
-                            _this24.router.navigate(["/account/".concat(_this24.walletService.wallet.implicitAccounts[0].address)]);
+                            _this28.router.navigate(["/account/".concat(_this28.walletService.wallet.implicitAccounts[0].address)]);
                           } else {
-                            _this24.router.navigate(['/accounts']);
+                            _this28.router.navigate(['/accounts']);
                           }
 
-                          _this24.messageService.stopSpinner();
+                          _this28.messageService.stopSpinner();
                         } else {
-                          _this24.messageService.addError('Torus import failed');
+                          _this28.messageService.addError('Torus import failed');
 
-                          _this24.messageService.stopSpinner();
+                          _this28.messageService.stopSpinner();
                         }
                       });
 
                     case 11:
-                      _context21.next = 15;
+                      _context29.next = 15;
                       break;
 
                     case 13:
-                      _context21.next = 15;
+                      _context29.next = 15;
                       return this.messageService.stopSpinner();
 
                     case 15:
                     case "end":
-                      return _context21.stop();
+                      return _context29.stop();
                   }
                 }
-              }, _callee21, this);
+              }, _callee29, this);
             }));
           }
         }, {
@@ -7069,48 +7790,48 @@
         }, {
           key: "getPk",
           value: function getPk() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee22() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee30() {
               var path, pk;
-              return regeneratorRuntime.wrap(function _callee22$(_context22) {
+              return regeneratorRuntime.wrap(function _callee30$(_context30) {
                 while (1) {
-                  switch (_context22.prev = _context22.next) {
+                  switch (_context30.prev = _context30.next) {
                     case 0:
                       path = this.path.replace(this.defaultText, this.defaultPath);
 
                       if (!this.inputValidationService.derivationPath(path)) {
-                        _context22.next = 22;
+                        _context30.next = 22;
                         break;
                       }
 
                       this.pendingLedgerConfirmation = true;
-                      _context22.prev = 3;
+                      _context30.prev = 3;
                       this.messageService.startSpinner('Waiting for Ledger confirmation...');
-                      _context22.next = 7;
+                      _context30.next = 7;
                       return this.ledgerService.getPublicAddress(path);
 
                     case 7:
-                      pk = _context22.sent;
+                      pk = _context30.sent;
                       console.log('getPK => ' + pk);
-                      _context22.next = 11;
+                      _context30.next = 11;
                       return this.importFromPk(pk, path);
 
                     case 11:
-                      _context22.next = 16;
+                      _context30.next = 16;
                       break;
 
                     case 13:
-                      _context22.prev = 13;
-                      _context22.t0 = _context22["catch"](3);
-                      throw _context22.t0;
+                      _context30.prev = 13;
+                      _context30.t0 = _context30["catch"](3);
+                      throw _context30.t0;
 
                     case 16:
-                      _context22.prev = 16;
+                      _context30.prev = 16;
                       this.pendingLedgerConfirmation = false;
                       this.messageService.stopSpinner();
-                      return _context22.finish(16);
+                      return _context30.finish(16);
 
                     case 20:
-                      _context22.next = 23;
+                      _context30.next = 23;
                       break;
 
                     case 22:
@@ -7118,31 +7839,31 @@
 
                     case 23:
                     case "end":
-                      return _context22.stop();
+                      return _context30.stop();
                   }
                 }
-              }, _callee22, this, [[3, 13, 16, 20]]);
+              }, _callee30, this, [[3, 13, 16, 20]]);
             }));
           }
         }, {
           key: "importFromPk",
           value: function importFromPk(pk, path) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee23() {
-              return regeneratorRuntime.wrap(function _callee23$(_context23) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee31() {
+              return regeneratorRuntime.wrap(function _callee31$(_context31) {
                 while (1) {
-                  switch (_context23.prev = _context23.next) {
+                  switch (_context31.prev = _context31.next) {
                     case 0:
                       if (!_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_8__["utils"].validPublicKey(pk)) {
-                        _context23.next = 10;
+                        _context31.next = 10;
                         break;
                       }
 
-                      _context23.next = 3;
+                      _context31.next = 3;
                       return this.importService.importWalletFromPk(pk, path);
 
                     case 3:
-                      if (!_context23.sent) {
-                        _context23.next = 7;
+                      if (!_context31.sent) {
+                        _context31.next = 7;
                         break;
                       }
 
@@ -7152,14 +7873,14 @@
                         this.router.navigate(['/accounts']);
                       }
 
-                      _context23.next = 8;
+                      _context31.next = 8;
                       break;
 
                     case 7:
                       this.messageService.addError('Failed to import Ledger wallet');
 
                     case 8:
-                      _context23.next = 11;
+                      _context31.next = 11;
                       break;
 
                     case 10:
@@ -7167,10 +7888,10 @@
 
                     case 11:
                     case "end":
-                      return _context23.stop();
+                      return _context31.stop();
                   }
                 }
-              }, _callee23, this);
+              }, _callee31, this);
             }));
           }
         }, {
@@ -7520,6 +8241,79 @@
     },
 
     /***/
+    "D5E+":
+    /*!******************************!*\
+      !*** ../icabod/dist/util.js ***!
+      \******************************/
+
+    /*! exports provided: defer, networkToSrc */
+
+    /***/
+    function D5E(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "defer", function () {
+        return defer;
+      });
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "networkToSrc", function () {
+        return networkToSrc;
+      });
+      /* harmony import */
+
+
+      var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ./types */
+      "874q");
+
+      var defer = function defer() {
+        // dummy value for typescript
+        var deferred = {
+          resolve: function resolve(res) {},
+          reject: function reject(err) {}
+        }; // get promise and extract resolve/reject into d
+
+        var promise = new Promise(function (resolve, reject) {
+          deferred = {
+            resolve: resolve,
+            reject: reject
+          };
+        });
+        return {
+          deferred: deferred,
+          promise: promise
+        };
+      };
+
+      var networkToSrc = function networkToSrc(network) {
+        switch (network) {
+          case _types__WEBPACK_IMPORTED_MODULE_0__["Networks"].mainnet:
+            return 'https://wallet.kukai.app';
+
+          case _types__WEBPACK_IMPORTED_MODULE_0__["Networks"].delphinet:
+            return 'https://testnet.kukai.app';
+
+          case _types__WEBPACK_IMPORTED_MODULE_0__["Networks"].edonet:
+            return 'https://edonet.kukai.app';
+
+          case _types__WEBPACK_IMPORTED_MODULE_0__["Networks"].dev:
+            return 'https://ichabod-dev.kukai.app';
+
+          default:
+            return network;
+        }
+      };
+      /***/
+
+    },
+
+    /***/
     "DlHu":
     /*!*************************************************!*\
       !*** ./src/app/services/token/token.service.ts ***!
@@ -7688,25 +8482,25 @@
         }, {
           key: "searchMetadata",
           value: function searchMetadata(contractAddress, id) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee24() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee32() {
               var tokenId, metadata, contract, defaultImg, displayUrl, thumbnailUrl, token;
-              return regeneratorRuntime.wrap(function _callee24$(_context24) {
+              return regeneratorRuntime.wrap(function _callee32$(_context32) {
                 while (1) {
-                  switch (_context24.prev = _context24.next) {
+                  switch (_context32.prev = _context32.next) {
                     case 0:
                       tokenId = "".concat(contractAddress, ":").concat(id);
 
                       if (!this.explore(tokenId)) {
-                        _context24.next = 7;
+                        _context32.next = 7;
                         break;
                       }
 
                       console.log("Searching for tokenId: ".concat(tokenId));
-                      _context24.next = 5;
+                      _context32.next = 5;
                       return this.indexerService.getTokenMetadata(contractAddress, id);
 
                     case 5:
-                      metadata = _context24.sent;
+                      metadata = _context32.sent;
 
                       if (metadata && (metadata.name || metadata.symbol) && !isNaN(metadata.decimals) && metadata.decimals >= 0) {
                         contract = {
@@ -7743,10 +8537,10 @@
 
                     case 7:
                     case "end":
-                      return _context24.stop();
+                      return _context32.stop();
                   }
                 }
-              }, _callee24, this);
+              }, _callee32, this);
             }));
           }
         }, {
@@ -8055,56 +8849,56 @@
         _createClass(TorusService, [{
           key: "initTorus",
           value: function initTorus() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee25() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee33() {
               var torusdirectsdk;
-              return regeneratorRuntime.wrap(function _callee25$(_context25) {
+              return regeneratorRuntime.wrap(function _callee33$(_context33) {
                 while (1) {
-                  switch (_context25.prev = _context25.next) {
+                  switch (_context33.prev = _context33.next) {
                     case 0:
                       if (this.torus) {
-                        _context25.next = 11;
+                        _context33.next = 11;
                         break;
                       }
 
-                      _context25.prev = 1;
+                      _context33.prev = 1;
                       torusdirectsdk = new _toruslabs_torus_direct_web_sdk__WEBPACK_IMPORTED_MODULE_2___default.a({
                         baseUrl: "".concat(location.origin, "/serviceworker"),
                         enableLogging: !(this.proxy.network === 'mainnet'),
                         proxyContractAddress: this.proxy.address,
                         network: this.proxy.network === 'mainnet' ? this.proxy.network : 'testnet'
                       });
-                      _context25.next = 5;
+                      _context33.next = 5;
                       return torusdirectsdk.init({
                         skipSw: false
                       });
 
                     case 5:
                       this.torus = torusdirectsdk;
-                      _context25.next = 11;
+                      _context33.next = 11;
                       break;
 
                     case 8:
-                      _context25.prev = 8;
-                      _context25.t0 = _context25["catch"](1);
-                      console.error(_context25.t0, 'oninit caught');
+                      _context33.prev = 8;
+                      _context33.t0 = _context33["catch"](1);
+                      console.error(_context33.t0, 'oninit caught');
 
                     case 11:
                     case "end":
-                      return _context25.stop();
+                      return _context33.stop();
                   }
                 }
-              }, _callee25, this, [[1, 8]]);
+              }, _callee33, this, [[1, 8]]);
             }));
           }
         }, {
           key: "lookupPkh",
           value: function lookupPkh(selectedVerifier, verifierId) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee26() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee34() {
               var fetchNodeDetails, torus, verifier, _yield$fetchNodeDetai, torusNodeEndpoints, torusNodePub, torusIndexes, sanitizedVerifierId, twitterId, username, _yield$this$twitterLo, id, pk, pkh;
 
-              return regeneratorRuntime.wrap(function _callee26$(_context26) {
+              return regeneratorRuntime.wrap(function _callee34$(_context34) {
                 while (1) {
-                  switch (_context26.prev = _context26.next) {
+                  switch (_context34.prev = _context34.next) {
                     case 0:
                       fetchNodeDetails = new _toruslabs_fetch_node_details__WEBPACK_IMPORTED_MODULE_3___default.a({
                         network: this.proxy.network,
@@ -8114,15 +8908,15 @@
                       verifier = this.verifierMap[selectedVerifier].verifier;
 
                       if (this.nodeDetails) {
-                        _context26.next = 11;
+                        _context34.next = 11;
                         break;
                       }
 
-                      _context26.next = 6;
+                      _context34.next = 6;
                       return fetchNodeDetails.getNodeDetails();
 
                     case 6:
-                      _yield$fetchNodeDetai = _context26.sent;
+                      _yield$fetchNodeDetai = _context34.sent;
                       torusNodeEndpoints = _yield$fetchNodeDetai.torusNodeEndpoints;
                       torusNodePub = _yield$fetchNodeDetai.torusNodePub;
                       torusIndexes = _yield$fetchNodeDetai.torusIndexes;
@@ -8141,67 +8935,67 @@
                       twitterId = '';
 
                       if (!(selectedVerifier === 'twitter')) {
-                        _context26.next = 26;
+                        _context34.next = 26;
                         break;
                       }
 
                       username = sanitizedVerifierId.replace('@', '');
-                      _context26.next = 18;
+                      _context34.next = 18;
                       return this.twitterLookup(username);
 
                     case 18:
-                      _yield$this$twitterLo = _context26.sent;
+                      _yield$this$twitterLo = _context34.sent;
                       id = _yield$this$twitterLo.id;
 
                       if (!this.inputValidationService.twitterId(id)) {
-                        _context26.next = 25;
+                        _context34.next = 25;
                         break;
                       }
 
                       sanitizedVerifierId = "twitter|".concat(id);
                       twitterId = id;
-                      _context26.next = 26;
+                      _context34.next = 26;
                       break;
 
                     case 25:
                       throw new Error('Twitter handle not found');
 
                     case 26:
-                      _context26.next = 28;
+                      _context34.next = 28;
                       return torus.getPublicAddress(this.nodeDetails.torusNodeEndpoints, this.nodeDetails.torusNodePub, {
                         verifier: verifier,
                         verifierId: sanitizedVerifierId
                       }, true);
 
                     case 28:
-                      pk = _context26.sent;
+                      pk = _context34.sent;
                       pkh = this.operationService.spPointsToPkh(pk.X, pk.Y);
-                      return _context26.abrupt("return", {
+                      return _context34.abrupt("return", {
                         pkh: pkh,
                         twitterId: twitterId
                       });
 
                     case 31:
                     case "end":
-                      return _context26.stop();
+                      return _context34.stop();
                   }
                 }
-              }, _callee26, this);
+              }, _callee34, this);
             }));
           }
         }, {
           key: "twitterLookup",
           value: function twitterLookup(username, id) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee27() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee35() {
               var req;
-              return regeneratorRuntime.wrap(function _callee27$(_context27) {
+              return regeneratorRuntime.wrap(function _callee35$(_context35) {
                 while (1) {
-                  switch (_context27.prev = _context27.next) {
+                  switch (_context35.prev = _context35.next) {
                     case 0:
                       req = {};
 
                       if (!(id && username || !id && !username)) {
-                        _context27.next = 6;
+                        _context35.next = 6;
                         break;
                       }
 
@@ -8223,7 +9017,7 @@
                       }
 
                     case 7:
-                      _context27.next = 9;
+                      _context35.next = 9;
                       return fetch("https://api.tezos.help/twitter-lookup/", {
                         method: 'POST',
                         headers: {
@@ -8236,28 +9030,28 @@
                       });
 
                     case 9:
-                      return _context27.abrupt("return", _context27.sent);
+                      return _context35.abrupt("return", _context35.sent);
 
                     case 10:
                     case "end":
-                      return _context27.stop();
+                      return _context35.stop();
                   }
                 }
-              }, _callee27);
+              }, _callee35);
             }));
           }
         }, {
           key: "loginTorus",
           value: function loginTorus(selectedVerifier) {
             var verifierId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee28() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee36() {
               var jwtParams, _this$verifierMap$sel, typeOfLogin, clientId, verifier, loginDetails, keyPair;
 
-              return regeneratorRuntime.wrap(function _callee28$(_context28) {
+              return regeneratorRuntime.wrap(function _callee36$(_context36) {
                 while (1) {
-                  switch (_context28.prev = _context28.next) {
+                  switch (_context36.prev = _context36.next) {
                     case 0:
-                      _context28.prev = 0;
+                      _context36.prev = 0;
                       jwtParams = this._loginToConnectionMap()[selectedVerifier] || {};
 
                       if (verifierId && selectedVerifier === GOOGLE) {
@@ -8266,7 +9060,7 @@
                       }
 
                       _this$verifierMap$sel = this.verifierMap[selectedVerifier], typeOfLogin = _this$verifierMap$sel.typeOfLogin, clientId = _this$verifierMap$sel.clientId, verifier = _this$verifierMap$sel.verifier;
-                      _context28.next = 6;
+                      _context36.next = 6;
                       return this.torus.triggerLogin({
                         verifier: verifier,
                         typeOfLogin: typeOfLogin,
@@ -8275,55 +9069,55 @@
                       });
 
                     case 6:
-                      loginDetails = _context28.sent;
+                      loginDetails = _context36.sent;
                       keyPair = this.operationService.spPrivKeyToKeyPair(loginDetails.privateKey);
                       console.log('DirectAuth KeyPair', keyPair);
-                      return _context28.abrupt("return", {
+                      return _context36.abrupt("return", {
                         keyPair: keyPair,
                         userInfo: loginDetails.userInfo
                       });
 
                     case 12:
-                      _context28.prev = 12;
-                      _context28.t0 = _context28["catch"](0);
-                      console.error(_context28.t0, 'login caught');
-                      return _context28.abrupt("return", {
+                      _context36.prev = 12;
+                      _context36.t0 = _context36["catch"](0);
+                      console.error(_context36.t0, 'login caught');
+                      return _context36.abrupt("return", {
                         keyPair: null,
                         userInfo: null
                       });
 
                     case 16:
                     case "end":
-                      return _context28.stop();
+                      return _context36.stop();
                   }
                 }
-              }, _callee28, this, [[0, 12]]);
+              }, _callee36, this, [[0, 12]]);
             }));
           }
         }, {
           key: "getTorusKeyPair",
           value: function getTorusKeyPair(selectedVerifier, verifierId) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee29() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee37() {
               var _yield$this$loginToru, keyPair;
 
-              return regeneratorRuntime.wrap(function _callee29$(_context29) {
+              return regeneratorRuntime.wrap(function _callee37$(_context37) {
                 while (1) {
-                  switch (_context29.prev = _context29.next) {
+                  switch (_context37.prev = _context37.next) {
                     case 0:
-                      _context29.next = 2;
+                      _context37.next = 2;
                       return this.loginTorus(selectedVerifier, verifierId);
 
                     case 2:
-                      _yield$this$loginToru = _context29.sent;
+                      _yield$this$loginToru = _context37.sent;
                       keyPair = _yield$this$loginToru.keyPair;
-                      return _context29.abrupt("return", keyPair);
+                      return _context37.abrupt("return", keyPair);
 
                     case 5:
                     case "end":
-                      return _context29.stop();
+                      return _context37.stop();
                   }
                 }
-              }, _callee29, this);
+              }, _callee37, this);
             }));
           }
         }]);
@@ -8491,50 +9285,50 @@
         }, {
           key: "login",
           value: function login(typeOfLogin) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee30() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee38() {
               var loginData;
-              return regeneratorRuntime.wrap(function _callee30$(_context30) {
+              return regeneratorRuntime.wrap(function _callee38$(_context38) {
                 while (1) {
-                  switch (_context30.prev = _context30.next) {
+                  switch (_context38.prev = _context38.next) {
                     case 0:
-                      _context30.prev = 0;
+                      _context38.prev = 0;
                       this.messageService.startSpinner('Loading wallet...'); //const loginData = await this.mockLogin(); // Mock locally
 
-                      _context30.next = 4;
+                      _context38.next = 4;
                       return this.torusService.loginTorus(typeOfLogin);
 
                     case 4:
-                      loginData = _context30.sent;
-                      _context30.next = 7;
+                      loginData = _context38.sent;
+                      _context38.next = 7;
                       return this.messageService.stopSpinner();
 
                     case 7:
                       this.loginResponse.emit(loginData);
-                      _context30.next = 14;
+                      _context38.next = 14;
                       break;
 
                     case 10:
-                      _context30.prev = 10;
-                      _context30.t0 = _context30["catch"](0);
-                      _context30.next = 14;
+                      _context38.prev = 10;
+                      _context38.t0 = _context38["catch"](0);
+                      _context38.next = 14;
                       return this.messageService.stopSpinner();
 
                     case 14:
                     case "end":
-                      return _context30.stop();
+                      return _context38.stop();
                   }
                 }
-              }, _callee30, this, [[0, 10]]);
+              }, _callee38, this, [[0, 10]]);
             }));
           }
         }, {
           key: "mockLogin",
           value: function mockLogin() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee31() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee39() {
               var keyPair, userInfo;
-              return regeneratorRuntime.wrap(function _callee31$(_context31) {
+              return regeneratorRuntime.wrap(function _callee39$(_context39) {
                 while (1) {
-                  switch (_context31.prev = _context31.next) {
+                  switch (_context39.prev = _context39.next) {
                     case 0:
                       keyPair = {
                         sk: 'spsk1VfCfhixtzGvUSKDre6jwyGbXFm6aoeLGnxeVLCouueZmkgtJF',
@@ -8546,7 +9340,7 @@
                         verifierId: 'mock.user@gmail.com',
                         name: 'Mock User'
                       };
-                      return _context31.abrupt("return", new Promise(function (resolve) {
+                      return _context39.abrupt("return", new Promise(function (resolve) {
                         setTimeout(function () {
                           resolve({
                             keyPair: keyPair,
@@ -8557,10 +9351,10 @@
 
                     case 3:
                     case "end":
-                      return _context31.stop();
+                      return _context39.stop();
                   }
                 }
-              }, _callee31);
+              }, _callee39);
             }));
           }
         }]);
@@ -8658,6 +9452,236 @@
     },
 
     /***/
+    "I9fP":
+    /*!********************************!*\
+      !*** ../icabod/dist/iframe.js ***!
+      \********************************/
+
+    /*! exports provided: IFrameKukai */
+
+    /***/
+    function I9fP(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "IFrameKukai", function () {
+        return IFrameKukai;
+      });
+      /* harmony import */
+
+
+      var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ./util */
+      "D5E+");
+
+      var __classPrivateFieldSet = undefined && undefined.__classPrivateFieldSet || function (receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+          throw new TypeError("attempted to set private field on non-instance");
+        }
+
+        privateMap.set(receiver, value);
+        return value;
+      };
+
+      var __classPrivateFieldGet = undefined && undefined.__classPrivateFieldGet || function (receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+          throw new TypeError("attempted to get private field on non-instance");
+        }
+
+        return privateMap.get(receiver);
+      };
+
+      var _iframeSrc, _getIframe;
+
+      var iframeId = 'kukai-iframe';
+
+      var IFrameKukai = /*#__PURE__*/function () {
+        function IFrameKukai(src) {
+          _classCallCheck(this, IFrameKukai);
+
+          _iframeSrc.set(this, void 0);
+
+          _getIframe.set(this, function () {
+            return document.getElementById(iframeId);
+          });
+
+          __classPrivateFieldSet(this, _iframeSrc, src);
+        }
+
+        _createClass(IFrameKukai, [{
+          key: "show",
+          value: function show() {
+            var f = __classPrivateFieldGet(this, _getIframe).call(this);
+
+            if (f) {
+              // f.hidden = true
+              f.style.display = 'block';
+            }
+          }
+        }, {
+          key: "hide",
+          value: function hide() {
+            var f = __classPrivateFieldGet(this, _getIframe).call(this);
+
+            if (f) {
+              // f.hidden = true
+              f.style.display = 'none';
+            }
+          }
+        }, {
+          key: "isHidden",
+          value: function isHidden() {
+            var f = __classPrivateFieldGet(this, _getIframe).call(this);
+
+            return (f === null || f === void 0 ? void 0 : f.style.display) === 'none';
+          }
+        }, {
+          key: "toCard",
+          value: function toCard() {
+            var f = __classPrivateFieldGet(this, _getIframe).call(this);
+
+            if (f) {
+              f.style.position = 'fixed';
+              f.style.top = '';
+              f.style.bottom = '70px';
+              f.style.left = '70px';
+              f.style.borderRadius = '10px';
+              f.style.border = '0';
+              f.style.width = '400px';
+              f.style.height = '200px';
+            }
+          }
+        }, {
+          key: "isCard",
+          value: function isCard() {
+            var f = __classPrivateFieldGet(this, _getIframe).call(this);
+
+            return (f === null || f === void 0 ? void 0 : f.style.position) === 'fixed';
+          }
+        }, {
+          key: "toFullScreen",
+          value: function toFullScreen() {
+            var f = __classPrivateFieldGet(this, _getIframe).call(this);
+
+            if (f) {
+              f.style.position = 'absolute';
+              f.style.top = '0';
+              f.style.left = '0';
+              f.style.borderRadius = '0px';
+              f.style.border = '0';
+              f.style.width = '100%';
+              f.style.height = '100%';
+            }
+          }
+        }, {
+          key: "init",
+          value: function () {
+            var _init3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee40(instanceId) {
+              var _this29 = this;
+
+              var iframe, params, _Object, promise, deferred;
+
+              return regeneratorRuntime.wrap(function _callee40$(_context40) {
+                while (1) {
+                  switch (_context40.prev = _context40.next) {
+                    case 0:
+                      if (__classPrivateFieldGet(this, _getIframe).call(this)) {
+                        _context40.next = 26;
+                        break;
+                      }
+
+                      iframe = document.createElement('iframe');
+                      params = instanceId ? "?instanceId=".concat(instanceId) : '';
+                      iframe.src = __classPrivateFieldGet(this, _iframeSrc) + "/embedded" + params;
+                      iframe.id = iframeId;
+                      iframe.style.zIndex = '99999';
+                      iframe.style.display = 'none'; // sandbox attributes
+                      // TODO jsDOM does not impl iFrame sandbox attrs, so these must be commented out when running tests
+                      // scripts must be allowed to run or Kukai will not run
+
+                      iframe.sandbox.add("allow-scripts"); // same origin must be allowed or message events will be blocked by CORS and storage will not work
+
+                      iframe.sandbox.add('allow-same-origin'); // popups allowed to make oauth work
+
+                      iframe.sandbox.add('allow-popups'); // forms allowed to make oauth work
+
+                      iframe.sandbox.add('allow-forms');
+                      _Object = Object(_util__WEBPACK_IMPORTED_MODULE_0__["defer"])(), promise = _Object.promise, deferred = _Object.deferred;
+                      _context40.prev = 12;
+                      iframe.addEventListener('load', function () {
+                        return deferred.resolve();
+                      });
+                      document.body.appendChild(iframe);
+                      _context40.next = 17;
+                      return promise.then(function () {
+                        return _this29.toFullScreen();
+                      });
+
+                    case 17:
+                      return _context40.abrupt("return", _context40.sent);
+
+                    case 20:
+                      _context40.prev = 20;
+                      _context40.t0 = _context40["catch"](12);
+                      deferred.reject(_context40.t0);
+                      throw _context40.t0;
+
+                    case 24:
+                      _context40.next = 27;
+                      break;
+
+                    case 26:
+                      throw new Error("Kukai-Embed Already Present");
+
+                    case 27:
+                    case "end":
+                      return _context40.stop();
+                  }
+                }
+              }, _callee40, this, [[12, 20]]);
+            }));
+
+            function init(_x7) {
+              return _init3.apply(this, arguments);
+            }
+
+            return init;
+          }()
+        }, {
+          key: "deinit",
+          value: function deinit() {
+            var f = __classPrivateFieldGet(this, _getIframe).call(this);
+
+            if (f) {
+              document.body.removeChild(f);
+            }
+          }
+        }, {
+          key: "request",
+          value: function request(message) {
+            var _a, _b;
+
+            (_b = (_a = __classPrivateFieldGet(this, _getIframe).call(this)) === null || _a === void 0 ? void 0 : _a.contentWindow) === null || _b === void 0 ? void 0 : _b.postMessage(JSON.stringify(message), // TODO this may cause issues if a careless user overrides src as an empty string
+            __classPrivateFieldGet(this, _iframeSrc) ? __classPrivateFieldGet(this, _iframeSrc) : "*");
+          }
+        }, {
+          key: "isInit",
+          get: function get() {
+            return !!__classPrivateFieldGet(this, _getIframe).call(this);
+          }
+        }]);
+
+        return IFrameKukai;
+      }();
+
+      _iframeSrc = new WeakMap(), _getIframe = new WeakMap();
+      /***/
+    },
+
+    /***/
     "JJGL":
     /*!*****************************************************************!*\
       !*** ./src/app/services/embedded-auth/embedded-auth.service.ts ***!
@@ -8736,14 +9760,14 @@
           value: function authenticate(authReq, origin) {
             var _a;
 
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee32() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee41() {
               var keys, authMessage, signature;
-              return regeneratorRuntime.wrap(function _callee32$(_context32) {
+              return regeneratorRuntime.wrap(function _callee41$(_context41) {
                 while (1) {
-                  switch (_context32.prev = _context32.next) {
+                  switch (_context41.prev = _context41.next) {
                     case 0:
                       if (origin) {
-                        _context32.next = 4;
+                        _context41.next = 4;
                         break;
                       }
 
@@ -8751,7 +9775,7 @@
 
                     case 4:
                       if (authReq === null || authReq === void 0 ? void 0 : authReq.id) {
-                        _context32.next = 8;
+                        _context41.next = 8;
                         break;
                       }
 
@@ -8759,7 +9783,7 @@
 
                     case 8:
                       if (authReq.nonce) {
-                        _context32.next = 12;
+                        _context41.next = 12;
                         break;
                       }
 
@@ -8767,33 +9791,33 @@
 
                     case 12:
                       if (!(!((_a = this.walletService) === null || _a === void 0 ? void 0 : _a.wallet) || !this.walletService.isEmbeddedTorusWallet())) {
-                        _context32.next = 14;
+                        _context41.next = 14;
                         break;
                       }
 
                       throw new Error('NO_WALLET_FOUND');
 
                     case 14:
-                      _context32.next = 16;
+                      _context41.next = 16;
                       return this.walletService.getKeys('', this.walletService.wallet.implicitAccounts[0].pkh)["catch"](function (e) {
                         throw new Error('NO_KEYS_FOUND');
                       });
 
                     case 16:
-                      keys = _context32.sent;
+                      keys = _context41.sent;
                       authMessage = this.createAuthMessage(authReq.id, authReq.nonce, origin, keys.pk, keys.pkh);
                       signature = this.signMessage(authMessage, keys.sk);
-                      return _context32.abrupt("return", {
+                      return _context41.abrupt("return", {
                         message: authMessage,
                         signature: signature
                       });
 
                     case 20:
                     case "end":
-                      return _context32.stop();
+                      return _context41.stop();
                   }
                 }
-              }, _callee32, this);
+              }, _callee41, this);
             }));
           }
         }, {
@@ -8992,13 +10016,13 @@
         _createClass(FooterComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this25 = this;
+            var _this30 = this;
 
             this.path = this.location.path();
             this.setFooter();
             this.router.events.subscribe(function (event) {
               if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"]) {
-                _this25.setFooter();
+                _this30.setFooter();
               }
             });
           }
@@ -9271,11 +10295,11 @@
         }, {
           key: "checkOpReq",
           value: function checkOpReq(opReq) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee33() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee42() {
               var txs, tokenTransferObj, asset;
-              return regeneratorRuntime.wrap(function _callee33$(_context33) {
+              return regeneratorRuntime.wrap(function _callee42$(_context42) {
                 while (1) {
-                  switch (_context33.prev = _context33.next) {
+                  switch (_context42.prev = _context42.next) {
                     case 0:
                       if (opReq.operationDetails) {
                         opReq = opReq.operationDetails;
@@ -9317,10 +10341,10 @@
 
                     case 2:
                     case "end":
-                      return _context33.stop();
+                      return _context42.stop();
                   }
                 }
-              }, _callee33, this);
+              }, _callee42, this);
             }));
           }
         }, {
@@ -9366,29 +10390,29 @@
         }, {
           key: "simulateRequest",
           value: function simulateRequest(txs, tokenTransfer) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee34() {
-              var _this26 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee43() {
+              var _this31 = this;
 
               var callback;
-              return regeneratorRuntime.wrap(function _callee34$(_context34) {
+              return regeneratorRuntime.wrap(function _callee43$(_context43) {
                 while (1) {
-                  switch (_context34.prev = _context34.next) {
+                  switch (_context43.prev = _context43.next) {
                     case 0:
-                      _context34.next = 2;
+                      _context43.next = 2;
                       return this.messageService.startSpinner('Preparing transaction...');
 
                     case 2:
-                      _context34.prev = 2;
-                      _context34.next = 5;
+                      _context43.prev = 2;
+                      _context43.next = 5;
                       return this.estimateService.preLoadData(this.activeAccount.pkh, this.activeAccount.pk);
 
                     case 5:
                       callback = function callback(res) {
                         if (res) {
                           if (res.error) {
-                            _this26.messageService.addError("Simulation error: ".concat(res.error.message), 0);
+                            _this31.messageService.addError("Simulation error: ".concat(res.error.message), 0);
 
-                            _this26.operationResponse.emit('invalid_parameters');
+                            _this31.operationResponse.emit('invalid_parameters');
                           } else {
                             var fullyPrepared = txs.map(function (tx, i) {
                               return Object.assign(Object.assign({}, tx), {
@@ -9398,17 +10422,17 @@
                               });
                             });
 
-                            if (_this26.template) {
-                              var fee = _this26.getTemplateFee(fullyPrepared);
+                            if (_this31.template) {
+                              var fee = _this31.getTemplateFee(fullyPrepared);
 
-                              console.log('Use template', _this26.template);
-                              _this26.templateRequest = {
-                                template: _this26.template,
+                              console.log('Use template', _this31.template);
+                              _this31.templateRequest = {
+                                template: _this31.template,
                                 ops: fullyPrepared,
                                 fee: fee
                               };
                             } else {
-                              _this26.confirmTransactions(fullyPrepared);
+                              _this31.confirmTransactions(fullyPrepared);
                             }
                           }
                         } else {
@@ -9416,23 +10440,23 @@
                         }
                       };
 
-                      _context34.next = 8;
+                      _context43.next = 8;
                       return this.estimateService.estimate(JSON.parse(JSON.stringify(txs)), this.activeAccount.pkh, tokenTransfer, callback);
 
                     case 8:
-                      _context34.prev = 8;
-                      _context34.next = 11;
+                      _context43.prev = 8;
+                      _context43.next = 11;
                       return this.messageService.stopSpinner();
 
                     case 11:
-                      return _context34.finish(8);
+                      return _context43.finish(8);
 
                     case 12:
                     case "end":
-                      return _context34.stop();
+                      return _context43.stop();
                   }
                 }
-              }, _callee34, this, [[2,, 8, 12]]);
+              }, _callee43, this, [[2,, 8, 12]]);
             }));
           }
         }, {
@@ -9514,107 +10538,107 @@
         }, {
           key: "silentInject",
           value: function silentInject(ops) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee36() {
-              var _this27 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee45() {
+              var _this32 = this;
 
               var _iterator8, _step8, op, keys;
 
-              return regeneratorRuntime.wrap(function _callee36$(_context36) {
+              return regeneratorRuntime.wrap(function _callee45$(_context45) {
                 while (1) {
-                  switch (_context36.prev = _context36.next) {
+                  switch (_context45.prev = _context45.next) {
                     case 0:
                       if (this.walletService.isEmbeddedTorusWallet()) {
-                        _context36.next = 3;
+                        _context45.next = 3;
                         break;
                       }
 
                       this.operationResponse.emit('UNSUPPORTED_WALLET_TYPE');
-                      return _context36.abrupt("return");
+                      return _context45.abrupt("return");
 
                     case 3:
                       _iterator8 = _createForOfIteratorHelper(ops);
-                      _context36.prev = 4;
+                      _context45.prev = 4;
 
                       _iterator8.s();
 
                     case 6:
                       if ((_step8 = _iterator8.n()).done) {
-                        _context36.next = 13;
+                        _context45.next = 13;
                         break;
                       }
 
                       op = _step8.value;
 
                       if (!(op.kind !== 'transaction')) {
-                        _context36.next = 11;
+                        _context45.next = 11;
                         break;
                       }
 
                       this.operationResponse.emit('UNSUPPORTED_KIND');
-                      return _context36.abrupt("break", 13);
+                      return _context45.abrupt("break", 13);
 
                     case 11:
-                      _context36.next = 6;
+                      _context45.next = 6;
                       break;
 
                     case 13:
-                      _context36.next = 18;
+                      _context45.next = 18;
                       break;
 
                     case 15:
-                      _context36.prev = 15;
-                      _context36.t0 = _context36["catch"](4);
+                      _context45.prev = 15;
+                      _context45.t0 = _context45["catch"](4);
 
-                      _iterator8.e(_context36.t0);
+                      _iterator8.e(_context45.t0);
 
                     case 18:
-                      _context36.prev = 18;
+                      _context45.prev = 18;
 
                       _iterator8.f();
 
-                      return _context36.finish(18);
+                      return _context45.finish(18);
 
                     case 21:
                       this.messageService.startSpinner('Sending transaction...');
-                      _context36.prev = 22;
-                      _context36.next = 25;
+                      _context45.prev = 22;
+                      _context45.next = 25;
                       return this.walletService.getKeys('', this.activeAccount.pkh);
 
                     case 25:
-                      keys = _context36.sent;
-                      _context36.next = 31;
+                      keys = _context45.sent;
+                      _context45.next = 31;
                       break;
 
                     case 28:
-                      _context36.prev = 28;
-                      _context36.t1 = _context36["catch"](22);
+                      _context45.prev = 28;
+                      _context45.t1 = _context45["catch"](22);
                       this.messageService.stopSpinner();
 
                     case 31:
                       if (keys) {
-                        _context36.next = 34;
+                        _context45.next = 34;
                         break;
                       }
 
                       this.operationResponse.emit('FAILED_TO_SIGN');
-                      return _context36.abrupt("return");
+                      return _context45.abrupt("return");
 
                     case 34:
                       this.operationService.transfer(this.activeAccount.address, ops, Number(ops[ops.length - 1].fee), keys, '').subscribe(function (ans) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this27, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee35() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this32, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee44() {
                           var metadata, _iterator9, _step9, transaction;
 
-                          return regeneratorRuntime.wrap(function _callee35$(_context35) {
+                          return regeneratorRuntime.wrap(function _callee44$(_context44) {
                             while (1) {
-                              switch (_context35.prev = _context35.next) {
+                              switch (_context44.prev = _context44.next) {
                                 case 0:
                                   if (!(ans.success === true)) {
-                                    _context35.next = 28;
+                                    _context44.next = 28;
                                     break;
                                   }
 
                                   console.log('Transaction successful ', ans);
-                                  _context35.next = 4;
+                                  _context44.next = 4;
                                   return this.messageService.stopSpinner();
 
                                 case 4:
@@ -9623,58 +10647,58 @@
                                     transactions: ops,
                                     opHash: ans.payload.opHash
                                   };
-                                  _context35.next = 8;
+                                  _context44.next = 8;
                                   return this.coordinatorService.boost(this.activeAccount.address, metadata);
 
                                 case 8:
                                   _iterator9 = _createForOfIteratorHelper(ops);
-                                  _context35.prev = 9;
+                                  _context44.prev = 9;
 
                                   _iterator9.s();
 
                                 case 11:
                                   if ((_step9 = _iterator9.n()).done) {
-                                    _context35.next = 18;
+                                    _context44.next = 18;
                                     break;
                                   }
 
                                   transaction = _step9.value;
 
                                   if (!this.walletService.addressExists(transaction.destination)) {
-                                    _context35.next = 16;
+                                    _context44.next = 16;
                                     break;
                                   }
 
-                                  _context35.next = 16;
+                                  _context44.next = 16;
                                   return this.coordinatorService.boost(transaction.destination);
 
                                 case 16:
-                                  _context35.next = 11;
+                                  _context44.next = 11;
                                   break;
 
                                 case 18:
-                                  _context35.next = 23;
+                                  _context44.next = 23;
                                   break;
 
                                 case 20:
-                                  _context35.prev = 20;
-                                  _context35.t0 = _context35["catch"](9);
+                                  _context44.prev = 20;
+                                  _context44.t0 = _context44["catch"](9);
 
-                                  _iterator9.e(_context35.t0);
+                                  _iterator9.e(_context44.t0);
 
                                 case 23:
-                                  _context35.prev = 23;
+                                  _context44.prev = 23;
 
                                   _iterator9.f();
 
-                                  return _context35.finish(23);
+                                  return _context44.finish(23);
 
                                 case 26:
-                                  _context35.next = 33;
+                                  _context44.next = 33;
                                   break;
 
                                 case 28:
-                                  _context35.next = 30;
+                                  _context44.next = 30;
                                   return this.messageService.stopSpinner();
 
                                 case 30:
@@ -9684,25 +10708,25 @@
 
                                 case 33:
                                 case "end":
-                                  return _context35.stop();
+                                  return _context44.stop();
                               }
                             }
-                          }, _callee35, this, [[9, 20, 23, 26]]);
+                          }, _callee44, this, [[9, 20, 23, 26]]);
                         }));
                       }, function (err) {
-                        _this27.messageService.stopSpinner();
+                        _this32.messageService.stopSpinner();
 
                         console.log(err);
 
-                        _this27.operationResponse.emit('UNKNOWN_ERROR');
+                        _this32.operationResponse.emit('UNKNOWN_ERROR');
                       });
 
                     case 35:
                     case "end":
-                      return _context36.stop();
+                      return _context45.stop();
                   }
                 }
-              }, _callee36, this, [[4, 15, 18, 21], [22, 28]]);
+              }, _callee45, this, [[4, 15, 18, 21], [22, 28]]);
             }));
           }
         }]);
@@ -9825,6 +10849,149 @@
       })();
       /***/
 
+    },
+
+    /***/
+    "PYrL":
+    /*!******************************!*\
+      !*** ../icabod/dist/icon.js ***!
+      \******************************/
+
+    /*! exports provided: IconUI */
+
+    /***/
+    function PYrL(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "IconUI", function () {
+        return IconUI;
+      });
+
+      var __classPrivateFieldGet = undefined && undefined.__classPrivateFieldGet || function (receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+          throw new TypeError("attempted to get private field on non-instance");
+        }
+
+        return privateMap.get(receiver);
+      };
+
+      var _getIcon;
+
+      var iconId = 'kukai-icon';
+
+      var IconUI = /*#__PURE__*/function () {
+        function IconUI() {
+          _classCallCheck(this, IconUI);
+
+          _getIcon.set(this, function () {
+            return document.getElementById(iconId);
+          });
+        }
+
+        _createClass(IconUI, [{
+          key: "init",
+          value: function () {
+            var _init4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee46(cb, styleClass) {
+              var _a, icon, k;
+
+              return regeneratorRuntime.wrap(function _callee46$(_context46) {
+                while (1) {
+                  switch (_context46.prev = _context46.next) {
+                    case 0:
+                      if (this.isInit) {
+                        _context46.next = 15;
+                        break;
+                      }
+
+                      icon = document.createElement('button');
+                      icon.id = iconId;
+                      k = document.createElement('img');
+                      k.style.width = '60px';
+                      k.style.height = '60px';
+                      k.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAEhQTFRF0dH/amn+urn/o6L+8/P/U1L+9PP/Xl3+mJf+3dz/gYD+3Nz/xcX/jIz+jIv+o6P/dXT+urr/xsX/6Oj/r67/////R0b+////pIBhiAAAABh0Uk5T//////////////////////////////8AzRMu6gAAAaZJREFUeNqsl9uSgyAMhgNyUNS2eyB9/zddXHW1QAKW/ccrhm8MSUgCPAkpkN2vJChqD2RBOVs8yc5SVcLgMCMHFbC0SMjKAgwCGQlgYNVjQb2i4FFgUWLMw5PGCukpB0uslEzhavZE7/CEFzS9wqO+AuvxDCuBlyTUCe7xovoDBrws+IMTox/Rin3EPhE7HEdJD94P59037/0tE68Fju9RH/b6/pX1Jr5jK5ycGJbN8Mp6nzl1+BwPu5VNfuEWWCELC/PLmjQTVIAlC9NscBk8Zw5mWJwDbBl4CRrFBn+DQhpm2XBoABousAggafiDZ1FCR8Irm+TloY6GN9YPb8CH7i2wF2/B5pM1nIWN0F+c4R0ZqjVGjjNckkmyxZczHMj03HLDGtpwxV+MvSZlDbelKxk0UIbPxWIQyjCVKrJchhC/CcNVRQFEbbIV0FWV3j3Yj1zpTfwdw1vg77min7gs7hgofLxytJu40WmIehXeTLwi6BYrYtfquG/C/zT3trGiaaBpG6Xahri28bFtcG0bmduG9bZnQuMDpfFp1Pgoq38O/ggwACoyIQpeKqtUAAAAAElFTkSuQmCC';
+                      icon.innerHTML = k.outerHTML;
+
+                      if (styleClass) {
+                        icon.className = styleClass;
+                      } else {
+                        icon.style.width = '60px';
+                        icon.style.height = '60px';
+                        icon.style.bottom = '40px';
+                        icon.style.left = '40px';
+                        icon.style.position = 'fixed';
+                        icon.style.borderRadius = '50px';
+                        icon.style.boxShadow = '2px 2px 3px #999';
+                        icon.style.padding = '0';
+                        icon.style.border = '0';
+                      }
+
+                      icon.style.zIndex = '99998';
+                      icon.style.display = 'none';
+                      document.body.appendChild(icon);
+                      (_a = __classPrivateFieldGet(this, _getIcon).call(this)) === null || _a === void 0 ? void 0 : _a.addEventListener('click', cb);
+                      _context46.next = 16;
+                      break;
+
+                    case 15:
+                      throw new Error("Kukai-Embed Already Present");
+
+                    case 16:
+                    case "end":
+                      return _context46.stop();
+                  }
+                }
+              }, _callee46, this);
+            }));
+
+            function init(_x8, _x9) {
+              return _init4.apply(this, arguments);
+            }
+
+            return init;
+          }()
+        }, {
+          key: "deinit",
+          value: function deinit() {
+            var i = __classPrivateFieldGet(this, _getIcon).call(this);
+
+            if (i) {
+              document.body.removeChild(i);
+            }
+          }
+        }, {
+          key: "show",
+          value: function show() {
+            var i = __classPrivateFieldGet(this, _getIcon).call(this);
+
+            if (i) {
+              i.style.display = 'block';
+            }
+          }
+        }, {
+          key: "hide",
+          value: function hide() {
+            var i = __classPrivateFieldGet(this, _getIcon).call(this);
+
+            if (i) {
+              i.style.display = 'none';
+            }
+          }
+        }, {
+          key: "isInit",
+          get: function get() {
+            return !!__classPrivateFieldGet(this, _getIcon).call(this);
+          }
+        }]);
+
+        return IconUI;
+      }();
+
+      _getIcon = new WeakMap();
+      /***/
     },
 
     /***/
@@ -9969,14 +11136,14 @@
         }, {
           key: "check",
           value: function check(address) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee38() {
-              var _this28 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee48() {
+              var _this33 = this;
 
               var _this$index2, x;
 
-              return regeneratorRuntime.wrap(function _callee38$(_context38) {
+              return regeneratorRuntime.wrap(function _callee48$(_context48) {
                 while (1) {
-                  switch (_context38.prev = _context38.next) {
+                  switch (_context48.prev = _context48.next) {
                     case 0:
                       this.initCheck();
 
@@ -9986,20 +11153,20 @@
                         if (!this.pendingLookups[address] && x === -1) {
                           this.pendingLookups[address] = true;
                           this.operationService.torusKeyLookup(address).subscribe(function (ans) {
-                            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this28, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee37() {
+                            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this33, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee47() {
                               var keys, verifierMap, _i3, _keys, key, verifierId, verifierArray, twitterId, _yield$this$torusServ2, username;
 
-                              return regeneratorRuntime.wrap(function _callee37$(_context37) {
+                              return regeneratorRuntime.wrap(function _callee47$(_context47) {
                                 while (1) {
-                                  switch (_context37.prev = _context37.next) {
+                                  switch (_context47.prev = _context47.next) {
                                     case 0:
                                       if (!ans) {
-                                        _context37.next = 35;
+                                        _context47.next = 35;
                                         break;
                                       }
 
                                       if (!(ans.result && ans.result.Verifiers)) {
-                                        _context37.next = 34;
+                                        _context47.next = 34;
                                         break;
                                       }
 
@@ -10009,34 +11176,34 @@
 
                                     case 5:
                                       if (!(_i3 < _keys.length)) {
-                                        _context37.next = 31;
+                                        _context47.next = 31;
                                         break;
                                       }
 
                                       key = _keys[_i3];
 
                                       if (!(key === verifierMap['google'].verifier)) {
-                                        _context37.next = 11;
+                                        _context47.next = 11;
                                         break;
                                       }
 
                                       this.add(address, ans.result.Verifiers[verifierMap['google'].verifier][0], LookupType.Google);
-                                      _context37.next = 28;
+                                      _context47.next = 28;
                                       break;
 
                                     case 11:
                                       if (!(key === verifierMap['reddit'].verifier)) {
-                                        _context37.next = 15;
+                                        _context47.next = 15;
                                         break;
                                       }
 
                                       this.add(address, ans.result.Verifiers[verifierMap['reddit'].verifier][0], LookupType.Reddit);
-                                      _context37.next = 28;
+                                      _context47.next = 28;
                                       break;
 
                                     case 15:
                                       if (!(key === verifierMap['twitter'].verifier)) {
-                                        _context37.next = 27;
+                                        _context47.next = 27;
                                         break;
                                       }
 
@@ -10044,16 +11211,16 @@
                                       verifierArray = verifierId.split('|');
 
                                       if (!(verifierArray[0] === 'twitter' && this.inputValidationService.twitterId(verifierArray[1]))) {
-                                        _context37.next = 25;
+                                        _context47.next = 25;
                                         break;
                                       }
 
                                       twitterId = verifierArray[1];
-                                      _context37.next = 22;
+                                      _context47.next = 22;
                                       return this.torusService.twitterLookup(undefined, twitterId);
 
                                     case 22:
-                                      _yield$this$torusServ2 = _context37.sent;
+                                      _yield$this$torusServ2 = _context47.sent;
                                       username = _yield$this$torusServ2.username;
 
                                       if (username) {
@@ -10061,7 +11228,7 @@
                                       }
 
                                     case 25:
-                                      _context37.next = 28;
+                                      _context47.next = 28;
                                       break;
 
                                     case 27:
@@ -10069,12 +11236,12 @@
 
                                     case 28:
                                       _i3++;
-                                      _context37.next = 5;
+                                      _context47.next = 5;
                                       break;
 
                                     case 31:
                                       this.pendingLookups[address] = false;
-                                      _context37.next = 35;
+                                      _context47.next = 35;
                                       break;
 
                                     case 34:
@@ -10084,10 +11251,10 @@
 
                                     case 35:
                                     case "end":
-                                      return _context37.stop();
+                                      return _context47.stop();
                                   }
                                 }
-                              }, _callee37, this);
+                              }, _callee47, this);
                             }));
                           });
                         }
@@ -10095,10 +11262,10 @@
 
                     case 2:
                     case "end":
-                      return _context38.stop();
+                      return _context48.stop();
                   }
                 }
-              }, _callee38, this);
+              }, _callee48, this);
             }));
           }
         }, {
@@ -12112,7 +13279,7 @@
         _createClass(AppComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this29 = this;
+            var _this34 = this;
 
             this.checkEmbedded();
 
@@ -12126,31 +13293,31 @@
 
             this.router.events.subscribe(function (event) {
               if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__["NavigationEnd"]) {
-                _this29.checkEmbedded();
+                _this34.checkEmbedded();
 
                 window.scrollTo(0, 0);
               }
             });
             window.addEventListener('storage', function (e) {
-              _this29.handleStorageEvent(e);
+              _this34.handleStorageEvent(e);
             });
           }
         }, {
           key: "handleStorageEvent",
           value: function handleStorageEvent(e) {
-            var _this30 = this;
+            var _this35 = this;
 
             if (e.key === 'kukai-wallet') {
               if (e.oldValue && !e.newValue) {
                 window.location.reload();
               } else if (!e.oldValue && e.newValue) {
                 setTimeout(function () {
-                  return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this30, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee39() {
-                    return regeneratorRuntime.wrap(function _callee39$(_context39) {
+                  return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this35, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee49() {
+                    return regeneratorRuntime.wrap(function _callee49$(_context49) {
                       while (1) {
-                        switch (_context39.prev = _context39.next) {
+                        switch (_context49.prev = _context49.next) {
                           case 0:
-                            _context39.next = 2;
+                            _context49.next = 2;
                             return this.router.navigate(['']);
 
                           case 2:
@@ -12158,10 +13325,10 @@
 
                           case 3:
                           case "end":
-                            return _context39.stop();
+                            return _context49.stop();
                         }
                       }
-                    }, _callee39, this);
+                    }, _callee49, this);
                   }));
                 }, 10000);
               }
@@ -12353,13 +13520,13 @@
             key: "encrypt",
             value: function encrypt(plaintext, password, version) {
               var salt = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee40() {
-                return regeneratorRuntime.wrap(function _callee40$(_context40) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee50() {
+                return regeneratorRuntime.wrap(function _callee50$(_context50) {
                   while (1) {
-                    switch (_context40.prev = _context40.next) {
+                    switch (_context50.prev = _context50.next) {
                       case 0:
                         if (!(version === 1)) {
-                          _context40.next = 4;
+                          _context50.next = 4;
                           break;
                         }
 
@@ -12367,75 +13534,75 @@
 
                       case 4:
                         if (!(version === 2)) {
-                          _context40.next = 8;
+                          _context50.next = 8;
                           break;
                         }
 
-                        return _context40.abrupt("return", this.encrypt_v2(plaintext, password));
+                        return _context50.abrupt("return", this.encrypt_v2(plaintext, password));
 
                       case 8:
                         if (!(version === 3)) {
-                          _context40.next = 12;
+                          _context50.next = 12;
                           break;
                         }
 
-                        return _context40.abrupt("return", this.encrypt_v2(plaintext, password, salt));
+                        return _context50.abrupt("return", this.encrypt_v2(plaintext, password, salt));
 
                       case 12:
                         throw new Error('Unrecognized encryption format');
 
                       case 13:
                       case "end":
-                        return _context40.stop();
+                        return _context50.stop();
                     }
                   }
-                }, _callee40, this);
+                }, _callee50, this);
               }));
             }
           }, {
             key: "decrypt",
             value: function decrypt(chiphertext, password, salt, version) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee41() {
-                return regeneratorRuntime.wrap(function _callee41$(_context41) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee51() {
+                return regeneratorRuntime.wrap(function _callee51$(_context51) {
                   while (1) {
-                    switch (_context41.prev = _context41.next) {
+                    switch (_context51.prev = _context51.next) {
                       case 0:
                         if (!(version === 1)) {
-                          _context41.next = 4;
+                          _context51.next = 4;
                           break;
                         }
 
-                        return _context41.abrupt("return", this.decrypt_v1(chiphertext, password, salt));
+                        return _context51.abrupt("return", this.decrypt_v1(chiphertext, password, salt));
 
                       case 4:
                         if (!(version === 2 || version === 3)) {
-                          _context41.next = 8;
+                          _context51.next = 8;
                           break;
                         }
 
-                        return _context41.abrupt("return", this.decrypt_v2(chiphertext, password, salt));
+                        return _context51.abrupt("return", this.decrypt_v2(chiphertext, password, salt));
 
                       case 8:
                         throw new Error('Unrecognized encryption format');
 
                       case 9:
                       case "end":
-                        return _context41.stop();
+                        return _context51.stop();
                     }
                   }
-                }, _callee41, this);
+                }, _callee51, this);
               }));
             } // Version 1
 
           }, {
             key: "encrypt_v1",
             value: function encrypt_v1(plaintext, password, salt) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee42() {
-                return regeneratorRuntime.wrap(function _callee42$(_context42) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee52() {
+                return regeneratorRuntime.wrap(function _callee52$(_context52) {
                   while (1) {
-                    switch (_context42.prev = _context42.next) {
+                    switch (_context52.prev = _context52.next) {
                       case 0:
-                        return _context42.abrupt("return", new Promise(function (resolve) {
+                        return _context52.abrupt("return", new Promise(function (resolve) {
                           try {
                             if (!password || !salt) {
                               throw new Error('Missing password or salt');
@@ -12459,21 +13626,21 @@
 
                       case 1:
                       case "end":
-                        return _context42.stop();
+                        return _context52.stop();
                     }
                   }
-                }, _callee42);
+                }, _callee52);
               }));
             }
           }, {
             key: "decrypt_v1",
             value: function decrypt_v1(chiphertext, password, salt) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee43() {
-                return regeneratorRuntime.wrap(function _callee43$(_context43) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee53() {
+                return regeneratorRuntime.wrap(function _callee53$(_context53) {
                   while (1) {
-                    switch (_context43.prev = _context43.next) {
+                    switch (_context53.prev = _context53.next) {
                       case 0:
-                        return _context43.abrupt("return", new Promise(function (resolve) {
+                        return _context53.abrupt("return", new Promise(function (resolve) {
                           try {
                             if (!password || !salt) {
                               throw new Error('Missing password or salt');
@@ -12496,24 +13663,24 @@
 
                       case 1:
                       case "end":
-                        return _context43.stop();
+                        return _context53.stop();
                     }
                   }
-                }, _callee43);
+                }, _callee53);
               }));
             } // Version 2
 
           }, {
             key: "encrypt_v2",
             value: function encrypt_v2(plaintext, password, salt) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee44() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee54() {
                 var salty, key, cipher, byteStringBuffer, chiphertext;
-                return regeneratorRuntime.wrap(function _callee44$(_context44) {
+                return regeneratorRuntime.wrap(function _callee54$(_context54) {
                   while (1) {
-                    switch (_context44.prev = _context44.next) {
+                    switch (_context54.prev = _context54.next) {
                       case 0:
                         if (password) {
-                          _context44.next = 2;
+                          _context54.next = 2;
                           break;
                         }
 
@@ -12526,11 +13693,11 @@
                           salty = crypto_browserify__WEBPACK_IMPORTED_MODULE_5__["randomBytes"](16);
                         }
 
-                        _context44.next = 5;
+                        _context54.next = 5;
                         return scryptsy__WEBPACK_IMPORTED_MODULE_4__["async"](password, salty, 65536, 8, 1, 32);
 
                       case 5:
-                        key = _context44.sent;
+                        key = _context54.sent;
                         cipher = node_forge__WEBPACK_IMPORTED_MODULE_6__["cipher"].createCipher('AES-GCM', key.toString('binary'));
                         cipher.start({
                           iv: salty
@@ -12539,32 +13706,32 @@
                         cipher.update(byteStringBuffer);
                         cipher.finish();
                         chiphertext = cipher.output.toHex() + '==' + cipher.mode.tag.toHex();
-                        return _context44.abrupt("return", {
+                        return _context54.abrupt("return", {
                           chiphertext: chiphertext,
                           iv: salty.toString('hex')
                         });
 
                       case 13:
                       case "end":
-                        return _context44.stop();
+                        return _context54.stop();
                     }
                   }
-                }, _callee44);
+                }, _callee54);
               }));
             }
           }, {
             key: "decrypt_v2",
             value: function decrypt_v2(chipher, password, salt) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee45() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee55() {
                 var parts, chiphertext, tag, key, decipher, pass;
-                return regeneratorRuntime.wrap(function _callee45$(_context45) {
+                return regeneratorRuntime.wrap(function _callee55$(_context55) {
                   while (1) {
-                    switch (_context45.prev = _context45.next) {
+                    switch (_context55.prev = _context55.next) {
                       case 0:
-                        _context45.prev = 0;
+                        _context55.prev = 0;
 
                         if (!(!password || !salt)) {
-                          _context45.next = 3;
+                          _context55.next = 3;
                           break;
                         }
 
@@ -12574,11 +13741,11 @@
                         parts = chipher.split('==');
                         chiphertext = parts[0];
                         tag = parts[1];
-                        _context45.next = 8;
+                        _context55.next = 8;
                         return scryptsy__WEBPACK_IMPORTED_MODULE_4__["async"](password, new Buffer(salt, 'hex'), 65536, 8, 1, 32);
 
                       case 8:
-                        key = _context45.sent;
+                        key = _context55.sent;
                         decipher = node_forge__WEBPACK_IMPORTED_MODULE_6__["cipher"].createDecipher('AES-GCM', key.toString('binary'));
                         decipher.start({
                           iv: new Buffer(salt, 'hex'),
@@ -12588,30 +13755,30 @@
                         pass = decipher.finish();
 
                         if (!pass) {
-                          _context45.next = 17;
+                          _context55.next = 17;
                           break;
                         }
 
-                        return _context45.abrupt("return", new Buffer(decipher.output.toHex(), 'hex'));
+                        return _context55.abrupt("return", new Buffer(decipher.output.toHex(), 'hex'));
 
                       case 17:
-                        return _context45.abrupt("return", null);
+                        return _context55.abrupt("return", null);
 
                       case 18:
-                        _context45.next = 23;
+                        _context55.next = 23;
                         break;
 
                       case 20:
-                        _context45.prev = 20;
-                        _context45.t0 = _context45["catch"](0);
-                        return _context45.abrupt("return", null);
+                        _context55.prev = 20;
+                        _context55.t0 = _context55["catch"](0);
+                        return _context55.abrupt("return", null);
 
                       case 23:
                       case "end":
-                        return _context45.stop();
+                        return _context55.stop();
                     }
                   }
-                }, _callee45, null, [[0, 20]]);
+                }, _callee55, null, [[0, 20]]);
               }));
             }
           }, {
@@ -13671,11 +14838,11 @@
         }, {
           key: "getDelegate",
           value: function getDelegate(account) {
-            var _this31 = this;
+            var _this36 = this;
 
             this.operationService.getDelegate(account.address).subscribe(function (data) {
               if (data.success) {
-                _this31.handleDelegateResponse(account, data.payload.delegate);
+                _this36.handleDelegateResponse(account, data.payload.delegate);
               }
             }, function (err) {
               return console.log(JSON.stringify(err));
@@ -15060,12 +16227,12 @@
           _createClass(TzktService, [{
             key: "getContractAddresses",
             value: function getContractAddresses(pkh) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee46() {
-                return regeneratorRuntime.wrap(function _callee46$(_context46) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee56() {
+                return regeneratorRuntime.wrap(function _callee56$(_context56) {
                   while (1) {
-                    switch (_context46.prev = _context46.next) {
+                    switch (_context56.prev = _context56.next) {
                       case 0:
-                        return _context46.abrupt("return", fetch("https://api.".concat(this.network, ".tzkt.io/v1/operations/originations?contractManager=").concat(pkh)).then(function (response) {
+                        return _context56.abrupt("return", fetch("https://api.".concat(this.network, ".tzkt.io/v1/operations/originations?contractManager=").concat(pkh)).then(function (response) {
                           return response.json();
                         }).then(function (data) {
                           return data.map(function (op) {
@@ -15079,25 +16246,25 @@
 
                       case 1:
                       case "end":
-                        return _context46.stop();
+                        return _context56.stop();
                     }
                   }
-                }, _callee46, this);
+                }, _callee56, this);
               }));
             }
           }, {
             key: "accountInfo",
             value: function accountInfo(address) {
               var knownTokenIds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee47() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee57() {
                 var tokens, unknownTokenIds;
-                return regeneratorRuntime.wrap(function _callee47$(_context47) {
+                return regeneratorRuntime.wrap(function _callee57$(_context57) {
                   while (1) {
-                    switch (_context47.prev = _context47.next) {
+                    switch (_context57.prev = _context57.next) {
                       case 0:
                         tokens = [];
                         unknownTokenIds = [];
-                        return _context47.abrupt("return", fetch("".concat(this.bcd, "/account/").concat(this.network, "/").concat(address)).then(function (response) {
+                        return _context57.abrupt("return", fetch("".concat(this.bcd, "/account/").concat(this.network, "/").concat(address)).then(function (response) {
                           return response.json();
                         }).then(function (data) {
                           var _a;
@@ -15152,10 +16319,10 @@
 
                       case 3:
                       case "end":
-                        return _context47.stop();
+                        return _context57.stop();
                     }
                   }
-                }, _callee47, this);
+                }, _callee57, this);
               }));
             }
           }, {
@@ -15163,15 +16330,15 @@
             value: function getOperations(address) {
               var knownTokenIds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
               var wallet = arguments.length > 2 ? arguments[2] : undefined;
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee48() {
-                var _this32 = this;
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee58() {
+                var _this37 = this;
 
                 var ops, unknownTokenIds, tokenTxs, operations;
-                return regeneratorRuntime.wrap(function _callee48$(_context48) {
+                return regeneratorRuntime.wrap(function _callee58$(_context58) {
                   while (1) {
-                    switch (_context48.prev = _context48.next) {
+                    switch (_context58.prev = _context58.next) {
                       case 0:
-                        _context48.next = 2;
+                        _context58.next = 2;
                         return fetch("https://api.".concat(this.network, ".tzkt.io/v1/accounts/").concat(address, "/operations?limit=20&type=delegation,origination,transaction")).then(function (response) {
                           return response.json();
                         }).then(function (data) {
@@ -15191,7 +16358,7 @@
 
                                   destination = op.target;
                                   amount = op.amount.toString();
-                                  entrypoint = _this32.extractEntrypoint(op);
+                                  entrypoint = _this37.extractEntrypoint(op);
                                   break;
 
                                 case 'delegation':
@@ -15238,9 +16405,9 @@
                         });
 
                       case 2:
-                        ops = _context48.sent;
+                        ops = _context58.sent;
                         unknownTokenIds = [];
-                        _context48.next = 6;
+                        _context58.next = 6;
                         return fetch("".concat(this.bcd, "/tokens/").concat(this.network, "/transfers/").concat(address, "?size=20")).then(function (response) {
                           return response.json();
                         }).then(function (data) {
@@ -15295,21 +16462,21 @@
                         });
 
                       case 6:
-                        tokenTxs = _context48.sent;
+                        tokenTxs = _context58.sent;
                         operations = ops.concat(tokenTxs).sort(function (a, b) {
                           return b.timestamp - a.timestamp;
                         });
-                        return _context48.abrupt("return", {
+                        return _context58.abrupt("return", {
                           operations: operations,
                           unknownTokenIds: unknownTokenIds
                         });
 
                       case 9:
                       case "end":
-                        return _context48.stop();
+                        return _context58.stop();
                     }
                   }
-                }, _callee48, this);
+                }, _callee58, this);
               }));
             }
           }, {
@@ -15336,13 +16503,13 @@
           }, {
             key: "getTokenMetadata",
             value: function getTokenMetadata(contractAddress, id) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee49() {
-                var _this33 = this;
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee59() {
+                var _this38 = this;
 
                 var tokenKind, contractMetadata, tokenMetadata, ans;
-                return regeneratorRuntime.wrap(function _callee49$(_context49) {
+                return regeneratorRuntime.wrap(function _callee59$(_context59) {
                   while (1) {
-                    switch (_context49.prev = _context49.next) {
+                    switch (_context59.prev = _context59.next) {
                       case 0:
                         tokenKind = fetch("".concat(this.bcd, "/contract/").concat(this.network, "/").concat(contractAddress)).then(function (response) {
                           return response.json();
@@ -15421,7 +16588,7 @@
                               var data = _step13.value;
 
                               if ((data === null || data === void 0 ? void 0 : data.token_id) === Number(id)) {
-                                _this33.flattern(data);
+                                _this38.flattern(data);
 
                                 var metadata = {};
 
@@ -15443,11 +16610,11 @@
                                 }
 
                                 if (metadata.displayUri) {
-                                  metadata.displayUri = _this33.uriToUrl(metadata.displayUri);
+                                  metadata.displayUri = _this38.uriToUrl(metadata.displayUri);
                                 }
 
                                 if (metadata.thumbnailUri) {
-                                  metadata.thumbnailUri = _this33.uriToUrl(metadata.thumbnailUri);
+                                  metadata.thumbnailUri = _this38.uriToUrl(metadata.thumbnailUri);
                                 }
 
                                 return metadata;
@@ -15464,7 +16631,7 @@
                         })["catch"](function (e) {
                           return {};
                         });
-                        _context49.next = 5;
+                        _context59.next = 5;
                         return Promise.all([contractMetadata, tokenMetadata, tokenKind]).then(function (res) {
                           var merged = Object.assign(Object.assign({}, res[0]), res[1]);
 
@@ -15476,15 +16643,15 @@
                         });
 
                       case 5:
-                        ans = _context49.sent;
-                        return _context49.abrupt("return", ans ? ans : null);
+                        ans = _context59.sent;
+                        return _context59.abrupt("return", ans ? ans : null);
 
                       case 7:
                       case "end":
-                        return _context49.stop();
+                        return _context59.stop();
                     }
                   }
-                }, _callee49, this);
+                }, _callee59, this);
               }));
             }
           }, {
@@ -15513,63 +16680,63 @@
           }, {
             key: "getTokenMetadataDepricated",
             value: function getTokenMetadataDepricated(contractAddress, id) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee50() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee60() {
                 var bigMapId, tokenMetadata, contractMetadata, metadata;
-                return regeneratorRuntime.wrap(function _callee50$(_context50) {
+                return regeneratorRuntime.wrap(function _callee60$(_context60) {
                   while (1) {
-                    switch (_context50.prev = _context50.next) {
+                    switch (_context60.prev = _context60.next) {
                       case 0:
                         console.log(contractAddress + ':' + id);
-                        _context50.next = 3;
+                        _context60.next = 3;
                         return this.getBigMapIds(contractAddress);
 
                       case 3:
-                        bigMapId = _context50.sent;
+                        bigMapId = _context60.sent;
 
                         if (!(bigMapId.token !== -1)) {
-                          _context50.next = 13;
+                          _context60.next = 13;
                           break;
                         }
 
-                        _context50.next = 7;
+                        _context60.next = 7;
                         return this.extractTokenMetadata(bigMapId.token, id);
 
                       case 7:
-                        tokenMetadata = _context50.sent;
-                        _context50.next = 10;
+                        tokenMetadata = _context60.sent;
+                        _context60.next = 10;
                         return this.extractContractMetadata(bigMapId.contract);
 
                       case 10:
-                        contractMetadata = _context50.sent;
+                        contractMetadata = _context60.sent;
                         metadata = Object.assign(Object.assign({}, tokenMetadata), contractMetadata);
-                        return _context50.abrupt("return", metadata);
+                        return _context60.abrupt("return", metadata);
 
                       case 13:
-                        return _context50.abrupt("return", null);
+                        return _context60.abrupt("return", null);
 
                       case 14:
                       case "end":
-                        return _context50.stop();
+                        return _context60.stop();
                     }
                   }
-                }, _callee50, this);
+                }, _callee60, this);
               }));
             }
           }, {
             key: "extractTokenMetadata",
             value: function extractTokenMetadata(bigMapId, id) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee51() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
                 var tokenBigMap, url, metadata, lookFor, _iterator15, _step15, child, _iterator16, _step16, child2, _iterator17, _step17, child3, _iterator18, _step18, key, _iterator19, _step19, _key, _iterator20, _step20, _key2, offChainMeta, _iterator21, _step21, _key3, _iterator22, _step22, _key4, _iterator23, _step23, _key5;
 
-                return regeneratorRuntime.wrap(function _callee51$(_context51) {
+                return regeneratorRuntime.wrap(function _callee61$(_context61) {
                   while (1) {
-                    switch (_context51.prev = _context51.next) {
+                    switch (_context61.prev = _context61.next) {
                       case 0:
-                        _context51.next = 2;
+                        _context61.next = 2;
                         return this.fetchApi("".concat(this.bcd, "/bigmap/").concat(this.network, "/").concat(bigMapId, "/keys?size=1000"));
 
                       case 2:
-                        tokenBigMap = _context51.sent;
+                        tokenBigMap = _context61.sent;
                         console.log("".concat(this.bcd, "/bigmap/").concat(this.network, "/").concat(bigMapId, "/keys"));
                         url = '';
                         metadata = {};
@@ -15578,40 +16745,40 @@
                           numbers: ['decimals'],
                           booleans: ['nonTransferable', 'booleanAmount', 'symbolPreference']
                         };
-                        _context51.prev = 7;
+                        _context61.prev = 7;
                         _iterator15 = _createForOfIteratorHelper(tokenBigMap);
-                        _context51.prev = 9;
+                        _context61.prev = 9;
 
                         _iterator15.s();
 
                       case 11:
                         if ((_step15 = _iterator15.n()).done) {
-                          _context51.next = 37;
+                          _context61.next = 37;
                           break;
                         }
 
                         child = _step15.value;
 
                         if (!(child.data.key.value === id.toString())) {
-                          _context51.next = 35;
+                          _context61.next = 35;
                           break;
                         }
 
                         _iterator16 = _createForOfIteratorHelper(child.data.value.children);
-                        _context51.prev = 15;
+                        _context61.prev = 15;
 
                         _iterator16.s();
 
                       case 17:
                         if ((_step16 = _iterator16.n()).done) {
-                          _context51.next = 26;
+                          _context61.next = 26;
                           break;
                         }
 
                         child2 = _step16.value;
 
                         if (!(child2.name === 'token_metadata_map')) {
-                          _context51.next = 24;
+                          _context61.next = 24;
                           break;
                         }
 
@@ -15684,69 +16851,69 @@
                           _iterator17.f();
                         }
 
-                        return _context51.abrupt("break", 26);
+                        return _context61.abrupt("break", 26);
 
                       case 24:
-                        _context51.next = 17;
+                        _context61.next = 17;
                         break;
 
                       case 26:
-                        _context51.next = 31;
+                        _context61.next = 31;
                         break;
 
                       case 28:
-                        _context51.prev = 28;
-                        _context51.t0 = _context51["catch"](15);
+                        _context61.prev = 28;
+                        _context61.t0 = _context61["catch"](15);
 
-                        _iterator16.e(_context51.t0);
+                        _iterator16.e(_context61.t0);
 
                       case 31:
-                        _context51.prev = 31;
+                        _context61.prev = 31;
 
                         _iterator16.f();
 
-                        return _context51.finish(31);
+                        return _context61.finish(31);
 
                       case 34:
-                        return _context51.abrupt("break", 37);
+                        return _context61.abrupt("break", 37);
 
                       case 35:
-                        _context51.next = 11;
+                        _context61.next = 11;
                         break;
 
                       case 37:
-                        _context51.next = 42;
+                        _context61.next = 42;
                         break;
 
                       case 39:
-                        _context51.prev = 39;
-                        _context51.t1 = _context51["catch"](9);
+                        _context61.prev = 39;
+                        _context61.t1 = _context61["catch"](9);
 
-                        _iterator15.e(_context51.t1);
+                        _iterator15.e(_context61.t1);
 
                       case 42:
-                        _context51.prev = 42;
+                        _context61.prev = 42;
 
                         _iterator15.f();
 
-                        return _context51.finish(42);
+                        return _context61.finish(42);
 
                       case 45:
-                        _context51.next = 51;
+                        _context61.next = 51;
                         break;
 
                       case 47:
-                        _context51.prev = 47;
-                        _context51.t2 = _context51["catch"](7);
-                        console.warn(_context51.t2);
-                        return _context51.abrupt("return", null);
+                        _context61.prev = 47;
+                        _context61.t2 = _context61["catch"](7);
+                        console.warn(_context61.t2);
+                        return _context61.abrupt("return", null);
 
                       case 51:
                         console.log(metadata);
                         console.log(url);
 
                         if (url) {
-                          _context51.next = 58;
+                          _context61.next = 58;
                           break;
                         }
 
@@ -15761,22 +16928,22 @@
                           metadata['displayUri'] = this.uriToUrl(metadata['displayUri']);
                         }
 
-                        return _context51.abrupt("return", metadata);
+                        return _context61.abrupt("return", metadata);
 
                       case 58:
-                        _context51.next = 60;
+                        _context61.next = 60;
                         return this.fetchApi("".concat(url));
 
                       case 60:
-                        offChainMeta = _context51.sent;
+                        offChainMeta = _context61.sent;
 
                         if (offChainMeta) {
-                          _context51.next = 64;
+                          _context61.next = 64;
                           break;
                         }
 
                         console.warn('Failed to fetch offchain metadata');
-                        return _context51.abrupt("return", null);
+                        return _context61.abrupt("return", null);
 
                       case 64:
                         console.log(offChainMeta);
@@ -15846,105 +17013,105 @@
                         }
 
                         console.log(metadata);
-                        return _context51.abrupt("return", metadata);
+                        return _context61.abrupt("return", metadata);
 
                       case 76:
                       case "end":
-                        return _context51.stop();
+                        return _context61.stop();
                     }
                   }
-                }, _callee51, this, [[7, 47], [9, 39, 42, 45], [15, 28, 31, 34]]);
+                }, _callee61, this, [[7, 47], [9, 39, 42, 45], [15, 28, 31, 34]]);
               }));
             }
           }, {
             key: "extractContractMetadata",
             value: function extractContractMetadata(bigMapId) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee52() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee62() {
                 var contractBigMap, url, _iterator24, _step24, child, metadata, contractMeta;
 
-                return regeneratorRuntime.wrap(function _callee52$(_context52) {
+                return regeneratorRuntime.wrap(function _callee62$(_context62) {
                   while (1) {
-                    switch (_context52.prev = _context52.next) {
+                    switch (_context62.prev = _context62.next) {
                       case 0:
-                        _context52.next = 2;
+                        _context62.next = 2;
                         return this.fetchApi("".concat(this.bcd, "/bigmap/").concat(this.network, "/").concat(bigMapId, "/keys"));
 
                       case 2:
-                        contractBigMap = _context52.sent;
+                        contractBigMap = _context62.sent;
                         url = '';
-                        _context52.prev = 4;
+                        _context62.prev = 4;
                         _iterator24 = _createForOfIteratorHelper(contractBigMap);
-                        _context52.prev = 6;
+                        _context62.prev = 6;
 
                         _iterator24.s();
 
                       case 8:
                         if ((_step24 = _iterator24.n()).done) {
-                          _context52.next = 15;
+                          _context62.next = 15;
                           break;
                         }
 
                         child = _step24.value;
 
                         if (!(child.data.key.value === '')) {
-                          _context52.next = 13;
+                          _context62.next = 13;
                           break;
                         }
 
                         url = this.uriToUrl(child.data.value.value);
-                        return _context52.abrupt("break", 15);
+                        return _context62.abrupt("break", 15);
 
                       case 13:
-                        _context52.next = 8;
+                        _context62.next = 8;
                         break;
 
                       case 15:
-                        _context52.next = 20;
+                        _context62.next = 20;
                         break;
 
                       case 17:
-                        _context52.prev = 17;
-                        _context52.t0 = _context52["catch"](6);
+                        _context62.prev = 17;
+                        _context62.t0 = _context62["catch"](6);
 
-                        _iterator24.e(_context52.t0);
+                        _iterator24.e(_context62.t0);
 
                       case 20:
-                        _context52.prev = 20;
+                        _context62.prev = 20;
 
                         _iterator24.f();
 
-                        return _context52.finish(20);
+                        return _context62.finish(20);
 
                       case 23:
-                        _context52.next = 28;
+                        _context62.next = 28;
                         break;
 
                       case 25:
-                        _context52.prev = 25;
-                        _context52.t1 = _context52["catch"](4);
-                        return _context52.abrupt("return", null);
+                        _context62.prev = 25;
+                        _context62.t1 = _context62["catch"](4);
+                        return _context62.abrupt("return", null);
 
                       case 28:
                         if (url) {
-                          _context52.next = 30;
+                          _context62.next = 30;
                           break;
                         }
 
-                        return _context52.abrupt("return", null);
+                        return _context62.abrupt("return", null);
 
                       case 30:
                         if (!(bigMapId !== -1)) {
-                          _context52.next = 44;
+                          _context62.next = 44;
                           break;
                         }
 
-                        _context52.prev = 31;
+                        _context62.prev = 31;
                         metadata = {};
-                        _context52.next = 35;
+                        _context62.next = 35;
                         return this.fetchApi("".concat(url));
 
                       case 35:
-                        contractMeta = _context52.sent;
+                        contractMeta = _context62.sent;
 
                         if (contractMeta.interfaces) {
                           if (contractMeta.interfaces.includes('TZIP-12')) {
@@ -15959,38 +17126,38 @@
                         }
 
                         console.log('contract metadata', metadata);
-                        return _context52.abrupt("return", metadata);
+                        return _context62.abrupt("return", metadata);
 
                       case 42:
-                        _context52.prev = 42;
-                        _context52.t2 = _context52["catch"](31);
+                        _context62.prev = 42;
+                        _context62.t2 = _context62["catch"](31);
 
                       case 44:
-                        return _context52.abrupt("return", null);
+                        return _context62.abrupt("return", null);
 
                       case 45:
                       case "end":
-                        return _context52.stop();
+                        return _context62.stop();
                     }
                   }
-                }, _callee52, this, [[4, 25], [6, 17, 20, 23], [31, 42]]);
+                }, _callee62, this, [[4, 25], [6, 17, 20, 23], [31, 42]]);
               }));
             }
           }, {
             key: "getBigMapIds",
             value: function getBigMapIds(contractAddress) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee53() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee63() {
                 var storage, token, contract, _iterator25, _step25, child, _iterator26, _step26, admin, _iterator27, _step27, asset;
 
-                return regeneratorRuntime.wrap(function _callee53$(_context53) {
+                return regeneratorRuntime.wrap(function _callee63$(_context63) {
                   while (1) {
-                    switch (_context53.prev = _context53.next) {
+                    switch (_context63.prev = _context63.next) {
                       case 0:
-                        _context53.next = 2;
+                        _context63.next = 2;
                         return this.fetchApi("".concat(this.bcd, "/contract/").concat(this.network, "/").concat(contractAddress, "/storage"));
 
                       case 2:
-                        storage = _context53.sent;
+                        storage = _context63.sent;
                         token = -1;
                         contract = -1;
 
@@ -16050,17 +17217,17 @@
                           console.log(e);
                         }
 
-                        return _context53.abrupt("return", {
+                        return _context63.abrupt("return", {
                           contract: contract,
                           token: token
                         });
 
                       case 7:
                       case "end":
-                        return _context53.stop();
+                        return _context63.stop();
                     }
                   }
-                }, _callee53, this);
+                }, _callee63, this);
               }));
             }
           }, {
@@ -16085,12 +17252,12 @@
           }, {
             key: "fetchApi",
             value: function fetchApi(url) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee54() {
-                return regeneratorRuntime.wrap(function _callee54$(_context54) {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee64() {
+                return regeneratorRuntime.wrap(function _callee64$(_context64) {
                   while (1) {
-                    switch (_context54.prev = _context54.next) {
+                    switch (_context64.prev = _context64.next) {
                       case 0:
-                        return _context54.abrupt("return", fetch(url).then(function (response) {
+                        return _context64.abrupt("return", fetch(url).then(function (response) {
                           return response.json();
                         }).then(function (data) {
                           return data;
@@ -16098,10 +17265,10 @@
 
                       case 1:
                       case "end":
-                        return _context54.stop();
+                        return _context64.stop();
                     }
                   }
-                }, _callee54);
+                }, _callee64);
               }));
             }
           }]);
@@ -16498,6 +17665,813 @@
     },
 
     /***/
+    "d9S5":
+    /*!**********************************!*\
+      !*** ../icabod/dist/messages.js ***!
+      \**********************************/
+
+    /*! exports provided: KukaiMessaging */
+
+    /***/
+    function d9S5(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "KukaiMessaging", function () {
+        return KukaiMessaging;
+      });
+      /* harmony import */
+
+
+      var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! ./types */
+      "874q");
+      /* harmony import */
+
+
+      var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./util */
+      "D5E+");
+
+      var __classPrivateFieldSet = undefined && undefined.__classPrivateFieldSet || function (receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+          throw new TypeError("attempted to set private field on non-instance");
+        }
+
+        privateMap.set(receiver, value);
+        return value;
+      };
+
+      var __classPrivateFieldGet = undefined && undefined.__classPrivateFieldGet || function (receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+          throw new TypeError("attempted to get private field on non-instance");
+        }
+
+        return privateMap.get(receiver);
+      };
+
+      var _eventMap, _map, _queue, _single, _allowedOrigin, _init, _card, _login, _operation, _track, _logout, _auth, _handle, _listener, _messageTarget, _eventSrc;
+
+      var Concurrent = /*#__PURE__*/function () {
+        function Concurrent(map) {
+          _classCallCheck(this, Concurrent);
+
+          _eventMap.set(this, {});
+
+          _map.set(this, void 0);
+
+          __classPrivateFieldSet(this, _map, map);
+        }
+
+        _createClass(Concurrent, [{
+          key: "listen",
+          value: function () {
+            var _listen = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee65(id) {
+              var _Object2, promise, deferred;
+
+              return regeneratorRuntime.wrap(function _callee65$(_context65) {
+                while (1) {
+                  switch (_context65.prev = _context65.next) {
+                    case 0:
+                      _Object2 = Object(_util__WEBPACK_IMPORTED_MODULE_1__["defer"])(), promise = _Object2.promise, deferred = _Object2.deferred;
+                      __classPrivateFieldGet(this, _eventMap)[id] = deferred;
+                      _context65.next = 4;
+                      return promise;
+
+                    case 4:
+                      return _context65.abrupt("return", _context65.sent);
+
+                    case 5:
+                    case "end":
+                      return _context65.stop();
+                  }
+                }
+              }, _callee65, this);
+            }));
+
+            function listen(_x10) {
+              return _listen.apply(this, arguments);
+            }
+
+            return listen;
+          }()
+        }, {
+          key: "handle",
+          value: function handle(evt) {
+            var _a;
+
+            var id = __classPrivateFieldGet(this, _map).call(this, evt);
+
+            (_a = __classPrivateFieldGet(this, _eventMap)[id]) === null || _a === void 0 ? void 0 : _a.resolve(evt);
+            delete __classPrivateFieldGet(this, _eventMap)[id];
+          }
+        }]);
+
+        return Concurrent;
+      }();
+
+      _eventMap = new WeakMap(), _map = new WeakMap();
+
+      var Sequential = /*#__PURE__*/function () {
+        function Sequential() {
+          _classCallCheck(this, Sequential);
+
+          _queue.set(this, []);
+        }
+
+        _createClass(Sequential, [{
+          key: "listen",
+          value: function () {
+            var _listen2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee66() {
+              var _Object3, promise, deferred;
+
+              return regeneratorRuntime.wrap(function _callee66$(_context66) {
+                while (1) {
+                  switch (_context66.prev = _context66.next) {
+                    case 0:
+                      _Object3 = Object(_util__WEBPACK_IMPORTED_MODULE_1__["defer"])(), promise = _Object3.promise, deferred = _Object3.deferred;
+
+                      __classPrivateFieldGet(this, _queue).push(deferred);
+
+                      _context66.next = 4;
+                      return promise;
+
+                    case 4:
+                      return _context66.abrupt("return", _context66.sent);
+
+                    case 5:
+                    case "end":
+                      return _context66.stop();
+                  }
+                }
+              }, _callee66, this);
+            }));
+
+            function listen() {
+              return _listen2.apply(this, arguments);
+            }
+
+            return listen;
+          }()
+        }, {
+          key: "handle",
+          value: function handle(evt) {
+            var _a;
+
+            (_a = __classPrivateFieldGet(this, _queue).shift()) === null || _a === void 0 ? void 0 : _a.resolve(evt);
+          }
+        }, {
+          key: "length",
+          get: function get() {
+            return __classPrivateFieldGet(this, _queue).length;
+          }
+        }]);
+
+        return Sequential;
+      }();
+
+      _queue = new WeakMap();
+
+      var Single = /*#__PURE__*/function () {
+        function Single() {
+          _classCallCheck(this, Single);
+
+          _single.set(this, null);
+        }
+
+        _createClass(Single, [{
+          key: "listen",
+          value: function () {
+            var _listen3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee67() {
+              var _Object4, promise, deferred;
+
+              return regeneratorRuntime.wrap(function _callee67$(_context67) {
+                while (1) {
+                  switch (_context67.prev = _context67.next) {
+                    case 0:
+                      if (!__classPrivateFieldGet(this, _single)) {
+                        _context67.next = 4;
+                        break;
+                      }
+
+                      throw new Error("OCCUPIED");
+
+                    case 4:
+                      _Object4 = Object(_util__WEBPACK_IMPORTED_MODULE_1__["defer"])(), promise = _Object4.promise, deferred = _Object4.deferred;
+
+                      __classPrivateFieldSet(this, _single, deferred);
+
+                      _context67.next = 8;
+                      return promise;
+
+                    case 8:
+                      return _context67.abrupt("return", _context67.sent);
+
+                    case 9:
+                    case "end":
+                      return _context67.stop();
+                  }
+                }
+              }, _callee67, this);
+            }));
+
+            function listen() {
+              return _listen3.apply(this, arguments);
+            }
+
+            return listen;
+          }()
+        }, {
+          key: "handle",
+          value: function handle(evt) {
+            var _a;
+
+            (_a = __classPrivateFieldGet(this, _single)) === null || _a === void 0 ? void 0 : _a.resolve(evt);
+
+            __classPrivateFieldSet(this, _single, null);
+          }
+        }]);
+
+        return Single;
+      }();
+
+      _single = new WeakMap();
+
+      var MessageListener = /*#__PURE__*/function () {
+        function MessageListener(allowedOrigin) {
+          var _this39 = this;
+
+          _classCallCheck(this, MessageListener);
+
+          _allowedOrigin.set(this, void 0);
+
+          _init.set(this, new Single());
+
+          _card.set(this, new Sequential());
+
+          _login.set(this, new Sequential());
+
+          _operation.set(this, new Single());
+
+          _track.set(this, new Concurrent(function (res) {
+            return res.opHash;
+          }));
+
+          _logout.set(this, new Sequential());
+
+          _auth.set(this, new Sequential());
+
+          _handle.set(this, function (data) {
+            switch (data.type) {
+              case _types__WEBPACK_IMPORTED_MODULE_0__["ResponseTypes"].cardResponse:
+                __classPrivateFieldGet(_this39, _card).handle(data);
+
+                break;
+
+              case _types__WEBPACK_IMPORTED_MODULE_0__["ResponseTypes"].loginResponse:
+                __classPrivateFieldGet(_this39, _login).handle(data);
+
+                break;
+
+              case _types__WEBPACK_IMPORTED_MODULE_0__["ResponseTypes"].operationResponse:
+                __classPrivateFieldGet(_this39, _operation).handle(data);
+
+                break;
+
+              case _types__WEBPACK_IMPORTED_MODULE_0__["ResponseTypes"].trackResponse:
+                __classPrivateFieldGet(_this39, _track).handle(data);
+
+                break;
+
+              case _types__WEBPACK_IMPORTED_MODULE_0__["ResponseTypes"].logoutResponse:
+                __classPrivateFieldGet(_this39, _logout).handle(data);
+
+                break;
+
+              case _types__WEBPACK_IMPORTED_MODULE_0__["ResponseTypes"].authResponse:
+                __classPrivateFieldGet(_this39, _auth).handle(data);
+
+                break;
+
+              case _types__WEBPACK_IMPORTED_MODULE_0__["ResponseTypes"].initComplete:
+                __classPrivateFieldGet(_this39, _init).handle(data);
+
+            }
+          });
+
+          __classPrivateFieldSet(this, _allowedOrigin, allowedOrigin);
+        }
+
+        _createClass(MessageListener, [{
+          key: "init",
+          value: function () {
+            var _init5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee68() {
+              return regeneratorRuntime.wrap(function _callee68$(_context68) {
+                while (1) {
+                  switch (_context68.prev = _context68.next) {
+                    case 0:
+                      _context68.next = 2;
+                      return __classPrivateFieldGet(this, _init).listen();
+
+                    case 2:
+                      return _context68.abrupt("return", _context68.sent);
+
+                    case 3:
+                    case "end":
+                      return _context68.stop();
+                  }
+                }
+              }, _callee68, this);
+            }));
+
+            function init() {
+              return _init5.apply(this, arguments);
+            }
+
+            return init;
+          }()
+        }, {
+          key: "login",
+          value: function () {
+            var _login3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee69() {
+              return regeneratorRuntime.wrap(function _callee69$(_context69) {
+                while (1) {
+                  switch (_context69.prev = _context69.next) {
+                    case 0:
+                      _context69.next = 2;
+                      return __classPrivateFieldGet(this, _login).listen();
+
+                    case 2:
+                      return _context69.abrupt("return", _context69.sent);
+
+                    case 3:
+                    case "end":
+                      return _context69.stop();
+                  }
+                }
+              }, _callee69, this);
+            }));
+
+            function login() {
+              return _login3.apply(this, arguments);
+            }
+
+            return login;
+          }()
+        }, {
+          key: "operation",
+          value: function () {
+            var _operation2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
+              return regeneratorRuntime.wrap(function _callee70$(_context70) {
+                while (1) {
+                  switch (_context70.prev = _context70.next) {
+                    case 0:
+                      _context70.next = 2;
+                      return __classPrivateFieldGet(this, _operation).listen();
+
+                    case 2:
+                      return _context70.abrupt("return", _context70.sent);
+
+                    case 3:
+                    case "end":
+                      return _context70.stop();
+                  }
+                }
+              }, _callee70, this);
+            }));
+
+            function operation() {
+              return _operation2.apply(this, arguments);
+            }
+
+            return operation;
+          }()
+        }, {
+          key: "track",
+          value: function () {
+            var _track2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee71(id) {
+              return regeneratorRuntime.wrap(function _callee71$(_context71) {
+                while (1) {
+                  switch (_context71.prev = _context71.next) {
+                    case 0:
+                      _context71.next = 2;
+                      return __classPrivateFieldGet(this, _track).listen(id);
+
+                    case 2:
+                      return _context71.abrupt("return", _context71.sent);
+
+                    case 3:
+                    case "end":
+                      return _context71.stop();
+                  }
+                }
+              }, _callee71, this);
+            }));
+
+            function track(_x11) {
+              return _track2.apply(this, arguments);
+            }
+
+            return track;
+          }()
+        }, {
+          key: "logout",
+          value: function () {
+            var _logout3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee72() {
+              return regeneratorRuntime.wrap(function _callee72$(_context72) {
+                while (1) {
+                  switch (_context72.prev = _context72.next) {
+                    case 0:
+                      _context72.next = 2;
+                      return __classPrivateFieldGet(this, _logout).listen();
+
+                    case 2:
+                      return _context72.abrupt("return", _context72.sent);
+
+                    case 3:
+                    case "end":
+                      return _context72.stop();
+                  }
+                }
+              }, _callee72, this);
+            }));
+
+            function logout() {
+              return _logout3.apply(this, arguments);
+            }
+
+            return logout;
+          }()
+        }, {
+          key: "auth",
+          value: function () {
+            var _auth2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee73() {
+              return regeneratorRuntime.wrap(function _callee73$(_context73) {
+                while (1) {
+                  switch (_context73.prev = _context73.next) {
+                    case 0:
+                      _context73.next = 2;
+                      return __classPrivateFieldGet(this, _auth).listen();
+
+                    case 2:
+                      return _context73.abrupt("return", _context73.sent);
+
+                    case 3:
+                    case "end":
+                      return _context73.stop();
+                  }
+                }
+              }, _callee73, this);
+            }));
+
+            function auth() {
+              return _auth2.apply(this, arguments);
+            }
+
+            return auth;
+          }()
+        }, {
+          key: "card",
+          value: function () {
+            var _card2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee74() {
+              return regeneratorRuntime.wrap(function _callee74$(_context74) {
+                while (1) {
+                  switch (_context74.prev = _context74.next) {
+                    case 0:
+                      _context74.next = 2;
+                      return __classPrivateFieldGet(this, _card).listen();
+
+                    case 2:
+                      return _context74.abrupt("return", _context74.sent);
+
+                    case 3:
+                    case "end":
+                      return _context74.stop();
+                  }
+                }
+              }, _callee74, this);
+            }));
+
+            function card() {
+              return _card2.apply(this, arguments);
+            }
+
+            return card;
+          }()
+        }, {
+          key: "handleEvent",
+          value: function handleEvent(evt) {
+            if (evt.type === 'message' && evt.origin === __classPrivateFieldGet(this, _allowedOrigin)) {
+              console.log("Received ".concat(evt.data, " from ").concat(evt.origin));
+              var data = JSON.parse(evt.data);
+
+              __classPrivateFieldGet(this, _handle).call(this, data);
+            } else {
+              console.warn(evt.origin);
+            }
+          }
+        }]);
+
+        return MessageListener;
+      }();
+
+      _allowedOrigin = new WeakMap(), _init = new WeakMap(), _card = new WeakMap(), _login = new WeakMap(), _operation = new WeakMap(), _track = new WeakMap(), _logout = new WeakMap(), _auth = new WeakMap(), _handle = new WeakMap();
+
+      var KukaiMessaging = /*#__PURE__*/function () {
+        function KukaiMessaging(messageTarget, allowedOrigin) {
+          _classCallCheck(this, KukaiMessaging);
+
+          _listener.set(this, void 0);
+
+          _messageTarget.set(this, void 0);
+
+          _eventSrc.set(this, null);
+
+          __classPrivateFieldSet(this, _messageTarget, messageTarget);
+
+          __classPrivateFieldSet(this, _listener, new MessageListener(allowedOrigin));
+        }
+
+        _createClass(KukaiMessaging, [{
+          key: "init",
+          value: function () {
+            var _init6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee75(eventSrc) {
+              return regeneratorRuntime.wrap(function _callee75$(_context75) {
+                while (1) {
+                  switch (_context75.prev = _context75.next) {
+                    case 0:
+                      if (!__classPrivateFieldGet(this, _eventSrc)) {
+                        _context75.next = 4;
+                        break;
+                      }
+
+                      throw new Error("Already Initialized");
+
+                    case 4:
+                      __classPrivateFieldSet(this, _eventSrc, eventSrc);
+
+                      eventSrc.addEventListener('message', __classPrivateFieldGet(this, _listener));
+                      _context75.next = 8;
+                      return __classPrivateFieldGet(this, _listener).init().then(function (res) {
+                        if (res.failed) throw new Error("Init Failed: " + res.error);
+                      });
+
+                    case 8:
+                      return _context75.abrupt("return", _context75.sent);
+
+                    case 9:
+                    case "end":
+                      return _context75.stop();
+                  }
+                }
+              }, _callee75, this);
+            }));
+
+            function init(_x12) {
+              return _init6.apply(this, arguments);
+            }
+
+            return init;
+          }()
+        }, {
+          key: "deinit",
+          value: function deinit() {
+            if (__classPrivateFieldGet(this, _eventSrc)) {
+              __classPrivateFieldGet(this, _eventSrc).removeEventListener('message', __classPrivateFieldGet(this, _listener));
+
+              __classPrivateFieldSet(this, _eventSrc, null);
+            }
+          }
+        }, {
+          key: "card",
+          value: function () {
+            var _card3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee76(show) {
+              return regeneratorRuntime.wrap(function _callee76$(_context76) {
+                while (1) {
+                  switch (_context76.prev = _context76.next) {
+                    case 0:
+                      __classPrivateFieldGet(this, _messageTarget).request({
+                        type: _types__WEBPACK_IMPORTED_MODULE_0__["RequestTypes"].cardRequest,
+                        show: show
+                      });
+
+                      _context76.next = 3;
+                      return __classPrivateFieldGet(this, _listener).card().then(function (res) {
+                        if (res.failed) throw new Error("Card Failed: " + res.error);else return;
+                      });
+
+                    case 3:
+                      return _context76.abrupt("return", _context76.sent);
+
+                    case 4:
+                    case "end":
+                      return _context76.stop();
+                  }
+                }
+              }, _callee76, this);
+            }));
+
+            function card(_x13) {
+              return _card3.apply(this, arguments);
+            }
+
+            return card;
+          }()
+        }, {
+          key: "login",
+          value: function () {
+            var _login4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee77() {
+              return regeneratorRuntime.wrap(function _callee77$(_context77) {
+                while (1) {
+                  switch (_context77.prev = _context77.next) {
+                    case 0:
+                      __classPrivateFieldGet(this, _messageTarget).request({
+                        type: _types__WEBPACK_IMPORTED_MODULE_0__["RequestTypes"].loginRequest
+                      });
+
+                      _context77.next = 3;
+                      return __classPrivateFieldGet(this, _listener).login().then(function (res) {
+                        if (res.failed) throw new Error("Login Failed: " + res.error);else return res;
+                      });
+
+                    case 3:
+                      return _context77.abrupt("return", _context77.sent);
+
+                    case 4:
+                    case "end":
+                      return _context77.stop();
+                  }
+                }
+              }, _callee77, this);
+            }));
+
+            function login() {
+              return _login4.apply(this, arguments);
+            }
+
+            return login;
+          }()
+        }, {
+          key: "operation",
+          value: function () {
+            var _operation3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee78(operations, ui) {
+              return regeneratorRuntime.wrap(function _callee78$(_context78) {
+                while (1) {
+                  switch (_context78.prev = _context78.next) {
+                    case 0:
+                      __classPrivateFieldGet(this, _messageTarget).request({
+                        type: _types__WEBPACK_IMPORTED_MODULE_0__["RequestTypes"].operationRequest,
+                        operations: operations,
+                        ui: ui
+                      });
+
+                      _context78.next = 3;
+                      return __classPrivateFieldGet(this, _listener).operation().then(function (res) {
+                        if (res.failed) throw new Error("Operation Failed: " + res.error);else return res;
+                      })["catch"](function (e) {
+                        if (e.message === 'OCCUPIED') throw new Error('Cannot send: Operation in progress');else throw e;
+                      });
+
+                    case 3:
+                      return _context78.abrupt("return", _context78.sent);
+
+                    case 4:
+                    case "end":
+                      return _context78.stop();
+                  }
+                }
+              }, _callee78, this);
+            }));
+
+            function operation(_x14, _x15) {
+              return _operation3.apply(this, arguments);
+            }
+
+            return operation;
+          }()
+        }, {
+          key: "track",
+          value: function () {
+            var _track3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee79(opHash) {
+              return regeneratorRuntime.wrap(function _callee79$(_context79) {
+                while (1) {
+                  switch (_context79.prev = _context79.next) {
+                    case 0:
+                      __classPrivateFieldGet(this, _messageTarget).request({
+                        type: _types__WEBPACK_IMPORTED_MODULE_0__["RequestTypes"].trackRequest,
+                        opHash: opHash
+                      });
+
+                      _context79.next = 3;
+                      return __classPrivateFieldGet(this, _listener).track(opHash).then(function (res) {
+                        if (res.failed) throw new Error("Track Failed: " + res.error);else return res;
+                      });
+
+                    case 3:
+                      return _context79.abrupt("return", _context79.sent);
+
+                    case 4:
+                    case "end":
+                      return _context79.stop();
+                  }
+                }
+              }, _callee79, this);
+            }));
+
+            function track(_x16) {
+              return _track3.apply(this, arguments);
+            }
+
+            return track;
+          }()
+        }, {
+          key: "logout",
+          value: function () {
+            var _logout4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee80() {
+              return regeneratorRuntime.wrap(function _callee80$(_context80) {
+                while (1) {
+                  switch (_context80.prev = _context80.next) {
+                    case 0:
+                      __classPrivateFieldGet(this, _messageTarget).request({
+                        type: _types__WEBPACK_IMPORTED_MODULE_0__["RequestTypes"].logoutRequest
+                      });
+
+                      _context80.next = 3;
+                      return __classPrivateFieldGet(this, _listener).logout().then(function (res) {
+                        if (res.failed) throw new Error("Logout Failed: " + res.error);else return res;
+                      });
+
+                    case 3:
+                      return _context80.abrupt("return", _context80.sent);
+
+                    case 4:
+                    case "end":
+                      return _context80.stop();
+                  }
+                }
+              }, _callee80, this);
+            }));
+
+            function logout() {
+              return _logout4.apply(this, arguments);
+            }
+
+            return logout;
+          }()
+        }, {
+          key: "authenticate",
+          value: function () {
+            var _authenticate2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee81(id, nonce) {
+              return regeneratorRuntime.wrap(function _callee81$(_context81) {
+                while (1) {
+                  switch (_context81.prev = _context81.next) {
+                    case 0:
+                      __classPrivateFieldGet(this, _messageTarget).request({
+                        type: _types__WEBPACK_IMPORTED_MODULE_0__["RequestTypes"].authRequest,
+                        id: id,
+                        nonce: nonce
+                      });
+
+                      _context81.next = 3;
+                      return __classPrivateFieldGet(this, _listener).auth().then(function (res) {
+                        if (res.failed) throw new Error("Auth Failed: " + res.error);else return res;
+                      });
+
+                    case 3:
+                      return _context81.abrupt("return", _context81.sent);
+
+                    case 4:
+                    case "end":
+                      return _context81.stop();
+                  }
+                }
+              }, _callee81, this);
+            }));
+
+            function authenticate(_x17, _x18) {
+              return _authenticate2.apply(this, arguments);
+            }
+
+            return authenticate;
+          }()
+        }, {
+          key: "isInit",
+          get: function get() {
+            return !!__classPrivateFieldGet(this, _eventSrc);
+          }
+        }]);
+
+        return KukaiMessaging;
+      }();
+
+      _listener = new WeakMap(), _messageTarget = new WeakMap(), _eventSrc = new WeakMap();
+      /***/
+    },
+
+    /***/
     "ds67":
     /*!*******************************************************!*\
       !*** ./src/app/services/estimate/estimate.service.ts ***!
@@ -16602,28 +18576,28 @@
         }, {
           key: "preLoadData",
           value: function preLoadData(pkh, pk) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee55() {
-              var _this34 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee82() {
+              var _this40 = this;
 
-              return regeneratorRuntime.wrap(function _callee55$(_context55) {
+              return regeneratorRuntime.wrap(function _callee82$(_context82) {
                 while (1) {
-                  switch (_context55.prev = _context55.next) {
+                  switch (_context82.prev = _context82.next) {
                     case 0:
                       this.pkh = pkh;
                       this.pk = pk;
-                      _context55.next = 4;
+                      _context82.next = 4;
                       return Promise.all([this.operationService.getHeader().toPromise(), this.getCounter(pkh), this.getManager(pkh)]).then(function (req) {
                         if (req[0] && req[1] && req[2] || req[2] === null) {
-                          _this34.init(req[0].hash, req[0].chain_id, req[1], req[2], pk, pkh);
+                          _this40.init(req[0].hash, req[0].chain_id, req[1], req[2], pk, pkh);
                         }
                       });
 
                     case 4:
                     case "end":
-                      return _context55.stop();
+                      return _context82.stop();
                   }
                 }
-              }, _callee55, this);
+              }, _callee82, this);
             }));
           }
         }, {
@@ -16631,14 +18605,14 @@
           value: function estimate(transactions, from) {
             var tokenTransfer = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
             var callback = arguments.length > 3 ? arguments[3] : undefined;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee57() {
-              var _this35 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee84() {
+              var _this41 = this;
 
               var _loop;
 
-              return regeneratorRuntime.wrap(function _callee57$(_context58) {
+              return regeneratorRuntime.wrap(function _callee84$(_context85) {
                 while (1) {
-                  switch (_context58.prev = _context58.next) {
+                  switch (_context85.prev = _context85.next) {
                     case 0:
                       this.queue.push({
                         transactions: transactions,
@@ -16647,20 +18621,20 @@
                       });
 
                       if (!(this.queue.length === 1)) {
-                        _context58.next = 7;
+                        _context85.next = 7;
                         break;
                       }
 
                       _loop = /*#__PURE__*/regeneratorRuntime.mark(function _loop() {
                         var retry, i;
-                        return regeneratorRuntime.wrap(function _loop$(_context57) {
+                        return regeneratorRuntime.wrap(function _loop$(_context84) {
                           while (1) {
-                            switch (_context57.prev = _context57.next) {
+                            switch (_context84.prev = _context84.next) {
                               case 0:
-                                while (_this35.queue.length > 1) {
-                                  _this35.queue[0].callback(null);
+                                while (_this41.queue.length > 1) {
+                                  _this41.queue[0].callback(null);
 
-                                  _this35.queue.shift();
+                                  _this41.queue.shift();
                                 }
 
                                 retry = false;
@@ -16668,31 +18642,31 @@
 
                               case 3:
                                 if (!(i < 1 || retry && i < 2)) {
-                                  _context57.next = 9;
+                                  _context84.next = 9;
                                   break;
                                 }
 
-                                _context57.next = 6;
-                                return _this35._estimate(_this35.queue[0].transactions, _this35.queue[0].from, tokenTransfer).then(function (res) {
-                                  _this35.queue[0].callback(res);
+                                _context84.next = 6;
+                                return _this41._estimate(_this41.queue[0].transactions, _this41.queue[0].from, tokenTransfer).then(function (res) {
+                                  _this41.queue[0].callback(res);
                                 })["catch"](function (error) {
-                                  return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this35, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee56() {
-                                    return regeneratorRuntime.wrap(function _callee56$(_context56) {
+                                  return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this41, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee83() {
+                                    return regeneratorRuntime.wrap(function _callee83$(_context83) {
                                       while (1) {
-                                        switch (_context56.prev = _context56.next) {
+                                        switch (_context83.prev = _context83.next) {
                                           case 0:
                                             if (!(error.message && error.message === 'An operation assumed a contract counter in the past' && !retry)) {
-                                              _context56.next = 7;
+                                              _context83.next = 7;
                                               break;
                                             }
 
                                             console.log('Update counter');
-                                            _context56.next = 4;
+                                            _context83.next = 4;
                                             return this.preLoadData(this.pkh, this.pk);
 
                                           case 4:
                                             retry = true;
-                                            _context56.next = 8;
+                                            _context83.next = 8;
                                             break;
 
                                           case 7:
@@ -16702,24 +18676,24 @@
 
                                           case 8:
                                           case "end":
-                                            return _context56.stop();
+                                            return _context83.stop();
                                         }
                                       }
-                                    }, _callee56, this);
+                                    }, _callee83, this);
                                   }));
                                 });
 
                               case 6:
                                 i++;
-                                _context57.next = 3;
+                                _context84.next = 3;
                                 break;
 
                               case 9:
-                                _this35.queue.shift();
+                                _this41.queue.shift();
 
                               case 10:
                               case "end":
-                                return _context57.stop();
+                                return _context84.stop();
                             }
                           }
                         }, _loop);
@@ -16727,44 +18701,44 @@
 
                     case 3:
                       if (!(this.queue.length > 0)) {
-                        _context58.next = 7;
+                        _context85.next = 7;
                         break;
                       }
 
-                      return _context58.delegateYield(_loop(), "t0", 5);
+                      return _context85.delegateYield(_loop(), "t0", 5);
 
                     case 5:
-                      _context58.next = 3;
+                      _context85.next = 3;
                       break;
 
                     case 7:
                     case "end":
-                      return _context58.stop();
+                      return _context85.stop();
                   }
                 }
-              }, _callee57, this);
+              }, _callee84, this);
             }));
           }
         }, {
           key: "_estimate",
           value: function _estimate(transactions, from, tokenTransfer) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee58() {
-              var _this36 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee85() {
+              var _this42 = this;
 
               var extraGas, simulation, _iterator28, _step28, tx, op, result, reveal, limits, _iterator29, _step29, content, _this$getOpUsage, gasUsage, storageUsage;
 
-              return regeneratorRuntime.wrap(function _callee58$(_context59) {
+              return regeneratorRuntime.wrap(function _callee85$(_context86) {
                 while (1) {
-                  switch (_context59.prev = _context59.next) {
+                  switch (_context86.prev = _context86.next) {
                     case 0:
                       extraGas = 80;
 
                       if (this.hash) {
-                        _context59.next = 3;
+                        _context86.next = 3;
                         break;
                       }
 
-                      return _context59.abrupt("return", null);
+                      return _context86.abrupt("return", null);
 
                     case 3:
                       simulation = {
@@ -16796,52 +18770,52 @@
                       }
 
                       if (!(this.hash && this.counter && (this.manager || this.manager === null))) {
-                        _context59.next = 47;
+                        _context86.next = 47;
                         break;
                       }
 
                       op = this.operationService.createTransactionObject(this.hash, this.counter, this.manager, transactions, this.pkh, this.pk, from, simulation.fee, tokenTransfer);
-                      _context59.next = 10;
+                      _context86.next = 10;
                       return this.simulate(op).toPromise()["catch"](function (e) {
                         console.warn(e);
                         return null;
                       });
 
                     case 10:
-                      result = _context59.sent;
+                      result = _context86.sent;
 
                       if (!(result && result.contents)) {
-                        _context59.next = 44;
+                        _context86.next = 44;
                         break;
                       }
 
                       reveal = false;
                       limits = [];
                       _iterator29 = _createForOfIteratorHelper(result.contents);
-                      _context59.prev = 15;
+                      _context86.prev = 15;
 
                       _iterator29.s();
 
                     case 17:
                       if ((_step29 = _iterator29.n()).done) {
-                        _context59.next = 31;
+                        _context86.next = 31;
                         break;
                       }
 
                       content = _step29.value;
 
                       if (!(content.kind === 'reveal')) {
-                        _context59.next = 23;
+                        _context86.next = 23;
                         break;
                       }
 
                       reveal = true;
-                      _context59.next = 29;
+                      _context86.next = 29;
                       break;
 
                     case 23:
                       if (!(content.kind === 'transaction' && content.metadata.operation_result.status === 'applied')) {
-                        _context59.next = 28;
+                        _context86.next = 28;
                         break;
                       }
 
@@ -16850,46 +18824,46 @@
                         gasLimit: gasUsage + extraGas,
                         storageLimit: storageUsage
                       });
-                      _context59.next = 29;
+                      _context86.next = 29;
                       break;
 
                     case 28:
-                      return _context59.abrupt("return", null);
+                      return _context86.abrupt("return", null);
 
                     case 29:
-                      _context59.next = 17;
+                      _context86.next = 17;
                       break;
 
                     case 31:
-                      _context59.next = 36;
+                      _context86.next = 36;
                       break;
 
                     case 33:
-                      _context59.prev = 33;
-                      _context59.t0 = _context59["catch"](15);
+                      _context86.prev = 33;
+                      _context86.t0 = _context86["catch"](15);
 
-                      _iterator29.e(_context59.t0);
+                      _iterator29.e(_context86.t0);
 
                     case 36:
-                      _context59.prev = 36;
+                      _context86.prev = 36;
 
                       _iterator29.f();
 
-                      return _context59.finish(36);
+                      return _context86.finish(36);
 
                     case 39:
-                      _context59.next = 41;
+                      _context86.next = 41;
                       return this.operationService.localForge(op).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (fop) {
                         var bytes = fop.length / 2 + 64;
 
-                        var gas = _this36.averageGasLimit(limits);
+                        var gas = _this42.averageGasLimit(limits);
 
-                        var storage = _this36.averageStorageLimit(limits);
+                        var storage = _this42.averageStorageLimit(limits);
 
                         var dtp = {
                           customLimits: limits,
-                          fee: _this36.recommendFee(limits, reveal, bytes),
-                          burn: _this36.burnFee(limits),
+                          fee: _this42.recommendFee(limits, reveal, bytes),
+                          burn: _this42.burnFee(limits),
                           gas: gas,
                           storage: storage,
                           reveal: reveal
@@ -16899,11 +18873,11 @@
                       })).toPromise();
 
                     case 41:
-                      return _context59.abrupt("return", _context59.sent);
+                      return _context86.abrupt("return", _context86.sent);
 
                     case 44:
                       if (!(typeof result.success === 'boolean' && result.success === false)) {
-                        _context59.next = 47;
+                        _context86.next = 47;
                         break;
                       }
 
@@ -16911,14 +18885,14 @@
                       throw new Error(result.payload.msg);
 
                     case 47:
-                      return _context59.abrupt("return", null);
+                      return _context86.abrupt("return", null);
 
                     case 48:
                     case "end":
-                      return _context59.stop();
+                      return _context86.stop();
                   }
                 }
-              }, _callee58, this, [[15, 33, 36, 39]]);
+              }, _callee85, this, [[15, 33, 36, 39]]);
             }));
           }
         }, {
@@ -17136,18 +19110,18 @@
         }, {
           key: "simulate",
           value: function simulate(op) {
-            var _this37 = this;
+            var _this43 = this;
 
             op.signature = 'edsigtXomBKi5CTRf5cjATJWSyaRvhfYNHqSUGrn4SdbYRcGwQrUGjzEfQDTuqHhuA8b2d8NarZjz8TRf65WkpQmo423BtomS8Q';
             return this.http.post(this.nodeURL + '/chains/main/blocks/head/helpers/scripts/run_operation', {
               operation: op,
               chain_id: this.chainId
             }, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (res) {
-              _this37.operationService.checkApplied([res]);
+              _this43.operationService.checkApplied([res]);
 
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["of"])(res);
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(function (err) {
-              return _this37.operationService.errHandler(err);
+              return _this43.operationService.errHandler(err);
             }));
           }
         }, {
@@ -17185,41 +19159,41 @@
         }, {
           key: "getCounter",
           value: function getCounter(pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee59() {
-              return regeneratorRuntime.wrap(function _callee59$(_context60) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee86() {
+              return regeneratorRuntime.wrap(function _callee86$(_context87) {
                 while (1) {
-                  switch (_context60.prev = _context60.next) {
+                  switch (_context87.prev = _context87.next) {
                     case 0:
-                      return _context60.abrupt("return", fetch(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh + '/counter', {}).then(function (response) {
+                      return _context87.abrupt("return", fetch(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh + '/counter', {}).then(function (response) {
                         return response.json();
                       }));
 
                     case 1:
                     case "end":
-                      return _context60.stop();
+                      return _context87.stop();
                   }
                 }
-              }, _callee59, this);
+              }, _callee86, this);
             }));
           }
         }, {
           key: "getManager",
           value: function getManager(pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee60() {
-              return regeneratorRuntime.wrap(function _callee60$(_context61) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee87() {
+              return regeneratorRuntime.wrap(function _callee87$(_context88) {
                 while (1) {
-                  switch (_context61.prev = _context61.next) {
+                  switch (_context88.prev = _context88.next) {
                     case 0:
-                      return _context61.abrupt("return", fetch(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh + '/manager_key', {}).then(function (response) {
+                      return _context88.abrupt("return", fetch(this.nodeURL + '/chains/main/blocks/head/context/contracts/' + pkh + '/manager_key', {}).then(function (response) {
                         return response.json();
                       }));
 
                     case 1:
                     case "end":
-                      return _context61.stop();
+                      return _context88.stop();
                   }
                 }
-              }, _callee60, this);
+              }, _callee87, this);
             }));
           }
         }]);
@@ -17624,7 +19598,7 @@
 
       var kukai_embed__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
       /*! kukai-embed */
-      "ztwt");
+      "/qKp");
       /* harmony import */
 
 
@@ -17706,7 +19680,7 @@
 
       var EmbeddedComponent = /*#__PURE__*/function () {
         function EmbeddedComponent(torusService, importService, walletService, coordinatorService, route, lookupService, activityService, embeddedAuthService) {
-          var _this38 = this;
+          var _this44 = this;
 
           _classCallCheck(this, EmbeddedComponent);
 
@@ -17722,7 +19696,7 @@
           this.pendingOps = [];
           this.origin = '';
           this.login = false;
-          this.blockCard = false;
+          this.blockCard = true;
           this.activeAccount = null;
           this.template = null;
           this.operationRequests = null;
@@ -17731,37 +19705,42 @@
             try {
               var data = JSON.parse(evt.data);
 
-              if (!_environments_environment__WEBPACK_IMPORTED_MODULE_3__["CONSTANTS"].MAINNET || _this38.allowedOrigins.includes(evt.origin)) {
+              if (!_environments_environment__WEBPACK_IMPORTED_MODULE_3__["CONSTANTS"].MAINNET || _this44.allowedOrigins.includes(evt.origin)) {
                 console.log("Received ".concat(evt.data, " from ").concat(evt.origin));
 
                 if (data && data.type &&
                 /* restricted to dev enviroment for now */
                 !_environments_environment__WEBPACK_IMPORTED_MODULE_3__["CONSTANTS"].MAINNET) {
-                  _this38.origin = evt.origin;
+                  _this44.origin = evt.origin;
 
                   switch (data.type) {
                     case kukai_embed__WEBPACK_IMPORTED_MODULE_13__["RequestTypes"].loginRequest:
-                      _this38.handleLoginRequest(data);
+                      _this44.handleLoginRequest(data);
 
                       break;
 
                     case kukai_embed__WEBPACK_IMPORTED_MODULE_13__["RequestTypes"].operationRequest:
-                      _this38.handleOperationRequest(data);
+                      _this44.handleOperationRequest(data);
 
                       break;
 
                     case kukai_embed__WEBPACK_IMPORTED_MODULE_13__["RequestTypes"].trackRequest:
-                      _this38.handleTrackRequest(data);
+                      _this44.handleTrackRequest(data);
 
                       break;
 
                     case kukai_embed__WEBPACK_IMPORTED_MODULE_13__["RequestTypes"].logoutRequest:
-                      _this38.handleLogoutRequest(data);
+                      _this44.handleLogoutRequest(data);
 
                       break;
 
                     case kukai_embed__WEBPACK_IMPORTED_MODULE_13__["RequestTypes"].authRequest:
-                      _this38.handleAuthRequest(data);
+                      _this44.handleAuthRequest(data);
+
+                      break;
+
+                    case kukai_embed__WEBPACK_IMPORTED_MODULE_13__["RequestTypes"].cardRequest:
+                      _this44.handleCardRequest(data);
 
                       break;
 
@@ -17777,16 +19756,9 @@
         }
 
         _createClass(EmbeddedComponent, [{
-          key: "onResize",
-          value: function onResize(event) {
-            if (event.target.innerWidth === 400) {
-              this.blockCard = false;
-            }
-          }
-        }, {
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this39 = this;
+            var _this45 = this;
 
             document.body.style.background = 'none';
             this.torusService.initTorus();
@@ -17801,15 +19773,15 @@
             this.route.queryParams.filter(function (params) {
               return params.instanceId;
             }).subscribe(function (params) {
-              _this39.walletService.loadStoredWallet(params.instanceId);
+              _this45.walletService.loadStoredWallet(params.instanceId);
 
-              if (_this39.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"]) {
-                _this39.origin = _this39.walletService.wallet.origin;
-                _this39.activeAccount = _this39.walletService.wallet.implicitAccounts[0];
+              if (_this45.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_6__["EmbeddedTorusWallet"]) {
+                _this45.origin = _this45.walletService.wallet.origin;
+                _this45.activeAccount = _this45.walletService.wallet.implicitAccounts[0];
 
-                _this39.coordinatorService.startAll();
+                _this45.coordinatorService.startAll();
 
-                _this39.subscribeToConfirmedOps();
+                _this45.subscribeToConfirmedOps();
               }
             });
             window.parent.window.postMessage(JSON.stringify({
@@ -17829,7 +19801,6 @@
               this.sendResponse(response);
             } else {
               this.login = true;
-              this.sendResizeReady();
             }
           }
         }, {
@@ -17839,10 +19810,8 @@
               if (this.isValidOperation(req.operations)) {
                 this.template = req.ui ? req.ui : null;
                 this.operationRequests = req.operations;
-                this.sendResizeReady();
               } else {
                 this.operationRequests = null;
-                this.sendResizeFailed('INVALID_SEND');
                 this.sendResponse({
                   type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].operationResponse,
                   failed: true,
@@ -17850,7 +19819,6 @@
                 });
               }
             } else {
-              this.sendResizeFailed('INVALID_SEND');
               this.sendResponse({
                 type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].operationResponse,
                 failed: true,
@@ -17861,19 +19829,19 @@
         }, {
           key: "handleTrackRequest",
           value: function handleTrackRequest(req) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee61() {
-              return regeneratorRuntime.wrap(function _callee61$(_context62) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee88() {
+              return regeneratorRuntime.wrap(function _callee88$(_context89) {
                 while (1) {
-                  switch (_context62.prev = _context62.next) {
+                  switch (_context89.prev = _context89.next) {
                     case 0:
                       this.pendingOps.push(req.opHash);
 
                     case 1:
                     case "end":
-                      return _context62.stop();
+                      return _context89.stop();
                   }
                 }
-              }, _callee61, this);
+              }, _callee88, this);
             }));
           }
         }, {
@@ -17894,7 +19862,7 @@
         }, {
           key: "loginResponse",
           value: function loginResponse(loginData) {
-            var _this40 = this;
+            var _this46 = this;
 
             var response;
 
@@ -17930,28 +19898,28 @@
 
             this.login = false;
             setTimeout(function () {
-              _this40.sendResponse(response);
+              _this46.sendResponse(response);
             }, 0);
           }
         }, {
           key: "handleAuthRequest",
           value: function handleAuthRequest(authReq) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee62() {
-              var _this41 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee89() {
+              var _this47 = this;
 
-              return regeneratorRuntime.wrap(function _callee62$(_context63) {
+              return regeneratorRuntime.wrap(function _callee89$(_context90) {
                 while (1) {
-                  switch (_context63.prev = _context63.next) {
+                  switch (_context90.prev = _context90.next) {
                     case 0:
                       this.embeddedAuthService.authenticate(authReq, this.origin).then(function (authResponse) {
-                        _this41.sendResponse({
+                        _this47.sendResponse({
                           type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].authResponse,
                           failed: false,
                           message: authResponse.message,
                           signature: authResponse.signature
                         });
                       })["catch"](function (e) {
-                        _this41.sendResponse({
+                        _this47.sendResponse({
                           type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].authResponse,
                           failed: true,
                           error: e.message ? e.message : 'UNKNOWN_ERROR'
@@ -17960,11 +19928,26 @@
 
                     case 1:
                     case "end":
-                      return _context63.stop();
+                      return _context90.stop();
                   }
                 }
-              }, _callee62, this);
+              }, _callee89, this);
             }));
+          }
+        }, {
+          key: "handleCardRequest",
+          value: function handleCardRequest(req) {
+            var _this48 = this;
+
+            this.blockCard = !req.show;
+            setTimeout(function () {
+              var response = {
+                type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].cardResponse,
+                failed: false
+              };
+
+              _this48.sendResponse(response);
+            }, 0);
           }
         }, {
           key: "noWalletError",
@@ -17978,7 +19961,7 @@
         }, {
           key: "operationResponse",
           value: function operationResponse(opHash) {
-            var _this42 = this;
+            var _this49 = this;
 
             var response;
 
@@ -18018,7 +20001,7 @@
             this.template = null;
             this.operationRequests = null;
             setTimeout(function () {
-              _this42.sendResponse(response);
+              _this49.sendResponse(response);
             }, 0);
           }
         }, {
@@ -18027,48 +20010,21 @@
             window.parent.window.postMessage(JSON.stringify(resp), this.origin);
           }
         }, {
-          key: "sendResizeFailed",
-          value: function sendResizeFailed(error) {
-            var _this43 = this;
-
-            this.blockCard = false;
-            setTimeout(function () {
-              _this43.sendResponse({
-                type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].resize,
-                failed: true,
-                error: error
-              });
-            }, 0);
-          }
-        }, {
-          key: "sendResizeReady",
-          value: function sendResizeReady() {
-            var _this44 = this;
-
-            this.blockCard = true;
-            setTimeout(function () {
-              _this44.sendResponse({
-                type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].resize,
-                failed: false
-              });
-            }, 0);
-          }
-        }, {
           key: "importAccount",
           value: function importAccount(keyPair, userInfo, instanceId) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee63() {
-              var _this45 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee90() {
+              var _this50 = this;
 
-              return regeneratorRuntime.wrap(function _callee63$(_context64) {
+              return regeneratorRuntime.wrap(function _callee90$(_context91) {
                 while (1) {
-                  switch (_context64.prev = _context64.next) {
+                  switch (_context91.prev = _context91.next) {
                     case 0:
                       if (!keyPair) {
-                        _context64.next = 3;
+                        _context91.next = 3;
                         break;
                       }
 
-                      _context64.next = 3;
+                      _context91.next = 3;
                       return this.importService.importWalletFromPk(keyPair.pk, '', {
                         verifier: userInfo.typeOfLogin,
                         id: userInfo.verifierId,
@@ -18077,20 +20033,20 @@
                         origin: this.origin
                       }, keyPair.sk, instanceId).then(function (success) {
                         if (success) {
-                          _this45.activeAccount = _this45.walletService.wallet.implicitAccounts[0];
+                          _this50.activeAccount = _this50.walletService.wallet.implicitAccounts[0];
 
-                          _this45.coordinatorService.startAll();
+                          _this50.coordinatorService.startAll();
 
-                          _this45.subscribeToConfirmedOps();
+                          _this50.subscribeToConfirmedOps();
                         }
                       });
 
                     case 3:
                     case "end":
-                      return _context64.stop();
+                      return _context91.stop();
                   }
                 }
-              }, _callee63, this);
+              }, _callee90, this);
             }));
           }
         }, {
@@ -18126,19 +20082,19 @@
         }, {
           key: "subscribeToConfirmedOps",
           value: function subscribeToConfirmedOps() {
-            var _this46 = this;
+            var _this51 = this;
 
             this.ophashSubscription = this.activityService.confirmedOp.subscribe(function (opHash) {
-              if (_this46.pendingOps.includes(opHash)) {
-                _this46.sendResponse({
+              if (_this51.pendingOps.includes(opHash)) {
+                _this51.sendResponse({
                   type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].trackResponse,
                   opHash: opHash,
                   failed: false
                 });
 
-                for (var i = 0; i < _this46.pendingOps.length; i++) {
-                  if (_this46.pendingOps[i] === opHash) {
-                    _this46.pendingOps.splice(i, 1);
+                for (var i = 0; i < _this51.pendingOps.length; i++) {
+                  if (_this51.pendingOps[i] === opHash) {
+                    _this51.pendingOps.splice(i, 1);
                   }
                 }
               }
@@ -18156,13 +20112,6 @@
       EmbeddedComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
         type: EmbeddedComponent,
         selectors: [["app-embedded"]],
-        hostBindings: function EmbeddedComponent_HostBindings(rf, ctx) {
-          if (rf & 1) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("resize", function EmbeddedComponent_resize_HostBindingHandler($event) {
-              return ctx.onResize($event);
-            }, false, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresolveWindow"]);
-          }
-        },
         decls: 3,
         vars: 3,
         consts: [[3, "loginResponse", 4, "ngIf"], [3, "headless", "operationRequest", "template", "activeAccount", "operationResponse", 4, "ngIf"], [3, "activeAccount", 4, "ngIf"], [3, "loginResponse"], [3, "headless", "operationRequest", "template", "activeAccount", "operationResponse"], [3, "activeAccount"]],
@@ -18217,12 +20166,7 @@
           }, {
             type: _services_embedded_auth_embedded_auth_service__WEBPACK_IMPORTED_MODULE_12__["EmbeddedAuthService"]
           }];
-        }, {
-          onResize: [{
-            type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"],
-            args: ['window:resize', ['$event']]
-          }]
-        });
+        }, null);
       })();
       /***/
 
@@ -18884,7 +20828,7 @@
         }, {
           key: "openModal",
           value: function openModal() {
-            var _this47 = this;
+            var _this52 = this;
 
             if (this.walletService.wallet) {
               // hide body scrollbar
@@ -18897,7 +20841,7 @@
 
               if (window.innerWidth > 1300) {
                 setTimeout(function () {
-                  var inputElem = _this47.toPkhView.nativeElement;
+                  var inputElem = _this52.toPkhView.nativeElement;
                   inputElem.focus();
                 }, 100);
               }
@@ -18924,10 +20868,10 @@
         }, {
           key: "openModal2",
           value: function openModal2() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee64() {
-              return regeneratorRuntime.wrap(function _callee64$(_context65) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee91() {
+              return regeneratorRuntime.wrap(function _callee91$(_context92) {
                 while (1) {
-                  switch (_context65.prev = _context65.next) {
+                  switch (_context92.prev = _context92.next) {
                     case 0:
                       this.formInvalid = this.invalidInput();
 
@@ -18947,36 +20891,36 @@
 
                     case 2:
                     case "end":
-                      return _context65.stop();
+                      return _context92.stop();
                   }
                 }
-              }, _callee64, this);
+              }, _callee91, this);
             }));
           }
         }, {
           key: "inject",
           value: function inject() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee65() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee92() {
               var pwd, keys;
-              return regeneratorRuntime.wrap(function _callee65$(_context66) {
+              return regeneratorRuntime.wrap(function _callee92$(_context93) {
                 while (1) {
-                  switch (_context66.prev = _context66.next) {
+                  switch (_context93.prev = _context93.next) {
                     case 0:
                       pwd = this.password;
                       this.password = '';
                       this.messageService.startSpinner('Signing operation...');
-                      _context66.prev = 3;
-                      _context66.next = 6;
+                      _context93.prev = 3;
+                      _context93.next = 6;
                       return this.walletService.getKeys(pwd, this.activeAccount.pkh);
 
                     case 6:
-                      keys = _context66.sent;
-                      _context66.next = 12;
+                      keys = _context93.sent;
+                      _context93.next = 12;
                       break;
 
                     case 9:
-                      _context66.prev = 9;
-                      _context66.t0 = _context66["catch"](3);
+                      _context93.prev = 9;
+                      _context93.t0 = _context93["catch"](3);
                       this.messageService.stopSpinner();
 
                     case 12:
@@ -19002,26 +20946,26 @@
 
                     case 13:
                     case "end":
-                      return _context66.stop();
+                      return _context93.stop();
                   }
                 }
-              }, _callee65, this, [[3, 9]]);
+              }, _callee92, this, [[3, 9]]);
             }));
           }
         }, {
           key: "ledgerSign",
           value: function ledgerSign() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee66() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee93() {
               var keys;
-              return regeneratorRuntime.wrap(function _callee66$(_context67) {
+              return regeneratorRuntime.wrap(function _callee93$(_context94) {
                 while (1) {
-                  switch (_context67.prev = _context67.next) {
+                  switch (_context94.prev = _context94.next) {
                     case 0:
-                      _context67.next = 2;
+                      _context94.next = 2;
                       return this.walletService.getKeys('');
 
                     case 2:
-                      keys = _context67.sent;
+                      keys = _context94.sent;
 
                       if (keys) {
                         this.sendDelegation(keys);
@@ -19029,10 +20973,10 @@
 
                     case 4:
                     case "end":
-                      return _context67.stop();
+                      return _context94.stop();
                   }
                 }
-              }, _callee66, this);
+              }, _callee93, this);
             }));
           }
         }, {
@@ -19056,13 +21000,13 @@
         }, {
           key: "sendDelegation",
           value: function sendDelegation(keys) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee68() {
-              var _this48 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee95() {
+              var _this53 = this;
 
               var fee;
-              return regeneratorRuntime.wrap(function _callee68$(_context69) {
+              return regeneratorRuntime.wrap(function _callee95$(_context96) {
                 while (1) {
-                  switch (_context69.prev = _context69.next) {
+                  switch (_context96.prev = _context96.next) {
                     case 0:
                       fee = this.storedFee;
                       this.fee = '';
@@ -19072,11 +21016,11 @@
                       }
 
                       this.operationService.delegate(this.activeAccount.address, this.getDelegate(), Number(fee), keys).subscribe(function (ans) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this48, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee67() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this53, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee94() {
                           var metadata;
-                          return regeneratorRuntime.wrap(function _callee67$(_context68) {
+                          return regeneratorRuntime.wrap(function _callee94$(_context95) {
                             while (1) {
-                              switch (_context68.prev = _context68.next) {
+                              switch (_context95.prev = _context95.next) {
                                 case 0:
                                   this.sendResponse = ans;
                                   console.log(JSON.stringify(ans));
@@ -19105,51 +21049,51 @@
 
                                 case 3:
                                 case "end":
-                                  return _context68.stop();
+                                  return _context95.stop();
                               }
                             }
-                          }, _callee67, this);
+                          }, _callee94, this);
                         }));
                       }, function (err) {
                         console.log('Error Message ', JSON.stringify(err));
-                        _this48.ledgerError = 'Failed to create operation';
+                        _this53.ledgerError = 'Failed to create operation';
                       });
 
                     case 4:
                     case "end":
-                      return _context69.stop();
+                      return _context96.stop();
                   }
                 }
-              }, _callee68, this);
+              }, _callee95, this);
             }));
           }
         }, {
           key: "requestLedgerSignature",
           value: function requestLedgerSignature() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee69() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee96() {
               var op, signature, signedOp;
-              return regeneratorRuntime.wrap(function _callee69$(_context70) {
+              return regeneratorRuntime.wrap(function _callee96$(_context97) {
                 while (1) {
-                  switch (_context70.prev = _context70.next) {
+                  switch (_context97.prev = _context97.next) {
                     case 0:
                       if (!(this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_9__["LedgerWallet"])) {
-                        _context70.next = 11;
+                        _context97.next = 11;
                         break;
                       }
 
                       op = this.sendResponse.payload.unsignedOperation;
                       this.messageService.startSpinner('Waiting for Ledger signature');
-                      _context70.prev = 3;
-                      _context70.next = 6;
+                      _context97.prev = 3;
+                      _context97.next = 6;
                       return this.ledgerService.signOperation('03' + op, this.walletService.wallet.implicitAccounts[0].derivationPath);
 
                     case 6:
-                      signature = _context70.sent;
+                      signature = _context97.sent;
 
                     case 7:
-                      _context70.prev = 7;
+                      _context97.prev = 7;
                       this.messageService.stopSpinner();
-                      return _context70.finish(7);
+                      return _context97.finish(7);
 
                     case 10:
                       if (signature) {
@@ -19163,72 +21107,72 @@
 
                     case 11:
                     case "end":
-                      return _context70.stop();
+                      return _context97.stop();
                   }
                 }
-              }, _callee69, this, [[3,, 7, 10]]);
+              }, _callee96, this, [[3,, 7, 10]]);
             }));
           }
         }, {
           key: "broadCastLedgerTransaction",
           value: function broadCastLedgerTransaction() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee70() {
-              var _this49 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee97() {
+              var _this54 = this;
 
-              return regeneratorRuntime.wrap(function _callee70$(_context71) {
+              return regeneratorRuntime.wrap(function _callee97$(_context98) {
                 while (1) {
-                  switch (_context71.prev = _context71.next) {
+                  switch (_context98.prev = _context98.next) {
                     case 0:
                       this.messageService.startSpinner('Broadcasting operation');
                       this.operationService.broadcast(this.sendResponse.payload.signedOperation).subscribe(function (ans) {
-                        _this49.sendResponse = ans;
+                        _this54.sendResponse = ans;
 
-                        if (ans.success && _this49.activeAccount.address) {
+                        if (ans.success && _this54.activeAccount.address) {
                           var metadata = {
-                            delegate: _this49.getDelegate(),
+                            delegate: _this54.getDelegate(),
                             opHash: ans.payload.opHash
                           };
 
-                          _this49.coordinatorService.boost(_this49.activeAccount.address, metadata);
+                          _this54.coordinatorService.boost(_this54.activeAccount.address, metadata);
                         } else {
-                          _this49.messageService.addError(_this49.sendResponse.payload.msg, 0);
+                          _this54.messageService.addError(_this54.sendResponse.payload.msg, 0);
 
-                          _this49.operationResponse.emit('broadcast_error');
+                          _this54.operationResponse.emit('broadcast_error');
                         }
 
-                        _this49.closeModal();
+                        _this54.closeModal();
 
                         console.log('ans: ' + JSON.stringify(ans));
                       }, function (error) {
-                        _this49.messageService.stopSpinner();
+                        _this54.messageService.stopSpinner();
 
-                        _this49.messageService.addError(error, 0);
+                        _this54.messageService.addError(error, 0);
 
-                        _this49.operationResponse.emit('broadcast_error');
+                        _this54.operationResponse.emit('broadcast_error');
                       });
 
                     case 2:
                     case "end":
-                      return _context71.stop();
+                      return _context98.stop();
                   }
                 }
-              }, _callee70, this);
+              }, _callee97, this);
             }));
           }
         }, {
           key: "checkReveal",
           value: function checkReveal() {
-            var _this50 = this;
+            var _this55 = this;
 
             console.log('check reveal ' + this.activeAccount.pkh);
             this.operationService.isRevealed(this.activeAccount.pkh).subscribe(function (revealed) {
               if (!revealed) {
-                _this50.revealFee = 0.0002;
+                _this55.revealFee = 0.0002;
               } else {
-                _this50.revealFee = 0;
+                _this55.revealFee = 0;
               }
 
-              _this50.checkSource();
+              _this55.checkSource();
             });
           }
         }, {
@@ -19802,54 +21746,54 @@
         _createClass(LedgerService, [{
           key: "setTransport",
           value: function setTransport() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee71() {
-              return regeneratorRuntime.wrap(function _callee71$(_context72) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee98() {
+              return regeneratorRuntime.wrap(function _callee98$(_context99) {
                 while (1) {
-                  switch (_context72.prev = _context72.next) {
+                  switch (_context99.prev = _context99.next) {
                     case 0:
                       if (this.transport) {
-                        _context72.next = 12;
+                        _context99.next = 12;
                         break;
                       }
 
                       console.log('Trying to use U2F for transport...');
-                      _context72.prev = 2;
-                      _context72.next = 5;
+                      _context99.prev = 2;
+                      _context99.next = 5;
                       return _ledgerhq_hw_transport_u2f__WEBPACK_IMPORTED_MODULE_3__["default"].create();
 
                     case 5:
-                      this.transport = _context72.sent;
+                      this.transport = _context99.sent;
                       console.log('Transport is now set to use U2F!');
-                      _context72.next = 12;
+                      _context99.next = 12;
                       break;
 
                     case 9:
-                      _context72.prev = 9;
-                      _context72.t0 = _context72["catch"](2);
+                      _context99.prev = 9;
+                      _context99.t0 = _context99["catch"](2);
                       console.log('Couldn\'t use U2F for transport!');
 
                     case 12:
                     case "end":
-                      return _context72.stop();
+                      return _context99.stop();
                   }
                 }
-              }, _callee71, this, [[2, 9]]);
+              }, _callee98, this, [[2, 9]]);
             }));
           }
         }, {
           key: "transportCheck",
           value: function transportCheck() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee72() {
-              return regeneratorRuntime.wrap(function _callee72$(_context73) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee99() {
+              return regeneratorRuntime.wrap(function _callee99$(_context100) {
                 while (1) {
-                  switch (_context73.prev = _context73.next) {
+                  switch (_context100.prev = _context100.next) {
                     case 0:
                       if (this.transport) {
-                        _context73.next = 3;
+                        _context100.next = 3;
                         break;
                       }
 
-                      _context73.next = 3;
+                      _context100.next = 3;
                       return this.setTransport();
 
                     case 3:
@@ -19859,155 +21803,155 @@
 
                     case 4:
                     case "end":
-                      return _context73.stop();
+                      return _context100.stop();
                   }
                 }
-              }, _callee72, this);
+              }, _callee99, this);
             }));
           }
         }, {
           key: "getPublicAddress",
           value: function getPublicAddress(path) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee73() {
-              var _this51 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee100() {
+              var _this56 = this;
 
               var xtz, result, pk;
-              return regeneratorRuntime.wrap(function _callee73$(_context74) {
+              return regeneratorRuntime.wrap(function _callee100$(_context101) {
                 while (1) {
-                  switch (_context74.prev = _context74.next) {
+                  switch (_context101.prev = _context101.next) {
                     case 0:
-                      _context74.next = 2;
+                      _context101.next = 2;
                       return this.transportCheck();
 
                     case 2:
                       xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
-                      _context74.next = 5;
+                      _context101.next = 5;
                       return xtz.getAddress(path, true)["catch"](function (e) {
                         if (e.message) {
-                          _this51.messageService.addError(e.message);
+                          _this56.messageService.addError(e.message);
                         } else {
-                          _this51.messageService.addError(e);
+                          _this56.messageService.addError(e);
                         }
 
                         throw e;
                       });
 
                     case 5:
-                      result = _context74.sent;
+                      result = _context101.sent;
                       pk = this.operationService.hex2pk(result.publicKey);
-                      return _context74.abrupt("return", pk);
+                      return _context101.abrupt("return", pk);
 
                     case 8:
                     case "end":
-                      return _context74.stop();
+                      return _context101.stop();
                   }
                 }
-              }, _callee73, this);
+              }, _callee100, this);
             }));
           }
         }, {
           key: "signOperation",
           value: function signOperation(op, path) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee74() {
-              var _this52 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee101() {
+              var _this57 = this;
 
               var xtz, result;
-              return regeneratorRuntime.wrap(function _callee74$(_context75) {
+              return regeneratorRuntime.wrap(function _callee101$(_context102) {
                 while (1) {
-                  switch (_context75.prev = _context75.next) {
+                  switch (_context102.prev = _context102.next) {
                     case 0:
                       if (['03', '05'].includes(op.slice(0, 2))) {
-                        _context75.next = 2;
+                        _context102.next = 2;
                         break;
                       }
 
                       throw new Error('Invalid prefix');
 
                     case 2:
-                      _context75.next = 4;
+                      _context102.next = 4;
                       return this.transportCheck();
 
                     case 4:
                       xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
                       console.log('op', op);
-                      _context75.next = 8;
+                      _context102.next = 8;
                       return xtz.signOperation(path, op)["catch"](function (e) {
                         console.warn(e);
 
-                        _this52.messageService.addError(e, 0);
+                        _this57.messageService.addError(e, 0);
                       });
 
                     case 8:
-                      result = _context75.sent;
+                      result = _context102.sent;
                       console.log(JSON.stringify(result));
 
                       if (!(result && result.signature)) {
-                        _context75.next = 12;
+                        _context102.next = 12;
                         break;
                       }
 
-                      return _context75.abrupt("return", result.signature);
+                      return _context102.abrupt("return", result.signature);
 
                     case 12:
-                      return _context75.abrupt("return", null);
+                      return _context102.abrupt("return", null);
 
                     case 13:
                     case "end":
-                      return _context75.stop();
+                      return _context102.stop();
                   }
                 }
-              }, _callee74, this);
+              }, _callee101, this);
             }));
           }
         }, {
           key: "signHash",
           value: function signHash(hash, path) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee75() {
-              var _this53 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee102() {
+              var _this58 = this;
 
               var xtz, result;
-              return regeneratorRuntime.wrap(function _callee75$(_context76) {
+              return regeneratorRuntime.wrap(function _callee102$(_context103) {
                 while (1) {
-                  switch (_context76.prev = _context76.next) {
+                  switch (_context103.prev = _context103.next) {
                     case 0:
                       if (!(hash.length !== 64)) {
-                        _context76.next = 2;
+                        _context103.next = 2;
                         break;
                       }
 
                       throw new Error('Invalid hash!');
 
                     case 2:
-                      _context76.next = 4;
+                      _context103.next = 4;
                       return this.transportCheck();
 
                     case 4:
                       xtz = new _obsidiansystems_hw_app_xtz__WEBPACK_IMPORTED_MODULE_4___default.a(this.transport);
-                      _context76.next = 7;
+                      _context103.next = 7;
                       return xtz.signHash(path, hash)["catch"](function (e) {
-                        _this53.messageService.addError(e, 0);
+                        _this58.messageService.addError(e, 0);
                       });
 
                     case 7:
-                      result = _context76.sent;
+                      result = _context103.sent;
                       console.log(JSON.stringify(result));
 
                       if (!(result && result.signature)) {
-                        _context76.next = 11;
+                        _context103.next = 11;
                         break;
                       }
 
-                      return _context76.abrupt("return", result.signature);
+                      return _context103.abrupt("return", result.signature);
 
                     case 11:
-                      return _context76.abrupt("return", null);
+                      return _context103.abrupt("return", null);
 
                     case 12:
                     case "end":
-                      return _context76.stop();
+                      return _context103.stop();
                   }
                 }
-              }, _callee75, this);
+              }, _callee102, this);
             }));
           }
         }]);
@@ -21057,11 +23001,11 @@
         }, {
           key: "openModal",
           value: function openModal() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee76() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee103() {
               var scrollBarWidth;
-              return regeneratorRuntime.wrap(function _callee76$(_context77) {
+              return regeneratorRuntime.wrap(function _callee103$(_context104) {
                 while (1) {
-                  switch (_context77.prev = _context77.next) {
+                  switch (_context104.prev = _context104.next) {
                     case 0:
                       scrollBarWidth = window.innerWidth - document.body.offsetWidth;
                       document.body.style.marginRight = scrollBarWidth.toString();
@@ -21071,10 +23015,10 @@
 
                     case 5:
                     case "end":
-                      return _context77.stop();
+                      return _context104.stop();
                   }
                 }
-              }, _callee76, this);
+              }, _callee103, this);
             }));
           }
         }, {
@@ -21202,13 +23146,13 @@
         }, {
           key: "estimateFees",
           value: function estimateFees() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee77() {
-              var _this54 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee104() {
+              var _this59 = this;
 
               var prevSimError, txs, equiClass, callback;
-              return regeneratorRuntime.wrap(function _callee77$(_context78) {
+              return regeneratorRuntime.wrap(function _callee104$(_context105) {
                 while (1) {
-                  switch (_context78.prev = _context78.next) {
+                  switch (_context105.prev = _context105.next) {
                     case 0:
                       console.log('estimate..');
                       prevSimError = this.latestSimError;
@@ -21233,20 +23177,20 @@
                           callback = function callback(res) {
                             if (res) {
                               if (res.error) {
-                                _this54.formInvalid = res.error;
-                                _this54.latestSimError = res.error;
+                                _this59.formInvalid = res.error;
+                                _this59.latestSimError = res.error;
                               } else {
-                                _this54.defaultTransactionParams = res;
-                                _this54.formInvalid = '';
-                                _this54.latestSimError = '';
+                                _this59.defaultTransactionParams = res;
+                                _this59.formInvalid = '';
+                                _this59.latestSimError = '';
 
-                                _this54.updateMaxAmount();
+                                _this59.updateMaxAmount();
                               }
                             } else {
                               console.log('no res');
                             }
 
-                            _this54.simSemaphore--;
+                            _this59.simSemaphore--;
                           };
 
                           this.estimateService.estimate(JSON.parse(JSON.stringify(txs)), this.activeAccount.address, this.tokenTransfer, callback);
@@ -21266,10 +23210,10 @@
 
                     case 6:
                     case "end":
-                      return _context78.stop();
+                      return _context105.stop();
                   }
                 }
-              }, _callee77, this);
+              }, _callee104, this);
             }));
           }
         }, {
@@ -21370,7 +23314,7 @@
         }, {
           key: "getBatch",
           value: function getBatch() {
-            var _this55 = this;
+            var _this60 = this;
 
             var finalCheck = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
             var txs = this.toMultipleDestinationsString.trim().split(';').map(function (row, i) {
@@ -21381,10 +23325,10 @@
                   return col;
                 });
                 assert__WEBPACK_IMPORTED_MODULE_10___default()((cols === null || cols === void 0 ? void 0 : cols.length) === 2, "Transaction ".concat(i + 1, " has invalid number of arguments. Expected 2, but got ").concat(cols === null || cols === void 0 ? void 0 : cols.length, "."));
-                assert__WEBPACK_IMPORTED_MODULE_10___default()(_this55.inputValidationService.address(cols[0]), "Transaction ".concat(i + 1, " contains an invalid destination."));
-                assert__WEBPACK_IMPORTED_MODULE_10___default()(_this55.inputValidationService.amount(cols[1]), "Transaction ".concat(i + 1, " contains an invalid amount."));
+                assert__WEBPACK_IMPORTED_MODULE_10___default()(_this60.inputValidationService.address(cols[0]), "Transaction ".concat(i + 1, " contains an invalid destination."));
+                assert__WEBPACK_IMPORTED_MODULE_10___default()(_this60.inputValidationService.amount(cols[1]), "Transaction ".concat(i + 1, " contains an invalid amount."));
 
-                _this55.checkTx(cols[0], cols[1], finalCheck);
+                _this60.checkTx(cols[0], cols[1], finalCheck);
 
                 var tx = {
                   kind: 'transaction',
@@ -21585,10 +23529,10 @@
         }, {
           key: "verifierChange",
           value: function verifierChange() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee78() {
-              return regeneratorRuntime.wrap(function _callee78$(_context79) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee105() {
+              return regeneratorRuntime.wrap(function _callee105$(_context106) {
                 while (1) {
-                  switch (_context79.prev = _context79.next) {
+                  switch (_context106.prev = _context106.next) {
                     case 0:
                       this.torusLookupAddress = '';
 
@@ -21602,60 +23546,60 @@
 
                     case 2:
                     case "end":
-                      return _context79.stop();
+                      return _context106.stop();
                   }
                 }
-              }, _callee78, this);
+              }, _callee105, this);
             }));
           }
         }, {
           key: "torusLookup",
           value: function torusLookup() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee79() {
-              var _this56 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee106() {
+              var _this61 = this;
 
               var _yield$this$torusServ3, pkh, twitterId;
 
-              return regeneratorRuntime.wrap(function _callee79$(_context80) {
+              return regeneratorRuntime.wrap(function _callee106$(_context107) {
                 while (1) {
-                  switch (_context80.prev = _context80.next) {
+                  switch (_context107.prev = _context107.next) {
                     case 0:
                       if (this.torusService.verifierMapKeys.includes(this.torusVerifier)) {
-                        _context80.next = 4;
+                        _context107.next = 4;
                         break;
                       }
 
                       this.formInvalid = 'Invalid verifier';
-                      _context80.next = 18;
+                      _context107.next = 18;
                       break;
 
                     case 4:
                       if (!this.invalidTorusAccount()) {
-                        _context80.next = 8;
+                        _context107.next = 8;
                         break;
                       }
 
                       this.formInvalid = this.invalidTorusAccount();
-                      _context80.next = 18;
+                      _context107.next = 18;
                       break;
 
                     case 8:
                       if (!this.toPkh) {
-                        _context80.next = 18;
+                        _context107.next = 18;
                         break;
                       }
 
                       this.torusPendingLookup = true;
                       this.torusLookupId = this.toPkh;
-                      _context80.next = 13;
+                      _context107.next = 13;
                       return this.torusService.lookupPkh(this.torusVerifier, this.toPkh)["catch"](function (e) {
                         console.error(e);
-                        _this56.formInvalid = e;
+                        _this61.formInvalid = e;
                         return '';
                       });
 
                     case 13:
-                      _yield$this$torusServ3 = _context80.sent;
+                      _yield$this$torusServ3 = _context107.sent;
                       pkh = _yield$this$torusServ3.pkh;
                       twitterId = _yield$this$torusServ3.twitterId;
                       this.torusPendingLookup = false;
@@ -21670,10 +23614,10 @@
 
                     case 18:
                     case "end":
-                      return _context80.stop();
+                      return _context107.stop();
                   }
                 }
-              }, _callee79, this);
+              }, _callee106, this);
             }));
           }
         }, {
@@ -21979,7 +23923,7 @@
         }, {
           key: "openModal",
           value: function openModal() {
-            var _this57 = this;
+            var _this62 = this;
 
             // hide body scrollbar
             var scrollBarWidth = window.innerWidth - document.body.offsetWidth;
@@ -21987,7 +23931,7 @@
             document.body.style.overflow = 'hidden';
             this.modalOpen = true;
             setTimeout(function () {
-              _this57.getQR();
+              _this62.getQR();
             }, 100);
           }
         }, {
@@ -22016,7 +23960,7 @@
         }, {
           key: "open1",
           value: function open1(template1) {
-            var _this58 = this;
+            var _this63 = this;
 
             if (this.activeAddress) {
               this.modalRef1 = this.modalService.show(template1, {
@@ -22024,7 +23968,7 @@
               }); // modal-sm / modal-lg
 
               setTimeout(function () {
-                _this58.getQR();
+                _this63.getQR();
               }, 100);
             } else {
               this.messageService.add('Select an address first by clicking on it!');
@@ -22167,13 +24111,13 @@
         _createClass(TzrateService, [{
           key: "getTzrate",
           value: function getTzrate() {
-            var _this59 = this;
+            var _this64 = this;
 
             if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["CONSTANTS"].MAINNET) {
               this.http.get(this.apiUrl).subscribe(function (price) {
-                _this59.walletService.wallet.XTZrate = price.tezos.usd;
+                _this64.walletService.wallet.XTZrate = price.tezos.usd;
 
-                _this59.updateFiatBalances();
+                _this64.updateFiatBalances();
               }, function (err) {
                 return console.log('Failed to get xtz price: ' + JSON.stringify(err));
               });
@@ -23674,7 +25618,7 @@
         _createClass(AccountViewComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this60 = this;
+            var _this65 = this;
 
             if (!this.walletService.wallet) {
               this.router.navigate(['']);
@@ -23689,14 +25633,14 @@
               this.router.events.pipe(Object(rxjs_internal_operators_filter__WEBPACK_IMPORTED_MODULE_8__["filter"])(function (evt) {
                 return evt instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["NavigationEnd"];
               })).subscribe(function () {
-                address = _this60.route.snapshot.paramMap.get('address');
+                address = _this65.route.snapshot.paramMap.get('address');
 
-                if (_this60.walletService.wallet && _this60.walletService.addressExists(address)) {
-                  _this60.account = _this60.walletService.wallet.getAccount(address);
+                if (_this65.walletService.wallet && _this65.walletService.addressExists(address)) {
+                  _this65.account = _this65.walletService.wallet.getAccount(address);
                 }
               });
               setInterval(function () {
-                return _this60.trigger = !_this60.trigger;
+                return _this65.trigger = !_this65.trigger;
               }, 1000);
             }
           }
@@ -24083,13 +26027,13 @@
         var _super = _createSuper(FullWallet);
 
         function FullWallet(encryptedSeed) {
-          var _this61;
+          var _this66;
 
           _classCallCheck(this, FullWallet);
 
-          _this61 = _super.call(this);
-          _this61.encryptedSeed = encryptedSeed;
-          return _this61;
+          _this66 = _super.call(this);
+          _this66.encryptedSeed = encryptedSeed;
+          return _this66;
         }
 
         return FullWallet;
@@ -24101,13 +26045,13 @@
         var _super2 = _createSuper(LegacyWalletV1);
 
         function LegacyWalletV1(salt, encrypedSeed) {
-          var _this62;
+          var _this67;
 
           _classCallCheck(this, LegacyWalletV1);
 
-          _this62 = _super2.call(this, encrypedSeed);
-          _this62.salt = salt;
-          return _this62;
+          _this67 = _super2.call(this, encrypedSeed);
+          _this67.salt = salt;
+          return _this67;
         }
 
         return LegacyWalletV1;
@@ -24119,13 +26063,13 @@
         var _super3 = _createSuper(LegacyWalletV2);
 
         function LegacyWalletV2(IV, encryptedSeed) {
-          var _this63;
+          var _this68;
 
           _classCallCheck(this, LegacyWalletV2);
 
-          _this63 = _super3.call(this, encryptedSeed);
-          _this63.IV = IV;
-          return _this63;
+          _this68 = _super3.call(this, encryptedSeed);
+          _this68.IV = IV;
+          return _this68;
         }
 
         return LegacyWalletV2;
@@ -24137,14 +26081,14 @@
         var _super4 = _createSuper(LegacyWalletV3);
 
         function LegacyWalletV3(IV, encryptedSeed, encryptedEntropy) {
-          var _this64;
+          var _this69;
 
           _classCallCheck(this, LegacyWalletV3);
 
-          _this64 = _super4.call(this, encryptedSeed);
-          _this64.IV = IV;
-          _this64.encryptedEntropy = encryptedEntropy;
-          return _this64;
+          _this69 = _super4.call(this, encryptedSeed);
+          _this69.IV = IV;
+          _this69.encryptedEntropy = encryptedEntropy;
+          return _this69;
         }
 
         return LegacyWalletV3;
@@ -24156,15 +26100,15 @@
         var _super5 = _createSuper(HdWallet);
 
         function HdWallet(IV, encryptedSeed, encryptedEntropy) {
-          var _this65;
+          var _this70;
 
           _classCallCheck(this, HdWallet);
 
-          _this65 = _super5.call(this, encryptedSeed);
-          _this65.encryptedEntropy = encryptedEntropy;
-          _this65.IV = IV;
-          _this65.index = 0;
-          return _this65;
+          _this70 = _super5.call(this, encryptedSeed);
+          _this70.encryptedEntropy = encryptedEntropy;
+          _this70.IV = IV;
+          _this70.index = 0;
+          return _this70;
         }
 
         return HdWallet;
@@ -24176,15 +26120,15 @@
         var _super6 = _createSuper(TorusWallet);
 
         function TorusWallet(verifier, id, name) {
-          var _this66;
+          var _this71;
 
           _classCallCheck(this, TorusWallet);
 
-          _this66 = _super6.call(this);
-          _this66.verifier = verifier;
-          _this66.id = id;
-          _this66.name = name;
-          return _this66;
+          _this71 = _super6.call(this);
+          _this71.verifier = verifier;
+          _this71.id = id;
+          _this71.name = name;
+          return _this71;
         }
 
         _createClass(TorusWallet, [{
@@ -24207,15 +26151,15 @@
         var _super7 = _createSuper(EmbeddedTorusWallet);
 
         function EmbeddedTorusWallet(verifier, id, name, origin, sk, instanceId) {
-          var _this67;
+          var _this72;
 
           _classCallCheck(this, EmbeddedTorusWallet);
 
-          _this67 = _super7.call(this, verifier, id, name);
-          _this67.origin = origin;
-          _this67.sk = sk;
-          _this67.instanceId = instanceId;
-          return _this67;
+          _this72 = _super7.call(this, verifier, id, name);
+          _this72.origin = origin;
+          _this72.sk = sk;
+          _this72.instanceId = instanceId;
+          return _this72;
         }
 
         return EmbeddedTorusWallet;
@@ -24317,18 +26261,18 @@
         var _super9 = _createSuper(ImplicitAccount);
 
         function ImplicitAccount(pkh, pk, derivationPath) {
-          var _this68;
+          var _this73;
 
           _classCallCheck(this, ImplicitAccount);
 
-          _this68 = _super9.call(this, pkh, pk, pkh);
-          _this68.originatedAccounts = [];
+          _this73 = _super9.call(this, pkh, pk, pkh);
+          _this73.originatedAccounts = [];
 
           if (derivationPath) {
-            _this68.derivationPath = derivationPath;
+            _this73.derivationPath = derivationPath;
           }
 
-          return _this68;
+          return _this73;
         }
 
         _createClass(ImplicitAccount, [{
@@ -24583,34 +26527,34 @@
         }, {
           key: "scan",
           value: function scan() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee80() {
-              var _this69 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee107() {
+              var _this74 = this;
 
               var hasCamera;
-              return regeneratorRuntime.wrap(function _callee80$(_context81) {
+              return regeneratorRuntime.wrap(function _callee107$(_context108) {
                 while (1) {
-                  switch (_context81.prev = _context81.next) {
+                  switch (_context108.prev = _context108.next) {
                     case 0:
-                      _context81.next = 2;
+                      _context108.next = 2;
                       return qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"].hasCamera();
 
                     case 2:
-                      hasCamera = _context81.sent;
+                      hasCamera = _context108.sent;
 
                       if (!hasCamera) {
-                        _context81.next = 10;
+                        _context108.next = 10;
                         break;
                       }
 
                       qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"].WORKER_PATH = './assets/js/qr-scanner-worker.min.js';
                       this.qrScanner = new qr_scanner__WEBPACK_IMPORTED_MODULE_3__["default"](this.videoplayer.nativeElement, function (result) {
-                        return _this69.handleQrCode(result);
+                        return _this74.handleQrCode(result);
                       });
-                      _context81.next = 8;
+                      _context108.next = 8;
                       return this.qrScanner.start();
 
                     case 8:
-                      _context81.next = 11;
+                      _context108.next = 11;
                       break;
 
                     case 10:
@@ -24618,10 +26562,10 @@
 
                     case 11:
                     case "end":
-                      return _context81.stop();
+                      return _context108.stop();
                   }
                 }
-              }, _callee80, this);
+              }, _callee107, this);
             }));
           }
         }, {
@@ -25667,7 +27611,7 @@
         }, {
           key: "retrieve",
           value: function retrieve() {
-            var _this70 = this;
+            var _this75 = this;
 
             if (this.mnemonic) {
               this.mnemonic = this.mnemonic.toLowerCase().replace(/(\r\n|\n|\r)/gm, ' ').trim();
@@ -25679,26 +27623,26 @@
 
             if (!this.inputValidationService.mnemonics(this.mnemonic)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDMNEMONIC').subscribe(function (res) {
-                return _this70.messageService.addWarning(res, 10);
+                return _this75.messageService.addWarning(res, 10);
               });
             } else if (this.importOption === 2 && !this.inputValidationService.email(this.email)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDEMAIL').subscribe(function (res) {
-                return _this70.messageService.addWarning(res, 10);
+                return _this75.messageService.addWarning(res, 10);
               } // 'Invalid email!'
               );
             } else if (this.importOption === 2 && !this.password) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSWORD').subscribe(function (res) {
-                return _this70.messageService.addWarning(res, 10);
+                return _this75.messageService.addWarning(res, 10);
               } // 'Invalid password!'
               );
             } else if (!this.inputValidationService.passphrase(this.passphrase)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSPHRASE').subscribe(function (res) {
-                return _this70.messageService.addWarning(res, 10);
+                return _this75.messageService.addWarning(res, 10);
               } // 'Invalid passphrase!'
               );
             } else if (this.pkh && !this.inputValidationService.address(this.pkh)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPKH').subscribe(function (res) {
-                return _this70.messageService.addWarning(res, 10);
+                return _this75.messageService.addWarning(res, 10);
               } // 'Invalid public key hash!'
               );
             } else {
@@ -25715,11 +27659,11 @@
               if (this.pkh && pkh !== this.pkh) {
                 if (this.importOption === 2) {
                   this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDEMAILPASSWORD').subscribe(function (res) {
-                    return _this70.messageService.addWarning(res, 5);
+                    return _this75.messageService.addWarning(res, 5);
                   });
                 } else {
                   this.translate.get('MNEMONICIMPORTCOMPONENT.INVALIDPASSPHRASE').subscribe(function (res) {
-                    return _this70.messageService.addWarning(res, 5);
+                    return _this75.messageService.addWarning(res, 5);
                   });
                 }
               } else {
@@ -25730,35 +27674,35 @@
         }, {
           key: "setPwd",
           value: function setPwd() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee81() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee108() {
               var password;
-              return regeneratorRuntime.wrap(function _callee81$(_context82) {
+              return regeneratorRuntime.wrap(function _callee108$(_context109) {
                 while (1) {
-                  switch (_context82.prev = _context82.next) {
+                  switch (_context109.prev = _context109.next) {
                     case 0:
                       if (!this.validPwd()) {
-                        _context82.next = 19;
+                        _context109.next = 19;
                         break;
                       }
 
                       password = this.pwd1;
                       this.pwd1 = '';
                       this.pwd2 = '';
-                      _context82.next = 6;
+                      _context109.next = 6;
                       return this.messageService.startSpinner('Encrypting wallet...');
 
                     case 6:
-                      _context82.prev = 6;
-                      _context82.next = 9;
+                      _context109.prev = 6;
+                      _context109.next = 9;
                       return this.walletService.createEncryptedWallet(this.mnemonic, password, this.passphrase, this.importOption === 1 && this.hdImport);
 
                     case 9:
-                      this.wallet = _context82.sent;
+                      this.wallet = _context109.sent;
 
                     case 10:
-                      _context82.prev = 10;
+                      _context109.prev = 10;
                       this.messageService.stopSpinner();
-                      return _context82.finish(10);
+                      return _context109.finish(10);
 
                     case 13:
                       this.mnemonic = '';
@@ -25773,26 +27717,26 @@
 
                     case 19:
                     case "end":
-                      return _context82.stop();
+                      return _context109.stop();
                   }
                 }
-              }, _callee81, this, [[6,, 10, 13]]);
+              }, _callee108, this, [[6,, 10, 13]]);
             }));
           }
         }, {
           key: "validPwd",
           value: function validPwd() {
-            var _this71 = this;
+            var _this76 = this;
 
             if (!this.inputValidationService.password(this.pwd1)) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.PASSWORDWEAK').subscribe(function (res) {
-                return _this71.messageService.addWarning(res, 10);
+                return _this76.messageService.addWarning(res, 10);
               } // 'Password is too weak!'
               );
               return false;
             } else if (this.pwd1 !== this.pwd2) {
               this.translate.get('MNEMONICIMPORTCOMPONENT.NOMATCHPASSWORDS').subscribe(function (res) {
-                return _this71.messageService.addWarning(res, 10);
+                return _this76.messageService.addWarning(res, 10);
               } // Passwords don't match!
               );
               return false;
@@ -25824,25 +27768,25 @@
         }, {
           key: "done",
           value: function done() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee82() {
-              var _this72 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee109() {
+              var _this77 = this;
 
-              return regeneratorRuntime.wrap(function _callee82$(_context83) {
+              return regeneratorRuntime.wrap(function _callee109$(_context110) {
                 while (1) {
-                  switch (_context83.prev = _context83.next) {
+                  switch (_context110.prev = _context110.next) {
                     case 0:
-                      _context83.next = 2;
+                      _context110.next = 2;
                       return this.messageService.startSpinner('Loading wallet...');
 
                     case 2:
-                      _context83.prev = 2;
-                      _context83.next = 5;
+                      _context110.prev = 2;
+                      _context110.next = 5;
                       return this.importService.importWalletFromObject(this.wallet.data, this.wallet.seed);
 
                     case 5:
-                      _context83.prev = 5;
+                      _context110.prev = 5;
                       this.messageService.stopSpinner();
-                      return _context83.finish(5);
+                      return _context110.finish(5);
 
                     case 8:
                       this.wallet = null;
@@ -25854,15 +27798,15 @@
                       }
 
                       this.translate.get('MNEMONICIMPORTCOMPONENT.WALLETREADY').subscribe(function (res) {
-                        return _this72.messageService.addSuccess(res);
+                        return _this77.messageService.addSuccess(res);
                       });
 
                     case 11:
                     case "end":
-                      return _context83.stop();
+                      return _context110.stop();
                   }
                 }
-              }, _callee82, this, [[2,, 5, 8]]);
+              }, _callee109, this, [[2,, 5, 8]]);
             }));
           }
           /* Keystore handling */
@@ -25924,34 +27868,34 @@
         }, {
           key: "checkImportPwd",
           value: function checkImportPwd() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee83() {
-              return regeneratorRuntime.wrap(function _callee83$(_context84) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee110() {
+              return regeneratorRuntime.wrap(function _callee110$(_context111) {
                 while (1) {
-                  switch (_context84.prev = _context84.next) {
+                  switch (_context111.prev = _context111.next) {
                     case 0:
                       if (!this.pwd) {
-                        _context84.next = 12;
+                        _context111.next = 12;
                         break;
                       }
 
-                      _context84.next = 3;
+                      _context111.next = 3;
                       return this.messageService.startSpinner('Importing wallet...');
 
                     case 3:
-                      _context84.prev = 3;
-                      _context84.next = 6;
+                      _context111.prev = 3;
+                      _context111.next = 6;
                       return this["import"](this.walletJson, this.pwd);
 
                     case 6:
                       this.pwd = '';
 
                     case 7:
-                      _context84.prev = 7;
+                      _context111.prev = 7;
                       this.messageService.stopSpinner();
-                      return _context84.finish(7);
+                      return _context111.finish(7);
 
                     case 10:
-                      _context84.next = 13;
+                      _context111.next = 13;
                       break;
 
                     case 12:
@@ -25959,52 +27903,52 @@
 
                     case 13:
                     case "end":
-                      return _context84.stop();
+                      return _context111.stop();
                   }
                 }
-              }, _callee83, this, [[3,, 7, 10]]);
+              }, _callee110, this, [[3,, 7, 10]]);
             }));
           }
         }, {
           key: "import",
           value: function _import(keyFile, pwd) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee84() {
-              var _this73 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee111() {
+              var _this78 = this;
 
-              return regeneratorRuntime.wrap(function _callee84$(_context85) {
+              return regeneratorRuntime.wrap(function _callee111$(_context112) {
                 while (1) {
-                  switch (_context85.prev = _context85.next) {
+                  switch (_context112.prev = _context112.next) {
                     case 0:
                       this.typeCheckFile(keyFile);
-                      _context85.next = 3;
+                      _context112.next = 3;
                       return this.importService.importWalletFromJson(keyFile, pwd).then(function (success) {
                         if (success) {
-                          if (_this73.walletService.wallet.implicitAccounts.length === 1 && _this73.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
-                            _this73.router.navigate(["/account/".concat(_this73.walletService.wallet.implicitAccounts[0].address)]);
+                          if (_this78.walletService.wallet.implicitAccounts.length === 1 && _this78.walletService.wallet.implicitAccounts[0].originatedAccounts.length === 0) {
+                            _this78.router.navigate(["/account/".concat(_this78.walletService.wallet.implicitAccounts[0].address)]);
                           } else {
-                            _this73.router.navigate(['/accounts']);
+                            _this78.router.navigate(['/accounts']);
                           }
                         } else {
                           console.log(success);
 
-                          _this73.messageService.addError('Something went wrong');
+                          _this78.messageService.addError('Something went wrong');
                         }
                       })["catch"](function (e) {
-                        _this73.messageService.addError(e);
+                        _this78.messageService.addError(e);
                       });
 
                     case 3:
                     case "end":
-                      return _context85.stop();
+                      return _context112.stop();
                   }
                 }
-              }, _callee84, this);
+              }, _callee111, this);
             }));
           }
         }, {
           key: "handleFileInput",
           value: function handleFileInput(files) {
-            var _this74 = this;
+            var _this79 = this;
 
             var fileToUpload = files.item(0);
 
@@ -26027,18 +27971,18 @@
               reader.onload = function () {
                 if (typeof reader.result === 'string') {
                   try {
-                    _this74.importPreCheck(reader.result);
+                    _this79.importPreCheck(reader.result);
                   } catch (e) {
-                    _this74.messageService.addError(e, 5);
+                    _this79.messageService.addError(e, 5);
 
-                    _this74.walletJson = null;
+                    _this79.walletJson = null;
                   }
 
-                  if (_this74.walletJson) {
-                    _this74.fileName = fileToUpload.name;
+                  if (_this79.walletJson) {
+                    _this79.fileName = fileToUpload.name;
                   }
                 } else {
-                  _this74.walletJson = null;
+                  _this79.walletJson = null;
                   throw new Error('Not a string import');
                 }
               };
@@ -26236,15 +28180,15 @@
         }, {
           key: "addPeer",
           value: function addPeer(pairInfoJson) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee85() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee112() {
               var pairInfo;
-              return regeneratorRuntime.wrap(function _callee85$(_context86) {
+              return regeneratorRuntime.wrap(function _callee112$(_context113) {
                 while (1) {
-                  switch (_context86.prev = _context86.next) {
+                  switch (_context113.prev = _context113.next) {
                     case 0:
                       pairInfo = JSON.parse(pairInfoJson);
                       console.log('PairInfo', pairInfo);
-                      _context86.next = 4;
+                      _context113.next = 4;
                       return this.client.addPeer(pairInfo);
 
                     case 4:
@@ -26253,91 +28197,91 @@
 
                     case 6:
                     case "end":
-                      return _context86.stop();
+                      return _context113.stop();
                   }
                 }
-              }, _callee85, this);
+              }, _callee112, this);
             }));
           }
         }, {
           key: "syncBeaconState",
           value: function syncBeaconState() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee86() {
-              return regeneratorRuntime.wrap(function _callee86$(_context87) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee113() {
+              return regeneratorRuntime.wrap(function _callee113$(_context114) {
                 while (1) {
-                  switch (_context87.prev = _context87.next) {
+                  switch (_context114.prev = _context114.next) {
                     case 0:
-                      _context87.next = 2;
+                      _context114.next = 2;
                       return this.getPeers();
 
                     case 2:
-                      this.peers = _context87.sent;
-                      _context87.next = 5;
+                      this.peers = _context114.sent;
+                      _context114.next = 5;
                       return this.getPermissions();
 
                     case 5:
-                      this.permissions = _context87.sent;
+                      this.permissions = _context114.sent;
 
                     case 6:
                     case "end":
-                      return _context87.stop();
+                      return _context114.stop();
                   }
                 }
-              }, _callee86, this);
+              }, _callee113, this);
             }));
           }
         }, {
           key: "removePeers",
           value: function removePeers() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee87() {
-              return regeneratorRuntime.wrap(function _callee87$(_context88) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee114() {
+              return regeneratorRuntime.wrap(function _callee114$(_context115) {
                 while (1) {
-                  switch (_context88.prev = _context88.next) {
+                  switch (_context115.prev = _context115.next) {
                     case 0:
                       if (!(this.peers.length > 0)) {
-                        _context88.next = 5;
+                        _context115.next = 5;
                         break;
                       }
 
-                      _context88.next = 3;
+                      _context115.next = 3;
                       return this.removePeer(0);
 
                     case 3:
-                      _context88.next = 0;
+                      _context115.next = 0;
                       break;
 
                     case 5:
                     case "end":
-                      return _context88.stop();
+                      return _context115.stop();
                   }
                 }
-              }, _callee87, this);
+              }, _callee114, this);
             }));
           }
         }, {
           key: "removePeer",
           value: function removePeer(index) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee88() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee115() {
               var pairInfo, senderId, peerResponse;
-              return regeneratorRuntime.wrap(function _callee88$(_context89) {
+              return regeneratorRuntime.wrap(function _callee115$(_context116) {
                 while (1) {
-                  switch (_context89.prev = _context89.next) {
+                  switch (_context116.prev = _context116.next) {
                     case 0:
                       pairInfo = this.peers[index];
-                      _context89.next = 3;
+                      _context116.next = 3;
                       return Object(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["getSenderId"])(pairInfo.publicKey);
 
                     case 3:
-                      senderId = _context89.sent;
+                      senderId = _context116.sent;
                       peerResponse = Object.assign(Object.assign({}, pairInfo), {
                         type: 'p2p-pairing-response',
                         senderId: senderId
                       });
-                      _context89.next = 7;
+                      _context116.next = 7;
                       return this.client.removePeer(peerResponse);
 
                     case 7:
-                      _context89.next = 9;
+                      _context116.next = 9;
                       return this.client.removeAppMetadata(senderId);
 
                     case 9:
@@ -26345,21 +28289,21 @@
 
                     case 10:
                     case "end":
-                      return _context89.stop();
+                      return _context116.stop();
                   }
                 }
-              }, _callee88, this);
+              }, _callee115, this);
             }));
           }
         }, {
           key: "removePermissions",
           value: function removePermissions() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee89() {
-              return regeneratorRuntime.wrap(function _callee89$(_context90) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee116() {
+              return regeneratorRuntime.wrap(function _callee116$(_context117) {
                 while (1) {
-                  switch (_context90.prev = _context90.next) {
+                  switch (_context117.prev = _context117.next) {
                     case 0:
-                      _context90.next = 2;
+                      _context117.next = 2;
                       return this.client.removeAllPermissions();
 
                     case 2:
@@ -26367,21 +28311,21 @@
 
                     case 3:
                     case "end":
-                      return _context90.stop();
+                      return _context117.stop();
                   }
                 }
-              }, _callee89, this);
+              }, _callee116, this);
             }));
           }
         }, {
           key: "removePermission",
           value: function removePermission(index) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee90() {
-              return regeneratorRuntime.wrap(function _callee90$(_context91) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee117() {
+              return regeneratorRuntime.wrap(function _callee117$(_context118) {
                 while (1) {
-                  switch (_context91.prev = _context91.next) {
+                  switch (_context118.prev = _context118.next) {
                     case 0:
-                      _context91.next = 2;
+                      _context118.next = 2;
                       return this.client.removePermission(this.permissions[index].accountIdentifier);
 
                     case 2:
@@ -26389,257 +28333,257 @@
 
                     case 3:
                     case "end":
-                      return _context91.stop();
+                      return _context118.stop();
                   }
                 }
-              }, _callee90, this);
+              }, _callee117, this);
             }));
           }
         }, {
           key: "getPeers",
           value: function getPeers() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee91() {
-              return regeneratorRuntime.wrap(function _callee91$(_context92) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee118() {
+              return regeneratorRuntime.wrap(function _callee118$(_context119) {
                 while (1) {
-                  switch (_context92.prev = _context92.next) {
+                  switch (_context119.prev = _context119.next) {
                     case 0:
-                      _context92.next = 2;
+                      _context119.next = 2;
                       return this.client.getPeers();
 
                     case 2:
-                      return _context92.abrupt("return", _context92.sent);
+                      return _context119.abrupt("return", _context119.sent);
 
                     case 3:
                     case "end":
-                      return _context92.stop();
+                      return _context119.stop();
                   }
                 }
-              }, _callee91, this);
+              }, _callee118, this);
             }));
           }
         }, {
           key: "getPermissions",
           value: function getPermissions() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee92() {
-              return regeneratorRuntime.wrap(function _callee92$(_context93) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee119() {
+              return regeneratorRuntime.wrap(function _callee119$(_context120) {
                 while (1) {
-                  switch (_context93.prev = _context93.next) {
+                  switch (_context120.prev = _context120.next) {
                     case 0:
-                      _context93.next = 2;
+                      _context120.next = 2;
                       return this.client.getPermissions();
 
                     case 2:
-                      return _context93.abrupt("return", _context93.sent);
+                      return _context120.abrupt("return", _context120.sent);
 
                     case 3:
                     case "end":
-                      return _context93.stop();
+                      return _context120.stop();
                   }
                 }
-              }, _callee92, this);
+              }, _callee119, this);
             }));
           }
         }, {
           key: "rejectOnPermission",
           value: function rejectOnPermission(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee93() {
-              return regeneratorRuntime.wrap(function _callee93$(_context94) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee120() {
+              return regeneratorRuntime.wrap(function _callee120$(_context121) {
                 while (1) {
-                  switch (_context94.prev = _context94.next) {
+                  switch (_context121.prev = _context121.next) {
                     case 0:
-                      _context94.next = 2;
+                      _context121.next = 2;
                       return this.respondWithError(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconErrorType"].NOT_GRANTED_ERROR, message);
 
                     case 2:
                     case "end":
-                      return _context94.stop();
+                      return _context121.stop();
                   }
                 }
-              }, _callee93, this);
+              }, _callee120, this);
             }));
           }
         }, {
           key: "rejectOnNetwork",
           value: function rejectOnNetwork(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee94() {
-              return regeneratorRuntime.wrap(function _callee94$(_context95) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee121() {
+              return regeneratorRuntime.wrap(function _callee121$(_context122) {
                 while (1) {
-                  switch (_context95.prev = _context95.next) {
+                  switch (_context122.prev = _context122.next) {
                     case 0:
-                      _context95.next = 2;
+                      _context122.next = 2;
                       return this.respondWithError(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconErrorType"].NETWORK_NOT_SUPPORTED, message);
 
                     case 2:
                     case "end":
-                      return _context95.stop();
+                      return _context122.stop();
                   }
                 }
-              }, _callee94, this);
+              }, _callee121, this);
             }));
           }
         }, {
           key: "rejectOnUserAbort",
           value: function rejectOnUserAbort(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee95() {
-              return regeneratorRuntime.wrap(function _callee95$(_context96) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee122() {
+              return regeneratorRuntime.wrap(function _callee122$(_context123) {
                 while (1) {
-                  switch (_context96.prev = _context96.next) {
+                  switch (_context123.prev = _context123.next) {
                     case 0:
-                      _context96.next = 2;
+                      _context123.next = 2;
                       return this.respondWithError(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconErrorType"].ABORTED_ERROR, message);
 
                     case 2:
                     case "end":
-                      return _context96.stop();
+                      return _context123.stop();
                   }
                 }
-              }, _callee95, this);
+              }, _callee122, this);
             }));
           }
         }, {
           key: "rejectOnSourceAddress",
           value: function rejectOnSourceAddress(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee96() {
-              return regeneratorRuntime.wrap(function _callee96$(_context97) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee123() {
+              return regeneratorRuntime.wrap(function _callee123$(_context124) {
                 while (1) {
-                  switch (_context97.prev = _context97.next) {
+                  switch (_context124.prev = _context124.next) {
                     case 0:
-                      _context97.next = 2;
+                      _context124.next = 2;
                       return this.respondWithError(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconErrorType"].NO_PRIVATE_KEY_FOUND_ERROR, message);
 
                     case 2:
                     case "end":
-                      return _context97.stop();
+                      return _context124.stop();
                   }
                 }
-              }, _callee96, this);
+              }, _callee123, this);
             }));
           }
         }, {
           key: "rejectOnTooManyOps",
           value: function rejectOnTooManyOps(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee97() {
-              return regeneratorRuntime.wrap(function _callee97$(_context98) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee124() {
+              return regeneratorRuntime.wrap(function _callee124$(_context125) {
                 while (1) {
-                  switch (_context98.prev = _context98.next) {
+                  switch (_context125.prev = _context125.next) {
                     case 0:
-                      _context98.next = 2;
+                      _context125.next = 2;
                       return this.respondWithError(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconErrorType"].TOO_MANY_OPERATIONS, message);
 
                     case 2:
                     case "end":
-                      return _context98.stop();
+                      return _context125.stop();
                   }
                 }
-              }, _callee97, this);
+              }, _callee124, this);
             }));
           }
         }, {
           key: "rejectOnUnknown",
           value: function rejectOnUnknown(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee98() {
-              return regeneratorRuntime.wrap(function _callee98$(_context99) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee125() {
+              return regeneratorRuntime.wrap(function _callee125$(_context126) {
                 while (1) {
-                  switch (_context99.prev = _context99.next) {
+                  switch (_context126.prev = _context126.next) {
                     case 0:
-                      _context99.next = 2;
+                      _context126.next = 2;
                       return this.respondWithError(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconErrorType"].UNKNOWN_ERROR, message);
 
                     case 2:
                     case "end":
-                      return _context99.stop();
+                      return _context126.stop();
                   }
                 }
-              }, _callee98, this);
+              }, _callee125, this);
             }));
           }
         }, {
           key: "rejectOnParameters",
           value: function rejectOnParameters(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee99() {
-              return regeneratorRuntime.wrap(function _callee99$(_context100) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee126() {
+              return regeneratorRuntime.wrap(function _callee126$(_context127) {
                 while (1) {
-                  switch (_context100.prev = _context100.next) {
+                  switch (_context127.prev = _context127.next) {
                     case 0:
-                      _context100.next = 2;
+                      _context127.next = 2;
                       return this.respondWithError(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconErrorType"].PARAMETERS_INVALID_ERROR, message);
 
                     case 2:
                     case "end":
-                      return _context100.stop();
+                      return _context127.stop();
                   }
                 }
-              }, _callee99, this);
+              }, _callee126, this);
             }));
           }
         }, {
           key: "rejectOnBroadcastError",
           value: function rejectOnBroadcastError(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee100() {
-              return regeneratorRuntime.wrap(function _callee100$(_context101) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee127() {
+              return regeneratorRuntime.wrap(function _callee127$(_context128) {
                 while (1) {
-                  switch (_context101.prev = _context101.next) {
+                  switch (_context128.prev = _context128.next) {
                     case 0:
-                      _context101.next = 2;
+                      _context128.next = 2;
                       return this.respondWithError(_airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconErrorType"].BROADCAST_ERROR, message);
 
                     case 2:
                     case "end":
-                      return _context101.stop();
+                      return _context128.stop();
                   }
                 }
-              }, _callee100, this);
+              }, _callee127, this);
             }));
           }
         }, {
           key: "respondWithError",
           value: function respondWithError(errorType, requestMessage) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee101() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee128() {
               var response;
-              return regeneratorRuntime.wrap(function _callee101$(_context102) {
+              return regeneratorRuntime.wrap(function _callee128$(_context129) {
                 while (1) {
-                  switch (_context102.prev = _context102.next) {
+                  switch (_context129.prev = _context129.next) {
                     case 0:
                       if (!requestMessage) {
-                        _context102.next = 11;
+                        _context129.next = 11;
                         break;
                       }
 
-                      _context102.t0 = _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconMessageType"].Error;
-                      _context102.t1 = errorType;
-                      _context102.t2 = _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BEACON_VERSION"];
-                      _context102.t3 = requestMessage.id;
-                      _context102.next = 7;
+                      _context129.t0 = _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconMessageType"].Error;
+                      _context129.t1 = errorType;
+                      _context129.t2 = _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BEACON_VERSION"];
+                      _context129.t3 = requestMessage.id;
+                      _context129.next = 7;
                       return this.client.beaconId;
 
                     case 7:
-                      _context102.t4 = _context102.sent;
+                      _context129.t4 = _context129.sent;
                       response = {
-                        type: _context102.t0,
-                        errorType: _context102.t1,
-                        version: _context102.t2,
-                        id: _context102.t3,
-                        senderId: _context102.t4
+                        type: _context129.t0,
+                        errorType: _context129.t1,
+                        version: _context129.t2,
+                        id: _context129.t3,
+                        senderId: _context129.t4
                       };
-                      _context102.next = 11;
+                      _context129.next = 11;
                       return this.client.respond(response);
 
                     case 11:
                     case "end":
-                      return _context102.stop();
+                      return _context129.stop();
                   }
                 }
-              }, _callee101, this);
+              }, _callee128, this);
             }));
           }
         }, {
           key: "approvePermissionRequest",
           value: function approvePermissionRequest(message, publicKey) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee102() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee129() {
               var response;
-              return regeneratorRuntime.wrap(function _callee102$(_context103) {
+              return regeneratorRuntime.wrap(function _callee129$(_context130) {
                 while (1) {
-                  switch (_context103.prev = _context103.next) {
+                  switch (_context130.prev = _context130.next) {
                     case 0:
                       response = {
                         type: _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconMessageType"].PermissionResponse,
@@ -26648,25 +28592,25 @@
                         id: message.id,
                         publicKey: publicKey
                       };
-                      _context103.next = 3;
+                      _context130.next = 3;
                       return this.client.respond(response);
 
                     case 3:
                     case "end":
-                      return _context103.stop();
+                      return _context130.stop();
                   }
                 }
-              }, _callee102, this);
+              }, _callee129, this);
             }));
           }
         }, {
           key: "approveSignPayloadRequest",
           value: function approveSignPayloadRequest(message, signature) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee103() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee130() {
               var response;
-              return regeneratorRuntime.wrap(function _callee103$(_context104) {
+              return regeneratorRuntime.wrap(function _callee130$(_context131) {
                 while (1) {
-                  switch (_context104.prev = _context104.next) {
+                  switch (_context131.prev = _context131.next) {
                     case 0:
                       response = {
                         type: _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_3__["BeaconMessageType"].SignPayloadResponse,
@@ -26674,15 +28618,15 @@
                         signingType: message.signingType,
                         signature: signature
                       };
-                      _context104.next = 3;
+                      _context131.next = 3;
                       return this.client.respond(response);
 
                     case 3:
                     case "end":
-                      return _context104.stop();
+                      return _context131.stop();
                   }
                 }
-              }, _callee103, this);
+              }, _callee130, this);
             }));
           }
         }]);
@@ -26819,7 +28763,7 @@
         }, {
           key: "activate",
           value: function activate() {
-            var _this75 = this;
+            var _this80 = this;
 
             this.formInvalid = this.checkInput();
 
@@ -26831,13 +28775,13 @@
               this.operationService.activate(pkh, secret).subscribe(function (ans) {
                 if (ans.success) {
                   if (ans.payload.opHash) {
-                    _this75.translate.get('ACTIVATECOMPONENT.ACTIVATESUCCESS').subscribe(function (res) {
-                      return _this75.messageService.addSuccess(res);
+                    _this80.translate.get('ACTIVATECOMPONENT.ACTIVATESUCCESS').subscribe(function (res) {
+                      return _this80.messageService.addSuccess(res);
                     } // 'Activation successfully broadcasted to the blockchain!'
                     );
                   } else {
-                    _this75.translate.get('ACTIVATECOMPONENT.RETRIEVEFAIL').subscribe(function (res) {
-                      return _this75.messageService.addWarning(res);
+                    _this80.translate.get('ACTIVATECOMPONENT.RETRIEVEFAIL').subscribe(function (res) {
+                      return _this80.messageService.addWarning(res);
                     } // Could not retrieve an operation hash
                     );
                   }
@@ -26850,12 +28794,12 @@
                     errorMessage = 'NodeError ' + JSON.stringify(ans.payload.msg);
                   }
 
-                  _this75.messageService.addError(errorMessage);
+                  _this80.messageService.addError(errorMessage);
 
                   console.log(JSON.stringify(ans.payload.msg));
                 }
               }, function (err) {
-                _this75.translate.get('ACTIVATECOMPONENT.ACTIVATEFAIL').subscribe(function (res) {
+                _this80.translate.get('ACTIVATECOMPONENT.ACTIVATEFAIL').subscribe(function (res) {
                   var errorMessage = '';
                   var activateFailed = res;
 
@@ -26865,7 +28809,7 @@
                     errorMessage = activateFailed;
                   }
 
-                  _this75.messageService.addError(errorMessage);
+                  _this80.messageService.addError(errorMessage);
                 } // 'Failed to activate wallet!'
                 );
 
@@ -28445,16 +30389,16 @@
         }, {
           key: "init",
           value: function init() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee104() {
-              return regeneratorRuntime.wrap(function _callee104$(_context105) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee131() {
+              return regeneratorRuntime.wrap(function _callee131$(_context132) {
                 while (1) {
-                  switch (_context105.prev = _context105.next) {
+                  switch (_context132.prev = _context132.next) {
                     case 0:
-                      _context105.next = 2;
+                      _context132.next = 2;
                       return this.openModal();
 
                     case 2:
-                      _context105.next = 4;
+                      _context132.next = 4;
                       return this.loadParameters();
 
                     case 4:
@@ -28464,21 +30408,21 @@
 
                     case 5:
                     case "end":
-                      return _context105.stop();
+                      return _context132.stop();
                   }
                 }
-              }, _callee104, this);
+              }, _callee131, this);
             }));
           }
         }, {
           key: "loadParameters",
           value: function loadParameters() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee105() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee132() {
               var _iterator50, _step50, _step50$value, i, op;
 
-              return regeneratorRuntime.wrap(function _callee105$(_context106) {
+              return regeneratorRuntime.wrap(function _callee132$(_context133) {
                 while (1) {
-                  switch (_context106.prev = _context106.next) {
+                  switch (_context133.prev = _context133.next) {
                     case 0:
                       if (this.transactions.length > 1) {
                         _iterator50 = _createForOfIteratorHelper(this.transactions.entries());
@@ -28509,10 +30453,10 @@
 
                     case 1:
                     case "end":
-                      return _context106.stop();
+                      return _context133.stop();
                   }
                 }
-              }, _callee105, this);
+              }, _callee132, this);
             }));
           }
         }, {
@@ -28568,11 +30512,11 @@
         }, {
           key: "openModal",
           value: function openModal() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee106() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee133() {
               var scrollBarWidth;
-              return regeneratorRuntime.wrap(function _callee106$(_context107) {
+              return regeneratorRuntime.wrap(function _callee133$(_context134) {
                 while (1) {
-                  switch (_context107.prev = _context107.next) {
+                  switch (_context134.prev = _context134.next) {
                     case 0:
                       scrollBarWidth = window.innerWidth - document.body.offsetWidth;
                       document.body.style.marginRight = scrollBarWidth.toString();
@@ -28581,10 +30525,10 @@
 
                     case 4:
                     case "end":
-                      return _context107.stop();
+                      return _context134.stop();
                   }
                 }
-              }, _callee106, this);
+              }, _callee133, this);
             }));
           }
         }, {
@@ -28658,38 +30602,38 @@
         }, {
           key: "ledgerRetry",
           value: function ledgerRetry() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee107() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee134() {
               var keys;
-              return regeneratorRuntime.wrap(function _callee107$(_context108) {
+              return regeneratorRuntime.wrap(function _callee134$(_context135) {
                 while (1) {
-                  switch (_context108.prev = _context108.next) {
+                  switch (_context135.prev = _context135.next) {
                     case 0:
                       if (this.inputValidationService.fee(this.getTotalFee())) {
-                        _context108.next = 3;
+                        _context135.next = 3;
                         break;
                       }
 
                       this.messageService.addError('Invalid fee');
-                      return _context108.abrupt("return");
+                      return _context135.abrupt("return");
 
                     case 3:
                       this.messageService.startSpinner('Preparing transaction...');
-                      _context108.next = 6;
+                      _context135.next = 6;
                       return this.walletService.getKeys('');
 
                     case 6:
-                      keys = _context108.sent;
+                      keys = _context135.sent;
 
                       if (!keys) {
-                        _context108.next = 12;
+                        _context135.next = 12;
                         break;
                       }
 
-                      _context108.next = 10;
+                      _context135.next = 10;
                       return this.sendTransaction(keys);
 
                     case 10:
-                      _context108.next = 13;
+                      _context135.next = 13;
                       break;
 
                     case 12:
@@ -28697,57 +30641,57 @@
 
                     case 13:
                     case "end":
-                      return _context108.stop();
+                      return _context135.stop();
                   }
                 }
-              }, _callee107, this);
+              }, _callee134, this);
             }));
           }
         }, {
           key: "inject",
           value: function inject() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee108() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee135() {
               var pwd, keys;
-              return regeneratorRuntime.wrap(function _callee108$(_context109) {
+              return regeneratorRuntime.wrap(function _callee135$(_context136) {
                 while (1) {
-                  switch (_context109.prev = _context109.next) {
+                  switch (_context136.prev = _context136.next) {
                     case 0:
                       if (!this.walletService.isLedgerWallet()) {
-                        _context109.next = 6;
+                        _context136.next = 6;
                         break;
                       }
 
                       this.broadCastLedgerTransaction();
                       this.sendResponse = null;
                       this.closeModal();
-                      _context109.next = 22;
+                      _context136.next = 22;
                       break;
 
                     case 6:
                       if (this.inputValidationService.fee(this.getTotalFee())) {
-                        _context109.next = 9;
+                        _context136.next = 9;
                         break;
                       }
 
                       this.messageService.addError('Invalid fee');
-                      return _context109.abrupt("return");
+                      return _context136.abrupt("return");
 
                     case 9:
                       pwd = this.password;
                       this.password = '';
                       this.messageService.startSpinner('Signing transaction...');
-                      _context109.prev = 12;
-                      _context109.next = 15;
+                      _context136.prev = 12;
+                      _context136.next = 15;
                       return this.walletService.getKeys(pwd, this.activeAccount.pkh);
 
                     case 15:
-                      keys = _context109.sent;
-                      _context109.next = 21;
+                      keys = _context136.sent;
+                      _context136.next = 21;
                       break;
 
                     case 18:
-                      _context109.prev = 18;
-                      _context109.t0 = _context109["catch"](12);
+                      _context136.prev = 18;
+                      _context136.t0 = _context136["catch"](12);
                       this.messageService.stopSpinner();
 
                     case 21:
@@ -28768,45 +30712,45 @@
 
                     case 22:
                     case "end":
-                      return _context109.stop();
+                      return _context136.stop();
                   }
                 }
-              }, _callee108, this, [[12, 18]]);
+              }, _callee135, this, [[12, 18]]);
             }));
           }
         }, {
           key: "sendTransaction",
           value: function sendTransaction(keys) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee110() {
-              var _this76 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee137() {
+              var _this81 = this;
 
-              return regeneratorRuntime.wrap(function _callee110$(_context111) {
+              return regeneratorRuntime.wrap(function _callee137$(_context138) {
                 while (1) {
-                  switch (_context111.prev = _context111.next) {
+                  switch (_context138.prev = _context138.next) {
                     case 0:
                       this.operationService.transfer(this.activeAccount.address, this.transactions, Number(this.getTotalFee()), keys, this.tokenTransfer).subscribe(function (ans) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this76, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee109() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this81, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee136() {
                           var metadata, _iterator54, _step54, transaction;
 
-                          return regeneratorRuntime.wrap(function _callee109$(_context110) {
+                          return regeneratorRuntime.wrap(function _callee136$(_context137) {
                             while (1) {
-                              switch (_context110.prev = _context110.next) {
+                              switch (_context137.prev = _context137.next) {
                                 case 0:
                                   this.sendResponse = ans;
 
                                   if (!(ans.success === true)) {
-                                    _context110.next = 37;
+                                    _context137.next = 37;
                                     break;
                                   }
 
                                   console.log('Transaction successful ', ans);
 
                                   if (!ans.payload.opHash) {
-                                    _context110.next = 31;
+                                    _context137.next = 31;
                                     break;
                                   }
 
-                                  _context110.next = 6;
+                                  _context137.next = 6;
                                   return this.messageService.stopSpinner();
 
                                 case 6:
@@ -28816,7 +30760,7 @@
                                     opHash: ans.payload.opHash,
                                     tokenTransfer: this.tokenTransfer
                                   };
-                                  _context110.next = 10;
+                                  _context137.next = 10;
                                   return this.coordinatorService.boost(this.activeAccount.address, metadata);
 
                                 case 10:
@@ -28825,69 +30769,69 @@
                                   }
 
                                   _iterator54 = _createForOfIteratorHelper(this.transactions);
-                                  _context110.prev = 12;
+                                  _context137.prev = 12;
 
                                   _iterator54.s();
 
                                 case 14:
                                   if ((_step54 = _iterator54.n()).done) {
-                                    _context110.next = 21;
+                                    _context137.next = 21;
                                     break;
                                   }
 
                                   transaction = _step54.value;
 
                                   if (!this.walletService.addressExists(transaction.destination)) {
-                                    _context110.next = 19;
+                                    _context137.next = 19;
                                     break;
                                   }
 
-                                  _context110.next = 19;
+                                  _context137.next = 19;
                                   return this.coordinatorService.boost(transaction.destination);
 
                                 case 19:
-                                  _context110.next = 14;
+                                  _context137.next = 14;
                                   break;
 
                                 case 21:
-                                  _context110.next = 26;
+                                  _context137.next = 26;
                                   break;
 
                                 case 23:
-                                  _context110.prev = 23;
-                                  _context110.t0 = _context110["catch"](12);
+                                  _context137.prev = 23;
+                                  _context137.t0 = _context137["catch"](12);
 
-                                  _iterator54.e(_context110.t0);
+                                  _iterator54.e(_context137.t0);
 
                                 case 26:
-                                  _context110.prev = 26;
+                                  _context137.prev = 26;
 
                                   _iterator54.f();
 
-                                  return _context110.finish(26);
+                                  return _context137.finish(26);
 
                                 case 29:
-                                  _context110.next = 35;
+                                  _context137.next = 35;
                                   break;
 
                                 case 31:
                                   if (!(this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["LedgerWallet"])) {
-                                    _context110.next = 35;
+                                    _context137.next = 35;
                                     break;
                                   }
 
-                                  _context110.next = 34;
+                                  _context137.next = 34;
                                   return this.requestLedgerSignature();
 
                                 case 34:
-                                  return _context110.abrupt("return");
+                                  return _context137.abrupt("return");
 
                                 case 35:
-                                  _context110.next = 42;
+                                  _context137.next = 42;
                                   break;
 
                                 case 37:
-                                  _context110.next = 39;
+                                  _context137.next = 39;
                                   return this.messageService.stopSpinner();
 
                                 case 39:
@@ -28900,74 +30844,74 @@
 
                                 case 43:
                                 case "end":
-                                  return _context110.stop();
+                                  return _context137.stop();
                               }
                             }
-                          }, _callee109, this, [[12, 23, 26, 29]]);
+                          }, _callee136, this, [[12, 23, 26, 29]]);
                         }));
                       }, function (err) {
-                        _this76.messageService.stopSpinner();
+                        _this81.messageService.stopSpinner();
 
                         console.log('Error Message ', JSON.stringify(err));
 
-                        if (_this76.walletService.isLedgerWallet()) {
-                          _this76.messageService.addError('Failed to create transaction', 0);
+                        if (_this81.walletService.isLedgerWallet()) {
+                          _this81.messageService.addError('Failed to create transaction', 0);
 
-                          _this76.operationResponse.emit('broadcast_error');
+                          _this81.operationResponse.emit('broadcast_error');
                         }
 
-                        _this76.reset();
+                        _this81.reset();
                       });
 
                     case 1:
                     case "end":
-                      return _context111.stop();
+                      return _context138.stop();
                   }
                 }
-              }, _callee110, this);
+              }, _callee137, this);
             }));
           }
         }, {
           key: "requestLedgerSignature",
           value: function requestLedgerSignature() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee111() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee138() {
               var op, signature, signedOp;
-              return regeneratorRuntime.wrap(function _callee111$(_context112) {
+              return regeneratorRuntime.wrap(function _callee138$(_context139) {
                 while (1) {
-                  switch (_context112.prev = _context112.next) {
+                  switch (_context139.prev = _context139.next) {
                     case 0:
                       if (!(this.walletService.wallet instanceof _services_wallet_wallet__WEBPACK_IMPORTED_MODULE_13__["LedgerWallet"])) {
-                        _context112.next = 19;
+                        _context139.next = 19;
                         break;
                       }
 
-                      _context112.next = 3;
+                      _context139.next = 3;
                       return this.messageService.startSpinner('Waiting for Ledger signature...');
 
                     case 3:
-                      _context112.prev = 3;
+                      _context139.prev = 3;
                       op = this.sendResponse.payload.unsignedOperation;
                       signature = '';
 
                       if (!(op.length <= 2290)) {
-                        _context112.next = 12;
+                        _context139.next = 12;
                         break;
                       }
 
-                      _context112.next = 9;
+                      _context139.next = 9;
                       return this.ledgerService.signOperation('03' + op, this.walletService.wallet.implicitAccounts[0].derivationPath);
 
                     case 9:
-                      signature = _context112.sent;
-                      _context112.next = 15;
+                      signature = _context139.sent;
+                      _context139.next = 15;
                       break;
 
                     case 12:
-                      _context112.next = 14;
+                      _context139.next = 14;
                       return this.ledgerService.signHash(this.operationService.ledgerPreHash('03' + op), this.walletService.wallet.implicitAccounts[0].derivationPath);
 
                     case 14:
-                      signature = _context112.sent;
+                      signature = _context139.sent;
 
                     case 15:
                       if (signature) {
@@ -28979,39 +30923,39 @@
                       }
 
                     case 16:
-                      _context112.prev = 16;
+                      _context139.prev = 16;
                       this.messageService.stopSpinner();
-                      return _context112.finish(16);
+                      return _context139.finish(16);
 
                     case 19:
                     case "end":
-                      return _context112.stop();
+                      return _context139.stop();
                   }
                 }
-              }, _callee111, this, [[3,, 16, 19]]);
+              }, _callee138, this, [[3,, 16, 19]]);
             }));
           }
         }, {
           key: "broadCastLedgerTransaction",
           value: function broadCastLedgerTransaction() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee113() {
-              var _this77 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee140() {
+              var _this82 = this;
 
-              return regeneratorRuntime.wrap(function _callee113$(_context114) {
+              return regeneratorRuntime.wrap(function _callee140$(_context141) {
                 while (1) {
-                  switch (_context114.prev = _context114.next) {
+                  switch (_context141.prev = _context141.next) {
                     case 0:
                       this.operationService.broadcast(this.sendResponse.payload.signedOperation).subscribe(function (ans) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this77, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee112() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this82, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee139() {
                           var metadata;
-                          return regeneratorRuntime.wrap(function _callee112$(_context113) {
+                          return regeneratorRuntime.wrap(function _callee139$(_context140) {
                             while (1) {
-                              switch (_context113.prev = _context113.next) {
+                              switch (_context140.prev = _context140.next) {
                                 case 0:
                                   this.sendResponse = ans;
 
                                   if (!(ans.success && this.activeAccount)) {
-                                    _context113.next = 12;
+                                    _context140.next = 12;
                                     break;
                                   }
 
@@ -29025,21 +30969,21 @@
                                     this.torusNotification(this.transactions[0]);
                                   }
 
-                                  _context113.next = 6;
+                                  _context140.next = 6;
                                   return this.coordinatorService.boost(this.activeAccount.address, metadata);
 
                                 case 6:
                                   if (!this.walletService.addressExists(this.transactions[0].destination)) {
-                                    _context113.next = 9;
+                                    _context140.next = 9;
                                     break;
                                   }
 
-                                  _context113.next = 9;
+                                  _context140.next = 9;
                                   return this.coordinatorService.boost(this.transactions[0].destination);
 
                                 case 9:
                                   this.operationResponse.emit(ans.payload.opHash);
-                                  _context113.next = 14;
+                                  _context140.next = 14;
                                   break;
 
                                 case 12:
@@ -29052,29 +30996,29 @@
 
                                 case 16:
                                 case "end":
-                                  return _context113.stop();
+                                  return _context140.stop();
                               }
                             }
-                          }, _callee112, this);
+                          }, _callee139, this);
                         }));
                       });
 
                     case 1:
                     case "end":
-                      return _context114.stop();
+                      return _context141.stop();
                   }
                 }
-              }, _callee113, this);
+              }, _callee140, this);
             }));
           }
         }, {
           key: "torusNotification",
           value: function torusNotification(transaction) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee114() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee141() {
               var amount;
-              return regeneratorRuntime.wrap(function _callee114$(_context115) {
+              return regeneratorRuntime.wrap(function _callee141$(_context142) {
                 while (1) {
-                  switch (_context115.prev = _context115.next) {
+                  switch (_context142.prev = _context142.next) {
                     case 0:
                       if (transaction.meta) {
                         amount = this.tokenService.formatAmount(this.tokenTransfer, transaction.amount.toString(), false);
@@ -29093,10 +31037,10 @@
 
                     case 1:
                     case "end":
-                      return _context115.stop();
+                      return _context142.stop();
                   }
                 }
-              }, _callee114, this);
+              }, _callee141, this);
             }));
           }
         }, {
@@ -29578,21 +31522,21 @@
         }, {
           key: "getTransactonsCounter",
           value: function getTransactonsCounter(account) {
-            var _this78 = this;
+            var _this83 = this;
 
             var knownTokenIds = this.tokenService.knownTokenIds();
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.accountInfo(account.address, knownTokenIds)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (data) {
               var counter = data.counter;
               var unknownTokenIds = data.unknownTokenIds ? data.unknownTokenIds : [];
 
-              _this78.handleUnknownTokenIds(unknownTokenIds);
+              _this83.handleUnknownTokenIds(unknownTokenIds);
 
               if (account.state !== counter) {
                 if (data.tokens) {
-                  _this78.updateTokenBalances(account, data.tokens);
+                  _this83.updateTokenBalances(account, data.tokens);
                 }
 
-                return _this78.getAllTransactions(account, counter);
+                return _this83.getAllTransactions(account, counter);
               } else {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])({
                   upToDate: true
@@ -29623,12 +31567,12 @@
         }, {
           key: "updateTokenBalances",
           value: function updateTokenBalances(account, tokens) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee115() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee142() {
               var _iterator56, _step56, token, tokenId;
 
-              return regeneratorRuntime.wrap(function _callee115$(_context116) {
+              return regeneratorRuntime.wrap(function _callee142$(_context143) {
                 while (1) {
-                  switch (_context116.prev = _context116.next) {
+                  switch (_context143.prev = _context143.next) {
                     case 0:
                       if (tokens && tokens.length) {
                         _iterator56 = _createForOfIteratorHelper(tokens);
@@ -29653,22 +31597,22 @@
 
                     case 2:
                     case "end":
-                      return _context116.stop();
+                      return _context143.stop();
                   }
                 }
-              }, _callee115, this);
+              }, _callee142, this);
             }));
           }
         }, {
           key: "getAllTransactions",
           value: function getAllTransactions(account, counter) {
-            var _this79 = this;
+            var _this84 = this;
 
             var knownTokenIds = this.tokenService.knownTokenIds();
             return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["from"])(this.indexerService.getOperations(account.address, knownTokenIds, this.walletService.wallet)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["flatMap"])(function (resp) {
               var operations = resp.operations;
 
-              _this79.handleUnknownTokenIds(resp.unknownTokenIds);
+              _this84.handleUnknownTokenIds(resp.unknownTokenIds);
 
               if (Array.isArray(operations)) {
                 var oldActivities = account.activities;
@@ -29676,11 +31620,11 @@
                 var oldState = account.state;
                 account.state = counter;
 
-                _this79.walletService.storeWallet();
+                _this84.walletService.storeWallet();
 
                 if (oldState !== '') {
                   // Exclude inital loading
-                  _this79.promptNewActivities(account, oldActivities, operations);
+                  _this84.promptNewActivities(account, oldActivities, operations);
                 } else {
                   console.log('# Excluded ' + counter);
                 }
@@ -29692,9 +31636,9 @@
                   for (_iterator57.s(); !(_step57 = _iterator57.n()).done;) {
                     var activity = _step57.value;
 
-                    var counterParty = _this79.getCounterparty(activity, account, false);
+                    var counterParty = _this84.getCounterparty(activity, account, false);
 
-                    _this79.lookupService.check(counterParty);
+                    _this84.lookupService.check(counterParty);
                   }
                 } catch (err) {
                   _iterator57.e(err);
@@ -29713,7 +31657,7 @@
         }, {
           key: "promptNewActivities",
           value: function promptNewActivities(account, oldActivities, newActivities) {
-            var _this80 = this;
+            var _this85 = this;
 
             var _iterator58 = _createForOfIteratorHelper(newActivities),
                 _step58;
@@ -29732,23 +31676,23 @@
                   if (timeDiff < 3600000) {
                     // 1 hour
                     if (activity.hash) {
-                      _this80.confirmedOp.next(activity.hash);
+                      _this85.confirmedOp.next(activity.hash);
                     }
 
                     if (activity.type === 'transaction') {
                       if (account.address === activity.source.address) {
-                        _this80.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this80.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                        _this85.messageService.addSuccess(account.shortAddress() + ': Sent ' + _this85.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                       }
 
                       if (account.address === activity.destination.address) {
-                        _this80.messageService.addSuccess(account.shortAddress() + ': Received ' + _this80.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
+                        _this85.messageService.addSuccess(account.shortAddress() + ': Received ' + _this85.tokenService.formatAmount(activity.tokenId, activity.amount.toString()));
                       }
                     } else if (activity.type === 'delegation') {
-                      _this80.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
+                      _this85.messageService.addSuccess(account.shortAddress() + ': Delegate updated');
                     } else if (activity.type === 'origination') {
-                      _this80.messageService.addSuccess(account.shortAddress() + ': Account originated');
+                      _this85.messageService.addSuccess(account.shortAddress() + ': Account originated');
                     } else if (activity.type === 'activation') {
-                      _this80.messageService.addSuccess(account.shortAddress() + ': Account activated');
+                      _this85.messageService.addSuccess(account.shortAddress() + ': Account activated');
                     }
                   }
                 }
@@ -29946,82 +31890,82 @@
         }, {
           key: "importWalletFromJson",
           value: function importWalletFromJson(json, pwd) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee116() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee143() {
               var seed, walletData;
-              return regeneratorRuntime.wrap(function _callee116$(_context117) {
+              return regeneratorRuntime.wrap(function _callee143$(_context144) {
                 while (1) {
-                  switch (_context117.prev = _context117.next) {
+                  switch (_context144.prev = _context144.next) {
                     case 0:
-                      _context117.prev = 0;
+                      _context144.prev = 0;
                       walletData = JSON.parse(json);
 
                       if (!(walletData.walletType === 4 && walletData.version === 3)) {
-                        _context117.next = 8;
+                        _context144.next = 8;
                         break;
                       }
 
-                      _context117.next = 5;
+                      _context144.next = 5;
                       return this.encryptionService.decrypt(walletData.encryptedSeed, pwd, walletData.iv, 3);
 
                     case 5:
-                      seed = _context117.sent;
-                      _context117.next = 21;
+                      seed = _context144.sent;
+                      _context144.next = 21;
                       break;
 
                     case 8:
                       if (!(walletData.walletType === 0)) {
-                        _context117.next = 21;
+                        _context144.next = 21;
                         break;
                       }
 
                       if (!(walletData.version === 1)) {
-                        _context117.next = 17;
+                        _context144.next = 17;
                         break;
                       }
 
                       console.log('v1');
-                      _context117.next = 13;
+                      _context144.next = 13;
                       return this.encryptionService.decrypt(walletData.encryptedSeed, pwd, walletData.pkh.slice(3, 19), 1);
 
                     case 13:
-                      seed = _context117.sent;
+                      seed = _context144.sent;
 
                       if (_tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_5__["utils"].seedToKeyPair(seed).pkh !== walletData.pkh) {
                         seed = '';
                       }
 
-                      _context117.next = 21;
+                      _context144.next = 21;
                       break;
 
                     case 17:
                       if (!(walletData.version === 2 || walletData.version === 3)) {
-                        _context117.next = 21;
+                        _context144.next = 21;
                         break;
                       }
 
-                      _context117.next = 20;
+                      _context144.next = 20;
                       return this.encryptionService.decrypt(walletData.encryptedSeed, pwd, walletData.iv, walletData.version);
 
                     case 20:
-                      seed = _context117.sent;
+                      seed = _context144.sent;
 
                     case 21:
-                      _context117.next = 27;
+                      _context144.next = 27;
                       break;
 
                     case 23:
-                      _context117.prev = 23;
-                      _context117.t0 = _context117["catch"](0);
-                      console.error(_context117.t0);
+                      _context144.prev = 23;
+                      _context144.t0 = _context144["catch"](0);
+                      console.error(_context144.t0);
                       throw new Error('Failed to decrypt keystore file');
 
                     case 27:
                       if (!seed) {
-                        _context117.next = 31;
+                        _context144.next = 31;
                         break;
                       }
 
-                      return _context117.abrupt("return", this.importWalletFromObject(walletData, seed).then(function (ans) {
+                      return _context144.abrupt("return", this.importWalletFromObject(walletData, seed).then(function (ans) {
                         return ans;
                       }, function (e) {
                         console.error(e);
@@ -30033,10 +31977,10 @@
 
                     case 32:
                     case "end":
-                      return _context117.stop();
+                      return _context144.stop();
                   }
                 }
-              }, _callee116, this, [[0, 23]]);
+              }, _callee143, this, [[0, 23]]);
             }));
           }
         }, {
@@ -30044,64 +31988,64 @@
           value: function importWalletFromObject(data, seed) {
             var _a;
 
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee117() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee144() {
               var keys, index, state, accountInfo;
-              return regeneratorRuntime.wrap(function _callee117$(_context118) {
+              return regeneratorRuntime.wrap(function _callee144$(_context145) {
                 while (1) {
-                  switch (_context118.prev = _context118.next) {
+                  switch (_context145.prev = _context145.next) {
                     case 0:
                       this.coordinatorService.stopAll();
 
                       if (!(data.walletType === 4 && data.version === 3)) {
-                        _context118.next = 5;
+                        _context145.next = 5;
                         break;
                       }
 
                       // HD
                       this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_4__["HdWallet"](data.iv, data.encryptedSeed, data.encryptedEntropy);
-                      _context118.next = 22;
+                      _context145.next = 22;
                       break;
 
                     case 5:
                       if (!(data.walletType === 0)) {
-                        _context118.next = 21;
+                        _context145.next = 21;
                         break;
                       }
 
                       if (!(data.version === 3)) {
-                        _context118.next = 10;
+                        _context145.next = 10;
                         break;
                       }
 
                       this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_4__["LegacyWalletV3"](data.iv, data.encryptedSeed, data.encryptedEntropy);
-                      _context118.next = 19;
+                      _context145.next = 19;
                       break;
 
                     case 10:
                       if (!(data.version === 2)) {
-                        _context118.next = 14;
+                        _context145.next = 14;
                         break;
                       }
 
                       this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_4__["LegacyWalletV2"](data.iv, data.encryptedSeed);
-                      _context118.next = 19;
+                      _context145.next = 19;
                       break;
 
                     case 14:
                       if (!(data.version === 1)) {
-                        _context118.next = 18;
+                        _context145.next = 18;
                         break;
                       }
 
                       this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_4__["LegacyWalletV1"](data.pkh.slice(3, 19), data.encryptedSeed);
-                      _context118.next = 19;
+                      _context145.next = 19;
                       break;
 
                     case 18:
                       throw new Error('Unsupported wallet file');
 
                     case 19:
-                      _context118.next = 22;
+                      _context145.next = 22;
                       break;
 
                     case 21:
@@ -30109,22 +32053,22 @@
 
                     case 22:
                       if (!(seed.length === 32)) {
-                        _context118.next = 26;
+                        _context145.next = 26;
                         break;
                       }
 
                       keys = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_5__["utils"].seedToKeyPair(seed);
-                      _context118.next = 31;
+                      _context145.next = 31;
                       break;
 
                     case 26:
                       if (!(seed.length === 64)) {
-                        _context118.next = 30;
+                        _context145.next = 30;
                         break;
                       }
 
                       keys = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_5__["hd"].keyPairFromAccountIndex(seed, 0);
-                      _context118.next = 31;
+                      _context145.next = 31;
                       break;
 
                     case 30:
@@ -30134,7 +32078,7 @@
                       this.walletService.initStorage();
 
                       if (!(this.walletService.wallet instanceof _wallet_wallet__WEBPACK_IMPORTED_MODULE_4__["HdWallet"])) {
-                        _context118.next = 52;
+                        _context145.next = 52;
                         break;
                       }
 
@@ -30143,16 +32087,16 @@
 
                     case 35:
                       if (!state) {
-                        _context118.next = 49;
+                        _context145.next = 49;
                         break;
                       }
 
                       keys = _tezos_core_tools_crypto_utils__WEBPACK_IMPORTED_MODULE_5__["hd"].keyPairFromAccountIndex(seed, index);
-                      _context118.next = 39;
+                      _context145.next = 39;
                       return this.indexerService.accountInfo(keys.pkh);
 
                     case 39:
-                      accountInfo = _context118.sent;
+                      accountInfo = _context145.sent;
                       state = accountInfo.counter;
                       console.log(accountInfo);
 
@@ -30161,37 +32105,37 @@
                       }
 
                       if (!(state || index === 0)) {
-                        _context118.next = 47;
+                        _context145.next = 47;
                         break;
                       }
 
                       this.walletService.addImplicitAccount(keys.pk, index++);
-                      _context118.next = 47;
+                      _context145.next = 47;
                       return this.findContracts(keys.pkh);
 
                     case 47:
-                      _context118.next = 35;
+                      _context145.next = 35;
                       break;
 
                     case 49:
                       this.walletService.wallet.index = index;
-                      _context118.next = 55;
+                      _context145.next = 55;
                       break;
 
                     case 52:
                       this.walletService.addImplicitAccount(keys.pk);
-                      _context118.next = 55;
+                      _context145.next = 55;
                       return this.findContracts(keys.pkh);
 
                     case 55:
-                      return _context118.abrupt("return", true);
+                      return _context145.abrupt("return", true);
 
                     case 56:
                     case "end":
-                      return _context118.stop();
+                      return _context145.stop();
                   }
                 }
-              }, _callee117, this);
+              }, _callee144, this);
             }));
           }
         }, {
@@ -30200,67 +32144,67 @@
             var verifierDetails = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
             var sk = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
             var instanceId = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '';
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee118() {
-              return regeneratorRuntime.wrap(function _callee118$(_context119) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee145() {
+              return regeneratorRuntime.wrap(function _callee145$(_context146) {
                 while (1) {
-                  switch (_context119.prev = _context119.next) {
+                  switch (_context146.prev = _context146.next) {
                     case 0:
                       this.coordinatorService.stopAll();
 
                       if (!derivationPath) {
-                        _context119.next = 5;
+                        _context146.next = 5;
                         break;
                       }
 
-                      return _context119.abrupt("return", this.ledgerImport(pk, derivationPath));
+                      return _context146.abrupt("return", this.ledgerImport(pk, derivationPath));
 
                     case 5:
                       if (!verifierDetails) {
-                        _context119.next = 7;
+                        _context146.next = 7;
                         break;
                       }
 
-                      return _context119.abrupt("return", this.torusImport(pk, verifierDetails, sk, instanceId));
+                      return _context146.abrupt("return", this.torusImport(pk, verifierDetails, sk, instanceId));
 
                     case 7:
                     case "end":
-                      return _context119.stop();
+                      return _context146.stop();
                   }
                 }
-              }, _callee118, this);
+              }, _callee145, this);
             }));
           }
         }, {
           key: "ledgerImport",
           value: function ledgerImport(pk, derivationPath) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee119() {
-              return regeneratorRuntime.wrap(function _callee119$(_context120) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee146() {
+              return regeneratorRuntime.wrap(function _callee146$(_context147) {
                 while (1) {
-                  switch (_context120.prev = _context120.next) {
+                  switch (_context147.prev = _context147.next) {
                     case 0:
-                      _context120.prev = 0;
+                      _context147.prev = 0;
                       this.walletService.initStorage();
                       this.walletService.wallet = new _wallet_wallet__WEBPACK_IMPORTED_MODULE_4__["LedgerWallet"]();
                       this.walletService.addImplicitAccount(pk, derivationPath);
-                      _context120.next = 6;
+                      _context147.next = 6;
                       return this.findContracts(this.walletService.wallet.implicitAccounts[0].pkh);
 
                     case 6:
-                      return _context120.abrupt("return", true);
+                      return _context147.abrupt("return", true);
 
                     case 9:
-                      _context120.prev = 9;
-                      _context120.t0 = _context120["catch"](0);
-                      console.warn(_context120.t0);
+                      _context147.prev = 9;
+                      _context147.t0 = _context147["catch"](0);
+                      console.warn(_context147.t0);
                       this.walletService.clearWallet();
-                      return _context120.abrupt("return", false);
+                      return _context147.abrupt("return", false);
 
                     case 14:
                     case "end":
-                      return _context120.stop();
+                      return _context147.stop();
                   }
                 }
-              }, _callee119, this, [[0, 9]]);
+              }, _callee146, this, [[0, 9]]);
             }));
           }
         }, {
@@ -30268,12 +32212,12 @@
           value: function torusImport(pk, verifierDetails) {
             var sk = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
             var instanceId = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee120() {
-              return regeneratorRuntime.wrap(function _callee120$(_context121) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee147() {
+              return regeneratorRuntime.wrap(function _callee147$(_context148) {
                 while (1) {
-                  switch (_context121.prev = _context121.next) {
+                  switch (_context148.prev = _context148.next) {
                     case 0:
-                      _context121.prev = 0;
+                      _context148.prev = 0;
 
                       if (verifierDetails.embedded) {
                         this.walletService.initStorage(instanceId);
@@ -30288,39 +32232,39 @@
                       }
 
                       this.walletService.addImplicitAccount(pk);
-                      return _context121.abrupt("return", true);
+                      return _context148.abrupt("return", true);
 
                     case 7:
-                      _context121.prev = 7;
-                      _context121.t0 = _context121["catch"](0);
-                      console.warn(_context121.t0);
+                      _context148.prev = 7;
+                      _context148.t0 = _context148["catch"](0);
+                      console.warn(_context148.t0);
                       this.walletService.clearWallet(instanceId);
-                      return _context121.abrupt("return", false);
+                      return _context148.abrupt("return", false);
 
                     case 12:
                     case "end":
-                      return _context121.stop();
+                      return _context148.stop();
                   }
                 }
-              }, _callee120, this, [[0, 7]]);
+              }, _callee147, this, [[0, 7]]);
             }));
           }
         }, {
           key: "updateTwitterName",
           value: function updateTwitterName(verifierId) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee121() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee148() {
               var twitterId, _yield$this$torusServ4, username;
 
-              return regeneratorRuntime.wrap(function _callee121$(_context122) {
+              return regeneratorRuntime.wrap(function _callee148$(_context149) {
                 while (1) {
-                  switch (_context122.prev = _context122.next) {
+                  switch (_context149.prev = _context149.next) {
                     case 0:
                       twitterId = verifierId.split('|')[1];
-                      _context122.next = 3;
+                      _context149.next = 3;
                       return this.torusService.twitterLookup(undefined, twitterId);
 
                     case 3:
-                      _yield$this$torusServ4 = _context122.sent;
+                      _yield$this$torusServ4 = _context149.sent;
                       username = _yield$this$torusServ4.username;
 
                       if (username && this.walletService.wallet instanceof _wallet_wallet__WEBPACK_IMPORTED_MODULE_4__["TorusWallet"]) {
@@ -30329,27 +32273,27 @@
 
                     case 6:
                     case "end":
-                      return _context122.stop();
+                      return _context149.stop();
                   }
                 }
-              }, _callee121, this);
+              }, _callee148, this);
             }));
           }
         }, {
           key: "findContracts",
           value: function findContracts(pkh) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee122() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee149() {
               var addresses, _iterator59, _step59, KT;
 
-              return regeneratorRuntime.wrap(function _callee122$(_context123) {
+              return regeneratorRuntime.wrap(function _callee149$(_context150) {
                 while (1) {
-                  switch (_context123.prev = _context123.next) {
+                  switch (_context150.prev = _context150.next) {
                     case 0:
-                      _context123.next = 2;
+                      _context150.next = 2;
                       return this.indexerService.getContractAddresses(pkh);
 
                     case 2:
-                      addresses = _context123.sent;
+                      addresses = _context150.sent;
                       _iterator59 = _createForOfIteratorHelper(addresses);
 
                       try {
@@ -30368,10 +32312,10 @@
 
                     case 6:
                     case "end":
-                      return _context123.stop();
+                      return _context150.stop();
                   }
                 }
-              }, _callee122, this);
+              }, _callee149, this);
             }));
           }
         }]);
@@ -30547,7 +32491,7 @@
 
       var UriHandlerComponent = /*#__PURE__*/function () {
         function UriHandlerComponent(route, messageService, walletService, location, beaconService, deeplinkService, inputValidationService) {
-          var _this81 = this;
+          var _this86 = this;
 
           _classCallCheck(this, UriHandlerComponent);
 
@@ -30564,12 +32508,12 @@
           /* https://docs.walletbeacon.io/beacon/03.getting-started-wallet.html#setup */
 
           this.connectApp = function () {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this81, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee124() {
-              var _this82 = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this86, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee151() {
+              var _this87 = this;
 
-              return regeneratorRuntime.wrap(function _callee124$(_context125) {
+              return regeneratorRuntime.wrap(function _callee151$(_context152) {
                 while (1) {
-                  switch (_context125.prev = _context125.next) {
+                  switch (_context152.prev = _context152.next) {
                     case 0:
                       if (!this.beaconService.client) {
                         this.beaconService.client = new _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["WalletClient"]({
@@ -30577,18 +32521,18 @@
                         });
                       }
 
-                      _context125.next = 3;
+                      _context152.next = 3;
                       return this.beaconService.client.init();
 
                     case 3:
                       // Establish P2P connection
                       this.beaconService.client.connect(function (message) {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this82, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee123() {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this87, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee150() {
                           var _a;
 
-                          return regeneratorRuntime.wrap(function _callee123$(_context124) {
+                          return regeneratorRuntime.wrap(function _callee150$(_context151) {
                             while (1) {
-                              switch (_context124.prev = _context124.next) {
+                              switch (_context151.prev = _context151.next) {
                                 case 0:
                                   console.log('### beacon message', message);
 
@@ -30597,86 +32541,86 @@
                                   }
 
                                   if (!(message.type !== _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["BeaconMessageType"].SignPayloadRequest && message.network.type !== _environments_environment__WEBPACK_IMPORTED_MODULE_6__["CONSTANTS"].NETWORK)) {
-                                    _context124.next = 8;
+                                    _context151.next = 8;
                                     break;
                                   }
 
                                   console.warn("Rejecting Beacon message because of network. Expected ".concat(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["CONSTANTS"].NETWORK, " instead of ").concat(message.network.type), message);
-                                  _context124.next = 6;
+                                  _context151.next = 6;
                                   return this.beaconService.rejectOnNetwork(message);
 
                                 case 6:
-                                  _context124.next = 39;
+                                  _context151.next = 39;
                                   break;
 
                                 case 8:
                                   if (!(!this.permissionRequest && !this.operationRequest && !this.signRequest)) {
-                                    _context124.next = 38;
+                                    _context151.next = 38;
                                     break;
                                   }
 
-                                  _context124.t0 = message.type;
-                                  _context124.next = _context124.t0 === _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["BeaconMessageType"].PermissionRequest ? 12 : _context124.t0 === _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["BeaconMessageType"].OperationRequest ? 15 : _context124.t0 === _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["BeaconMessageType"].SignPayloadRequest ? 24 : 33;
+                                  _context151.t0 = message.type;
+                                  _context151.next = _context151.t0 === _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["BeaconMessageType"].PermissionRequest ? 12 : _context151.t0 === _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["BeaconMessageType"].OperationRequest ? 15 : _context151.t0 === _airgap_beacon_sdk__WEBPACK_IMPORTED_MODULE_4__["BeaconMessageType"].SignPayloadRequest ? 24 : 33;
                                   break;
 
                                 case 12:
-                                  _context124.next = 14;
+                                  _context151.next = 14;
                                   return this.handlePermissionRequest(message);
 
                                 case 14:
-                                  return _context124.abrupt("break", 36);
+                                  return _context151.abrupt("break", 36);
 
                                 case 15:
-                                  _context124.next = 17;
+                                  _context151.next = 17;
                                   return this.isSupportedOperationRequest(message);
 
                                 case 17:
-                                  if (!_context124.sent) {
-                                    _context124.next = 21;
+                                  if (!_context151.sent) {
+                                    _context151.next = 21;
                                     break;
                                   }
 
                                   this.operationRequest = message;
-                                  _context124.next = 23;
+                                  _context151.next = 23;
                                   break;
 
                                 case 21:
-                                  _context124.next = 23;
+                                  _context151.next = 23;
                                   return this.beaconService.rejectOnUnknown(message);
 
                                 case 23:
-                                  return _context124.abrupt("break", 36);
+                                  return _context151.abrupt("break", 36);
 
                                 case 24:
-                                  _context124.next = 26;
+                                  _context151.next = 26;
                                   return this.isSupportedSignPayload(message);
 
                                 case 26:
-                                  if (!_context124.sent) {
-                                    _context124.next = 30;
+                                  if (!_context151.sent) {
+                                    _context151.next = 30;
                                     break;
                                   }
 
                                   this.signRequest = message;
-                                  _context124.next = 32;
+                                  _context151.next = 32;
                                   break;
 
                                 case 30:
-                                  _context124.next = 32;
+                                  _context151.next = 32;
                                   return this.beaconService.rejectOnUnknown(message);
 
                                 case 32:
-                                  return _context124.abrupt("break", 36);
+                                  return _context151.abrupt("break", 36);
 
                                 case 33:
-                                  _context124.next = 35;
+                                  _context151.next = 35;
                                   return this.beaconService.rejectOnUnknown(message);
 
                                 case 35:
                                   console.warn('Unknown message type', message);
 
                                 case 36:
-                                  _context124.next = 39;
+                                  _context151.next = 39;
                                   break;
 
                                 case 38:
@@ -30684,10 +32628,10 @@
 
                                 case 39:
                                 case "end":
-                                  return _context124.stop();
+                                  return _context151.stop();
                               }
                             }
-                          }, _callee123, this);
+                          }, _callee150, this);
                         }));
                       })["catch"](function (error) {
                         return console.error('connect error', error);
@@ -30695,10 +32639,10 @@
 
                     case 4:
                     case "end":
-                      return _context125.stop();
+                      return _context152.stop();
                   }
                 }
-              }, _callee124, this);
+              }, _callee151, this);
             }));
           };
         }
@@ -30713,11 +32657,11 @@
         }, {
           key: "init",
           value: function init() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee125() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee152() {
               var pairingString;
-              return regeneratorRuntime.wrap(function _callee125$(_context126) {
+              return regeneratorRuntime.wrap(function _callee152$(_context153) {
                 while (1) {
-                  switch (_context126.prev = _context126.next) {
+                  switch (_context153.prev = _context153.next) {
                     case 0:
                       pairingString = this.deeplinkService.popPairingJson();
 
@@ -30726,18 +32670,18 @@
                         this.beaconService.preNotifyPairing(pairingString);
                       }
 
-                      _context126.next = 4;
+                      _context153.next = 4;
                       return this.connectApp()["catch"](function (error) {
                         return console.error('connect error', error);
                       });
 
                     case 4:
                       if (!pairingString) {
-                        _context126.next = 8;
+                        _context153.next = 8;
                         break;
                       }
 
-                      _context126.next = 7;
+                      _context153.next = 7;
                       return this.beaconService.client.isConnected;
 
                     case 7:
@@ -30745,19 +32689,19 @@
 
                     case 8:
                     case "end":
-                      return _context126.stop();
+                      return _context153.stop();
                   }
                 }
-              }, _callee125, this);
+              }, _callee152, this);
             }));
           }
         }, {
           key: "handlePermissionRequest",
           value: function handlePermissionRequest(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee126() {
-              return regeneratorRuntime.wrap(function _callee126$(_context127) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee153() {
+              return regeneratorRuntime.wrap(function _callee153$(_context154) {
                 while (1) {
-                  switch (_context127.prev = _context127.next) {
+                  switch (_context154.prev = _context154.next) {
                     case 0:
                       console.log('## permission request');
                       message.scopes = message.scopes.filter(function (scope) {
@@ -30765,26 +32709,26 @@
                       });
 
                       if (!message.scopes.length) {
-                        _context127.next = 12;
+                        _context154.next = 12;
                         break;
                       }
 
                       if (!this.walletService.wallet) {
-                        _context127.next = 7;
+                        _context154.next = 7;
                         break;
                       }
 
                       this.permissionRequest = message;
-                      _context127.next = 10;
+                      _context154.next = 10;
                       break;
 
                     case 7:
                       console.warn('No wallet found');
-                      _context127.next = 10;
+                      _context154.next = 10;
                       return this.beaconService.rejectOnSourceAddress(message);
 
                     case 10:
-                      _context127.next = 13;
+                      _context154.next = 13;
                       break;
 
                     case 12:
@@ -30792,98 +32736,98 @@
 
                     case 13:
                     case "end":
-                      return _context127.stop();
+                      return _context154.stop();
                   }
                 }
-              }, _callee126, this);
+              }, _callee153, this);
             }));
           }
         }, {
           key: "isSupportedOperationRequest",
           value: function isSupportedOperationRequest(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee127() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee154() {
               var _iterator60, _step60, op, i;
 
-              return regeneratorRuntime.wrap(function _callee127$(_context128) {
+              return regeneratorRuntime.wrap(function _callee154$(_context155) {
                 while (1) {
-                  switch (_context128.prev = _context128.next) {
+                  switch (_context155.prev = _context155.next) {
                     case 0:
                       if (this.walletService.wallet) {
-                        _context128.next = 5;
+                        _context155.next = 5;
                         break;
                       }
 
                       console.log('No wallet found');
-                      return _context128.abrupt("return", false);
+                      return _context155.abrupt("return", false);
 
                     case 5:
                       if (this.walletService.wallet.getImplicitAccount(message.sourceAddress)) {
-                        _context128.next = 12;
+                        _context155.next = 12;
                         break;
                       }
 
                       console.warn('Source address not recogized');
-                      _context128.next = 9;
+                      _context155.next = 9;
                       return this.beaconService.rejectOnSourceAddress(message);
 
                     case 9:
-                      return _context128.abrupt("return", false);
+                      return _context155.abrupt("return", false);
 
                     case 12:
                       if (!(message.operationDetails.length > 1)) {
-                        _context128.next = 33;
+                        _context155.next = 33;
                         break;
                       }
 
                       _iterator60 = _createForOfIteratorHelper(message.operationDetails);
-                      _context128.prev = 14;
+                      _context155.prev = 14;
 
                       _iterator60.s();
 
                     case 16:
                       if ((_step60 = _iterator60.n()).done) {
-                        _context128.next = 25;
+                        _context155.next = 25;
                         break;
                       }
 
                       op = _step60.value;
 
                       if (!(op.kind !== 'transaction')) {
-                        _context128.next = 23;
+                        _context155.next = 23;
                         break;
                       }
 
                       console.warn('Only transaction batches supported');
-                      _context128.next = 22;
+                      _context155.next = 22;
                       return this.beaconService.rejectOnTooManyOps(message);
 
                     case 22:
-                      return _context128.abrupt("return", false);
+                      return _context155.abrupt("return", false);
 
                     case 23:
-                      _context128.next = 16;
+                      _context155.next = 16;
                       break;
 
                     case 25:
-                      _context128.next = 30;
+                      _context155.next = 30;
                       break;
 
                     case 27:
-                      _context128.prev = 27;
-                      _context128.t0 = _context128["catch"](14);
+                      _context155.prev = 27;
+                      _context155.t0 = _context155["catch"](14);
 
-                      _iterator60.e(_context128.t0);
+                      _iterator60.e(_context155.t0);
 
                     case 30:
-                      _context128.prev = 30;
+                      _context155.prev = 30;
 
                       _iterator60.f();
 
-                      return _context128.finish(30);
+                      return _context155.finish(30);
 
                     case 33:
                       if (!(message.operationDetails[0].kind === 'transaction')) {
-                        _context128.next = 59;
+                        _context155.next = 59;
                         break;
                       }
 
@@ -30891,124 +32835,124 @@
 
                     case 35:
                       if (!(i < message.operationDetails.length)) {
-                        _context128.next = 57;
+                        _context155.next = 57;
                         break;
                       }
 
                       if (!(message.operationDetails[i].destination && message.operationDetails[i].parameters && this.walletService.wallet.getAccount(message.operationDetails[i].destination))) {
-                        _context128.next = 43;
+                        _context155.next = 43;
                         break;
                       }
 
                       console.warn('Invocation of user controlled contract is disabled');
-                      _context128.next = 40;
+                      _context155.next = 40;
                       return this.beaconService.rejectOnPermission(message);
 
                     case 40:
-                      return _context128.abrupt("return", false);
+                      return _context155.abrupt("return", false);
 
                     case 43:
                       if (!(!message.operationDetails[i].destination || !message.operationDetails[i].amount)) {
-                        _context128.next = 50;
+                        _context155.next = 50;
                         break;
                       }
 
                       console.warn('Missing destination or amount');
-                      _context128.next = 47;
+                      _context155.next = 47;
                       return this.beaconService.rejectOnUnknown(message);
 
                     case 47:
-                      return _context128.abrupt("return", false);
+                      return _context155.abrupt("return", false);
 
                     case 50:
                       if (!this.invalidParameters(message.operationDetails[i].parameters)) {
-                        _context128.next = 54;
+                        _context155.next = 54;
                         break;
                       }
 
-                      _context128.next = 53;
+                      _context155.next = 53;
                       return this.beaconService.rejectOnParameters(message);
 
                     case 53:
-                      return _context128.abrupt("return", false);
+                      return _context155.abrupt("return", false);
 
                     case 54:
                       i++;
-                      _context128.next = 35;
+                      _context155.next = 35;
                       break;
 
                     case 57:
-                      _context128.next = 70;
+                      _context155.next = 70;
                       break;
 
                     case 59:
                       if (!(message.operationDetails[0].kind === 'delegation')) {
-                        _context128.next = 66;
+                        _context155.next = 66;
                         break;
                       }
 
                       if (message.operationDetails[0].delegate) {
-                        _context128.next = 64;
+                        _context155.next = 64;
                         break;
                       }
 
                       console.warn('Invalid delegate');
-                      _context128.next = 64;
+                      _context155.next = 64;
                       return this.beaconService.rejectOnUnknown(message);
 
                     case 64:
-                      _context128.next = 70;
+                      _context155.next = 70;
                       break;
 
                     case 66:
                       console.warn('Unsupported operation kind');
-                      _context128.next = 69;
+                      _context155.next = 69;
                       return this.beaconService.rejectOnUnknown(message);
 
                     case 69:
-                      return _context128.abrupt("return", false);
+                      return _context155.abrupt("return", false);
 
                     case 70:
                       this.activeAccount = this.walletService.wallet.getImplicitAccount(message.sourceAddress);
-                      return _context128.abrupt("return", true);
+                      return _context155.abrupt("return", true);
 
                     case 72:
                     case "end":
-                      return _context128.stop();
+                      return _context155.stop();
                   }
                 }
-              }, _callee127, this, [[14, 27, 30, 33]]);
+              }, _callee154, this, [[14, 27, 30, 33]]);
             }));
           }
         }, {
           key: "isSupportedSignPayload",
           value: function isSupportedSignPayload(message) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee128() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee155() {
               var hexString, parsedPayload;
-              return regeneratorRuntime.wrap(function _callee128$(_context129) {
+              return regeneratorRuntime.wrap(function _callee155$(_context156) {
                 while (1) {
-                  switch (_context129.prev = _context129.next) {
+                  switch (_context156.prev = _context156.next) {
                     case 0:
                       if (this.walletService.wallet) {
-                        _context129.next = 5;
+                        _context156.next = 5;
                         break;
                       }
 
                       console.log('No wallet found');
-                      return _context129.abrupt("return", false);
+                      return _context156.abrupt("return", false);
 
                     case 5:
                       if (this.walletService.wallet.getImplicitAccount(message.sourceAddress)) {
-                        _context129.next = 10;
+                        _context156.next = 10;
                         break;
                       }
 
                       console.warn('Source address not recogized');
-                      _context129.next = 9;
+                      _context156.next = 9;
                       return this.beaconService.rejectOnSourceAddress(message);
 
                     case 9:
-                      return _context129.abrupt("return", false);
+                      return _context156.abrupt("return", false);
 
                     case 10:
                       if (message.payload.slice(0, 2) === '0x') {
@@ -31020,57 +32964,57 @@
                       console.log('hex', hexString);
 
                       if (!(message.signingType !== 'raw' && message.signingType !== 'micheline' || !this.inputValidationService.hexString(hexString))) {
-                        _context129.next = 21;
+                        _context156.next = 21;
                         break;
                       }
 
                       console.warn('Invalid sign payload');
-                      _context129.next = 18;
+                      _context156.next = 18;
                       return this.beaconService.rejectOnUnknown(message);
 
                     case 18:
-                      return _context129.abrupt("return", false);
+                      return _context156.abrupt("return", false);
 
                     case 21:
                       if (!(hexString.slice(0, 2) !== '05')) {
-                        _context129.next = 26;
+                        _context156.next = 26;
                         break;
                       }
 
                       console.warn('Unsupported prefix (expected 05)');
-                      _context129.next = 25;
+                      _context156.next = 25;
                       return this.beaconService.rejectOnUnknown(message);
 
                     case 25:
-                      return _context129.abrupt("return", false);
+                      return _context156.abrupt("return", false);
 
                     case 26:
-                      _context129.prev = 26;
+                      _context156.prev = 26;
                       parsedPayload = Object(_taquito_local_forging_dist_lib_michelson_codec__WEBPACK_IMPORTED_MODULE_11__["valueDecoder"])(_taquito_local_forging_dist_lib_uint8array_consumer__WEBPACK_IMPORTED_MODULE_12__["Uint8ArrayConsumer"].fromHexString(hexString.slice(2)));
                       console.log('Parsed sign payload', parsedPayload);
-                      _context129.next = 37;
+                      _context156.next = 37;
                       break;
 
                     case 31:
-                      _context129.prev = 31;
-                      _context129.t0 = _context129["catch"](26);
-                      console.warn(_context129.t0.message ? 'Decoding: ' + _context129.t0.message : _context129.t0);
-                      _context129.next = 36;
+                      _context156.prev = 31;
+                      _context156.t0 = _context156["catch"](26);
+                      console.warn(_context156.t0.message ? 'Decoding: ' + _context156.t0.message : _context156.t0);
+                      _context156.next = 36;
                       return this.beaconService.rejectOnUnknown(message);
 
                     case 36:
-                      return _context129.abrupt("return", false);
+                      return _context156.abrupt("return", false);
 
                     case 37:
                       this.activeAccount = this.walletService.wallet.getImplicitAccount(message.sourceAddress);
-                      return _context129.abrupt("return", true);
+                      return _context156.abrupt("return", true);
 
                     case 39:
                     case "end":
-                      return _context129.stop();
+                      return _context156.stop();
                   }
                 }
-              }, _callee128, this, [[26, 31]]);
+              }, _callee155, this, [[26, 31]]);
             }));
           }
         }, {
@@ -31095,48 +33039,48 @@
         }, {
           key: "operationResponse",
           value: function operationResponse(opHash) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee129() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee156() {
               var response;
-              return regeneratorRuntime.wrap(function _callee129$(_context130) {
+              return regeneratorRuntime.wrap(function _callee156$(_context157) {
                 while (1) {
-                  switch (_context130.prev = _context130.next) {
+                  switch (_context157.prev = _context157.next) {
                     case 0:
                       if (opHash) {
-                        _context130.next = 5;
+                        _context157.next = 5;
                         break;
                       }
 
-                      _context130.next = 3;
+                      _context157.next = 3;
                       return this.beaconService.rejectOnUserAbort(this.operationRequest);
 
                     case 3:
-                      _context130.next = 18;
+                      _context157.next = 18;
                       break;
 
                     case 5:
                       if (!(opHash === 'broadcast_error')) {
-                        _context130.next = 10;
+                        _context157.next = 10;
                         break;
                       }
 
-                      _context130.next = 8;
+                      _context157.next = 8;
                       return this.beaconService.rejectOnBroadcastError(this.operationRequest);
 
                     case 8:
-                      _context130.next = 18;
+                      _context157.next = 18;
                       break;
 
                     case 10:
                       if (!(opHash === 'invalid_parameters')) {
-                        _context130.next = 15;
+                        _context157.next = 15;
                         break;
                       }
 
-                      _context130.next = 13;
+                      _context157.next = 13;
                       return this.beaconService.rejectOnParameters(this.operationRequest);
 
                     case 13:
-                      _context130.next = 18;
+                      _context157.next = 18;
                       break;
 
                     case 15:
@@ -31145,7 +33089,7 @@
                         transactionHash: opHash,
                         id: this.operationRequest.id
                       };
-                      _context130.next = 18;
+                      _context157.next = 18;
                       return this.beaconService.client.respond(response);
 
                     case 18:
@@ -31153,10 +33097,10 @@
 
                     case 19:
                     case "end":
-                      return _context130.stop();
+                      return _context157.stop();
                   }
                 }
-              }, _callee129, this);
+              }, _callee156, this);
             }));
           }
           /* permission handling */
@@ -31164,25 +33108,25 @@
         }, {
           key: "permissionResponse",
           value: function permissionResponse(publicKey) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee130() {
-              return regeneratorRuntime.wrap(function _callee130$(_context131) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee157() {
+              return regeneratorRuntime.wrap(function _callee157$(_context158) {
                 while (1) {
-                  switch (_context131.prev = _context131.next) {
+                  switch (_context158.prev = _context158.next) {
                     case 0:
                       if (publicKey) {
-                        _context131.next = 5;
+                        _context158.next = 5;
                         break;
                       }
 
-                      _context131.next = 3;
+                      _context158.next = 3;
                       return this.beaconService.rejectOnUserAbort(this.permissionRequest);
 
                     case 3:
-                      _context131.next = 8;
+                      _context158.next = 8;
                       break;
 
                     case 5:
-                      _context131.next = 7;
+                      _context158.next = 7;
                       return this.beaconService.approvePermissionRequest(this.permissionRequest, publicKey);
 
                     case 7:
@@ -31193,10 +33137,10 @@
 
                     case 9:
                     case "end":
-                      return _context131.stop();
+                      return _context158.stop();
                   }
                 }
-              }, _callee130, this);
+              }, _callee157, this);
             }));
           }
           /* sign payload handling */
@@ -31204,25 +33148,25 @@
         }, {
           key: "signResponse",
           value: function signResponse(signature) {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee131() {
-              return regeneratorRuntime.wrap(function _callee131$(_context132) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee158() {
+              return regeneratorRuntime.wrap(function _callee158$(_context159) {
                 while (1) {
-                  switch (_context132.prev = _context132.next) {
+                  switch (_context159.prev = _context159.next) {
                     case 0:
                       if (signature) {
-                        _context132.next = 5;
+                        _context159.next = 5;
                         break;
                       }
 
-                      _context132.next = 3;
+                      _context159.next = 3;
                       return this.beaconService.rejectOnUserAbort(this.signRequest);
 
                     case 3:
-                      _context132.next = 7;
+                      _context159.next = 7;
                       break;
 
                     case 5:
-                      _context132.next = 7;
+                      _context159.next = 7;
                       return this.beaconService.approveSignPayloadRequest(this.signRequest, signature);
 
                     case 7:
@@ -31231,10 +33175,10 @@
 
                     case 9:
                     case "end":
-                      return _context132.stop();
+                      return _context159.stop();
                   }
                 }
-              }, _callee131, this);
+              }, _callee158, this);
             }));
           }
         }]);
@@ -31712,41 +33656,41 @@
         }, {
           key: "sign",
           value: function sign() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee132() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee159() {
               var pwd, keys, signature;
-              return regeneratorRuntime.wrap(function _callee132$(_context133) {
+              return regeneratorRuntime.wrap(function _callee159$(_context160) {
                 while (1) {
-                  switch (_context133.prev = _context133.next) {
+                  switch (_context160.prev = _context160.next) {
                     case 0:
                       if (!this.walletService.isLedgerWallet()) {
-                        _context133.next = 4;
+                        _context160.next = 4;
                         break;
                       }
 
                       this.requestLedgerSignature();
-                      _context133.next = 19;
+                      _context160.next = 19;
                       break;
 
                     case 4:
                       pwd = this.password;
                       this.password = '';
-                      _context133.next = 8;
+                      _context160.next = 8;
                       return this.messageService.startSpinner("Signing ".concat(this.isMessage ? 'message' : 'payload', "..."));
 
                     case 8:
-                      _context133.prev = 8;
-                      _context133.next = 11;
+                      _context160.prev = 8;
+                      _context160.next = 11;
                       return this.walletService.getKeys(pwd, this.activeAccount.pkh);
 
                     case 11:
-                      keys = _context133.sent;
-                      _context133.next = 18;
+                      keys = _context160.sent;
+                      _context160.next = 18;
                       break;
 
                     case 14:
-                      _context133.prev = 14;
-                      _context133.t0 = _context133["catch"](8);
-                      console.warn(_context133.t0);
+                      _context160.prev = 14;
+                      _context160.t0 = _context160["catch"](8);
+                      console.warn(_context160.t0);
                       this.messageService.stopSpinner();
 
                     case 18:
@@ -31774,48 +33718,48 @@
 
                     case 19:
                     case "end":
-                      return _context133.stop();
+                      return _context160.stop();
                   }
                 }
-              }, _callee132, this, [[8, 14]]);
+              }, _callee159, this, [[8, 14]]);
             }));
           }
         }, {
           key: "requestLedgerSignature",
           value: function requestLedgerSignature() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee133() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee160() {
               var payload, signature;
-              return regeneratorRuntime.wrap(function _callee133$(_context134) {
+              return regeneratorRuntime.wrap(function _callee160$(_context161) {
                 while (1) {
-                  switch (_context134.prev = _context134.next) {
+                  switch (_context161.prev = _context161.next) {
                     case 0:
-                      _context134.next = 2;
+                      _context161.next = 2;
                       return this.messageService.startSpinner('Waiting for Ledger signature...');
 
                     case 2:
-                      _context134.prev = 2;
+                      _context161.prev = 2;
                       payload = this.signRequest.payload;
                       signature = '';
 
                       if (!(payload.length <= 2290)) {
-                        _context134.next = 11;
+                        _context161.next = 11;
                         break;
                       }
 
-                      _context134.next = 8;
+                      _context161.next = 8;
                       return this.ledgerService.signOperation(payload, this.walletService.wallet.implicitAccounts[0].derivationPath);
 
                     case 8:
-                      signature = _context134.sent;
-                      _context134.next = 14;
+                      signature = _context161.sent;
+                      _context161.next = 14;
                       break;
 
                     case 11:
-                      _context134.next = 13;
+                      _context161.next = 13;
                       return this.ledgerService.signHash(this.operationService.ledgerPreHash(payload), this.walletService.wallet.implicitAccounts[0].derivationPath);
 
                     case 13:
-                      signature = _context134.sent;
+                      signature = _context161.sent;
 
                     case 14:
                       if (signature) {
@@ -31825,16 +33769,16 @@
                       }
 
                     case 15:
-                      _context134.prev = 15;
+                      _context161.prev = 15;
                       this.messageService.stopSpinner();
-                      return _context134.finish(15);
+                      return _context161.finish(15);
 
                     case 18:
                     case "end":
-                      return _context134.stop();
+                      return _context161.stop();
                   }
                 }
-              }, _callee133, this, [[2,, 15, 18]]);
+              }, _callee160, this, [[2,, 15, 18]]);
             }));
           }
         }, {
@@ -32933,14 +34877,14 @@
         }, {
           key: "encryptWallet",
           value: function encryptWallet() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee134() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee161() {
               var pwd, ans;
-              return regeneratorRuntime.wrap(function _callee134$(_context135) {
+              return regeneratorRuntime.wrap(function _callee161$(_context162) {
                 while (1) {
-                  switch (_context135.prev = _context135.next) {
+                  switch (_context162.prev = _context162.next) {
                     case 0:
                       if (!this.validPwd()) {
-                        _context135.next = 18;
+                        _context162.next = 18;
                         break;
                       }
 
@@ -32948,11 +34892,11 @@
                       pwd = this.pwd1;
                       this.pwd1 = '';
                       this.pwd2 = '';
-                      _context135.next = 7;
+                      _context162.next = 7;
                       return this.walletService.createEncryptedWallet(this.MNEMONIC.string, pwd, '', true);
 
                     case 7:
-                      ans = _context135.sent;
+                      ans = _context162.sent;
                       this.seed = ans.seed;
                       this.data = ans.data;
                       this.pkh = ans.pkh;
@@ -32969,10 +34913,10 @@
 
                     case 18:
                     case "end":
-                      return _context135.stop();
+                      return _context162.stop();
                   }
                 }
-              }, _callee134, this);
+              }, _callee161, this);
             }));
           }
         }, {
@@ -32996,15 +34940,15 @@
         }, {
           key: "done",
           value: function done() {
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee135() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee162() {
               var seed;
-              return regeneratorRuntime.wrap(function _callee135$(_context136) {
+              return regeneratorRuntime.wrap(function _callee162$(_context163) {
                 while (1) {
-                  switch (_context136.prev = _context136.next) {
+                  switch (_context163.prev = _context163.next) {
                     case 0:
                       seed = this.seed;
                       this.seed = null;
-                      _context136.next = 4;
+                      _context163.next = 4;
                       return this.importService.importWalletFromObject(this.data, seed);
 
                     case 4:
@@ -33015,10 +34959,10 @@
 
                     case 8:
                     case "end":
-                      return _context136.stop();
+                      return _context163.stop();
                   }
                 }
-              }, _callee135, this);
+              }, _callee162, this);
             }));
           }
         }, {
@@ -33604,12 +35548,12 @@
         }, {
           key: "getAccountBalance",
           value: function getAccountBalance(account) {
-            var _this83 = this;
+            var _this88 = this;
 
             console.log('for ' + account.address);
             this.operationService.getBalance(account.address).subscribe(function (ans) {
               if (ans.success) {
-                _this83.updateAccountBalance(account, Number(ans.payload.balance));
+                _this88.updateAccountBalance(account, Number(ans.payload.balance));
               } else {
                 console.log('Balance Error: ' + JSON.stringify(ans.payload.msg));
               }
