@@ -11411,7 +11411,7 @@ class EmbeddedComponent {
         else {
             window.attachEvent('onmessage', this.handleRequest);
         }
-        console.log('icabod is connected...');
+        console.log('icabod is connected..._');
         this.route.queryParams
             .filter(params => params.instanceId)
             .subscribe(params => {
@@ -11530,7 +11530,7 @@ class EmbeddedComponent {
             console.log('handled');
             const response = { type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].cardResponse, failed: false };
             this.sendResponse(response);
-        }, 0);
+        }, 1);
     }
     noWalletError() {
         this.sendResponse({

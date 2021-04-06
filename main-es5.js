@@ -19774,7 +19774,7 @@
               window.attachEvent('onmessage', this.handleRequest);
             }
 
-            console.log('icabod is connected...');
+            console.log('icabod is connected..._');
             this.route.queryParams.filter(function (params) {
               return params.instanceId;
             }).subscribe(function (params) {
@@ -19963,7 +19963,7 @@
               };
 
               _this51.sendResponse(response);
-            }, 0);
+            }, 1);
           }
         }, {
           key: "noWalletError",
