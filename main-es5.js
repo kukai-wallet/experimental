@@ -9370,7 +9370,10 @@
 
             var _a;
 
+            console.log('changes', changes);
+
             if (((_a = changes === null || changes === void 0 ? void 0 : changes.dismiss) === null || _a === void 0 ? void 0 : _a.currentValue) === true) {
+              console.log('stop spinner');
               this.messageService.stopSpinner().then(function () {
                 return _this32.loginResponse.emit('dismiss');
               });
