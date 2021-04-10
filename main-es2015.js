@@ -11517,13 +11517,13 @@ class EmbeddedComponent {
     handleLoginRequest(req) {
         var _a;
         if (this.activeAccount) {
-            if ((_a = req === null || req === void 0 ? void 0 : req.config) === null || _a === void 0 ? void 0 : _a.customSpinnerDismissal) {
-                this.dismiss = false;
-            }
             const response = { type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].loginResponse, failed: true, error: 'ALREADY_LOGGED_IN' };
             this.sendResponse(response);
         }
         else {
+            if ((_a = req === null || req === void 0 ? void 0 : req.config) === null || _a === void 0 ? void 0 : _a.customSpinnerDismissal) {
+                this.dismiss = false;
+            }
             this.login = true;
         }
     }
