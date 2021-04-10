@@ -20165,6 +20165,7 @@
                 instanceId: instanceId
               };
             } else {
+              this.dismiss = null;
               response = {
                 type: kukai_embed__WEBPACK_IMPORTED_MODULE_13__["ResponseTypes"].loginResponse,
                 failed: true,
