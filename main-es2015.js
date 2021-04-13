@@ -3500,61 +3500,6 @@ IndexerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineIn
 
 /***/ }),
 
-/***/ "7zIY":
-/*!***********************************************************!*\
-  !*** ./src/app/components/redirect/redirect.component.ts ***!
-  \***********************************************************/
-/*! exports provided: RedirectComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RedirectComponent", function() { return RedirectComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-
-
-class RedirectComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-}
-RedirectComponent.ɵfac = function RedirectComponent_Factory(t) { return new (t || RedirectComponent)(); };
-RedirectComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RedirectComponent, selectors: [["app-redirect"]], decls: 15, vars: 0, consts: [["lang", "en"], ["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width,initial-scale=1.0"], ["id", "message", 1, "container"], ["id", "spinner", 1, "spinner", "content"], [1, "beat", "beat-odd"], [1, "beat", "beat-even"], ["id", "closeText", 1, "title", "content", 2, "display", "none"]], template: function RedirectComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "head");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "meta", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "meta", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "meta", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "title");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Redirect");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "body");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](11, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "h1", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "You can close this window now");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    } }, styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJyZWRpcmVjdC5jb21wb25lbnQuc2NzcyJ9 */", "*[_ngcontent-%COMP%] {\n        box-sizing: border-box;\n      }\n\n      html[_ngcontent-%COMP%], body[_ngcontent-%COMP%] {\n        background: #fcfcfc;\n        height: 100%;\n        padding: 0;\n        margin: 0;\n      }\n\n      .container[_ngcontent-%COMP%] {\n        width: 100%;\n        height: 100%;\n\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        flex-direction: column;\n      }\n\n      h1.title[_ngcontent-%COMP%] {\n        font-size: 14px;\n        color: #0f1222;\n        font-family: \"Roboto\", sans-serif !important;\n        margin: 0;\n        text-align: center;\n      }\n\n      .spinner[_ngcontent-%COMP%]   .beat[_ngcontent-%COMP%] {\n        background-color: #0364ff;\n        height: 12px;\n        width: 12px;\n        margin: 24px 2px 10px;\n        border-radius: 100%;\n        -webkit-animation: beatStretchDelay 0.7s infinite linear;\n        animation: beatStretchDelay 0.7s infinite linear;\n        -webkit-animation-fill-mode: both;\n        animation-fill-mode: both;\n        display: inline-block;\n      }\n\n      .spinner[_ngcontent-%COMP%]   .beat-odd[_ngcontent-%COMP%] {\n        animation-delay: 0s;\n      }\n\n      .spinner[_ngcontent-%COMP%]   .beat-even[_ngcontent-%COMP%] {\n        animation-delay: 0.35s;\n      }\n\n      @-webkit-keyframes beatStretchDelay {\n        50% {\n          -webkit-transform: scale(0.75);\n          transform: scale(0.75);\n          -webkit-opacity: 0.2;\n          opacity: 0.2;\n        }\n\n        100% {\n          -webkit-transform: scale(1);\n          transform: scale(1);\n          -webkit-opacity: 1;\n          opacity: 1;\n        }\n      }\n\n      @keyframes beatStretchDelay {\n        50% {\n          -webkit-transform: scale(0.75);\n          transform: scale(0.75);\n          -webkit-opacity: 0.2;\n          opacity: 0.2;\n        }\n\n        100% {\n          -webkit-transform: scale(1);\n          transform: scale(1);\n          -webkit-opacity: 1;\n          opacity: 1;\n        }\n      }\n\n      @media (min-width: 768px) {\n        h1.title[_ngcontent-%COMP%] {\n          font-size: 14px;\n        }\n        p.info[_ngcontent-%COMP%] {\n          font-size: 28px;\n        }\n\n        .spinner[_ngcontent-%COMP%]   .beat[_ngcontent-%COMP%] {\n          height: 12px;\n          width: 12px;\n        }\n      }"] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RedirectComponent, [{
-        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
-        args: [{
-                selector: 'app-redirect',
-                templateUrl: './redirect.component.html',
-                styleUrls: ['./redirect.component.scss']
-            }]
-    }], function () { return []; }, null); })();
-
-
-/***/ }),
-
 /***/ 8:
 /*!***************************!*\
   !*** ./node.js (ignored) ***!
@@ -5767,7 +5712,7 @@ class TorusService {
                         network: (this.proxy.network === 'mainnet') ? this.proxy.network : 'testnet',
                         redirectToOpener: true
                     });
-                    yield torusdirectsdk.init({ skipSw: true });
+                    yield torusdirectsdk.init();
                     this.torus = torusdirectsdk;
                 }
                 catch (error) {
@@ -9708,7 +9653,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_send_prepare_send_prepare_send_component__WEBPACK_IMPORTED_MODULE_68__ = __webpack_require__(/*! ./components/send/prepare-send/prepare-send.component */ "iZs2");
 /* harmony import */ var _components_send_confirm_send_confirm_send_component__WEBPACK_IMPORTED_MODULE_69__ = __webpack_require__(/*! ./components/send/confirm-send/confirm-send.component */ "r94U");
 /* harmony import */ var _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(/*! ./components/send/confirm-send-template/confirm-send-template.component */ "QU+B");
-/* harmony import */ var _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(/*! ./components/redirect/redirect.component */ "7zIY");
 
 
 
@@ -9759,7 +9703,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Pipes
-
 
 
 
@@ -9891,8 +9834,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector
         _components_card_card_component__WEBPACK_IMPORTED_MODULE_67__["CardComponent"],
         _components_send_prepare_send_prepare_send_component__WEBPACK_IMPORTED_MODULE_68__["PrepareSendComponent"],
         _components_send_confirm_send_confirm_send_component__WEBPACK_IMPORTED_MODULE_69__["ConfirmSendComponent"],
-        _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__["ConfirmSendTemplateComponent"],
-        _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_71__["RedirectComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
+        _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__["ConfirmSendTemplateComponent"]], imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
         _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__["BrowserAnimationsModule"],
         _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
         _angular_material_sort__WEBPACK_IMPORTED_MODULE_5__["MatSortModule"],
@@ -9943,8 +9885,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector
                     _components_card_card_component__WEBPACK_IMPORTED_MODULE_67__["CardComponent"],
                     _components_send_prepare_send_prepare_send_component__WEBPACK_IMPORTED_MODULE_68__["PrepareSendComponent"],
                     _components_send_confirm_send_confirm_send_component__WEBPACK_IMPORTED_MODULE_69__["ConfirmSendComponent"],
-                    _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__["ConfirmSendTemplateComponent"],
-                    _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_71__["RedirectComponent"]
+                    _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__["ConfirmSendTemplateComponent"]
                 ],
                 imports: [
                     _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -18293,8 +18234,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_logged_in_logged_in_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/logged-in/logged-in.component */ "WjaR");
 /* harmony import */ var _components_settings_settings_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/settings/settings.component */ "1U8w");
 /* harmony import */ var _components_embedded_embedded_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/embedded/embedded.component */ "fYcN");
-/* harmony import */ var _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/redirect/redirect.component */ "7zIY");
-
 
 
 
@@ -18337,7 +18276,6 @@ const routes = [
     { path: 'embedded', component: _components_embedded_embedded_component__WEBPACK_IMPORTED_MODULE_16__["EmbeddedComponent"] },
     { path: '404', component: _views_error_404_component__WEBPACK_IMPORTED_MODULE_8__["P404Component"], data: { title: 'Page 404' } },
     { path: '500', component: _views_error_500_component__WEBPACK_IMPORTED_MODULE_9__["P500Component"], data: { title: 'Page 500' } },
-    { path: 'redirect', component: _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_17__["RedirectComponent"] },
     { path: '**', redirectTo: '404' },
 ];
 class AppRoutingModule {
