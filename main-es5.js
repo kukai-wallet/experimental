@@ -8956,7 +8956,9 @@
                         redirectToOpener: true
                       });
                       _context35.next = 5;
-                      return torusdirectsdk.init();
+                      return torusdirectsdk.init({
+                        skipSw: true
+                      });
 
                     case 5:
                       this.torus = torusdirectsdk;
@@ -13456,7 +13458,7 @@
           key: "checkEmbedded",
           value: function checkEmbedded() {
             var path = this.location.path();
-            this.embedded = path.startsWith('/embedded') || path.startsWith('/redirect');
+            this.embedded = path.startsWith('/embedded');
           }
         }, {
           key: "setLanguage",

@@ -5712,7 +5712,7 @@ class TorusService {
                         network: (this.proxy.network === 'mainnet') ? this.proxy.network : 'testnet',
                         redirectToOpener: true
                     });
-                    yield torusdirectsdk.init();
+                    yield torusdirectsdk.init({ skipSw: true });
                     this.torus = torusdirectsdk;
                 }
                 catch (error) {
@@ -8019,7 +8019,7 @@ class AppComponent {
     }
     checkEmbedded() {
         const path = this.location.path();
-        this.embedded = path.startsWith('/embedded') || path.startsWith('/redirect');
+        this.embedded = path.startsWith('/embedded');
     }
     setLanguage(lang) {
         window.localStorage.setItem('languagePreference', lang);
