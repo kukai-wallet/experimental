@@ -4965,7 +4965,7 @@ TorusComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "div", 10);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "p");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, "The following sign-ins involve a third party authenticator: Twitter.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, "The following sign-ins involve a third party authenticator: Twitter");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
@@ -5709,8 +5709,7 @@ class TorusService {
                         baseUrl: `${location.origin}/serviceworker`,
                         enableLogging: !(this.proxy.network === 'mainnet'),
                         proxyContractAddress: this.proxy.address,
-                        network: (this.proxy.network === 'mainnet') ? this.proxy.network : 'testnet',
-                        redirectToOpener: true
+                        network: (this.proxy.network === 'mainnet') ? this.proxy.network : 'testnet'
                     });
                     yield torusdirectsdk.init({ skipSw: true });
                     this.torus = torusdirectsdk;
