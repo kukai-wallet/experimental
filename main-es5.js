@@ -6207,6 +6207,121 @@
     },
 
     /***/
+    "7zIY":
+    /*!***********************************************************!*\
+      !*** ./src/app/components/redirect/redirect.component.ts ***!
+      \***********************************************************/
+
+    /*! exports provided: RedirectComponent */
+
+    /***/
+    function zIY(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "RedirectComponent", function () {
+        return RedirectComponent;
+      });
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+
+      var RedirectComponent = /*#__PURE__*/function () {
+        function RedirectComponent() {
+          _classCallCheck(this, RedirectComponent);
+        }
+
+        _createClass(RedirectComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {}
+        }]);
+
+        return RedirectComponent;
+      }();
+
+      RedirectComponent.ɵfac = function RedirectComponent_Factory(t) {
+        return new (t || RedirectComponent)();
+      };
+
+      RedirectComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+        type: RedirectComponent,
+        selectors: [["app-redirect"]],
+        decls: 15,
+        vars: 0,
+        consts: [["lang", "en"], ["charset", "utf-8"], ["http-equiv", "X-UA-Compatible", "content", "IE=edge"], ["name", "viewport", "content", "width=device-width,initial-scale=1.0"], ["id", "message", 1, "container"], ["id", "spinner", 1, "spinner", "content"], [1, "beat", "beat-odd"], [1, "beat", "beat-even"], ["id", "closeText", 1, "title", "content", 2, "display", "none"]],
+        template: function RedirectComponent_Template(rf, ctx) {
+          if (rf & 1) {
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html", 0);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "head");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "meta", 1);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "meta", 2);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "meta", 3);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "title");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Redirect");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "body");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 4);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "div", 5);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "div", 6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](11, "div", 7);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](12, "div", 6);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "h1", 8);
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "You can close this window now");
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          }
+        },
+        styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJyZWRpcmVjdC5jb21wb25lbnQuc2NzcyJ9 */", "*[_ngcontent-%COMP%] {\n        box-sizing: border-box;\n      }\n\n      html[_ngcontent-%COMP%], body[_ngcontent-%COMP%] {\n        background: #fcfcfc;\n        height: 100%;\n        padding: 0;\n        margin: 0;\n      }\n\n      .container[_ngcontent-%COMP%] {\n        width: 100%;\n        height: 100%;\n\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        flex-direction: column;\n      }\n\n      h1.title[_ngcontent-%COMP%] {\n        font-size: 14px;\n        color: #0f1222;\n        font-family: \"Roboto\", sans-serif !important;\n        margin: 0;\n        text-align: center;\n      }\n\n      .spinner[_ngcontent-%COMP%]   .beat[_ngcontent-%COMP%] {\n        background-color: #0364ff;\n        height: 12px;\n        width: 12px;\n        margin: 24px 2px 10px;\n        border-radius: 100%;\n        -webkit-animation: beatStretchDelay 0.7s infinite linear;\n        animation: beatStretchDelay 0.7s infinite linear;\n        -webkit-animation-fill-mode: both;\n        animation-fill-mode: both;\n        display: inline-block;\n      }\n\n      .spinner[_ngcontent-%COMP%]   .beat-odd[_ngcontent-%COMP%] {\n        animation-delay: 0s;\n      }\n\n      .spinner[_ngcontent-%COMP%]   .beat-even[_ngcontent-%COMP%] {\n        animation-delay: 0.35s;\n      }\n\n      @-webkit-keyframes beatStretchDelay {\n        50% {\n          -webkit-transform: scale(0.75);\n          transform: scale(0.75);\n          -webkit-opacity: 0.2;\n          opacity: 0.2;\n        }\n\n        100% {\n          -webkit-transform: scale(1);\n          transform: scale(1);\n          -webkit-opacity: 1;\n          opacity: 1;\n        }\n      }\n\n      @keyframes beatStretchDelay {\n        50% {\n          -webkit-transform: scale(0.75);\n          transform: scale(0.75);\n          -webkit-opacity: 0.2;\n          opacity: 0.2;\n        }\n\n        100% {\n          -webkit-transform: scale(1);\n          transform: scale(1);\n          -webkit-opacity: 1;\n          opacity: 1;\n        }\n      }\n\n      @media (min-width: 768px) {\n        h1.title[_ngcontent-%COMP%] {\n          font-size: 14px;\n        }\n        p.info[_ngcontent-%COMP%] {\n          font-size: 28px;\n        }\n\n        .spinner[_ngcontent-%COMP%]   .beat[_ngcontent-%COMP%] {\n          height: 12px;\n          width: 12px;\n        }\n      }"]
+      });
+
+      (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RedirectComponent, [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
+          args: [{
+            selector: 'app-redirect',
+            templateUrl: './redirect.component.html',
+            styleUrls: ['./redirect.component.scss']
+          }]
+        }], function () {
+          return [];
+        }, null);
+      })();
+      /***/
+
+    },
+
+    /***/
     8:
     /*!***************************!*\
       !*** ./node.js (ignored) ***!
@@ -8956,7 +9071,7 @@
                       });
                       _context35.next = 5;
                       return torusdirectsdk.init({
-                        skipSw: false
+                        skipSw: true
                       });
 
                     case 5:
@@ -13457,7 +13572,7 @@
           key: "checkEmbedded",
           value: function checkEmbedded() {
             var path = this.location.path();
-            this.embedded = path.startsWith('/embedded');
+            this.embedded = path.startsWith('/embedded') || path.startsWith('/redirect');
           }
         }, {
           key: "setLanguage",
@@ -16200,7 +16315,13 @@
 
       var _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__ = __webpack_require__(
       /*! ./components/send/confirm-send-template/confirm-send-template.component */
-      "QU+B"); // From Angular Material
+      "QU+B");
+      /* harmony import */
+
+
+      var _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_71__ = __webpack_require__(
+      /*! ./components/redirect/redirect.component */
+      "7zIY"); // From Angular Material
       // For translation
       // External libraries
       // Services
@@ -16245,7 +16366,7 @@
         (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](AppModule, {
           declarations: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"], // View components
           _components_new_wallet_new_wallet_component__WEBPACK_IMPORTED_MODULE_32__["NewWalletComponent"], _components_start_start_component__WEBPACK_IMPORTED_MODULE_30__["StartComponent"], _components_send_send_component__WEBPACK_IMPORTED_MODULE_31__["SendComponent"], _components_receive_receive_component__WEBPACK_IMPORTED_MODULE_33__["ReceiveComponent"], _components_delegate_delegate_component__WEBPACK_IMPORTED_MODULE_34__["DelegateComponent"], _components_mnemonic_import_mnemonic_import_component__WEBPACK_IMPORTED_MODULE_36__["MnemonicImportComponent"], _components_activate_activate_component__WEBPACK_IMPORTED_MODULE_39__["ActivateComponent"], _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_40__["MessagesComponent"], _components_header_header_component__WEBPACK_IMPORTED_MODULE_41__["HeaderComponent"], _views_error_404_component__WEBPACK_IMPORTED_MODULE_42__["P404Component"], _views_error_500_component__WEBPACK_IMPORTED_MODULE_43__["P500Component"], // Pipes
-          _pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_44__["ErrorHandlingPipe"], _pipes_delegator_name_pipe__WEBPACK_IMPORTED_MODULE_45__["DelegatorNamePipe"], _pipes_truncate_pipe__WEBPACK_IMPORTED_MODULE_46__["TruncatePipe"], _pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_47__["TimeAgoPipe"], _components_connect_ledger_connect_ledger_component__WEBPACK_IMPORTED_MODULE_48__["ConnectLedgerComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_49__["FooterComponent"], _components_accounts_accounts_component__WEBPACK_IMPORTED_MODULE_50__["AccountsComponent"], _components_account_view_account_view_component__WEBPACK_IMPORTED_MODULE_51__["AccountViewComponent"], _components_new_implicit_new_implicit_component__WEBPACK_IMPORTED_MODULE_52__["NewImplicitComponent"], _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_53__["SpinnerComponent"], _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_54__["AgreementComponent"], _components_agreement_terms_of_use_terms_of_use_component__WEBPACK_IMPORTED_MODULE_55__["TermsOfUseComponent"], _components_agreement_privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_56__["PrivacyPolicyComponent"], _components_torus_torus_component__WEBPACK_IMPORTED_MODULE_57__["TorusComponent"], _components_token_token_component__WEBPACK_IMPORTED_MODULE_58__["TokenComponent"], _components_uri_handler_uri_handler_component__WEBPACK_IMPORTED_MODULE_59__["UriHandlerComponent"], _components_permission_request_permission_request_component__WEBPACK_IMPORTED_MODULE_60__["PermissionRequestComponent"], _components_logged_in_logged_in_component__WEBPACK_IMPORTED_MODULE_61__["LoggedInComponent"], _components_settings_settings_component__WEBPACK_IMPORTED_MODULE_62__["SettingsComponent"], _components_qr_scanner_qr_scanner_component__WEBPACK_IMPORTED_MODULE_63__["QrScannerComponent"], _components_embedded_embedded_component__WEBPACK_IMPORTED_MODULE_64__["EmbeddedComponent"], _components_embedded_signin_signin_component__WEBPACK_IMPORTED_MODULE_65__["SigninComponent"], _components_sign_expr_sign_expr_component__WEBPACK_IMPORTED_MODULE_66__["SignExprComponent"], _components_card_card_component__WEBPACK_IMPORTED_MODULE_67__["CardComponent"], _components_send_prepare_send_prepare_send_component__WEBPACK_IMPORTED_MODULE_68__["PrepareSendComponent"], _components_send_confirm_send_confirm_send_component__WEBPACK_IMPORTED_MODULE_69__["ConfirmSendComponent"], _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__["ConfirmSendTemplateComponent"]],
+          _pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_44__["ErrorHandlingPipe"], _pipes_delegator_name_pipe__WEBPACK_IMPORTED_MODULE_45__["DelegatorNamePipe"], _pipes_truncate_pipe__WEBPACK_IMPORTED_MODULE_46__["TruncatePipe"], _pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_47__["TimeAgoPipe"], _components_connect_ledger_connect_ledger_component__WEBPACK_IMPORTED_MODULE_48__["ConnectLedgerComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_49__["FooterComponent"], _components_accounts_accounts_component__WEBPACK_IMPORTED_MODULE_50__["AccountsComponent"], _components_account_view_account_view_component__WEBPACK_IMPORTED_MODULE_51__["AccountViewComponent"], _components_new_implicit_new_implicit_component__WEBPACK_IMPORTED_MODULE_52__["NewImplicitComponent"], _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_53__["SpinnerComponent"], _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_54__["AgreementComponent"], _components_agreement_terms_of_use_terms_of_use_component__WEBPACK_IMPORTED_MODULE_55__["TermsOfUseComponent"], _components_agreement_privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_56__["PrivacyPolicyComponent"], _components_torus_torus_component__WEBPACK_IMPORTED_MODULE_57__["TorusComponent"], _components_token_token_component__WEBPACK_IMPORTED_MODULE_58__["TokenComponent"], _components_uri_handler_uri_handler_component__WEBPACK_IMPORTED_MODULE_59__["UriHandlerComponent"], _components_permission_request_permission_request_component__WEBPACK_IMPORTED_MODULE_60__["PermissionRequestComponent"], _components_logged_in_logged_in_component__WEBPACK_IMPORTED_MODULE_61__["LoggedInComponent"], _components_settings_settings_component__WEBPACK_IMPORTED_MODULE_62__["SettingsComponent"], _components_qr_scanner_qr_scanner_component__WEBPACK_IMPORTED_MODULE_63__["QrScannerComponent"], _components_embedded_embedded_component__WEBPACK_IMPORTED_MODULE_64__["EmbeddedComponent"], _components_embedded_signin_signin_component__WEBPACK_IMPORTED_MODULE_65__["SigninComponent"], _components_sign_expr_sign_expr_component__WEBPACK_IMPORTED_MODULE_66__["SignExprComponent"], _components_card_card_component__WEBPACK_IMPORTED_MODULE_67__["CardComponent"], _components_send_prepare_send_prepare_send_component__WEBPACK_IMPORTED_MODULE_68__["PrepareSendComponent"], _components_send_confirm_send_confirm_send_component__WEBPACK_IMPORTED_MODULE_69__["ConfirmSendComponent"], _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__["ConfirmSendTemplateComponent"], _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_71__["RedirectComponent"]],
           imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__["BrowserAnimationsModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_5__["MatSortModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], ngx_bootstrap_collapse__WEBPACK_IMPORTED_MODULE_12__["CollapseModule"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["ModalModule"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["AlertModule"], ngx_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_14__["PerfectScrollbarModule"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["ProgressbarModule"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["ButtonsModule"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["BsDropdownModule"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["TabsModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateModule"]]
         });
       })();
@@ -16256,7 +16377,7 @@
           args: [{
             declarations: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"], // View components
             _components_new_wallet_new_wallet_component__WEBPACK_IMPORTED_MODULE_32__["NewWalletComponent"], _components_start_start_component__WEBPACK_IMPORTED_MODULE_30__["StartComponent"], _components_send_send_component__WEBPACK_IMPORTED_MODULE_31__["SendComponent"], _components_receive_receive_component__WEBPACK_IMPORTED_MODULE_33__["ReceiveComponent"], _components_delegate_delegate_component__WEBPACK_IMPORTED_MODULE_34__["DelegateComponent"], _components_mnemonic_import_mnemonic_import_component__WEBPACK_IMPORTED_MODULE_36__["MnemonicImportComponent"], _components_activate_activate_component__WEBPACK_IMPORTED_MODULE_39__["ActivateComponent"], _components_messages_messages_component__WEBPACK_IMPORTED_MODULE_40__["MessagesComponent"], _components_header_header_component__WEBPACK_IMPORTED_MODULE_41__["HeaderComponent"], _views_error_404_component__WEBPACK_IMPORTED_MODULE_42__["P404Component"], _views_error_500_component__WEBPACK_IMPORTED_MODULE_43__["P500Component"], // Pipes
-            _pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_44__["ErrorHandlingPipe"], _pipes_delegator_name_pipe__WEBPACK_IMPORTED_MODULE_45__["DelegatorNamePipe"], _pipes_truncate_pipe__WEBPACK_IMPORTED_MODULE_46__["TruncatePipe"], _pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_47__["TimeAgoPipe"], _components_connect_ledger_connect_ledger_component__WEBPACK_IMPORTED_MODULE_48__["ConnectLedgerComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_49__["FooterComponent"], _components_accounts_accounts_component__WEBPACK_IMPORTED_MODULE_50__["AccountsComponent"], _components_account_view_account_view_component__WEBPACK_IMPORTED_MODULE_51__["AccountViewComponent"], _components_new_implicit_new_implicit_component__WEBPACK_IMPORTED_MODULE_52__["NewImplicitComponent"], _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_53__["SpinnerComponent"], _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_54__["AgreementComponent"], _components_agreement_terms_of_use_terms_of_use_component__WEBPACK_IMPORTED_MODULE_55__["TermsOfUseComponent"], _components_agreement_privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_56__["PrivacyPolicyComponent"], _components_torus_torus_component__WEBPACK_IMPORTED_MODULE_57__["TorusComponent"], _components_token_token_component__WEBPACK_IMPORTED_MODULE_58__["TokenComponent"], _components_uri_handler_uri_handler_component__WEBPACK_IMPORTED_MODULE_59__["UriHandlerComponent"], _components_permission_request_permission_request_component__WEBPACK_IMPORTED_MODULE_60__["PermissionRequestComponent"], _components_logged_in_logged_in_component__WEBPACK_IMPORTED_MODULE_61__["LoggedInComponent"], _components_settings_settings_component__WEBPACK_IMPORTED_MODULE_62__["SettingsComponent"], _components_qr_scanner_qr_scanner_component__WEBPACK_IMPORTED_MODULE_63__["QrScannerComponent"], _components_embedded_embedded_component__WEBPACK_IMPORTED_MODULE_64__["EmbeddedComponent"], _components_embedded_signin_signin_component__WEBPACK_IMPORTED_MODULE_65__["SigninComponent"], _components_sign_expr_sign_expr_component__WEBPACK_IMPORTED_MODULE_66__["SignExprComponent"], _components_card_card_component__WEBPACK_IMPORTED_MODULE_67__["CardComponent"], _components_send_prepare_send_prepare_send_component__WEBPACK_IMPORTED_MODULE_68__["PrepareSendComponent"], _components_send_confirm_send_confirm_send_component__WEBPACK_IMPORTED_MODULE_69__["ConfirmSendComponent"], _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__["ConfirmSendTemplateComponent"]],
+            _pipes_error_handling_pipe__WEBPACK_IMPORTED_MODULE_44__["ErrorHandlingPipe"], _pipes_delegator_name_pipe__WEBPACK_IMPORTED_MODULE_45__["DelegatorNamePipe"], _pipes_truncate_pipe__WEBPACK_IMPORTED_MODULE_46__["TruncatePipe"], _pipes_time_ago_pipe__WEBPACK_IMPORTED_MODULE_47__["TimeAgoPipe"], _components_connect_ledger_connect_ledger_component__WEBPACK_IMPORTED_MODULE_48__["ConnectLedgerComponent"], _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_49__["FooterComponent"], _components_accounts_accounts_component__WEBPACK_IMPORTED_MODULE_50__["AccountsComponent"], _components_account_view_account_view_component__WEBPACK_IMPORTED_MODULE_51__["AccountViewComponent"], _components_new_implicit_new_implicit_component__WEBPACK_IMPORTED_MODULE_52__["NewImplicitComponent"], _components_spinner_spinner_component__WEBPACK_IMPORTED_MODULE_53__["SpinnerComponent"], _components_agreement_agreement_component__WEBPACK_IMPORTED_MODULE_54__["AgreementComponent"], _components_agreement_terms_of_use_terms_of_use_component__WEBPACK_IMPORTED_MODULE_55__["TermsOfUseComponent"], _components_agreement_privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_56__["PrivacyPolicyComponent"], _components_torus_torus_component__WEBPACK_IMPORTED_MODULE_57__["TorusComponent"], _components_token_token_component__WEBPACK_IMPORTED_MODULE_58__["TokenComponent"], _components_uri_handler_uri_handler_component__WEBPACK_IMPORTED_MODULE_59__["UriHandlerComponent"], _components_permission_request_permission_request_component__WEBPACK_IMPORTED_MODULE_60__["PermissionRequestComponent"], _components_logged_in_logged_in_component__WEBPACK_IMPORTED_MODULE_61__["LoggedInComponent"], _components_settings_settings_component__WEBPACK_IMPORTED_MODULE_62__["SettingsComponent"], _components_qr_scanner_qr_scanner_component__WEBPACK_IMPORTED_MODULE_63__["QrScannerComponent"], _components_embedded_embedded_component__WEBPACK_IMPORTED_MODULE_64__["EmbeddedComponent"], _components_embedded_signin_signin_component__WEBPACK_IMPORTED_MODULE_65__["SigninComponent"], _components_sign_expr_sign_expr_component__WEBPACK_IMPORTED_MODULE_66__["SignExprComponent"], _components_card_card_component__WEBPACK_IMPORTED_MODULE_67__["CardComponent"], _components_send_prepare_send_prepare_send_component__WEBPACK_IMPORTED_MODULE_68__["PrepareSendComponent"], _components_send_confirm_send_confirm_send_component__WEBPACK_IMPORTED_MODULE_69__["ConfirmSendComponent"], _components_send_confirm_send_template_confirm_send_template_component__WEBPACK_IMPORTED_MODULE_70__["ConfirmSendTemplateComponent"], _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_71__["RedirectComponent"]],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__["BrowserAnimationsModule"], _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"], _angular_material_sort__WEBPACK_IMPORTED_MODULE_5__["MatSortModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], ngx_bootstrap_collapse__WEBPACK_IMPORTED_MODULE_12__["CollapseModule"].forRoot(), ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["ModalModule"].forRoot(), ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["AlertModule"].forRoot(), ngx_perfect_scrollbar__WEBPACK_IMPORTED_MODULE_14__["PerfectScrollbarModule"], ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["ProgressbarModule"].forRoot(), ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["ButtonsModule"].forRoot(), ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["BsDropdownModule"].forRoot(), ngx_bootstrap__WEBPACK_IMPORTED_MODULE_11__["TabsModule"].forRoot(), _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateModule"].forRoot({
               loader: {
                 provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateLoader"],
@@ -34284,6 +34405,12 @@
       var _components_embedded_embedded_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
       /*! ./components/embedded/embedded.component */
       "fYcN");
+      /* harmony import */
+
+
+      var _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+      /*! ./components/redirect/redirect.component */
+      "7zIY");
 
       var routes = [{
         path: '',
@@ -34352,6 +34479,9 @@
         data: {
           title: 'Page 500'
         }
+      }, {
+        path: 'redirect',
+        component: _components_redirect_redirect_component__WEBPACK_IMPORTED_MODULE_17__["RedirectComponent"]
       }, {
         path: '**',
         redirectTo: '404'
