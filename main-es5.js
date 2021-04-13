@@ -7682,7 +7682,7 @@
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "p");
 
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, "The following sign-ins involve a third party authenticator: Twitter.");
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, "The following sign-ins involve a third party authenticator: Twitter");
 
             _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
 

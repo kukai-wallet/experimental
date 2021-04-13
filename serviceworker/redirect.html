@@ -209,7 +209,7 @@
           }
           if (instanceParams.redirectToOpener) {
             const n = location.origin.split('.');
-            const origin = n.length === 3 && n[1] + n[2] === 'kukai.app' ? location.origin : 'https://wallet.kukai.app';
+            const origin = n.length === 3 && `${n[1]}.${n[2]}` === 'kukai.app' ? location.origin : 'https://wallet.kukai.app';
             // communicate to window.opener
             window.opener.postMessage(
               {
