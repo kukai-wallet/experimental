@@ -8955,9 +8955,7 @@
                         network: this.proxy.network === 'mainnet' ? this.proxy.network : 'testnet'
                       });
                       _context35.next = 5;
-                      return torusdirectsdk.init({
-                        skipSw: true
-                      });
+                      return torusdirectsdk.init();
 
                     case 5:
                       this.torus = torusdirectsdk;

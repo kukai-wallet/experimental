@@ -5711,7 +5711,7 @@ class TorusService {
                         proxyContractAddress: this.proxy.address,
                         network: (this.proxy.network === 'mainnet') ? this.proxy.network : 'testnet'
                     });
-                    yield torusdirectsdk.init({ skipSw: true });
+                    yield torusdirectsdk.init();
                     this.torus = torusdirectsdk;
                 }
                 catch (error) {
