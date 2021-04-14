@@ -229,8 +229,6 @@ self.addEventListener("fetch", function (event) {
           }
           if (instanceParams.redirectToOpener) {
             // communicate to window.opener
-            const n = location.origin.split('.');
-            const origin = n.length === 3 && n[1] + '.' + n[2] === 'kukai.app' ? location.origin : 'https://wallet.kukai.app';
             window.opener.postMessage(
               {
                 channel: "redirect_channel_" + instanceParams.instanceId,
@@ -241,7 +239,7 @@ self.addEventListener("fetch", function (event) {
                 },
                 error: error,
               },
-              origin
+              "http://localhost:3000"
             );
           } else {
             // communicate via broadcast channel
