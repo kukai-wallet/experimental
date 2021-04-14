@@ -5709,8 +5709,7 @@ class TorusService {
                         baseUrl: `${location.origin}/serviceworker`,
                         enableLogging: !(this.proxy.network === 'mainnet'),
                         proxyContractAddress: this.proxy.address,
-                        network: (this.proxy.network === 'mainnet') ? this.proxy.network : 'testnet',
-                        redirectToOpener: true
+                        network: (this.proxy.network === 'mainnet') ? this.proxy.network : 'testnet'
                     });
                     yield torusdirectsdk.init({ skipSw: true });
                     this.torus = torusdirectsdk;

@@ -8952,8 +8952,7 @@
                         baseUrl: "".concat(location.origin, "/serviceworker"),
                         enableLogging: !(this.proxy.network === 'mainnet'),
                         proxyContractAddress: this.proxy.address,
-                        network: this.proxy.network === 'mainnet' ? this.proxy.network : 'testnet',
-                        redirectToOpener: true
+                        network: this.proxy.network === 'mainnet' ? this.proxy.network : 'testnet'
                       });
                       _context35.next = 5;
                       return torusdirectsdk.init({
