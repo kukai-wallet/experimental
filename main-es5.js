@@ -9785,13 +9785,9 @@
 
             var _a;
 
-            console.log('changes', changes);
-
             if (((_a = changes === null || changes === void 0 ? void 0 : changes.dismiss) === null || _a === void 0 ? void 0 : _a.currentValue) === true) {
               this.messageService.stopSpinner().then(function () {
-                return setTimeout(function () {
-                  return _this27.loginResponse.emit('dismiss');
-                }, 10);
+                return _this27.loginResponse.emit('dismiss');
               });
             }
           }
@@ -9810,10 +9806,9 @@
                   switch (_context36.prev = _context36.next) {
                     case 0:
                       _context36.prev = 0;
-                      this.messageService.startSpinner('Loading wallet...'); //const loginData = await this.mockLogin(); // Mock locally
-
+                      this.messageService.startSpinner('Loading wallet...');
                       _context36.next = 4;
-                      return this.torusService.loginTorus(typeOfLogin);
+                      return this.mockLogin();
 
                     case 4:
                       loginData = _context36.sent;
@@ -10745,23 +10740,24 @@
                         }
                       };
 
-                      _context40.next = 8;
+                      console.log('sim1');
+                      _context40.next = 9;
                       return this.estimateService.estimateTransactions(JSON.parse(JSON.stringify(txs)), this.activeAccount.pkh, tokenTransfer, callback);
 
-                    case 8:
-                      _context40.prev = 8;
-                      _context40.next = 11;
+                    case 9:
+                      _context40.prev = 9;
+                      _context40.next = 12;
                       return this.messageService.stopSpinner();
 
-                    case 11:
-                      return _context40.finish(8);
-
                     case 12:
+                      return _context40.finish(9);
+
+                    case 13:
                     case "end":
                       return _context40.stop();
                   }
                 }
-              }, _callee40, this, [[2,, 8, 12]]);
+              }, _callee40, this, [[2,, 9, 13]]);
             }));
           }
         }, {
@@ -18098,13 +18094,14 @@
                       try {
                         for (_iterator15.s(); !(_step15 = _iterator15.n()).done;) {
                           tx = _step15.value;
+                          console.log(tx);
 
                           if (!isOrigination) {
                             if (!tx.amount) {
                               tx.amount = 0;
                             }
 
-                            if (tx.to.slice(0, 3) !== 'KT1' && !tokenTransfer) {
+                            if (tx.destination.slice(0, 3) !== 'KT1' && !tokenTransfer) {
                               tx.amount = 0.000001;
                             }
                           }
@@ -19272,7 +19269,7 @@
               if (toImport) {
                 _this43.importAccount(toImport.keyPair, toImport.userInfo, toImport.instanceId);
               }
-            }, 0);
+            }, 10);
           }
         }, {
           key: "handleAuthRequest",

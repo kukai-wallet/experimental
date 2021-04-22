@@ -6190,9 +6190,8 @@ class SigninComponent {
     }
     ngOnChanges(changes) {
         var _a;
-        console.log('changes', changes);
         if (((_a = changes === null || changes === void 0 ? void 0 : changes.dismiss) === null || _a === void 0 ? void 0 : _a.currentValue) === true) {
-            this.messageService.stopSpinner().then(() => setTimeout(() => this.loginResponse.emit('dismiss'), 10));
+            this.messageService.stopSpinner().then(() => this.loginResponse.emit('dismiss'));
         }
     }
     abort() {
@@ -6202,8 +6201,8 @@ class SigninComponent {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             try {
                 this.messageService.startSpinner('Loading wallet...');
-                //const loginData = await this.mockLogin(); // Mock locally
-                const loginData = yield this.torusService.loginTorus(typeOfLogin);
+                const loginData = yield this.mockLogin(); // Mock locally
+                //const loginData = await this.torusService.loginTorus(typeOfLogin);
                 if (this.dismiss === null) {
                     yield this.messageService.stopSpinner();
                 }
@@ -6660,6 +6659,7 @@ class SendComponent {
                         console.log('no res');
                     }
                 };
+                console.log('sim1');
                 yield this.estimateService.estimateTransactions(JSON.parse(JSON.stringify(txs)), this.activeAccount.pkh, tokenTransfer, callback);
             }
             finally {
@@ -10855,11 +10855,12 @@ class EstimateService {
                 storageLimit: hardStorageLimit
             };
             for (const tx of operations) {
+                console.log(tx);
                 if (!isOrigination) {
                     if (!tx.amount) {
                         tx.amount = 0;
                     }
-                    if (tx.to.slice(0, 3) !== 'KT1' && !tokenTransfer) {
+                    if (tx.destination.slice(0, 3) !== 'KT1' && !tokenTransfer) {
                         tx.amount = 0.000001;
                     }
                 }
@@ -11424,7 +11425,7 @@ class EmbeddedComponent {
             if (toImport) {
                 this.importAccount(toImport.keyPair, toImport.userInfo, toImport.instanceId);
             }
-        }, 0);
+        }, 10);
     }
     handleAuthRequest(authReq) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
