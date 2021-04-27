@@ -6591,6 +6591,7 @@ class SigninComponent {
                 this.messageService.startSpinner('Loading wallet...');
                 //const loginData = await this.mockLogin(); // Mock locally
                 const loginData = yield this.torusService.loginTorus(typeOfLogin);
+                console.log(loginData);
                 if (this.dismiss === null) {
                     yield this.messageService.stopSpinner();
                 }

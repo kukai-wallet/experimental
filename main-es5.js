@@ -10745,32 +10745,33 @@
 
                     case 4:
                       loginData = _context46.sent;
+                      console.log(loginData);
 
                       if (!(this.dismiss === null)) {
-                        _context46.next = 8;
+                        _context46.next = 9;
                         break;
                       }
 
-                      _context46.next = 8;
+                      _context46.next = 9;
                       return this.messageService.stopSpinner();
 
-                    case 8:
+                    case 9:
                       this.loginResponse.emit(loginData);
-                      _context46.next = 15;
+                      _context46.next = 16;
                       break;
 
-                    case 11:
-                      _context46.prev = 11;
+                    case 12:
+                      _context46.prev = 12;
                       _context46.t0 = _context46["catch"](0);
-                      _context46.next = 15;
+                      _context46.next = 16;
                       return this.messageService.stopSpinner();
 
-                    case 15:
+                    case 16:
                     case "end":
                       return _context46.stop();
                   }
                 }
-              }, _callee46, this, [[0, 11]]);
+              }, _callee46, this, [[0, 12]]);
             }));
           }
         }, {
