@@ -6591,7 +6591,9 @@ class SigninComponent {
                 this.messageService.startSpinner('Loading wallet...');
                 //const loginData = await this.mockLogin(); // Mock locally
                 const loginData = yield this.torusService.loginTorus(typeOfLogin);
-                console.log(loginData);
+                if (!(loginData === null || loginData === void 0 ? void 0 : loginData.keyPair)) {
+                    throw new Error('Login failed');
+                }
                 if (this.dismiss === null) {
                     yield this.messageService.stopSpinner();
                 }
@@ -12315,7 +12317,6 @@ class EmbeddedComponent {
             };
         }
         else if (loginData) {
-            console.log(loginData);
             const { keyPair, userInfo } = loginData;
             const _a = Object.assign({}, userInfo), { idToken = '', accessToken = '' } = _a, filteredUserInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["idToken", "accessToken"]);
             // 160 bits of entropy, base58 encoded

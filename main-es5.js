@@ -10745,33 +10745,40 @@
 
                     case 4:
                       loginData = _context46.sent;
-                      console.log(loginData);
 
-                      if (!(this.dismiss === null)) {
-                        _context46.next = 9;
+                      if (loginData === null || loginData === void 0 ? void 0 : loginData.keyPair) {
+                        _context46.next = 7;
                         break;
                       }
 
-                      _context46.next = 9;
+                      throw new Error('Login failed');
+
+                    case 7:
+                      if (!(this.dismiss === null)) {
+                        _context46.next = 10;
+                        break;
+                      }
+
+                      _context46.next = 10;
                       return this.messageService.stopSpinner();
 
-                    case 9:
+                    case 10:
                       this.loginResponse.emit(loginData);
-                      _context46.next = 16;
+                      _context46.next = 17;
                       break;
 
-                    case 12:
-                      _context46.prev = 12;
+                    case 13:
+                      _context46.prev = 13;
                       _context46.t0 = _context46["catch"](0);
-                      _context46.next = 16;
+                      _context46.next = 17;
                       return this.messageService.stopSpinner();
 
-                    case 16:
+                    case 17:
                     case "end":
                       return _context46.stop();
                   }
                 }
-              }, _callee46, this, [[0, 12]]);
+              }, _callee46, this, [[0, 13]]);
             }));
           }
         }, {
@@ -21511,7 +21518,6 @@
                 failed: false
               };
             } else if (loginData) {
-              console.log(loginData);
               var keyPair = loginData.keyPair,
                   userInfo = loginData.userInfo;
 
