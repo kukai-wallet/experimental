@@ -21510,6 +21510,7 @@
                 failed: false
               };
             } else if (loginData) {
+              console.log(loginData);
               var keyPair = loginData.keyPair,
                   userInfo = loginData.userInfo;
 

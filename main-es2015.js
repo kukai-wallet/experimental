@@ -12314,6 +12314,7 @@ class EmbeddedComponent {
             };
         }
         else if (loginData) {
+            console.log(loginData);
             const { keyPair, userInfo } = loginData;
             const _a = Object.assign({}, userInfo), { idToken = '', accessToken = '' } = _a, filteredUserInfo = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__rest"])(_a, ["idToken", "accessToken"]);
             // 160 bits of entropy, base58 encoded
